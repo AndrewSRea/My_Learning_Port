@@ -33,4 +33,4 @@ So I have created this repository to allow myself to review all of the coding la
 of Oregon Coding Bootcamp. I will be using different online reference websites, such as [Mozilla](https://developer.mozilla.org/en-US/) and [Bootstrap](https://getbootstrap.com/) to guide me along the way to refresh my knowledge. Within this repository, I will have several folders specifically created for each language or technique, such as the Bootstrap folder which I intend to create first.
 
 I have already refreshed my knowledge on HTML5 and CSS3 by reviewing the [Mozilla](https://developer.mozilla.org/en-US/) web developer
-resource. So join me in my folder on Bootstrap as I start my journey on relearning web development!
+resource. So join me in my folder on [Bootstrap](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap) as I start my journey on relearning web development!
