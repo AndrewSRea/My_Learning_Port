@@ -24,7 +24,7 @@ As [Sass](https://sass-lang.com/) was mentioned above, if Sass is a necessary co
 
 ## Bootstrap Layout
 
-So I have my starter template, ready to jump right in to building some layouts with Bootstrap. Let's go!
+So I have my [starter template](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/starter-template.html), ready to jump right in to building some layouts with Bootstrap. Let's go!
 
 ### Breakpoints
 
