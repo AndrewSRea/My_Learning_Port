@@ -51,3 +51,15 @@ Bootstrap inludes six default breakpoints, sometimes referred to as *grid tiers*
 | Extra large | `xl` | greater than or equal to 1200px |
 | Extra extra large | `xxl` | greater than or equal to 1400px |
 
+Each breakpoint was chosen to comfortably hold containers whose widths are multiples of 12. Breakpoints are also representative of a subset of common device sizes and viewport dimensions--they don't specifically target every use case or device. Instead, the ranges provide a strong and consistent foundation to build on for nearly any device.
+These breakpoints are customizable via [Sass](https://sass-lang.com/)--you'll find them in a Sass map in Boostrap's `_variables.scss` stylesheet. (Perhaps I will have to create a Sass folder within this Bootstrap folder.)
+```
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+```
