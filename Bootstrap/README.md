@@ -40,7 +40,7 @@ Breakpoints are the triggers in Bootstrap for how your responsive layout changes
 
 #### Available breakpoints
 
-Boostrap inludes six default breakpoints, sometimes referred to as *grid tiers*, for building responsively. These breakpoints can be customized if you're using Bootstrap's source [Sass](https://sass-lang.com/) files.
+Bootstrap inludes six default breakpoints, sometimes referred to as *grid tiers*, for building responsively. These breakpoints can be customized if you're using Bootstrap's source [Sass](https://sass-lang.com/) files.
 
 | Breakpoint | Class infix | Dimensions |
 | --- | --- | --- |
