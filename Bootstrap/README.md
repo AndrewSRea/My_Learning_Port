@@ -17,7 +17,7 @@ that technology over the course of a week so I vaguely remember how to use npm p
 in a future folder in My_Learning_Port folder. So therefore, I will not be using this technology just yet as I work with 
 Bootstrap.
 
-* jsDelivr - When you only need to include Bootstrap's compiled CSS or JS, you can use [jsDelivr](https://www.jsdelivr.com/)
+* [jsDelivr](https://www.jsdelivr.com/) - When you only need to include Bootstrap's compiled CSS or JS, you can use jsDelivr.
 
 I am familiar with this technology, as it is pretty the same as adding a CSS stylesheet link and a JavaScript ```<script>```
 link into the ```<head>``` of an HTML document. In fact, I will be incorporating a [starter template](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/starter-template.html) provided by [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/#starter-template) throughout all of the folders inside this Bootstrap folder. 
