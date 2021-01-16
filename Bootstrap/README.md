@@ -189,3 +189,4 @@ Which results in:
 // Example
 // Apply styles starting from medium devices and up to extra large devices
 @media (min-width: 768px) and (max-width: 1199.98px) { ... }
+```
