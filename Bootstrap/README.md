@@ -67,7 +67,7 @@ $grid-breakpoints: (
 More information, and examples on how to modify Sass maps and variables, is available on the [Sass section of the Grid documentation]()
 below.
 
-#### Media Queries
+### Media Queries
 
 Since Bootstrap is developed to be mobile first, we use a handful of [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to create sensible breakpoints for our layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
 
