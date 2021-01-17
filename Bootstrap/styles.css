@@ -1,0 +1,27 @@
+.container {
+    margin: 20px;
+}
+
+.col {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.first {
+    background-color: rgb(173,216,230);
+    color: rgb(0,174,230);
+    border: 2px solid rgb(0,174,230);
+}
+
+.second {
+    background-color: rgb(255,158,255);
+    color: rgb(255,0,255);
+    border: 2px solid rgb(255,0,255);
+}
+
+.third {
+    background-color: rgb(255,192,203);
+    color: rgb(255,39,77);
+    border: 2px solid rgb(255,39,77);
+}
