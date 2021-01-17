@@ -10,18 +10,18 @@
 
 .first {
     background-color: rgb(173,216,230);
-    color: rgb(0,174,230);
-    border: 2px solid rgb(0,174,230);
+    color: rgb(0,122,174);
+    border: 2px solid rgb(0,122,174 );
 }
 
 .second {
     background-color: rgb(255,158,255);
-    color: rgb(255,0,255);
-    border: 2px solid rgb(255,0,255);
+    color: rgb(193,0,197);
+    border: 2px solid rgb(193,0,197);
 }
 
 .third {
     background-color: rgb(255,192,203);
-    color: rgb(255,39,77);
-    border: 2px solid rgb(255,39,77);
+    color: rgb(255,0,45);
+    border: 2px solid rgb(255,0,45);
 }
