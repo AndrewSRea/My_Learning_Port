@@ -212,8 +212,8 @@ The table below illustrates how each container's `max-width` compares to the ori
 See them in action and compare them in my accompanying [grid-example]().
 
 |   | Extra small | Small | Medium | Large | X-Large | XX-Large |
-|   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
 | --- | --- | --- | --- | --- | --- | --- |
+|   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
 | `.container` | 100% | 540px | 720px | 960px | 1140px | 1320px |
 | `.container-sm` | 100% | 540px | 720px | 960px | 1140px | 1320px |
 | `.container-md` | 100% | 100% | 720px | 960px | 1140px | 1320px |
