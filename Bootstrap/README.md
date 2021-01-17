@@ -194,3 +194,33 @@ Which results in:
 #### A code example using Bootstrap breakpoints
 
 I am going to create an HTML document named [breakpoints-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/breakpoints-example.html) which incorporates Bootstrap's breakpoint components into three rows of columns. When `breakpoints-example.html` is opened in a browser, if the browser window's width is shifted to a smaller or larger width, the columns will also change in width, and will also stack on top of each other in a smaller browser window, or sit side-by-side each other in a larger browser window.
+
+### Containers
+
+Containers are a fundamental building block of Bootstrap which contain, pad, and align your content within a given device or viewport.
+
+#### How they work
+
+Containers are the most basic layout element in Bootstrap and are **required when using Bootstrap's default grid system**. Containers are used to contain, pad, and (sometimes) center the content within them. While containers *can* be nested, most do not require a nested container.
+Bootstrap comes with three different containers:
+
+* `.container`, which sets a `max-width` at each responsive breakpoint.
+* `.container-fluid`, which is `width: 100%` at all breakpoints.
+* `.container-{breakpoint}`, which is `width: 100%` until the specified breakpoint.
+
+The table below illustrates how each container's `max-width` compares to the original `.container` and `.container-fluid` across each breakpoint.
+See them in action and compare them in my accompanying [grid-example]().
+
+|   | **Extra small** | **Small** | **Medium** | **Large** | **X-Large** | **XX-Large** |
+|   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
+| --- | --- | --- | --- | --- | --- | --- |
+| `.container` | 100% | 540px | 720px | 960px | 1140px | 1320px |
+| `.container-sm` | 100% | 540px | 720px | 960px | 1140px | 1320px |
+| `.container-md` | 100% | 100% | 720px | 960px | 1140px | 1320px |
+| `.container-lg` | 100% | 100% | 100% | 720px | 960px | 1140px | 1320px |
+| `.container-xl` | 100% | 100% | 100% | 100% | 1140px | 1320px |
+| `.container-xxl` | 100% | 100% | 100% | 100% | 100% | 1320px |
+| `.container-fluid` | 100% | 100% | 100% | 100% | 100% | 100% |
+
+#### Default container
+
