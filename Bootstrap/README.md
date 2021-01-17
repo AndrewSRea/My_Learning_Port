@@ -211,7 +211,7 @@ Bootstrap comes with three different containers:
 The table below illustrates how each container's `max-width` compares to the original `.container` and `.container-fluid` across each breakpoint.
 See them in action and compare them in my accompanying [grid-example]().
 
-|   | **Extra small** | **Small** | **Medium** | **Large** | **X-Large** | **XX-Large** |
+|   | Extra small | Small | Medium | Large | X-Large | XX-Large |
 |   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
 | --- | --- | --- | --- | --- | --- | --- |
 | `.container` | 100% | 540px | 720px | 960px | 1140px | 1320px |
