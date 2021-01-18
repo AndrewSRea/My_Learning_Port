@@ -345,11 +345,11 @@ As noted above, each of these breakpoints have their own container, unique class
 |   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
 | **Container** `max-width` | None (auto) | 540px | 720px | 960px | 1140px | 1320px |
 | **Class prefix** | `.col-` | `.col-sm-` | `.col-md-` | `.col-lg-` | `.col-xl-` | `.col-xxl-` |
-| **# of columns** | 12 |
-| **Gutter width** | 1.5rem (.75rem on left and right) |
-| **Custom gutters** | [Yes](#gutters) |
-| **Nestable** | [Yes](#nesting) |
-| **Column ordering** | [Yes](#reordering) |
+| **# of columns** | 12 | same | same | same | same | same |
+| **Gutter width** | 1.5rem (.75rem on left and right) | same | same | same | same | same |
+| **Custom gutters** | [Yes](#gutters) | same | same | same | same | same |
+| **Nestable** | [Yes](#nesting) | same | same | same | same | same |
+| **Column ordering** | [Yes](#reordering) | same | same | same | same | same |
 
 #### Auto-layout columns
 
