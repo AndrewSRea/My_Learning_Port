@@ -69,7 +69,7 @@ below.
 
 ### Media Queries
 
-Since Bootstrap is developed to be mobile first, we use a handful of [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to create sensible breakpoints for our layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
+Since Bootstrap is developed to be mobile first, we use a handful of [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to create sensible breakpoints for Bootstrap's layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
 
 #### Min-width
 
@@ -139,7 +139,7 @@ Bootstrap occasionally uses media queries that go in the other direction (the gi
 }
 ```
 
-These mixins take those declared breakpoints, subtract `.02px` from them, and use them as our `max-width` values. For example:
+These mixins take those declared breakpoints, subtract `.02px` from them, and use them as Bootstrap's `max-width` values. For example:
 ```
 // X-Small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) { ... }
@@ -307,7 +307,7 @@ Bootstrap's grid system uses a series of containers, rows, and columns to layout
     </div>
 </div>
 ```
-The above examples creates three equal-width columns across all devices and viewports using our predefined grid classes. Those columns are centered in the page with parent `.container`.
+The above examples creates three equal-width columns across all devices and viewports using Bootstrap's predefined grid classes. Those columns are centered in the page with parent `.container`.
 
 #### How it works 
 
