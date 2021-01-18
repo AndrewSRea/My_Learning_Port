@@ -313,4 +313,58 @@ The above examples creates three equal-width columns across all devices and view
 
 Breaking it down, here's how the grid system comes together:
 
-* **Bootstrap's grid supports [six different breakpoints](#Breakpoints)**. Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control containeer and column sizing and behavior by each breakpoint.
+* **Bootstrap's grid supports [six different breakpoints](#breakpoints).** Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control containeer and column sizing and behavior by each breakpoint.
+
+* **Containers center and horizontally pad your content.** Use `.container` for a responsive pixel width, ` .container-fluid` for `width: 100%` across all viewports and devices, or a responsive container (e.g., `.container-md`) for a combination of fluid and pixel widths.
+
+* **Rows are wrappers for columns.** Each column has horizontal `padding` (called a gutter) for controlling the space between them. This `padding` is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to [uniformly apply column sizing](#row-columns) and [gutter classes](#gutters) to change the spacing of your content.
+
+* **Columns are incredibly flexible.** There are 12 template columns available per row, allowing you to create different combinations of elements that span any number of columns. Column classes indicate the number of template columns to span (.e.g, `col-4` spans four). `width`s are set in percentages so you always have the same relative sizing.
+
+* **Gutters are also responsive and customizable.** [Gutter classes are available](#gutters) across all breakpoints, with all the same sizes as Bootstrap's [margin and padding spacing](#spacing). Change horizontal gutters with `.gx-*` classes, vertical gutters with `.gy-*`, or all gutters with `.g-*` classes. `.g-0` is also available to remove gutters.
+
+* **Sass variabless, maps, and mixins power the grid.** If you don't want to use the predefined grid classes in Bootstrap, you can use Bootstrap's grid's source Sass to create your own with more semantic markup. Bootstrap also includes some CSS custom properties to consume these Sass variables for even greater flexibility for you.
+
+Be aware of the limitations and [bugs around flexbox](https://github.com/philipwalton/flexbugs), like the [inability to use some HTML elements as flex containers](https://github.com/philipwalton/flexbugs#flexbug-9).
+
+#### Grid options
+
+Bootstrap's grid system can adapt across all six default breakpoints, and any breakpoints you customize. The six default grid tiers are as follows:
+
+* Extra small (xs)
+* Small (sm)
+* Medium (md)
+* Large (lg)
+* Extra large (xl)
+* Extra extra large (xxl)
+
+As noted above, each of these breakpoints have their own container, unique class prefix, and modifiers. Here's how the grid changes across these breakpoints:
+
+|   | xs | sm | md | lg | xl | xxl |
+| --- | --- | --- | --- | --- | --- | --- |
+|   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
+| **Container** `max-width` | None (auto) | 540px | 720px | 960px | 1140px | 1320px |
+| **Class prefix** | `.col-` | `.col-sm-` | `.col-md-` | `.col-lg-` | `.col-xl-` | `.col-xxl-` |
+| **# of columns** | 12 |
+| **Gutter width** | 1.5rem (.75rem on left and right) |
+| **Custom gutters** | [Yes](#gutters) |
+| **Nestable** | [Yes](#nesting) |
+| **Column ordering** | [Yes](#reordering) |
+
+#### Auto-layout columns
+
+Utilize breakpoint-specific column classes for easy column sizing without an explicit numbered class like `.col-sm-6`.
+
+#### Equal width
+
+For example,
+
+#### Row columns
+
+### Gutters
+
+### Nesting
+
+### Reordering
+
+### Spacing
