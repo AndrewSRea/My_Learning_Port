@@ -284,3 +284,33 @@ For more information and examples on how to modify Bootstrap's Sass maps and var
 #### A code example using Bootstrap responsive containers
 
 I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/container-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
+
+### Grid system
+
+Use Bootstrap's powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve-column system, six default responsive tiers, Sass variables and mixins, and dozens of predefined classes.
+
+#### Example
+
+Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with flexbox and is fullt responsive. Below is an example and an in-depth explanation for how the grid system comes together.
+```
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+    </div>
+</div>
+```
+The above examples creates three equal-width columns across all devices and viewports using our predefined grid classes. Those columns are centered in the page with parent `.container`.
+
+#### How it works 
+
+Breaking it down, here's how the grid system comes together:
+
+* **Bootstrap's grid supports [six different breakpoints](###Breakpoints)**. Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control containeer and column sizing and behavior by each breakpoint.
