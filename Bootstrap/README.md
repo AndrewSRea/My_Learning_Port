@@ -224,3 +224,63 @@ See them in action and compare them in my accompanying [grid-example]().
 
 #### Default container
 
+Bootstrap's default `.container` class is a responsive, fixed-width container, meaning its `max-width` changes at each breakpoint.
+```
+<div class="container">
+    <!-- Content here -->
+</div>
+```
+
+#### Responsive containers
+
+Responsive containers allow you to specify a class that is 100% wide until the specified breakpoint is reached, after which we apply `max-width`s for each of the higher breakpoints. For example, `.container-sm` is 100% wide to start until the `sm` breakpoint is reached, where it will scale up with `md `, `lg`, `xl`, and `xxl`. 
+```
+<div class="container-sm">100% wide until small breakpoint</div>
+<div class="container-md">100% wide until medium breakpoint</div>
+<div class="container-lg">100% wide until large breakpoint</div>
+<div class="container-xl">100% wide until extra large breakpoint</div>
+<div class="container-xxl">100% wide until extra extra large breakpoint</div>
+```
+
+#### Fluid containers
+
+Use `.container-fluid` for a full width container, spanning the entire width of the viewport.
+```
+<div class="container-fluid">
+    ...
+</div>
+```
+
+#### Sass
+
+As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifyiing the Sass map (found in `_variables.scss`) that powers them:
+```
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px
+);
+```
+In addition to customizing the Sass, you can also create your own containers with Bootstrap's mixin.
+```
+// Source mixin
+@mixin make-container($padding-x: $container-padding-x) {
+    width: 100%;
+    padding-right: $padding-x;
+    padding-left: $padding-x;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+// Usage
+.custom-container {
+    @include make-container();
+}
+```
+For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to the **Sass section of the Grid documentation** below.
+
+#### A code example using Bootstrap responsive containers
+
+I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/breakpoints-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
