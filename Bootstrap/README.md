@@ -313,4 +313,4 @@ The above examples creates three equal-width columns across all devices and view
 
 Breaking it down, here's how the grid system comes together:
 
-* **Bootstrap's grid supports [six different breakpoints](###Breakpoints)**. Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control containeer and column sizing and behavior by each breakpoint.
+* **Bootstrap's grid supports [six different breakpoints](#Breakpoints)**. Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control containeer and column sizing and behavior by each breakpoint.
