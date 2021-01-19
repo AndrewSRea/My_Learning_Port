@@ -412,6 +412,81 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
 </div>
 ```
 
+#### Variable width content
+
+Use `col-{breakpoint}-auto` classes to size columns based on the natural width of their content.
+```
+<div clas="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+            1 of 3
+        </div>
+        <div class="col-md-auto">
+            Variable width content
+        </div>
+        <div class="col col-lg-2">
+            3 of 3
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            1 of 3
+        </div>
+        <div class="col-md-auto">
+            Variable width content
+        </div>
+        <div class="col col-lg-2">
+            3 of 3
+        </div>
+    </div>
+</div>
+```
+
+#### Responsive classes
+
+Bootstrap's grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.
+
+#### All breakpoints
+
+For grids that are the same from the smallest of devices to the largest, use the `.col` and `.col-*1` classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to `.col`.
+```
+<div class="container">
+    <div class="row">
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+    </div>
+    <div class="row">
+        <div class="col-8">col-8</div>
+        <div class="col-4">col-4</div>
+    </div>
+</div>
+```
+
+#### Stacked to horizontal
+
+Using a single set of `.col-sm-*` classes, you can creaate a basic grid system that starts out stacked and becomes horizontal at the small breakpoint (`sm`).
+```
+<div class="container">
+    <div class="row">
+        <div class="col-8">col-8</div>
+        <div class="col-4">col-4</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">col-sm</div>
+        <div class="col-sm">col-sm</div>
+        <div class="col-sm">col-sm</div>
+    </div>
+</div>
+```
+
+#### Mix and match
+
+Don't want your columns to simply stack in some grid tiers? Use a combination of different classes for each tier as needed. See the example below for a better idea of how it works.
+
+
+
 #### Row columns
 
 ### Gutters
