@@ -416,7 +416,7 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
 
 Use `col-{breakpoint}-auto` classes to size columns based on the natural width of their content.
 ```
-<div clas="container">
+<div class="container">
     <div class="row justify-content-md-center">
         <div class="col col-lg-2">
             1 of 3
@@ -448,7 +448,7 @@ Bootstrap's grid includes six tiers of predefined classes for building complex r
 
 #### All breakpoints
 
-For grids that are the same from the smallest of devices to the largest, use the `.col` and `.col-*1` classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to `.col`.
+For grids that are the same from the smallest of devices to the largest, use the `.col` and `.col-*` classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to `.col`.
 ```
 <div class="container">
     <div class="row">
