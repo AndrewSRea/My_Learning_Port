@@ -2,6 +2,11 @@
     margin: 20px;
 }
 
+.row {
+    margin-bottom: 10px;
+}
+
+.col,
 div[class|="col"] {
     padding: 15px;
     background-color: rgb(208,208,208);
