@@ -855,8 +855,60 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
 
 ### Column wrapping
 
+If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.
+```
+<div class="container">
+    <div class="row">
+        <div class="col-9">.col-9</div>
+        <div class="col-4">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+        <div class="col-6">.col-6<br>Subsequent columns continue along the new line.</div>
+    </div>
+</div>
+```
+
+### Column breaks
+
+Breaking columns to a new line in flexbox requires a small hack: add an element with `width: 100%` whenever you want to wrap your columns to a new line. Normally this is accomplished with multiple `.row`s, but not every implementation method can account for this.
+```
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+
+        <!-- Force next columns to break to new line -->
+        <div class="w-100"></div>
+
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+        <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+    </div>
+</div>
+```
+You may also apply this break at specific breakpoints with Bootstrap's [responsive display utilities](#display-property).
+```
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+        <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+
+        <!-- Force next columns to break to new line ad md breakpoint and up -->
+        <div class="w-100 d-none d-md-block"></div>
+
+        <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+        <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+    </div>
+</div>
+```
+
+## Reordering
+
+### Order classes 
+
+Use `.order-` classes for controlling the **visual order** of your content.
+
 ### Gutters
 
 ### Reordering
 
 ### Spacing
+
+## Display property
