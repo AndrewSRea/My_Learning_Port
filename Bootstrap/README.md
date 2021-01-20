@@ -742,7 +742,118 @@ Learn how to modify columns with a handful of options for alignment, ordering, a
 
 ## Alignment
 
+Use flexbox alignment utilities to vertically and horizontally align columns.
 
+### Vertical alignment
+```
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+    </div>
+</div>
+```
+#### Another example of vertical alignment
+```
+<div class="container">
+    <div class="row">
+        <div class="col align-self-start">
+            One of three columns
+        </div>
+         <div class="col align-self-center">
+            One of three columns
+        </div>
+         <div class="col align-self-end">
+            One of three columns
+        </div>
+    </div>
+</div>
+```
+
+### Horizontal alignment
+```
+<div class="container">
+    <div class="row justify-content-start">
+        <div class="col-4">
+            One of two columns
+        </div>
+        <div class="col-4">
+            One of two columns
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            One of two columns
+        </div>
+        <div class="col-4">
+            One of two columns
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-4">
+            One of two columns
+        </div>
+        <div class="col-4">
+            One of two columns
+        </div>
+    </div>
+       <div class="row justify-content-around">
+        <div class="col-4">
+            One of two columns
+        </div>
+        <div class="col-4">
+            One of two columns
+        </div>
+    </div>
+       <div class="row justify-content-between">
+        <div class="col-4">
+            One of two columns
+        </div>
+        <div class="col-4">
+            One of two columns
+        </div>
+    </div>
+       <div class="row justify-content-eveenly">
+        <div class="col-4">
+            One of two columns
+        </div>
+        <div class="col-4">
+            One of two columns
+        </div>
+    </div>
+</div>
+```
+
+### Column wrapping
 
 ### Gutters
 
