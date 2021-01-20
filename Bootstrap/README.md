@@ -580,6 +580,7 @@ You can also use the accompanying Sass mixin, `.row-cols()`:
 ## Nesting
 
 To nest your content with the default grid, add a new `.row` and set of `.col-sm-*` columns within an existing `.col-sm-*` column. Nested rows should include a set of columns which add up to 12 or fewer (it is not required that you use all 12 available columns).
+(The code example below can be found in my accompanying [`nesting-grid-example.html` file](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/nesting-grid-example.html).)
 ```
 <div class="container">
     <div class="row">
