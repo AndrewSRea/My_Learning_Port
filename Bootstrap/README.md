@@ -728,6 +728,22 @@ When making any changes to the Sass variables or maps, you'll need to save your 
 
 
 
+## Columns
+
+Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to Bootstrap's flexbox grid system. Plus, see how to use column classes to manage widths of non-grid-elements.
+
+### How they work
+
+* **Columns build on the grid's flexbox architecture.** Flexbox means we have options for changing individual columns and [modifying groups of columns at the row level](#row-columns). You choose how columns grow, shrink, or otherwise change.
+
+* **When building grid layouts, all content goes in columns.** The hierarchy of Bootstrap's grid goes from [container](#containers) to row to column to your content. On rare occasions, you may combine content and columns, but be aware there can be unintended consequences.
+
+* **Bootstrap includes predefined classes for creating fast, responsive layouts.** With [six breakpoints](#breakpoints) and a dozen columns at each grid tier, Bootstrap has dozens of classes already built for you to create your desired layouts. This can be disabled via Sass if you wish.
+
+## Alignment
+
+
+
 ### Gutters
 
 ### Reordering
