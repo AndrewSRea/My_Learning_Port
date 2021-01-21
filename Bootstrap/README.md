@@ -842,7 +842,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
             One of two columns
         </div>
     </div>
-       <div class="row justify-content-eveenly">
+       <div class="row justify-content-evenly">
         <div class="col-4">
             One of two columns
         </div>
@@ -903,7 +903,61 @@ You may also apply this break at specific breakpoints with Bootstrap's [responsi
 
 ### Order classes 
 
-Use `.order-` classes for controlling the **visual order** of your content.
+Use `.order-` classes for controlling the **visual order** of your content. These classes are responsive, so you can set the `order` by breakpoint (e.g., `.order-1.order-md-2`). Includes support for `1` through `5` across all six grid tiers.
+```
+<div class-"container">
+    <div class="row">
+        <div class="col">
+            First in DOM, no order applied
+        </div>
+        <div class="col order-5">
+            Second in DOM, with a larger order
+        </div>
+        <div class="col order-1">
+            Third in DOM, with an order of 1
+        </div>
+    </div>
+</div>
+```
+There are also responsive `.order-first` and `.order-last` classes that can change the `order` of an element by applying `order: -1` and `order: 6`, respectively. These classes can also be intermixed with the numbered `order-*` classes as needed.
+```
+<div class-"container">
+    <div class="row">
+        <div class="col ordeer-last">
+            First in DOM, ordered last
+        </div>
+        <div class="col">
+            Second in DOM, unordered
+        </div>
+        <div class="col order-first">
+            Third in DOM, ordered first
+        </div>
+    </div>
+</div>
+```
+
+### Offsetting columns
+
+You can offset grid columns in two ways: Bootstrap's responsive `.offset-` grid classes and Bootstrap's [margin utilities](#spacing). Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
+
+#### Offset classes
+
+Move columns to the right using `.offset-md-*` classes. These classes increase the left margin of a column by `*` columns. For example, `.offset-md-4` moves `.col-md-4` over four columns.
+```
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+        <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+    </div>
+</div>
+```
 
 ### Gutters
 
