@@ -67,11 +67,11 @@ $grid-breakpoints: (
 More information, and examples on how to modify Sass maps and variables, is available on the [Sass section of the Grid documentation]()
 below.
 
-## Media Queries
+### Media Queries
 
 Since Bootstrap is developed to be mobile first, we use a handful of [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to create sensible breakpoints for Bootstrap's layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
 
-### Min-width
+#### Min-width
 
 Bootstrap primarly uses the following media query ranges--or breakpoints--in Bootstrap's source Sass files for its layout, grid system, and components.
 ```
@@ -119,7 +119,7 @@ These Sass mixins translate in Bootstrap's compiled CSS using the values declare
 @media (min-width: 1400px) { ... }
 ```
 
-### Max-width
+#### Max-width
 
 Bootstrap occasionally uses media queries that go in the other direction (the given screen size *or smaller*):
 ```
@@ -162,7 +162,7 @@ These mixins take those declared breakpoints, subtract `.02px` from them, and us
 
 **Why subtract .02px?** Browsers don't currently support [range context queries](https://www.w3.org/TR/mediaqueries-4/#range-context), so Bootstrap works around the limitations of [min- and max- prefixes](https://www.w3.org/TR/mediaqueries-4/#mq-min-max) and viewports with fractional widths (which can occur under certain conditions on high-dpi [*dots per inch*] devices, for instance) by using values with higher precision.
 
-### Single breakpoint
+#### Single breakpoint
 
 There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
 ```
@@ -178,7 +178,7 @@ For example, the `@include media-breakpoint-only(md) { ... }` will result in:
 @media (min-width: 768px) and (max-width: 991.98px) { ... }
 ```
 
-### Between breakpoints
+#### Between breakpoints
 
 Similarly, meedia queries may span multiple breakpoint widths:
 ```
@@ -352,11 +352,11 @@ As noted above, each of these breakpoints have their own container, unique class
 | **Nestable** | [Yes](#nesting) | same | same | same | same | same |
 | **Column ordering** | [Yes](#reordering) | same | same | same | same | same |
 
-## Auto-layout columns
+### Auto-layout columns
 
 Utilize breakpoint-specific column classes for easy column sizing without an explicit numbered class like `.col-sm-6`.
 
-### Equal width
+#### Equal width
 
 For example, here are two grid layouts that apply to every device and viewport, from `xs` to `xxl`. Add any number of unitless classes for each breakpoint you need and every column will be the same width.
 ```
@@ -383,7 +383,7 @@ For example, here are two grid layouts that apply to every device and viewport, 
 </div>
 ```
 
-### Setting one column width
+#### Setting one column width
 
 Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note thaat the other columns will resize no matter the width of the center column.
 ```
@@ -413,7 +413,7 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
 </div>
 ```
 
-### Variable width content
+#### Variable width content
 
 Use `col-{breakpoint}-auto` classes to size columns based on the natural width of their content.
 ```
@@ -443,11 +443,11 @@ Use `col-{breakpoint}-auto` classes to size columns based on the natural width o
 </div>
 ```
 
-## Responsive classes
+### Responsive classes
 
 Bootstrap's grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.
 
-### All breakpoints
+#### All breakpoints
 
 For grids that are the same from the smallest of devices to the largest, use the `.col` and `.col-*` classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to `.col`.
 (All of the code examples below can be found in my accompanying [`responsive-grid-examples.html` file](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/responsive-grid-examples.html).)
@@ -466,7 +466,7 @@ For grids that are the same from the smallest of devices to the largest, use the
 </div>
 ```
 
-### Stacked to horizontal
+#### Stacked to horizontal
 
 Using a single set of `.col-sm-*` classes, you can creaate a basic grid system that starts out stacked and becomes horizontal at the small breakpoint (`sm`).
 ```
@@ -483,7 +483,7 @@ Using a single set of `.col-sm-*` classes, you can creaate a basic grid system t
 </div>
 ```
 
-### Mix and match
+#### Mix and match
 
 Don't want your columns to simply stack in some grid tiers? Use a combination of different classes for each tier as needed. See the example below for a better idea of how it works.
 ```
@@ -509,7 +509,7 @@ Don't want your columns to simply stack in some grid tiers? Use a combination of
 </div>
 ```
 
-### Row columns
+#### Row columns
 
 Use the responsive `.row-cols-*` classes to quickly set the number of columns which best render your content and layout. Whereas normal `.col-*` classes apply to the individual columns (e.g., `.col-md-4`), the row columns classes are set on the parent `.row` as a shortcut. With `.row-cols-auto`, you can give the columns their natural width.
 Use these row columns classes to quickly create basic grid layouts or to control your card layouts.
@@ -577,7 +577,7 @@ You can also use the accompanying Sass mixin, `.row-cols()`:
 }
 ```
 
-## Nesting
+### Nesting
 
 To nest your content with the default grid, add a new `.row` and set of `.col-sm-*` columns within an existing `.col-sm-*` column. Nested rows should include a set of columns which add up to 12 or fewer (it is not required that you use all 12 available columns).
 (The code example below can be found in my accompanying [`nesting-grid-example.html` file](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/nesting-grid-example.html).)
@@ -601,11 +601,11 @@ To nest your content with the default grid, add a new `.row` and set of `.col-sm
 </div>
 ```
 
-## Sass
+### Sass
 
 When using Bootstrap's source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our predefined grid classes use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts.
 
-### Variables
+#### Variables
 
 Variables and maps determine the number of columns, the gutter width, and the media query point at which to begin floating columns. We use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below.
 ```
@@ -632,7 +632,7 @@ $container-max-widths: (
 );
 ```
 
-### Mixins
+#### Mixins
 
 Mixins are used in conjunction with the grid variables to generate semantic CSS for individual grid columns.
 ```
@@ -647,7 +647,7 @@ Mixins are used in conjunction with the grid variables to generate semantic CSS 
 @include make-col-offset($size, $columns: $grid-columns);
 ```
 
-### Example usage
+#### Example usage
 
 You can modify the variables to your own custom values, or just use the mixins with their default values. Here's an exxample of using the default settings to create a two-column layout with a gap between.
 ```
@@ -693,11 +693,11 @@ You can modify the variables to your own custom values, or just use the mixins w
 </div>
 ```
 
-## Customizing the grid
+### Customizing the grid
 
 Using Bootstrap's built-in grid Sass variables and maps, it's possible to completely customize the predefined grid classes. Change the number of tiers, the media query dimensions, and the container widths--then recompile.
 
-### Columns and gutters
+#### Columns and gutters
 
 The number of grid columns can be modified via Sass variables. `$grid-columns` is used to generate the widths (in percent) of each individual column while `$Kgrid-gutter-width` sets the width for the column gutters.
 ```
@@ -705,7 +705,7 @@ $grid-columns: 12 !default;
 $grid-gutter-width: 1.5rem !default;
 ```
 
-### Grid tiers
+#### Grid tiers
 
 Moving beyond the columns theemselves, you may also customize the number of grid tiers. If you wanted just four grid tiers, you'd update the `$grid-breakpoints` and `$container-max-widths` to something like this:
 ```
@@ -740,11 +740,11 @@ Learn how to modify columns with a handful of options for alignment, ordering, a
 
 * **Bootstrap includes predefined classes for creating fast, responsive layouts.** With [six breakpoints](#breakpoints) and a dozen columns at each grid tier, Bootstrap has dozens of classes already built for you to create your desired layouts. This can be disabled via Sass if you wish.
 
-## Alignment
+### Alignment
 
 Use flexbox alignment utilities to vertically and horizontally align columns.
 
-### Vertical alignment
+#### Vertical alignment
 ```
 <div class="container">
     <div class="row align-items-start">
@@ -782,7 +782,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
     </div>
 </div>
 ```
-#### Another example of vertical alignment
+##### Another example of vertical alignment
 ```
 <div class="container">
     <div class="row">
@@ -799,7 +799,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
 </div>
 ```
 
-### Horizontal alignment
+#### Horizontal alignment
 ```
 <div class="container">
     <div class="row justify-content-start">
@@ -853,7 +853,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
 </div>
 ```
 
-### Column wrapping
+#### Column wrapping
 
 If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.
 ```
@@ -866,7 +866,7 @@ If more than 12 columns are placed within a single row, each group of extra colu
 </div>
 ```
 
-### Column breaks
+#### Column breaks
 
 Breaking columns to a new line in flexbox requires a small hack: add an element with `width: 100%` whenever you want to wrap your columns to a new line. Normally this is accomplished with multiple `.row`s, but not every implementation method can account for this.
 ```
@@ -899,9 +899,9 @@ You may also apply this break at specific breakpoints with Bootstrap's [responsi
 </div>
 ```
 
-## Reordering
+### Reordering
 
-### Order classes 
+#### Order classes 
 
 Use `.order-` classes for controlling the **visual order** of your content. These classes are responsive, so you can set the `order` by breakpoint (e.g., `.order-1.order-md-2`). Includes support for `1` through `5` across all six grid tiers.
 ```
@@ -936,11 +936,11 @@ There are also responsive `.order-first` and `.order-last` classes that can chan
 </div>
 ```
 
-### Offsetting columns
+#### Offsetting columns
 
 You can offset grid columns in two ways: Bootstrap's responsive `.offset-` grid classes and Bootstrap's [margin utilities](#spacing). Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
 
-#### Offset classes
+##### Offset classes
 
 Move columns to the right using `.offset-md-*` classes. These classes increase the left margin of a column by `*` columns. For example, `.offset-md-4` moves `.col-md-4` over four columns.
 ```
@@ -955,6 +955,39 @@ Move columns to the right using `.offset-md-*` classes. These classes increase t
     </div>
     <div class="row">
         <div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+    </div>
+</div>
+```
+In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in [the grid example]().
+```
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 col-md-6">.col-md-5 .col-md-6</div>
+        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">.col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-5 col-lg-6">.col-sm-6 .col-md-5 .col-lg-6</div>
+        <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0</div>
+    </div>
+</div>
+```
+
+##### Margin utilities
+
+With the move to flexbox in v4, you can use margin utilities like `.me-auto` to force sibling columns away from one another.
+```
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-4 ms-auto">.col-md-4 .ms-auto</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 ms-md-auto">.col-md-3 .ms-md-auto</div>
+        <div class="col-md-3 ms-md-auto">.col-md-3 .ms-md-auto</div>
+    </div>
+    <div class="row">
+        <div class="col-auto me-auto">.col-auto .me-auto</div>
+        <div class="col-auto">.col-auto</div>
     </div>
 </div>
 ```
