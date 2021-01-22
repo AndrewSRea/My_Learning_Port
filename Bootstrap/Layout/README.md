@@ -1,3 +1,5 @@
+# Bootstrap Layout
+
 ## Breakpoints
 
 Breakpoints are the triggers in Bootstrap for how your responsive layout changes across device or viewport sizes.
@@ -964,7 +966,7 @@ With the move to flexbox in v4, you can use margin utilities like `.me-auto` to 
 </div>
 ```
 
-#### Standalone column classes
+### Standalone column classes
 
 The `.col-*` classes can also be used outside a `.row` to give an element a specific width. Whenever column classes are used as non-direct children of a row, the paddings are omitted.
 ```
