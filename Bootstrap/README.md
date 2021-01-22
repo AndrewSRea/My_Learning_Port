@@ -1278,6 +1278,51 @@ All heading elements--e.g. `<h1>`--and `<p>` are reset to have their `margin-top
 
 ### Lists
 
+All lists--`<ul>`, `<ol>`, and `<dl>`--have their `margin-top` removed and a `margin-bottom: 1rem`. Nested lists have no `margin-bottom`. Reboot also resets the `padding-left` on `<ul>` and `<ol>` elements.
+
+* Lorem ipsum dolor sit amet
+* Consectetur adipiscing elit
+* Integer molestie lorem at massa
+* Facilisis in pretium nisl aliquet
+* Nulla volutpat aliquam velit
+  - Phasellus iaculis neque
+  - Purus sodales ultricies
+  - Vestibulum laoreet porttitor sem
+  - Ac tristique libero volutpat at
+* Faucibus porta lacus fringilla vel
+* Aenean sit amet erat nunc
+* Eget porttitor lorem
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+4. Facilisis in pretium nisl aliquet
+5. Nulla volutpat aliquam velit
+6. Faucibus porta lacus fringilla vel
+7. Aenean sit amet erat nunc
+8. Eget porttitor lorem
+
+For simpler styling, clear hierarchy, and better spacing, description lists have updated `margin`s. `<dd>`s reset `margin-left` to `0` and add `margin-bottom: .5rem`. `<dt>`s are **bolded**.
+
+**Description lists**
+A description list is perfect for defining terms.
+
+**Euismod**
+Vestibulum id ligula porta felis euismod semper eget lacinia odio sem.
+Donec id elit non mi porta gravida at eget metus.
+
+**Malesuada porta**
+Etiam porta sem malesuada magna mollis euismod.
+
+### Inline code
+
+Wrap inline snippets of code with `<code>`. Be sure to escape HTML angle brackets.
+```
+For example, <code>&lt;section&gt;</code> should be wrapped as inline.
+```
+
+### Code blocks
+
 ## Alerts
 
 ## Clearfix
