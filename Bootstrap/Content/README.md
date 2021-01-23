@@ -132,3 +132,22 @@ To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 ```
 
 ### Sample output
+
+For indicating sample output from a program, use the `<samp>` tag.
+```
+<samp>This text is meant to be treated as sample output from a computer program.</samp>
+```
+
+### Tables
+
+Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and moree come with [the `.table` class](#tables).
+
+| Table heading | Table heading | Table heading | Table heading |
+| --- | --- | --- | --- |
+| Table cell | Table cell | Table cell | Table cell |
+| Table cell | Table cell | Table cell | Table cell |
+| Table cell | Table cell | Table cell | Table cell |
+###### This is an example table, and this is its caption to describe the contents.
+
+### Forms
+
