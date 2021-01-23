@@ -73,7 +73,7 @@ All lists--`<ul>`, `<ol>`, and `<dl>`--have their `margin-top` removed and a `ma
 * Nulla volutpat aliquam velit
   - Phasellus iaculis neque
   - Purus sodales ultricies
-  - Vestibulum laoreet porttitor sem
+  - Vestibulum laoret porttitor sem
   - Ac tristique libero volutpat at
 * Faucibus porta lacus fringilla vel
 * Aenean sit amet erat nunc
