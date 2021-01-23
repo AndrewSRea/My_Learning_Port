@@ -167,7 +167,7 @@ Which results in:
 
 ### A code example using Bootstrap breakpoints
 
-I am going to create an HTML document named [breakpoints-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/breakpoints-example.html) which incorporates Bootstrap's breakpoint components into three rows of columns. When `breakpoints-example.html` is opened in a browser, if the browser window's width is shifted to a smaller or larger width, the columns will also change in width, and will also stack on top of each other in a smaller browser window, or sit side-by-side each other in a larger browser window.
+I am going to create an HTML document named [breakpoints-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/breakpoints-example.html) which incorporates Bootstrap's breakpoint components into three rows of columns. When `breakpoints-example.html` is opened in a browser, if the browser window's width is shifted to a smaller or larger width, the columns will also change in width, and will also stack on top of each other in a smaller browser window, or sit side-by-side each other in a larger browser window.
 
 ## Containers
 
@@ -183,7 +183,7 @@ Bootstrap comes with three different containers:
 * `.container-{breakpoint}`, which is `width: 100%` until the specified breakpoint.
 
 The table below illustrates how each container's `max-width` compares to the original `.container` and `.container-fluid` across each breakpoint.
-See them in action and compare them in my accompanying [grid-example]().
+See them in action and compare them in my accompanying [grid-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.
 
 |   | Extra small | Small | Medium | Large | X-Large | XX-Large |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -257,7 +257,7 @@ For more information and examples on how to modify Bootstrap's Sass maps and var
 
 ### A code example using Bootstrap's responsive containers
 
-I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/container-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
+I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/container-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
 
 ## Grid system
 
@@ -266,7 +266,7 @@ Use Bootstrap's powerful mobile-first flexbox grid to build layouts of all shape
 ### Example
 
 Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with flexbox and is fully responsive. Below is an example and an in-depth explanation for how the grid system comes together.
-(All of the code examples below can be found in my accompanying [`grid-examples.html` file](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/grid-examples.html).)
+(All of the code examples below can be found in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
 ```
 <div class="container">
     <div class="row">
@@ -424,7 +424,7 @@ Bootstrap's grid includes six tiers of predefined classes for building complex r
 #### All breakpoints
 
 For grids that are the same from the smallest of devices to the largest, use the `.col` and `.col-*` classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to `.col`.
-(All of the code examples below can be found in my accompanying [`responsive-grid-examples.html` file](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/responsive-grid-examples.html).)
+(All of the code examples below can be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-grid-examples.html) file.)
 ```
 <div class="container">
     <div class="row">
@@ -554,7 +554,7 @@ You can also use the accompanying Sass mixin, `.row-cols()`:
 ### Nesting
 
 To nest your content with the default grid, add a new `.row` and set of `.col-sm-*` columns within an existing `.col-sm-*` column. Nested rows should include a set of columns which add up to 12 or fewer (it is not required that you use all 12 available columns).
-(The code example below can be found in my accompanying [`nesting-grid-example.html` file](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/nesting-grid-example.html).)
+(The code example below can be found in my accompanying [`nesting-grid-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/nesting-grid-example.html) file.)
 ```
 <div class="container">
     <div class="row">
