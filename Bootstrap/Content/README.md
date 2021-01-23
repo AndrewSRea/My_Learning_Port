@@ -19,7 +19,7 @@ Here are Bootstrap's guildelines and reasons for choosing what to override in Re
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 * The `box-sizing` is globally set on every element--including `*::before` and `*::after`, to `border-box`. This ensures that the declared width of element is never exceeded due to padding or border.
-  - No base `font-size` is declared on the `<html>`, but `16px` is assumed (the browser default). `font-size: 1rem` is applied on the `<body>` for eeasy responsive type-scaling via media queries while respecting user preferences and ensuring a more accessible approach. This browser default can be overridden by modifying the `$font-size-root` variable.
+  - No base `font-size` is declared on the `<html>`, but `16px` is assumed (the browser default). `font-size: 1rem` is applied on the `<body>` for easy responsive type-scaling via media queries while respecting user preferences and ensuring a more accessible approach. This browser default can be overridden by modifying the `$font-size-root` variable.
 * The `<body>` also sets a global `font-family`, `font-weight`, `line-height`, and `color`. This is inherited later by some form elements to prevent font inconsistencies.
 * For safety, the `<body>` has a declared `background-color`, defaulting to `#fff`.
 
@@ -29,7 +29,7 @@ Bootstrap utilizes a "native font stack" or "system font stack" for optimum text
 ```
 $font-family-sans-serif :
     // Safari for macOS and iOS (San Francisco)
-    -apple-systeem,
+    -apple-system,
     // Chrome < 56 for macOS (San Francisco)
     BlinkMacSystemFont,
     // Windows
@@ -140,7 +140,7 @@ For indicating sample output from a program, use the `<samp>` tag.
 
 ### Tables
 
-Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and moree come with [the `.table` class](#tables).
+Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and more come with [the `.table` class](#tables).
 
 | Table heading | Table heading | Table heading | Table heading |
 | --- | --- | --- | --- |
@@ -151,7 +151,7 @@ Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure
 
 ### Forms
 
-Various form elements have been rebooted for simpler base styles. Here are some of the most notable changees:
+Various form elements have been rebooted for simpler base styles. Here are some of the most notable changes:
 
 * `<fieldset>`s have no borders, padding, or margin so they can be easily used as wrappers for individual inputs or groups of inputs.
 * `<legend>`s, like fieldsets, have also been restyled to be displayed as a heading of sorts.
