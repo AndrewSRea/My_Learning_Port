@@ -154,7 +154,7 @@ For example, the `@include media-breakpoint-only(md) { ... }` will result in:
 
 #### Between breakpoints
 
-Similarly, meedia queries may span multiple breakpoint widths:
+Similarly, media queries may span multiple breakpoint widths:
 ```
 @include media-breakpoint-between(md, xl) { ... }
 ```
@@ -288,7 +288,7 @@ The above examples creates three equal-width columns across all devices and view
 
 Breaking it down, here's how the grid system comes together:
 
-* **Bootstrap's grid supports [six different breakpoints](#breakpoints).** Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control containeer and column sizing and behavior by each breakpoint.
+* **Bootstrap's grid supports [six different breakpoints](#breakpoints).** Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it (e.g., `.col-sm-4` applies to `sm`, `md`, `lg`, `xl`, and `xxl`). This means you can control container and column sizing and behavior by each breakpoint.
 
 * **Containers center and horizontally pad your content.** Use `.container` for a responsive pixel width, ` .container-fluid` for `width: 100%` across all viewports and devices, or a responsive container (e.g., `.container-md`) for a combination of fluid and pixel widths.
 
@@ -681,7 +681,7 @@ $grid-gutter-width: 1.5rem !default;
 
 #### Grid tiers
 
-Moving beyond the columns theemselves, you may also customize the number of grid tiers. If you wanted just four grid tiers, you'd update the `$grid-breakpoints` and `$container-max-widths` to something like this:
+Moving beyond the columns themselves, you may also customize the number of grid tiers. If you wanted just four grid tiers, you'd update the `$grid-breakpoints` and `$container-max-widths` to something like this:
 ```
 $grid-breakpoints: (
     xs: 0,
@@ -897,7 +897,7 @@ There are also responsive `.order-first` and `.order-last` classes that can chan
 ```
 <div class-"container">
     <div class="row">
-        <div class="col ordeer-last">
+        <div class="col order-last">
             First in DOM, ordered last
         </div>
         <div class="col">
@@ -1173,7 +1173,7 @@ When toggling `display` isn't needed, you can toggle the `visibility` of an elem
 
 While not a part of Bootstrap's grid system, z-indexes play an important part in how Bootstrap's components overlay and interact with one another.<br/>
 Several Bootstrap components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content. Bootstrap utilizes a default z-index scale that's been designed to properly layer navigation, tooltips, and popovers, modals, and more.
-These higher values start at an arbitrary number, high and specific enough to ideeally avoid conflicts. We need a standard ste of these across our layered components--tooltips, popovers, navbars, dropdowns, modals--so we can be reasonably consistent in the behaviors. There's no reasons we couldn't havee used `100`+ or `500`+.
+These higher values start at an arbitrary number, high and specific enough to ideally avoid conflicts. We need a standard ste of these across our layered components--tooltips, popovers, navbars, dropdowns, modals--so we can be reasonably consistent in the behaviors. There's no reasons we couldn't have used `100`+ or `500`+.
 We don't encourage customization of these individual values; should you change one, you likely need to change them all.
 ```
 $zindex-dropdown:                1000;
