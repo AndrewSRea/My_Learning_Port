@@ -240,3 +240,76 @@ HTML5 adds [a new global attribute named \[hidden\]](https://developer.mozilla.o
 `[hidden]` is not compatible with jQuery's `$(...).hide()` and `$(...).show()` methods. Therefore, Bootstrap doesn't currently especially endorse `[hidden]` over other techniques for managing the `display` of elements.
 
 To merely toggle the visibility of an element, meaning its `display` is not modified and the element can still affect the flow of the document, use [the `.invisible` class]() instead. <!-- link to Utilities folder / Visibility -->
+
+## Typography
+
+Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.
+
+### Global settings
+
+Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the [textual utility classes](). <!-- link to Utilities foldes / Text -->
+
+* Use a [native font stack](#native-font-stack) that selects the best `font-family` for each OS and device.
+* For a more inclusive and accessible type scale, Bootstrap uses the browser's default root `font-size` (typically 16px) so visitors can customize their browser defaults as needed.
+* Use the `$font-family-base`, `$font-size-base`, and `$line-height-base` attributes as our typographic base applied to the `<body>`.
+* Set the global link color via `$link-color`.
+* Use `$body-bg` to set a `background-color` on the `<body>` (`#fff` by default).
+
+These styles can be found within `_reboot.scss`, and the global variables are defined in `_variables.scss`. Make sure to set `$font-size-base` in `rem`.
+
+### Headings
+
+All HTML headings, `<h1>` through `<h6>`, are available.
+
+| Heading | Example |
+| --- | --- |
+| `<h1></h1>` | <h1>h1. Bootstrap heading</h1> |
+| `<h2></h2>` | <h2>h2. Bootstrap heading</h2> |
+| `<h3></h3>` | <h3>h3. Bootstrap heading</h3> |
+| `<h4></h4>` | <h4>h4. Bootstrap heading</h4> |
+| `<h5></h5>` | <h5>h5. Bootstrap heading</h5> |
+| `<h6></h6>` | <h6>h6. Bootstrap heading</h6> |
+```
+<h1>h1. Bootstrap heading</h1>
+<h2>h2. Bootstrap heading</h2>
+<h3>h3. Bootstrap heading</h3>
+<h4>h4. Bootstrap heading</h4>
+<h5>h5. Bootstrap heading</h5>
+<h6>h6. Bootstrap heading</h6>
+```
+`.h1` though `.h6` classes are also available, for when you want to match the font styling of a heading but cannot use the associated HTML element.
+
+<p class="h1">h1. Bootstrap heading</p>
+<p class="h2">h2. Bootstrap heading</p>
+<p class="h3">h3. Bootstrap heading</p>
+<p class="h4">h4. Bootstrap heading</p>
+<p class="h5">h5. Bootstrap heading</p>
+<p class="h6">h6. Bootstrap heading</p>
+
+```
+<p class="h1">h1. Bootstrap heading</p>
+<p class="h2">h2. Bootstrap heading</p>
+<p class="h3">h3. Bootstrap heading</p>
+<p class="h4">h4. Bootstrap heading</p>
+<p class="h5">h5. Bootstrap heading</p>
+<p class="h6">h6. Bootstrap heading</p>
+```
+
+#### Customizing headings
+
+Use the included utility classes to recreate the small secondary heading text from Bootstrap 3.
+
+<h3>
+  Fancy display heading
+  <small class="text-muted">With faded secondary text</small>
+</h3>
+
+```
+<h3>
+  Fancy display heading
+  <small class="text-muted">With faded secondary text</small>
+</h3>
+```
+
+### Display headings
+
