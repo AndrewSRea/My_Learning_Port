@@ -161,3 +161,10 @@ Various form elements have been rebooted for simpler base styles. Here are some 
 * `<button>`s and `<input>` button elements have `cursor: pointer` when `:not(:disabled)`.
 
 These changes, and more, are demonstrated below. <!-- Create a link to a file showing the form creations -->
+
+<div class="bd-callout bd-callout-warning">
+  <h5>Date & color input support</h5>
+  <p>Keep in mind date inputs are [not fully supported](https://caniuse.com/input-datetime) by all browsers, namely Safari.
+</div>
+
+#### Pointers on buttons
