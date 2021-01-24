@@ -278,14 +278,6 @@ All HTML headings, `<h1>` through `<h6>`, are available.
 <h6>h6. Bootstrap heading</h6>
 ```
 `.h1` though `.h6` classes are also available, for when you want to match the font styling of a heading but cannot use the associated HTML element.
-
-<p class="h1">h1. Bootstrap heading</p>
-<p class="h2">h2. Bootstrap heading</p>
-<p class="h3">h3. Bootstrap heading</p>
-<p class="h4">h4. Bootstrap heading</p>
-<p class="h5">h5. Bootstrap heading</p>
-<p class="h6">h6. Bootstrap heading</p>
-
 ```
 <p class="h1">h1. Bootstrap heading</p>
 <p class="h2">h2. Bootstrap heading</p>
@@ -298,12 +290,6 @@ All HTML headings, `<h1>` through `<h6>`, are available.
 #### Customizing headings
 
 Use the included utility classes to recreate the small secondary heading text from Bootstrap 3.
-
-<h3>
-  Fancy display heading
-  <small class="text-muted">With faded secondary text</small>
-</h3>
-
 ```
 <h3>
   Fancy display heading
