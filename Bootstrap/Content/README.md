@@ -168,3 +168,33 @@ These changes, and more, are demonstrated below. <!-- Create a link to a file sh
 Keep in mind date inputs are [not fully supported](https://caniuse.com/input-datetime) by all browsers, namely Safari.
 
 #### Pointers on buttons
+
+Reboot includes an enhancement for `role="button"` to change the default cursor to `pointer`. Add this attribute to elements to help indicate elements are interactive. This role isn't necessary for `<button>` elements, which get their own `cursor` change.
+```
+<span role="button" tabindex="0">Non-button element button</span>
+```
+
+### Misc elements
+
+#### Address
+
+The `<address>` element is updated to reset the browser default `font-style` from `italic` to `normal`. `line-height` is also now inherited, and `margin-bottom: 1rem` has been added. `<address>`s are for presenting contact information for the nearest ancestor (or an entire body of work). Preserve formatting by ending lines with `<br>`.
+
+<address>
+  <strong>Twitter, Inc.</strong>
+  <br>
+  1355 Market St, Suite 900
+  <br>
+  San Francisco, CA 94103
+  <br>
+  <abbr title="Phone">P:</abbr>(123) 456-7890
+</address>
+<address>
+  <strong>Full Name</strong>
+  <br>
+  <a href="mailto:first.last@example.com">first.last@example.com</a>
+</address>
+
+#### Blockquote
+
+The default
