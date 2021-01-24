@@ -188,6 +188,7 @@ The `<address>` element is updated to reset the browser default `font-style` fro
   San Francisco, CA 94103
   <br>
   <abbr title="Phone">P:</abbr>(123) 456-7890
+  <br>
 </address>
 <address>
   <strong>Full Name</strong>
