@@ -199,3 +199,44 @@ The `<address>` element is updated to reset the browser default `font-style` fro
 #### Blockquote
 
 The default `margin` on blockquotes is `1em 40px`, so we reset that to `0 0 1rem` for something more consistent with other elements.
+
+<blockquote>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+  </p>
+</blockquote>
+<p>
+  Someone famous in <cite title="Source Title">Source Title</cite>
+</p>
+
+#### Inline elements
+
+The `<abbr>` element receives basic styling to make it stand out amongst paragraph text.
+
+<p>Nulla <abbr title="attribute">attr</abbr> vitae elit libero, a pharetra augue.</p>
+
+#### Summary
+
+The default `cursor` on summary is `text`, so we reset that to `pointer` to convey that the element can be interacted with by clicking on it.
+
+<details>
+  <summary>Some details</summary>
+  <p>More info about the details.</p>
+</details>
+<details open>
+  <summary>Even more details</summary>
+  <p>Here are even more details about the details.</p>
+</details>
+
+### HTML5 `[hidden]` attribute
+
+HTML5 adds [a new global attribute named \[hidden\]](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden), which is styled as `display: none` by default. Borrowing an idea from [PureCSS](https://purecss.io/), Bootstrap improves upon this default by making `[hidden] { display: none !important; }` to help prevent its `display` from getting accidentally overridden.
+```
+<input type="text" hidden>
+```
+
+##### :warning: jQuery incompatibility
+
+`[hidden]` is not compatible with jQuery's `$(...).hide()` and `$(...).show()` methods. Therefore, Bootstrap doesn't currently especially endorse `[hidden]` over other techniques for managing the `display` of elements.
+
+To merely toggle the visibility of an element, meaning its `display` is not modified and the element can still affect the flow of the document, use [the `.invisible` class]() instead. <!-- link to Utilities folder / Visibility -->
