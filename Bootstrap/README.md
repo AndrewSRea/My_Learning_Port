@@ -33,18 +33,3 @@ I have created a folder for each section covered in Bootstrap's instructional we
 * [Helpers]()
 * [Utilities]()
 * [Extensions]()
-
-
-### Code blocks
-
-## Alerts
-
-## Clearfix
-
-## Display property
-
-## Flex
-
-## Spacing
-
-## Visibility
