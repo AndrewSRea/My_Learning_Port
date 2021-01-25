@@ -934,3 +934,115 @@ You can also put the `<caption>` on the top of the table with `.caption-top`.
 
 ### Responsive tables
 
+Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a `.table` with `.table-responsive`. Or, pick a maximum breakpoint with which to have a responsive table up to by using `.table-responsive{-sm|-md|-lg|-xl|-xxl}`.
+
+#### :warning: Vertical clipping/truncation
+
+Reponsive tables make use of `overflow-y: hidden`, which clips off any content that goes beyond the bottom or top edges of the table. In particular, this can clip off dropdown menus and other third-party widgets.
+
+#### Always responsive
+
+Across every breakpoint, use `.table-responsive` for horizontally scrolling tables.
+```
+<div class="table-responsive">
+    <table class="table">
+        ...
+    </table>
+</div>
+```
+
+#### Breakpoint specific
+
+Use `.table-responsive{-sm|-md|-lg|-xl|-xxl}` as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally.
+**These tables may appear broken until their responsive styles apply at specific viewport widths.**
+```
+<div class="table-responsive">
+    <table class="table">
+        ...
+    </table>
+</div>
+
+<div class="table-responsive-sm">
+    <table class="table">
+        ...
+    </table>
+</div>
+
+<div class="table-responsive-md">
+    <table class="table">
+        ...
+    </table>
+</div>
+
+<div class="table-responsive-lg">
+    <table class="table">
+        ...
+    </table>
+</div>
+
+<div class="table-responsive-xl">
+    <table class="table">
+        ...
+    </table>
+</div>
+
+<div class="table-responsive-xxl">
+    <table class="table">
+        ...
+    </table>
+</div>
+```
+
+### Customizing in Sass
+
+* The factor variables (`$table-striped-bg-factor`, `$table-active-bg-factor` & `$table-hover-bg-factor`) are used to determine the contrast in table variants.
+* Apart from the light & dark table variants, theme colors are lightened by the `$table-bg-level` variable.
+```
+$table-cell-padding-y:        .5rem;
+$table-cell-padding-x:        .5rem;
+$table-cell-padding-y-sm:     .5rem;
+$table-cell-padding-x-sm:     .5rem;
+
+$table-cell-vertical-align:   top;
+
+$table-color:                 $body-color;
+$table-bg:                    transparent;
+
+$table-th-font-weight:        null;
+
+$table-striped-color:         $table-color;
+$table-striped-bg-factor:     .05;
+$table-striped-bg:            rgba($black, $table-striped-bg-factor);
+
+$table-active-color:          $table-color;
+$table-active-bg-factor:      .1;
+$table-active-bg:             rgba($black, $table-active-bg-factor);
+
+$table-hover-color:           $table-color;
+$table-hover-bg-factor:       .075;
+$table-hover-bg:              rgba($black, $table-hover-bg-factor);
+
+$table-border-factor:         .1;
+$table-border-width:          $border-width;
+$table-border-color:          $border-color;
+
+$table-striped-order:         odd;
+
+$table-group-separator-color: currentColor;
+
+$table-caption-color:         $text-muted;
+
+$table-bg-scale:              -80%;
+
+$table-variants: (
+    "primary":   shift-color($primary, $table-bg-scale),
+    "secondary": shift-color($secondary, $table-bg-scale),
+    "success":   shift-color($success, $table-bg-scale),
+    "info":      shift-color($info, $table-bg-scale),
+    "warning":   shift-color($warning, $table-bg-scale),
+    "danger":    shift-color($danger, $table-bg-scale),
+    "light":     $light,
+    "dark":      $dark,
+);
+```
+
