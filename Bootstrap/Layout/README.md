@@ -38,8 +38,7 @@ $grid-breakpoints: (
 );
 ```
 
-More information, and examples on how to modify Sass maps and variables, is available on the [Sass section of the Grid documentation]()
-below.
+More information, and examples on how to modify Sass maps and variables, is available on the [Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#sass-1) below.
 
 ### Media Queries
 
