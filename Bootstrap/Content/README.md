@@ -493,3 +493,173 @@ Align teerms and description horizontally by using Bootstrap's grid system's pre
 ### Responsive font sizes
 
 In Bootstrap 5, they have enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the [RFS page](https://getbootstrap.com/docs/5.0/getting-started/rfs/) to find out how this works.
+
+## Images
+
+Documentation and examples for opting images into responsive behavior (so they neve become larger than their parent elements) and add lightweight styles to them--all via classes.
+
+### Reponsive images
+
+Images in Bootstrap are made responsive with `.img-fluid`. This applies `max-width: 100%;` and `height: auto;` to the image so that it scales with the parent element.
+```
+<img src="..." class="img-fluid" alt="...">
+```
+
+### Image thumbnails
+
+In addition to Bootstrap's [border-radius utilities](), you can use `.img-thumbnail` to give an image a rounded 1px border appearance. <!-- link to Utilities folder / Borders --> 
+```
+<img src="..." class="img-thumbnail" alt="...">
+```
+
+### Aligning images
+
+Align images with the [helper float classes]() <!-- link to Utilities folder / Float --> or [text alignment classes](). <!-- link to Utilities folder / Text / Text alignment --> `block`-level images can be centered using [the `.mx-auto` margin utility class](). <!-- link to Utilities folder / Spacing / Horizontal centering -->
+```
+<img src="..." class="rounded float-start" alt="...">
+<img src="..." class="rounded float-end" alt="...">
+```
+```
+<img src="..." class="rounded mx-auto d-block" alt="...">
+```
+```
+<div class="text-center">
+    <img src="..." class="rounded" alt="...">
+</div>
+```
+
+### Picture
+
+If yiou are using the `<picture>` element to specify multiple `<source>` elements for a specific `<img>`, make sure to add the `.img-*` classes to the `<img>` and not to the `<picture>` tag.
+```
+<picture>
+    <source srcset="..." type="image/svg+xml">
+    <img src="..." class="img-fluid img-thumbnail" alt="...">
+</picture>
+```
+
+## Tables
+
+Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.
+
+### Overview
+
+Due to the widespread use of `<table>` elements across third-party widgets like calendars and date pickers, Bootstrap's tablees are **opt-in**. Add the base class `.table` to any `<table>`, then extend it with Bootstrap's optional modifier classes or custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from the parent.
+Using the most basic table markup, here's how `.table`-based tables look in Bootstrap.
+```
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+### Variants
+
+Use contextual classes to color tables, table rows, or individual cells.
+```
+<!-- On tables -->
+<table class="table-primary">...</table>
+<table class="table-secondary">...</table>
+<table class="table-success">...</table>
+<table class="table-danger">...</table>
+<table class="table-warning">...</table>
+<table class="table-info">...</table>
+<table class="table-light">...</table>
+<table class="table-dark">...</table>
+
+<!-- On rows -->
+<tr class="table-primary">...</tr>
+<tr class="table-secondary">...</tr>
+<tr class="table-success">...</tr>
+<tr class="table-danger">...</tr>
+<tr class="table-warning">...</tr>
+<tr class="table-info">...</tr>
+<tr class="table-light">...</tr>
+<tr class="table-dark">...</tr>
+
+<!-- On cells (`td` or `th`) -->
+<tr>
+    <td class="table-primary">...</td>
+    <td class="table-secondary">...</td>
+    <td class="table-success">...</td>
+    <td class="table-danger">...</td>
+    <td class="table-warning">...</td>
+    <td class="table-info">...</td>
+    <td class="table-light">...</td>
+    <td class="table-dark">...</td>
+</tr>
+```
+
+#### :warning: Conveying meaning to assistive technologies
+
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive teechnologies - such as screen readers. Ensure that information denoted by color is either obvious from the conten  itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
+
+### Accented tables
+
+#### Striped rows
+
+Use `.table-striped` to add zebra-striping to any table row within the `<tbody>`.
+```
+<table class="table table-striped">
+    ...
+</table>
+```
+These classes can also be added to table variants:
+```
+<table class="table table-dark table-striped">
+    ...
+</table>
+```
+```
+<table class="table table-success table-striped">
+    ...
+</table>
+```
+
+#### Hoverable rows
+
+Add `.table-hover` to enable a hover state on table rows with a `<tbody>`.
+```
+<table class="table table-hover">
+    ...
+</table>
+```
+```
+<table class="table table-dark table-hover">
+    ...
+</table>
+```
+These hoverable rows can also be combined with the striped variant:
+```
+<table class="table table-striped table-hover">
+    ...
+</table>
+```
+
+#### Active tables
+
