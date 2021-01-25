@@ -371,7 +371,7 @@ Change text alignment, transform, style, weight, line-height, decoration, and co
 
 ### Abbreviations
 
-Stylized implementation of HTML's `<abbr>` element for abbreviations and acronyms to show the expanded veersion on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.
+Stylized implementation of HTML's `<abbr>` element for abbreviations and acronyms to show the expanded version on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.
 Add `.initialism` to an abbreviation for a slightly smaller font-size.
 ```
 <p><abbr title="attribute">attr</attr></p>
@@ -440,7 +440,7 @@ Remove the default `list-style` and left margin on list items (immediate childre
             <li>Phasellus iaculis neque</li>
             <li>Purus sodales ultricies</li>
             <li>Vestibulum laoreet porttitor sem</li>
-            <li>Ac tristique libeero volutpat at</li>
+            <li>Ac tristique libero volutpat at</li>
         </ul>
     </li>
     <li>Faucibus porta lacus fringilla vel</li>
@@ -462,7 +462,7 @@ Remove a list's bullets and apply some light `margin` with a combination of two 
 
 #### Description list alignment
 
-Align teerms and description horizontally by using Bootstrap's grid system's predefined classes (or semantic mixins). For longer terms, you can optionally add a `.text-truncate` class to truncate the text with an ellipsis.
+Align terms and description horizontally by using Bootstrap's grid system's predefined classes (or semantic mixins). For longer terms, you can optionally add a `.text-truncate` class to truncate the text with an ellipsis.
 ```
 <dl class="row">
     <dt class="col-sm-3">Description lists</dt>
@@ -481,7 +481,7 @@ Align teerms and description horizontally by using Bootstrap's grid system's pre
     <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
 
     <dt class="col-sm-3">Nesting</dt>
-    <dd claass="col-sm-9">
+    <dd class="col-sm-9">
         <dl class="row">
             <dt class="col-sm-4">Nesting definition list</dt>
             <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
@@ -544,7 +544,7 @@ Documentation and examples for opt-in styling of tables (given their prevalent u
 
 ### Overview
 
-Due to the widespread use of `<table>` elements across third-party widgets like calendars and date pickers, Bootstrap's tablees are **opt-in**. Add the base class `.table` to any `<table>`, then extend it with Bootstrap's optional modifier classes or custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from the parent.
+Due to the widespread use of `<table>` elements across third-party widgets like calendars and date pickers, Bootstrap's tables are **opt-in**. Add the base class `.table` to any `<table>`, then extend it with Bootstrap's optional modifier classes or custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from the parent.
 Using the most basic table markup, here's how `.table`-based tables look in Bootstrap.
 ```
 <table class="table">
@@ -617,7 +617,7 @@ Use contextual classes to color tables, table rows, or individual cells.
 
 #### :warning: Conveying meaning to assistive technologies
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive teechnologies - such as screen readers. Ensure that information denoted by color is either obvious from the conten  itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies - such as screen readers. Ensure that information denoted by color is either obvious from the conten  itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
 
 ### Accented tables
 
@@ -662,4 +662,275 @@ These hoverable rows can also be combined with the striped variant:
 ```
 
 #### Active tables
+
+Highlight a table row or cell by adding a `.table-active` class.
+```
+<table class="table">
+    <thead>
+        ...
+    </thead>
+    <tbody>
+        <tr class="table-active">
+            ...
+        </tr>
+        <tr>
+            ...
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2" class="table-active">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+```
+```
+<table class="table table-dark">
+    <thead>
+        ...
+    </thead>
+    <tbody>
+        <tr class="table-active">
+            ...
+        </tr>
+        <tr>
+            ...
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2" class="table-active">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+### How do the variants and accented tables work?
+
+For the accented tables ([striped rows](#striped-rows), [hoverable rows](#hoverable-rows), and [active tables](#active-tables)), Bootstrap used some techniques to make these effects work for all of the [table variants](#variants):
+
+* Bootstrap starts by setting the background of a table cell with the `--bs-table-bg` custom property. All table variants then set that custom property to colorize the table cells. This way, we don't get into trouble if semi-transparent colors are used as table backgrounds.
+* Then Bootstrap adds a gradient on the table cells with `background-image: linear-gradient(var)--bs-table-accent-bg), var(--bs-table-accent-bg));` to layer on top of any specified `background-color`. Since `--bs-table-accent-bg` is transparent by default, we have an invisible transparent linear gradient by default.
+* When either `.table-striped`, `.table--hover`, or `.table-active` classes are added, the `--bs-table-accent-bg` is set to a semitransparent color to colorize the background.
+* For each table variant, Bootstrap generates a `--bs-table-accent-bg` color with the highest contrast depending on that color. For example, the accent color for `.table-primary` is darker while `.table-dark` has a lighter accent color.
+* Text and border colors are generated the same way, and their colors are inherited by default.
+
+Behind the scenes, it looks like this:
+```
+@mixin table-variant($state, $background) {
+    .table-#{$state} {
+        $color: color-contrast(opaque($body-bg, $background));
+        $hover-bg: mix($color, $background, percentage($table-hover-bg-factor));
+        $striped-bg: mix($color, $background, percentage($table-striped-bg-factor));
+        $active-bg: mix($color, $background, percentage($table-active-bg-factor));
+
+        --#{$variable-prefix}table-bg: #{$background};
+        --#{$variable-prefix}table-striped-bg: #{$striped-bg};
+        --#{$variable-prefix}table-striped-color: #{color-contrast($striped-bg)};
+        --#{$variable-prefix}table-active-bg: #{$active-bg};
+        --#{$variable-prefix}table-active-color: #{color-contrast($active-bg)};
+        --#{$variable-prefix}table-hover-bg: #{$hover-bg};
+        --#{$variable-prefix}table-hover-color: #{color-contrast($hover-bg)};
+
+        color: $color;
+        border-color: mix($color, $background, percentage($table-border-factor));
+    }
+}
+```
+
+### Table borders
+
+#### Bordered tables
+
+Add `.table-bordered` for borders on all sides of the table and cells.
+```
+<table class="table table-bordered">
+    ...
+</table>
+```
+[Border color utilities]() <!-- link to Utilities folder / Borders / Border color --> can be added to change colors:
+```
+<table class="table table-bordered border-primary">
+    ...
+</table>
+```
+
+#### Tables without borders
+
+Add `.table-borderless` for a table without borders.
+```
+<table class="table table-borderless">
+    ...
+</table>
+```
+```
+<table class="table table-dark table-borderless">
+    ...
+</table>
+```
+
+### Small tables
+
+Add `.table-sm` to make any `.table` more compact by cutting all cell `padding` in half.
+```
+<table class="table table-sm">
+    ...
+</table>
+```
+```
+<table class="table table-dark table-sm">
+    ...
+</table>
+```
+
+### Vertical alignment
+
+Table cells of `<thead>` are always vertical aligned to the bottom. Table cells in `<tbody>` inherit their alignment from `<table>` and are aligned to the top by default. Use the [vertical align]() <!-- link to Utilities folder / Vertical alignment --> classes to re-align where needed.
+```
+<table class="table table-sm table-dark">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    ...
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    ...
+                </tr>
+                <tr class="align-bottom">
+                    ...
+                </tr>
+                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                    <td class="align-top">This cell is aligned to the top.</td>
+                    <td>...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</table>
+```
+
+### Nesting
+
+Border styles, active styles, and table variants are not inherited by nesting tables.
+```
+<table class="table table-striped">
+    <thead>
+        ...
+    </thead>
+    <tbody>
+        ...
+        <tr>
+            <td colspan="4">
+                <table class="table mb-0">
+                    ...
+                </table>
+            </td>
+        </tr>
+        ...
+    </tbody>
+</table>
+```
+
+### How nesting works
+
+To prevent *any* styles from leaking to nested tables, Bootstrap uses the child combinator (`>`) selector in its CSS. Since Bootstrap needs to target all the `td`s and `th`s in the `thead`, `tbody`, and  `tfoot`, Bootstrap's selector would look pretty long without it. As such, Bootstrap uses the rather odd looking `.table > :not(caption) > * > *` selector to target all `td`s and `th`s of the `.table`, but none of any potential nested tables.
+Note that if you add `<tr>`s as direct children of a table, those `<tr>` will be wrapped in a `<tbody>` by default, thus making our selectors work as intended.
+
+### Anatomy
+
+#### Table head
+
+Similar to tables and dark tables, use the modifier classes `.table-light` or `.table-dark` to make `<thead>`s appear light or dark gray.
+```
+<table class="table">
+    <thead class="table-light">
+        ...
+    </thead>
+    <tbody>
+        ...
+    </tbody>
+</table>
+```
+```
+<table class="table">
+    <thead class="table-dark">
+        ...
+    </thead>
+    <tbody>
+        ...
+    </tbody>
+</table>
+```
+
+#### Table foot
+
+```
+<table class="table">
+    <thead>
+        ...
+    </thead>
+    <tbody>
+        ...
+    </tbody>
+    <tfoot>
+        ...
+    </tfoot>
+</table>
+```
+
+#### Captions
+
+A `<caption>` functions like a heading for a table. It helps users with screen readers to find a table and understand what it's about and decide if they want to read it.
+```
+<table class="table table-sm">
+    <caption>List of users</caption>
+    <thead>
+        ...
+    </thead>
+    <tbody>
+        ...
+    </tbody>
+</table>
+```
+You can also put the `<caption>` on the top of the table with `.caption-top`.
+```
+<table class="table caption-top">
+    <caption>List of users</caption>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+         <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+         <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+### Responsive tables
 
