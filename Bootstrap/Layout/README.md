@@ -486,7 +486,7 @@ Don't want your columns to simply stack in some grid tiers? Use a combination of
 
 Use the responsive `.row-cols-*` classes to quickly set the number of columns which best render your content and layout. Whereas normal `.col-*` classes apply to the individual columns (e.g., `.col-md-4`), the row columns classes are set on the parent `.row` as a shortcut. With `.row-cols-auto`, you can give the columns their natural width.
 Use these row columns classes to quickly create basic grid layouts or to control your card layouts.
-(All of the code examples below can be found in my accompanying [`row-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
+(All of the code examples below can be found in my accompanying [`row-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/row-columns.html) file.)
 ```
 <div class="container">
     <div class="row row-cols-2">
