@@ -2,21 +2,37 @@
 
 Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
 
-[Form control]() - Style textual inputs and textareas with support for multiple states.
+### [Form control]()
 
-[Select]() - Improve browser default select elements with a custom initial appearance.
+Style textual inputs and textareas with support for multiple states.
 
-[Checks & radios]() - Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
+### [Select]()
 
-[Range]() - Replace browser default range inputs with Bootstrap's custom version.
+Improve browser default select elements with a custom initial appearance.
 
-[Input group]() - Attach labels and buttons to your inputs for increased semantic value.
+### [Checks & radios]()
 
-[Floating labels]() - Create beautifully simple form labels that float over your input fields.
+Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
-[Layout]() - Create inline, horizontal, or complex grid-based layouts with your forms.
+### [Range]()
 
-[Validation]() - Validate your forms with custom or native validation behaviors and styles.
+Replace browser default range inputs with Bootstrap's custom version.
+
+### [Input group]()
+
+Attach labels and buttons to your inputs for increased semantic value.
+
+### [Floating labels]()
+
+Create beautifully simple form labels that float over your input fields.
+
+### [Layout]()
+
+Create inline, horizontal, or complex grid-based layouts with your forms.
+
+### [Validation]()
+
+Validate your forms with custom or native validation behaviors and styles.
 
 ## Overview
 
@@ -41,4 +57,4 @@ Here's a quick example to demonstrate Bootstrap's form styles. Keep reading for 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 ```
-(The code example below can be found in my accompanying [`form-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/nesting-grid-example.html) file.)
+(The code example below can be found in my accompanying [`form-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-examples.html) file.)
