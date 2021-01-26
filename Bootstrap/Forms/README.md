@@ -2,35 +2,35 @@
 
 Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
 
-### [Form control]()
+#### [Form control]()
 
 Style textual inputs and textareas with support for multiple states.
 
-### [Select]()
+#### [Select]()
 
 Improve browser default select elements with a custom initial appearance.
 
-### [Checks & radios]()
+#### [Checks & radios]()
 
 Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
-### [Range]()
+#### [Range]()
 
 Replace browser default range inputs with Bootstrap's custom version.
 
-### [Input group]()
+#### [Input group]()
 
 Attach labels and buttons to your inputs for increased semantic value.
 
-### [Floating labels]()
+#### [Floating labels]()
 
 Create beautifully simple form labels that float over your input fields.
 
-### [Layout]()
+#### [Layout]()
 
 Create inline, horizontal, or complex grid-based layouts with your forms.
 
-### [Validation]()
+#### [Validation]()
 
 Validate your forms with custom or native validation behaviors and styles.
 
