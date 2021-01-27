@@ -526,3 +526,42 @@ Group checkboxes or radios on the same horizontal row by adding `.form-check-inl
     <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
 </div>
 ```
+(All of the code examples from the **Switches**, **Default (stacked)**, and **Inline** sections can be found in my accompanying [`checkbox-radio-misc-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples.html) file.)
+
+### Without labels
+
+Omit the wrapping `.form-check` for checkboxes and radios which have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using `aria-label`). See the [forms overview accessibility](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#accessibility) section for details.
+```
+<div>
+    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+</div>
+<div>
+    <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+</div>
+```
+
+### Toggle buttons
+
+Create button-like checkboxes and radio buttons by using `.btn` styles rather than `.form-check-label` on the `<label>` elements. These toggle buttons can further be grouped in a [button group]() if needed. <!-- link to Components folder / Button group -->
+
+#### Checkbox toggle buttons
+
+```
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">Single toggle</label>
+```
+```
+<input type="checkbox" class="btn-check" id="btn-check-2" checked autocomplete="off">
+<label class="btn btn-primary" for="btn-check-2">Checked</label>
+```
+```
+<input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off" disabled>
+<label class="btn btn-primary" for="btn-check-3">Disabled</label>
+```
+<hr>
+
+:warning: Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](). <!-- link to Components folder / Buttons / Button plugin --> However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
+
+<hr>
+
+#### Radio toggle buttons
