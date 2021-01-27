@@ -2,15 +2,15 @@
 
 Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
 
-#### [Form control]()
+#### [Form control](#form-controls)
 
 Style textual inputs and textareas with support for multiple states.
 
-#### [Select]()
+#### [Select](#select-menus)
 
 Improve browser default select elements with a custom initial appearance.
 
-#### [Checks & radios]()
+#### [Checks & radios](#checks-and-radios)
 
 Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
@@ -80,7 +80,7 @@ Form text below inputs can be styled with `.form-text`. If a block-level element
 ```
 (The code example above can be found in my accompanying [`form-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-examples.html) file.)
 
-Inline text can use any typical inline element (be it a `<span>`, `<small>`, or something else) with nothing more thaan the `.form-text` class.
+Inline text can use any typical inline element (be it a `<span>`, `<small>`, or something else) with nothing more than the `.form-text` class.
 ```
 <div class="row g-3 align-items-center">
     <div class="col-auto">
@@ -340,3 +340,97 @@ Add the `disabled` Boolean attribute on a select to give it a grayed out appeara
 ```
 
 (All of the code examples in this **Select menus** section can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example.html) file.)
+
+## Checks and radios
+
+Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap's completely rewritten checks component.
+
+### Approach
+
+Browser default checkboxes and radios are replaced with the help of `.form-check`, a series of classes for both input types that improves the layout and behavior of their HTML elements, which provide greater customization and cross browser consistency. Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+Structurally, Boostrap's `<input>`s and `<label>`s are sibling elements as opposed to an `<input>` within a `<label>`. This is slightly more verbose as you must specify `id` and `for` attributes to relate the `<input>` and `<label>`. Bootstrap uses the sibling selector (`~`) for all of its `<input>` states, like `:checked` or `:disabled`. When combined with the `.form-check-label` class, Bootstrap can easily style the text for each item based on the `<input>``s state.
+Bootstrap's checks use custom icons built by Bootstrap to indicate checked or indeterminate states.
+
+### Checks
+
+```
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+        Default checkbox
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+    <label class="form-check-label" for="flexCheckChecked">
+        Checked checkbox
+    </label>
+</div>
+```
+
+#### Indeterminate
+
+Checkboxes can utilize the `:indeterminate` pseudo-class when manually set via JavaScript (there is no available HTML attribute for specifying it).
+```
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+    <label class="form-check-label" for="flexCheckIndeterminate">
+        Indeterminate checkbox
+    </label>
+</div>
+```
+
+#### Disabled
+
+Add the `disabled` attribute and the associated `<label>`s are automatically styled to match with a lighter color to help indicate the input's state.
+```
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
+    <label class="form-check-label" for="flexCheckDisabled">
+        Disabled checkbox
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+    <label class="form-check-label" for="flexCheckCheckedDisabled">
+        Disabled checked checkbox
+    </label>
+</div>
+```
+(All of the code examples in this **Checks** section can be found in my accompanying [`checkbox-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-examples.html) file.)
+
+### Radios
+
+```
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    <label class="form-check-label" for="flexRadioDefault1">
+        Default radio
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+        Default checked radio
+    </label>
+</div>
+```
+
+#### Disabled
+
+Add the `disabled` attribute and the associated `<label>`s are automatically styled to match with a lighter color to help indicate the input's state.
+```
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
+    <label class="form-check-label" for="flexRadioDisabled">
+        Disabled radio
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked disabled>
+    <label class="form-check-label" for="flexRadioCheckedDisabled">
+        Disabled checked radio
+    </label>
+</div>
+```
+(All of the code examples in this **Radios** section can be found in my accompanying [`radio-button-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/radio-button-examples.html) file.)
