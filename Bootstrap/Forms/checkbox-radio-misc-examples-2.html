@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Misc. Checkbox & Radio Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+
+            .mb-3 {
+                margin-bottom: 10px;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Form controls without labels, omitting `value`s and `aria-label`s -->
+
+        <div class="container">
+            <h3>Form controls without labels</h3>
+
+            <div>
+                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+            </div>
+            <div>
+                <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
+            </div>
+        </div>
+        <hr>
+
+        <!-- Checkbox toggle buttons - button-like checkboxes/radios using `.btn` styles rather than `.form-check-label` -->
+
+        <div class="container">
+            <h3>Checkbox toggle buttons</h3>
+            
+            <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+            <label class="btn btn-primary mb-3" for="btn-check">Single toggle</label>
+            <br>
+            <input type="checkbox" class="btn-check" id="btn-check-2" checked autocomplete="off">
+            <label class="btn btn-primary mb-3" for="btn-check-2">Checked</label>
+            <br>
+            <input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off" disabled>
+            <label class="btn btn-primary mb-3" for="btn-check-3">Disabled</label>
+        </div>
+        <hr>
+
+        <!-- -->
+
+        <div class="container">
+            <h3></h3>
+
+           
+        </div>
+        <hr>
+
+        <!-- Grouping checkboxes or radio buttons at the inline-level using the class `.form-check-inline` -->
+
+        <div class="container">
+            <h3></h3>
+
+
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
