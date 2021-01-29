@@ -877,7 +877,7 @@ You may also apply this break at specific breakpoints with Bootstrap's [responsi
     </div>
 </div>
 ```
-(The code examples under the **Column wrapping** and **Column breaks** headers can be found in my accompanying[`misc-column-examples.html]() file.)
+(The code examples under the **Column wrapping** and **Column breaks** headers can be found in my accompanying[`misc-column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/misc-column-examples.html) file.)
 
 ### Reordering
 
