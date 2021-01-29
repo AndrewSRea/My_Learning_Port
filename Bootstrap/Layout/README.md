@@ -6,15 +6,15 @@ Breakpoints are the triggers in Bootstrap for how your responsive layout changes
 
 ### Core concepts
 
-* **Breakpoints are the building blocks or responsive design.** Use them to control when your layout can be adapted at a particular viewport or device size.
+* **Breakpoints are the building blocks of responsive design.** Use them to control when your layout can be adapted at a particular viewport or device size.
 
 * **Use media queries to architect your CSS by breakpoint.** Media queries are a feature of CSS that allow you to conditionally apply styles based on a set of browser and operating system parameters. Bootstrap most commonly uses ```min-width``` in their media queries.
 
-* **Mobile first, responsive design in the goal.** Bootstrap's CSS aims to apply the bare minimum of styles to make a layout work at the smallest breakpoint, and then layers on styles to adjust that design for larger devices. This optimizes your CSS, improves rendering time, and provides a great experience for your visitors.
+* **Mobile first, responsive design is the goal.** Bootstrap's CSS aims to apply the bare minimum of styles to make a layout work at the smallest breakpoint, and then layers on styles to adjust that design for larger devices. This optimizes your CSS, improves rendering time, and provides a great experience for your visitors.
 
 ### Available breakpoints
 
-Bootstrap inludes six default breakpoints, sometimes referred to as *grid tiers*, for building responsively. These breakpoints can be customized if you're using Bootstrap's source [Sass](https://sass-lang.com/) files.
+Bootstrap includes six default breakpoints, sometimes referred to as *grid tiers*, for building responsively. These breakpoints can be customized if you're using Bootstrap's source [Sass](https://sass-lang.com/) files.
 
 | Breakpoint | Class infix | Dimensions |
 | --- | --- | --- |
@@ -182,7 +182,6 @@ Bootstrap comes with three different containers:
 * `.container-{breakpoint}`, which is `width: 100%` until the specified breakpoint.
 
 The table below illustrates how each container's `max-width` compares to the original `.container` and `.container-fluid` across each breakpoint.
-See them in action and compare them in my accompanying [grid-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.
 
 |   | Extra small | Small | Medium | Large | X-Large | XX-Large |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -194,6 +193,8 @@ See them in action and compare them in my accompanying [grid-examples.html](http
 | `.container-xl` | 100% | 100% | 100% | 100% | 1140px | 1320px |
 | `.container-xxl` | 100% | 100% | 100% | 100% | 100% | 1320px |
 | `.container-fluid` | 100% | 100% | 100% | 100% | 100% | 100% |
+
+See an example of a responsive container in my accompanying [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/container-example.html) file.
 
 ### Default container
 
@@ -214,6 +215,7 @@ Responsive containers allow you to specify a class that is 100% wide until the s
 <div class="container-xl">100% wide until extra large breakpoint</div>
 <div class="container-xxl">100% wide until extra extra large breakpoint</div>
 ```
+See an example of the code above in my accompanying [responsive-containers.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-containers.html) file.
 
 ### Fluid containers
 
