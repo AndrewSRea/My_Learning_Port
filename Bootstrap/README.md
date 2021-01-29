@@ -10,7 +10,7 @@ There are two ways to install Bootstrap into your HTML document:
 
 * Install Bootstrap's source Sass and JavaScript files via npm, Composer, or Meteor.
 
-I was taught how to use npm packages through the Terminal window on my Visual Studio Code editor but again, we only covered that technology over the course of a week so I vaguely remember how to use npm packages. But I will be covering that technologyin a future folder in My_Learning_Port folder. So therefore, I will not be using this technology just yet as I work with Bootstrap.
+I was taught how to use npm packages through the Terminal window on my Visual Studio Code editor but again, we only covered that technology over the course of a week so I vaguely remember how to use npm packages. But I will be covering that technology in a future folder in **My_Learning_Port** folder. So therefore, I will not be using this technology just yet as I work with Bootstrap.
 
 * [jsDelivr](https://www.jsdelivr.com/) - When you only need to include Bootstrap's compiled CSS or JS, you can use jsDelivr.
 
@@ -20,12 +20,13 @@ all the Bootstrap components into an HTML document.
 
 ### Side note
 
-As [Sass](https://sass-lang.com/) was mentioned above, if Sass is a necessary component of Bootstrap, I may have to create a separate folder containing instructions and code examples for Sass. I will add this folder after this Bootstrap folder if I deem it necessary.
+As [Sass](https://sass-lang.com/) was mentioned above, if Sass is a necessary component of Bootstrap, I may have to create a separate folder containing instructions and code examples for Sass. I will add this folder inside this Bootstrap folder if I deem it necessary.
 
 ## Table of Contents
 
-I have created a folder for each section covered in Bootstrap's instructional website, listed below.
+I have created a folder for each section covered in Bootstrap's instructional website, listed below. To follow my instructional path, please click the link to my **Customize** folder.
 
+* [Customize]()
 * [Layout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout)
 * [Content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content)
 * [Forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms)
