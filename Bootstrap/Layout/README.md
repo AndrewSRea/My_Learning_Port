@@ -775,6 +775,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
     </div>
 </div>
 ```
+(The two code examples above can be found in my accompanying [`column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/column-examples.html) file.)
 
 #### Horizontal alignment
 ```
@@ -829,6 +830,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
     </div>
 </div>
 ```
+(The code example above can be found in my accompanying [`horizontal-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/horizontal-columns.html) file.)
 
 #### Column wrapping
 
@@ -875,6 +877,7 @@ You may also apply this break at specific breakpoints with Bootstrap's [responsi
     </div>
 </div>
 ```
+(The code examples under the **Column wrapping** and **Column breaks** headers can be found in my accompanying[`misc-column-examples.html]() file.)
 
 ### Reordering
 
