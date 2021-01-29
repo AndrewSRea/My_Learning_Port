@@ -228,7 +228,7 @@ Use `.container-fluid` for a full width container, spanning the entire width of 
 
 ### Sass
 
-As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifyiing the Sass map (found in `_variables.scss`) that powers them:
+As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifying the Sass map (found in `_variables.scss`) that powers them:
 ```
 $container-max-widths: (
     sm: 540px,
@@ -254,7 +254,7 @@ In addition to customizing the Sass, you can also create your own containers wit
     @include make-container();
 }
 ```
-For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to the **Sass section of the Grid documentation** below.
+For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to the [Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#sass-1) below.
 
 ### A code example using Bootstrap's responsive containers
 
@@ -283,7 +283,7 @@ Bootstrap's grid system uses a series of containers, rows, and columns to layout
     </div>
 </div>
 ```
-The above examples creates three equal-width columns across all devices and viewports using Bootstrap's predefined grid classes. Those columns are centered in the page with parent `.container`.
+The above example creates three equal-width columns across all devices and viewports using Bootstrap's predefined grid classes. Those columns are centered in the page with parent `.container`.
 
 ### How it works 
 
@@ -360,7 +360,7 @@ For example, here are two grid layouts that apply to every device and viewport, 
 
 #### Setting one column width
 
-Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note thaat the other columns will resize no matter the width of the center column.
+Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note that the other columns will resize no matter the width of the center column.
 ```
 <div class="container">
     <div class="row">
@@ -417,6 +417,7 @@ Use `col-{breakpoint}-auto` classes to size columns based on the natural width o
     </div>
 </div>
 ```
+(The three code examples above can be found in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
 
 ### Responsive classes
 
@@ -443,7 +444,7 @@ For grids that are the same from the smallest of devices to the largest, use the
 
 #### Stacked to horizontal
 
-Using a single set of `.col-sm-*` classes, you can creaate a basic grid system that starts out stacked and becomes horizontal at the small breakpoint (`sm`).
+Using a single set of `.col-sm-*` classes, you can create a basic grid system that starts out stacked and becomes horizontal at the small breakpoint (`sm`).
 ```
 <div class="container">
     <div class="row">
@@ -625,7 +626,7 @@ Mixins are used in conjunction with the grid variables to generate semantic CSS 
 
 #### Example usage
 
-You can modify the variables to your own custom values, or just use the mixins with their default values. Here's an exxample of using the default settings to create a two-column layout with a gap between.
+You can modify the variables to your own custom values, or just use the mixins with their default values. Here's an example of using the default settings to create a two-column layout with a gap between.
 ```
 .example-container {
     @include make-container();
@@ -675,7 +676,7 @@ Using Bootstrap's built-in grid Sass variables and maps, it's possible to comple
 
 #### Columns and gutters
 
-The number of grid columns can be modified via Sass variables. `$grid-columns` is used to generate the widths (in percent) of each individual column while `$Kgrid-gutter-width` sets the width for the column gutters.
+The number of grid columns can be modified via Sass variables. `$grid-columns` is used to generate the widths (in percent) of each individual column while `$grid-gutter-width` sets the width for the column gutters.
 ```
 $grid-columns: 12 !default;
 $grid-gutter-width: 1.5rem !default;
@@ -993,7 +994,7 @@ The classes can be used together with utilities to create responsive floated ima
     </p>
 
     <p>
-        Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lantaarnpaal quam venenatis vestibulum. Donec sed odio dui. Maecenas faucibus mollis interdum. Nullam quis risus eget urna salsa tequila vel eu leo. Donec id elit non mi porta gravida at eget metus.
+        Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lantarnpaal quam venenatis vestibulum. Donec sed odio dui. Maecenas faucibus mollis interdum. Nullam quis risus eget urna salsa tequila vel eu leo. Donec id elit non mi porta gravida at eget metus.
     </p>
 </div>
 ```
