@@ -30,6 +30,6 @@ the knowledge of each language or technique in just one week. But somehow, I ret
 to pass the Bootcamp!
 
 So I have created this repository to allow myself to review all of the coding languages and techniques I learned in the University
-of Oregon Coding Bootcamp. I will be using different online reference websites, such as <a href="https://developer.mozilla.org/en-US/">Mozilla</a> and <a href="https://getbootstrap.com/">Bootstrap</a>, to guide me along the way to refresh my knowledge. Within this repository, I will have several folders specifically created for each language or technique, such as the Bootstrap folder which I intend to create first.
+of Oregon Coding Bootcamp. I will be using different online reference websites, such as <a href="https://developer.mozilla.org/en-US/" target="_blank">Mozilla</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>, to guide me along the way to refresh my knowledge. Within this repository, I will have several folders specifically created for each language or technique, such as the Bootstrap folder which I intend to create first.
 
-I have already refreshed my knowledge on HTML5 and CSS3 by reviewing the <a href="https://developer.mozilla.org/en-US/">Mozilla</a> web developer resource. So join me in my [folder on Bootstrap](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap) as I start my journey on relearning web development!
+I have already refreshed my knowledge on HTML5 and CSS3 by reviewing the <a href="https://developer.mozilla.org/en-US/" target="_blank">Mozilla</a> web developer resource. So join me in my [folder on Bootstrap](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap) as I start my journey on relearning web development!
