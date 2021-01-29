@@ -6,7 +6,7 @@ and techniques which will be necessary for me to retain my knowledge of web deve
 ## About Me
 
 I have achieved a Certificate of Completion from the University of Oregon Coding Bootcamp. In the UofO Bootcamp, we studied all 
-of the necessary coding languages and techniques necessary to become a Full-Stack Web Developer, which are the following:
+of the necessary coding languages and techniques needed to become a Full-Stack Web Developer, which are the following:
 
 * Git
 * HTML5
