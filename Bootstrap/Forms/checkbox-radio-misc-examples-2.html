@@ -47,21 +47,41 @@
         </div>
         <hr>
 
-        <!-- -->
+        <!-- Radio toggle buttons - using `.btn` styles instead of the `.form-check-label` class -->
 
         <div class="container">
-            <h3></h3>
+            <h3>Radio toggle buttons</h3>
 
-           
+            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+            <label class="btn btn-secondary" for="option1">Checked</label>
+
+            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+            <label class="btn btn-secondary" for="option2">Radio</label>
+
+            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
+            <label class="btn btn-secondary" for="option3">Disabled</label>
+
+            <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+            <label class="btn btn-secondary" for="option4">Radio</label>
         </div>
         <hr>
 
-        <!-- Grouping checkboxes or radio buttons at the inline-level using the class `.form-check-inline` -->
+        <!-- Checkbox and radio buttons with outline styles -->
 
         <div class="container">
-            <h3></h3>
+            <h3>Checkbox and radio buttons with outline styles</h3>
 
+            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+            <label class="btn btn-outline-primary mb-2" for="btn-check-outlined">Single toggle</label><br>
 
+            <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+            <label class="btn btn-outline-secondary mb-2" for="btn-check-2-outlined">Checked</label><br>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+            <label class="btn btn-outline-success mb-2" for="success-outlined">Checked success radio</label>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+            <label class="btn btn-outline-danger mb-2" for="danger-outlined">Danger radio</label>
         </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
