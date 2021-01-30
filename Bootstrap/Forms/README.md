@@ -558,6 +558,8 @@ Create button-like checkboxes and radio buttons by using `.btn` styles rather th
 <input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off" disabled>
 <label class="btn btn-primary" for="btn-check-3">Disabled</label>
 ```
+See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples-2.html) file.
+
 <hr>
 
 :warning: Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](). <!-- link to Components folder / Buttons / Button plugin --> However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
@@ -565,3 +567,36 @@ Create button-like checkboxes and radio buttons by using `.btn` styles rather th
 <hr>
 
 #### Radio toggle buttons
+
+```
+<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+<label class="btn btn-secondary" for="option1">Checked</label>
+
+<input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+<label class="btn btn-secondary" for="option2">Radio</label>
+
+<input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
+<label class="btn btn-secondary" for="option3">Disabled</label>
+
+<input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+<label class="btn btn-secondary" for="option4">Radio</label>
+```
+See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples-2.html) file.
+
+#### Outlined styles
+
+Defined variants of `.btn`, such as the various outlined styles, are supported.
+```
+<input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>
+
+<input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+<label class="btn btn-outline-secondary" for="btn-check-2-outlined">Checked</label><br>
+
+<input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+<label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+
+<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+<label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
+```
+<small>See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples-2.html) file.</small>
