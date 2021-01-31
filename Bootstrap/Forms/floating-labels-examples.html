@@ -53,6 +53,33 @@
                 <label for="floatingInputInvalid">Invalid input</label>
             </form>
         </div>
+        <hr>
+
+        <!-- By default, <textarea>s with the class `.form-control` will be the same height as <input>s -->
+
+        <div class="container">
+            <h3 class="mb-3">By default, <code>&lt;textarea&gt;</code>s with the class <code>.form-control</code> will be the same height as 
+                <code>&lt;input&gt;</code>s.</h3>
+
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Comments</label>
+            </div>
+        </div>
+        <hr>
+
+        <!-- To set a custom height on the <textarea>, do not use the `rows` attribute. Instead, set an explicit `height` 
+             (either inline or via custom CSS) -->
+
+        <div class="container">
+            <h3 class="mb-3">To set a custom height on the <code>&lt;textarea&gt;</code>, do not use the <code>rows</code> attribute. 
+                Instead, set an explicit <code>height</code> (either inline or via custom CSS).</h3>
+
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px;"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+            </div>
+        </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
