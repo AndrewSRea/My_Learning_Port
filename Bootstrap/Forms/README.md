@@ -919,7 +919,7 @@ Input groups include support for custom selects and custom file inputs. Browser 
     <button class="btn btn-outline-secondary" type="button">Button</button>
 </div>
 ```
-See this code example in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+See this code example in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/custom-forms-examples.html) file.
 
 #### Custom file input
 
@@ -944,4 +944,38 @@ See this code example in my accompanying [`custom-forms-examples.html`](https://
     <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
 </div>
 ```
-See this code example in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+See this code example in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/custom-forms-examples.html) file.
+
+## Floating labels
+
+Create beautifully simple form labels which float over your input fields.
+
+### Example
+
+Wrap a pair of `<input class="form-control">` and `<label>` elements in `.form-floating` to enable floating labels with Bootstrap's textual form fields. A `placeholder` is required on each `<input>` as Bootstrap's method of CSS-only floating labels uses the `:placeholder-shown` pseudo-element. Also, note that the `<input>` must come first so Bootstrap can utilize a sibling selector (e.g., `~`).
+```
+<div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+    <label for="floatingInput">Email address</label>
+</div>
+<div class="form-floating">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+    <label for="floatingPassword">Password</label>
+</div>
+```
+When there's a `value` already defined, `<label>`s will automatically adjust to their floated position.
+```
+<form class="form-floating">
+    <input type="email" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="text@example.com">
+    <label for="floatingInputValue">Input with value</label>
+</form>
+```
+Form validation styles also work as expected.
+```
+<form class="form-floating">
+    <input type="email" class="form-control is-invalid" id="floatingInputInvalid" placeholder="name@example.com" value="text@example.com">
+    <label for="floatingInputInvalid">Invalid input</label>
+</form>
+```
+
+### Textareas
