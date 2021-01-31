@@ -1011,7 +1011,7 @@ Other than `.form-control`, floating labels are only available on `.form-select`
 </div>
 ```
 
-### Layout
+### Layout of form fields with floating labels
 
 When working with the Bootstrap grid system, be sure to place form elements within column classes.
 ```
@@ -1035,4 +1035,108 @@ When working with the Bootstrap grid system, be sure to place form elements with
     </div>
 </div>
 ```
-Again, all of the code examples in this **Floating labels** section can be found in my accompanying [`floating-labels-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/floating-labels-examples.html) file.
+The two code examples just above can be found in my accompanying [`floating-labels-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/floating-labels-examples-2.html) file.
+
+## Form layout
+
+Give your forms some structure--from inline to horizontal to custom grid implementations--with Bootstrap's form layout options.
+
+### Forms
+
+Every group of form fields should reside in a `<form>` element. Bootstrap provides no default styling for the `<form>` element, but there aree some powerful browser features that are provided by default.
+
+* New to browser forms? Consider the [MDN form docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) for an overview and complete list of available attributes.
+* `<button>`s within a `<form>` default to `type="submit"`, so strive to be specific and always include a `type`.
+* You can disable every form element within a form with the `disabled` attribute on the `<form>`.
+
+Since Bootstrap applies `display: block` and `width: 100%` to almost all of its form controls, forms will, by default, stack vertically. Additional classes can be used to vary this layout on a per-form basis.
+
+### Utilities
+
+[Margin utilities]() <!-- link to Utilities folder / Spacing --> are the easiest way to add some structure to forms. They provide basic grouping of labels, controls, optional form text, and form validation messaging. We recommend sticking to `margin-bottom` utilities, and using a single direction throughout the form for consistency.
+Feel free to build your forms however you like, with `<fieldset>`s, `<div>`s, or nearly any other element.
+```
+<div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">Example label</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+</div>
+<div class="mb-3">
+    <label for="formGroupExampleInput2" class="form-label">Another label</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+</div>
+```
+
+### Form grid
+
+More complex forms can be built using Bootstrap's grid classes. Use these for form layouts which require multiple columns, varied widths, and additional alignment options. **Requires the `$enable-grid-classes` Sass variable to be enabled** (on by default).
+```
+<div class="row">
+    <div class="col">
+        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+    </div>
+</div>
+```
+
+### Gutters
+
+By adding [gutter modifier classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#gutters), you can have control over the gutter width as well as laying out form fields in an inline direction. **Also requires the `$enable-grid-classes` Sass variable to be enabled** (on by default).
+```
+<div class="row g-3">
+    <div class="col">
+        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+    </div>
+</div>
+```
+More complex layouts can also be created with the grid system.
+```
+<form class="row g-3">
+    <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail4">
+    </div>
+    <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword">
+    </div>
+    <div class="col-12">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="col-12">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="col-md-4">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Check me out
+            </label>
+        </div>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+</form>
+```
