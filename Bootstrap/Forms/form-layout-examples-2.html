@@ -96,21 +96,144 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Form fields with column sizing using `.col` and `.row` classes -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h3 class="mb-3">Form fields with column sizing using <code>.col</code> and <code>.row</code> classes</h3>
 
-            
+            <div class="row g-3">
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" placeholder="City" aria-label="City">
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="State" aria-label="State">
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="Zip" aria-label="Zip">
+                </div>
+            </div>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Auto-sizing form field columns based on their contents using the `.col-auto` class -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h3 class="mb-3">Auto-sizing form field columns based on their contents using the <code>.col-auto</code> class</h3>
 
+            <form class="row gy-2 gx-3 align-items-center">
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingInput">Name</label>
+                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+                </div>
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+                    <select class="form-select" id="autoSizingSelect">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                        <label class="form-check-label" for="autoSizingCheck">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <!-- Altering the example just above using size-specific column classes -->
+
+        <div class="container">
+            <h3>Altering the example just above using size-specific column classes</h3>
+
+            <form class="row gx-3 gy-2 align-items-center">
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputName">Name</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="Jane Doe">
+                </div>
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeSelect">Preference</label>
+                    <select class="form-select" id="specificSizeSelect">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
+                        <label class="form-check-label" for="autoSizingCheck2">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <!-- Creating inline forms using the `.col-auto` classes on the <form> element -->
+
+        <div class="container">
+            <h3>Creating inline forms using the <code>.col-auto</code> classes on the <code>&lt;form&gt;</code> element</h3>
+
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlinFormInputGroupUsername">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                    </div>
+                </div>
             
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
