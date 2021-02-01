@@ -1314,7 +1314,7 @@ You can then remix that once again with size-specific column classes.
 
 ### Inline forms
 
-Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifier classes](), we'll have gutters in horizontal and vertical directions. The `.align-items-center` aligns the form elements to the middle, making the `.form-checkbox` align property.
+Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifier classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#gutters), we'll have gutters in horizontal and vertical directions. The `.align-items-center` aligns the form elements to the middle, making the `.form-checkbox` align property.
 ```
 <form class="row row-cols-lg-auto g-3 align-items-center">
     <div class="col-12">
@@ -1349,4 +1349,35 @@ Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifi
     </div>
 </form>
 ```
+
+## Validation
+
+Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.
+<hr>
+:warning: Currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap works on a solution, the technology recommends either using the server-side option or the default browser validation method.
+<hr>
+
+### How it works
+
+Here's how form validation works with Bootstrap:
+
+* HTML form validation is applied via CSS's two pseudo-classes, `:invalid` and `:valid`. It applies to`<input>`, `<select>`, and `<textarea>` elements.
+
+* Bootstrap scopes the `:invalid` and `:valid` styles to parent `.was-validated` class, usually applied to the `<form>`. Otherwise, any required field without a value shows up as invalid on page load. This way, you may choose when to activate them (typically after form submission is attempted).
+
+* To reset the appearance of the form (for instance, in the case of dynamic form submissions using AJAX), remove the `.was-validated` class from the `<form>` again after submission.
+
+* As a fallback, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes for [server-side validation](#server-side). They do not require a `.was-validated` class from the `<form>` again after submission.
+
+* Due to constraints in how CSS works, Bootstrap cannot (at present) apply styles to a `<label>` that comes before a form control in the DOM without the help of custom JavaScript.
+
+* All modern browsers support the [constraint validation API](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-constraint-validation-api), a serikes of JavaScript methods for validating form controls.
+
+* Feedback message may utilize the [browser defaults](#browser-defaults) (different for each browser, and unstylable via CSS) or Bootstrap's custom feedback styles with additional HTML and CSS.
+
+* You may provide custom validity messages with `setCustomValidity` in JavaScript.
+
+With that in mind, consider the following demos for Bootstrap's custom form validation styles, optional server-side classes, and browser defaults.
+
+### Custom styles
 
