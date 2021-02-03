@@ -1043,7 +1043,7 @@ Give your forms some structure--from inline to horizontal to custom grid impleme
 
 ### Forms
 
-Every group of form fields should reside in a `<form>` element. Bootstrap provides no default styling for the `<form>` element, but there aree some powerful browser features that are provided by default.
+Every group of form fields should reside in a `<form>` element. Bootstrap provides no default styling for the `<form>` element, but there are some powerful browser features that are provided by default.
 
 * New to browser forms? Consider the [MDN form docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) for an overview and complete list of available attributes.
 * `<button>`s within a `<form>` default to `type="submit"`, so strive to be specific and always include a `type`.
@@ -1586,3 +1586,119 @@ To fix [issues with border radii](https://github.com/twbs/bootstrap/issues/25110
     </div>
 </form>
 ```
+
+### Supported elements
+
+Validation styles area available for the following form controls and components:
+
+* `<input>`s and `<textarea>`s with `.form-control` (including up to one `.form-control` in input groups)
+* `<select>`s with `.form-select`
+* `.form-check`s
+```
+<form class="was-validated">
+    <div class="mb-3">
+        <label for="validationTextarea" class="form-label">Textarea</label>
+        <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+        <div class="invalid-feedback">
+            Please enter a message in the textarea.
+        </div>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+        <label class="form-check-label" for="validationFormCheck1">Check this checkbox</label>
+        <div class="invalid-feedback">Example invalid feedback</div>
+    </div>
+
+    <div class="form-check">
+        <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked" required>
+        <label class="form-check-label" for="validationFormCheck2">Toggle this radio</label>
+    </div>
+    <div class="form-check mb-3">
+        <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" required>
+        <label class="form-check-label" for="validationFormCheck3">Or toggle this other radio</label>
+        <div class="invalid-feedback">More example invalid feedback text</div>
+    </div>
+
+    <div class="mb-3">
+        <select class="form-select" required aria-label="select example">
+            <option value="">Open this select menu</option>
+            <option value="1">One</option>
+            <option value="1">One</option>
+            <option value="1">One</option>
+        </select>
+        <div class="invalid-feedback">Example invalid select feedback</div>
+    </div>
+
+    <div class="mb-3">
+        <input type="file" class="form-control" aria-label="file example" required>
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit" disabled>Submit form</button>
+    </div>
+</form>
+```
+
+### Tooltips
+
+If your form layout allows it, you can swap the `.{valid|invalid}-feedback` classes for `.{valid|invalid}-tooltip` classes to display validation feedback in a styled tooltip. Be sure to have a parent with `position: relative` on it for tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup.
+```
+<form class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4 position-relative">
+        <label for="validationTooltip01" class="form-label">First name</label>
+        <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
+        <div class="valid-tooltip">
+            Looks good!
+        </div>
+    </div>
+    <div class="col-md-4 position-relative">
+        <label for="validationTooltip02" class="form-label">Last name</label>
+        <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
+        <div class="valid-tooltip">
+            Looks good!
+        </div>
+    </div>
+    <div class="col-md-4 position-relative">
+        <label for="validationTooltipUsername" class="form-label">Username</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+            <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip">
+                Please choose a unique and valid username.
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 position-relative">
+        <label for="validationTooltip03" class="form-label">City</label>
+        <input type="text" class="form-control" id="validationTooltip03" required>
+        <div class="invalid-tooltip">
+            Please provide a valid city.
+        </div>
+    </div>
+    <div class="col-md-3 position-relative">
+        <label for="validationTooltip04" class="form-label">State</label>
+        <select class="form-select" id="validationTooltip04" required>
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+        </select>
+        <div class="invalid-tooltip">
+            Please select a valid state.
+        </div>
+    </div>
+    <div class="col-md-3 position-relative">
+        <label for="validationTooltip05" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="validationTooltip05" required>
+        <div class="invalid-tooltip">
+            Please provide a valid zip.
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+</form>
+```
+
+### Customizing
+
