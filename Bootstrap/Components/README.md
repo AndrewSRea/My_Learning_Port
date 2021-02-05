@@ -250,3 +250,51 @@ alert.close();
 
 #### Events
 
+Bootstrap's alert plugin exposes a few events for hooking into alert functionality.
+
+| Event | Description |
+| --- | --- |
+| `close.bs.alert` | Fires immediately when the `close` instance method is called. |
+| `closed.bs.alert` | Fired when the alert has been closed and CS transitions have completed. |
+
+```
+var myAlert = document.getElementById('myAlert');
+myAlert.addEventListener('closed.bs.alert', function() {
+    // do something, for instance, explicitly move focus to the most appropriate element,
+    // so it doesn't get lost/reset to the start of the page
+    // document.getElementById('...').focus()
+});
+```
+
+## Badges
+
+Documentation and examples for badges, Bootstrap's small count and labeling component.
+
+### Example
+
+Badges scale to match the size of the immediate parent element by using relative font sizing and `em` units. As of v5, badges no longer have focus or hover styles for links.
+```
+<h1>Example heading <span class="badge bg-secondary">New</span></h1>
+<h2>Example heading <span class="badge bg-secondary">New</span></h2>
+<h3>Example heading <span class="badge bg-secondary">New</span></h3>
+<h4>Example heading <span class="badge bg-secondary">New</span></h4>
+<h5>Example heading <span class="badge bg-secondary">New</span></h5>
+<h6>Example heading <span class="badge bg-secondary">New</span></h6>
+```
+Badges can be used as part of links or buttons to provide a counter.
+```
+<button type="button" class="btn btn-primary">
+    Notifications <span class="badge bg-secondary">4</span>
+</button>
+```
+Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button.
+Unless the context is clear (as with the "Notifications" example, where it is understood that the "4" is thee number of notifications), consider including additional context with a visually hidden piece of additional text.
+```
+<button type="button" class="btn btn-primary">
+    Profile <span class="badge bg-secondary">9</span>
+    <span class="visually-hidden">unread messages</span>
+</button>
+```
+
+### Bacckground colors
+
