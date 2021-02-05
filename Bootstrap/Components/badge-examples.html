@@ -13,10 +13,10 @@
         </style>
    </head>
    <body>
-        <!-- Badges scale to match the size of its immediate parent element -->
+        <!-- Badges scale to match the size of their immediate parent elements -->
 
         <div class="container">
-            <h3 class="mb-3">Badges scale to match the size of its immediate parent element</h3>
+            <h3 class="mb-3">Badges scale to match the size of their immediate parent elements</h3>
             <hr>
             <h1>Example heading <span class="badge bg-secondary">New</span></h1>
             <h2>Example heading <span class="badge bg-secondary">New</span></h2>
@@ -38,10 +38,12 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Badges can be confusing for assistive technologies. Adding a `.visually-hidden` class to the badge
+             can add some text content for clarification  -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h4 class="mb-3">Badges can be confusing for assistive technologies. Adding a <code>.visually-hidden</code> class 
+                to the badge can add some text content for clarification.</h4>
 
             <button type="button" class="btn btn-primary">
                 Profile <span class="badge bg-secondary">9</span>
@@ -50,12 +52,35 @@
         </div>
         <hr>
 
-        <!--  --> 
+        <!-- Background colors on badges. (Use the `.text-dark` on text with lighter colored backgrounds.) --> 
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h3 class="mb-3">Background colors on badges. (Use the <code>.text-dark</code> on text with lighter colored backgrounds.)</h3>
 
-            
+            <span class="badge bg-primary">Primary</span>
+            <span class="badge bg-secondary">Secondary</span>
+            <span class="badge bg-success">Success</span>
+            <span class="badge bg-danger">Danger</span>
+            <span class="badge bg-warning text-dark">Warning</span>
+            <span class="badge bg-info text-dark">Info</span>
+            <span class="badge bg-light text-dark">Light</span>
+            <span class="badge bg-dark">Dark</span>
+        </div>
+        <hr>
+
+        <!-- Use the `.rounded-pill` utility class to make the borders of badges more rounded -->
+
+        <div class="container">
+            <h3 class="mb-3">Use the <code>.rounded-pill</code> utility class to make the borders of badges more rounded</h3>
+
+            <span class="badge rounded-pill bg-primary">Primary</span>
+            <span class="badge rounded-pill bg-secondary">Secondary</span>
+            <span class="badge rounded-pill bg-success">Success</span>
+            <span class="badge rounded-pill bg-danger">Danger</span>
+            <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+            <span class="badge rounded-pill bg-info text-dark">Info</span>
+            <span class="badge rounded-pill bg-light text-dark">Light</span>
+            <span class="badge rounded-pill bg-dark">Dark</span>
         </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
