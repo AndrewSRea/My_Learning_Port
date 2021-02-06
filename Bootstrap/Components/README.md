@@ -331,3 +331,36 @@ Use the `.rounded-pill` utility class to make badges more rounded with a larger 
 <span class="badge rounded-pill bg-light text-dark">Light</span>
 <span class="badge rounded-pill bg-dark">Dark</span>
 ```
+
+## Breadcrumb
+
+Indicate the current page's location within a navigational hierarchy that automatically adds separators via CSS.
+
+### Example
+
+Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb. Use Bootstrap's utilities to add additional styles as desired.
+```
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Library</li>
+    </ol>
+</nav>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+</nav>
+```
+
+### Dividers
+
