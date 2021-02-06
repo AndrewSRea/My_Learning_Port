@@ -472,3 +472,73 @@ In need of a button, but not the hefty background colors they bring? Replace the
 <hr>
 
 ### Sizes
+
+Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes.
+```
+<button type="button" class="btn btn-primary btn-lg">Large button</button>
+<button type="button" class="btn btn-secondary btn-lg">Large button</button>
+```
+```
+<button type="button" class="btn btn-primary btn-sm">Small button</button>
+<button type="button" class="btn btn-secondary btn-sm">Small button</button>
+```
+
+### Disabled state
+
+Make buttons look inactive by adding the `disabled` Boolean attribute to any `<button>` element. Disabled buttons have `pointer-events: none` applied to, preventing hover and active states from triggering.
+```
+<button type="button" class="btn btn-lg btn-primary" disabled>Primary button</button>
+<button type="button" class="btn btn-secondary btn-lg" disabled>Button</button>
+```
+Disabled buttons using the `<a>` element behave a bit different:
+
+* `<a>`s don't support the `disabled` attribute, so you must add the `.disabled` class to make it visually appear disabled.
+* Some future-friendly styles are included to disable all `pointer-events` on anchor buttons.
+* Disabled buttons should include the `aria-disabled="true"` attribute to indicate the state of the element to assistive technologies.
+
+```
+<a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Primary link</a>
+<a href="#" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Link</a>
+```
+
+<hr>
+
+#### :warning: Link functionality caveat
+
+The `.disabled` class uses `pointer-events: none` to try to disable the link functionality of `<a>`s, but that CSS property is not yet standardized. In addition, even in browsers that do support `pointer-events: none`, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, in addition to `aria-disabled="true"`, also include a `tabindex="-1" attribute on these links to prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether.
+
+<hr>
+
+### Block buttons
+
+Create responsive stacks of full-width, "block buttons" like those in Bootstrap 4 with a mix of Bootstrap's display and gap utilities. By using utilities instead of button specific classes, we have much greater control over spacing, alignment, and responsive behaviors.
+```
+<div class="d-grid gap-2">
+    <button class="btn btn-primary" type="button">Button</button>
+    <button class="btn btn-primary" type="button">Button</button>
+</div>
+```
+Here we create a responsive variation, starting with vertically stacked buttons until the `md` breakpoint, where `.d-md-block` replaces the `.d-grid` class, thus nullifying the `gap-2` utility. Resize your browser to see them change.
+```
+<div class="d-grid gap-2 d-md-block">
+    <button class="btn btn-primary" type="button">Button</button>
+    <button class="btn btn-primary" type="button">Button</button>
+</div>
+```
+You can adjust the width of your block buttons with grid column width classes. For example, for a half-width "block button", use `.col-6`. Center it horizontally with `.mx-auto`, too.
+```
+<div class="d-grid gap-2 col-6 mx-auto">
+    <button class="btn btn-primary" type="button">Button</button>
+    <button class="btn btn-primary" type="button">Button</button>
+</div>
+```
+Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we've taken our previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they're no longer stacked.
+```
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary me-md-2" type="button">Button</button>
+    <button class="btn btn-primary" type="button">Button</button>
+</div>
+```
+
+### Button plugin
+
