@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Button Component Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+         <!-- Creating responsive stacks of full-width "block buttons" using a mix of display and gap utilities -->
+
+         <div class="container">
+            <h3 class="mb-3">Creating responsive stacks of full-width "block buttons" using a mix of display and gap utilities</h3>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="button">Button</button>
+                <button class="btn btn-primary" type="button">Button</button>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Creating a variation of the code example above, starting with vertically stacked buttons until the `md`
+             breakpoint is reached, where `.d-md-block` replaces the `.d-grid` class, nullifying the `gap-2 utility -->
+        
+        <div class="container">
+            <h4 class="mb-3">Creating a variation of the code example above, starting with vertically stacked buttons until the 
+                <code>md</code> breakpoint is reached, where <code>.d-md-block</code> replaces the <code>.d-grid</code> class, 
+                nullifying the <code>gap-2</code> utility</h4>
+
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-primary" type="button">Button</button>
+                <button class="btn btn-primary" type="button">Button</button>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Adjusting the width of the "block buttons" with grid column width classes -->
+
+        <div class="container">
+            <h3 class="mb-3">Adjusting the width of the "block buttons" with grid column width classes</h3>
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary" type="button">Button</button>
+                <button class="btn btn-primary" type="button">Button</button>
+            </div>
+        </div>
+        <hr>
+
+         <!-- Additional utilities can be used to adjust the alignment of buttons when horizontal -->
+
+         <div class="container">
+            <h3 class="mb-3">Additional utilities can be used to adjust the alignment of buttons when horizontal</h3>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" type="button">Button</button>
+                <button class="btn btn-primary" type="button">Button</button>
+            </div>
+        </div>
+        <hr>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
