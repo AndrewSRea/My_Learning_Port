@@ -64,6 +64,27 @@
         </div>
         <hr>
 
+        <!-- Add `data-bs-toggle="button"` to toggle a button's `active state -->
+
+        <div class="container">
+            <h3 class="mb-3">Add <code>data-bs-toggle="button"</code> to toggle a button's <code>active state</code></h3>
+
+            <button type="button" class="btn btn-primary m-1" data-bs-toggle="button" autocomplete="off">Toggle button</a>
+            <button type="button" class="btn btn-primary active m-1" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Active toggle button</a>
+            <button type="button" class="btn btn-primary m-1" disabled data-bs-toggle="button" autocomplete="off">Disabled toggle button</a>
+        </div>
+        <hr>
+
+        <!-- A `data-bs-toggle="button"` example with links -->
+
+        <div class="container">
+            <h3 class="mb-3">A <code>data-bs-toggle="button"</code> example with links</h3>
+
+            <a href="#" class="btn btn-primary" role="button" data-bs-toggle="button">Toggle link</a>
+            <a href="#" class="btn btn-primary active" role="button" data-bs-toggle="button" aria-pressed="true">Active toggle link</a>
+            <a href="#" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">Disabled toggle link</a>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
    </body>
