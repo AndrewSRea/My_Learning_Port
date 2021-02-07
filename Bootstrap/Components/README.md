@@ -585,3 +585,57 @@ buttons.forEach(function(button) {
     button.toggle();
 });
 ```
+
+## Button group
+
+Group a series of buttons together on a single line or stack them in a vertical column.
+
+### Basic example
+
+Wrap a series of buttons with `.btn` in `.btn-group`.
+```
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary">Left</button>
+    <button type="button" class="btn btn-primary">Middle</button>
+    <button type="button" class="btn btn-primary">Right</button>
+</div>
+```
+
+<hr>
+
+#### :warning: Ensure correct `role` and provide a label
+
+In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate `role` attribute needs to be provided. For button groups, this would be `role="group"`, while toolbars should have a `role="toolbar"`.
+In addition, groups and toolbars should be given an explicit label, as most assistive technologies will otherwise not announce them, despite the presence of the correct role attribute. In the examples provided here, Bootstrap uses `aria-label`, but alternatives such as `aria-labelledby` can also be used.
+
+<hr>
+
+These classes can also be added to groups of links, as an alternative to the [`.nav` navigation components](#navs-and-tabs).
+```
+<div class="btn-group">
+    <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
+    <a href="#" class="btn btn-primary">Link</a>
+    <a href="#" class="btn btn-primary">Link</a>
+</div>
+```
+
+### Mixed styles
+
+```
+<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+    <button type="button" class="btn btn-danger">Left</button>
+    <button type="button" class="btn btn-warning">Middle</button>
+    <button type="button" class="btn btn-success">Right</button>
+</div>
+```
+
+### Outlined styles
+
+```
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-primary">Left</button>
+    <button type="button" class="btn btn-outline-primary">Middle</button>
+    <button type="button" class="btn btn-outline-primary">Right</button>
+</div>
+```
+
