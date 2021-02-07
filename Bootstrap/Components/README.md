@@ -542,3 +542,46 @@ Additional utilities can be used to adjust the alignment of buttons when horizon
 
 ### Button plugin
 
+The button plugin allows you to create simple on/off toggle buttons.
+
+<hr>
+
+:warning: Visually, these toggle buttons are identical to the [checkbox toggle buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#checkbox-toggle-buttons). However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas these toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
+
+<hr>
+
+#### Toggle states
+
+Add `data-bs-toggle="button"` to toggle a button's `active` state. If you're pre-toggling a button, you must manually add the `.active` class **and** `aria-pressed="true"` to ensure that it is conveyed appropriately to assistive technologies.
+```
+<button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Toggle button</a>
+<button type="button" class="btn btn-primary active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Active toggle button</a>
+<button type="button" class="btn btn-primary" disabled data-bs-toggle="button" autocomplete="off">Disabled toggle button</a>
+```
+```
+<a href="#" class="btn btn-primary" role="button" data-bs-toggle="button">Toggle link</a>
+<a href="#" class="btn btn-primary active" role="button" data-bs-toggle="button" aria-pressed="true">Active toggle link</a>
+<a href="#" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">Disabled toggle link</a>
+```
+
+#### Methods
+
+You can create a butom instance with the button constructor. For example:
+```
+var button = document.getElementById('myButton');
+var bsButton = new bootstrap.Button(button);
+```
+
+| Method | Description |
+| --- | --- |
+| `toggle` | Toggles push state. Gives the button the appearance that it has been activated. |
+| `dispose` | Destroys an element's button. (Removes stored data on the DOM element.) |
+
+For example, to toggle all buttons:
+```
+var buttons = document.querySelectorAll('.btn');
+buttons.forEach(function(button) {
+    var button = new bootstrap.Button(button);
+    button.toggle();
+});
+```
