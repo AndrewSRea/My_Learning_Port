@@ -70,39 +70,70 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Instead of applying buttons sizing classes to every button in a group, just add `.btn-group-*` to each
+             `.btn-group` -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h3 class="mb-3">Instead of applying buttons sizing classes to every button in a group, just add <code>.btn-group-*</code> 
+                to each <code>.btn-group</code></h3>
 
-            
+            <div class="btn-group btn-group-lg mb-2" role="group" aria-label="Large button group">
+                <button type="button" class="btn btn-outline-dark">Left</button>
+                <button type="button" class="btn btn-outline-dark">Middle</button>
+                <button type="button" class="btn btn-outline-dark">Right</button>
+            </div>
+            <br>
+            <div class="btn-group mb-2" role="group" aria-label="Standard button group">
+                <button type="button" class="btn btn-outline-dark">Left</button>
+                <button type="button" class="btn btn-outline-dark">Middle</button>
+                <button type="button" class="btn btn-outline-dark">Right</button>
+            </div>
+            <br>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                <button type="button" class="btn btn-outline-dark">Left</button>
+                <button type="button" class="btn btn-outline-dark">Middle</button>
+                <button type="button" class="btn btn-outline-dark">Right</button>
+            </div>
         </div>
         <hr>
 
-         <!--  -->
+        <!-- Nesting: Place a `.btn-group` within another `.btn-group` to create dropdown menus mixed with a 
+             series of buttons -->
 
-         <div class="container">
-            <h3 class="mb-3"></h3>
+        <div class="container">
+            <h3 class="mb-3">Nesting: Place a <code>.btn-group</code> within another <code>.btn-group</code> to create dropdown 
+                menus mixed with a series of buttons</h3>
 
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-primary">1</button>
+                <button type="button" class="btn btn-primary">2</button>
             
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Make a set of buttons appear vertically stacked using the `.btn-group-vertical` class -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h3 class="mb-3">Make a set of buttons appear vertically stacked using the <code>.btn-group-vertical</code> class</h3>
 
-           
-        </div>
-        <hr>
-
-        <!--  -->
-
-        <div class="container">
-            <h3 class="mb-3"></h3>
-
-            
+            <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
+                <label class="btn btn-outline-danger" for="vbtn-radio1">Radio 1</label>
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+                <label class="btn btn-outline-danger" for="vbtn-radio2">Radio 2</label>
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+                <label class="btn btn-outline-danger" for="vbtn-radio3">Radio 3</label>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
