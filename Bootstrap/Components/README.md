@@ -718,3 +718,38 @@ Feel free to mix input groups with button groups in your toolbars. Similar to th
 
 ### Sizing
 
+Instead of applying button sizing classes to every button in a group, just add `.btn-group-*` to each `.btn-group`, including each one when nesting multiple groups.
+```
+<div class="btn-group btn-group-lg" role="group" aria-label="...">...</div>
+<div class="btn-group" role="group" aria-label="...">...</div>
+<div class="btn-group btn-group-sm" role="group" aria-label="...">...</div>
+```
+
+### Nesting
+
+Place a `.btn-group` within another `.btn-group` when you want dropdown menus mixed with a series of buttons.
+```
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary">1</button>
+    <button type="button" class="btn btn-primary">2</button>
+
+    <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+        </ul>
+    </div>
+</div>
+```
+
+### Vertical variation
+
+Make a set of buttons appear vertically stacked rather than horizontally. **Split button dropdowns are not supported here.**
+```
+<div class="btn-group-vertical">
+    ...
+</div>
+```
