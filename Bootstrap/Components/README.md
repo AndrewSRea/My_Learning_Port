@@ -753,3 +753,72 @@ Make a set of buttons appear vertically stacked rather than horizontally. **Spli
     ...
 </div>
 ```
+
+## Cards
+
+Bootstrap's cards provide a flexible and extensible content container with multiple variants and options.
+
+### About
+
+A **card** is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you're familiar with Bootstrap 3, cards replace Bootstrap's old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.
+
+### Example
+
+Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no `margin` by default, so use [spacing utilities]() as needed. <!-- link to Utilities folder / Spacing -->
+Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they'll naturally fill the full width of its parent element. This is easily customized with Bootstrap's various [sizing options](#sizing).
+```
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quik example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+```
+
+### Content types
+
+Cards support a wide variety of content, including images, text, list groups, links, and more. Below are examples of what's supported.
+
+#### Body
+
+The building block of a card is the `.card-body`. Use it whenever you need a padded section within a card.
+```
+<div class="card">
+    <div class="card-body">
+        This is some text within a card body.
+    </div>
+</div>
+```
+
+#### Titles, text, and links
+
+Card titles are used by adding `.card-title` to an `<h*>` tag. In the same way, links are added and placed next to each other by adding `.card-link` to an `<a>` tag.
+Subtitles are used by adding a `.card-subtitle` to an `<h*>` tag. If the `.card-title` and the `.card-subtitle` items are placed in a `.card-body` item, the card title and subtitle are aligned nicely.
+```
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+    </div>
+</div>
+```
+
+#### Images
+
+`.card-img-top` places an image to the top of the card. With `.card-text`, text can be added to the card. Text within `.card-text` can also be styled with the standard HTML tags.
+```
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title amd make up the bulk of the card's content.</p>
+    </div>
+</div>
+```
+
+#### List groups
+
