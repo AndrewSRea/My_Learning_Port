@@ -1075,3 +1075,48 @@ Add some navigation to a card's header (or block) with Bootstrap's [nav componen
 </div>
 ```
 
+### Images
+Cards include a few options for working with images. Choose from appending "image caps" at either end of a card, oveerlaying images with card content, or simply embedding the image in a card.
+
+#### Image caps
+
+Similar to headers and footers, cards can include top and bottom "image caps"--images at the top or bottom of a card.
+```
+<div class="card mb-3">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+    <img src="..." class="card-img-top" alt="...">
+</div>
+```
+
+#### Image overlays
+
+Turn an image into a card background and overlay your card's text. Depending on the image, you may or may not need additional styles or utilities.
+```
+<div class="card bg-dark text-white">
+    <img src="..." class="card-img" alt="...">
+    <div class="card-img-overlay">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content i a little bit longer.</p>
+        <p class="card-text">Last updated 3 mins ago</p>
+    </div>
+</div>
+```
+<hr>
+
+:warning: Note that content should not be larger than the height of the image. If content is larger than the image, the content will be displayed outside the image.
+
+<hr>
+
+### Horizontal
