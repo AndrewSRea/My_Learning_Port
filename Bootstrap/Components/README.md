@@ -1539,3 +1539,37 @@ A slideshow component for cycling through elements--images or slides of text--li
 
 ### How it works
 
+The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators. 
+In browsers where the [Page Visibility API](https://www.w3.org/TR/page-visibility/) is supported, the carousel will avoid sliding when the webpage is not visible to the user (such as when the browser tab is inactive, the browser window is minimized, etc.).
+
+<hr>
+
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+
+<hr>
+
+Please be aware that nested carousels are not supported, and carousels are generally not compliant with accessibility standards.
+
+### Example
+
+Carousels don't automatically normalize slide dimensions. As such, you may need to use additional utilities or custom styles to apporpriately size content. While carousels support previous/next controls and indicators, they're not explicitly required. Add and customize as you see fit.
+**The `.active` class needs to be added to one of the slides**, otherwise the carousel will not be visible. Also, be sure to set a unique `id` on the `.carousel`for optional controls, especially if you're using multiple carousels on a single page. Control and indicator elements must have a `data-bs-target` attribute (or `href` for links) that matches the `id` of the `.carousel` element.
+
+#### Slides only
+
+Here's a carousel with slides only. Note the presence of the `.d-block` and `.w-100` on carousel images to prevent browser default image alignment.
+```
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item active">
+            <img src="..." class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item active">
+            <img src="..." class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+```
