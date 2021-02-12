@@ -1891,7 +1891,7 @@ The transition duration of `.carousel-item` can be changed with the `$carousel-t
 
 ## Close button
 
-A geneeric close button for dismissing content like modals and alerts.
+A generic close button for dismissing content like modals and alerts.
 
 ### Example
 
