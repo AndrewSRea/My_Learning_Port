@@ -1863,3 +1863,44 @@ var carousel = new bootstrap.Carousel(myCarousel, {
 
 #### Events
 
+Bootstrap's carousel class exposes two events for hooking into carousel functionality. Both events have the following additional properties:
+
+* `direction`: The direction in which the carousel is sliding (either `"left"` or `"right"`).
+* `relatedTarget`: The DOM element that is being slid into place as the active item.
+* `from`: The index of the current item.
+* `to`: The index of the next item.
+
+All carousel events are fired at the carousel itself (i.e. at the `<div class="carousel">`).
+
+| Event type | Description |
+| --- | --- |
+| `slide.bs.carousel` | Fires immediately when the `slide` instance method is invoked. |
+| `slid.bs.carousel` | Fired when the ccarousel has completed its slide transition. |
+
+```
+var myCarousel = document.getElementById('myCarousel');
+
+myCarousel.addEventListener('slide.bs.carousel', function() {
+    // do something...
+});
+```
+
+#### Change transition duration
+
+The transition duration of `.carousel-item` can be changed with the `$carousel-transition-duration` Sass variable before compiling or custom styles if you're using the compiled CSS. If multiple transitions are applied, make sure the transform transition is defined first (e.g. `transition: transform 2s ease, opacity .5s ease-out`).
+
+## Close button
+
+A geneeric close button for dismissing content like modals and alerts.
+
+### Example
+
+Provide an option to dismiss or close a component with `.btn-close`. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default `background-image`. **Be sure to include text for screen readers**, as Bootstrap has done with `aria-label`.
+
+<div class="btn-example" style="border: 1px solid #080808;">
+    <button type="button" class="btn-close" aria-label="Close" style="padding: 1.5rem;"></button>
+</div>
+
+```
+<button type="button" class="btn-close" aria-label="Close"></button>
+```
