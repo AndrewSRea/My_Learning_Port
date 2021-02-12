@@ -206,7 +206,7 @@ You can see this in action with a live demo (in my accompanying [alert-examples.
 
 <hr>
 
-:warning: When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, Bootstrap recommends including additional JavaScript that listens for the `closed.bs.alert` event and programmatically sets `focus()` to the most appropriate location in the page. If you're planning to move focus to a non-interactive eeleemnt that normally does not receive focus, make sure to add `tabindex="-1"` to the element.
+:warning: When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, Bootstrap recommends including additional JavaScript that listens for the `closed.bs.alert` event and programmatically sets `focus()` to the most appropriate location in the page. If you're planning to move focus to a non-interactive element that normally does not receive focus, make sure to add `tabindex="-1"` to the element.
 
 <hr>
 
@@ -288,7 +288,7 @@ Badges can be used as part of links or buttons to provide a counter.
 </button>
 ```
 Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button.
-Unless the context is clear (as with the "Notifications" example, where it is understood that the "4" is thee number of notifications), consider including additional context with a visually hidden piece of additional text.
+Unless the context is clear (as with the "Notifications" example, where it is understood that the "4" is the number of notifications), consider including additional context with a visually hidden piece of additional text.
 ```
 <button type="button" class="btn btn-primary">
     Profile <span class="badge bg-secondary">9</span>
@@ -1076,7 +1076,7 @@ Add some navigation to a card's header (or block) with Bootstrap's [nav componen
 ```
 
 ### Images
-Cards include a few options for working with images. Choose from appending "image caps" at either end of a card, oveerlaying images with card content, or simply embedding the image in a card.
+Cards include a few options for working with images. Choose from appending "image caps" at either end of a card, overlaying images with card content, or simply embedding the image in a card.
 
 #### Image caps
 
@@ -1294,7 +1294,7 @@ In addition to styling the content within cards, Bootstrap includes a few option
 
 #### Card groups
 
-Use ccard groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use `display: flex;` to become attached with uniform dimensions starting at the `sm` breakpoint.
+Use card groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use `display: flex;` to become attached with uniform dimensions starting at the `sm` breakpoint.
 ```
 <div class="card-group">
     <div class="card">
@@ -1760,7 +1760,7 @@ Carousels support swiping left/right on touchscreen devices to move between slid
 
 ### Dark variant
 
-Add `.carousel-dark` to the `.carousel` for darker ontrols, indicators, and captions. Controls have been inverted from their default white fill with the `filter` CSS propeerty. Captions and controls have additional Sass variables that customize the `color` and `background-color`.
+Add `.carousel-dark` to the `.carousel` for darker ontrols, indicators, and captions. Controls have been inverted from their default white fill with the `filter` CSS property. Captions and controls have additional Sass variables that customize the `color` and `background-color`.
 ```
 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -1801,3 +1801,33 @@ Add `.carousel-dark` to the `.carousel` for darker ontrols, indicators, and capt
     </button>
 </div>
 ```
+
+### Usage
+
+#### Via data attributes
+
+Use data attributes to easily control the position of the carousel. `data-bs-slide` accepts the keywords `prev` or `next`, which alters the slide position relative to its current position. Alternatively, use `data-bs-slide-to` to pass a raw slide index to the carousel `data-bs-slide-to="2"`, which shifts the slide position to a particular index beginning with `0`.
+The `data-bs-ride="carousel"` attribute is used to mark a carousel as animating starting at page load. If you don't use `data-bs-ride="carousel"` to initialize your carousel, you have to initialize it yourself. **It cannot be used in combination with (redundant and unnecessary) explicit JavaScript initialization of the same carousel.**
+
+#### Via JavaScript
+
+Call carousel manually with:
+```
+var myCarousel = document.querySelector('#myCarousel');
+var carousel = new bootstrap.Carousel(myCarousel);
+```
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-interval=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `interval` | number | `5000` | The amount of time to delay between automatically cycling an item. If `false`, carousel will not automatically cycle. |
+| `keyboard` | Boolean | `true` | Whether the carousel should react to keyboard events. |
+| `pause` | string \| Boolean | `'hover'` | If set to `'hover'`, pauses the cycling of the carousel on `mouseenter` and resumes the cycling of the carousel on `mouseleave`. If set to `false`, hovering over the carousel won't pause it.<br>On touch-enabled devices, when set to `'hover'`, cycling will pause on `touchend` (once the user finished interacting with the carousel) for two intervals, before automatically resuming. Note that this is in addition to the above mouse behavior. |
+| `ride` | string \| Boolean | `false` | Autoplays the carousel after the user manually cycles the first item. If set to `'carousel'`, autoplays the carousel on load. |
+| `wrap` | Boolean | `true` | Whether the carousel should cycle continuously or have hard stops. |
+| `touch` | Boolean | `true` | Whether the carousel should support left/right swipe interactions on touchscreen devices. |
+
+#### Methods
