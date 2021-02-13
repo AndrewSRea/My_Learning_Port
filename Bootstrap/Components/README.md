@@ -2028,4 +2028,43 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 ##### :warning: Asynchronous methods and transitions
 
 All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.
-[See Bootstrap's JavaScript documentation for more information]().
+[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+
+<hr>
+
+Activates your content as a collapsible element. Accepts an optional options `object`.
+You can create a collapse instance with the constructor. For example:
+```
+var myCollapse = document.getElementById('myCollapse');
+var bsCollapse = new bootstrap.Collapse(myCollapse, {
+    toggle: false;
+});
+```
+
+| Method | Description |
+| --- | --- |
+| `toggle` | Toggles a collapsible element to shown or hidden. **Returns to the caller before the collapsible element has actually been shown or hidden** (i.e. before the `shown.bs.collapse` or `hidden.bs.collapse` event occurs). |
+| `show` | Shows a collapsible element. **Returns to the caller before the collapsible element has actually been shown** (e.g., before the `shown.bs.collapse` event occurs). |
+| `hide` | Hides a collapsible element. **Returns to the caller before the collapsible element has actually been hidden** (e.g., before the `hidden.bs.collapse` event occurs). |
+| `dispose` | Destroys an element's collapse. (Removes stored data on the DOM element.) |
+| `getInstance` | Static method which allows you to get the collapse instance associated with a DOM element. |
+
+#### Events
+
+Bootstrap's collapse class exposes a few events for hooking into collapse functionality.
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.collapse` | This event fires immediately when the `show` instance method is called. |
+| `shown.bs.collapse` | This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete). |
+| `hide.bs.collapse` | This event is fired immediately when the `hide` method has been called. |
+| `hidden.bs.collapse` | This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete). |
+
+```
+var myCollapsible = document.getElementById('myCollapsible');
+myCollapsible.addEventListener('hidden.bs.collapse', function() {
+    // do something...
+});
+```
+
+## Dropdowns
