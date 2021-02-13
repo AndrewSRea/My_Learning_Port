@@ -1988,3 +1988,44 @@ If your control element is targeting a single collapsible element - i.e. the `da
 Note that Bootstrap's current implementation does not cover the various *optional* keyboard interactions described in the [WAI-ARIA Authoring Practices 1.1 accordion pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#accordion) - you will need to include these yourself with custom JavaScript.
 
 ### Usage
+
+The collapse plugin utilizes a few classes to handle the heavy lifting:
+
+* `.collapse` hides the content.
+* `.collapse.show` shows the content.
+* `.collapsing` is added when the transition starts, and removed when it finishes.
+
+These classes can be found in `_transitions.scss`.
+
+#### Via data attributes
+
+Just add `data-bs-toggle="collapse"` and a `data-bs-target` to the element to automatically assign control of one or more collapsible elements. The `data-bs-target` attribute accepts a CSS selector to apply the collapse to. Be sure to add the class `collapse` to the collapsible element. If you'd like it to default open, add the additional class `show`.
+To add accordion-like group management to a collapsible area, add the data attribute `data-bs-parent="#selector"`. Refer to the demo to see this in action.
+
+#### Via JavaScript
+
+Enable manually with:
+```
+var collapseElementList = [].slice.call(document.querySelectorAll('.collapse));
+var collapseList = collapseElementList.map(function(collapseEl) {
+    return new bootstrap.Collapse(collapseEl);
+});
+```
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-parent=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `parent` | selector \| jQuery object \| DOM element | `false` | If parent is provided, then all collapsible elements under the specified parent will be closed when this collapsible item is shown. (Similar to traditional accordion behavior - this is dependent on the `card` class.) The attribute has to be set on the target collapsible area. |
+| `toggle` | Boolean | `true` | Toggles the collapsible element on invocation. |
+
+#### Methods
+
+<hr>
+
+##### :warning: Asynchronous methods and transitions
+
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.
+[See Bootstrap's JavaScript documentation for more information]().
