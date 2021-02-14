@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Dropdown Menu Component Examples 3</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Dropdown menus are automatically positioned 100% from the top and along the left side of their parents.
+             This can be changed with the directional `.drop*` classes. In this example, add a `.dropdown-menu-end` class
+             to the `.dropdown-menu` class to right-align the dropdown menu. -->
+
+        <div class="container">
+            <h4 class="mb-3">Dropdown menus are automatically positioned 100% from the top and along the left side of their parents.
+                This can be changed with the directional <code>.drop*</code> classes. In this example, add a <code>.dropdown-menu-end</code> 
+                class to the <code>.dropdown-menu</code> class to right-align the dropdown menu.</h4>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Right-aligned menu example
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button class="dropdown-item" type="button">Action</button></li>
+                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!-- To use responsive alignment, disable dynamic positioning by adding the `data-bs-display="static"` attribute
+             and use the responsive variation classes. 
+             To align *right* a dropdown menu with a given breakpoint or larger, add `.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-end` -->
+
+        <div class="container">
+            <h4 class="mb-3">To use responsive alignment, disable dynamic positioning by adding the <code>data-bs-display="static"</code> 
+                attribute and use the responsive variation classes.<br> 
+                To align <strong>right</strong> a dropdown menu with a given breakpoint or larger, add <code>.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-end</code></h4>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    Left-aligned but right-aligned when large screen
+                </button>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <li><button class="dropdown-item" type="button">Action</button></li>
+                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!-- To align *left* a dropdown menu with a given breakpoint or larger, add `.dropdown-menu-end` and `.dropdown-menu
+             {-sm|-md|-lg|-xl|-xxl}-start`  -->
+
+        <div class="container">
+            <h4 class="mb-3">To align <strong>left</strong> a dropdown menu with a given breakpoint or larger, add <code>.dropdown-menu-end</code> 
+                and <code>.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-start</code></h4>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    Right-aligned but left-aligned when large screen
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                    <li><button class="dropdown-item" type="button">Action</button></li>
+                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            
+        </div>
+        <hr>
+
+        <!-- Non-interactive dropdown items can be created with the `.dropdown-item-text` attribute -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+           
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
