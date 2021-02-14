@@ -123,7 +123,7 @@
 
         <div class="container">
             <h4 class="mb-3">Before Bootstrap v4, dropdown menu contents had to be links, but now you can optionally use 
-                <code>&lt;button&gt;</code> elements in dropdowns instead of just <code>&lt;a&gt;</code>     elements</h4>
+                <code>&lt;button&gt;</code> elements in dropdowns instead of just <code>&lt;a&gt;</code> elements</h4>
 
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -136,7 +136,62 @@
                 </ul>
             </div>
         </div>
-        
+        <hr>
+
+        <!-- Non-interactive dropdown items can be created with the `.dropdown-item-text` attribute -->
+
+        <div class="container">
+            <h4 class="mb-3">Non-interactive dropdown items can be created with the <code>.dropdown-item-text</code> attribute</h4>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </button>
+                <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">Dropdown item text</span></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Add the `.active` class to items in the dropdown to *style* them as active -->
+
+        <div class="container">
+            <h3 class="mb-3">Add the <code>.active</code> class to items in the dropdown to <strong>style</strong> them as active</h3>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Regular link</a></li>
+                    <li><a class="dropdown-item active" href="#" aria-current="true">Active link</a></li>
+                    <li><a class="dropdown-item" href="#">Another link</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Add the `.disabled` class to items in the dropdown to *style* them as disabled -->
+
+        <div class="container">
+            <h3 class="mb-3">Add the <code>.active</code> class to items in the dropdown to <strong>style</strong> them as active</h3>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Regular link</a></li>
+                    <li><a class="dropdown-item disabled" href="#" aria-disabled="true">Disabled link</a></li>
+                    <li><a class="dropdown-item" href="#">Another link</a></li>
+                </ul>
+            </div>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
    </body>
