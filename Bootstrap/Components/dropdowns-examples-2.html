@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Dropdown Menu Component Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            h3,
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Trigger dropdown menus above elements by adding the `.dropup` class to the parent element -->
+
+        <div class="container">
+            <h3 class="mb-3">Trigger dropdown menus above elements by adding the <code>.dropup</code> class to the parent element</h3>
+
+            <!-- Default dropup button -->
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropup
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <!-- Split dropup button -->
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-secondary">
+                    Split dropup
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Trigger dropdown menus at the right of the elements by adding `.dropend` to the parent element -->
+
+        <div class="container">
+            <h3 class="mb-3">Trigger dropdown menus at the right of the elements by adding <code>.dropend</code> to the parent element</h3>
+
+            <!-- Default dropend button -->
+            <div class="btn-group dropend">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropright
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <!-- Split dropend button -->
+            <div class="btn-group dropend">
+                <button type="button" class="btn btn-secondary">
+                    Split dropend
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropright</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Trigger dropdown menus at the left of the elements by adding `.dropstart` to the parent element -->
+
+        <div class="container">
+            <h3 class="mb-3">Trigger dropdown menus at the left of the elements by adding <code>.dropstart</code> to the parent element</h3>
+
+            <!-- Default dropstart button -->
+            <div class="btn-group dropstart">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropstart
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <!-- Split dropstart button -->
+            <div class="btn-group">
+                <div class="btn-group dropstart" role="group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropstart</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-secondary">
+                    Split dropstart
+                </button>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Before Bootstrap v4, dropdown menu contents had to be links, but now you can optionally use <button> elements
+             in dropdowns instead of just <a> elements -->
+
+        <div class="container">
+            <h4 class="mb-3">Before Bootstrap v4, dropdown menu contents had to be links, but now you can optionally use 
+                <code>&lt;button&gt;</code> elements in dropdowns instead of just <code>&lt;a&gt;</code>     elements</h4>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
