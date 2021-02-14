@@ -2354,3 +2354,61 @@ Historically, dropdown menu contents *had* to be links, but that's no longer the
     </ul>
 </div>
 ```
+You can also create non-interactive dropdown items with `.dropdown-item-text`. Feel free to style further with custom CSS or text utilities.
+```
+<ul class="dropdown-menu">
+    <li><span class="dropdown-item-text">Dropdown item text</span></li>
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+</ul>
+```
+
+#### Active
+
+Add `.active` to items in the dropdown to **style them as active**. To convey the active state to assistive technologies, use the `aria-current` attribute--using the `page` value for the current page, or `true` for the current item in a set.
+```
+<ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Regular link</a></li>
+    <li><a class="dropdown-item active" href="#" aria-current="true">Active link</a></li>
+    <li><a class="dropdown-item" href="#">Another link</a></li>
+</ul>
+```
+
+#### Disabled
+
+Add `.disabled` to items in the dropdown to **styles them as disabled**.
+```
+<ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Regular link</a></li>
+    <li><a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">Disabled link</a></li>
+    <li><a class="dropdown-item" href="#">Another link</a></li>
+</ul>
+```
+
+### Menu alignment
+
+By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. You can change this with the directional `.drop*` classes, but you can also control them with additional modifier classes.
+Add `.dropdown-menu-end` to a `.dropdown-menu` to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning `.dropdown-menu-end` will appear on the left side.
+
+<hr>
+
+**Heads up!** Dropdowns are positioned thanks to Popper except when they are contained in a navbar.
+
+<hr>
+
+```
+<div class="btn-group">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Right-aligned menu example
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <li><button class="dropdown-item" type="button">Action</button></li>
+        <li><button class="dropdown-item" type="button">Another action</button></li>
+        <li><button class="dropdown-item" type="button">Something else here</button></li>
+    </ul>
+</div>
+```
+
+#### Responsive alignment
+
