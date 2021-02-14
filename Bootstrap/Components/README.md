@@ -2233,12 +2233,124 @@ And putting it to use in a navbar:
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+```
+
+### Directions
+
+<hr>
+
+#### :exclamation: RTL
+
+Directions are mirrored when using Bootstrap in RTL, meaning `.dropstart` will appear on the right side.
+
+<hr>
+
+#### Dropup
+
+Trigger dropdown menus above elements by adding `.dropup` to the parent element.
+```
+<!-- Default dropup button -->
+<div class="btn-group dropup">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropup
+    </button>
+    <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+    </ul>
+</div>
+
+<!-- Split dropup button -->
+<div class="btn-group dropup">
+    <button type="button" class="btn btn-secondary">
+        Split dropup
+    </button>
+    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+    </ul>
+</div>
+```
+
+#### Dropright
+
+Trigger dropdown menus at the right of the elements by adding `.dropend` to the parent element.
+```
+<!-- Default dropend button -->
+<div class="btn-group dropend">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropright
+    </button>
+    <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+    </ul>
+</div>
+
+<!-- Split dropend button -->
+<div class="btn-group dropend">
+    <button type="button" class="btn btn-secondary">
+        Split dropend
+    </button>
+    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropright</span>
+    </button>
+    <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+    </ul>
+</div>
+```
+
+#### Dropleft
+
+Trigger dropdown menus at the left of the elements by adding `.dropstart` to the parent element.
+```
+<!-- Default dropstart button -->
+<div class="btn-group dropstart">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropstart
+    </button>
+    <ul class="dropdown-menu">
+        <!-- Dropdown menu links -->
+    </ul>
+</div>
+
+<!-- Split dropstart button -->
+<div class="btn-group">
+    <div class="btn-group dropstart" role="group">
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropstart</span>
+        </button>
+        <ul class="dropdown-menu">
+            <!-- Dropdown menu links -->
+        </ul>
+    </div>
+    <button type="button" class="btn btn-secondary">
+        Split dropstart
+    </button>
+</div>
+```
+
+### Menu items
+
+Historically, dropdown menu contents *had* to be links, but that's no longer the casee with v4. Now you can optionally use `<button>` elements in your dropdowns instead of just `<a>`s.
+```
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
 ```
