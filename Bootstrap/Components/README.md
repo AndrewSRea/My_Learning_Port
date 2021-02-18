@@ -2551,7 +2551,7 @@ Separate groups of related menu items with a divider.
 
 #### Text
 
-Place any freeform text within a dropdown menu with text and use [spacing utilities](). Note that you'll likely need additional sizing styles to constrain the menu width.
+Place any freeform text within a dropdown menu with text and use [spacing utilities](). <!-- link to Utilities folder / Spacing --> Note that you'll likely need additional sizing styles to constrain the menu width.
 ```
 <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
     <p>
@@ -2562,3 +2562,139 @@ Place any freeform text within a dropdown menu with text and use [spacing utilit
     </p>
 </div>
 ```
+
+#### Forms
+
+Put a form within a dropdown menu, or make it into a dropdown menu, and use [margin or padding utilities]() <!-- link to Utilities folder / Spacing / Margin and padding --> to give it the negative space you require.
+```
+<div class="dropdown-menu">
+    <form class="px-4 py-3">
+        <div class="mb-3">
+            <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+        </div>
+        <div class="mb-3">
+            <div class="form-check">
+                <input type="checkbox" classs="form-check-input" id="dropdownCheck">
+                <label class="form-check-label" for="dropdownCheck">
+                    Remember me
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">New around here? Sign up</a>
+    <a class="dropdown-item" href="#">Forgot password?</a>
+</div>
+```
+```
+<form class="dropdown-menu p-4">
+    <div class="mb-3">
+        <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+    </div>
+    <div class="mb-3">
+        <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+    </div>
+    <div class="mb-3">
+        <div class="form-check">
+            <input type="checkbox" classs="form-check-input" id="dropdownCheck2">
+            <label class="form-check-label" for="dropdownCheck2">
+                Remember me
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+```
+
+### Dropdown options
+
+Use `data-bs-offset` or `data-bs-reference` to change the location of the dropdown.
+```
+<div class="d-flex">
+    <div class="dropdown me-1">
+        <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+            Offset
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-secondary">Reference</button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+            <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+        </ul>
+    </div>
+</div>
+```
+
+### Usage
+
+Via data attributes or JavaScript, the dropdown plugin toggles hidden content (dropdown menus) by toggling the `.show` class on the parent `.dropdown-menu`. The `data-bs-toggle="dropdown"` attribute is relied on for closing dropdown menus at an application level, so it's a good idea to always use it.
+
+<hr>
+
+:warning: On touch-enabled devicces, opoening a droopdown adds empty `mouseover` handlers to the immediate children of the `<body>` element. This admittedly ugly hack is necessary to work around a [quirk in iOS` event delegation](https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html), which would otherwise prevent a tap anywhere outside of the dropdown from triggering the code that closes the dropdown. Once the dropdown is closed, these additional empty `mouseover` handlers are removed.
+
+<hr>
+
+#### Via data attributes
+
+Add `data-bs-toggle="dropdown"` to a link or button to toggle a dropdown.
+```
+<div class="dropdown">
+    <button id="dLabel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown trigger
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dLabel">
+        ...
+    </ul>
+</div>
+```
+
+#### Via JavaScript
+
+Call the dropdowns via JavaScript:
+```
+var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+var dropdownList = dropdownElementList,map(function(dropdownToggleEl) {
+    return new bootstrap.Dropdown(dropdownToggleEl);
+});
+```
+
+<hr>
+
+##### :warning: `data-bs-toggl="dropdown"` still required
+
+Regardless of whether you call your dropdown via JavaScript or instead use the data-api, `data-bs-toggle="dropdown"` is always required to be present on the dropdown's trigger element.
+
+<hr>
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-offset=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `flip` | Boolean | `true` | Allow Dropdown to flip in case of an overlapping on the reference element. For more information, refer to Popper's [flip docs](https://popper.js.org/docs/v2/modifiers/flip/) |
+| `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the dropdown menu. By default, it's `'clippingParents'` and can accept an HTMLElement reference (JavaScript only). For moree information, refer to Popper's [preventOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
+| `reference` | string \| element \| object | `'toggle'` | Reference element of the dropdown menu. Accepts the values of `'toggle'`, `'parent'`, an HTMLElement reference or an object providing `getBoundingClientRect`. For more information, refer to Popper's [constrictor docs](https://popper.js.org/docs/v2/constructors/#createpopper) and [virtual element docs](https://popper.js.org/docs/v2/virtual-elements/). |
+| `display` | string | `dynamic` | By default, we use Popper for dynamic positioning. Disable this with `static`. |
+| `offset` | array \| string \| function | `[0, 2]` | Offset of the dropdown relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `\[[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)\]`.<br>For more information, refer to Popper's [offset docs](https://popper.js.org/docs/v2/modifiers/offset/#options). |
