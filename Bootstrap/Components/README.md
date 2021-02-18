@@ -2681,7 +2681,7 @@ var dropdownList = dropdownElementList,map(function(dropdownToggleEl) {
 
 <hr>
 
-##### :warning: `data-bs-toggl="dropdown"` still required
+##### :warning: `data-bs-toggle="dropdown"` still required
 
 Regardless of whether you call your dropdown via JavaScript or instead use the data-api, `data-bs-toggle="dropdown"` is always required to be present on the dropdown's trigger element.
 
