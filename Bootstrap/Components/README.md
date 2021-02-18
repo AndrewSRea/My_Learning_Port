@@ -2698,3 +2698,45 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | `reference` | string \| element \| object | `'toggle'` | Reference element of the dropdown menu. Accepts the values of `'toggle'`, `'parent'`, an HTMLElement reference or an object providing `getBoundingClientRect`. For more information, refer to Popper's [constrictor docs](https://popper.js.org/docs/v2/constructors/#createpopper) and [virtual element docs](https://popper.js.org/docs/v2/virtual-elements/). |
 | `display` | string | `dynamic` | By default, we use Popper for dynamic positioning. Disable this with `static`. |
 | `offset` | array \| string \| function | `[0, 2]` | Offset of the dropdown relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `[`[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)`]`.<br>For more information, refer to Popper's [offset docs](https://popper.js.org/docs/v2/modifiers/offset/#options). |
+| `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper. |
+
+##### Using function with `popperConfig`
+
+```
+var dropdown = new bootstrap.Dropdown(element, {
+    popperConfig: function(defaultBsPopperConfig) {
+        // var newPopperConfig = {...}
+        // use defaultBsPopperCconfig if needed...
+        // return newPopperConfig
+    };
+});
+```
+
+#### Methods
+
+| Method | Description |
+| --- | --- |
+| `toggle` | Toggles the dropdown menu of a given navbar or tabbed navigation. |
+| `show` | Shows the dropdown menu of a given navbar or tabbed navigation. |
+| `hide` | Hides the dropdown menu of a given navbar or tabbed navigation. |
+| `update` | Updates the position of an element's dropdown. |
+| `dispose` | Destroys an element's dropdown. (Removes stored data on the DOM element.) |
+| `getInstance` | Static method which allows you to get the dropdown instance associated with a DOM element. |
+
+#### Events
+
+All dropdown events are fired at the toggling element and then bubbled up. So you can also add event listeners on the `.dropdown-menu`'s parent element. `hide.bs.dropdown` and `hidden.bs.dropdown` events have a `clickEvent` property (only when the origin Event type is `click`) that contains an Event Object for the click event.
+
+| Method | Description |
+| --- | --- |
+| `show.bs.dropdown` | Fires immediately when the show instance method is called. |
+| `shown.bs.dropdown` | Fired when the dropdown has been made visible to the user and CSS transitions have completed. |
+| `hide.bs.dropdown` | Fires immediately when the hide instance method has been called. |
+| `hidden.bs.dropdown` | Fired when the dropdown has finished being hidden from the user and CSS transitions have completed. |
+
+```
+var myDropdown = document.getElementById('myDropdown');
+myDropdown.addEventListener('show.bs.dropdown', function() {
+    // do something...
+}) ;
+```
