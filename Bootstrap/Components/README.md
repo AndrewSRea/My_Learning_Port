@@ -2799,3 +2799,98 @@ Be sure to **not use the standard `.btn` classes here**.
     <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a>
 </ul>
 ```
+With `<button>`s, you can also make use of the `disabled` attribute instead of the `.disabled` class. Sadly, `<a>`s don't support the disabled attribute.
+```
+<div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+        The current button
+    </button>
+    <button type="button" class="list-group-item list-group-item-action">A second item</button>
+    <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+    <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
+</div>
+```
+
+### Flush
+
+Add `.list-group-flush` to remove some borders and rounded corners to render list group items edge-to-edge in a parent container (.e.g, cards).
+```
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+</ul>
+```
+
+### Horizontal
+
+Add `.list-group-horizontal` to change the layout of list group items from vertical to horizontal accross all breakpoints. Alternatively, choose a responsive variant `.list-group-horizontal-{sm|md|lg|xl|xxl}` to make a list group horizontal starting at that breakpoint's `min-width`. Currently **horizontal list groups cannot be combined with flush list groups**.
+**ProTip:** Want equal-width list group items when horizontal? Add `.flex-fill` to each list group item.
+```
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+</ul>
+<ul class="list-group list-group-horizontal-sm">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+</ul>
+<ul class="list-group list-group-horizontal-lg">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+</ul>
+<ul class="list-group list-group-horizontal-xl">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+</ul>
+<ul class="list-group list-group-horizontal-xxl">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+</ul>
+```
+
+### Contextual classes
+
+Use contextual classes to style list items with a stateful background and color.
+```
+<ul class="list-group">
+    <li class="list-group-item">A simple default list group item</li>
+
+    <li class="list-group-item list-group-item-primary">A simple primary list group item</li>
+    <li class="list-group-item list-group-item-secondary">A simple secondary list group item</li>
+    <li class="list-group-item list-group-item-success">A simple success list group item</li>
+    <li class="list-group-item list-group-item-danger">A simple danger list group item</li>
+    <li class="list-group-item list-group-item-warning">A simple warning list group item</li>
+    <li class="list-group-item list-group-item-info">A simple info list group item</li>
+    <li class="list-group-item list-group-item-light">A simple light list group item</li>
+    <li class="list-group-item list-group-item-dark">A simple dark list group item</li>
+</ul>
+```
+Contextual classes also work with `.list-group-item-action`. Note the addition of the hover styles here not present in the previous example. Also supported is the `.active` state; apply it to indicate an active selection on a contextual list group item.
+```
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
+
+    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple primary list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">A simple secondary list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-success">A simple success list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">A simple danger list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">A simple warning list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
+    <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
+</div>
+```
