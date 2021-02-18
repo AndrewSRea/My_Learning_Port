@@ -2786,7 +2786,7 @@ Add `.disabled` to a `.list-group-item` to make it *appear* disabled. Note that 
 
 ### Links and buttons
 
-Use `<a>`s or `<button>`s to create *actionable* list group items with hover, disabled, and active states by adding `.list-group-item-action`. We separate these pseudo-classes to ensure list groups made of non-interactive elements (like `<li>`s or `<div>`s) don't provide a click or tap affordance.
+Use `<a>`s or `<button>`s to create *actionable* list group items with hover, disabled, and active states by adding `.list-group-item-action`. Bootstrap separates these pseudo-classes to ensure list groups made of non-interactive elements (like `<li>`s or `<div>`s) don't provide a click or tap affordance.
 Be sure to **not use the standard `.btn` classes here**.
 ```
 <div class="list-group">
