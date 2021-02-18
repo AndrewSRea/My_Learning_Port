@@ -74,25 +74,42 @@
                 <a href="#" class="list-group-item list-group-item-action">A third linkitem</a>
                 <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
                 <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a>
+            </div>
+        </div>
+        <hr>
+
+        <!-- With <button>s, the `disabled` attribute can be used instead of the `.disabled` class -->
+
+        <div class="container">
+            <h3 class="mb-3">With <code>&lt;button&gt;</code>s, the <code>disabled</code> attribute can be used instead of the 
+                <code>.disabled</code> class</h3>
+
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    The current button
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">A second item</button>
+                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Add `.list-group-flush` to remove some borders and rounded corners to render list group items edge-to-edge
+             in a parent container -->
+
+        <div class="container">
+            <h3 class="mb-3">Add <code>.list-group-flush</code> to remove some borders and rounded corners to render list group 
+                items edge-to-edge in a parent container</h3>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
             </ul>
-        </div>
-        <hr>
-
-        <!--  -->
-
-        <div class="container">
-            <h3 class="mb-3"></h3>
-
-            
-        </div>
-        <hr>
-
-        <!--  -->
-
-        <div class="container">
-            <h3 class="mb-3"></h3>
-
-            
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
