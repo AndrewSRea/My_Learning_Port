@@ -65,12 +65,54 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- A list group navigation can be activated without writing any JavaScript by simply specifying `data-bs-toggle="list"` 
+             or on an element. Use these data attributes on `.list-group-item`. -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h4 class="mb-3">A list group navigation can be activated without writing any JavaScript by simply specifying 
+                <code>data-bs-toggle="list"</code> or on an element. Use these data attributes on <code>.list-group-item</code>.</h4>
 
+            <div role="tabpanel">
+                <!-- List group -->
+                <div class="list-group" id="myList" role="tablist">
+                    <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+                </div>
             
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active mt-2" id="home" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Home&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane mt-2" id="profile" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Profile&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane mt-2" id="messages" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Messages&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane mt-2" id="settings" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Settings&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <hr>
 
@@ -79,7 +121,47 @@
         <div class="container">
             <h4 class="mb-3"></h4>
 
+            <div id="myList2" role="tabpanel">
+                <!-- List group -->
+                <div class="list-group" id="myList2" role="tablist">
+                    <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+                </div>
             
+                <!-- Tab panes -->
+                <div class="tab-content" id="myList2">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Home&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Profile&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="messages" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Messages&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="settings" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Settings&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <hr>
 
