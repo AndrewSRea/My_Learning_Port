@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap List Group Component Examples 4</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+
+        <!-- To make tabs fade in, add `.fade` to each `.tab-pane`. The first tab pane must also have `.show` to make
+             the initial content visible. -->
+
+        <div class="container">
+            <h4 class="mb-3">To make tabs fade in, add <code>.fade</code> to each <code>.tab-pane</code>. The first tab pane must 
+                also have <code>.show</code> to make the initial content visible.</h4>
+
+            <div id="myList2" role="tabpanel">
+                <!-- List group -->
+                <div class="list-group" id="myList2" role="tablist">
+                    <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
+                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+                </div>
+            
+                <!-- Tab panes -->
+                <div class="tab-content mt-1" id="myList2">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Home&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Profile&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="messages" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Messages&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="settings" role="tabpanel">
+                        <p>
+                            Some placeholder content in a paragraph relating to &quot;Settings&quot;. And some more content, used here just to pad
+                            out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It
+                            could be anything, really. Text, images, forms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
