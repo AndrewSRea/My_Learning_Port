@@ -2894,3 +2894,139 @@ Contextual classes also work with `.list-group-item-action`. Note the addition o
     <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
 </div>
 ```
+<hr>
+
+#### :warning: Conveying meaning to assistive technologies
+
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies--such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
+
+<hr>
+
+### With badges
+
+Add badges to any list group item to show unread counts, activity, and more with the help of some [utilities](). <!-- link to Utilities folder / Flex -->
+```
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        A list item
+        <span class="badge bg-primary rounded-pill">14</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        A second list item
+        <span class="badge bg-primary rounded-pill">2</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        A third list item
+        <span class="badge bg-primary rounded-pill">1</span>
+    </li>
+</ul>
+```
+
+### Custom content
+
+Add nearly any HTML within, even for linked list groups like the one below, with the help of [flexbox utilities](). <!-- link to Utilities folder / Flex -->
+```
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">List group item heading</h5>
+            <small>3 days ago</small>
+        </div>
+        <p class="mb-1">Some placeholder content in a paragraph.</p>
+        <small>And some small print.</small>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">List group item heading</h5>
+            <small class"text-muted">3 days ago</small>
+        </div>
+        <p class="mb-1">Some placeholder content in a paragraph.</p>
+        <small class="text-muted">And some muted small print.</small>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">List group item heading</h5>
+            <small class="text-muted">3 days ago</small>
+        </div>
+        <p class="mb-1">Some placeholder content in a paragraph.</p>
+        <small class="text-muted">And some muted small print.</small>
+    </a>
+</div>
+```
+
+### Checkboxes and radios
+
+Place Bootstrap's checkboxes and radios within list group iteems and customize as needed. You can use them without `<label>`s, but please remember to include an `aria-label` attribute and value for accessibility.
+```
+<ul class="list-group">
+    <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+        First checkbox
+    </li>
+    <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+        Second checkbox
+    </li>
+    <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+        Third checkbox
+    </li>
+    <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+        Fourth checkbox
+    </li>
+    <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+        Fifth checkbox
+    </li>
+</ul>
+```
+And if you want `<label>`s as the `.list-group-item` for large hit areas, you can do that, too.
+```
+<div class="list-group">
+    <label class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        First checkbox
+    </label>
+    <label class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Second checkbox
+    </label>
+    <label class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Third checkbox
+    </label>
+    <label class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Fourth checkbox
+    </label>
+    <label class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Fifth checkbox
+    </label>
+</ul>
+```
+
+### JavaScript behavior
+
+Use the tab JavaScript plugin--include it individually or through the compiled `bootstrap.js` file--to extend Bootstrap's list group to create tabbable panes of local content.
+```
+<div class="row">
+    <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+            <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+        </div>
+    </div>
+</div>
+```
