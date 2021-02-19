@@ -3030,3 +3030,63 @@ Use the tab JavaScript plugin--include it individually or through the compiled `
     </div>
 </div>
 ```
+
+#### Using data attributes
+
+You can activate a list group navigation without writing any JavaScript by simply specifying `data-bs-toggle="list"` or on an element. Use these data attributes on `.list-group-item`.
+```
+<div role="tabpanel">
+    <!-- List group -->
+    <div class="list-group" id="myList" role="tablist">
+        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">...</div>
+        <div class="tab-pane" id="profile" role="tabpanel">...</div>
+        <div class="tab-pane" id="messages" role="tabpanel">...</div>
+        <div class="tab-pane" id="settings" role="tabpanel">...</div>
+    </div>
+</div>
+```
+
+#### Via JavaScript
+
+Enable tabbable list items via JavaScript (each list item needs to be activated individually):
+```
+var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'));
+triggerTabList.forEach(function(triggerEl) {
+    var tabTrigger = new bootstrap.Tab(triggerEl);
+
+    triggerEl.addEventListener('click', function(event) {
+        event.preventDefault();
+        tabTrigger.show();
+    });
+});
+```
+You can activate individual list items in several ways:
+```
+var triggerEl = document.querySelector('#myTab a[href="#profile"]');
+bootstrap.Tab.getInstance(triggerEl).show();   // Select tab by name
+
+var triggerFirstTabEl = document.querySelector('#myTab li:first-child a');
+bootstrap.Tab.getInstance(triggerFirstTabEl).show();   // Select first tab
+```
+
+#### Fade effect
+
+To make tabs panel fade in, add `.fade` to each `.tab-pane`. The first tab pane must also have `.show` to make the initial content visible.
+```
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="home" role="tabpanel">...</div>
+    <div class="tab-pane fade" id="profile" role="tabpanel">...</div>
+    <div class="tab-pane fade" id="messages" role="tabpanel">...</div>
+    <div class="tab-pane fade" id="settings" role="tabpanel">...</div>
+</div>
+```
+
+#### Methods
