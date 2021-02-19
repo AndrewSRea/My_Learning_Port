@@ -3090,3 +3090,77 @@ To make tabs panel fade in, add `.fade` to each `.tab-pane`. The first tab pane 
 ```
 
 #### Methods
+
+##### constructor
+
+Activates a list item element and content container. Tab should have either a `data-bs-target` or an `href` targeting a container node in the DOM.
+```
+<div class="list-group" id="myList3" role="tablist">
+    <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
+    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
+    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
+    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+</div>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel">...</div>
+    <div class="tab-pane active" id="home" role="tabpanel">...</div>
+    <div class="tab-pane active" id="home" role="tabpanel">...</div>
+    <div class="tab-pane active" id="home" role="tabpanel">...</div>
+</div>
+
+<script>
+    var firstTabEl = document.querySelector('#myTab a:last-child');
+    var firstTab = new bootstrap.Tab(firstTabEl);
+
+    firstTab.show();
+</script>
+```
+
+#### show
+
+Selects the given list item and shows its associated pane. Any other list item that was previously selected becomes unselected and its associated pane is hidden. **Returns to the caller before the tab pane has actually been shown** (for example, before the `shown.bs.tab` event occurs).
+```
+var someListItemEl = document.querySelector('#someListItem');
+var tab = new bootstrap.Tab(someListItemEl);
+
+tab.show();
+```
+
+#### dispose
+
+Destroy an element's tab.
+
+#### getInstance
+
+*Static* method which allows you to get the tab instance associated with a DOM element.
+```
+var triggerEl = document.querySelector('#trigger');
+var tab = bootstrap.Tab.getInstance(triggerEl);   // Returns a Bootstrap tab instance
+```
+
+### Events
+
+When showing a new tab, the events fire in the following order:
+
+1. `hide.bs.tab` (on the current active tab)
+2. `show.bs.tab` (on the to-be-shown tab)
+3. `hidden.bs.tab` (on the previous active tab, the same one as for the `hide.bs.tab` event)
+4. `shown.bs.tab` (on the newly-active just-shown tab, the same one as for the `show.bs.tab` event)
+
+If no tab was already active, the `hide.bs.tab` and `hidden.bs.tab` events will not be fired.
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.tab` | This event fires on tab show, but before the new tab has been shown. Use `event.target` and `event.relatedTarget` to target the active tab and the previous active tab (if available) respectively. |
+| `shown.bs.tab` | This event fires on tab show after a tab has been shown. Use `event.target` and `event.relatedTarget` to target the active tab and the previous active tab (if available) respectively. |
+| `hide.bs.tab` | This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use `event.target` and `event.relatedTarget` to target the current active tab and the new soon-to-be-active tab, respectively. |
+| `hidden.bs.tab` | This event fires after a new tab is shown (and thus the previous active tab is hidden). Use `event.target` and `event.relatedTarget` to target the previous active tab and the new active active tab, respectively. |
+
+```
+var tabEl = document.querySelector('a[data-bs-toggle="list"]);
+tabEl.addEventListener('shown.bs.tab', function(event) {
+    event.target;   // newly activated tab
+    event.relatedTargeet;   // previous active tab
+});
+```
