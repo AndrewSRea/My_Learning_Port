@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Modal Component Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+
+            div[class|="col"] {
+                background-color: #d3d3d3;
+                border: 1px solid #9d9d9d;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Tooltips and popovers can be placed within modals as needed. When modals are closed, any tooltips and popovers
+             within are also automatically dismissed. -->
+
+        <div class="container">
+            <h4 class="mb-3">Tooltips and popovers can be placed within modals as needed. When modals are closed, any tooltips and 
+                popovers within are also automatically dismissed.</h4>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleTooltipPopoverModal">
+                Launch demo modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleTooltipPopoverModal" tabindex="-1" aria-labelledby="exampleTooltipPopoverModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleTooltipPopoverModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>Popover in a modal</h5>
+                            <p>
+                                This <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" 
+                                data-bs-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.
+                            </p>
+                            <hr>
+                            <h5>Tooltips in a modal</h5>
+                            <p>
+                                <a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" 
+                                title="Tooltip">that link</a> have tooltips on hover.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleGridModal">
+                Launch demo modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleGridModal" tabindex="-1" aria-labelledby="exampleGridModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleGridLabel">Grids in modals</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4 p-3">.col-md-4</div>
+                                    <div class="col-md-4 p-3">.col-md-4 .ms-auto</div>
+                                </div>
+                                <div class="row" id="gutter">
+                                    <div class="col-md-3 ms-auto p-3">.col-md-3 .ms-auto</div>
+                                    <div class="col-md-2 ms-auto p-3">.col-md-2 .ms-auto</div>
+                                </div>
+                                <div class="row" id="gutter">
+                                    <div class="col-md-6 ms-auto p-3">.col-md-6 .ms-auto</div>
+                                </div>
+                                <div class="row" id="gutter">
+                                    <div class="col-sm-9 p-3">
+                                        Level 1: .col-sm-9
+                                        <div class="row">
+                                            <div class="col-8 col-sm-6">
+                                                Level 2: .col-8 .col-sm-6
+                                            </div>
+                                            <div class="col-4 col-sm-6">
+                                                Level 2: .col-4 .col-sm-6
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
