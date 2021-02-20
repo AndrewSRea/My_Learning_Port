@@ -3219,6 +3219,89 @@ Below is a *static* modal example (meaning its `position` and `display` have bee
     </div>
 </div>
 ```
+This example is not shown as a live example as modal constructs do not appear unless activated by a user's action. Please refer to the [live demo](#live-demo) below.
 
 #### Live demo
 
+Toggle a working modal demo by clicking the button on this example below. It will slide down and fade in from the top of the page.
+```
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Woohoo, you're reading this text in a modal!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+#### Static backdrop
+
+When backdrop is set to static, the modal will not close when clicking outside it. Click the button to try it.
+```
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>I will not close if you click outside me. Don't event try to press escape key.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+#### Scrolling long content
+
+When modals become too long for the user's viewport or device, they scroll independent of the page itself. You can also create a scrollable modal which allows you to scroll along the modal body by adding `.modal-dialog-scrollable` to the `.modal-dialog` class.
+```
+<!-- Scrollable modal -->
+<div class="modal-dialog modal-dialog-scrollable">
+    ...
+</div>
+```
+
+#### Vertically centered
+
+Add `.modal-dialog-centered` to `.modal-dialog` to vertically center the modal.
+```
+<!-- Vertically centered modal -->
+<div class="modal-dialog modal-dialog-centered">
+    ...
+</div>
+
+<!-- Vertically centered scrollable modal -->
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    ...
+</div>
+```
+
+#### Tooltips and popovers
