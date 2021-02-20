@@ -3305,3 +3305,48 @@ Add `.modal-dialog-centered` to `.modal-dialog` to vertically center the modal.
 ```
 
 #### Tooltips and popovers
+
+[Tooltips](#tooltips) and [popovers](#popovers) can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed.
+```
+<div class="modal-body">
+    <h5>Popover in a modal</h5>
+    <p>This <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-bs-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
+    <hr>
+    <h5>Tooltips in a modal</h5>
+    <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
+</div>
+```
+
+#### Using the grid
+
+Utilize the Bootstrap grid system within a modal by nesting `.container-fluid` within the `.modal-body`. Then, use the normal grid system classes as you would anywhere else.
+```
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">.col-md-4</div>
+            <div class="col-md-4 ms-auto">.col-md-4 .ms-auto</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 ms-auto">.col-md-3 .ms-auto</div>
+            <div class="col-md-2 ms-auto">.col-md-2 .ms-auto</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ms-auto">.col-md-6 .ms-auto</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                Level 1: .col-sm-9
+                <div class="row">
+                    <div class="col-8 col-sm-6">
+                        Level 2: .col-8 .col-sm-6
+                    </div>
+                    <div class="col-4 col-sm-6">
+                        Level 2: .col-4 .col-sm-6
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
