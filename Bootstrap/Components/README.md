@@ -3164,3 +3164,36 @@ tabEl.addEventListener('shown.bs.tab', function(event) {
     event.relatedTarget;   // previous active tab
 });
 ```
+
+## Modal
+
+Use Bootstrap's JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.
+
+### How it works
+
+Before getting started with Bootstrap's modal component, be sure to read the following as Bootstrap's menu options have recently changed.
+
+* Modals are built with HTML, CSS, and JavaScript. They're positioned over everything else in the document and remove scroll from the `<body>` so that modal content scrolls instead.
+* Clicking on the modal "backdrop" will automatically close the modal.
+* Bootstrap only supports one modal window at a time. Nested modals aren't supported as the designers at Bootstrap believe them to be por user experiences.
+* Modals use `position: fixed`, which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You'll likely run into issues when nesting a `.modal` within another fixed element.
+* Once again, due to `position: fixed`, there are some caveats with using modals on mobile devices. [See Bootstrap's support docs](https://getbootstrap.com/docs/5.0/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile) for details.
+* Due to how HTML5 defines its semantics, [the `autofocus` HTML attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus) has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:
+```
+var myModal = document.getElementById('myModal');
+var myInput = document.getElementById('myInput');
+
+myModal.addEventListener('shown.bs.modal', function() {
+    myInput.focus();
+});
+```
+<hr>
+
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+
+<hr>
+
+Keep reading for demos and usage guidelines.
+
+### Examples
+
