@@ -3471,3 +3471,113 @@ Another override is the option to pop up a modal that covers the user viewport, 
 ```
 
 ### Usage
+
+The modal plugin toggles your hidden content on demand, via data attributes or JavaScript. It also adds `.modal-open` to the `<body>` to override default scrolling behavior and generates a `.modal-backdrop` to provide a click area for dismissing shown modals when clicking outside the modal.
+
+#### Via data attributes
+
+Activate a modal without writing JavaScript. Set `data-bs-toggle="modal"` on a controller element, like a button, along with a `data-bs-target="#foo"` or `href="#foo"` to target a specific modal to toggle.
+```
+<button type="button" data-bs-toggle="modal" data-bs-target="#myModal">Launch modal</button>
+```
+
+#### Via JavaScript
+
+Create a modal with a single line of JavaScript:
+```
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), options);
+```
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-backdrop=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `backdrop` | Boolean or the string `'static'` | `true` | Includes a modal-backdrop element. Alternatively, specify `static` for a backdrop which doesn't close the modal on click. |
+| `keyboard` | Boolean | `true` | Closes the modal when escape key is pressed. |
+| `focus` | Boolean | `true` | Puts the focus on the modal when initialized. |
+
+#### Methods
+
+<hr>
+
+##### :warning: Asynchronous methods and transitions
+
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**. 
+
+[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+
+<hr>
+
+##### Passing options
+
+Activates your content as a modal. Accepts an optional options `object`.
+```
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false;
+});
+```
+
+##### toggle
+
+Manually toggles a modall. **Returns to the caller before the modal has actually been shown or hidden** (i.e. before the `shown.bs.modal` or `hidden.bs.modal` event occurs).
+```
+myModal.toggle();
+```
+
+##### show
+
+Manually opens a modal. **Returns to the caller before the modal has actually been shown** (i.e. before the `shown.bs.modal` event occurs).
+```
+myModal.show();
+```
+
+##### hide
+
+Manually hides a modal. **Returns to the caller before the modal has actually been hidden** (i.e. before the `hidden.bs.modal` event occurs).
+```
+myModal.hide();
+```
+
+##### handleUpdate
+
+Manually readjust the modal's position if the height of a modal changes while it is open (i.e. in case a scrollbar appears).
+```
+myModal.handleUpdate();
+```
+
+##### dispose
+
+Destroys an element's modal. (Removes stored data on the DOM element.)
+```
+myModal.dispose();
+```
+
+##### getInstance
+
+*Static* method which allows you to get the modal instance associated with a DOM element.
+```
+var myModalEl = document.getElementById('myModal');
+var modal = bootstrap.Modal.getInstance(myModalEl);   // Returns a Bootstrap modal instance
+```
+
+#### Events
+
+Bootstrap's modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the `<div class="modal">`).
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.modal` | This event fires immediately when the `show` instance method is called. If caused by a click, the clicked element is available as the `relatedTarget` property of the event. |
+| `shown.bs.modal` | This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete). If caused by a click, the clicked element is available as the `relatedTarget` property of the event. |
+| `hide.bs.modal` | This event is fired immediately when the `hide` instance method has been called. |
+| `hidden.bs.modal` | This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). |
+| `hidePrevented.bs.modal` | This event is fired when the modal is shown, its backdrop is `static` and a click outside the modal or an escape key press is performed with the keyboard option or `data-bs-keyboard` set to `false`. |
+
+```
+var myModalEl = document.getElementById('myModal');
+myModalEl.addEventListener('hidden.bs.modal', function(event) {
+    // do something...
+});
+```
+
