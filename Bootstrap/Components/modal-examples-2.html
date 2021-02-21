@@ -61,10 +61,12 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Utilize the Bootstrap grid system within a modal by nesting `.container-fluid` within the `.modal-body`.
+             Then, use the normal grid system classes as you would anywhere else. -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h4 class="mb-3">Utilize the Bootstrap grid system within a modal by nesting <code>.container-fluid</code> within the 
+                <code>.modal-body</code>. Then, use the normal grid system classes as you would anywhere else.</h4>
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleGridModal">
@@ -81,25 +83,25 @@
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <div class="row">
+                                <div class="row justify-content-between mb-3">
                                     <div class="col-md-4 p-3">.col-md-4</div>
                                     <div class="col-md-4 p-3">.col-md-4 .ms-auto</div>
                                 </div>
-                                <div class="row" id="gutter">
+                                <div class="row mb-3">
                                     <div class="col-md-3 ms-auto p-3">.col-md-3 .ms-auto</div>
                                     <div class="col-md-2 ms-auto p-3">.col-md-2 .ms-auto</div>
                                 </div>
-                                <div class="row" id="gutter">
+                                <div class="row mb-3">
                                     <div class="col-md-6 ms-auto p-3">.col-md-6 .ms-auto</div>
                                 </div>
-                                <div class="row" id="gutter">
+                                <div class="row">
                                     <div class="col-sm-9 p-3">
                                         Level 1: .col-sm-9
                                         <div class="row">
-                                            <div class="col-8 col-sm-6">
+                                            <div class="col-8 col-sm-6 p-2">
                                                 Level 2: .col-8 .col-sm-6
                                             </div>
-                                            <div class="col-4 col-sm-6">
+                                            <div class="col-4 col-sm-6 p-2">
                                                 Level 2: .col-4 .col-sm-6
                                             </div>
                                         </div>
@@ -117,23 +119,119 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- If a few buttons all trigger the same modal, use `event.relatedTarget` (see JS <script> below) and HTML `data-bs-*` 
+             attributes to vary the contents of the modal depending on which button is clicked. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">If a few buttons all trigger the same modal, use <code>event.relatedTarget</code> (in hidden JS) and HTML 
+                <code>data-bs-*</code> attributes to vary the contents of the modal depending on which button is clicked.</h4>
 
-            
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">Open modal for @mdo</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@fat">Open modal for @fat</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModal2Label">New message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Recipient</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Message</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Modals have three optional sizes, available via modifier classes to be placed on a `.modal-dialog`. These sizes
+             kick in a certain breakpoints to avoid horizontal scrollbars on narrower viewports. -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h4 class="mb-3">Modals have three optional sizes, available via modifier classes to be placed on a <code>.modal-dialog</code>. 
+                These sizes kick in a certain breakpoints to avoid horizontal scrollbars on narrower viewports.</h4>
 
-            
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleXLModal">Extra large modal</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleLGModal">Large modal</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleSMModal">Small modal</button>
+
+            <div class="modal fade" id="exampleXLModal" tabindex="-1" aria-labelledby="exampleXLModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleXLModalLabel">Extra large modal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleLGModal" tabindex="-1" aria-labelledby="exampleLGModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleLGModalLabel">Large modal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleSMModal" tabindex="-1" aria-labelledby="exampleSMModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleSMModalLabel">Small modal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     
+        <script>
+            // JS for the 3rd Modal component example above
+
+            var exampleModal2 = document.getElementById('exampleModal2');
+            exampleModal2.addEventListener('show.bs.modal', function(event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget;
+                // Extract info from data-bs-* attributes
+                var recipient = button.getAttribute('data-bs-whatever');
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback
+                //
+                // Update the modal's content
+                var modalTitle = exampleModal2.querySelector('.modal-title');
+                var modalBodyInput = exampleModal2.querySelector('.modal-body input');
+
+                modalTitle.textContent = 'New message to ' + recipient;
+                modalBodyInput.value = recipient;
+            });
+        </script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </body>
