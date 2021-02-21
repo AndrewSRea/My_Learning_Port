@@ -3408,3 +3408,66 @@ exampleModal2.addEventListener('show.bs.modal', function(event) {
 
 #### Change animation
 
+The `$modal-fade-transform` variable determines the transform state of `.modal-dialog` before the modal fade-in animation, the `$modal-show-transform` variable determines the transform of `.modal-dialog` at the end of the modal fade-in animation.
+If you want, for example, a zoom-in animation, you can set `$modal-fade-transform: scale(.8)`.
+
+#### Remove animation
+
+For modals that simply appear rather than fade in to view, remove the `.fade` class from your modal markup.
+```
+<div class="modal" tabindex="-1" aria-labelledby="..." aria-hidden="true">
+    ...
+</div>
+```
+
+#### Dynamic heights
+
+If the height of a modal changes while it is open, you should call `myModal.handleUpdate()` to readjust the modal's position in case a scrollbar appears.
+
+#### Accessibility
+
+Be sure to add `aria-labelledby="..."`, referencing the modal title, to `.modal`. Additionally, you may give a description of your modal dialog with `aria-describedby` on `.modal`. Notee that you don't need to add `role="dialog"` since Bootstrap already adds it via JavaScript.
+
+#### Embedding YouTube videos
+
+Embedding YouTube videos in modals requires additional JavaScript not in Bootstrap to automatically stop playback and more. [See this helpful Stack Overflow post](https://stackoverflow.com/questions/18622508/bootstrap-3-and-youtube-in-modal) for more information.
+
+### Optional sizes
+
+Modals have three optional sizes, available via modifier classes to be placed on a `.modal-dialog`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
+
+| Size | Class | Modal max-width |
+| --- | --- | --- |
+| Small | `.modal-sm` | `300px` |
+| Default | None | `500px` |
+| Large | `.modal-lg` | `800px` |
+| Extra large | `.modal-xl` | `1140px` |
+
+Bootstrap's default modal without modifier class constitutes the "medium" size modal.
+```
+<div class="modal-dialog modal-xl">...</div>
+<div class="modal-dialog modal-lg">...</div>
+<div class="modal-dialog modal-sm">...</div>
+```
+
+### Fullscreen Modal
+
+Another override is the option to pop up a modal that covers the user viewport, available via modifier classes that are placed on a `.modal-dialog`.
+
+| Class | Availability |
+| --- | --- |
+| `.modal-fullscreen` | Always |
+| `.modal-fullscreen-sm-down` | Below `576px` |
+| `.modal-fullscreen-md-down` | Below `768px` |
+| `.modal-fullscreen-lg-down` | Below `992px` | 
+| `.modal-fullscreen-xl-down` | Below `1200px` |
+| `.modal-fullscreen-xxl-down` | Below `1400px` |
+
+```
+<!-- Full screen modal -->
+<div class="modal-dialog modal-fullscreen-sm-down">
+    ...
+</div>
+```
+
+### Usage
