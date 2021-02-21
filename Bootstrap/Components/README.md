@@ -3521,7 +3521,7 @@ var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
 
 ##### toggle
 
-Manually toggles a modall. **Returns to the caller before the modal has actually been shown or hidden** (i.e. before the `shown.bs.modal` or `hidden.bs.modal` event occurs).
+Manually toggles a modal. **Returns to the caller before the modal has actually been shown or hidden** (i.e. before the `shown.bs.modal` or `hidden.bs.modal` event occurs).
 ```
 myModal.toggle();
 ```
@@ -3581,3 +3581,46 @@ myModalEl.addEventListener('hidden.bs.modal', function(event) {
 });
 ```
 
+## Navs and tabs
+
+Documentation and examples for how to use Bootstrap's included navigation components.
+
+### Base nav
+
+Navigation available in Bootstrap shares general markup and styles, from the base `.nav` class to the active and disabled states. Swap modifier classes to switch between each style.
+The base `.nav` component is built with flexbox and provides a strong foundation for building all typs of navigation components. It includes some style overrides (for working with lists), some link padding for larger hit areas, and basic disabled styling.
+
+<hr>
+
+:warning: The base `.nav` component does not include any `.active` state. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling.
+To convey the active state to assistive technologies, use the `aria-current` attribute--using the `page` value for current page, or `true` for the current item in a set.
+
+<hr>
+
+```
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </li>
+</ul>
+```
+Classes are used throughout, so your markup can be super flexible. Use `<ul>`s like above, `<ol>` if the order of your items is important, or roll your own with a `<nav>` element. Because the `.nav` uses `display: flex`, the nav links behave the same as nav items would, but without the extra markup.
+```
+<nav class="nav">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>
+```
+
+### Available styles
