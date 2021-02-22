@@ -3804,7 +3804,7 @@ If you need responsive nav variations, consider using a seeries of [flexbox util
 ### Regarding accessiblity
 
 If you're using navs to provide a navigation bar, be sure to add a `role="navigation"` to the most logical parent container of the `<ul>`, or wrap a `<nav>` element around the whole navigation. Do not add the role to the `<ul>` itself, as this would prevent it from being announced as an actual list by assistive technologies.
-Note that navigation bars, even if visually styled as tabs with the `.nav-tabs` class, should **not** be given `role="tablist"`, `role="tab"`, or `role="tabpanel"` attributes. These aare only appropriate for dynamic tabbed interfaces, as described in the [WAI ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel). See [JavaScript behavior](#javascript-behavior) for dynamic tabbed interfaces in this section for an example. Thee `aria-current` attribute is not necessary on dynamic tabbed interfaces since Bootstrap's JavaScript handles the selected state by adding `aria-selected="true"` on the active tab.
+Note that navigation bars, even if visually styled as tabs with the `.nav-tabs` class, should **not** be given `role="tablist"`, `role="tab"`, or `role="tabpanel"` attributes. These are only appropriate for dynamic tabbed interfaces, as described in the [WAI ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel). See [JavaScript behavior](#javascript-behavior) for dynamic tabbed interfaces in this section for an example. Thee `aria-current` attribute is not necessary on dynamic tabbed interfaces since Bootstrap's JavaScript handles the selected state by adding `aria-selected="true"` on the active tab.
 
 ### Using dropdowns
 
@@ -4049,3 +4049,125 @@ Activates a tab element and content container. Tab should have either a `data-bs
     firstTab.show();
 </script>
 ```
+
+##### show
+
+Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. **Returns to the caller before the tab pane has actually been shown** (i.e. beforee the `shown.bs.tab` event occurs).
+```
+var someTabTriggerEl = document.querySelector('#someTabTrigger');
+var tab = new bootstrap.Tab(someTabTriggerEl);
+
+tab.show();
+```
+
+##### dispose
+
+Destroys an element's tab.
+
+##### getInstance
+
+*Static* method which allows you to get the tab instance associated with a DOM element.
+```
+var triggerEl = document.querySelector('#trigger');
+var tab = bootstrap.Tab.getInstance(triggerEl);   // Returns a Bootstrap tab instance
+```
+
+#### Events
+
+When showing a new tab, the events fire in the following order:
+
+1. `hide.bs.tab` (on the current active tab)
+2. `show.bs.tab` (on the to-be-shown tab)
+3. `hidden.bs.tab` (on the previous active tab, the same one as for the `hide.bs.tab` event)
+4. `shown.bs.tab` (on the newly-active just-shown tab, the same one as for the `show.bs.tab` event)
+
+If no tab was already active, then the `hide.bs.tab` and `hidden.bs.tab` events will not be fired.
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.tab` | This event fires on tab show, but before the new tab has been shown. Use `event.target` and `event.relatedTarget` to target the active tab and the previous active tab (if available) respectively. |
+| `shown.bs.tab` | This event fires on tab show after a tab has been shown. Use `event.target` and `event.relatedTarget` to target the active tab and the previous active tab (if available) respectively. |
+| `hide.bs.tab` | This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use `event.target` and `event.relatedTarget` to target the current active tab and the new soon-to-be-active tab, reespectively. |
+| `hidden.bs.tab` | This event fires after a new tab is shown (and thus the previous active tab is hidden). Use `event.target` and `event.relatedTarget` to target the previous active tab and the new active tab, respectively. |
+
+```
+var tabEl = document.querySelector('button[data-bs-toggle="tab"]');
+tabEl.addEventListener('shown.bs.tab', function(event) {
+    event.target   // newly activated tab
+    event.relatedTarget;   // previous active tab
+});
+```
+
+## Navbar
+
+Documentation and examples for Bootstrap's powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for Bootstrap's collapse plugin.
+
+### How it works
+
+Here's what you need to know before getting started with the navbar:
+
+* Navbars require a wrapping `.navbar` with `.navbar-expand{-sm|-md|-lg|-xl|-xxl}` for responsive collapsing and [color scheme](#color-schemes) classes.
+* Navbars and their contents are fluid by default. Change the [container](#containers) to limit their horizontal width in different ways.
+* Use Bootstrap's [spacing]() and [flex]() <!-- link to Utilities folder / Spacing and Flex --> utility classes for controlling spacing and alignment within navbars.
+* Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on Bootstrap's Collapse JavaScript plugin.
+* Ensure accessibility by using a `<nav>` element or, if using a more generic element such as a `<div>`, add a `role="navigation"` to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+* Indicate the current item by using `aria-current="page"` for the current page or `aria-current="true"` for the current item in a set.
+
+<hr>
+
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+
+<hr>
+
+### Supported content
+
+Navbars come with built-in support for a handful of sub-components. Choose from the following as needed:
+
+* `.navbar-brand` foor your company, product, or project name.
+* `.navbar-nav` for a full-height and lightweight navigation (including support for dropdowns).
+* `.navbar-toggler` for use with our collapse plugin and other [navigation toggling](#responsive-behaviors) behaviors.
+* Flex and spacing utilities for any form controls and actions.
+* `.navbar-text` for adding vertically centered strings of text.
+* `.collapse.navbar-collapse` for grouping and hiding navbar contents by a parent breakpoint.
+* Add an optional `.navbar-scroll` to set a `max-height` and [scroll expanded navbar content](#scrolling).
+
+Here's an example of all the sub-components included in a responsive light-themed navbar that automatically collapses at the `lg` (large) breakpoint.
+``` 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+```
+This example uses [background]() (`bg-light`) and [spacing]() (`my-2`, `my-lg-0`, `me-sm-0`, `my-sm-0`) utility classes.
