@@ -142,7 +142,8 @@
         <hr>
 
         <!-- Bootstrap's JavaScript `constructor` activates a tab element and content container. A tab should either have a
-             `data-be-target` or, if using a link, an `href` attribute targeting a container node in the DOM. -->
+             `data-be-target` or, if using a link, an `href` attribute targeting a container node in the DOM. See the 
+             accompanying JS <script> at the bottom of this HTML document. -->
 
         <div class="container">
             <h4 class="mb-3">Bootstrap's JavaScript <code>constructor</code> activates a tab element and content container. A tab 
@@ -202,34 +203,14 @@
                 </div>
             </div>
         </div>
-        <hr>
+        
+        <script>
+            var firstTabEl = document.querySelector('#myTab3 li:last-child a');
+            var firstTab = new bootstrap.Tab(firstTabEl);
+        
+            firstTab.show();
+        </script>
 
-        <!--  -->
-
-        <div class="container">
-            <h5 class="mb-3"></h5>
-
-            
-        </div>
-        <hr>
-
-        <!--  -->
-
-        <div class="container">
-            <h3 class="mb-3"></h3>
-
-            
-        </div>
-        <hr>
-
-        <!--  -->
-
-        <div class="container">
-            <h3 class="mb-3"></h3>
-
-            
-        </div>
-    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </body>
