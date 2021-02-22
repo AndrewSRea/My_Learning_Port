@@ -4041,4 +4041,11 @@ Activates a tab element and content container. Tab should have either a `data-bs
     <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">...</div>
     <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
 </div>
+
+<script>
+    var firstTabEl = document.querySelector('#myTab li:last-child a');
+    var firstTab = new bootstrap.Tab(firstTabEl);
+
+    firstTab.show();
+</script>
 ```
