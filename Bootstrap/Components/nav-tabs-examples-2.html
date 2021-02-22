@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Navs and Tabs Component Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+
+        <!-- Using the basic nav from the previous examples, add the `.nav-tabs` class to generate a tabbed interface. -->
+
+        <div class="container">
+            <h3 class="mb-3">Using the basic nav from the previous examples, add the <code>.nav-tabs</code> class to generate a 
+                tabbed interface.</h3>
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+
+        <!--  Take the same HTML as the example above, but use `.nav-pills` instead -->
+
+        <div class="container">
+            <h3 class="mb-3">Take the same HTML as the example above, but use <code>.nav-pills</code> instead</h3>
+
+            <ul class="nav nav-pills" style="border: 1px solid #d3d3d3; padding: 15px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Force your `.nav`'s contents to extend the full available width with one of two modifier classes.
+             To proportionately fill all available space with your `.nav-item`s, use `.nav-fill`. -->
+
+        <div class="container">
+            <h4 class="mb-3">Force your <code>.nav</code>'s contents to extend the full available width with one of two modifier 
+                classes. To proportionately fill all available space with your <code>.nav-item</code>s, use <code>.nav-fill</code>.</h4>
+
+            <ul class="nav nav-pills nav-fill" style="border: 1px solid #d3d3d3; padding: 15px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- When using a <nav>-based navigation, you can safely omit `.nav-item` as only `.nav-link` is required
+             for styling <a> elements -->
+
+        <div class="container">
+            <h4 class="mb-3">When using a <code>&lt;nav&gt;</code>-based navigation, you can safely omit <code>.nav-item</code> 
+                as only <code>.nav-link</code> is required for styling <code>&lt;a&gt;</code> elements</h4>
+
+            <nav class="nav nav-pills nav-fill" style="border: 1px solid #d3d3d3; padding: 15px;">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                <a class="nav-link" href="#">Much longer nav link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- For equal-width elements, use `.nav-justified`. All horizontal space will be occupied by nav links, but unlike 
+             the `.nav-fill` above, every nav item will be the same width. -->
+
+        <div class="container">
+            <h4 class="mb-3">For equal-width elements, use <code>.nav-justified</code>. All horizontal space will be occupied by 
+                nav links, but unlike the <code>.nav-fill</code> above, every nav item will be the same width.</h4>
+
+            <ul class="nav nav-pills nav-justified" style="border: 1px solid #d3d3d3; padding: 15px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Much longer nav link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <hr>
+
+        <!-- Similar to the `.nav-fill` example using a <nav>-based navigation. -->
+
+        <div class="container">
+            <h4 class="mb-3">Similar to the <code>.nav-fill</code> example using a <code>&lt;nav&gt;</code>-based navigation.</h4>
+
+            <nav class="nav nav-pills nav-justified" style="border: 1px solid #d3d3d3; padding: 15px;">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                <a class="nav-link" href="#">Much longer nav link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </nav>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
