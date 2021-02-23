@@ -61,21 +61,152 @@
         </div>
         <hr>
 
-        <!--   -->
+        <!--  The `.navbar-brand` can be applied to most elements, but an anchor works best, as some elements might require
+              utility classes or custom styles. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">The <code>.navbar-brand</code> can be applied to most elements, but an anchor works best, as some 
+                elements might require utility classes or custom styles.</h4>
 
-            
+            <!-- As a link -->
+            <nav class="navbar navbar-light bg-light mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                </div>
+            </nav>
+
+            <!-- As a heading -->
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">Navbar</span>
+                </div>
+            </nav>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Adding images to the `.navbar-brand` will likely always require custom styles or utilities to properly size.
+             Below are some examples to demonstrate. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Adding images to the <code>.navbar-brand</code> will likely always require custom styles or utilities 
+                to properly size. Below are some examples to demonstrate.</h4>
 
-            
+            <!-- Just an image -->
+            <nav class="navbar navbar-light bg-light mb-3">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="images/bootstrap-logo.svg" alt="" width="30" height="24">
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Just an image and text -->
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="images/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-top">
+                        Bootstrap
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- Navbar navigation links build upon Bootstrap's `.nav` options with their own modifier classes and require
+             toggler classes for proper responsive styling. -->
+
+        <div class="container">
+            <h4 class="mb-3">Navbar navigation links build upon Bootstrap's <code>.nav</code> options with their own modifier 
+                classes and require toggler classes for proper responsive styling.</h4>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Bootstrap uses classes for its navs, so you can avoid the list-based approach if desired -->
+
+        <div class="container">
+            <h4 class="mb-3">Bootstrap uses classes for its navs, so you can avoid the list-based approach if desired</h4>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- Dropdowns can also be used in a navbar. Dropdown menus require a wrapping element for positioning so separate
+             and nested elements need to be used for the `.nav-item` and `.nav-link` classes. -->
+
+        <div class="container">
+            <h4 class="mb-3">Dropdowns can also be used in a navbar. Dropdown menus require a wrapping element for positioning 
+                so separate and nested elements need to be used for the <code>.nav-item</code> and <code>.nav-link</code> classes.</h4>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item dropdown dropup">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
