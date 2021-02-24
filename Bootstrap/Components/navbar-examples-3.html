@@ -14,102 +14,20 @@
    </head>
    <body>
 
-        <!-- Place various form controls and components within a navbar -->
+        <!-- Color theming a navbar is easy with the combination of color theming classes and `background-color` utilities -->
 
         <div class="container">
-            <h3 class="mb-3">Place various form controls and components within a navbar</h3>
+            <h3 class="mb-3">Color theming a navbar is easy with the combination of color theming classes and <code>background-color</code> 
+                utilities</h3>
 
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
                 <div class="container-fluid">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </nav>
-        </div>
-        <hr>
-
-        <!-- Immediate child elements of `.navbar` use flex layout and will default to `justify-content: space-between`.
-             Use additional flex utilities to adjust this behavior. -->
-
-        <div class="container">
-            <h4 class="mb-3">Immediate child elements of <code>.navbar</code> use flex layout and will default to 
-                <code>justify-content: space-between</code>. Use additional flex utilities to adjust this behavior.</h4>
-
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand">Navbar</a>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </nav>
-        </div>
-        <hr>
-
-        <!-- Input groups work inside a navbar as well. If the navbar is an entire form, or mostly a form, then
-             the <form> element can serve as a container to save some HTML. -->
-
-        <div class="container">
-            <h4 class="mb-3">Input groups work inside a navbar as well. If the navbar is an entire form, or mostly a form, then
-                the <code>&lt;form&gt;</code> element can serve as a container to save some HTML</h4>
-
-            <nav class="navbar navbar-light bg-light">
-                <form class="container-fluid">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                </form>
-            </nav>
-        </div>
-        <hr>
-
-        <!-- Various buttons are supported as part of the navbar forms as well. -->
-
-        <div class="container">
-            <h3 class="mb-3">Various buttons are supported as part of the navbar forms as well.</h3>
-
-            <nav class="navbar navbar-light bg-light">
-                <form class="container-fluid justify-content-start">
-                    <button class="btn btn-outline-success me-2" type="button">Main button</button>
-                    <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
-                </form>
-            </nav>
-        </div>
-        <hr>
-
-        <!-- Navbars can contain bits of text with the help of `.navbar-text`. This class adjusts vertical alignment
-             and horizontal spacing for strings of text. -->
-
-        <div class="container">
-            <h4 class="mb-3">Navbars can contain bits of text with the help of <code>.navbar-text</code>. This class adjusts 
-                vertical alignment and horizontal spacing for strings of text.</h4>
-
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <span class="navbar-text">
-                        Navbar text with an inline element
-                    </span>
-                </div>
-            </nav>            
-        </div>
-        <hr>
-
-        <!-- Mix and match with other components and utilities as needed -->
-
-        <div class="container">
-            <h3 class="mb-3">Mix and match with other components and utilities as needed</h3>
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar w/ text</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" 
+                            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
+                    <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -120,13 +38,122 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Pricing</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
                         </ul>
-                        <span class="navbar-text">
-                            Navbar text with an inline element
-                        </span>
+                        <form class="d-flex">
+                            <input clas="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-light ms-2" type="submit">Search</button>
+                        </form>
                     </div>
                 </div>
             </nav>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" 
+                            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input clas="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-light ms-2" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" 
+                            aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input clas="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-primary ms-2" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+                       
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h3 class="mb-3"></h3>
+
+            
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
