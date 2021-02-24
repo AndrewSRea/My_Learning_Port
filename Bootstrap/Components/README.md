@@ -4383,3 +4383,23 @@ Mix and match with other components and utilities as needed.
     </div>
 </nav>
 ```
+
+### Color schemes
+
+Theming the navbar has never been easier thanks to the combination of theming classes and `background-color` utilities. Choose from `.navbar-light` for use with light background colors, or `.navbar-dark` for dark background colors. Then, customize with `.bg-*` utilities.
+```
+<nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar content -->
+</nav>
+
+<nav class="navbar navbar-dark bg-primary">
+    <!-- Navbar content -->
+</nav>
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <!-- Navbar content -->
+</nav>
+```
+
+### Containers
+
