@@ -4323,3 +4323,63 @@ Immediate child elements of `.navbar` use flex layout and will default to `justi
     </div>
 </nav>
 ```
+Input groups works, too, If your navbar is an entire form, or mostly a form, you can use the `<form>` element as the container and save some HTML.
+```
+<nav class="navbar navbar-light bg-light">
+    <form class="container-fluid">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+    </form>
+</nav>
+```
+Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements.
+```
+<nav class="navbar navbar-light bg-light">
+    <form class="container-fluid justify-content-start">
+        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+        <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+    </form>
+</nav>
+```
+
+#### Text
+
+Navbars may contain bits of text with the help of `.navbar-text`. This class adjusts vertical adjustment and horizontal spacing for strings of text.
+```
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <span class="navbar-text">
+            Navbar text with an inline element
+        </span>
+    </div>
+</nav>
+```
+Mix and match with other components and utilities as needed.
+```
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar w/ text</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                Navbar text with an inline element
+            </span>
+        </div>
+    </div>
+</nav>
+```
