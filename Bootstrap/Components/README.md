@@ -4886,3 +4886,24 @@ Additionally, while it is possible to also include interactive controls (such as
 <hr>
 
 #### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-animation=""`. Make sure to change the case type of the option name from camelCase to kebab-case when passing via data attrbutes. For example: instead of using `data-bs-customClass="beautifier"`, use `data-bs-custom-class="beautifier"`.
+
+<hr>
+
+:warning: Note that for security reasons, the `sanitize`, `sanitizeFn`, and `allowList` options cannot be supplied using data attributes.
+
+<hr>
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `animation` | Boolean | `true` | Apply a CSS fade transition to the popover. |
+| `container` | string \| element \| false | `false` | Appends the popover to a specific element. Example: `container: 'body'`. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize. |
+| `content` | string \| element \| function | `''` | Default content value it `data-bs-content` attribute isn't present.<br>If a function is given, it will be called with its `this` reference set to the element that the popover is attached to. |
+| `delay` | number \| object | `0` | Delay showing and hiding the popover (ms) - does not apply to manual trigger type.<br>If a number is supplied, delay is applied to both hide/show.<br>Object structure is: `delay: { "show": 500, "hide": 100 }` |
+| `html` | Boolean | `false` | Insert HTML into the popover. If false, `innerText` property will be used to insert content into the DOM. Use text if you're worried about XSS attacks. |
+| `placement` | string \| function | `'right'` | How to position the popover - auto \| top \| bottom \| left \| right. When `auto` is specified, it will dynamically reorient the popover.<br>When a function is used to determine the placement, it is called with the popover DOM node as its first argument and the triggering element DOM node as its second. The `this` context is set to the proper instance. |
+| `selector` | string \| false | `false` | If a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See [this](https://github.com/twbs/bootstrap/issues/4215) and [an informative example](https://codepen.io/team/bootstrap/pen/zYBXGwX?editors=1010). |
+| `template` | string | `<div class="popover" role="tooltip">`<br>`<div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div>`<br>`</div>` | Base HTML to use when creating the popover.<br>The popover's `title` will be injected into the `.popover-header`.<br>The popover's `content` will be injected into the `.popover-body`.<br>`.popover-arrow` will become the popover's arrow.<br>The outermost wrapper element should have the `.popover` class. |
+| `title` | string \| element \| function | `''` | Default title value if `title` attribute isn't present.<br>If a function is given, it will be called with its `this` reference set to the element that the popover is attached to. |
+| `trigger` | string | `'click'` | How popover is triggered - click | hover | focus | manual. You may pass multiple triggers; separate them with a space. `manual` cannot be combined with any other trigger. |
