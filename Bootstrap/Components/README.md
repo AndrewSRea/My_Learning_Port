@@ -4814,7 +4814,7 @@ var popover = new bootstrap.Popover(document.querySelector('.example-popover'), 
 
 <hr>
 
-:exclamation: Well, as I have not yet mastered JavaScript, I am unable to make the example above work, even after with Bootstrap's **Enable popovers everywhere** JavaScript installed at the bottom of example HTML document.
+:exclamation: Well, as I have not yet mastered JavaScript, I am unable to make the popover button code example above work, even with Bootstrap's **Enable popovers everywhere** JavaScript installed at the bottom of my example HTML document.
 
 <hr>
 
