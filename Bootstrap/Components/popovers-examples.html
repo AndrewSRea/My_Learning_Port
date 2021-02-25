@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Popover Component Examples</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+
+        <!-- Popover components rely on the third-party Popper.js for positioning, which is included in Bootstrap's
+             `bootstrap.bundle.min.js`. This example adds a popover toggle on a button with the `data-bs-toggle="popover"`
+             attribute. -->
+
+        <div class="container">
+            <h4 class="mb-3">Popover components rely on the third-party Popper.js for positioning, which is included in Bootstrap's
+                <code>bootstrap.bundle.min.js</code>. This example adds a popover toggle on a button with the <code>data-bs-toggle="popover"</code>
+                attribute.</h4>
+
+            <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" 
+                    data-bs-content="And here's some amazing content. It very engaging. Right?">Click to toggle popover</button>
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+            
+        </div>
+        <hr>
+
+        <!--  -->
+
+        <div class="container">
+            <h4 class="mb-3"></h4>
+
+        </div>
+
+        <script>
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            });
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
