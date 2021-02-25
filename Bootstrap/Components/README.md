@@ -4780,7 +4780,6 @@ Things to know when using the popover plugin:
 :warning: By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the [sanitizer section in Bootstrap's JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) for more details.
 
 <hr>
-<hr>
 
 :warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
 
@@ -4790,3 +4789,36 @@ Keep reading to see how popovers work with some examples.
 
 ### Example: Enable popovers everywhere
 
+One way to initialize all popovers on a page would be to select them by their `data-bs-toggle` attribute:
+```
+var popoverTriggerList = []. slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+    retunr new bootstrap.Popover(popoverTriggerEl);
+});
+```
+
+### Example: Using the `container` option
+
+When you have some styles on a parent element that interferes with a popover, you'll want to specify a custom `container` so that the popover's HTML appears within that element instead.
+```
+var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
+    container: 'body';
+});
+```
+
+### Example
+
+```
+<button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It very engaging. Right?">Click to toggle popover</button>
+```
+
+<hr>
+
+:exclamation: Well, as I have not yet mastered JavaScript, I am unable to make the example above work, even after with Bootstrap's **Enable popovers everywhere** JavaScript installed at the bottom of example HTML document.
+
+<hr>
+
+#### Four directions
+
+Four options are available: top, right, bottom, and left aligned. Directions are mirrored when using Bootstrap in RTL.
+```
