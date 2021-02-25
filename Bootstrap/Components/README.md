@@ -4756,3 +4756,37 @@ Change the alignment of pagination components with [flexbox utilities](). <!-- l
 </nav>
 ```
 
+## Popovers
+
+Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.
+
+### Overview
+
+Things to know when using the popover plugin:
+
+* Popovers rely on the 3rd party library [Popper](https://popper.js.org/) for positioning. You must include [popper.min.js](https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js) before bootstrap.js or use `bootstrap.min.js`/`bootstrap.bundle.js` which contains Popper in order for popovers to work!
+* Popovers require the [tooltip plugin](#tooltips) as a dependency.
+* Popovers are opt-in for performance reasons, so **you must initialize them yourself**.
+* Zero-length `title` and `content` values will never show a popover.
+* Specify `container: 'body'` to avoid rendering problems in more complex components (like Bootstrap's input groups, button groups, etc).
+* Triggering popovers on hidden elements will not work.
+* Popovers for `.disabled` or `disabled` elements must be triggered on a wrapper element.
+* When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors' overall width. Use `.text-nowrap` on your `<a>`s to avoid this behavior.
+* Popovers must be hidden before their corresponding elements have been removed from the DOM.
+* Popovers can be triggered thanks to an element inside a shadow DOM.
+
+<hr>
+
+:warning: By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the [sanitizer section in Bootstrap's JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) for more details.
+
+<hr>
+<hr>
+
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+
+<hr>
+
+Keep reading to see how popovers work with some examples.
+
+### Example: Enable popovers everywhere
+
