@@ -28,30 +28,49 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Four options of popovers are available: top, right, bottom, and left aligned. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Four options of popovers are available: top, right, bottom, and left aligned.</h4>
 
-            
+            <button type="button" class="btn btn-secondary example-popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                Popover on top
+            </button>
+            <button type="button" class="btn btn-secondary example-popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+                Popover on right
+            </button>
+            <button type="button" class="btn btn-secondary example-popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+                Popover on bottom
+            </button>
+            <button type="button" class="btn btn-secondary example-popover" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Left popover">
+                Popover on left
+            </button>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Use the `focus` trigger to dismiss popovers on the user's next click of a different element than the toggle element. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Use the <code>focus</code> trigger to dismiss popovers on the user's next click of a different element 
+                than the toggle element.</h4>
 
-            
+            <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" 
+               title="Dismissible popover" data-bs-content="And heere's some amazing content. It's very engaging,. Right?">Dismissible popover</a>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Elements with the `disabled` attribute aren't interactive, meaning users cannot hover or click them to trigger
+             a popover. As a workaround, trigger the popover from a wrapper <div> or <span>, and make it keyboard-focusable
+             using `tabindex="0"`. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Elements with the <code>disabled</code> attribute aren't interactive, meaning users cannot hover or click 
+                them to trigger a popover. As a workaround, trigger the popover from a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, 
+                and make it keyboard-focusable using <code>tabindex="0"</code>.</h4>
 
-            
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
+                <button class="btn btn-primary" type="button" disabled>Disabled button</button>
+            </span>
         </div>
         <hr>
 
@@ -75,6 +94,14 @@
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
             var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
                 return new bootstrap.Popover(popoverTriggerEl)
+            });
+
+            var popover = new bootstrap.Popover(document.querySelector('.example-popover'), {
+                container: 'body'
+            });
+
+            var popover2 = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+                trigger: 'focus'
             });
         </script>
 
