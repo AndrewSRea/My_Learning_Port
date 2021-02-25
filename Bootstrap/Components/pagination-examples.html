@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Pagination Component Examples</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+
+        <!-- A large block of connected links is used for pagination, making links hard to miss and easily scalable, while
+             providing large hit areas. It is built with HTML list elements so scren readers can announce the number of
+             available links. A wrapping <nav> identifies the block as a navigation section. The `aria-label=""` provides
+             a description for the <nav> to reflect its purpose. -->
+
+        <div class="container">
+            <h4 class="mb-3">A large block of connected links is used for pagination, making links hard to miss and easily scalable, 
+                while providing large hit areas. It is built with HTML list elements so scren readers can announce the number of
+                available links. A wrapping <code>&lt;nav&gt;</code> identifies the block as a navigation section. The <code>aria-label=""</code> 
+                provides a description for the <code>&lt;nav&gt;</code> to reflect its purpose.</h4>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- To use an icon or symbol in place of text, provide the proper screen reader support with `aria` attributes. -->
+
+        <div class="container">
+            <h4 class="mb-3">To use an icon or symbol in place of text, provide the proper screen reader support with <code>aria</code> 
+                attributes.</h4>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- Pagination links are customizable for different circumstances. Use `.disabled` links which appear
+             un-clickable, and `.active` to indicate the curreent page. Always add `tabindex="-1"` on disabled
+             links. -->
+
+        <div class="container">
+            <h4 class="mb-3">Pagination links are customizable for different circumstances. Use <code>.disabled</code> links which 
+                appear un-clickable, and <code>.active</code> to indicate the curreent page. Always add <code>tabindex="-1"</code> 
+                on disabled links.</h4>
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- Active or disabled anchors can be swapped out for a <span> element, or the anchors can be omitted
+             in the case of the Previous/Next arrows to remove their click functionality and prevent keyboard focus. -->
+
+        <div class="container">
+            <h4 class="mb-3">Active or disabled anchors can be swapped out for a <code>&lt;span&gt;</code> element, or the anchors 
+                can be omitted in the case of the Previous/Next arrows to remove their click functionality and prevent keyboard 
+                focus.</h4>
+
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- Add `.pagination-lg` or `.pagination-sm` for different sizes of pagination. -->
+
+        <div class="container">
+            <h4 class="mb-3">Add <code>.pagination-lg</code> or <code>.pagination-sm</code> for different sizes of pagination.</h4>
+
+            <nav aria-label="...">
+                <ul class="pagination pagination-lg">
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">1</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+            </nav>
+            <hr>
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm">
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">1</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+            </nav>
+        </div>
+        <hr>
+
+        <!-- Change the alignment of pagination components with flexbox utilities. -->
+
+        <div class="container">
+            <h4 class="mb-3">Change the alignment of pagination components with flexbox utilities.</h4>
+
+            <div class="container-fluid" style="border: 1px solid #d3d3d3; padding-top: 15px;">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <br>
+            <div class="container-fluid" style="border: 1px solid #d3d3d3; padding-top: 15px;">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>  
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
