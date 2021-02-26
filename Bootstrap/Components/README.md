@@ -4926,3 +4926,48 @@ Options for individual popovers can alternatively be specified through the use o
 
 ##### Using function with `popperConfig`
 
+```
+var popover = new bootstrap.Popover(element, {
+    popperConfig: function(defaultBsPopperConfig) {
+        // var newPopperConfig = {...}
+        // use defaultBsPopperConfig if needed...
+        // return newPopperConfig
+    };
+});
+```
+
+#### Methods
+
+<hr>
+
+##### :warning: Asynchronous methods and transitions
+
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.<br>
+[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+
+<hr>
+
+##### show
+
+Reveals an element's popover. **Returns to the caller before the popover has actually been shown** (i.e. before the `shown.bs.popover` event occurs). This is considered a "manual" triggering of the popover. Popovers whose title and content are both zero-length are never displayed.
+```
+myPopover.show();
+```
+
+##### hide
+
+Hides an elements popover. **Returns to the caller before the popover has actually been hidden** (i.e. before the `hidden.bs.popover` event occurs). This is considered a "manual" triggering of the popover.
+```
+myPopover.hide();
+```
+
+##### toggle
+
+Toggles an element's popover. **Returns to the caller before the popover has actually been shown or hidden** (i.e. before the `shown.bs.popover` or `hidden.bs.popover` event occurs). This is considered a "manual" triggering of the popover.
+```
+myPopover.toggle();
+```
+
+##### dispose
+
+Hides and destroys an element's popover. (Removes stored data on the DOM element.) Popovers that use delegation (which are created using [the `selector` option]())
