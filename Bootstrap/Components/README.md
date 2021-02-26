@@ -4970,4 +4970,60 @@ myPopover.toggle();
 
 ##### dispose
 
-Hides and destroys an element's popover. (Removes stored data on the DOM element.) Popovers that use delegation (which are created using [the `selector` option]())
+Hides and destroys an element's popover. (Removes stored data on the DOM element.) Popovers that use delegation (which are created using [the `selector` option](#options)) cannot be individually destroyed on descendant trigger elements.
+```
+myPopover.dispose();
+```
+
+##### enable
+
+Gives an element's popover the ability to be shown. **Popovers are enabled by default.**
+```
+myPopover.enable();
+```
+
+##### disable
+
+Removes the ability for an element's popover to be shown. The popover will only be able to be shown if it is re-enabled.
+```
+myPopover.disable();
+```
+
+##### toggleEnabled
+
+Toggles the ability for an element's popover to be shown or hidden.
+```
+myPopover.toggleEnabled();
+```
+
+##### update
+
+Updates the position of an element's popover.
+```
+myPopover.update();
+```
+
+##### getInstance
+
+*Static* method which allows you to get the popover instance associated with a DOM element.
+```
+var exampleTriggerEl = document.getElementById('example');
+var popover = bootstrap.Popover.getInstance(exampleTriggerEl);   // Returns a Bootstrap popover instance
+```
+
+#### Events
+
+| Event type | Description |
+| --- | --- |
+| show.bs.popover | This event fires immediately when the `show` instance method is called. |
+| shown.bs.popover | This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete). |
+| hide.bs.popover | This event is fired immediately when the `hide` instance method has been called. |
+| hidden.bs.popover | This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete). |
+| inverted.bs.popover | This event is fired after the `show.bs.popover` event when the popover template has been added to the DOM. |
+
+```
+var myPopoverTrigger = document.getElementById('myPopover');
+myPopoverTrigger.addEventListener('hidden.bs.popover', function() {
+    // do something...
+});
+```
