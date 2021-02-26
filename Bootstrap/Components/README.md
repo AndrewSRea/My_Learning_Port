@@ -4907,3 +4907,22 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | `template` | string | `<div class="popover" role="tooltip">`<br>`<div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div>`<br>`</div>` | Base HTML to use when creating the popover.<br>The popover's `title` will be injected into the `.popover-header`.<br>The popover's `content` will be injected into the `.popover-body`.<br>`.popover-arrow` will become the popover's arrow.<br>The outermost wrapper element should have the `.popover` class. |
 | `title` | string \| element \| function | `''` | Default title value if `title` attribute isn't present.<br>If a function is given, it will be called with its `this` reference set to the element that the popover is attached to. |
 | `trigger` | string | `'click'` | How popover is triggered - click | hover | focus | manual. You may pass multiple triggers; separate them with a space. `manual` cannot be combined with any other trigger. |
+| `fallbackPlacements` | array | `['top', 'right', 'bottom', 'left']` | Define fallback placements by providing a list of placements in array (in order of preference). For more information, refer to Popper's [behavior docs](https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements). |
+| `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the popover. By default, it's `'clippingParents'` and can accept an HTMLElement reference (JavaScript only). For more information, refer to Popper's [preventOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
+| `customClass` | string \| function | `''` | Add classes to the popover when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: `'class-1 class-2'`.<br>You can also pass a function that should return a single string containing additional class names. |
+| `sanitize` | Boolean | `true` | Enable or disable the sanitization. If activated, `'template'`, `'content'`, and `'title'` options will be sanitized. See the [sanitizer section in our JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer). |
+| `allowList` | object | [Default value](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) | Object which contains allowed attributes and tags. |
+| `sanitizeFn` | null \| function | `null` | Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform santization. |
+| `offset` | array \| string \| function | `[0, 8]` | Offset of the popover relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`.<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `[`[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)`]`.<br>For more information, refer to Popper's [offset docs](https://popper.js.org/docs/v2/modifiers/offset/#options). |
+| `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper. |
+
+<hr>
+
+##### :exclamation: Data attributes for individual popovers
+
+Options for individual popovers can alternatively be specified through the use of data attributes, as explained above.
+
+<hr>
+
+##### Using function with `popperConfig`
+
