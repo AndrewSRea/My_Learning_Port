@@ -5146,3 +5146,100 @@ The striped gradient can also be animated. Add `.progress-bar-animated` to `.pro
 </div>
 ```
 
+## Scrollspy
+
+Automatically update Bootstrap navigation or list group components based on scroll position to indicate which link is currently active in the viewport.
+
+### How it works
+
+Scrollspy has a few requirements to function properly:
+
+* It must be used on a Bootstrap [nav component](#navs-and-tabs) or [list group](#list-group).
+* Scrollspy requires `position: relative;` on the element you're spying on, usually the `<body>`.
+* Anchors (`<a>`) are required and must point to an element with that `id`.
+
+When successfully implemented, your nav or list group will update accordingly, moving the `.active` class from one item to the next based on their associated targets.
+
+<hr>
+
+#### :exclamation: Scrollable containers and keyboard access
+
+If you're making a scrollable container (other than the `<body>`), be sure to have a `height` set and `overflow-y: scroll;` applied to it--alongside a `tabindex="0"` to ensure keyboard access.
+
+<hr>
+
+### Example in navbar
+
+Scroll the area below the navbar and watch the active class change. The dropdown items will be highlighted as well.
+```
+<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="#fat">@fat</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#mdo">@mdo</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#one">one</a></li>
+                <li><a class="dropdown-item" href="#two">two</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#three">three</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" tabindex="0">
+    <h4 id="fat">@fat</h4>
+    <p>...</p>
+    <h4 id="mdo">@mdo</h4>
+    <p>...</p>
+    <h4 id="one">one</h4>
+    <p>...</p>
+    <h4 id="two">two</h4>
+    <p>...</p>
+    <h4 id="three">three</h4>
+    <p>...</p>
+</div>
+```
+
+### Example with nested nav
+
+Scrollspy also works with nested `.nav`s. If a nested `.nav` is `.active`, its parents will also be `.active`. Scroll the area next to the navbar and watch the active class change.
+```
+<nav id="navbar-example3" class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="nav nav-pills flex-column">
+        <a class="nav-link" href="#item-1">Item 1</a>
+        <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+            <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+        </nav>
+        <a class="nav-link" href="#item-2">Item 2</a>
+        <a class="nav-link" href="#item-3">Item 3</a>
+        <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
+            <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+        </nav>
+    </nav>
+</nav>
+<div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+    <h4 id="item-1">Item 1</h4>
+    <p>...</p>
+    <h5 id="item-1-1">Item 1-1</h5>
+    <p>...</p>
+    <h5 id="item-1-2">Item 1-2</h5>
+    <p>...</p>
+    <h4 id="item-2">Item 2</h4>
+    <p>...</p>
+    <h4 id="item-3">Item 3</h4>
+    <p>...</p>
+    <h5 id="item-3-1">Item 3-1</h5>
+    <p>...</p>
+    <h5 id="item-3-2">Item 3-2</h5>
+    <p>...</p>
+</div>
+```
