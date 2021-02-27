@@ -5243,3 +5243,119 @@ Scrollspy also works with nested `.nav`s. If a nested `.nav` is `.active`, its p
     <p>...</p>
 </div>
 ```
+
+### Example with list-group
+
+Scrollspy also works with `.list-group`s. Scroll the area next to the list group and watch the active class change.
+```
+<div id="list-example" class="list-group">
+    <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+    <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+    <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+    <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+</div>
+<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex>
+    <h4 id="list-item-1">Item 1</h4>
+    <p>...</p>
+    <h4 id="list-item-2">Item 2</h4>
+    <p>...</p>
+    <h4 id="list-item-3">Item 3</h4>
+    <p>...</p>
+    <h4 id="list-item-4">Item 4</h5>
+    <p>...</p>
+</div>
+```
+
+### Usage
+
+#### Via data attributes
+
+To easily add scrollspy behavior to your topbar navigation, add `data-bs-spy="scroll"` to the element you want to spy on (most typically, this would be the `<body>`). Then add the `data-bs-target` attribute with the ID or class of the parent element of any Bootstrap `.nav` component.
+```
+body {
+    position: relative;
+}
+```
+```
+<body data-bs-spy="scroll" data-bs-target="#navbar-example">
+    ...
+    <div class="id="navbar-example">
+        <ul class="nav nav-tabs" role="tablist">
+            ...
+        </ul>
+    </div>
+    ...
+</body>
+```
+
+#### Via JavaScript
+
+After adding `position: relative;` in your CSS, call the scrollspy via JavaScript:
+```
+var scollspy = new bootstrap.ScrollSpy(document.body, {
+    target: '#navbar-example`
+});
+```
+<hr>
+
+##### :warning Resolvable ID targets required
+
+Navbar links must have resolvable id targets. For example, a `<a href="#home">home</a>` must correspond to something in the DOM like `<div id="home"></div>`.
+
+<hr>
+
+##### :exclamation: Non-visible target elements ignored
+
+Target elements that are not visible will be ignored and their corresponding nav items will never be highlighted.
+
+<hr>
+
+#### Methods
+
+##### refresh
+
+When using scrollspy in conjunction with adding or removing of elements from the DOM, you'll need to call the refresh method like so:
+```
+var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
+dataSpyList.forEach(function(dataSpyEl) {
+    bootstrap.ScrollSpy.getInstance(dataSpyEl)
+        .refresh();
+});
+```
+
+##### dispose
+
+Destroys an element's scrollspy. (Removes stored data on the DOM element.)
+
+##### getInstance
+
+*Static* method which allows you to get the scrollspy instance associated with a DOM element.
+```
+var scrollSpyContentEl = document.getElementById('content');
+var scrollSpy = bootstrap.ScrollSpy.getInstance(scrollSpyContentEl);   // Returns a Bootstrap scrollspy instance
+```
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs`, as in `data-bs-offset=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `offset` | number | `10` | Pixels to offset from top when calculating position of scroll. |
+| `method` | string | `auto` | Finds which section the spied element is in. `auto` will choose the best method to get scroll coordinates. `offset` will use the [`Element.getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) method to get scroll coordinates. `position` will use the [`HTMLElement.offsetTop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop) and [`HTMLElement.offsetLeft`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetLeft) properties to get scroll coordinates. |
+| `target` | string \| jQuery object \| DOM element |   | Specifies element to apply Scrollspy plugin. |
+
+#### Events 
+
+| Event type | Description |
+| --- | --- |
+| `activate.bs.scrollspy` | This event fires on the scroll element whenever a new item becomes activated by the scrollspy. |
+
+```
+var firstScrollSpyEl = document.querySelector('[data-bs-spt="scroll"]');
+firstScrollSpyEl.addEventListener('activate.bs.scrollspy', function() {
+    // do something...
+});
+```
+
+## Spinners
