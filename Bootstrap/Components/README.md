@@ -5359,3 +5359,111 @@ firstScrollSpyEl.addEventListener('activate.bs.scrollspy', function() {
 ```
 
 ## Spinners
+
+Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript.
+
+### About
+
+Bootstrap "spinners" can be used to show the loading state in your projects. They're built only with HTML and CSS, meaning you don't need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with Bootstrap's amazing utility classes.<br>
+For accessibility purposes, each loader here includes `role="status"` and a nested `<span class="visually-hidden">Loading...</span>`.
+
+<hr>
+
+:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+
+<hr>
+
+### Border spinner
+
+Use the border spinners for a lightweight loading indicator.
+```
+<div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+### Colors
+
+The border spinner uses `currentColor` for its `border-color`, meaning you can customize the color with [text color utilities](). <!-- link to Utilities folder /  Colors --> You can use any of Bootstrap's text color utilities on the standard spinner.
+```
+<div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-secondary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+<hr>
+
+:exclamation: **Why not use `border-color` utilities?** Each border spinner specifies a `transparent` border for at least one side, so `.border-{color}` utilities would override that.
+
+<hr>
+
+### Growing spinner
+
+If you don't fancy a border spinner, switch to the grow spinner. While it doesn't technically spin, it does repeatedly grow!
+```
+<div class="spinner-grow" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+Once again, this spinner is buuilt with `currentColor`, so you can easily change its appearance with [text color utilities](). <!-- link to Utilities folder / Colors --> Here it is in blue, along with the supported variants.
+```
+<div class="spinner-grow text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-secondary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+### Alignment
+
+Spinners in Bootstrap are built with `rem`s, `currentColor`, and `display: inline-flex`. This means they can easily be resized, recolored, and quickly aligned.
+
+#### Margin
+
+Use [margin utilities]() <!-- link to Utilities / Spacing --> like `.m-5` for easy spacing.
+```
+<div class="spinner-border m-5" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+
