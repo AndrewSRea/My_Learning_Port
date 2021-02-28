@@ -5480,3 +5480,11 @@ Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities
     </div>
 </div>
 ```
+```
+<div class="d-flex align-items-center">
+    <strong>Loading...</strong>
+    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+</div>
+```
+
+##### Floats
