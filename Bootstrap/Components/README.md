@@ -5488,3 +5488,66 @@ Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities
 ```
 
 ##### Floats
+
+```
+<div class="clearfix">
+    <div class="spinner-border float-end" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+```
+
+##### Text align
+
+```
+<div class="text-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+```
+
+### Size
+
+Add `.spinner-border-sm` and `.spinner-grow-sm` to make a smaller spinner that can quickly be used within other components.
+```
+<div class="spinner-border spinner-border-sm" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow spinner-grow-sm" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+Or, use custom CSS or inline styles to change the dimensions as needed.
+```
+<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+```
+
+### Buttons
+
+Use spinners within buttons to indicate an action is currently processing or taking place. You may also swap the text out of the spinner element and utilize button text as needed.
+```
+<button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="visually-hidden">Loading...</span>
+</button>
+<button class=" btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+</button>
+```
+```
+<button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    <span class="visually-hidden">Loading...</span>
+</button>
+<button class=" btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Loading...
+</button>
+```
