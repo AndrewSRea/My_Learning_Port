@@ -5467,3 +5467,16 @@ Use [margin utilities]() <!-- link to Utilities / Spacing --> like `.m-5` for ea
 </div>
 ```
 
+#### Placement
+
+Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities to place spinners exactly where you need them in any situation.
+
+##### Flex
+
+```
+<div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+```
