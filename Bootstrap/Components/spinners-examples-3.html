@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Spinners Component Examples 3</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Add `.spinner-border-sm` and `.spinner-grow-sm` to make a smaller spinner to use within other components. -->
+
+        <div class="container">
+            <h4 class="mb-3">Add <code>.spinner-border-sm</code> and <code>.spinner-grow-sm</code> to make a smaller spinner 
+                to use within other components.</h4>
+            <div class="container-fluid" style="border: 1px solid #d3d3d3; padding: 20px;">
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Use custom CSS or inline styles to change the dimensions of a spinner. -->
+
+        <div class="container">
+            <h4 class="mb-3">Use custom CSS or inline styles to change the dimensions of a spinner.</h4>
+
+            <div class="container-fluid" style="border: 1px solid #d3d3d3; padding: 20px;">
+                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Use spinners within buttons to indicate an action is currently processing or taking place.
+             The text of a spinner element may also be swapped out to be replaced by button text, if need be. -->
+
+        <div class="container">
+            <h4 class="mb-3">Use spinners within buttons to indicate an action is currently processing or taking place.
+                The text of a spinner element may also be swapped out to be replaced by button text, if need be.</h4>
+
+            <div class="container-fluid mb-2" style="border: 1px solid #d3d3d3; padding: 20px;">
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="visually-hidden">Loading...</span>
+                </button>
+                <button class=" btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
+            <div class="container-fluid" style="border: 1px solid #d3d3d3; padding: 20px;">
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span class="visually-hidden">Loading...</span>
+                </button>
+                <button class=" btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
