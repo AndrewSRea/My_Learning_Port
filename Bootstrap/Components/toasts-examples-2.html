@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Toasts Component Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Toast components can be customized by removing sub-components, tweaking the utilities, or adding additional 
+             markup. Here a simpler toast has been created by removing the default `.toast-header`, adding a custom hide 
+             icon from Bootstrap Icons, and using some flexbox utilities to adjust the layout. -->
+
+        <div class="container">
+            <h4 class="mb-3">Toast components can be customized by removing sub-components, tweaking the utilities, or adding 
+                additional markup. Here a simpler toast has been created by removing the default <code>.toast-header</code>, 
+                adding a custom hide icon from Bootstrap Icons, and using some flexbox utilities to adjust the layout.</h4>
+            
+            <div class="toast align-items-center fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Additional controls and components can be added to toasts. -->
+
+        <div class="container">
+            <h4 class="mb-3">Additional controls and components can be added to toasts.</h4>
+
+            <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                    Hello, world! This is a toast message.
+                    <div class="mt-2 pt-2 border-top">
+                        <button type="button" class="btn btn-primary btn-sm">Take action</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                </div>
+            </div>   
+        </div>
+        <hr>
+
+        <!-- Different toast color schemes can be created with the color and background utilities. In this example,
+             `.bg-primary` and `text-white` have been added to the `.toast`, and then `.btn-close-white` has been added
+             to the close button. -->
+
+        <div class="container">
+            <h4 class="mb-3">Different toast color schemes can be created with the color and background utilities. In this example,
+                <code>.bg-primary</code> and <code>text-white</code> have been added to the <code>.toast</code>, and then 
+                <code>.btn-close-white</code> has been added to the close button.</h4>
+
+            <div class="toast align-items-center text-white bg-primary border-0 fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>   
+        </div>
+        <hr>
+
+        <!-- Put the placement of toasts on a background with positioning styles placed within the `.toast`. -->
+
+        <div class="container">
+            <h4 class="mb-3">Put the placement of toasts on a background with positioning styles placed within the <code>.toast</code>.</h4>
+
+            <form>
+                <div class="mb-3">
+                    <label for="selectToastPlacement">Toast placement</label>
+                    <select class="form-select mt-2" id="selectToastPlacement">
+                        <option value="" selected>Select a position...</option>
+                        <option value="top-0 start-0">Top left</option>
+                        <option value="top-0 start-50 translate-middle-x">Top center</option>
+                        <option value="top-0 end-0">Top right</option>
+                        <option value="top-50 start-0 translate-middle-y">Middle left</option>
+                        <option value="top-50 start-50 translate-middle">Middle center</option>
+                        <option value="top-50 end-0">Middle right</option>
+                        <option value="bottom-0 start-0">Bottom left</option>
+                        <option value="bottom-0 start-50 translate-middle-x">Bottom center</option>
+                        <option value="bottom-0 end-0">Bottom right</option>
+                    </select>
+                </div>
+            </form>
+            <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts">
+                <div class="toast-container position-absolute p-3" id="toastPlacement">
+                    <div class="toast fade show">
+                        <div class="toast-header">
+                            <img src="images/bootstrap-logo.svg" class="rounded me-2" width="20" height="20" alt="Bootstrap logo">
+                            <strong class="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                        </div>
+                        <div class="toast-body">
+                            Hello, world! This is a toast message.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
