@@ -5790,3 +5790,99 @@ You can also get fancy with flexbox utilities to align toasts horizontally and/o
     </div>
 </div>
 ```
+
+### Accessibility
+
+Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user's focus or otherwise interrupt the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as single (atomic) unit, ratheer than announcing what was changed (which could lead to problems if you only update part of the toast's content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the [alert component](#alerts) instead of toast.<br>
+Note that the live region needs to be present in the markup *before* the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.<br>
+You also need to adapt the `role` and `aria-live` level depending on the content. If it's an important message like an error, use `role="alert" aria-live="assertive"`, otherwise use `role="status" aria-live="polite"` attributes.<br>
+As the content you're displaying changes, be sure to update the [`delay` timeout](#options) to ensure people have enough time to read the toast.
+```
+<div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-delay="1000">
+    <div role="alert" aria-live="assertive" aria-atomic="true">...</div>
+</div>
+```
+When using `autohide: false`, you must add a close button to allow users to dismiss the toast.
+```
+<div role="alert" aria-live="asseertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+    <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Hello, world! This is a toast message.
+    </div>
+</div>
+```
+
+### JavaScript behavior
+
+#### Usage
+
+Initialize toasts via JavaScript:
+```
+var toastElList = [].slice.call(document.querySelectorAll('.toast));
+var toastList = toastElList.map(function(toastEl) {
+    return new bootstrap.Toast(toastEl, option);
+});
+```
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-animation=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `animation` | Boolean | `true` | Apply a CSS fade transition to the toast. |
+| `autohide` | Boolean | `true` | Auto hide the toast. |
+| `delay` | number | `5000` | Delay hiding the toast (ms) |
+
+#### Methods
+
+<hr>
+
+##### :warning: Asynchronous methods and transitions
+
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.<br>
+[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+
+<hr>
+
+##### show
+
+Reveals an element's toast. **Returns to the caller before the toast has actually been shown** (i.e. before the `shown.bs.toast` event occurs). You have to manually call this method, otherwise your toast won't show.
+```
+toast.show();
+```
+
+##### hide
+
+Hides an element's toast. **Returns to the caller before the toast has actually been hidden** (i.e. before the `hidden.bs.toast` event occurs). You have to manually call this method if you deeclared `autohide` as `false`.
+```
+toast.hide();
+```
+
+##### dispose
+
+Hides an element's toast. Your toast will remain on the DOM but won't show anymore.
+```
+toast.dispose();
+```
+
+#### Events
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.toast` | This event fires immediately when the `show` instance method is called. |
+| `shown.bs.toast` | This event is fired when the toast has been made visible to the user. |
+| `hide.bs.toast` | This event is fired immediately when the `hide` instance method has been called. |
+| `hidden.bs.toast` | This event is fired when the toast has finished being hidden from the user. |
+
+```
+var myToastEl = document.getElementById('myToast');
+myToastEl.addEventListener('hidden.bs.toast', function() {
+    // do something...
+});
+```
