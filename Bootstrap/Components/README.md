@@ -5551,3 +5551,124 @@ Use spinners within buttons to indicate an action is currently processing or tak
     Loading...
 </button>
 ```
+
+## Toasts
+
+Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.<br>
+Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems. They're built with flexbox, so they're easy to align and position.
+
+### Overview
+
+Things to know when using the toast plugin:
+
+* Toasts are opt-in for performance reasons, so **you must initialize them yourself**.
+* Toasts will automatically hide if you do not specify `autohide: false`.
+
+<hr>
+
+:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+
+<hr>
+
+### Examples
+
+#### Basic
+
+To encourage extensible and predictable toasts, Bootstrap recommends a header and body. Toast headers use `display: flex`, allowing easy alignment of content thanks to our margin and flexbox utilities.<br>
+Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap requires a single element to contain your "toasted" content and strongly encourage a dismiss button.
+```
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Hello, world! This is a toast message.
+    </div>
+</div>
+```
+
+#### Live
+
+Click the button below to show it as a toast (positioning with Bootstrap's utilities in the lower right corner) that has been hidden by default with `.hide`.
+```
+<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+</div>
+```
+
+#### Translucent
+
+Toasts are slightly translucent, too, so they blend over whatever thy might appear over.
+```
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small class="text-muted">11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+        Hello, world! This is a toast message.
+    </div>
+</div>
+```
+
+#### Stacking
+
+You can stack toasts by wrapping them in a toadt container, which will vertically add some spacing.
+```
+<div class="toast-container">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+        </div>
+        <div class="toast-body">
+            See? Just like this.
+        </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small class="text-muted">2 seconds ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+        </div>
+        <div class="toast-body">
+            Heads up, toasts will stack automatically!
+        </div>
+    </div>
+</div>
+```
+
+#### Custom content
+
+Customize your toasts by removing sub-components, tweaking with [utilities](), <!-- link to Utilities folder / Utility API --> or adding your own markup. Here Bootstrap has created a simpler toast by removing the default `.toast-header`, adding a custom hide icon from [Bootstrap icons](https://icons.getbootstrap.com/), and using some [flexbox utilities]() to adjust the layout. <!-- link to Utilities folder / Flex -->
+```
+<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+```
