@@ -5953,3 +5953,75 @@ Hover over the links below to see the tooltips:
     Tooltip with HTML
 </button>
 ```
+
+### Usage
+
+The tooltip plugin generates content and markup on demand, and by defualt places tooltips after their trigger eleement.<br>
+Trigger the tooltip via JavaScript:
+```
+var exampleEl = document.getElementById('example');
+var tooltip = new bootstrap.Tooltip(exampleEl, options);
+```
+
+<hr>
+
+#### :exclamation: Overflow `auto` and `scroll`
+
+Tooltip position attempts to automatically change when a parent container has `overflow: auto` or `overflow: scroll` like Bootstrap's `.table-responsive`, but still keeps the original placement's positioning . To resolve, set the `boundary` option to anything other than default value, `'scrollParent'`, such as `'window'`:
+```
+var exampleEl = document.getElementById('example');
+var tooltip = new bootstrap.Tooltip(exampleEl, {
+    boundary: 'window'
+});
+```
+
+<hr>
+
+#### Markup
+
+The required markup for a tooltip is only a `data` attribute and `title` on the HTML element you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to `top` by the plugin). 
+<hr>
+
+##### :exclamation: Making tooltips work for keyboard and assistive technologies
+
+You should only add tooltips to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as `<span>`s) can be made focusable by adding the `tabindex="0"` attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce the tooltip in this situation. Additionally, do not rely solely on `hover` as the trigger for your tooltip, as this will make your tooltips impossible to trigger for keyboard users.
+
+<hr>
+
+```
+<!-- HTML to write -->
+<a href="#" data-bs-toggle="tooltip" title="Some tooltip text!">Hover over me</a>
+
+<!--  Generate markup by thee plugin -->
+<div class="tooltip bs-tooltip-top" role="tooltip">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner">
+        Some tooltip text!
+    </div>
+</div>
+```
+
+#### Disabled elements
+
+Elements with the `disabled` attribute aren't interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you'll want to triggeer the tooltip from a wrapper `<div>` or `<span>`, ideally made keyboard-focusable using `tabindex="0"`.
+```
+<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
+    <button class="btn btn-primary" type="button" disabled>Disabled button</button>
+</span>
+```
+
+#### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-animation=""`. Make sure to change the case type of the option name from camelCase to kebab-case when passing via data attributes. For example: instead of using `data-bs-customClass="beautifier"`, use `data-bs-custom-class="beautifier"`.
+
+<hr>
+
+:warning: Note that for security reasons, the `sanitize`, `sanitizeFn`, and `allowList` options cannot be supplied using data attributes.
+
+<hr>
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `animation` | Boolean | `true` | Apply a CSS fade transition to the tooltip. |
+| `container` | string \| element \| false | `false` | Appends the tooltip to a specific element. Example: `container: 'body'`. This option is particularly useful in that it allows you to position the tooltip in the flow of the document near the triggering element - which will prevent the tooltip from floating away from the triggering element during a window resize. |
+| `delay` | number \| object | `0` | Delay showing and hiding the tooltip (ms) - does not apply to manual trigger type.<br>If a number is supplied, delay is applied to both hide/show.<br>Object structure is: `delay: { "show": 500, "hide": 100 }` |
