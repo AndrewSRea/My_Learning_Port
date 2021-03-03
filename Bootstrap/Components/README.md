@@ -5015,11 +5015,11 @@ var popover = bootstrap.Popover.getInstance(exampleTriggerEl);   // Returns a Bo
 
 | Event type | Description |
 | --- | --- |
-| show.bs.popover | This event fires immediately when the `show` instance method is called. |
-| shown.bs.popover | This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete). |
-| hide.bs.popover | This event is fired immediately when the `hide` instance method has been called. |
-| hidden.bs.popover | This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete). |
-| inverted.bs.popover | This event is fired after the `show.bs.popover` event when the popover template has been added to the DOM. |
+| `show.bs.popover` | This event fires immediately when the `show` instance method is called. |
+| `shown.bs.popover` | This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete). |
+| `hide.bs.popover` | This event is fired immediately when the `hide` instance method has been called. |
+| `hidden.bs.popover` | This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete). |
+| `inserted.bs.popover` | This event is fired after the `show.bs.popover` event when the popover template has been added to the DOM. |
 
 ```
 var myPopoverTrigger = document.getElementById('myPopover');
@@ -6038,4 +6038,120 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | `allowList` | object | [Default value](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) | Object which contains allowed attributes and tags |
 | `sanitizeFn` | null \| function | `null` | Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization. |
 | `offset` | array \| string \| function | `[0,0]` | Offset of the tooltip relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `[`[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)`]`. |
-| `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration
+| `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helos you use and merge the default with your own configuration. The function must return a configuration object for Popper. |
+
+<hr>
+
+##### :exclamation: Data attributes for individual tooltips
+
+Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.
+
+<hr>
+
+##### Using function with `popperConfig`
+
+```
+var tooltip = new bootstrap.Tooltip(element, { 
+    popperConfig: function(defaultBsPopperConfig) {
+        // var newPopperConfig = {...}
+        // use defaultBsPopperConfig if needed...
+        // return newPopperConfig
+    }
+});
+```
+
+#### Methods
+
+<hr>
+
+##### :warning: Asynchronous methods and transitions
+
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.<br>
+[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+
+<hr>
+
+##### show
+
+Reveals an element's tooltip. **Returns to the caller before the tooltip has actually been shown** (i.e. before the `shown.bs.tooltip` event occurs). This is considered a "manual" triggering of the tooltip. Tooltips with zero-length titles are never displayed.
+```
+tooltip.show();
+```
+
+##### hide
+
+Hides an element's tooltip. **Returns to the caller before the tooltip has actually been shown or hidden** (i.e. before the `shown.bs.tooltip` or `hidden.bs.tooltip` event occurs). This is considered a "manual" triggering of the tooltip.
+```
+tooltip.hide();
+```
+
+##### toggle
+
+Toggle's an element's tooltip. **Returns to the caller before the tooltip has actually been shown or hidden** (i.e. before the `shown.bs.tooltip` or `hidden.bs.tooltip` event occurs). This is considered a "manual" triggering of the tooltip.
+```
+tooltip.toggle();
+```
+
+##### dispose
+
+Hides and destroys an element's tooltip. (Removes stored data on the DOM element.) Tooltips that use delegation (which are created using [the `selector` option](#options)) cannot be individually destroyed on descendant trigger elements.
+``` 
+tooltip.dispose();
+```
+
+##### enable
+
+Gives an element's tooltip the ability to be shown. **Tooltips are enabled by default.**
+```
+tooltip.enable();
+```
+
+##### disable
+
+Removes the ability for an element's tooltip to be shown. The tooltip will only be able to be shown if it is re-enabled.
+```
+tooltip.disable();
+```
+
+##### toggleEnabled
+
+Toggles the ability for an element's tooltip to be shown or hidden.
+```
+tooltip.toggleEnabled();
+```
+
+##### update
+
+Updates the position of an element's tooltip.
+```
+tooltip.update();
+```
+
+##### getInstance
+
+*Static* method which allows you to get the tooltip instance associated with a DOM element.
+```
+var exampleTriggerEl = document.getElementById('example');
+var tooltip = bootstrap.Tooltip.getInstance(exampleTriggerEl);   // Returns a Bootstrap tooltip instance
+```
+
+#### Events
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.tooltip` | This event fires immediately when the `show` instance method is called. |
+| `shown.bs.tooltip` | This event is fired when the tooltip has been made visible to the user (will wait for CSS transitions to complete). |
+| `hide.bs.tooltip` | This event is fired immediately when the `hide` instance method has been called. |
+| `hidden.bs.tooltip` | This event is fired when the tooltip has finished being hidden from the user (will wait for CSS transitions to complete). |
+| `inserted.bs.tooltip` | This event is fired after the `show.bs.tooltip` event when the popover template has been added to the DOM. |
+
+```
+var myTooltipEl = document.getElementById('myTooltip');
+my tooltip = new bootstrap.Tooltip(myTooltipEl);
+
+myTooltipEl.addEventListener('hidden.bs.tooltip', function() {
+    // do something...
+});
+
+tooltip.hide();
+```
