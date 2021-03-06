@@ -4,7 +4,7 @@ Each of the subsections in this **Helpers** section are small enough to fit insi
 
 * [Clearfix](#clearfix)
 * [Colored links](#colored-links)
-* [Ratio]()
+* [Ratio](#ratios)
 * [Position]()
 * [Visually hidden]()
 * [Stretched link]()
