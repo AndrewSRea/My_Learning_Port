@@ -135,7 +135,7 @@ This CSS variable makes it easy to modify the aspect ratio across breakpoints. T
 
 <hr>
 
-:exclamation: As I have not yet downloaded the npm package for Sass to my Bootstrap folder, the HTML and CSS code above is more than likely not going to work in my "helpers-examples-2.html` file.
+:exclamation: As I have not yet downloaded the npm package for Sass to my Bootstrap folder, the HTML and CSS code above is more than likely not going to work in my "helpers-examples-2.html" file.
 
 <hr>
 
