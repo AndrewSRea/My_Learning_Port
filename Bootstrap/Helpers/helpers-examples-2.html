@@ -48,6 +48,11 @@
                 height: 69.7px;
             }
 
+            .box-5 {
+                width: 160px;
+                height: 137px;
+            }
+
             .ratio-text {
                 text-align: center;
             }
@@ -83,14 +88,20 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Each `.ratio-*` class includes a CSS custom property in the selector. This can be overridden to create
+             custom aspect ratios with some quick math. For example, a 2x1 aspect ratio can be created by setting
+             `--bs-aspect-ratio` to `50%`. -->
 
         <div class="container">
-            <h3 class="mb-3"></h3>
+            <h3 class="mb-3">Ratios Code Example: 03</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Each <code>.ratio-*</code> class includes a CSS custom property in the selector. This can be overridden 
+                to create custom aspect ratios with some quick math. For example, a 2x1 aspect ratio can be created by setting
+                <code>--bs-aspect-ratio</code> to <code>50%</code>.</h4>
             
-            
+            <div class="ratio ratio-box box-5" style="--bs-aspect-ratio: 50%;">
+                <div class="ratio-text">2x1</div>
+            </div>
         </div>
         <hr>
 
@@ -101,7 +112,7 @@
 
             <h4 class="mb-3"></h4>
 
-
+            
         </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
