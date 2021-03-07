@@ -126,6 +126,26 @@
                 </div>
             </div>
         </div>
+        <hr>
+
+        <!-- Most custom components do not have `position: relative` by default, so `.position-relative` is added here
+             to prevent the link from stretching outside the parent element. -->
+
+        <div class="container">
+            <h3 class="mb-3">Stretched Link Example: 02</h3>
+
+            <h4 class="mb-3">Most custom components do not have <code>position: relative</code> by default, so <code>.position-relative</code> 
+                is added here to prevent the link from stretching outside the parent element.</h4>
+
+            <div class="d-flex position-relative">
+                <img src="images/dark-grey-bg.jpg" class="flex-shrink-0 me-3" width="144" height="144" alt="Image Sub">
+                <div>
+                    <h5 class="mt-0">Custom component with stretched link</h5>
+                    <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+                    <a href="#" class="stretched-link">Go somewhere</a>
+                </div>
+            </div>
+        </div>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
