@@ -228,3 +228,15 @@ Mulltiple links and tap targets are not recommended with stretched links. Howeve
     </div>
 </div>
 ```
+Most custom components do not have `position: relative` by default, so we need to add the `.position-relative` here to prevent the link from stretching outside the parent element.
+```
+<div class="d-flex position-relative">
+    <img src="..." class="flex-shrink-0 me-3" alt="...">
+    <div>
+        <h5 class="mt-0">Custom component with stretched link</h5>
+        <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+        <a href="#" class="stretched-link">Go somewhere</a>
+    </div>
+</div>
+```
+```
