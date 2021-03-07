@@ -209,3 +209,22 @@ Both `visually-hidden` and `visually-hidden-focusable` can allso be used as mixi
 }
 ```
 
+## Stretched link
+
+Make any HTML element or Bootstrap component clickable by "stretching" a nested link via CSS.
+
+Add `.stretched-link` to a link to make its [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) clickable via an `::after` pseudo element. In most cases, this means that an element with `position: relative;` that contains a link with the `.stretched-link` class is clickable. Please note given [how CSS `position` works](https://www.w3.org/TR/CSS21/visuren.html#propdef-position), `.stretched-link` cannot be mixed with most table elements.
+
+Cards have `position: relative` by default in Bootstrap, so in this case you can safely add the `.stretched-link` class to a link in the card without any other HTML changes.
+
+Mulltiple links and tap targets are not recommended with stretched links. However, some `position` and `z-index` styles can help should this be required.
+```
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card with stretched link</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+    </div>
+</div>
+```
