@@ -251,3 +251,29 @@ Most custom components do not have `position: relative` by default, so we need t
     </div>
 </div>
 ```
+
+### Identifying the containing block
+
+If the stretched link doesn't seem to work, the [containing block]() will probably be the cause. The following CSS properties will make an element the containing block:
+
+* A `position` value other than `static`.
+* A `transform` or `perspective` value other than `none`.
+* A `will-change` value of `transform` or `perspective`.
+* A `filter` value other than `none` or a `will-change` value of `filter` (only works on Firefox).
+
+```
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card with stretched links</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bullk of the card's content.</p>
+        <p class="card-text">
+            <a href="#" class="stretched-link text-danger" style="position: relative;">Stretched link willl not work here, because <code>position: relative</code> is added to the link</a>
+        </p>
+        <p class="card-text bg-light" style="transform: rotate(0);">
+            This <a href="#" class="text-warning stretched-link">stretched link</a> will only be spread over the <code>p</code>-tag, because a transform is applied to it.
+        </p>
+    </div>
+</div>
+```
+
