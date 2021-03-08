@@ -5,10 +5,10 @@ Each of the subsections in this **Helpers** section are small enough to fit insi
 * [Clearfix](#clearfix)
 * [Colored links](#colored-links)
 * [Ratio](#ratios)
-* [Position]()
-* [Visually hidden]()
-* [Stretched link]()
-* [Text truncation]()
+* [Position](#position)
+* [Visually hidden](#visually-hidden)
+* [Stretched link](#stretched-link)
+* [Text truncation](#text-truncation)
 
 ## Clearfix
 
