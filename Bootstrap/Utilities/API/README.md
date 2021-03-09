@@ -20,3 +20,311 @@ The `$utilities` map contains all of Bootstrap's utilities and is later merged w
 | `state` | Optional | List of pseudo-class variants like `:hover` or `:focus` to generate for the utility. No default value. |
 | `responsive` | Optional | Boolean indicating if responsive classes need to be generated. `false` by default. |
 | `rfs` | Optional | Boolean to enable fluid rescaling. Have a look at the [RFS](https://getbootstrap.com/docs/5.0/getting-started/rfs/) page to find out how this works. `false` by default. |
+| `print` | Optional | Boolean indicating if print classes need to be generated. `false` by default. |
+| `rtl` | Optional | Boolean indicating if utility should be kept in RTL. `true` by default. |
+
+## API explained
+
+All utility variables are added to the `$utilities` variable within Bootstrap's `_utilities.scss` stylesheet. Each group of utilities looks something like this:
+```
+$utilities: (
+    "opacity": (
+        property: opacity,
+        values: (
+            0: 0,
+            25: .25,
+            50: .5,
+            75: .75,
+            100: 1,
+        )
+    )
+);
+```
+Which outputs the following:
+```
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: .25; }
+.opacity-50 { opacity: .5; }
+.opacity-75 { opacity: .75; }
+.opacity-100 { opacity: 1; }
+```
+
+### Custom class prefix
+
+Use the `class` option to change the class prefix used in the compiled CSS:
+```
+$utilities: (
+    "opacity": (
+        property: opacity,
+        class: o,
+        values: (
+            0: 0,
+            25: .25,
+            50: .5,
+            75: .75,
+            100: 1,
+        )
+    )
+);
+```
+Output:
+```
+.o-0 { opacity: 0; }
+.o-25 { opacity: .25; }
+.o-50 { opacity: .5; }
+.o-75 { opacity: .75; }
+.o-100 { opacity: 1; }
+```
+
+## States
+
+Use the `state` option to generate pseudo-class variations. Example pseudo-classes are `:hover` and `:focus`. When a list of states are provided, classnames are created for that pseudo-class. For example, to change opacity on hover, add `state: hover` and you'll get `.opacity-hover:hover` in your compiled CSS.
+
+Need multiple pseudo-classes? Use a space-separated list of states: `state: hover focus`.
+```
+$utilities: (
+    "opacity": (
+        property: opacity,
+        class: opacity,
+        state: hover,
+        values: (
+            0: 0,
+            25: .25,
+            50: .5,
+            75: .75,
+            100: 1,
+        )
+    )
+);
+```
+Output:
+```
+.opacity-0-hover:hover { opacity: 0; }
+.opacity-25-hover:hover { opacity: .25; }
+.opacity-50-hover:hover { opacity: .5; }
+.opacity-75-hover:hover { opacity: .75; }
+.opacity-100-hover:hover { opacity: 1; }
+```
+
+### Responsive utilities
+
+Add the `responsive` Boolean to generate responsive utilities (e.g., `.opacity-md-25`) across [all breakpoints](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#breakpoints). <!-- gonna have to change this link when subfolders are created -->
+```
+$utilities: (
+    "opacity": (
+        property: opacity,
+        responsive: true,
+        values: (
+            0: 0,
+            25: .25,
+            50: .5,
+            75: .75,
+            100: 1,
+        )
+    )
+);
+```
+Output:
+```
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: .25; }
+.opacity-50 { opacity: .5; }
+.opacity-75 { opacity: .75; }
+.opacity-100 { opacity: 1; }
+
+@media (min-width: 576px) {
+    .opacity-sm-0 { opacity: 0; }
+    .opacity-sm-25 { opacity: .25; }
+    .opacity-sm-50 { opacity: .5; }
+    .opacity-sm-75 { opacity: .75; }
+    .opacity-sm-100 { opacity: 1; }
+}
+
+@media (min-width: 768px) {
+    .opacity-md-0 { opacity: 0; }
+    .opacity-md-25 { opacity: .25; }
+    .opacity-md-50 { opacity: .5; }
+    .opacity-md-75 { opacity: .75; }
+    .opacity-md-100 { opacity: 1; }
+}
+
+@media (min-width: 992px) {
+    .opacity-lg-0 { opacity: 0; }
+    .opacity-lg-25 { opacity: .25; }
+    .opacity-lg-50 { opacity: .5; }
+    .opacity-lg-75 { opacity: .75; }
+    .opacity-lg-100 { opacity: 1; }
+}
+
+@media (min-width: 1200px) {
+    .opacity-xl-0 { opacity: 0; }
+    .opacity-xl-25 { opacity: .25; }
+    .opacity-xl-50 { opacity: .5; }
+    .opacity-xl-75 { opacity: .75; }
+    .opacity-xl-100 { opacity: 1; }
+}
+
+@media (min-width: 1400px) {
+    .opacity-xxl-0 { opacity: 0; }
+    .opacity-xxl-25 { opacity: .25; }
+    .opacity-xxl-50 { opacity: .5; }
+    .opacity-xxl-75 { opacity: .75; }
+    .opacity-xxl-100 { opacity: 1; }
+}
+```
+
+### Changing utilities
+
+Override existing utilities by using the same key. For example, if you want additional responsive overflow utility classes, you can do this:
+```
+$utilities: (
+    "overflow": (
+        responsive: true,
+        property: overflow,
+        values: visible hidden scroll auto,
+    ),
+);
+```
+
+### Print utilities
+
+Enabling the `print` option will **also** generate utility classes for print, which are only applied within the `@media print { ... }` media query.
+```
+$utilities: (
+    "opacity": (
+        property: opacity,
+        print: true,
+        values: (
+            0: 0,
+            25: .25,
+            50: .5,
+            75: .75,
+            100: 1,
+        )
+    )
+);
+```
+Output:
+```
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: .25; }
+.opacity-50 { opacity: .5; }
+.opacity-75 { opacity: .75; }
+.opacity-100 { opacity: 1; }
+
+@media print {
+    .opacity-print-0 { opacity: 0; }
+    .opacity-print-25 { opacity: .25; }
+    .opacity-print-50 { opacity: .5; }
+    .opacity-print-75 { opacity: .75; }
+    .opacity-print-100 { opacity: 1; }
+}
+```
+
+## Using the API
+
+Now that you're familiar with how the utilities API works, learn how to add your own custom classes and modify Bootstrap's default utilities.
+
+### Add utilities
+
+New utilities can be added to the default `$utilities` map with a `map-merge`. Make sure Bootstrap's required Sass files and `_utilities.scss` are imported first, then use the `map-merge` to add your additional utilities. For example, here's how to add a responsive `cursor` utility with three values.
+```
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "cursor": (
+            property: cursor,
+            class: cursor,
+            responsive: true,
+            values: auto pointer grab,
+        )
+    )
+);
+```
+
+### Modify utilities
+
+Modify existing utilities in the default `$utilities` map with `map-get` and `map-merge` functions. In the example below, we're adding an additional value to the `width` utilities. Start with an initial `map-merge` and then specify which utility you want to modify. From there, fetch the nested `"width"` map with `map-get` to access and modify the utility's options and values.
+```
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "width": map-merge(
+            map-get($utilities, "width"),
+            (
+                values: map-merge(
+                    map-get(map-get($utilities, "width"), "values"),
+                    (10: 10%),
+                ),
+            ),
+        ),
+    )
+);
+```
+
+#### Rename utilities
+
+Missing v4 utilities, or used to another naming convention? The utilities API can be used to override the resulting `class` of a given utility--for example, to rename `.ms-*` utilities to oldish `.ml-*`:
+```
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "margin-start": map-merge(
+            map-get($utilities, "margin-start"),
+            ( class: ml ),
+        ),
+    )
+);
+```
+
+### Remove utilties
+
+Remove any of the default utilities by setting the group key to `null`. For example, to remove all of the `width` utilities from the examples above, create a `$utilities map-merge` and add `"width": null` within.
+```
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "width": null
+    )
+);
+```
+
+#### Remove utility in RTL
+
+Some edge cases make [RTL styling difficult](https://rtlstyling.com/posts/rtl-styling#common-things-that-might-not-work-for-rtl), such as line breaks in Arabic. Thus utilities can be dropped from RTL output by setting the `rtl` option to `false`:
+```
+$utilities: (
+    "word-wrap": (
+        property: word-wrap word-break,
+        class: text,
+        values: (break: break-word),
+        rtl: false
+    ),
+);
+```
+Output:
+```
+/* rtl:begin:remove */
+.text-break {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+}
+/* rtl:end:remove */
+```
+This doesn't output anything in RTL, thanks to [the RTLCSS `remove` control directive](https://rtlcss.com/learn/usage-guide/control-directives/#remove).
