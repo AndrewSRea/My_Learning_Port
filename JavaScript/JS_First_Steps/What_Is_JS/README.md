@@ -44,7 +44,7 @@ function updateName() {
     para.textContent = 'Player 1: ' + name;
 }
 ```
-Try clicking on the button created by this code in this demo [here](). (And see the source code [here]().)
+Try clicking on the button created by this code in this demo [here](). (And see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/What_Is_JS/javascript-label.html).)
 
 JavaScript can do a lot more than this--let's explore what in more detail.
 
