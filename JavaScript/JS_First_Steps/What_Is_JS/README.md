@@ -158,4 +158,38 @@ JavaScript is applied to your HTML page in a similar manner to CSS. Whereas CSS 
 
 ### Internal JavaScript
 
-1. 
+1. First of all, make a local copy of Mozilla's example file [apply-javascript.html](https://github.com/mdn/learning-area/blob/master/javascript/introduction-to-js-1/what-is-js/apply-javascript.html). Save it in a directory somewhere sensible.
+2. Open the file in your web browser and in your text editor. You'll see that the HTML creates a simple web page containing a clickable button.
+3. Next, go to your text editor and add the following in your head--just before your closing `</head>` tag:
+```
+<script>
+
+    // JavaScript goes here
+
+</script>
+```
+4. Now we'll add some JavaScript inside our `<script>` element to make the page do something more interesting--add the following code just below the "// JavaScript goes here" line:
+```
+document.addEventListener("DOMContentLoaded", function() {
+    function createParagraph() {
+        let para = document.createElement('p');
+        para.textContent = 'You clicked the button!';
+        document.body.appendChild(para);
+    }
+
+    const buttons = document.querySelectorAll('button');
+
+    for(let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', createParagraph);
+    }
+});
+```
+5. Save your file and refresh the browser--now you should see that when you click the button, a new paragraph is generated and placed below.
+
+<hr>
+
+:exclamation: **Note**: If your example dosn't sem to work, go through the steps again and check that you did everything right. Did you save your local copy of the starting code as an `.html` file? Did you add your `<script>` element just before the `</head>` tag? Did you enter the JavaScript exactly as shown? **JavaScript is case sensitive, and very fussy, so you need to enter the syntax exactly as shown, otherwise it may not work.**
+
+<hr>
+
+### External JavaScript
