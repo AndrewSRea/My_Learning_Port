@@ -72,7 +72,7 @@ They generally fall into to categories:
 
 <hr>
 
-:exclamation: **Note**: Many of the above demos won't work in an older browser--when experimenting, it's a good idea to use a modern browser like Firefox, Chrome, Edge, or Opera to run your code in. You will need to consider [cross browser testing]() in more detail when you get closer to delivering production code (i.e. real code that real customers will use).
+**Note**: Many of the above demos won't work in an older browser--when experimenting, it's a good idea to use a modern browser like Firefox, Chrome, Edge, or Opera to run your code in. You will need to consider [cross browser testing]() in more detail when you get closer to delivering production code (i.e. real code that real customers will use).
 
 <hr>
 
@@ -83,7 +83,7 @@ They generally fall into to categories:
 
 <hr>
 
-:exclamation: **Note**: These APIs are advanced, and we'll not be covering any of these in this module. You can find out much more about these in the [Client-side web APIs module](). <!-- your "Client-side_Web_APIs" folder -->
+**Note**: These APIs are advanced, and we'll not be covering any of these in this module. You can find out much more about these in the [Client-side web APIs module](). <!-- your "Client-side_Web_APIs" folder -->
 
 <hr>
 
@@ -103,7 +103,7 @@ Each browser tab has its own separate bucket for running code in (these buckets 
 
 <hr>
 
-:exclamation: **Note**: There are ways to send code and data between different websites/tabs in a safe manner, but these are advanced techniques that we won't cover in this course.
+**Note**: There are ways to send code and data between different websites/tabs in a safe manner, but these are advanced techniques that we won't cover in this course.
 
 <hr>
 
@@ -122,11 +122,11 @@ function updateName() {
 ```
 Here we are selecting a text paragraph (line 1), then attaching an event listener to it (line 3) so that when the paragraph is clicked, the `updateName()` code block (lines 5-8) is run. The `updateName()` code block (these types of reusable code blocks are called "functions") asks the user for a new name, and then inserts that name into the paragraph to update the display.
 
-If you swapped the order of the first two lines of code, it would no longer work--instead, you'd get an error returned in the [browser developer console]()--`TypeError: para is undefined`. This means that the `para` object does not exist yet, so we ccan't add an event listener to it.
+If you swapped the order of the first two lines of code, it would no longer work--instead, you'd get an error returned in the [browser developer console]()--`TypeError: para is undefined`. This means that the `para` object does not exist yet, so we can't add an event listener to it.
 
 <hr>
 
-:exclamation: **Note**: This is a very common error--you need to be careful that the objects referenced in your code exist before you try to do stuff to them.
+**Note**: This is a very common error--you need to be careful that the objects referenced in your code exist before you try to do stuff to them.
 
 <hr>
 
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <hr>
 
-:exclamation: **Note**: If your example dosn't sem to work, go through the steps again and check that you did everything right. Did you save your local copy of the starting code as an `.html` file? Did you add your `<script>` element just before the `</head>` tag? Did you enter the JavaScript exactly as shown? **JavaScript is case sensitive, and very fussy, so you need to enter the syntax exactly as shown, otherwise it may not work.**
+**Note**: If your example dosn't sem to work, go through the steps again and check that you did everything right. Did you save your local copy of the starting code as an `.html` file? Did you add your `<script>` element just before the `</head>` tag? Did you enter the JavaScript exactly as shown? **JavaScript is case sensitive, and very fussy, so you need to enter the syntax exactly as shown, otherwise it may not work.**
 
 <hr>
 
@@ -215,4 +215,41 @@ for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', createParagraph);
 }
 ```
-4. Save and refresh your browser, and you should see the same thing! It works just the same, but now we've got our JavaScript in an external file. This is generally a good thing in terms of organizing your codee and making it reusable across multiple HTML files. Plus, the HTML is easier to read without huge chunks of script dumped in it.
+4. Save and refresh your browser, and you should see the same thing! It works just the same, but now we've got our JavaScript in an external file. This is generally a good thing in terms of organizing your code and making it reusable across multiple HTML files. Plus, the HTML is easier to read without huge chunks of script dumped in it.
+
+### Inline JavaScript handlers
+
+Note that sometimes you'll come across bits of actual JavaScript code living inside HTML. It might look something like this:
+```
+function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'You clicked the button!';
+    document.body.appendChild(para);
+}
+```
+```
+<button onclick="createParagraph()">Click me!</button>
+```
+You can try a demo of this version [here](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript#inline_javascript_handlers).
+
+This demo has exactly the same functionality as in the previous two sections, except that the [`<button>'](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) element includes an inline `onclick` handler to make the function run when the button is pressed.
+
+**Please don't do this, however.** It is bad practice to pollute your HTML with JavaScript, and it is inefficient--you'd have to include the `onclick="createParagraph()"` attribute on every button you want the JavaScript to apply to.
+
+Using a pure Javascript construct allows you to select all the buttons using one instruction. The code we used above to serve this purpose looks like this:
+```
+const buttons = document.querySelectorAll('button');
+
+for(let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', createParagraph);
+}
+```
+This might be a bit longer than the `onclick` attribute, but it will work for all buttons--no matter how many are on the page, nor how many are added or removed. The JavaScript does not need to be changed.
+
+<hr>
+
+**Note**: Try editing your version of `apply-javascript.html` and add a few more buttons into the file. When you reload, you should find that all of the buttons when clicked will create a paragraph. Neat, huh?
+
+<hr>
+
+### Script loading strategies
