@@ -145,3 +145,17 @@ There are advantages to both types of language, but we won't discuss them right 
 You might also hear the terms **server-side** and **client-side** code, especially in the content of web development. Client-side code is code that is run on the user's computer--when a web page is viewed, the page's client-side code is downloaded, then run and displayed by the browser. In this module, we are explicitly talking about **client-side JavaScript**.
 
 Server-side code, on the other hand, is run on the server, then its results are downloaded and displayed in the browser. Examples of popular server-side web languages include PHP, Python, Ruby, ASP.NET and... JavaScript! JavaScript can also be used as a server-side language, for example, in the popular Node.js environment--you acn find out more about the server-side JavaScript in Mozilla's [Dynamic Websites - Server-side programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side) topic. (This will also be a folder I intend to create inside the **My_Learning_Port** folder.)
+
+### Dynamic versus static code
+
+The word **dynamic** is used to describe both client-side JavaScript, and server-side languages--it refers to the ability to update the display of a web page/app to show different things in different circumstances, generating new content as required. Server-side code dynamically generates new content on the server, e.g. pulling data from a database, whereas client-side JavaSript dynamically generates new code inside the browser on the client, e.g. creating a new HTML table, filling it with data requested from the server, then displaying the table in a web page shown to the user. The meaning is slightly different in the two contexts, but related, and both approaches (server-side and client-side) usually work together.
+
+A web page with no dynamically updating content is referred to as **static**--it just shows the same content all the time.
+
+## How do you add JavaScript to your page?
+
+JavaScript is applied to your HTML page in a similar manner to CSS. Whereas CSS uses [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) elements to apply external stylesheets and [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) elements to apply internal stylesheets to HTML, JavaScript only needs one friend in the world of HTML--the [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element. Let's learn how this works.
+
+### Internal JavaScript
+
+1. 
