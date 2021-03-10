@@ -68,7 +68,7 @@ They generally fall into to categories:
 * The [`DOM (Document Object Model) API`](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) allows you to manipulate HTML and CSS, creating, removing, and changing HTML, dynamically applying new styles to your page, etc. Every time you see a popup window appear on a page, or some new content displayed (as we saw above in our simple demo), for example, that's the DOM in action.
 * The [`Geolocation API`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation) retrieves geographical information. This is how [Google Maps](https://www.google.com/maps) is able to find your location and plot it on a map.
 * The [`Canvas`](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and [`WebGL`](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) APIs allow you to create animated 2D and 3D graphics. People are doing some amazing things using these web technologies--see [Chrome Experiments](https://experiments.withgoogle.com/search?q=WebGL) and [webglsamples](http://webglsamples.org/).
-* [Audio and Video APIs]() like [`HTMLMediaElement`]() and [`WebRTC`]() allow you to do really interesting things with multimedia, such as play audio and video right in a web game, or grab video from your web camera and display it on someone else's computer (try Mozilla's simple [Snapshot demo]() to get the idea).
+* [Audio and Video APIs](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery) like [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) and [`WebRTC`](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) allow you to do really interesting things with multimedia, such as play audio and video right in a web game, or grab video from your web camera and display it on someone else's computer (try Mozilla's simple [Snapshot demo](https://chrisdavidmills.github.io/snapshot/) to get the idea).
 
 <hr>
 
@@ -76,4 +76,27 @@ They generally fall into to categories:
 
 <hr>
 
-**Third party APIs** are not built into the browser, by default, and you generally have to grab their code and 
+**Third party APIs** are not built into the browser, by default, and you generally have to grab their code and information from somewhere on the Web. For example:
+
+* The [Twitter API]() allows you to do things like displaying your latest tweets on your website.
+* The [Google Maps API]() and [OpenStreetMap API]() allows you to embed custom maps into your website, and other such functionality.
+
+<hr>
+
+:exclamation: **Note**: These APIs are advanced, and we'll not be covering any of these in this module. You can find out much more about these in the [Client-side web APIs module](). <!-- your "Client-side_Web_APIs" folder -->
+
+<hr>
+
+There's a lot more available, too! However, don't get overexcited just yet. You won't be able to build the next Facebook, Google Maps, or Instagram after studying JavaScript for 24 hours--there are a lot of basics to cover first. And that's why you're here--let's move on!
+
+## What is JavaScript doing on your page?
+
+Here we'll actually start looking at some code, and while doing so, explore what actually happens when you run some JavaScript in your page.
+
+Let's briefly recap the story of what happens when you load a web page in a browser (first talked about in Mozilla's [How CSS works](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works#how_does_css_actually_work) article). When you load a web page in your browser, you are running your code (the HTML, CSS, and JavaScript) inside an execution environment (the browser tab). This is like a factory that takes in raw materials (the code) and outputs a product (the web page).
+
+A very common use of JavaScript is to dynamically modify HTML and CSS to update a user interface, via the Document Object Model API (as mentioned above). Note that the code in your web documents is generally loaded and executed in the order it appears on the page. If the JavaScript loads and tries to run before the HTML and CSS it is affecting has been loaded, errors can occur. You will learn ways around this later in the article, in the [Script loading strategies]() section.
+
+### Browser security
+
+Each browser tab has its own separate bucket for running code in
