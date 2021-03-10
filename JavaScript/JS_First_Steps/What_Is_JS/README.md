@@ -99,4 +99,49 @@ A very common use of JavaScript is to dynamically modify HTML and CSS to update 
 
 ### Browser security
 
-Each browser tab has its own separate bucket for running code in
+Each browser tab has its own separate bucket for running code in (these buckets are called "execution environments" in technical terms)--this means that, in most cases, the code in each tab is run completely separately, and the code in one tab cannot directly affect the code in another tab--or on another website. This is a good security measure--if this were not the case, then pirates could start writing code to steal information from other websites, and other such bad things.
+
+<hr>
+
+:exclamation: **Note**: There are ways to send code and data between different websites/tabs in a safe manner, but these are advanced techniques that we won't cover in this course.
+
+<hr>
+
+### JavaScript running order
+
+When the browser encounters a block of JavaScript, it generally runs it in order, from top to bottom. This means that you need to be careful what order you put things in. For example, let's return to the block of JavaScript we saw in our first example:
+```
+const para = document.querySelector('p');
+
+para.addEventListener('click', updateName);
+
+function updateName() {
+    let name = prompt('Enter a new name');
+    para.textContent = 'Player 1: ' + name;
+}
+```
+Here we are selecting a text paragraph (line 1), then attaching an event listener to it (line 3) so that when the paragraph is clicked, the `updateName()` code block (lines 5-8) is run. The `updateName()` code block (these types of reusable code blocks are called "functions") asks the user for a new name, and then inserts that name into the paragraph to update the display.
+
+If you swapped the order of the first two lines of code, it would no longer work--instead, you'd get an error returned in the [browser developer console]()--`TypeError: para is undefined`. This means that the `para` object does not exist yet, so we ccan't add an event listener to it.
+
+<hr>
+
+:exclamation: **Note**: This is a very common error--you need to be careful that the objects referenced in your code exist before you try to do stuff to them.
+
+<hr>
+
+### Interpreted versus compiled code
+
+You might hear the terms **interpreted** and **complied** in the context of programming. In interpreted languages, the code is run from top to bottom and the result of running the code is immediately returned. You don't have to transform the code into a different form before the browser runs it. The code is received in its programmer-friendly text form and processed directly from that. 
+
+Compiled languages, on the other hand, are transformed (compiled) into another form before they are run by the computer. For example, C/C++ are complied into machine code that is run by the computer. The program is executed from a binary format, which was generated from the original program source code.
+
+JavaScript is a lightweight interpreted programming language. The web browser receives the JavaScript code in its original text form and runs the script from that. From a technical standpoint, most modern JavaScript interpreters actually use a technique called **just-in-time compiling** to improve performance; the JavaScript source code gets compiled into a faster, binary format while the script is being used, so that it can be run as quickly as possible. However, JavaScript is still considered an interpreted language, since the compilation is handled at run time, rather than ahead of time.
+
+There are advantages to both types of language, but we won't discuss them right now.
+
+### Server-side versus client-side code
+
+You might also hear the terms **server-side** and **client-side** code, especially in the content of web development. Client-side code is code that is run on the user's computer--when a web page is viewed, the page's client-side code is downloaded, then run and displayed by the browser. In this module, we are explicitly talking about **client-side JavaScript**.
+
+Server-side code, on the other hand, is run on the server, then its results are downloaded and displayed in the browser. Examples of popular server-side web languages include PHP, Python, Ruby, ASP.NET and... JavaScript! JavaScript can also be used as a server-side language, for example, in the popular Node.js environment--you acn find out more about the server-side JavaScript in Mozilla's [Dynamic Websites - Server-side programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side) topic. (This will also be a folder I intend to create inside the **"My_Learning_Port"** folder.)
