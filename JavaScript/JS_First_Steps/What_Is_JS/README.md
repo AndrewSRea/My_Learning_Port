@@ -317,3 +317,54 @@ To summarize:
 ## Comments 
 
 As with HTML and CSS, it is possible to write comments into your JavaScript code that will be ignored by the browser, and exist to provide instructions to your fellow developers on how the code works (and you, if you come back to your code after six months and can't remember what you did). Comments are very useful, and you should use them often, particularly for larger applications. There are two types:
+
+* A single line comment is written after a double forward slash (//), e.g.
+```
+// I am a comment
+```
+
+* A multi-line comment is written between the strings /* and */, e.g.
+```
+/*
+    I am also
+    a comment
+*/
+```
+
+So, for example, we could annotate our last demo's JavaScript with comments like so:
+```
+// Function: creates a new paragraph and appends it to the bottom of the HTML body.
+
+function createParagraph() {
+    let para = document.createElement('p');
+    para.textContent = 'You clicked the button!';
+    document.body.appendChild(para);
+}
+
+/*
+    1. Get references to all the buttons on the page in an array format.
+    2. Loop through all the buttons and add a click event listener to each one.
+
+    When any button is pressed, the createParagraph() function will be run.
+*/
+
+const buttons = document.querySelectorAll('button');
+
+for(let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', createParagraph);
+}
+```
+
+<hr>
+
+**Note**: In general, more comments are usually better than less, but you should be careful if you find yourself adding lots of comments to explain what variables are (your variable names, perhaps, should be more intuitive), or to explain very simple operations (maybe your code is overcomplicated).
+
+<hr>
+
+## Summary
+
+So there you go, your first step into the world of JavaScript. We've begun with just theory, to start getting you used to why you'd use JavaScript and what kind of things you can do with it. Along the way, you saw a few code examples and learned how JavaScript fits in with the rest of the code on your website, amongst other things.
+
+JavaScript may seem a bit daunting right now, but don't worry--this course will take you through it in simple steps that will make sense going forward. The next article will plunge straight into the practical, getting you to jump straight in and build your own JavaScript examples.
+
+[[Top](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript)]     [[Next]()]
