@@ -178,3 +178,48 @@ When we are running true/false tests (for example, inside conditionals--see [bel
 | > | Greater than | `6 > 10 // false`<br>`20 > 10 // true` |
 
 ### Conditionals
+
+Returning to our `checkGuess()` function, I think it's safe to say that we don't want it to just spit out a placeholder message. We want it to check whether a player's guess is correct or not, and respond appropriately.
+
+At this point, replace your current `checkGuess()` function with this version instead:
+```
+function checkGuess() {
+    let userGuess = Number(guessField.value);
+    if (guessCount === 1) {
+        guesses.textContent = 'Previous guesses: ';
+    }
+    guesses.textContent += userGuess + ' ';
+
+    if (userGuess === randomNumber) {
+        lastResult.textContent = 'Congratulations! You got it right!';
+        lastResult.style.backgroundColor = 'green';
+        lowOrHi.textContent = '';
+        setGameOver();
+    } else if (guessCount === 10) {
+        lastResult.textContent = '!!!GAME OVER!!!';
+        setGameOver();
+    } else {
+        lastResult.textContent = 'Wrong!';
+        lastResult.style.backgroundColor = 'red';
+        if (userGuess < randomNumber) {
+            lowOrHi.textContent = 'Last guess was too low!';
+        } else if (userGuess > randomNumber) {
+            lowOrHi.textContent = 'Last guess was too high!';
+        }
+    }
+
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+}
+```
+This is a lot of code--phew! Let's go through each section and explain what it does.
+
+* The first line (line 2 above) declares a variable called `userGuess` and sets its value to the current value entered inside the text field. We also run this value through the built-in `Number()` constructor, just to make sure the value is definitely a number.
+* Next, we encounter our first conditional code block (lines 3-5 above). A conditional code block allows you to run code selectively, depending on whether a certain condition is true or not. It looks a bit like a function, but it isn't. The simplest form of conditional block starts with the keyword `if`, then some parentheses, then some curly braces. Inside the parentheses, we include a test. If the test returns `true`, we run the code inside the curly braces. If not, we don't, and move on to the next bit of code. In this case, the test is testing whether the `guessCount` variable is equal to `1` (i.e. whether this is the player's first go or not):
+```
+guessCount === 1
+```
+If it is, we make the guesses paragraph's text content equal to `Previous guesses: `. If not, we don't.
+* Line 6 appends the current `userGuess` value onto the end of the `guesses` paragraph, plus a blank space so there will be a space between each guess shown.
+* 
