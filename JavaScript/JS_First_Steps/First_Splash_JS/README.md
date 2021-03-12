@@ -112,3 +112,26 @@ In our example:
 
 <hr>
 
+### Functions
+
+Next, add the following below your previous JavaScript:
+```
+function checkGuess() {
+    alert('I am a placeholder');
+}
+```
+Functions are reusable blocks of code that you can write once and run again and again, saving the need to keep repeating code all the time. This is really useful. There are a number of ways to define functions, but for now we'll concentrate on one simple type. Here we have defined a function by using the keyword `function`, followed by a name, with parentheses put after it. After that, we put two curly braces goes all the code that we want to run whenever we call the function.
+
+When we want to run the code, we type the name of the function followed by parentheses.
+
+Let's try that now. Save your code and referesh the page in your browser. Then go into the [developer tools JavaScript console](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools), and enter the following line:
+```
+checkGuess();
+```
+After pressing <kbd>Return</kbd>/<kbd>Enter</kbd>, you should see an alert come up that says `I am a placeholder`; we have defined a function in our code that creates an alert whenever we call it.
+
+<hr>
+
+**Note**: You'll learn a lot more about function [later in the course](). <!-- JS_Building_Blocks folder / Functions -->
+
+<hr>
