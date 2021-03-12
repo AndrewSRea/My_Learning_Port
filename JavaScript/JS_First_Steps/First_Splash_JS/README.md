@@ -57,4 +57,58 @@ Let's move forward, looking at how we can turn these steps into code, building u
 
 ### Initial setup
 
-To begin this tutorial, make a local copy of the [number-guessing-game-start.html](https://github.com/mdn/learning-area/blob/master/javascript/introduction-to-js-1/first-splash/number-guessing-game-start.html) file. Open it in both your text editor and your web browser. At the moment, you'll see a simple 
+To begin this tutorial, make a local copy of the [number-guessing-game-start.html](https://github.com/mdn/learning-area/blob/master/javascript/introduction-to-js-1/first-splash/number-guessing-game-start.html) file. Open it in both your text editor and your web browser. At the moment, you'll see a simple heading, paragraph of instructions, and form for entering a guess, but the form won't currently do anything.
+
+The place where we'll be adding all our code is inside the [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element at the bottom of the HTML:
+```
+<script>
+
+    // Your JavaScript goes here
+
+</script>
+```
+
+### Adding variables to store our data
+
+Let's get started. First of all, add the following lines inside your `<script>` element:
+```
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+const guesses = document.querySelector('.guesses');
+const lastResult = document.querySelector('.lastResult');
+const lowOrHi = document.querySelector('.lowOrHi');
+
+const guessSubmit = document.querySelector('.guessSubmit');
+const guessField = document.querySelector('.guessField');
+
+let guessCount = 1;
+let resetButton;
+```
+This section of the code sets up the variables and constants we need to store the data our program will use. Variables are basically containers for values (such as numbers, or strings of text). You create a variable with the keyword `let` (or `var`) followed by a name for your variable (a [future article]() will show the difference between these two keywords). <!-- link to Variables folder --> Constants are used to store values that are immutable or can't be changed and are created with the keyword `const`. In this case, we are using constants to store references to parts of our user interface; the text inside some of them might change, but the HTML elements referenced stay the same.
+
+You can assign a value to your variable or constant with an equals sign (`=`) followed by the valu you want to give it.
+
+In our example:
+
+* The first variable - `randomNumber` - is assigned a random number between 1 and 100, calculated using a mathematical algorithm.
+* The first three constants are each made to store a reference to the results paragraphs in our HTML, and are used to insert values into the paragraphs later on in the code (note how they are inside a `<div>` element, which is itself used to select all three later on for resetting, when we restart the game):
+```
+<div class="resultParas">
+    <p class="guesses"></p>
+    <p class="lastResult"></p>
+    <p class="lowOrHi"></p>
+</div>
+```
+* The next two constants store references to the form text input and submit button and are used to control submitting the guess later on.
+```
+<label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
+<input type="submit" value="Submit guess" class="guessSubmit">
+```
+* Our final two variables store a guess count of 1 (used to keep track of how many guesses the player has had), and a reference to a reset button that doesn't exist yet (but will later).
+
+<hr>
+
+**Note**: You'll learn a lot more about variables/constants later on in the course, starting with the [next article](). <!-- Variables folder -->
+
+<hr>
+
