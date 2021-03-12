@@ -146,10 +146,10 @@ First, let's look at arithmetic operators, for example:
 
 | Operator | Name | Example |
 | --- | --- | --- |
-| + | Addition | 6 + 9 |
-| - | Subtraction | 20 - 15 |
-| * | Multiplication | 3 * 7 |
-| / | Division | 10 / 5 |
+| + | Addition | `6 + 9` |
+| - | Subtraction | `20 - 15` |
+| * | Multiplication | `3 * 7` |
+| / | Division | `10 / 5` |
 
 You can also use the `+` operator to join text strings together (in programming, this is called *concatenation*). Try entering the following lines, one at a time:
 ```
@@ -171,7 +171,7 @@ name = name + ' says hello!';
 When we are running true/false tests (for example, inside conditionals--see [below]()), <!-- Conditionals down below --> we use [comparison operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators). For example:
 
 | Operator | Name | Example |
-| --- | --- | --- |
+| :---: | --- | --- |
 | === | Strict equality (is it exactly the same?) | `5 === 2 + 4 // false`<br>`'Chris' === 'Bob' // false`<br>`5 === 2 + 3 // true`<br>`2 === '2' // false; number versus string` |
 | !== | Non-equality (is it not the same?) | `5 !== 2 + 4 // true`<br>`'Chris' !== 'Bob' // true`<br>`5 !== 2 + 3 // false`<br>`2 !== '2' // true; number versus string` |
 | < | Less than | `6 < 10 // false`<br>`20 > 10 // true` |
