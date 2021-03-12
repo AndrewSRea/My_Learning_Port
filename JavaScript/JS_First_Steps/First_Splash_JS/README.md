@@ -53,3 +53,8 @@ Upon looking at this brief, the first thing we can do is start breaking it down 
     3. Display control allowing the player to restart the game.
 9. Once the game restarts, make sure the game logic and UI are completely reset, then go back to step 1.
 
+Let's move forward, looking at how we can turn these steps into code, building up the example, and exploring JavaScript features as we go.
+
+### Initial setup
+
+To begin this tutorial, make a local copy of the [number-guessing-game-start.html](https://github.com/mdn/learning-area/blob/master/javascript/introduction-to-js-1/first-splash/number-guessing-game-start.html) file. Open it in both your text editor and your web browser. At the moment, you'll see a simple 
