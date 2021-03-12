@@ -132,6 +132,6 @@ After pressing <kbd>Return</kbd>/<kbd>Enter</kbd>, you should see an alert come 
 
 <hr>
 
-**Note**: You'll learn a lot more about function [later in the course](). <!-- JS_Building_Blocks folder / Functions -->
+**Note**: You'll learn a lot more about functions [later in the course](). <!-- JS_Building_Blocks folder / Functions -->
 
 <hr>
