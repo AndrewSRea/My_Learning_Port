@@ -279,3 +279,19 @@ function resetGame() {
     randomNumber = Math.floor(Math.random() * 100) + 1;
 }
 ```
+This rather long block of code completely resets everything to how it was at the start of the game, so the player can have another go. It:
+
+* Puts the `guessCount` back down to 1.
+* Empties all the text out of the information paragraphs. We select all paragraphs inside `<div class="resultParas"></div>`, then loop through each one, setting their `textContent` to `''` (an empty string).
+* Removes the reset button from our code.
+* Enables the form elements, and empties and focuses the text field, ready for a new guess to be entered.
+* Removes the background color from the `lastResult` paragraph.
+* Generates a new random number so that you are not just guessing the same number again!
+
+**At this point, you should have a fully working (simple) game--congratulations!**
+
+All we have left to do now in this article is talk about a few other important code features that you've already seen, although you may have not realized it.
+
+### Loops
+
+One part of the above code that we need to take a more detailed look at is the [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) loop.
