@@ -145,7 +145,7 @@ If you haven't already done so, save your code, refresh the page in your browser
 First, let's look at arithmetic operators, for example:
 
 | Operator | Name | Example |
-| --- | --- | --- |
+| :---: | --- | --- |
 | + | Addition | `6 + 9` |
 | - | Subtraction | `20 - 15` |
 | * | Multiplication | `3 * 7` |
