@@ -229,3 +229,11 @@ If it is, we make the guesses paragraph's text content equal to `Previous guesse
 * The last three lines in the function (lines 26-28 above) get us ready for the next guess to be submitted. We add 1 to the `guessCount` variable so the player uses up their turn (`++` is an incrementation operation--increment by 1), and empty the value out of the form text field and focus it again, ready for the next guess to be entered.
 
 ### Events
+
+At this point, we have a nicely implemented `checkGuess()` function, but it won't do anything because we haven't called it yet. Ideally, we want to call it when the "Submit guess" button is pressed, and to do this, we need to use an **event**. Events are things that happen in the browser--a button being clicked, a page loading, a video playing, etc.--in response to which we can run blocks of code. The constructs that listen out for the event happening are called **event listeners**, and the blocks of code that run in response to the event firing are called **event handlers**.
+
+Add the following line below your `checkGuess()` function:
+```
+guessSubmit.addEventListener('click', checkGuess);
+```
+Here we are adding an event listener to the `guessSubmit` button.
