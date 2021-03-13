@@ -317,3 +317,11 @@ This code creates a variable containing a list of all the paragraphs inside `<di
 
 ### A small discussion on objects
 
+Let's add one more final improvement before we get to this discussion. Add the following line just below the `let resetButton;` line near the top of your JavaScript, then save your file:
+```
+guessField.focus();
+```
+This line uses the [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus) method to automatically put the text cursor into the [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) text field as soon as the page loads, meaning that the user can start typing their first guess right away, without having to click the form field first. It's only a small addition, but it improves usability--giving the user a good visual clue as to what they've got to do to play the game.
+
+Let's analyze what's going on here in a bit more detail. In JavaScript, most of the items you will manipulate in your code are objects. An object is a collection of related functionality stored in a single grouping. You can create your own objects, but that is quite advanced and we won't be covering it until much later in the course. For now, we'll just briefly discuss the built-in objects that your browser contains, which allow you to do lots of useful things.
+
