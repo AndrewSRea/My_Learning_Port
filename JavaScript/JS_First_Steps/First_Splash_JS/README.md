@@ -325,3 +325,8 @@ This line uses the [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/
 
 Let's analyze what's going on here in a bit more detail. In JavaScript, most of the items you will manipulate in your code are objects. An object is a collection of related functionality stored in a single grouping. You can create your own objects, but that is quite advanced and we won't be covering it until much later in the course. For now, we'll just briefly discuss the built-in objects that your browser contains, which allow you to do lots of useful things.
 
+In this particular case, we first created a `guessField` constant that stores a reference to the text input form field in our HTML--the following line can be found amongst our declarations near the top of the code:
+```
+const guessField = document.querySelector('.guessField');
+```
+To get this 
