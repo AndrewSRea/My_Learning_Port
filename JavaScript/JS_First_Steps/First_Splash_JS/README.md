@@ -236,4 +236,46 @@ Add the following line below your `checkGuess()` function:
 ```
 guessSubmit.addEventListener('click', checkGuess);
 ```
-Here we are adding an event listener to the `guessSubmit` button.
+Here we are adding an event listener to the `guessSubmit` button. This is a method that takes two input values (called *arguments*)--the type of event we are listening out for (in this case, `click`) as a string, and the code we want to run when the event occurs (in this case, the `checkGuess()` function). Note that we don't need to specify the parentheses when writing it inside [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+
+Try saving and refreshing your code now, and your exxample should work--to a point. The only problem now is that if you guess the correct answer or run out of guesses, the game will break because we've not yet defined the `setGameOver()` function that is supposed to run once the game is over. Let's add our missing code now and complete the example functionality.
+
+### Finishing the game functionality
+
+Let's add that `setGameOver()` function to the bottom of our code and then walk through it. Add this now, below the rest of your JavaScript:
+```
+function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.createElement('button');
+    resetButton.textContent = 'Start new game';
+    document.body.append(resetButton);
+    resetButton.addEventListener('click', resetGame);
+}
+```
+* The first two lines disable the form text input and button by setting their disabled properties to `true`. This is necessary, because if we didn't, the user could submit more guesses after the game is over, which would mes things up.
+* The next three lines generate a new `<button>` element, set its text label to "Start new game", and add it to the bottom of our existing HTML.
+* The final line sets an event listener on our new button so that when it clicked, a function called `resetGame()` is run.
+
+Now we need to define this function, too! Add the following code, again to the bottom of your JavaScript:
+```
+function resetGame() {
+    guessCount = 1;
+
+    const resetParas = document.querySelectorAll('.resultParas p');
+    for (let i = 0; i < resetParas.length; i++) {
+        resetParas[i].textContent = '';
+    }
+
+    resetButton.parentNode.removeChild(resetButton);
+
+    guessField.disabled = false;
+    guessSubmit.disabled = false;
+    guessField.value = '';
+    guessField.focus();
+
+    lastResult.style.backgroundColor = 'white';
+
+    randomNumber = Math.floor(Math.random() * 100) + 1;
+}
+```
