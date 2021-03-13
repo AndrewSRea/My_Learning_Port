@@ -367,4 +367,4 @@ So there you go, your first step into the world of JavaScript. We've begun with 
 
 JavaScript may seem a bit daunting right now, but don't worry--this course will take you through it in simple steps that will make sense going forward. The next article will plunge straight into the practical, getting you to jump straight in and build your own JavaScript examples.
 
-[[Top](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript)]     [[Next]()]
+[[Top](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript)]     [[Next](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)]
