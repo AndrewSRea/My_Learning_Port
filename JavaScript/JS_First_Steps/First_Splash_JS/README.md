@@ -329,4 +329,48 @@ In this particular case, we first created a `guessField` constant that stores a 
 ```
 const guessField = document.querySelector('.guessField');
 ```
-To get this 
+To get this reference, we used the [`querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) method of the [`document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object. `querySelector()` takes one piece of information--a [CSS selector](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors) that selects the element you want a reference to.
+
+Because `guessField` now contains a reference to an `<input>` element, it now has access to a number of properties (basically variables stored inside objects, some of which can't have their values changed) and methods (basically functions stored inside objects). One method available to input elements is `focus()`, so we can now use this line to focus the text input:
+```
+guessField.focus();
+```
+Variables that don't contain references to form elements won't have `focus()` available to them. For example, the `guesses` constant contains a reference to a `<p>` element, and the `guessCount` variable contains a number.
+
+### Playing with browser objects
+
+Let's play with some browser objects a bit.
+
+1. First of all, open up your program in a browser.
+2. Next, open your **browser developer tools**, and make sure the JavaScript console tab is open.
+3. Type `guessField` into the console and the console autocompletes the names of objects that exist inside the execution environment, including your variables!
+4. Now type the following:
+```
+guessField.value = 'Hello';
+```
+The `value` property represents the current value entered into the text field. You'll see that by entering this command, we've changed the text in the text field!
+5. Now try typing `guesses` into the console and pressing return. The console shows you that the variable contains a `<p>` element.
+6. Now try entering the following line:
+```
+guesses.value
+```
+The browser returns `undefined`, because the paragraphs don't have the `value` property.
+7. To change the text inside a paragraph, you need the [`textContent`]() property instead. Try this:
+```
+guesses.textContent = 'Where is my paragraph?';
+```
+8. Now for some fun stuff. Try entering the below lines, one by one:
+```
+guesses.style.backgroundColor = 'yellow';
+guesses.style.fontSize = '200%';
+guesses.style.padding = '10px';
+guesses.style.boxShadow = '3px 3px 6px black';
+```
+
+Every element on a page has a `style` property, which itself contains an object whose properties contain all the inline CSS styles applied to that element. This allows us to dynamically set new CSS styles on elements using JavaScript.
+
+## Finished for now...
+
+So that's it for building the example. You got to the end--well done! Have fun playing around with the final code.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript)     [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)     [[Next]]()
