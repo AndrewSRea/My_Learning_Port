@@ -80,18 +80,46 @@
             let resetButton;
             guessField.focus();
 
+            /* Here, a function is created to check the user's guess against the `randomNumber` and record the number of guesses
+               the user has made.
+            */
+
             function checkGuess() {
+
+                /* 
+                    My memory doesn't recall much about the `Number()` method but I think it converts whatever is in the parentheses
+                    into an integer. So here, `guessField.value` is the user's number guess input into the form input field. And then
+                    that converted number is stored in the variable `userGuess`.
+                    "if" the `guessCount` is exactly equal to the real number 1 (which it is, as `guessCount` has been set to 1), then 
+                    the `textContent` in the paragraph <p> with the class "guesses" is filled with the text "Previous guesses: ".
+                    The number the user has guessed is then appended to the end of the previously added "Previous guesses: " text, with
+                    a space (' ') also added to the end of all previously added text.
+                */
+
                 let userGuess = Number(guessField.value);
                 if (guessCount === 1) {
                     guesses.textContent = 'Previous guesses: ';
                 }
                 guesses.textContent += userGuess + ' ';
 
+                /*
+                    "if" the user's guess exactly equals the `randomNumber`, then the `textContent` within the paragraph <p> with the
+                    class "lastResult" is filled with the text "Congratulations! You got it right!" The background color of that paragraph
+                    is changed to a "green" color. The paragraph <p> with the class of "lowOrHi" is filled with an empty string because
+                    the user has guessed the correct number and it is not necessary to tell the user if his/her guess is high or low.
+                    And then the `setGameOver()` function is called to allow the user to reset the game.
+                */
+
                 if (userGuess === randomNumber) {
                     lastResult.textContent = 'Congratulations! You got it right!';
                     lastResult.style.backgroundColor = 'green';
                     lowOrHi.textContent = '';
                     setGameOver();
+
+                /*
+
+                */ 
+               
                 } else if (guessCount === 10) {
                     lastResult.textContent = '!!!GAME OVER!!!';
                     setGameOver();
