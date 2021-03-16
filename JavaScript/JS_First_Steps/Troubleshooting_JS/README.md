@@ -86,7 +86,7 @@ console.log(lowOrHi);
 
 7. Save and refresh, and you should now see the `console.log()` result in your console.<br>
 Sure enough, `lowOrHi`'s value is `null` at this point, so there is definitely a problem with line 48.
-8. Let's think about what the problem could be. Line 48 is using a [`document.querySelector()`]() method to get a reference to an element by selecting it with a CSS selector. Looking further up our file, we can find the paragraph in question:
+8. Let's think about what the problem could be. Line 48 is using a [`document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) method to get a reference to an element by selecting it with a CSS selector. Looking further up our file, we can find the paragraph in question:
 ```
 <p class="lowOrHi"></p>
 ```
@@ -95,7 +95,7 @@ Sure enough, `lowOrHi`'s value is `null` at this point, so there is definitely a
 
 <hr>
 
-**Note**: See the MDN [TypeError: "x" is (not) "y"]() reference page for more details about this error.
+**Note**: See the MDN [TypeError: "x" is (not) "y"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_type) reference page for more details about this error.
 
 <hr>
 
@@ -107,3 +107,19 @@ Sure enough, `lowOrHi`'s value is `null` at this point, so there is definitely a
 
 ## A logic error
 
+At this point, the game should play through fine. However, after playing through a few times, you'll undoubtedly notice that the "random" number you've got to guess is always 1. Definitely not quite how we want the game to play out!
+
+There's definitely a problem in the game logic somewhere--the game is not returning an error; it just isn't playing right.
+
+1. Search for the `randomNumber` variable, and the lines where the random number is first set. The instance that stores the random number that we want to guess at the start of the game should be around line number 44:
+```
+let randomNumber = Math.floor(Math.random()) + 1;
+```
+And the one that generates the random number before each subsequent game is around line 113:
+
+2. 
+```
+randomNumber = Math.floor(Math.random()) + 1;
+```
+
+3. 
