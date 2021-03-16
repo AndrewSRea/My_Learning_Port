@@ -129,11 +129,11 @@ console.log(randomNumber);
 
 ### Working through the logic
 
-To fix this, let's consider how this line is working. First, we invoke [`Math.random()`](), which generates a random decimal number between 0 and 1, e.g. 0.5675493843.
+To fix this, let's consider how this line is working. First, we invoke [`Math.random()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random   ), which generates a random decimal number between 0 and 1, e.g. 0.5675493843.
 ```
 Math.random()
 ```
-Next, we pass the result of invoking `Math.random()` through [`Math.floor()`], which rounds the number passed to it down to the nearest whole number. We then add 1 to the result:
+Next, we pass the result of invoking `Math.random()` through [`Math.floor()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor), which rounds the number passed to it down to the nearest whole number. We then add 1 to the result:
 ```
 Math.floor(Math.random()) + 1
 ```
