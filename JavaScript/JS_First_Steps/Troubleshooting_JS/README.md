@@ -16,7 +16,7 @@ Okay, so it's not quite *that* simple--there are some other differentiators as y
 To get started, let's return to our number guessing game--except this time we'll be exploring a version that has some deliberate errors introduced. Go to Github and make your self a local copy of [number-game-errors.html](https://github.com/mdn/learning-area/blob/master/javascript/introduction-to-js-1/troubleshooting/number-game-errors.html).
 
 1. To get started, open the local copy inside your favorite text editor, and your browser.
-2. Try pllaying the game--you'll notice that when you press the "Submit guess" button, it doesn't work!
+2. Try playing the game--you'll notice that when you press the "Submit guess" button, it doesn't work!
 
 <hr>
 
@@ -37,8 +37,8 @@ TypeError: guessSubmit.addeventListener is not a function
     - An error message to indicate what's gone wrong: "TypeError: guessSubmit.addeventListener is not a function".
     - A "Learn More" link that links through to an MDN page that explains what this error means in greater detail.
     - The name of the JavaScript file, which links thorugh to the Debugger tab of the developeer tools. If you follow this link, you'll see the exact line where the error is highlighted.
-    - The line number where the error is, and the character number in that line where the error is first seen. In this case, we've got line 84 (in my personal HTML file), character number 3 (no "character number" actually designated in Chrome DevTools).
-3. If we look at line 84 in our code editor, we'll find this line:
+    - The line number where the error is, and the character number in that line where the error is first seen. In this case, we've got line 86, character number 3 (no "character number" actually designated in Chrome DevTools).
+3. If we look at line 86 in our code editor, we'll find this line:
 ```
 guessSubmit.addeventListener('click', checkGuess);
 ```
@@ -53,14 +53,50 @@ guessSubmit.addeventListener('click', checkGuess);
 
 1. Save your page and refresh, and you should see the error has gone.
 2. Now if you try to enter a guess and press the Submit guess button, you'll see...another error!
-3. This time the error being reported is "TypeError: lowOrHi is null", on line 76. (For my personal HTML file, and in my Chrome DevTools console, the message is "Uncaught TypeError: Cannot set property 'textContent' of null at HTMLInputElement.checkGuess", on line 76.)
+3. This time the error being reported is "TypeError: lowOrHi is null", on line 78. (For my personal HTML file, and in my Chrome DevTools console, the message is "Uncaught TypeError: Cannot set property 'textContent' of null at HTMLInputElement.checkGuess", on line 78.)
 
 <hr>
 
-**Note**: [`Null`]() is a special value that means "nothing", or "no value". So `lowOrHi` has been declared and initialized, but not with any meaningful value--it has no type or value.
+**Note**: [`Null`](https://developer.mozilla.org/en-US/docs/Glossary/Null) is a special value that means "nothing", or "no value". So `lowOrHi` has been declared and initialized, but not with any meaningful value--it has no type or value.
 
 <hr>
 
-**Note**: This error didn't come up as soon as the page was loaded because this error occurred inside a function (inside the `checkGuess() { ... }` block). As you'll learn in more detail in our later [functions article](), code inside functions runs in a separate scope than code outside functions. In this case, the code was not run and the error was not thrown until the `checkGuess()` function was run by line 84.
+**Note**: This error didn't come up as soon as the page was loaded because this error occurred inside a function (inside the `checkGuess() { ... }` block). As you'll learn in more detail in our later [functions article](), <!-- link to JS_Building_Blocks / Functions --> code inside functions runs in a separate scope than code outside functions. In this case, the code was not run and the error was not thrown until the `checkGuess()` function was run by line 86.
 
 <hr>
+
+4. Have a look at line 78, and you'll see the following code: 
+```
+lowOrHi.textContent = 'Last guess was too high!';
+```
+5. This line is trying to set the `textContent` property of the `lowOrHi` constant to a text string, but it's not working because `lowOrHi` does not contain what it's supposed to. Let's see why this is--try searching for other instances of `lowOrHi` in the code. The earliest instance you'll find in the JavaScript is on line 48:
+```
+const loworHi = document.querySelector('lowOrHi');
+```
+6. At this point, we are trying to make the variable contain a reference to an element in the document's HTML. Let's check whether the value is `null` after this line has been run. Add the following code on line 49:
+```
+console.log(lowOrHi);
+```
+
+<hr>
+
+**Note**: [`console.log()`]() is a really useful debugging function that prints a value to the console. So it will print the value of `lowOrHi` to the console as soon as we have tried to set it in line 48.
+
+<hr>
+
+7. Save and refresh, and you should now see the `console.log()` result in your console.<br>
+Sure enough, `lowOrHi`'s value is `null` at this point, so there is definitely a problem with line 48.
+8. Let's think about what the problem could be. Line 48 is using a [`document.querySelector()`]() method to get a reference to an element by selecting it with a CSS selector. Looking further up our file, we can find the paragraph in question:
+```
+<p class="lowOrHi"></p>
+```
+9. So we need a class selector here, which begins with a dot (`.`), but the selector being passed into the `querySelector()` method in line 48 has no dot. This could be the problem! Try changing `lowOrHi` to `.lowOrHi` in line 48.
+10. Try saving and refreshing aagain, and your `console.log()` statement should return the `<p>` element we want. Phew! Another error fixed! You can delete your `console.log()` line now, or keep it to reference later on--your choice.
+
+<hr>
+
+**Note**: See the MDN [TypeError: "x" is (not) "y"]() reference page for more details about this error.
+
+<hr>
+
+### Syntax errors, round three
