@@ -117,12 +117,24 @@
                     setGameOver();
 
                 /*
-
+                    Or "else, if" the user's `guessCount` is exactly equal to 10, and the user has not guessed the `randomNumber`
+                    correctly, then the `textContent` in the paragraph <p> with the class 'lastResult' is filled with the text 
+                    "!!!GAME OVER!!!", and the `setGameOver()` function is called to allow the user to reset the game.
                 */ 
                
                 } else if (guessCount === 10) {
                     lastResult.textContent = '!!!GAME OVER!!!';
                     setGameOver();
+
+                /*
+                    Or "else" the user's guess is incorrect, then the `textContent` in the paragraph <p> with the class `lastResult`
+                    is filled with the text "Wrong!", and the same paragraph is filled with the `backgroundColor` of "red".
+                    "if" the `userGuess` is lower than the `randomNumber, then the `textContent` in the paragraph with the class 
+                    `lowOrHi` is filled with the text "Last guess was too low!". Or "else, if" the `userGuess` is higher than the
+                    `randomNumber`, then the `textContent` in the same `lowOrHi` paragraph is filled with the text "Last guess was 
+                    too high!".
+                */ 
+
                 } else {
                     lastResult.textContent = 'Wrong!';
                     lastResult.style.backgroundColor = 'red';
