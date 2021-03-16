@@ -121,5 +121,31 @@ And the one that generates the random number before each subsequent game is arou
 ```
 randomNumber = Math.floor(Math.random()) + 1;
 ```
+3. To check whether these lines are indeed the problem, let's turn to our friend `console.log()` again--insert the following line directly below each of the above two lines:
+```
+console.log(randomNumber);
+```
+4. Save and refresh, then play a few games--you'll see that `randomNumber` is equal to 1 at each point where it is logged to the console.
 
-3. 
+### Working through the logic
+
+To fix this, let's consider how this line is working. First, we invoke [`Math.random()`](), which generates a random decimal number between 0 and 1, e.g. 0.5675493843.
+```
+Math.random()
+```
+Next, we pass the result of invoking `Math.random()` through [`Math.floor()`], which rounds the number passed to it down to the nearest whole number. We then add 1 to the result:
+```
+Math.floor(Math.random()) + 1
+```
+Rounding a random decimal number between 0 and 1 down will always return 0, so adding 1 to it will always return 1. We need to multiply the random number by 100 before we round it down. The following would give us a random number between 0 and 99:
+```
+Math.floor(Math.random()*100);
+```
+Try updating both lines like this, then save and refresh--the game should now play like we are intending it to!
+
+## Other common errors
+
+There are other common errors you'll come across in your code. This section highlights most of them.
+
+### SyntaxError: missing ; before statement
+
