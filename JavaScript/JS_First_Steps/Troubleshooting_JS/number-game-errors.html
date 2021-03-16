@@ -41,9 +41,11 @@
     </body>
 
     <script>
-        let randomNumber = Math.floor(Math.random()) + 1;
+        let randomNumber = Math.floor(Math.random()*100) + 1; // replaced the equation `Math.floor(Math.random()) + 1`, which was only
+                                                              // generating the number 1, with the  equation `Math.floor(Math.random()*100) + 1`
+                                                              // which truly generates a random number between 1 and 100 (see also line 117 below)
 
-        console.log(randomNumber);
+        console.log(randomNumber);   // to check the value of `randomNumber` in the DevTools console
 
         const guesses = document.querySelector('.guesses');
         const lastResult = document.querySelector('.lastResult');
@@ -112,9 +114,9 @@
 
             lastResult.style.backgroundColor = 'white';
 
-            randomNumber = Math.floor(Math.random()) + 1;
+            randomNumber = Math.floor(Math.random()*100) + 1;   // see line 44 above
 
-            console.log(randomNumber);
+            console.log(randomNumber);  // to check the value of `randomNumber` in he DevTools console
         }
     </script>
 </html>
