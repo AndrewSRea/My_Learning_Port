@@ -115,7 +115,7 @@ There's definitely a problem in the game logic somewhere--the game is not return
 ```
 let randomNumber = Math.floor(Math.random()) + 1;
 ```
-And the one that generates the random number before each subsequent game is around line 113:
+    And the one that generates the random number before each subsequent game is around line 113:
 
 2. 
 ```
