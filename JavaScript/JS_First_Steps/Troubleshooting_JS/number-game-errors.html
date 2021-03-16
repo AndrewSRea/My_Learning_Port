@@ -81,7 +81,7 @@
             guessField.value = '';
             guessField.focus();
         }
-        guessSubmit.addeventListener('click', checkGuess);
+        guessSubmit.addEventListener('click', checkGuess);  // changed syntax error from `addeventListener()` to `addEventListener()`
       
         function setGameOver() {
             guessField.disabled = true;
