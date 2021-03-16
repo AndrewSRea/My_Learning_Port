@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
         <title>Number guessing game</title>
 
         <style>
@@ -20,8 +19,9 @@
                 color: white;
                 padding: 3px;
             }
-          </style>
+        </style>
     </head>
+
     <body>
         <h1>Number guessing game</h1>
 
@@ -30,35 +30,37 @@
         <div class="form">
             <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
             <input type="submit" value="Submit guess" class="guessSubmit">
-        </div>
+            </div>
 
-        <div class="resultParas">
+            <div class="resultParas">
             <p class="guesses"></p>
             <p class="lastResult"></p>
             <p class="lowOrHi"></p>
         </div>
+
     </body>
 
     <script>
         let randomNumber = Math.floor(Math.random()) + 1;
-      
+
         const guesses = document.querySelector('.guesses');
         const lastResult = document.querySelector('.lastResult');
-        const lowOrHi = document.querySelector('lowOrHi');
+        const lowOrHi = document.querySelector('.lowOrHi');   // changed syntax from 'lowOrHi' to class selector ".lowOrHi"
+        // console.log(lowOrHi);   - used `console.log(lowOrHi) to check if there was a value held in the variable "lowOrHi" using the DevTools console
         const guessSubmit = document.querySelector('.guessSubmit');
         const guessField = document.querySelector('.guessField');
-      
+
         let guessCount = 1;
         let resetButton;
-      
+
         function checkGuess() {
-      
+
             let userGuess = Number(guessField.value);
             if(guessCount === 1) {
                 guesses.textContent = 'Previous guesses: ';
             }
             guesses.textContent += userGuess + ' ';
-        
+
             if(userGuess === randomNumber) {
                 lastResult.textContent = 'Congratulations! You got it right!';
                 lastResult.style.backgroundColor = 'green';
@@ -76,13 +78,13 @@
                     lowOrHi.textContent = 'Last guess was too high!';
                 }
             }
-        
+
             guessCount++;
             guessField.value = '';
             guessField.focus();
         }
-        guessSubmit.addEventListener('click', checkGuess);  // changed syntax error from `addeventListener()` to `addEventListener()`
-      
+        guessSubmit.addEventListener('click', checkGuess);   // changed syntax from `addeventListener()` to `addEventListener()`
+
         function setGameOver() {
             guessField.disabled = true;
             guessSubmit.disabled = true;
@@ -91,24 +93,24 @@
             document.body.appendChild(resetButton);
             resetButton.addeventListener('click', resetGame);
         }
-      
+
         function resetGame() {
             guessCount = 1;
-      
+
             const resetParas = document.querySelectorAll('.resultParas p');
             for(let i = 0; i < resetParas.length; i++) {
                 resetParas[i].textContent = '';
             }
             resetButton.parentNode.removeChild(resetButton);
-      
+
             guessField.disabled = false;
             guessSubmit.disabled = false;
             guessField.value = '';
             guessField.focus();
-      
+
             lastResult.style.backgroundColor = 'white';
-      
+
             randomNumber = Math.floor(Math.random()) + 1;
         }
-      </script>
+    </script>
 </html>
