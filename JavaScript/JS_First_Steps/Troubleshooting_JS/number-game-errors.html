@@ -91,7 +91,7 @@
             resetButton = document.createElement('button');
             resetButton.textContent = 'Start new game';
             document.body.appendChild(resetButton);
-            resetButton.addeventListener('click', resetGame);
+            resetButton.addEventListener('click', resetGame);   // changed syntax from `addeventListener()` to `addEventListener()`
         }
 
         function resetGame() {
