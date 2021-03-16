@@ -100,3 +100,10 @@ Sure enough, `lowOrHi`'s value is `null` at this point, so there is definitely a
 <hr>
 
 ### Syntax errors, round three
+
+1. Now if you try playing the game through again, you should get more success--the game should play through absolutely fine, until you end the game, either by guessing the right number, or by running out of guesses.
+2. At that point, the game fails again, and the same error is spat out that we got at the beginning--"TypeError: resetButton.addeventListener is not a function"! However, this time it's listed as coming from line 94. (The error is listed in Chrome DevTools as "Uncaught typeError: resetButton.addeventListener is not a function at setGameOver (number-game-errors.html:94) at HTMLInputElement.checkGuess (number-game-errors.html:68)").
+3. Looking at line number 94, it is easy to see that we've made the same mistake here. We again just need to change `addeventListener` to `addEventListener`. Do this now.
+
+## A logic error
+
