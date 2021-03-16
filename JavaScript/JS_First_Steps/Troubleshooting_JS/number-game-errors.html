@@ -43,6 +43,8 @@
     <script>
         let randomNumber = Math.floor(Math.random()) + 1;
 
+        console.log(randomNumber);
+
         const guesses = document.querySelector('.guesses');
         const lastResult = document.querySelector('.lastResult');
         const lowOrHi = document.querySelector('.lowOrHi');   // changed syntax from 'lowOrHi' to class selector ".lowOrHi"
@@ -111,6 +113,8 @@
             lastResult.style.backgroundColor = 'white';
 
             randomNumber = Math.floor(Math.random()) + 1;
+
+            console.log(randomNumber);
         }
     </script>
 </html>
