@@ -80,7 +80,7 @@ console.log(lowOrHi);
 
 <hr>
 
-**Note**: [`console.log()`]() is a really useful debugging function that prints a value to the console. So it will print the value of `lowOrHi` to the console as soon as we have tried to set it in line 48.
+**Note**: [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) is a really useful debugging function that prints a value to the console. So it will print the value of `lowOrHi` to the console as soon as we have tried to set it in line 48.
 
 <hr>
 
@@ -129,7 +129,7 @@ console.log(randomNumber);
 
 ### Working through the logic
 
-To fix this, let's consider how this line is working. First, we invoke [`Math.random()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random   ), which generates a random decimal number between 0 and 1, e.g. 0.5675493843.
+To fix this, let's consider how this line is working. First, we invoke [`Math.random()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random), which generates a random decimal number between 0 and 1, e.g. 0.5675493843.
 ```
 Math.random()
 ```
@@ -148,4 +148,60 @@ Try updating both lines like this, then save and refresh--the game should now pl
 There are other common errors you'll come across in your code. This section highlights most of them.
 
 ### SyntaxError: missing ; before statement
+
+This error generally means that you have missed a semicolon at the end of one of your lines of code, but it can sometimes be more cryptic. For example, if we change this line inside the `checkGuess()` function:
+```
+var userGuess = Number(guessField.value);
+```
+to
+```
+var userGuess === Number(guessField.value);
+```
+It throws this error because it thinks you are trying to do something different. You should make sure that you don't mix up the assignment operator (`=`)--which sets a variable to be equal to a value--with the strict equality operator (`===`), which tests whether one value is equal to another, and returns a `true`/`false` result.
+
+<hr>
+
+**Note**: See the MDN [SyntaxError: missing ; before statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_semicolon_before_statement) reference page for more details about this error.
+
+<hr>
+
+### The program always says you've won, regardless of the guess you enter
+
+This could be another symptom of mixing up the assignment and strict equality operators. For example, if we were to change this line inside `checkGuess()`:
+```
+if (userGuess === randomNumber) {
+```
+to
+```
+if (userGuess = randomNumber) {
+```
+the test would always return `true`, causing the problem to report that the game has been won. Be caareful!
+
+### SyntaxError: missing ) after argument list
+
+This one is pretty simple--it generally means thaat you've missed the closing parenthesis at the end of a function/method call.
+
+<hr>
+
+**Note**: See the MDN [SyntaxError: missing ) after argument list](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_parenthesis_after_argument_list) reference page for more details about this error.
+
+<hr>
+
+### SyntaxError: missing : after property id
+
+This error usually relates to an incorrectly formed JavaScript object, but in this case we managed to get it by changing
+```
+function checkGuess() {
+```
+to
+```
+function checkGuess( {
+```
+This has cause the browser to think that we are trying to pass the contents of the function into the function as an argument. Be careful with those parentheses!
+
+### SyntaxError: Missing } after function body
+
+This is easy--it generally means that you've missed one of your curly braces from a function or conditionl structure. We got this error by deleting one of the closing curly braces near the bottom of the `checkGuess()` function.
+
+### SyntaxError: expected expression, got '*string*' or SyntaxError: unterminated string literal
 
