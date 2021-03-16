@@ -145,6 +145,12 @@
                     }
                 }
 
+                /*
+                    Finally, in the last block of code in the `checkGuess()` function, the user's `guessCount` is incremented by 1,
+                    the `guessField` value in the `guessField` form <input> field is emptied, and the `guessField` <input> field is
+                    focused upon so the user knows to make another guess.
+                */ 
+
                 guessCount++;
                 guessField.value = '';
                 guessField.focus();
