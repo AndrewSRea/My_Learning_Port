@@ -73,4 +73,39 @@ To show an element only on a given interval of screen sizes, you can combine one
 <div class="d-none d-lg-block">hide on screens smaller than lg</div>
 ```
 
-# Display on print
+## Display in print
+
+Change the `display` value of elements when printing with Bootstrap's print display utility classes. Includes support for the same `display` values as our responsive `.d-*` utilities.
+
+* `.d-print-none`
+* `.d-print-inline`
+* `.d-print-inline-block`
+* `.d-print-block`
+* `.d-print-grid`
+* `.d-print-table`
+* `.d-print-table-row`
+* `.d-print-table-cell`
+* `.d-print-flex`
+* `.d-print-inline-flex`
+
+The print and display classes can be combined.
+```
+<div class="d-print-none">Screen Only (Hide on print only)</div>
+<div class="d-none d-print-block">Print Only (Hide on screen only)</div>
+<div class="d-none d-lg-block d-print-block">Hide up to large on screen, but always show on print</div>
+```
+
+## Sass
+
+### Utilities API
+
+Display utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
+```
+"display": (
+    responsive: true, 
+    print: true,
+    property: display,
+    class: d,
+    values: inline inline-block block grid table table-row table-cell flex inline-flex none
+),
+```
