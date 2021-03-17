@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Display Utilities Examples</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+
+            h2 {
+                margin: 30px;
+            }
+
+            h3 {
+                text-decoration: underline;
+            }
+        </style>
+   </head>
+   <body>
+        <h2 class="mb-3">Bootstrap Display Utilities Code Examples</h2>
+
+        <hr>
+
+        <!-- Change the value of the `display` property with Bootstrap's responsive display utility classes.
+             These classes are named using the format: `.d-{value}` for the breakpoint `xs`; `.d-{breakpoint}-{value}`
+             for breakpoints `sm`, `md`, `lg`, `xl`, and `xxl`. `value` is the display value, such as `inline` or
+             `block` in the examples below. -->
+
+        <div class="container">
+            <h3 class="mb-3">Display Utility Example: 01</h3>
+
+            <h4 class="mb-3">Change the value of the <code>display</code> property with Bootstrap's responsive display utility classes.
+                These classes are named using the format: <code>.d-{value}</code> for the breakpoint <code>xs</code>; <code>.d-{breakpoint}-{value}</code>
+                for breakpoints <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, and <code>xxl</code>.<br><code>value</code> 
+                is the display value, such as <code>inline</code> or <code>block</code> in the examples below.</h4>
+
+            <div class="container-fluid m-3 ms-0 p-4" style="border: 1px solid #d3d3d3;">
+                <div class="d-inline p-2 bg-primary text-white">d-inline</div>
+                <div class="d-inline p-2 bg-dark text-white">d-inline</div>
+            </div>
+
+            <div class="container-fluid m-3 ms-0 p-4" style="border: 1px solid #d3d3d3;">
+                <span class="d-block p-2 bg-primary text-white">d-block</span>
+                <span class="d-block p-2 bg-dark text-white">d-block</span>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
