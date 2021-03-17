@@ -50,19 +50,46 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Use responsive display classes for showing and hiding elements by device. To hide elements, simply use the
+             `.d-none` class or one of the `.d-{sm,md,lg,xl,xxl}-none` classes for any responsive screen variation.
+             To show an element only on a given interval of screen sizes, you can combine one `.d-*-none` class with a 
+             `.d-*-*` class. For example, `.d-none .d-md-block .d-xl-none .d-xxl-none` will hide the element for all
+             screen sizes except on medium and large devices. -->
 
         <div class="container">
             <h3 class="mb-3">Display Utility Example: 02</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Use responsive display classes for showing and hiding elements by device. To hide elements, simply 
+                use the <code>.d-none</code> class or one of the <code>.d-{sm,md,lg,xl,xxl}-none</code> classes for any responsive 
+                screen variation. To show an element only on a given interval of screen sizes, you can combine one <code>.d-*-none</code> 
+                class with a <code>.d-*-*</code> class. For example, <code>.d-none .d-md-block .d-xl-none .d-xxl-none</code> will hide 
+                the element for all screen sizes except on medium and large devices.<br><span class="text-danger">Adjust the width of
+                your browser to see the effects of the responsive display classes.</span></h4>
 
-            <div class="container-fluid m-3 p-4" style="border: 1px solid #d3d3d3;">
+            <div class="container-fluid m-3 ms-0 p-4" style="border: 1px solid #d3d3d3;">
                 <div class="d-lg-none">hide on lg and wider screens</div>
                 <div class="d-none d-lg-block">hide on screens smaller than lg</div>
             </div>
         </div>
-        
+        <hr>
+
+        <!-- Also, change the `display` value of elements when printing with Bootstrap's print display utility classes.
+             Includes support for the same `display` values as the responsive `.d-*` utilities. -->
+
+             <div class="container">
+                <h3 class="mb-3">Display Utility Example: 03</h3>
+    
+                <h4 class="mb-3">Also, change the <code>display</code> value of elements when printing with Bootstrap's print 
+                    display utility classes. Includes support for the same <code>display</code> values as the responsive <code>.d-*</code> 
+                    utilities. <span class="text-danger">Again, adjust the width of your browser to see the effects.</span></h4>
+    
+                <div class="container-fluid m-3 ms-0 p-4" style="border: 1px solid #d3d3d3;">
+                    <div class="d-print-none">Screen Only (Hide on print only)</div>
+                    <div class="d-none d-print-block">Print Only (Hide on screen only)</div>
+                    <div class="d-none d-lg-block d-print-block">Hide up to large on screen, but always show on print</div>
+                </div>
+            </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
    </body>
