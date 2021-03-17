@@ -156,7 +156,21 @@
                 guessField.focus();
             }
 
+            /*
+                Here, the <input> button with the class `guessSubmit` has an event listener put on it to "listen" for a 'click'
+                from the user, and when the button is clicked, the `checkGuess` function above is run.
+            */
+
             guessSubmit.addEventListener('click', checkGuess);
+
+            /* Here, a function is created to prepare the game for a reset when the game is over, by disabling the <input> form field 
+               with the class `guessField` and the <input> button with the class `guessSubmit` to keep the user from trying to input 
+               another number guess or trying to click the "Submit guess" button.
+               When the game is over, a `resetButton` element is created in the document with the `textContent of "Start new game".
+               The `resetButton` is appended to the document body so it appears to the user so the user knows to click the button
+               to restart the game. And an event listener is put on it to "listen" for a 'click' from the user, and when the button 
+               is clicked, the `resetGame` function below is run.
+            */
 
             function setGameOver() {
                 guessField.disabled = true;
@@ -167,21 +181,53 @@
                 resetButton.addEventListener('click', resetGame);
             }
 
+            /*
+                Here, a function is created to reset the game back to its original settings so the game can be restarted.
+            */ 
+
             function resetGame() {
+
+                /*
+                    In this block of code, the `guessCount` is set back to 1, all of the paragraphs with the classes `resultParas`
+                    which held the user's guesses are stored within the variable `resetParas`. And each of the paragraphs are reset 
+                    back to empty strings by cycling through the `for` loop.
+                */
+
                 guessCount = 1;
                 const resetParas = document.querySelectorAll('.resultParas p');
                 for (let i = 0; i < resetParas.length; i++) {
                     resetParas[i].textContent = '';
                 }
 
+                /*
+                    The "Start new game" `resetButton` is removed from the `parentNode` (the `document.body`).
+                */ 
+
                 resetButton.parentNode.removeChild(resetButton);
+
+                /*
+                    In this block of code, the <input> form field with the class `guessField` and the <input> button with the class
+                    `guessSubmit` are re-enabled by setting `disabled` to `false` so the user is able to again make guesses and 
+                    submit their guesses.
+                    Any value possibly still in the <input> form field `guessField` is emptied, and thee `guessField` is again
+                    focused upon so the user knows to provide another number guess within it.
+                */ 
 
                 guessField.disabled = false;
                 guessSubmit.disabled = false;
                 guessField.value = '';
                 guessField.focus();
 
+                /*
+                    Any colors possibly still left in the paragraphs with the class `lastResult` are changed to a 'white' color
+                    so it looks like those colors have been cleared and the user can't see them.
+                */ 
+
                 lastResult.style.backgroundColor = 'white';
+
+                /* 
+                    And another random number is generated for the user to make a guess and try to match.
+                */
 
                 randomNumber = Math.floor(Math.random() * 100) + 1;
             }
