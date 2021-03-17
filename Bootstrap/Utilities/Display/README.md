@@ -44,3 +44,33 @@ The media queries affect screen widths with the given breakpoint *or larger*. Fo
 ```
 
 ## Hiding elements
+
+For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide elements responsively for each screen size.
+
+To hide elements, simply use the `.d-none` class or one of the `.d-{sm,md,lg,xl,xxl}-none` classes for any responsive screen variation.
+
+To show an element only on a given interval of screen sizes, you can combine one `.d-*-none` class with a `.d-*-*` class. For example, `.d-none .d-md-block .d-xl-none .d-xxl-none` will hide the element for all screen sizes except on medium and large devices.
+
+| Screen sizes | Class |
+| --- | --- |
+| Hidden on all | `.d-none` |
+| Hidden only on xs | `.d-none .d-sm-block` |
+| Hidden only on sm | `.d-sm-none .d-md-block` |
+| Hidden only on md | `.d-md-none .d-lg-block` |
+| Hidden only on lg | `.d-lg none .d-xl-block` |
+| Hidden only on xl | `.d-xl-none .d-xxl-block` |
+| Hidden only on xxl | `.d-xxl-none` |
+| Visible on all | `.d-block` |
+| Visible only on xs | `.d-block .d-sm-none` |
+| Visible only on sm | `.d-none .d-sm-block .d-md-none` |
+| Visible only on md | `.d-none .d-md-block .d-lg-none` |
+| Visible only on lg | `.d-none .d-lg-block .d-xl-none` |
+| Visible only on xl | `.d-none .d-xl-block .d-xxl-none` |
+| Visible only on xxl | `.d-none .d-xxl-block` |
+
+```
+<div class="d-lg-none">hide on lg and wider screens</div>
+<div class="d-none d-lg-block">hide on screens smaller than lg</div>
+```
+
+# Display on print
