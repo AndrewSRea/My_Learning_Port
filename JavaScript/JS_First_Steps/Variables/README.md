@@ -278,4 +278,19 @@ typeof myNumber;
 myNumber = 500;   // much better - now this is a number
 typeof myNumber;
 ```
-Try entering the four lines above into your console
+Try entering the four lines above into your console one by one, and see what the results are. You'll notice that we are using a special operator called [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)--this returns the data type of the variable you type after it. The first time it is called, it should return `string`, as at that point the `myNumber` variable contains a string, `'500'`. Have a look and see what it returns the second time you call it.
+
+### Constants in JavaScript
+
+Many programming languages have the concept of a *constant*--a value that once declared can't be changed. There are many reasons why you'd want to do this, from security (if a third party script changed such values, it could cause problems) to debugging and code comprehension (it is harder to accidentally change values that shouldn't be changed and mess things up).
+
+In the early days of JavaScript, constants didn't exist. In modern JavaScript, we have the keyword `const`, which lets us store values that can never be changed:
+```
+const daysInWeek = 7;
+const hoursInDay = 24;
+```
+`const` works in exactly the same way as `let`, except that you can't give a `const` a new value. In the following example, the second line would throw an error:
+```
+const daysInWeek = 7;
+daysInWeek = 8;
+```
