@@ -262,3 +262,20 @@ To retrieve the information stored in the object, you can use the following synt
 dog.name
 ```
 We won't be looking at objects anymore for now--you can lelarn more about those in [a future module](). <!-- link to Intro_JS_Objects folder (README) -->
+
+## Dynamic typing
+
+JavaScript is a "dynamically typed language", which means that, unlike some other languages, you don't need to specify what data type a variable will contain (numbers, strings, arrays, etc).
+
+For example, if you declare a variable and give it a value enclosed in quotes, the browser treats the variable as a string:
+```
+let myString = 'Hello';
+```
+Even if the value contains numbers, it is still a string, so be careful:
+```
+let myNumber = '500';   // oops, this is still a string
+typeof myNumber;
+myNumber = 500;   // much better - now this is a number
+typeof myNumber;
+```
+Try entering the four lines above into your console
