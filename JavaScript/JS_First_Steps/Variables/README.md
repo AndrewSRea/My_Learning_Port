@@ -204,3 +204,61 @@ Try creating a few more variables now, with the above guidance in mind.
 ## Variable types
 
 There arae a few different types of data we can store in variables. In this section, we'll describe these in brief, then in future articles, you'll learn about them in more detail.
+
+So far we've looked at the first two, but there are others.
+
+### Numbers
+
+You can store numbers in variables, either whole numbers like 30 (also called integers) or decimal numbers like 2.456 (also called floats or floating point numbers). You don't need to declare variable types in JavaScript, unlike some other programming languages. When you give a variable a number valuee, you don't include quotes:
+```
+let myAge = 17;
+```
+
+### Strings
+
+Strings are pieces of text. When you give a variable aa string value, you need to wrap it in single or double quote marks; otherwise, JavaScript tries to interpret it asa another variable name.
+```
+let dolphinGoodbye = 'So long and thanks for all the fish';
+```
+
+### Booleans
+
+Booleans are true/false values--they can have two values, `true` or `false`. These aare generally used to test a condition, after which code is run as appropriate. So, for example, a simple case would be:
+```
+let iAmAlive = true;
+```
+Whereas, in reality, it would be used more like this:
+```
+let test = 6 < 3;
+```
+This is using the "less than" operator (<) to test whether 6 is less than 3. As you might expect, it returns `false`, because 6 is not less than 3! You will learn a lot more about such operators later on in the course.
+
+### Arrays
+
+An array is a single object that contains multiple values enclosed in square brackets and separated by commas. Try entering the following lines into your console:
+```
+let myNameArray = ['Chris', 'Bob', 'Jim'];
+let myNumberArray = [10, 15, 40];
+```
+Once these arrays are defined, you can access each value by their location within the array. Try these lines:
+```
+myNameArray[0];     // should return 'Chris'
+myNumberArray[2];   // should return 40
+```
+The square brackets specify an index value corresponding to the position of the value you want returned. You might have noticed that arrays in JavaScript are zero-indexed: the first element is at index 0.
+
+You'll learn a lot more about arrays in a [future article](). <!-- link to JS_First_Steps / Arrays -->
+
+### Objects
+
+In programming, an object is a structure of code that models a real-life object. You can haave a simple object that represents a box and contains information about its width, length, and height, or you could have an object that represents a person, and contains data about their name, height, weight, what language they speak, how to say hello to them, and more.
+
+Try entering the following line into your console:
+```
+let dog = { name : 'Spot', breed : 'Dalmatian' };
+```
+To retrieve the information stored in the object, you can use the following syntax:
+```
+dog.name
+```
+We won't be looking at objects anymore for now--you can lelarn more about those in [a future module](). <!-- link to Intro_JS_Objects folder (README) -->
