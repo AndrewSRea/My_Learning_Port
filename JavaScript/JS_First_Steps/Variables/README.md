@@ -153,3 +153,54 @@ For these reasons and more, we recommend that you use `let` as much as possible 
 
 ## Updating a variable
 
+Once a variable has been initialized with a value, you can change (or update) that value by giving it a different value. Try entering the following lines into your console:
+```
+myName = 'Bob';
+myAge = 40;
+```
+
+### An aside on variable naming rules
+
+You can call a variable pretty much anything you like, but there are limitations. Generally, you should stick to just using Latin characters (0-9, a-z, A-Z) and the underscore character.
+
+* You shouldn't use other characters because they may causse errors or be hard to understand for an international audience.
+* Don't use underscores at the start of variable names--this is used in certain JavaScript constructs to mean specific things, so may get confusing.
+* Don't use numbers at the start of variables. This isn't allowed and causes an error.
+* A safe convention to stick to is so-called ["lower camel case"](https://en.wikipedia.org/wiki/Camel_case#Variations_and_synonyms), where you stick together multiple words, using loweer case for the whole first word and then capitalize subsequent words. We've been using this for our variable names in the article so far.
+* Make variable names intuitive, so they describe the data they contain. Don't just use single letters/numbers, or big long phrases.
+* variables aare case sensitive--so `myage` is a different variable from `myAge`.
+* One last point: you also need to aavoid using JavaScript reserved words aas your variable names--by this, we mean the words that make up the actual syntax of JavaScript! So, you can't use words like `var`, `function`, `let`, and `for` as variable names. Browsers recognize them as different code items, and so you'll get errors.
+
+<hr>
+
+**Note**: You can find a fairly complete list of reserved keywords to avoid at [Lexical grammar--keywords](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#keywords).
+
+<hr>
+
+Good name examples:
+```
+age
+myAge
+init
+initialColor
+finalOutputValue
+audio1
+audio2
+```
+Bad name examples:
+```
+1
+a
+_12
+myage
+MYAGE
+var
+Document
+skjfndskjfnbdskjfb
+thisisareallylongstupidvariablenameman
+```
+Try creating a few more variables now, with the above guidance in mind.
+
+## Variable types
+
+There arae a few different types of data we can store in variables. In this section, we'll describe these in brief, then in future articles, you'll learn about them in more detail.
