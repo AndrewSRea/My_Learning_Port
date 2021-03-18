@@ -84,3 +84,72 @@ scoobyDoo;
 <hr>
 
 ## Initilaizing a variable
+
+Once you've declared a variable, you can initialize it with a value. You do this by typin the variable name, followed by an equals sign (=), followed by the value you want to give it. For example:
+```
+myName = 'Chris';
+myAge = 37;
+```
+Try going back to the console now and typing in these lines. You should see the value you've assigned to the variable returned in the console to confirm it, in each case. Again, you can return your variable values by typing their name into the console--try these again:
+```
+myName;
+myAge;
+```
+You can declare and initialize a variable at the same time, like this:
+```
+let myDog = 'Rover';
+```
+This is probably what you'll do most of the time, as it is quicker than doing the two actions on two separate lines.
+
+## The difference between var and let
+
+At this point, you may be thinking "why do we need two keywords for defining variables?? Whay have `var` *and* `let`?"
+
+The reasons are somewhat historical. Back when JavaScript was first created, there was only `var`. This works basiccally fine in most cases, but it has some issues in the way it works--its design can sometimes be confusing or downright annoying. So, `let` was created in modern versions of JavaScript, a new keyword for creating variables that works somewhat differently to `var`, fixing its issues in the process.
+
+A couple of simple differences are explained below. We won't go into all the differences now, but you'll start to discover them as you learn more about JavaScript (if you really want to read about them no, feel fre to check out the [MDN `let` reference page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)).
+
+For a start, if you write a multiline JavaScript program that declares and initializes a variable, you can actually declare a variable with `var` after you initialize it and it will still work. For example:
+```
+myName = 'Chris';
+
+function logName() {
+    console.log(myName);
+}
+
+logName();
+
+var myName;
+```
+
+<hr>
+
+**Note**: This won't work when typing individual lines into a JavaScript console, just when running multiple lines of JavaScript in a web document.
+
+<hr>
+
+This works because of **hoisting**--read [var hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting) for more detail on the subject.
+
+Hoisting no longer works with `let`. If we changed `var` to `let` in the above example, it would fail with an error. This is a good thing--declaring a variable after you initialize it results in confusing, harder to understand code.
+
+Secondly, when you use `var`, you can declare the same variable as many times as you like, but with `let` you can't. The following would work:
+```
+var myName = 'Chris';
+var myName = 'Bob';
+```
+But the following would throw an error on the second line:
+```
+let myName = 'Chris';
+let myName = 'Bob';
+```
+You'd have to do this instead:
+```
+let myName = 'Chris';
+myName = 'Bob';
+```
+Again, this is a sensible language decision. There is no reason to redeclare variables--it just makes things more confusing.
+
+For these reasons and more, we recommend that you use `let` as much as possible in your code, rather than `var`. There is no reason to use `var`, unless you need to support old versions of Internet Explorer with your code (it doesn't support `let` un til version 11; the modern Microsoft Edge browser supports `let` just fine).
+
+## Updating a variable
+
