@@ -53,3 +53,34 @@ Another special thing about variables is that they can contain just about anythi
 <hr>
 
 ## Declaring a variable
+
+To use a variable, you've first got to create it--more accurately, we call this declaring the variable. To do this, we type the keyword `var` or `let`, followed by the name you want to call your variable:
+```
+let myName;
+let myAge;
+```
+Here we're create two variables called `myName` and `myAge`. Try typing these lines into your web browser's console. After that, try creating a variable (or two) with your own name choices.
+
+<hr>
+
+**Note**: In JavaScript, all code instructions should end with a semi-colon (;)--your code may work correctly for single lines, but probably won't when you are writing multiple lines of code together. Try to get into the habit of including it.
+
+<hr>
+
+You can test whether these values now exist in the execution environment by typing just the variable's name, e.g.
+```
+myName;
+myAge;
+```
+They currently have no value; they are empty containers. When you enter the variable names, you should get a value of `undefined` returned. If they don't exist, you'll get an error message--try typing in
+```
+scoobyDoo;
+```
+
+<hr>
+
+**Note**: Don't confuse a variable that exists but has no defined vallue with a variable that doesn't exist at all--they are very different things. In the box analogy you saw above, not existing would mean theere's no box (variable) for a value to go in. No value defined would mean that there IS a box, but it has no value inside it.
+
+<hr>
+
+## Initilaizing a variable
