@@ -220,3 +220,21 @@ Responsive variations also exist for `align-self`.
 * `.align-self-xxl-stretch`
 
 ## Fill
+Use the `.flex-fill` class on a series of sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space.
+```
+<div class="d-flex bd-highlight">
+    <div class="p-2 flex-fill bd-highlight">Flex item with a lot of content</div>
+    <div class="p-2 flex-fill bd-highlight">Flex item</div>
+    <div class="p-2 flex-fill bd-highlight">Flex item</div>
+</div>
+```
+Responsive variations also exist for `flex-fill`.
+
+* `.flex-fill`
+* `.flex-sm-fill`
+* `.flex-md-fill`
+* `.flex-lg-fill`
+* `.flex-xl-fill`
+* `.flex-xxl-fill`
+
+## Grow and shrink
