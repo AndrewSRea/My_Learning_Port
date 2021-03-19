@@ -94,5 +94,5 @@ Use `.justify-content` utilities on flexbox containers to change the alignment o
 <div class="d-flex justify-content-around">...</div>
 <div class="d-flex justify-content-evenly">...</div>
 ```
-Responsive variations also exxist for `justify-content`.
+Responsive variations also exist for `justify-content`.
 
