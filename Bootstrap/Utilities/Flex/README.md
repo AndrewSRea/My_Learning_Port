@@ -137,3 +137,86 @@ Responsive variations also exist for `justify-content`.
 
 Use `align-items` utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if `flex-direction: column`). Choose from `start`, `end`, `center`, `baseline`, or `stretch` (browser default).
 ```
+<div class="d-flex align-items-start">...</div>
+<div class="d-flex align-items-end">...</div>
+<div class="d-flex align-items-center">...</div>
+<div class="d-flex align-items-baseline">...</div>
+<div class="d-flex align-items-stretch">...</div>
+```
+Responsive variations also exist for `align-items`.
+
+* `.align-items-start`
+* `.align-items-end`
+* `.align-items-center`
+* `.align-items-baseline`
+* `.align-items-stretch`
+* `.align-items-sm-start`
+* `.align-items-sm-end`
+* `.align-items-sm-center`
+* `.align-items-sm-baseline`
+* `.align-items-sm-stretch`
+* `.align-items-md-start`
+* `.align-items-md-end`
+* `.align-items-md-center`
+* `.align-items-md-baseline`
+* `.align-items-md-stretch`
+* `.align-items-lg-start`
+* `.align-items-lg-end`
+* `.align-items-lg-center`
+* `.align-items-lg-baseline`
+* `.align-items-lg-stretch`
+* `.align-items-xl-start`
+* `.align-items-xl-end`
+* `.align-items-xl-center`
+* `.align-items-xl-baseline`
+* `.align-items-xl-stretch`
+* `.align-items-xxl-start`
+* `.align-items-xxl-end`
+* `.align-items-xxl-center`
+* `.align-items-xxl-baseline`
+* `.align-items-xxl-stretch`
+
+## Align self
+
+Use `align-self` utilities on flexbox items to individually change their alignment on the cross axis (the y-axis to start, x-axis if `flex-direction: column`). Choose from the same options as `align-items`: `start`, `end`, `center`, `baseline`, or `stretch` (browser default).
+```
+<div class="align-self-start">Aligned flex item</div>
+<div class="align-self-end">Aligned flex item</div>
+<div class="align-self-center">Aligned flex item</div>
+<div class="align-self-baseline">Aligned flex item</div>
+<div class="align-self-stretch">Aligned flex item</div>
+```
+Responsive variations also exist for `align-self`.
+
+* `.align-self-start`
+* `.align-self-end`
+* `.align-self-center`
+* `.align-self-baseline`
+* `.align-self-stretch`
+* `.align-self-sm-start`
+* `.align-self-sm-end`
+* `.align-self-sm-center`
+* `.align-self-sm-baseline`
+* `.align-self-sm-stretch`
+* `.align-self-md-start`
+* `.align-self-md-end`
+* `.align-self-md-center`
+* `.align-self-md-baseline`
+* `.align-self-md-stretch`
+* `.align-self-lg-start`
+* `.align-self-lg-end`
+* `.align-self-lg-center`
+* `.align-self-lg-baseline`
+* `.align-self-lg-stretch`
+* `.align-self-xl-start`
+* `.align-self-xl-end`
+* `.align-self-xl-center`
+* `.align-self-xl-baseline`
+* `.align-self-xl-stretch`
+* `.align-self-xxl-start`
+* `.align-self-xxl-end`
+* `.align-self-xxl-center`
+* `.align-self-xxl-baseline`
+* `.align-self-xxl-stretch`
+
+## Fill
