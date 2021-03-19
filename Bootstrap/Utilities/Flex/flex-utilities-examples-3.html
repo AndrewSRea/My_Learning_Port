@@ -19,15 +19,9 @@
                 text-decoration: underline;
             }
 
-            .flex-box {
-                background-color: #d3d3d3; 
+            .flex-item {
+                background-color: #d3d3d3;
                 border: 1px solid #9d9d9d;
-            }
-
-            .flex-item,
-            div[class|="align"] {
-                background-color: #929292;
-                border: 1px solid #828282;
             }
 
             .high {
@@ -51,7 +45,7 @@
                 to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available 
                 horizontal space.</h4>
 
-            <div class="d-flex bd-highlight flex-box">
+            <div class="d-flex bd-highlight">
                 <div class="p-2 flex-fill bd-highlight flex-item">Flex item with a lot of content</div>
                 <div class="p-2 flex-fill bd-highlight flex-item">Flex item</div>
                 <div class="p-2 flex-fill bd-highlight flex-item">Flex item</div>
@@ -59,14 +53,32 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Use `.flex-grow-*` utilities to toggle a flex item's ability to grow to fill available space. In this example,
+             the `.flex-grow-1` element uses all available space it can, while allowing the remaining two flex items their
+             necessary space. -->
 
         <div class="container">
             <h3 class="mb-3">Flex Utility Example: 08</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Use <code>.flex-grow-*</code> utilities to toggle a flex item's ability to grow to fill available space. 
+                In this example, the <code>.flex-grow-1</code> element uses all available space it can, while allowing the remaining 
+                two flex items their necessary space.</h4>
 
-            
+            <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Third flex item</div>
+            </div>
+            <hr>
+
+            <h4 class="mb-3">Use <code>.flex-shrink-*</code> utillities to toggle a flex item's ability to shrink, if necessary. In
+                this example, the second flex item with <code>.flex-shrink-1</code> is forced to wrap its contents to a new line,
+                "shrinking" to allow more space for the previous flex item with <code>.w-100</code>.</h4>
+
+            <div class="d-flex bd-highlight">
+                <div class="p-2 w-100 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 flex-shrink-1 bd-highlight flex-item">Flex item</div>
+            </div>
         </div>
         <hr>
 
