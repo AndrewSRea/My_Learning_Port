@@ -280,7 +280,7 @@ typeof myNumber;
 ```
 Try entering the four lines above into your console one by one, and see what the results are. You'll notice that we are using a special operator called [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)--this returns the data type of the variable you type after it. The first time it is called, it should return `string`, as at that point the `myNumber` variable contains a string, `'500'`. Have a look and see what it returns the second time you call it.
 
-### Constants in JavaScript
+## Constants in JavaScript
 
 Many programming languages have the concept of a *constant*--a value that once declared can't be changed. There are many reasons why you'd want to do this, from security (if a third party script changed such values, it could cause problems) to debugging and code comprehension (it is harder to accidentally change values that shouldn't be changed and mess things up).
 
@@ -294,3 +294,13 @@ const hoursInDay = 24;
 const daysInWeek = 7;
 daysInWeek = 8;
 ```
+
+## Skills test
+
+I have created an accompanying [variables-skills-test.html]() file to test my knowledge of information provided by this **Storing the information you need -- Variables** page. See the results [here]().
+
+## Summary
+
+By now, you should know a reasonable amount about JavaScript variables and how to create them. In the next article, we'll focus on numbers in more detail, looking at how to do basic math in JavaScript.
+
+[Previous page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript) - [Top](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#storing-the-information-you-need----variables) - [Next page]()
