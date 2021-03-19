@@ -238,3 +238,20 @@ Responsive variations also exist for `flex-fill`.
 * `.flex-xxl-fill`
 
 ## Grow and shrink
+
+Use `.flex-grow-*` utilities to toggle a flex item's ability to grow to fill available space. In the example below, the `.flex-grow-1` element uses all available space it can, while allowing the remaining two flex items their necessary space.
+```
+<div class="d-flex bd-highlight">Flex item</div>
+    <div class="p-2 flex-grow-1 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Third flex item</div>
+</div>
+```
+Use `.flex-shrink-*` utilities to toggle a flex item's ability to shrink, if necessary. In the example below, the second flex item with `.flex-shrink-1` is forced to wrap its contents to a new line, "shrinking" to allow more space for the previous flex item with `.w-100`.
+```
+<div class="d-flex bd-highlight">
+    <div class="p-2 w-100 bd-highlight">Flex item</div>
+    <div class="p-2 flex-shrink-1 bd-highlight">Flex item</div>
+</div>
+```
+Responsive variations also exist for `flex-grow` and `flex-shrink`.
