@@ -3,7 +3,7 @@
    <head>
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Bootstrap Display Utilities Examples</title>
+       <title>Bootstrap Flex Utilities Examples</title>
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
              integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <style>
@@ -78,14 +78,25 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Use `.flex-column` to set a vertical direction, or `.flex-column-reverse` to start the vertical direction
+             from the opposite side. -->
 
              <div class="container">
                 <h3 class="mb-3">Flex Utility Example: 03</h3>
     
-                <h4 class="mb-3"></h4>
+                <h4 class="mb-3">Use <code>.flex-column</code> to set a vertical direction, or <code>.flex-column-reverse</code> 
+                    to start the vertical direction from the opposite side.</h4>
     
-               
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="p-2 bd-highlight flex-item">Flex item 1</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item 2</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item 3</div>
+                </div>
+                <div class="d-flex flex-column-reverse bd-highlight">
+                    <div class="p-2 bd-highlight flex-item">Flex item 1</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item 2</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item 3</div>
+                </div>
             </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
