@@ -18,6 +18,16 @@
             h3 {
                 text-decoration: underline;
             }
+
+            .flex-box {
+                background-color: #d3d3d3; 
+                border: 1px solid #9d9d9d;
+            }
+
+            .flex-item {
+                background-color: #929292;
+                border: 1px solid #828282;
+            }
         </style>
    </head>
    <body>
@@ -34,24 +44,37 @@
             <h4 class="mb-3">Apply <code>display</code> utilities to create a flexbox container and transform direct children 
                 elements into flex items. Flex containers and items are able to be modified further with additional flex properties.</h4>
 
-            <div class="d-flex p-2 mb-3 bd-highlight" style="background-color: #d3d3d3; border: 1px solid #9d9d9d;">
+            <div class="d-flex p-2 mb-3 bd-highlight flex-box">
                 I'm a flexbox container!
             </div>
             
-            <div class="d-inline-flex p-2 bd-highlight" style="background-color: #d3d3d3; border: 1px solid #9d9d9d;">
+            <div class="d-inline-flex p-2 bd-highlight flex-box">
                 I'm an inline flex box container!
             </div>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Set the direction of flex items in a flex container with direction utilities.
+             Use `.flex-row` to set a horizontal direction, or `.flex-row-reverse` to start the horizontal direction from
+             the opposite direction. -->
 
         <div class="container">
             <h3 class="mb-3">Flex Utility Example: 02</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Set the direction of flex items in a flex container with direction utilities.<br>
+                Use <code>.flex-row</code> to set a horizontal direction, or <code>.flex-row-reverse</code> to start the horizontal 
+                direction from the opposite direction.</h4>
 
-            
+            <div class="d-flex flex-row bd-highlight mb-3 flex-box">
+                <div class="p-2 bd-highlight flex-item">Flex item 1</div>
+                <div class="p-2 bd-highlight flex-item">Flex item 2</div>
+                <div class="p-2 bd-highlight flex-item">Flex item 3</div>
+            </div>
+            <div class="d-flex flex-row-reverse bd-highlight flex-box">
+                <div class="p-2 bd-highlight flex-item">Flex item 1</div>
+                <div class="p-2 bd-highlight flex-item">Flex item 2</div>
+                <div class="p-2 bd-highlight flex-item">Flex item 3</div>
+            </div>
         </div>
         <hr>
 
