@@ -297,7 +297,7 @@ daysInWeek = 8;
 
 ## Skills test
 
-I have created an accompanying [variables-skills-test.html]() file to test my knowledge of information provided by this **Storing the information you need -- Variables** page. See the results [here]().
+I have created an accompanying [variables-skills-test.html]() file to test my knowledge of the information provided by this **"Storing the information you need -- Variables"** page. See the results [here]().
 
 ## Summary
 
