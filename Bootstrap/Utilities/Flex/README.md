@@ -241,7 +241,7 @@ Responsive variations also exist for `flex-fill`.
 
 Use `.flex-grow-*` utilities to toggle a flex item's ability to grow to fill available space. In the example below, the `.flex-grow-1` element uses all available space it can, while allowing the remaining two flex items their necessary space.
 ```
-<div class="d-flex bd-highlight">Flex item</div>
+<div class="d-flex bd-highlight">
     <div class="p-2 flex-grow-1 bd-highlight">Flex item</div>
     <div class="p-2 bd-highlight">Flex item</div>
     <div class="p-2 bd-highlight">Third flex item</div>
@@ -255,3 +255,39 @@ Use `.flex-shrink-*` utilities to toggle a flex item's ability to shrink, if nec
 </div>
 ```
 Responsive variations also exist for `flex-grow` and `flex-shrink`.
+
+* `.flex-{grow|shrink}-0`
+* `.flex-{grow|shrink}-1`
+* `.flex-{grow|shrink}-0`
+* `.flex-{grow|shrink}-1`
+* `.flex-{grow|shrink}-0`
+* `.flex-{grow|shrink}-1`
+* `.flex-{grow|shrink}-0`
+* `.flex-{grow|shrink}-1`
+* `.flex-{grow|shrink}-0`
+* `.flex-{grow|shrink}-1`
+* `.flex-{grow|shrink}-0`
+* `.flex-{grow|shrink}-1`
+
+## Auto margins
+
+Flexbox can do some pretty awesome things when you mix flex alignments with auto margins. Shown below are three examples of controlling flex items via auto margins: default (no auto margin), pushing two items to the right (`.me-auto`), and pushing two items to the left (`.ms-auto`).
+```
+<div class="d-flex bd-highlight mb-3">
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+</div>
+
+<div class="d-flex bd-highlight mb-3">
+    <div class="me-auto p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+</div>
+
+<div class="d-flex bd-highlight mb-3">
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="ms-auto p-2 bd-highlight">Flex item</div>
+</div>
+```
