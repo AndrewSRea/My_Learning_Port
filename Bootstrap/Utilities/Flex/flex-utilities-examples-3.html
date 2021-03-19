@@ -24,8 +24,14 @@
                 border: 1px solid #9d9d9d;
             }
 
-            .high {
-                height: 100px;
+            .flex-box-auto {
+                background-color: #d3d3d3;
+                border: 1px solid #9d9d9d;
+            }
+
+            .flex-item-auto {
+                background-color: #9d9d9d;
+                border: 1px solid #828282;
             }
         </style>
    </head>
@@ -89,7 +95,23 @@
     
                 <h4 class="mb-3"></h4>
     
+                <div class="d-flex bd-highlight mb-3 flex-box-auto">
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                </div>
                 
+                <div class="d-flex bd-highlight mb-3 flex-box-auto">
+                    <div class="me-auto p-2 bd-highlight flex-item-auto">Flex item</div>
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                </div>
+                
+                <div class="d-flex bd-highlight mb-3 flex-box-auto">
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                    <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
+                    <div class="ms-auto p-2 bd-highlight flex-item-auto">Flex item</div>
+                </div>
             </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
