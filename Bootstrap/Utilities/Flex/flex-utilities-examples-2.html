@@ -24,9 +24,14 @@
                 border: 1px solid #9d9d9d;
             }
 
-            .flex-item {
+            .flex-item,
+            div[class|="align"] {
                 background-color: #929292;
                 border: 1px solid #828282;
+            }
+
+            .high {
+                height: 100px;
             }
         </style>
    </head>
@@ -72,32 +77,89 @@
                 <div class="p-2 bd-highlight flex-item">Flex item</div>
             </div>
             <div class="d-flex justify-content-evenly flex-box">
-                <div class="p-2 bd-highlight flex-item">Flex item 1</div>
-                <div class="p-2 bd-highlight flex-item">Flex item 2</div>
-                <div class="p-2 bd-highlight flex-item">Flex item 3</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
             </div>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Use `align-items` utilities on flexbox containers to change the alignment of flex items on the cross axis
+             (the default y-axis, the x-axis if using `flex-direction: column`). Choose from `start`, `end`, `center`,
+            `baseline`, or `stretch`. -->
 
         <div class="container">
-            <h3 class="mb-3">Flex Utility Example: 02</h3>
+            <h3 class="mb-3">Flex Utility Example: 05</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Use <code>align-items</code> utilities on flexbox containers to change the alignment of flex items 
+                on the cross axis (the default y-axis, the x-axis if using <code>flex-direction: column</code>). Choose from 
+                <code>start</code>, <code>end</code>, <code>center</code>, <code>baseline</code>, or <code>stretch</code>.</h4>
 
-            
+            <div class="d-flex mb-3 align-items-start flex-box high">
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+            </div>
+            <div class="d-flex mb-3 align-items-end flex-box high">
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+            </div>
+            <div class="d-flex mb-3 align-items-center flex-box high">
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+            </div>
+            <div class="d-flex mb-3 align-items-baseline flex-box high">
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+            </div>
+            <div class="d-flex mb-3 align-items-stretch flex-box high">
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+                <div class="p-2 bd-highlight flex-item">Flex item</div>
+            </div>
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Use `align-self` utilities on flexbox items to individually change their alignment on the cross axis
+             (the default y-axis, the x-axis if using `flex-direction: column`). Choose from the same options as
+             `align-items`: `start`, `end`, `center`, `baseline`, or `stretch`. -->
 
              <div class="container">
-                <h3 class="mb-3">Flex Utility Example: 03</h3>
+                <h3 class="mb-3">Flex Utility Example: 06</h3>
     
-                <h4 class="mb-3"></h4>
+                <h4 class="mb-3">Use <code>align-self</code> utilities on flexbox items to individually change their alignment 
+                    on the cross axis (the default y-axis, the x-axis if using <code>flex-direction: column</code>). Choose from 
+                    the same options as <code>align-items</code>: <code>start</code>, <code>end</code>, <code>center</code>, 
+                    <code>baseline</code>, or <code>stretch</code>.</h4>
     
-                
+                <div class="d-flex mb-3 flex-box high">
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                    <div class="align-self-start p-2">Aligned flex item</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                </div>
+                <div class="d-flex mb-3 flex-box high">
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                    <div class="align-self-end p-2">Aligned flex item</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                </div>
+                <div class="d-flex mb-3 flex-box high">
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                    <div class="align-self-center p-2">Aligned flex item</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                </div>
+                <div class="d-flex mb-3 flex-box high">
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                    <div class="align-self-baseline p-2">Aligned flex item</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                </div>
+                <div class="d-flex mb-3 flex-box high">
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                    <div class="align-self-stretch p-2">Aligned flex item</div>
+                    <div class="p-2 bd-highlight flex-item">Flex item</div>
+                </div>
             </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
