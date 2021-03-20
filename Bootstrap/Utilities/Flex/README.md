@@ -347,3 +347,68 @@ Responsive variations also exist for `flex-wrap`.
 * `.flex-xxl-nowrap`
 * `.flex-xxl-wrap`
 * `.flex-xxl-wrap-reverse`
+
+## Order
+
+Change the *visual* order of specific flex items with a handful of `order` utilities. Bootstrap only provides options for making an item first or last, as well as a reset to use the DOM order. As `order` takes any integer value from 0 to 5, add custom CSS for any additional values needed.
+```
+<div class="d-flex flex-nowrap bd-highlight">
+    <div class="order-3 p-2 bd-highlight">First flex item</div>
+    <div class="order-2 p-2 bd-highlight">Second flex item</div>
+    <div class="order-1 p-2 bd-highlight">Third flex item</div>
+</div>
+```
+Responsive variations also exist for `order`.
+
+* `.order-0`
+* `.order-1`
+* `.order-2`
+* `.order-3`
+* `.order-4`
+* `.order-5`
+* `.order-sm-0`
+* `.order-sm-1`
+* `.order-sm-2`
+* `.order-sm-3`
+* `.order-sm-4`
+* `.order-sm-5`
+* `.order-md-0`
+* `.order-md-1`
+* `.order-md-2`
+* `.order-md-3`
+* `.order-md-4`
+* `.order-md-5`
+* `.order-lg-0`
+* `.order-lg-1`
+* `.order-lg-2`
+* `.order-lg-3`
+* `.order-lg-4`
+* `.order-lg-5`
+* `.order-xl-0`
+* `.order-xl-1`
+* `.order-xl-2`
+* `.order-xl-3`
+* `.order-xl-4`
+* `.order-xl-5`
+* `.order-xxl-0`
+* `.order-xxl-1`
+* `.order-xxl-2`
+* `.order-xxl-3`
+* `.order-xxl-4`
+* `.order-xxl-5`
+
+Additionally, there are also responsive `.order-first` and `.order-last` classes that change the `order` of an element by applying `order: -1` and `order: 6`, respectively.
+
+* `.order-first`
+* `.order-last`
+* `.order-sm-first`
+* `.order-sm-last`
+* `.order-md-first`
+* `.order-md-last`
+* `.order-lg-first`
+* `.order-lg-last`
+* `.order-xl-first`
+* `.order-xl-last`
+* `.order-xxl-first`
+* `.order-xxl-last`
+
