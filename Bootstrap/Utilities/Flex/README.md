@@ -59,7 +59,7 @@ Use `.flex-column`to set a vertical direction, or `.flex-column-reverse` to star
 Responsive variations also exist for `flex-direction`.
 
 * `.flex-row`
-* `flex-row-reverse`
+* `.flex-row-reverse`
 * `.flex-column`
 * `.flex-column-reverse`
 * `.flex-sm-row`
@@ -449,33 +449,33 @@ Use `align-content` utilities on flexbox containers to align flex items *togethe
 
 Responsive variations also exist for `align-content`.
 
-* `align-content-start`
-* `align-content-end`
-* `align-content-center`
-* `align-content-around`
-* `align-content-stretch`
-* `align-content-sm-start`
-* `align-content-sm-end`
-* `align-content-sm-center`
-* `align-content-sm-around`
-* `align-content-sm-stretch`
-* `align-content-md-start`
-* `align-content-md-end`
-* `align-content-md-center`
-* `align-content-md-around`
-* `align-content-md-stretch`
-* `align-content-lg-start`
-* `align-content-lg-end`
-* `align-content-lg-center`
-* `align-content-lg-around`
-* `align-content-lg-stretch`
-* `align-content-xl-start`
-* `align-content-xl-end`
-* `align-content-xl-center`
-* `align-content-xl-around`
-* `align-content-xl-stretch`
-* `align-content-xxl-start`
-* `align-content-xxl-end`
-* `align-content-xxl-center`
-* `align-content-xxl-around`
-* `align-content-xxl-stretch`
+* `.align-content-start`
+* `.align-content-end`
+* `.align-content-center`
+* `.align-content-around`
+* `.align-content-stretch`
+* `.align-content-sm-start`
+* `.align-content-sm-end`
+* `.align-content-sm-center`
+* `.align-content-sm-around`
+* `.align-content-sm-stretch`
+* `.align-content-md-start`
+* `.align-content-md-end`
+* `.align-content-md-center`
+* `.align-content-md-around`
+* `.align-content-md-stretch`
+* `.align-content-lg-start`
+* `.align-content-lg-end`
+* `.align-content-lg-center`
+* `.align-content-lg-around`
+* `.align-content-lg-stretch`
+* `.align-content-xl-start`
+* `.align-content-xl-end`
+* `.align-content-xl-center`
+* `.align-content-xl-around`
+* `.align-content-xl-stretch`
+* `.align-content-xxl-start`
+* `.align-content-xxl-end`
+* `.align-content-xxl-center`
+* `.align-content-xxl-around`
+* `.align-content-xxl-stretch`
