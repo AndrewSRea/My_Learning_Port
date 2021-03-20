@@ -291,3 +291,20 @@ Flexbox can do some pretty awesome things when you mix flex alignments with auto
     <div class="ms-auto p-2 bd-highlight">Flex item</div>
 </div>
 ```
+
+### With align items
+
+Vertically move one flex item to the top or bottom of a container by mixing `align-items`, `flex-direction: column`, and `margin-top: auto` or `margin-bottom: auto`.
+```
+<div class="d-flex align-items-start flex-column bd-highlight mb-3" style="height: 200;">
+    <div class="mb-auto p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+</div>
+
+<div class="d-flex align-items-end flex-column bd-highlight mb-3" style="height: 200;">
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="p-2 bd-highlight">Flex item</div>
+    <div class="mt-auto p-2 bd-highlight">Flex item</div>
+</div>
+```
