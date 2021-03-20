@@ -308,3 +308,42 @@ Vertically move one flex item to the top or bottom of a container by mixing `ali
     <div class="mt-auto p-2 bd-highlight">Flex item</div>
 </div>
 ```
+
+## Wrap
+
+Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with `.flex-nowrap`, wrapping with `.flex-wrap`, or reverse wrapping with `.flex-wrap-reverse`.
+```
+<div class="d-flex flex-nowrap">
+    ...
+</div>
+```
+```
+<div class="d-flex flex-wrap">
+    ...
+</div>
+```
+```
+<div class="d-flex flex-wrap-reverse">
+    ...
+</div>
+```
+Responsive variations also exist for `flex-wrap`.
+
+* `.flex-nowrap`
+* `.flex-wrap`
+* `.flex-wrap-reverse`
+* `.flex-sm-nowrap`
+* `.flex-sm-wrap`
+* `.flex-sm-wrap-reverse`
+* `.flex-md-nowrap`
+* `.flex-md-wrap`
+* `.flex-md-wrap-reverse`
+* `.flex-lg-nowrap`
+* `.flex-lg-wrap`
+* `.flex-lg-wrap-reverse`
+* `.flex-xl-nowrap`
+* `.flex-xl-wrap`
+* `.flex-xl-wrap-reverse`
+* `.flex-xxl-nowrap`
+* `.flex-xxl-wrap`
+* `.flex-xxl-wrap-reverse`
