@@ -66,3 +66,21 @@ twoDecimalPlaces;
 
 ### Converting to number data types
 
+Sometimes you might end up with a number that is stored as a string type, which makes it difficult to perform calculations with it. This most commonly happens when data is entered into a [form](https://developer.mozilla.org/en-US/docs/Learn/Forms) input, and the [input type is text](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text). <!-- gonna add a Web Forms folder? --> There is a way to solve this problem--passing the string value into the [`Number()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number) constructor to return a number version of the same value.
+
+For example, try typing these lines into your console:
+```
+let myNumber = '74';
+myNumber + 3;
+```
+You end up with the result 743, not 77, because `myNumber` is actually defined as a string. You can test this by typing the following:
+```
+typeof myNumber;
+```
+To fix the calculation, you can do this:
+```
+Number(myNumber) + 3;
+```
+
+## Arithmetic operators
+
