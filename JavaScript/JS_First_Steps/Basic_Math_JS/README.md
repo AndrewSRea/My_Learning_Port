@@ -56,3 +56,13 @@ You should get `"number"` returned in both cases--this makes things a lot easier
 
 The [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) object, an instance of which represents all standard numbers you'll use in your JavaScript, has a number of useful methods available on it for you to manipulate numbers. We don't cover these in detail in this article because we wanted to keep it as a simple introduction and only cover the real basic essentials for now; however, once you've read through this module a couple of times, it is worth going to the object reference pages and learning more about what's available. <!-- perhaps an aside for the `Number` object? -->
 
+For example, to round your number to a fixed number of decimal places, use the [`toFixed()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) method. Type the following lines into your browser's **console**:
+```
+let lotsOfDecimal = 1.766584985675746364;
+lotsOfDecimal;
+let twoDecimalPlaces = lotsOfDecimal.toFixed(2);
+twoDecimalPlaces;
+```
+
+### Converting to number data types
+
