@@ -412,3 +412,70 @@ Additionally, there are also responsive `.order-first` and `.order-last` classes
 * `.order-xxl-first`
 * `.order-xxl-last`
 
+## Align content
+
+Use `align-content` utilities on flexbox containers to align flex items *together* on the cross axis. Choose from `start` (browser default), `end`, `center`, `between`, `around`, or `stretch`. To demonstrate these utilities, `flex-wrap` is enforced on the container and the number of flex items is increased.
+**Heads up!** This property has no effect on single rows of flex items.
+```
+<div class="d-flex align-content-start flex-wrap">
+    ...
+</div>
+```
+```
+<div class="d-flex align-content-end flex-wrap">
+    ...
+</div>
+```
+```
+<div class="d-flex align-content-center flex-wrap">
+    ...
+</div>
+```
+```
+<div class="d-flex align-content-between flex-wrap">
+    ...
+</div>
+```
+```
+<div class="d-flex align-content-around flex-wrap">
+    ...
+</div>
+```
+```
+<div class="d-flex align-content-stretch flex-wrap">
+    ...
+</div>
+```
+
+Responsive variations also exist for `align-content`.
+
+* `align-content-start`
+* `align-content-end`
+* `align-content-center`
+* `align-content-around`
+* `align-content-stretch`
+* `align-content-sm-start`
+* `align-content-sm-end`
+* `align-content-sm-center`
+* `align-content-sm-around`
+* `align-content-sm-stretch`
+* `align-content-md-start`
+* `align-content-md-end`
+* `align-content-md-center`
+* `align-content-md-around`
+* `align-content-md-stretch`
+* `align-content-lg-start`
+* `align-content-lg-end`
+* `align-content-lg-center`
+* `align-content-lg-around`
+* `align-content-lg-stretch`
+* `align-content-xl-start`
+* `align-content-xl-end`
+* `align-content-xl-center`
+* `align-content-xl-around`
+* `align-content-xl-stretch`
+* `align-content-xxl-start`
+* `align-content-xxl-end`
+* `align-content-xxl-center`
+* `align-content-xxl-around`
+* `align-content-xxl-stretch`
