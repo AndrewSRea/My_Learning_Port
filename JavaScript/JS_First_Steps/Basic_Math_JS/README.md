@@ -101,6 +101,70 @@ Arithmetic operators are the basic operators that we use to do sums in JavaScrip
 
 <hr>
 
-**Note**: You may sometimes see exponents expressed using the older [`Math.pow()`]() method, which works in a very similar way. For example, in `Math.pow(7, 3)`, 7 is the base and 3 is the exponent, so the result of the expression is 343. `Math.pow(7, 3)` is equivalent to `7**3`.
+**Note**: You may sometimes see exponents expressed using the older [`Math.pow()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow) method, which works in a very similar way. For example, in `Math.pow(7, 3)`, 7 is the base and 3 is the exponent, so the result of the expression is 343. `Math.pow(7, 3)` is equivalent to `7**3`.
+
+<hr>
+
+We probably don't need to teach you how to do basic math, but we would like to test your understanding of the syntax involved. Try entering the examples below into your **developer tools JavaScript console** to familiarize yourself with the syntax.
+
+1. First, try entering some simple examples of your own, such as 
+```
+10 + 7
+9 * 8
+60 % 3
+```
+
+2. You can also try declaring and initializing some numbers inside variables, and try using those in the sums--the variables will behave exactly like the values they hold for the purposes of the sum. For example:
+```
+let num1 = 10;
+let num2 = 50;
+9 * num1;
+num1 ** 3;
+num2 / num1;
+```
+
+3. Last for this section, try entering some more complex expressions, such as:
+```
+5 + 10 * 3
+num2 % 9 * num1;
+num2 + num1 / 8 + 2;
+```
+
+Some of this last set of calculations might not give you quite the result you were expecting; the section below might well give the answer as to why.
+
+### Operator precendence
+
+Let's look at the last example from above, assuming that `num2` holds the value 50 and `num1` holds the value 10 (as originally stated above):
+```
+num2 + num1 / 8 + 2;
+```
+As a human being, you may read this as *"50 plus 10 equals 60"*, then *"8 plus 2 equals 10"*, and finally *"60 divided by 10 equals 6"*.
+
+But the browser does *"10 divided by 8 equals 1.25"*, then *"50 plus 1.25 plus 2 equals 53.25"*.
+
+This is because of **operator precendence**--some operators are applied before others when calculating the result of a calculation (referred to as an *expression*, in programming). Operator precendence in JavaScript is the same as is taught in math classes in school - Multiply and divide are always done first, then add and subtract (the calculation is always evaluated from the left to right).
+
+If you want to override operator precendence, you can put parentheses round the parts that you want to be explicitly dealt with first. So, to get a result of 6, we could do this:
+```
+(num2 + num1) / (8 + 2);
+```
+Try it and see.
+
+<hr>
+
+**Note**: A full list of all JavaScript operators and their precendence can be found in [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#operator_precedence).
+
+<hr>
+
+## Increment and decrement operators
+
+Sometimes you'll want to repeatedly add or subtract one to or from a numeric variable value. This can be conveniently done using the increment (`++`) and decrement (`--`) operators. We used `++` in our "Guess the number" game back in our [first splash into JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript) article, when we added 1 to our `guessCount` variable to keep track of how many guesses the user had left after each turn.
+```
+guessCount++;
+```
+
+<hr>
+
+**Note**: These operators are most commonly used in [loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration), which you'll learn about later on in the course. For example, say you wanted to loop through a list of prices, and add sales tax to each one. You'd use a loop to go through each value in turn and do the necessary calculation for adding the sales tax in each case. The incrementor is usedto move to the next value when needed. We've actually provided a simple example showing how this is done--[check it out live](), <!-- Git page --> and [look at the source code]() to see if you can spot the incrementors! We'll look at loops in detail later on in the course.
 
 <hr>
