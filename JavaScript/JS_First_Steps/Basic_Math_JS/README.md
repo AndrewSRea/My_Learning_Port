@@ -84,3 +84,23 @@ Number(myNumber) + 3;
 
 ## Arithmetic operators
 
+Arithmetic operators are the basic operators that we use to do sums in JavaScript:
+
+| Operator | Name | Purpose | Example |
+| --- | --- | --- | --- |
+| + | Addition | Adds two numbers together. | 6 + 9 |
+| - | Subtraction | Subtracts the right number from the left. | 20 - 15 |
+| * | Multiplication | Multiplies two numbers together. | 3 * 7 |
+| / | Division | Divides the left number by the right. | 10 / 5 |
+| % | Remainder (sometimes called modulo) | Returns the remainder left over after you've divided the left number into a number of integer portions equal to the right number. | 8 % 3 (returns 2, as 3 goes into 8 twice, leaving 2 left over) |
+| ** | Exponent | Raises a `base` number to the `exponent` power, that is, the `base` number multipled by itself, `exponent` times. It was first introduced in ECMAScript 2016. | 5 ** 2 (returns 25, which is the same as 5 * 5) |
+
+<hr>
+
+**Note**: You'll sometimes see numbers involved in arithmetic referred to as [operands](https://developer.mozilla.org/en-US/docs/Glossary/Operand).
+
+<hr>
+
+**Note**: You may sometimes see exponents expressed using the older [`Math.pow()`]() method, which works in a very similar way. For example, in `Math.pow(7, 3)`, 7 is the base and 3 is the exponent, so the result of the expression is 343. `Math.pow(7, 3)` is equivalent to `7**3`.
+
+<hr>
