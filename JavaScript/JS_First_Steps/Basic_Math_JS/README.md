@@ -165,6 +165,35 @@ guessCount++;
 
 <hr>
 
-**Note**: These operators are most commonly used in [loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration), which you'll learn about later on in the course. For example, say you wanted to loop through a list of prices, and add sales tax to each one. You'd use a loop to go through each value in turn and do the necessary calculation for adding the sales tax in each case. The incrementor is usedto move to the next value when needed. We've actually provided a simple example showing how this is done--[check it out live](), <!-- Git page --> and [look at the source code]() to see if you can spot the incrementors! We'll look at loops in detail later on in the course.
+**Note**: These operators are most commonly used in [loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration), which you'll learn about later on in the course. For example, say you wanted to loop through a list of prices, and add sales tax to each one. You'd use a loop to go through each value in turn and do the necessary calculation for adding the sales tax in each case. The incrementor is usedto move to the next value when needed. We've actually provided a simple example showing how this is done--[check it out live](), <!-- Git page --> and [look at the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Basic_Math_JS/loop.html) to see if you can spot the incrementors! We'll look at loops in detail later on in the course.
 
 <hr>
+
+Let's try playing with these in your console. For a start, note that you can't apply these directly to a number, which might seem strange, but we are assigning a variable a new updated value, not operating on the value itself. The following will return an error:
+```
+3++;
+```
+So, you can only increment an existing variable. Try this:
+```
+let num1 = 4;
+num1++;
+```
+Okay, strangeness number 2! When you do this, you'll see a value of 4 returned--this is because the browser returns the current value, *then* increments the variable. You can see that it's been incremented if you return the variable value again:
+```
+num1;
+```
+The same is true of `--`: try the following:
+```
+let num2 = 6;
+num2--;
+num2;
+```
+
+<hr>
+
+**Note**: You can make the browser do it the other way round--increment/decrement the variable *then* returns the value--by putting the operator at the start of the variable instead of the end. Try the above examples again, but this time use `++num1` and `--num2`.
+
+<hr>
+
+## Assignment operators
+
