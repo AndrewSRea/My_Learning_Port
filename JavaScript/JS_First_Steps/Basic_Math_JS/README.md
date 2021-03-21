@@ -235,13 +235,23 @@ In this exercise, you will manipulate some numbers and operators to change the s
 
 In the editable code box found in the exercise, there are two lines marked with a comment that we'd like you to update to make the box grow/shrink to certain sizes, using certain operators and/or values in each case. Let's try the following:
 
-* Change the line that calculates `x` so the box is still 50px wide, but the 50 is calculated using the numbers 43 and 7 and an arithmetic operator.
-* Change the line that calculates `y` so the box is 75px high, but the 75 is calculated using the numbers 25 and 3 and an arithmetic operator.
-* Change the line that calculates `x` so the box is 250px wide, but the 250 is calculated using two numbers and the remainder (modulo) operator.
-* Change the line that calculates `y` so the box is 150px high, but the 150 is calculated using three numbers and the subtraction and division operators.
-* Change the line that calculates `x` so the box is 200px wide, but the 200 is calculated using the number 4 and an assignment operator.
-* Change the line that calculates `y` so the box is 200px high, but the 200 is calculated using the numbers 50 and 3, the multiplication operator, and the addition assignment operator.
+1. Change the line that calculates `x` so the box is still 50px wide, but the 50 is calculated using the numbers 43 and 7 and an arithmetic operator.
+2. Change the line that calculates `y` so the box is 75px high, but the 75 is calculated using the numbers 25 and 3 and an arithmetic operator.
+3. Change the line that calculates `x` so the box is 250px wide, but the 250 is calculated using two numbers and the remainder (modulo) operator.
+4. Change the line that calculates `y` so the box is 150px high, but the 150 is calculated using three numbers and the subtraction and division operators.
+5. Change the line that calculates `x` so the box is 200px wide, but the 200 is calculated using the number 4 and an assignment operator.
+6. Change the line that calculates `y` so the box is 200px high, but the 200 is calculated using the numbers 50 and 3, the multiplication operator, and the addition assignment operator.
 
 Don't worry if you totally mess the code up. You can always press the "Reset" button to get things working again. After you've answered all the above questions correctly, feel free to play with the code some more or create your own challenges.
 
+**My answers to the questions above:**
+
+1. x = 43 + 7;
+2. y = 25 * 3;
+3. x = 
+4. y = 540 / 3 - 30;
+5. x *= 4;             // x is previously set in the exercise (`let x = 50;`)
+6. y += 50 * 3;        // y is previously set in the exercise (`let y = 50;`)
+
 ## Comparison operators
+
