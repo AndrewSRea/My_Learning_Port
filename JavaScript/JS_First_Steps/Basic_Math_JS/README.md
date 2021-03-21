@@ -197,3 +197,51 @@ num2;
 
 ## Assignment operators
 
+Assignment operators are operators that assign a value to a variable. We have already used the most basic one, `=`, loads of times--it assigns the variable on the left the value stated on the right.
+```
+let x = 3;   // x contains the value 3
+let y = 4;   // y contains the value 4
+x = y;       // x now contains the same value y contains, 4
+```
+But there are some more complex types, which provide useful shortcuts to keep your code neater and more efficient. The most common are listed below:
+
+| Operator | Name | Purpose | Example | Shortcut for |
+| --- | --- | --- | --- | --- |
+| += | Addition assignment | Adds the value on the right to the variable value on the left, then returns the new variable value | x += 4; | x = x + 4; |
+| -= | Subtraction assignment | Subtracts the value on the right from the variable value on the left, and returns the new variable value | x -= 3; | x = x - 3; |
+| *= | Multiplication assignment | Multiplies the variable value on the left by the value on the right, and returns the new variable value | x *= 3; | x = x * 3; |
+| /= | Division assignment | Divides the variable value on the left by the value on the right, and returns the new variable value | x /= 5; | x = x / 5; |
+
+Try typing some of the above examples into your console, to get an idea of how they work. In each case, see if you can guess what the value is before you type in the second line.
+
+Note that you can quite happily use other variables on the right hand side of each expression. For example:
+```
+let x = 3;   // x contains the value 3
+let y = 4;   // y contains the value 4
+x *= y;      // x now contains the value 12
+```
+
+<hr>
+
+**Note**: There are lots of [other assignment operators available](), but these are the basic ones you should learn now.
+
+<hr>
+
+## Active learning: sizing a canvas box
+
+In this exercise, you will manipulate some numbers and operators to change the size of a box. The box is drawn using a browser API called the [Canvas API](). There is no need to worry about how this works--just concentrate on the math for now. The width and height of the box (in pixels) are defined by the variables `x` and `y`, which are initially both given a value of 50.
+
+**[Open this exercise in a new window.](https://mdn.github.io/learning-area/javascript/introduction-to-js-1/maths/editable_canvas.html)**
+
+In the editable code box found in the exercise, there are two lines marked with a comment that we'd like you to update to make the box grow/shrink to certain sizes, using certain operators and/or values in each case. Let's try the following:
+
+* Change the line that calculates `x` so the box is still 50px wide, but the 50 is calculated using the numbers 43 and 7 and an arithmetic operator.
+* Change the line that calculates `y` so the box is 75px high, but the 75 is calculated using the numbers 25 and 3 and an arithmetic operator.
+* Change the line that calculates `x` so the box is 250px wide, but the 250 is calculated using two numbers and the remainder (modulo) operator.
+* Change the line that calculates `y` so the box is 150px high, but the 150 is calculated using three numbers and the subtraction and division operators.
+* Change the line that calculates `x` so the box is 200px wide, but the 200 is calculated using the number 4 and an assignment operator.
+* Change the line that calculates `y` so the box is 200px high, but the 200 is calculated using the numbers 50 and 3, the multiplication operator, and the addition assignment operator.
+
+Don't worry if you totally mess the code up. You can always press the "Reset" button to get things working again. After you've answered all the above questions correctly, feel free to play with the code some more or create your own challenges.
+
+## Comparison operators
