@@ -107,7 +107,7 @@ Arithmetic operators are the basic operators that we use to do sums in JavaScrip
 
 We probably don't need to teach you how to do basic math, but we would like to test your understanding of the syntax involved. Try entering the examples below into your **developer tools JavaScript console** to familiarize yourself with the syntax.
 
-1. First, try entering some simple examples of your own, such as 
+1. First, try entering some simple examples of your own, such as:
 ```
 10 + 7
 9 * 8
