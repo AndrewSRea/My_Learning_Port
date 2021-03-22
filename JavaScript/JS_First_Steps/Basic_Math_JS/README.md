@@ -301,4 +301,16 @@ function updateBtn() {
 }
 ```
 See this code example in action [here](https://mdn.github.io/learning-area/javascript/introduction-to-js-1/maths/conditional.html).
+<!-- You should set this up and create a Github page for it. -->
 
+You can see the equality operator being used just inside the `updateBtn()` function. In this case, we are not testing if two mathematical expressions have the same value--we are testing whether the text content of a button contains a certain string--but it is still the same principle at work. If the button is currently saying, "Start machine", when it is pressed, we change its label to, "Stop machine", and update the label as appropriate. If the button is currently saying, "Stop machine", when it is pressed, we swap the display back again.
+
+<hr>
+
+**Note**: Such a control that swaps between two states is generally referred to as a **toggle**. It toggles between one state and another--light on, light off, etc.
+
+<hr>
+
+## Skills test
+
+I have created an accompanying [math-skills-test.html]() file to test my knowledge of the information provided by this **"Basic math in JavaScript -- numbers and operators"** page. See the results [here]().
