@@ -313,4 +313,16 @@ You can see the equality operator being used just inside the `updateBtn()` funct
 
 ## Skills test
 
-I have created an accompanying [math-skills-test.html]() file to test my knowledge of the information provided by this **"Basic math in JavaScript -- numbers and operators"** page. See the results [here]().
+I have created an accompanying [math-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Basic_Math_JS/math-skills-test.html) file to test my knowledge of the information provided by this **"Basic math in JavaScript -- numbers and operators"** page. See the results [here]().
+
+## Summary
+
+In this article, we have covered the fundamental information you need to know about numbers in JavaScript, for now. You'll see numbers used again and again, all the way through your JavaScript learning, so it's a good idea to get this out of the way now. If you are one of those people that doesn't enjoy math, you can take comfort in the fact that this chapter was pretty short.
+
+In the next article, we'll explore text and how JavaScript allows us to manipulate it.
+
+<hr>
+
+**Note**: If you do enjoy math and want to read more about how it is implemented in JavaScript, you can find a lot more detail in MDN's main JavaScript section. Great places to start are MDN's [Numbers and dates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates) and [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators) articles.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#storing-the-information-you-need----variables) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#basic-math-in-javascript----numbers-and-operators) - [[Next page]]()
