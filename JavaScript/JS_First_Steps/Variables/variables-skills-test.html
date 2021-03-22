@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>Variables: Task 1</title>
+        <title>Test Your Skills: Variables</title>
         <style>
             p {
                 color: purple;
@@ -12,13 +12,41 @@
             * {
                 box-sizing: border-box;
             }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 25%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
         </style>
-        <link rel="stylesheet" href="../styles.css" />
     </head>
 
     <body>
 
-        <section class="preview">
+        <h2>Variables Task 1</h2>
+
+        <section class="preview-1">
+
+
+
+        </section>
+
+        <h2>Variables Task 2</h2>
+
+        <section class="preview-2">
+
+
+        
+        </section>
+
+        <h2>Variables Task 3</h2>
+
+        <section class="preview-3">
 
 
 
@@ -38,7 +66,7 @@
 
         // Don't edit the code below here!
 
-        const section = document.querySelector('section');
+        const section = document.querySelector('.preview-1');
 
         let para1 = document.createElement('p');
         para1.textContent = myName;
@@ -47,9 +75,43 @@
         section.appendChild(para1);
         section.appendChild(para2);
 
+
         // *** Variables Skill Test 2 ***
 
-        
+        // Add your code here
+
+        let myName2 = 'Paul';
+        myName2 = 'Andrew';
+
+        // Don't edit the code below here!
+
+        const section2 = document.querySelector('.preview-2');
+
+        let para3 = document.createElement('p');
+        para3.textContent = myName2;
+        section2.appendChild(para3);
+
+
+        // *** Variables Skill Test 3 ***
+
+        // Add your code here
+
+        let myName3 = 'Default';
+        myName3 = 'Chris';
+
+        let myAge3 = 42;
+
+        // Don't edit the code below here!
+
+        const section3 = document.querySelector('.preview-3');
+
+        let para4 = document.createElement('p');
+        let para5 = document.createElement('p');
+        para4.textContent = myName3;
+        para5.textContent = `In 20 years, I will be ${myAge3 + 20}`;
+        section3.appendChild(para4);
+        section3.appendChild(para5);
+
     </script>
 
 </html>
