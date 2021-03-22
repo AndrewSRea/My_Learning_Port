@@ -255,3 +255,50 @@ Don't worry if you totally mess the code up. You can always press the "Reset" bu
 
 ## Comparison operators
 
+Sometimes we will want to run true/false tests, then act accordingly depending on the result of that test--to do this, we use **comparison operators**.
+
+| Operator | Name | Purpose | Example |
+| --- | --- | --- | --- |
+| === | Strict equality | Tests whether the left and right values are identical to one another. | 5 === 2 + 4 |
+| !== | Strict non-equality | Tests whether the left and right values are **not** identical to one another. | 5 !== 2 + 3 |
+| < | Less than | Tests whether the left value is smaller than the right one. | 10 < 6 |
+| > | Greater than | Tests whether the left value is greater than the right one. | 10 > 20 |
+| <= | Less than or equal to | Tests whether the left value is smaller than or equal to the right one. | 3 <= 2 |
+| >= | Greater than or equal to | Tests whether the left value is greater than or equal to the right one. | 5 >= 4 |
+
+<hr>
+
+**Note**: You may see some people using `==` and `!=` in their testd for equality and non-equality. These are valid operators in JavaScript, but they differ from `===`/`!==`. The former versions test whether the values are the same but not whether the values' datatypes are the same. The latter, strict versions test the equality of both the values and their datatypes. The strict versions tend to result in fewer errors, so we recommend you use them.
+
+<hr>
+
+If you try entering some of these values in a console, you'll see that they all return `true`/`false` values--those Booleans we mentioned in the last article. These are very useful, as they allow us to make decisions in our code, and they are used every time we want to make a choice of some kind. For example, Booleans can be used to:
+
+* Display the correct text label on a button depending on whether a feature is turned on or off.
+* Display a game over message if a game is over or a victory message if the game has been won.
+* Display the correct seasonal greeting depending what holiday season it is.
+* Zoom a map in or out depending on what zoom level is selected.
+
+We'll look at how to code such logic when we look at conditional statements in a future article. For now, let's look at a quick example:
+```
+<button>Start machine</button>
+<p>The machine is stopped.</p>
+```
+```
+const btn = document.querySelector('button');
+const txt = document.querySelector('p');
+
+btn.addEventListener('click', updateBtn);
+
+function updateBtn() {
+    if (btn.textContent === 'Start machine') {
+        btn.textContent = 'Stop machine';
+        txt.textContent = 'The machine has started!';
+    } else {
+        btn.textContent = 'Start machine';
+        txt.textContent = 'The machine is stopped.';
+    }
+}
+```
+See this code example in action [here](https://mdn.github.io/learning-area/javascript/introduction-to-js-1/maths/conditional.html).
+
