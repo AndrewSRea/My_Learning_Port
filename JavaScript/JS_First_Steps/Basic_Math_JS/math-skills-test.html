@@ -115,5 +115,47 @@
 
         section2.appendChild(para3);
         section2.appendChild(para4);
+
+
+        // *** Math Skills Test 3 ***
+
+        // Statement 1: The elephant weighs less than the mouse
+        let eleWeight = 1000;
+        let mouseWeight = 2;
+
+        // Statement 2: The Ostrich is taller than the duck
+        let ostrichHeight = 2;
+        let duckHeight = 0.3;
+
+        // Statement 3: The two passwords match
+        let pwd1 = 'stromboli';
+        let pwd2 = 'stROmBoLi'
+
+        // Add your code here
+
+        let weightComparison = eleWeight < mouseWeight;
+        let heightComparison = ostrichHeight > duckHeight;
+        let pwdMatch = pwd1 === pwd2;
+
+        // Don't edit the code below here!
+
+        const section3 = document.querySelector('.preview-3');
+
+        let para5 = document.createElement('p');
+        let para6 = document.createElement('p');
+        let para7 = document.createElement('p');
+
+        let weightTest = weightComparison ? 'True — elephants weight less than mice!?' : 'False — of course an elephant is heavier than a mouse!';
+        let heightTest = heightComparison ? 'True — an ostrich is indeed taller than a duck!' : 'False — apparently a duck is taller than an ostrich!?';
+        let pwdTest = pwdMatch ? 'True — the passwords match.' : 'False — the passwords do not match; please check them';
+
+        para5.textContent = weightTest;
+        section3.appendChild(para5);
+        para6.textContent = heightTest;
+        section3.appendChild(para6);
+        para7.textContent = pwdTest;
+        section3.appendChild(para7);
+
+
     </script>
 </html>
