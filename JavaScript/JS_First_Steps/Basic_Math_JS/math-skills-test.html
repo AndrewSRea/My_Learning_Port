@@ -4,9 +4,78 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Test Your Skills: Math</title>
+        <style>
+            p {
+                color: purple;
+                margin: 0.5em 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 25%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
+        </style>
     </head>
     <body>
-        
+        <h2>Math Skills 1</h2>
+
+        <section class="preview-1">
+
+
+
+        </section>
+
+        <h2>Math Skills 2</h2>
+
+        <section class="preview-2">
+
+
+
+        </section>
+
+        <h2>Math Skills 3</h2>
+
+        <section class="preview-3">
+
+
+
+        </section>
     </body>
+    <script>
+
+        // *** Math Skills Test 1 ***
+        
+        let finalResult;
+
+        let evenOddResult;
+
+        // Add your code here
+
+
+        
+        // Don't edit the code below here!
+
+        const section1 = document.querySelector('.preview-1');
+
+        let para1 = document.createElement('p');
+        let finalResultCheck = finalResult === 48 ? `Yes, well done!` : `No, it is ${ finalResult }`;
+        para1.textContent = `Is the finalResult 48? ${ finalResultCheck }`;
+        let para2 = document.createElement('p');
+        let evenOddResultCheck = evenOddResult === 0 ? 'The final result is even!' : 'The final result is odd. Hrm.';
+        para2.textContent = evenOddResultCheck;
+
+        section1.appendChild(para1);
+        section1.appendChild(para2);
+    </script>
 </html>
