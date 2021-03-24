@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Float Utilities Examples 1</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+
+            h2 {
+                margin: 30px;
+            }
+
+            h3 {
+                text-decoration: underline;
+            }
+
+            .container-fluid {
+                border: 1px solid #9d9d9d;
+            }
+        </style>
+   </head>
+   <body>
+        <h2 class="mb-3">Bootstrap Float Utilities Code Examples - Page 1</h2>
+
+        <hr>
+
+        <!-- Float utility classes can float an element to the left or right, or disable floating, based on the current
+             viewport size using the CSS `float` property. These use the same viewport breakpoints as Bootstrap's grid
+             system. -->
+
+        <div class="container">
+            <h3 class="mb-3">Float Utility Example: 01</h3>
+
+            <h4 class="mb-3">Float utility classes can float an element to the left or right, or disable floating, based on the 
+                current viewport size using the CSS <code>float</code> property. These use the same viewport breakpoints as Bootstrap's 
+                grid system.</h4>
+
+            <div class="container-fluid mb-3 p-4">
+                <div class="float-start">Float start on all viewport sizes</div><br>
+                <div class="float-end">Float end on all viewport sizes</div><br>
+                <div class="float-none">Don't float on all viewport sizes</div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
