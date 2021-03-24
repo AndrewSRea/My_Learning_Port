@@ -41,3 +41,19 @@ Here are all the support classes:
 * `.float-xxl-end`
 * `.float-xxl-none`
 
+## Sass
+
+### Utilities API
+
+Float utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
+```
+"float": (
+    responsive: true,
+    property: float,
+    values: (
+        start: left,
+        end: right,
+        none: none,
+    )
+),
+```
