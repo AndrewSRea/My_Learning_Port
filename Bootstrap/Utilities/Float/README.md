@@ -10,3 +10,34 @@ These utility classes float an element to the left or right, or disable floating
 <div class="float-end">Float end on all viewport sizes</div><br>
 <div class="float-none">Don't float on all viewport sizes</div>
 ```
+
+## Responsive 
+
+Responsive variations also exist for each `float` value.
+```
+<div class="float-sm-start">Float start on viewports sized SM (small) or wider</div><br>
+<div class="float-md-start">Float start on viewports sized MD (medium) or wider</div><br>
+<div class="float-lg-start">Float start on viewports sized LG (large) or wider</div><br>
+<div class="float-xl-start">Float start on viewports sized XL (extra-large) or wider</div>
+```
+Here are all the support classes:
+
+* `.float-start`
+* `.float-end`
+* `.float-none`
+* `.float-sm-start`
+* `.float-sm-end`
+* `.float-sm-none`
+* `.float-md-start`
+* `.float-md-end`
+* `.float-md-none`
+* `.float-lg-start`
+* `.float-lg-end`
+* `.float-lg-none`
+* `.float-xl-start`
+* `.float-xl-end`
+* `.float-xl-none`
+* `.float-xxl-start`
+* `.float-xxl-end`
+* `.float-xxl-none`
+
