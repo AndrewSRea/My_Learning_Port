@@ -30,7 +30,7 @@ Bootstrap provides `.pe-none` and `.pe-auto` classes to prevent or add element i
 
 ### Utilities API
 
-Interaction utilities are declared in our utilities API in `scss/_utilities.scss` [Learn how to use the utilities API.]()
+Interaction utilities are declared in our utilities API in `scss/_utilities.scss` [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
 ```
 "user-select": (
     property: user-select,
