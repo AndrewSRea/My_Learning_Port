@@ -182,3 +182,33 @@ There is no more need to open and close multiple string pieces--the whole lot ca
 
 You can include complex expressions inside template literals, for example:
 ```
+let examScore = 45;
+let examHighestScore = 70;
+examReport = `You scored ${ examScore }/${ examHighestScore } (${ Math.round((examScore/examHighestScore*100)) }%). ${ examScore >= 49 ? 'Well done, you passed!' : 'Bad luck, you didn\'t pass this time.' }`;
+```
+* The first two placeholders here are pretty simple, only including a simple value in the string.
+* The third one calculates a percentage result and rounds it to the nearest integer.
+* The fourth one uses a [ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to check whether the score is above a certain mark and prints a pass or fail message depending on the result.
+
+Another point to note is that if you want to split a traditional string over multiple lines, you need to include a newline character, `\n`:
+```
+output = 'I like the song "' + song + '".\nI gave it a score of ' + (score/highestScore * 100) + '%.';
+```
+Template literals respect the line breaks in the source code, so newline characters are no longer needed. This would achieve the same result:
+```
+output = `I like the song "${ song }".
+I gave it a score of ${ score/highestScore * 100 }%.`;
+```
+We would recommend that you get used to using template literals as soon as possible. They are well-supported in modern browsers, and the only place you'll find a lack of support is Internet Explorer. Many of our examples still use standard string literals, but we will include more template literals going forward.
+
+See MDN's [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) reference page for more examples and details of advanced features.
+
+## Skills test
+
+I have created an accompanying [strings-skills-test.html]() file to test my knowledge of the information provided by this **"Handling text -- strings in JavaScript"** page. See the results [here]().
+
+## Conclusion
+
+So that's the very basics of strings covered in JavaScript. In the next article, we'll build on this, looking at some of the built-in methods available to strings in JavaScript and how we can use them to manipulate our strings into just the form we want.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#basic-math-in-javascript----numbers-and-operators) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Strings_in_JS#handling-text----strings-in-javascript) - [[Next page]]()
