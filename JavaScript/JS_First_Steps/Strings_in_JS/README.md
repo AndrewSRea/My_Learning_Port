@@ -136,16 +136,49 @@ typeof myDate;
 ```
 
 3. If you have a numeric variable that you want to convert to a string but not change otherwise, or a string variable that you want to convert to a number but not change otherwise, you can use the following two constructs:
-    - The [`Number`]() object converts anything passed to it into a number, if it can. Try the following:
+    - The [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) object converts anything passed to it into a number, if it can. Try the following:
     ```
     let myString = `123`;
     let myNum = Number(myString);
     typeof myNum;
     ```
-    - Conversely, every number has a method called [`toString()`]() that converts it to the equivalent string. Try this:
+    - Conversely, every number has a method called [`toString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString) that converts it to the equivalent string. Try this:
     ```
     let myNum2 = 123;
     let myString2 = myNum2.toString();
     typeof myString2;
     ```
-These constructs 
+These constructs can be really useful in some situations. For example, if a user enters a number into a form's text field, it's a string. However, if you want to add this number to something, you'll need it to be a number, so you could pass it through `Number()` to handle this. We did exactly this in our [Number Guessing Game, in line 99](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/First_Splash_JS/number-guessing-game-start.html).
+
+## Template literals
+
+Another type of string syntax that you may come across is **template literals** (sometimes referred to as template strings). This is a newer syntax that provides more flexible, easier to read strings.
+
+<hr>
+
+**Note**: Try entering the below example into your browser's JavaScript console, to see what results you get.
+
+<hr>
+
+To turn a standard string literal into a template literal, you have to replace the quote marks (`' '`, or `" "`) with backtick characters (`\` \``). So, taking a simple example:
+```
+let song = 'Fight the Youth';
+```
+Would be turned into a template literal like so:
+```
+song = `Fight the Youth`;
+```
+If we want to concatenate strings, or include expression results inside them, traditional strings can be fiddly to write:
+```
+let score = 9;
+let highestScore = 10;
+let output = 'I like the song "' + song + '". I gave it a score of ' + (score/highestScore * 100) + '%.';
+```
+Template literals simplify this enormously:
+```
+output = `I like the song "${ song }". I gave it a score of ${ score/highestScore * 100 }%.`;
+```
+There is no more need to open and close multiple string pieces--the whole lot can just be wrapped in a single pair of backticks. When you want to include a variable or expression inside the string, you include it inside a `${ }` construct, which is called a *placeholder*.
+
+You can include complex expressions inside template literals, for example:
+```
