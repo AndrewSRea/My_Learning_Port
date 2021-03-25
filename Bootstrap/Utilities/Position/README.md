@@ -41,3 +41,24 @@ Where *position* is one of:
     <div class="position-absolute bottom-0 end-0">
 </div>
 ```
+
+## Center elements
+
+In addition, you can also center the elements with the transform utility class `.translate-middle`.
+
+This class applies the transformations `translateX(-50%)` and `translateY(-50%)` to the element which, in combination with edge positioning utilities, allows you to absolute center an element.
+```
+<div class="position-relative">
+    <div class="position-absolute top-0 start-0 translate-middle">
+    <div class="position-absolute top-0 start-50 translate-middle">
+    <div class="position-absolute top-0 start-100 translate-middle">
+    <div class="position-absolute top-50 start-0 translate-middle">
+    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="position-absolute top-50 start-100 translate-middle">
+    <div class="position-absolute top-100 start-0 translate-middle">
+    <div class="position-absolute top-100 start-50 translate-middle">
+    <div class="position-absolute top-100 start-100 translate-middle">
+</div>
+```
+By adding `.translate-middle-x` or `.translate-middle-y` classes, elements can be positioned only in horizontal or vertical direction.
+```
