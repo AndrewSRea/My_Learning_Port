@@ -105,3 +105,16 @@ response;
 
 ### Concatenation in context
 
+Let's have a look at concatenation being used in action--here's an example from earlier in the course:
+```
+<button>Press me</button>
+```
+```
+const button = document.querySelector('button');
+
+button.onclick = function() {
+    let name = prompt('What is you name?');
+    alert('Hello ' + name + ', nice to see you!');
+}
+```
+See the code example [here](), and see it in action [here]().
