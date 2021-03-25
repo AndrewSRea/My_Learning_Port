@@ -50,3 +50,58 @@ dbl;
 ```
 let badQuotes = 'What on earth?";
 ```
+
+3. The browser will think the string has not been closed because the other type of quote you are not using to contain your strings can appear in the string. For example, both of these are okay:
+```
+let sglDbl = 'Would you eat a "fish supper"?';
+let dblSgl = "I'm feeling blue.";
+sglDbl;
+dblSgl;
+```
+
+4. However, you can't include the same quote mark inside the string if it's being used to contain them. The following will error, as it confuses the browser as to where the string ends:
+```
+let bigmouth = 'I've got no right to take my place...';
+```
+This leads us very nicely into our next subject.
+
+### Escaping characters in a string
+
+To fix our previous problem code line, we need to escape the problem quote mark. Escaping characters means that we do something to them to make sure they are recognized as text, not part of the code. In JavaScript, we do this by putting a backslash just before the character. Try this:
+```
+let bigmouth = 'I\'ve got no right to take my place...';
+bigmouth;
+```
+This works fine. You can escape other characters in the same way, e.g. `\"`, and there are some special codes besides. See [Escape notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#escape_notation) for more details.
+
+## Concatenating strings
+
+1. Concatenate is a fancy programming word that means "join together". Joining together strings in JavaScript uses the plus (+) operator, the same one we use to add numbers together, but in this context it does something different. Let's try an example in our console.
+```
+let one = 'Hello, ';
+let two = 'how are you?';
+let joined = one + two;
+joined;
+```
+The result of this is a variable called `joined`, which contains the value "Hello, how are you?".
+
+2. In the last instance, we joined only two strings, but you can join as many as you like, as long as you include a `+` between each pair. Try this:
+```
+let multiple = one + one + one + one + two;
+multiple;
+```
+
+3. You can also use a mix of variables and actual strings. Try this:
+```
+let response = one + 'I am fine - ' + two;
+response;
+```
+
+<hr>
+
+**Note**: When you enter an actual string in your code, enclosed in sigle or double quotes, it is called a **string literal**.
+
+<hr>
+
+### Concatenation in context
+
