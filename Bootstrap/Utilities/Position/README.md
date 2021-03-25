@@ -1,0 +1,43 @@
+# Position
+
+Use these shorthand utilities for quickly configuring the position of an element.
+
+## Position values
+
+Quick positioning classes are available, though they are not responsive.
+```
+<div class="position-static">...</div>
+<div class="position-relative">...</div>
+<div class="position-absolute">...</div>
+<div class="position-fixed">...</div>
+<div class="position-sticky">...</div>
+```
+
+## Arrange elements
+
+Arrange elements easily with the edge positioning utilities. The format is `{property}-{position}`.
+
+Where *property* is one of:
+
+* `top` - for the vertical `top` position.
+* `start` - for the horizontal `left` position (in LTR).
+* `bottom` - for the vertical `bottom` position.
+* `end` - for the horizontal `right` position (in LTR).
+
+Where *position* is one of:
+
+* `0` - for `0` edge position.
+* `50` - for `50%` edge position.
+* `100` - for `100%` edge position.
+
+(You can add more position values by adding entries to the `$position-values` Sass map variable.)
+```
+<div class="position-relative">
+    <div class="position-absolute top-0 start-0">
+    <div class="position-absolute top-0 end-0">
+    <div class="position-absolute top-50 start-50">
+    <div class="position-absolute bottom-50 end-50">
+    <div class="position-absolute bottom-0 start-0">
+    <div class="position-absolute bottom-0 end-0">
+</div>
+```
