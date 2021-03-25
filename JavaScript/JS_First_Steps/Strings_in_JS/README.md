@@ -160,7 +160,7 @@ Another type of string syntax that you may come across is **template literals** 
 
 <hr>
 
-To turn a standard string literal into a template literal, you have to replace the quote marks (`' '`, or `" "`) with backtick characters (`\` \``). So, taking a simple example:
+To turn a standard string literal into a template literal, you have to replace the quote marks (`' '`, or `" "`) with backtick characters (`` ` ` ``). So, taking a simple example:
 ```
 let song = 'Fight the Youth';
 ```
