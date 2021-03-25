@@ -118,3 +118,34 @@ button.onclick = function() {
 }
 ```
 See the code example [here](), and see it in action [here]().
+
+Here we're using a [`window.prompt()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt) function in line 4, which asks the user to answer a question via a popup dialog box, then stores the text they enter inside a given variable--in this case `name`. We then use a [`window.alert()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) function in line 5 to display another popup containing a string we've assembled from two string literals and the `name` variable, via concatenation.
+
+### Numbers vs. strings
+
+1. So what happens when we try to add (or concatenate) a string and a number? Let's try it in our console:
+```
+'Front ' + 242;
+```
+You might expect this to return an error, but it works just fine. Trying to represent a string as a number doesn't really make sense, but representing a number as a string does, so the browser rather cleverly converts the number to a string and concatenates the two strings.
+
+2. You can even do this with two numbers--you can force a number to become a string by wrapping it in quote marks. Try the following (we are using the `typeof` operator to check whether the variable is a number or a string):
+```
+let myDate = '19' + '67';
+typeof myDate;
+```
+
+3. If you have a numeric variable that you want to convert to a string but not change otherwise, or a string variable that you want to convert to a number but not change otherwise, you can use the following two constructs:
+    - The [`Number`]() object converts anything passed to it into a number, if it can. Try the following:
+    ```
+    let myString = `123`;
+    let myNum = Number(myString);
+    typeof myNum;
+    ```
+    - Conversely, every number has a method called [`toString()`]() that converts it to the equivalent string. Try this:
+    ```
+    let myNum2 = 123;
+    let myString2 = myNum2.toString();
+    typeof myString2;
+    ```
+These constructs 
