@@ -102,3 +102,53 @@ You can use these classes with existing components to create new ones. Remember 
     <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-seccondary rounded-pill" style="width: 2rem; height: 2rem;">3</button>
 </div>
 ```
+
+## Sass
+
+### Maps
+
+Default position utility values are declared in a Sass map, then used to generate our utilities.
+```
+$position-values: (
+    0: 0,
+    50: 50%,
+    100: 100%
+);
+```
+
+### Utilities API
+
+Position utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
+```
+"position": (
+    property: position,
+    values: static relative absolute fixed sticky
+),
+"top": (
+    property: top,
+    values: $position-values
+),
+"bottom": (
+    property: bottom,
+    values: $position-values
+),
+"start": (
+    property: left,
+    class: start,
+    values: $position-values
+),
+"end": (
+    property: right,
+    class: end,
+    values: $position-values
+),
+"translate-middle": (
+    property: transform,
+    class: translate-middle,
+    values: (
+        null: translate(-50%, -50%),
+        x: translateX(-50%),
+        y: translateY(-50%),
+    )
+),
+```
