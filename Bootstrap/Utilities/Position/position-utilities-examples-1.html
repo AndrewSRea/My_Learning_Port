@@ -34,6 +34,14 @@
                 background-color: #212529;
                 border-radius: .25rem;
             }
+
+            .box-2 {
+                margin-left: -10px;
+            }
+
+            .box-3 {
+                margin-left: -15px;
+            }
         </style>
    </head>
    <body>
@@ -68,31 +76,42 @@
              This class applies the transformations `translateX(-50%)` and `translateY(-50%)` to the element which,
              in combination with the edge positioning utilities, allows you to absolute center an element. -->
 
-        <div class="container">
+        <div class="container box-2">
             <h3 class="mb-3">Position Utility Example: 02</h3>
 
             <h4 class="mb-3">Elements can be centered with the transform utility class <code>.translate-middle</code>.<br>
                 This class applies the transformations <code>translateX(-50%)</code> and <code>translateY(-50%)</code> to the element 
                 which, in combination with the edge positioning utilities, allows you to absolute center an element.</h4>
 
+            <!-- The "position" <div>s below can only be displayed one at a time, apparently. So comment/uncomment each single
+                 <div> line of code with the "position-relative" <div> one at a time to see them displayed. -->
+
             <div class="container-fluid mb-3 p-4">
                 <div class="position-relative">
                     <div class="position-absolute top-0 start-0 translate-middle">
-                    <!-- <div class="position-absolute top-0 start-50 translate-middle">
-                    <div class="position-absolute top-0 start-100 translate-middle">
-                    <div class="position-absolute top-50 start-0 translate-middle">
-                    <div class="position-absolute top-50 start-50 translate-middle">
-                    <div class="position-absolute top-50 start-100 translate-middle">
-                    <div class="position-absolute top-100 start-0 translate-middle">
-                    <div class="position-absolute top-100 start-50 translate-middle">
-                    <div class="position-absolute top-100 start-100 translate-middle"> -->
+                    <!-- <div class="position-absolute top-0 start-50 translate-middle"> -->
+                    <!-- <div class="position-absolute top-0 start-100 translate-middle"> -->
+                    <!-- <div class="position-absolute top-50 start-0 translate-middle"> -->
+                    <!-- <div class="position-absolute top-50 start-50 translate-middle"> -->
+                    <!-- <div class="position-absolute top-50 start-100 translate-middle"> -->
+                    <!-- <div class="position-absolute top-100 start-0 translate-middle"> -->
+                    <!-- <div class="position-absolute top-100 start-50 translate-middle"> -->
+                    <!-- <div class="position-absolute top-100 start-100 translate-middle"> -->
                 </div>
             </div>
         </div>
+        <hr>
 
-        <!-- !!!REWRITE THE CODE!!! Place the first box on its own, outside a container. These code blocks might need to go
-             onto separate pages. -->
+        <!--  -->
 
+        <div class="container box-3">
+            <h3 class="mb-3">Position Utility Example: 03</h3>
+
+            <h4 class="mb-3"></h4>
+
+
+        </div>
+    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
    </body>
