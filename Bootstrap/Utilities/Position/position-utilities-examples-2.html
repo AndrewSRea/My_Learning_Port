@@ -29,15 +29,12 @@
 
         <hr>
 
-        <!--  -->
+        <!-- Here are some practical applications of these position utility classes. -->
 
         <div class="container">
             <h3 class="mb-3">Position Utility Example: 04</h3>
 
-            <h4 class="mb-3"></h4>
-
-            <!-- The <button>s below can only be displayed one at a time, apparently. So comment/uncomment each <button>
-                 block of code one at a time to see them displayed. -->
+            <h4 class="mb-3">Here are some practical applications of these position utility classes:</h4>
 
             <div class="container-fluid d-flex justify-content-around mb-3 p-4">
                 <button type="button" class="btn btn-primary position-relative">
@@ -55,18 +52,24 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- These classes can be used with existing components to create new ones. Their functionality can be extended
+             by adding entries to the `$position-values` variable. -->
 
         <div class="container box-2">
             <h3 class="mb-3">Position Utility Example: 05</h3>
 
-            <h4 class="mb-3"></h4>
-
-            <!-- The "position" <div>s below can only be displayed one at a time, apparently. So comment/uncomment each single
-                 <div> line of code with the "position-relative" <div> one at a time to see them displayed. -->
+            <h4 class="mb-3">These classes can be used with existing components to create new ones. Their functionality can be extended
+                by adding entries to the <code>$position-values</code> variable.</h4>
 
             <div class="container-fluid mb-3 p-4">
-                
+                <div class="position-relative m-4">
+                    <div class="progress" style="height: 1px;">
+                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height: 2rem;">1</button>
+                    <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height: 2rem;">2</button>
+                    <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height: 2rem;">3</button>
+                </div>
             </div>
         </div>
     
