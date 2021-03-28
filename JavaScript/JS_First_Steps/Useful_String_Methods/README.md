@@ -153,3 +153,13 @@ We'd recommend doing it like this:
 3. Extract the human-readable station name using the semicolon character index number as a reference point, and store it in a new variable.
 4. Concatenate the two new variables and a string literal to make the final string.
 5. Change the value of the `result` variable to equal to the final string, not the `input`.
+
+## Skills test
+
+I have created an accompanying [strings-skills-test.html]() file to test my knowledge of the information provided by this **"Useful string methods"** page. See the results [here]().
+
+## Conclusion
+
+You can't escape the fact that being able to handle words and sentences in programming is very important--particularly in JavaScript, as websites are all about communicating with people. This article has given you the basics that you need to know about manipulating strings for now. This should serve you well as you go into more complex topics in the future. Next, we're going to look at the last major type of data we need to focus on in the short term--arrays.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Strings_in_JS#handling-text----strings-in-javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods) - [[Next page]]()
