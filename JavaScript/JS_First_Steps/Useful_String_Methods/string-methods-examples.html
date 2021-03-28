@@ -97,8 +97,11 @@
         for (let i = 0; i < cities.length; i++) {
             let input = cities[i];
             // write your code just below here
+            let lowercase = input.toLowerCase();
+            let firstLetter = lowercase.slice(0,1);
+            let capitalCity = lowercase.replace(firstLetter, firstLetter.toUpperCase());
 
-            let result = input;
+            let result = capitalCity;
             let listItem = document.createElement('li');
             listItem.textContent = result;
             list2.appendChild(listItem);
