@@ -87,3 +87,37 @@ This returns "zilla"--this is because the character position of 2 is the letter 
 <hr>
 
 ### Changing case
+
+The string methods [`toLowerCase()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase) and [`toUpperCase()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) take a string and convert all the characters to lower- or uppercase, respectively. This can be sueful, for example, if you want to normalize all user-entered data before storing it in a database.
+
+Let's try entering the following lines to see what happens:
+```
+let radData = 'My NaMe Is MuD';
+radData.toLowerCase();
+radData.toUpperCase();
+```
+
+### Updating parts of a string
+
+You can replace one substring inside a string with another substring using the [`replace()`]() method. This works at a very basic level, although there are some advanced things you can do with it that we won't go into yet.
+
+It takes two parameters--the string you want to replacce, and the string you want to replace it with. Try this example:
+```
+browserType.replace('moz', 'van');
+```
+This returns "vanilla" in the console. But if you check the value of `browserType`, it is still "mozilla". To actually update the value of the `browserType` variable in a real program, you'd have to set the variable value to be the result of the operation; it doesn't just update the substring value automatically. So you'd have to actually write this: `browserType = browserType.replace('moz','van');`
+
+## Active learning examples
+
+In this section, we'll get you to try your hand at writing some string manipulation code. In each exercise (in my accompanying [string-methods-examples.html]() file), we have an array of strings, and a loop that processes each value in the array and displays it in a bulleted list. You don't need to understand arrays or loops right now--these will be explained in future articles. All you need to do in each case is write the code that will output the strings in the format that we want them in.
+
+Each example comes with a "Reset" button, which you ccan use to reset the code if you make a mistake and can't get it working again, and a "Show solution" button you can press to see a potential answer if you get really stuck.
+
+### Filtering greeting messages
+
+In the first exercise (again, see my accompanying [string-methods-examples.html]() file), we'll start you off simple--we have an array of greeting card messages, but we want to sort them to list just the Christmas messages. We want you to fill in a conditional test inside the `if( ... )` structure, to test each string and only print it in the list if it is a Christmas message.
+
+1. First, think about how you could test whether the message in each case is a Christmas message. What string is present in all of those messages, and what method could you use to test whether it is present?
+2. You'll then need to write a conditional test of the form *operand1 operator operand2*. Is the thing on the left equal to the thing on the right? Or, in this case, does the method call on the left return the result on the right?
+3. Hint: In this case, it is probably more useful to test whether the method call *isn't* equal to a certain result.
+
