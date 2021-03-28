@@ -39,4 +39,33 @@ The length of "mozilla" is 7, but because the count starts at 0, the character p
 
 ### Finding a substring inside a string and extracting it
 
-Sometimes you'll want to find if a smaller string
+Sometimes you'll want to find if a smaller string is present inside a larger one (we generally say *if a substring is present inside a string*). This can be done using the [`indexOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf) method, which takes a single [parameter](https://developer.mozilla.org/en-US/docs/Glossary/Parameter)--the substring you want to search for.
+
+If the substring *is* found inside the main string, it returns a number representing the index position of the substring--which character number of the main string the substring starts at. If the substring is *not found* inside the main string, it returns a value of `-1`.
+
+1. Try this:
+```
+browserType.indexOf('zilla');
+```
+This gives us a result of 2, because the substring "zilla" starts at position 2 (0,1,2 -- so 3 characters in) inside "mozilla". Such code could be used to filter strings. For example, we may have a list of web addresses and only want to print out the ones that contain "mozilla".
+
+2. This can be done in another way, which is possibly even more effective. Try the following:
+```
+browserType.indexOf('vanilla');
+```
+This should give you a result of `-1`--this is returned when the substring, in this case 'vanilla', is not found in the main string.
+
+You could use this to find all instances of strings that **don't** contain the substring 'mozilla' (or **do**, if you use the negation operator, `!==`):
+```
+if (browserType.indexOf('mozilla') === -1) {
+    // do stuff with the string if the 'mozilla'
+    // substring is NOT contained within it
+}
+
+if (browserType.indexOf('mozilla') !== -1) {
+    // do stuff with the string if the 'mozilla'
+    // substring IS contained within it
+}
+```
+
+3. When you know where a substring starts inside a string, and you know at which character you want it to end, [`slice()`]()
