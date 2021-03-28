@@ -126,9 +126,12 @@
         for (let i = 0; i < stations.length; i++) {
             let input = stations[i];
             // write your code just below here
-            
+            let stationCode = input.slice(0,3);
+            let indexNum = input.indexOf(';');
+            let stationName = input.slice(indexNum + 1);
+            let finalString = stationCode + ': ' + stationName;
 
-            let result = input;
+            let result = finalString;
             let listItem = document.createElement('li');
             listItem.textContent = result;
             list3.appendChild(listItem);
