@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>String Methods Learning Examples</title>
+        <style>
+            p {
+                color: purple;
+                margin: 0.5em 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 25%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>String Methods Learning Example 1</h2>
+
+        <section class="preview-1">
+            <div class="output">
+                <ul>
+                    
+                </ul>
+            </div>
+        </section>
+
+        <h2>String Methods Learning Example 2</h2>
+
+        <section class="preview-2">
+
+
+
+        </section>
+
+        <h2>String Methods Learning Example 3</h2>
+
+        <section class="preview-3">
+
+
+
+        </section>
+    </body>
+    <script>
+
+        // *** String Methods Learning Example 1 ***
+
+        const list = document.querySelector('.output ul');
+        
+        const section1 = document.querySelector('.preview-1');
+
+        list.section1 = '';
+
+        let greetings = ['Happy Birthday!',
+                         'Merry Christmas my love',
+                         'A happy Christmas to all the family',
+                         'You\'re all I want for Christmas',
+                         'Get well soon'];
+
+        for (let i = 0; i < greetings.length; i++) {
+            let input = greetings[i];
+            // Your conditional test needs to go inside the parentheses
+            // in the line below, replacing what's currently there
+            if (greetings[i].indexOf('Christmas') !== -1) {
+                let listItem = document.createElement('li');
+                listItem.textContent = input;
+                list.appendChild(listItem);
+            }
+        }
+
+
+        // *** String Methods Learning Example 2 ***
+
+        // Final result should be 10.42
+        // Add/update your code here
+
+        let result = (7 + 13) / (9 + 7);
+        let result2 = 100 / (2 * 6) ;
+
+        result = result * result2;
+
+        let finalResult2 = result.toFixed(2);
+        
+        let finalNumber2 = Number(finalResult2);
+
+        // Don't edit the code below here!
+
+        const section2 = document.querySelector('.preview-2');
+
+        let para3 = document.createElement('p');
+        para3.textContent = `Your finalResult is ${ finalResult2 }`;
+        let para4 = document.createElement('p');
+        let finalNumberCheck = isNaN(finalNumber2) === false ? 'finalNumber is a number type. Well done!' : `Ooops! finalNumber is not a number.`;
+        para4.textContent = finalNumberCheck;
+
+        section2.appendChild(para3);
+        section2.appendChild(para4);
+
+
+        // *** String Methods Learning Example 3 ***
+
+        // Statement 1: The elephant weighs less than the mouse
+        let eleWeight = 1000;
+        let mouseWeight = 2;
+
+        // Statement 2: The Ostrich is taller than the duck
+        let ostrichHeight = 2;
+        let duckHeight = 0.3;
+
+        // Statement 3: The two passwords match
+        let pwd1 = 'stromboli';
+        let pwd2 = 'stROmBoLi'
+
+        // Add your code here
+
+        let weightComparison = eleWeight < mouseWeight;
+        let heightComparison = ostrichHeight > duckHeight;
+        let pwdMatch = pwd1 === pwd2;
+
+        // Don't edit the code below here!
+
+        const section3 = document.querySelector('.preview-3');
+
+        let para5 = document.createElement('p');
+        let para6 = document.createElement('p');
+        let para7 = document.createElement('p');
+
+        let weightTest = weightComparison ? 'True — elephants weight less than mice!?' : 'False — of course an elephant is heavier than a mouse!';
+        let heightTest = heightComparison ? 'True — an ostrich is indeed taller than a duck!' : 'False — apparently a duck is taller than an ostrich!?';
+        let pwdTest = pwdMatch ? 'True — the passwords match.' : 'False — the passwords do not match; please check them';
+
+        para5.textContent = weightTest;
+        section3.appendChild(para5);
+        para6.textContent = heightTest;
+        section3.appendChild(para6);
+        para7.textContent = pwdTest;
+        section3.appendChild(para7);
+
+
+    </script>
+</html>
