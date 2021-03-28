@@ -31,7 +31,7 @@
         <h2>String Methods Learning Example 1</h2>
 
         <section class="preview-1">
-            <div class="output">
+            <div class="output-1">
                 <ul>
                     
                 </ul>
@@ -41,9 +41,11 @@
         <h2>String Methods Learning Example 2</h2>
 
         <section class="preview-2">
+            <div class="output-2">
+                <ul>
 
-
-
+                </ul>
+            </div>
         </section>
 
         <h2>String Methods Learning Example 3</h2>
@@ -58,11 +60,11 @@
 
         // *** String Methods Learning Example 1 ***
 
-        const list = document.querySelector('.output ul');
+        const list1 = document.querySelector('.output-1 ul');
         
         const section1 = document.querySelector('.preview-1');
 
-        list.section1 = '';
+        list1.section1 = '';
 
         let greetings = ['Happy Birthday!',
                          'Merry Christmas my love',
@@ -77,38 +79,30 @@
             if (greetings[i].indexOf('Christmas') !== -1) {
                 let listItem = document.createElement('li');
                 listItem.textContent = input;
-                list.appendChild(listItem);
+                list1.appendChild(listItem);
             }
         }
 
 
         // *** String Methods Learning Example 2 ***
 
-        // Final result should be 10.42
-        // Add/update your code here
-
-        let result = (7 + 13) / (9 + 7);
-        let result2 = 100 / (2 * 6) ;
-
-        result = result * result2;
-
-        let finalResult2 = result.toFixed(2);
+        const list2 = document.querySelector('.output-2 ul');
         
-        let finalNumber2 = Number(finalResult2);
-
-        // Don't edit the code below here!
-
         const section2 = document.querySelector('.preview-2');
 
-        let para3 = document.createElement('p');
-        para3.textContent = `Your finalResult is ${ finalResult2 }`;
-        let para4 = document.createElement('p');
-        let finalNumberCheck = isNaN(finalNumber2) === false ? 'finalNumber is a number type. Well done!' : `Ooops! finalNumber is not a number.`;
-        para4.textContent = finalNumberCheck;
+        list2.section2 = '';
 
-        section2.appendChild(para3);
-        section2.appendChild(para4);
+        let cities = ['lonDon', 'ManCHESTer', 'BiRmiNGHAM', 'liVERpoOL'];
 
+        for (let i = 0; i < cities.length; i++) {
+            let input = cities[i];
+            // write your code just below here
+
+            let result = input;
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            list2.appendChild(listItem);
+        }
 
         // *** String Methods Learning Example 3 ***
 
