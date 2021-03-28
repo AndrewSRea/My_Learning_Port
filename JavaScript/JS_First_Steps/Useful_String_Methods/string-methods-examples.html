@@ -51,9 +51,11 @@
         <h2>String Methods Learning Example 3</h2>
 
         <section class="preview-3">
+            <div class="output-3">
+                <ul>
 
-
-
+                </ul>
+            </div>
         </section>
     </body>
     <script>
@@ -109,43 +111,27 @@
 
         // *** String Methods Learning Example 3 ***
 
-        // Statement 1: The elephant weighs less than the mouse
-        let eleWeight = 1000;
-        let mouseWeight = 2;
-
-        // Statement 2: The Ostrich is taller than the duck
-        let ostrichHeight = 2;
-        let duckHeight = 0.3;
-
-        // Statement 3: The two passwords match
-        let pwd1 = 'stromboli';
-        let pwd2 = 'stROmBoLi'
-
-        // Add your code here
-
-        let weightComparison = eleWeight < mouseWeight;
-        let heightComparison = ostrichHeight > duckHeight;
-        let pwdMatch = pwd1 === pwd2;
-
-        // Don't edit the code below here!
-
+        const list3 = document.querySelector('.output-3 ul');
+        
         const section3 = document.querySelector('.preview-3');
 
-        let para5 = document.createElement('p');
-        let para6 = document.createElement('p');
-        let para7 = document.createElement('p');
+        list3.section3 = '';        
 
-        let weightTest = weightComparison ? 'True — elephants weight less than mice!?' : 'False — of course an elephant is heavier than a mouse!';
-        let heightTest = heightComparison ? 'True — an ostrich is indeed taller than a duck!' : 'False — apparently a duck is taller than an ostrich!?';
-        let pwdTest = pwdMatch ? 'True — the passwords match.' : 'False — the passwords do not match; please check them';
+        let stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
+                        'GNF576746573fhdg4737dh4;Greenfield',
+                        'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+                        'SYB4f65hf75f736463;Stalybridge',
+                        'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'];
+        
+        for (let i = 0; i < stations.length; i++) {
+            let input = stations[i];
+            // write your code just below here
+            
 
-        para5.textContent = weightTest;
-        section3.appendChild(para5);
-        para6.textContent = heightTest;
-        section3.appendChild(para6);
-        para7.textContent = pwdTest;
-        section3.appendChild(para7);
-
-
+            let result = input;
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            list3.appendChild(listItem);
+        }
     </script>
 </html>
