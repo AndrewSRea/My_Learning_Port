@@ -68,4 +68,22 @@ if (browserType.indexOf('mozilla') !== -1) {
 }
 ```
 
-3. When you know where a substring starts inside a string, and you know at which character you want it to end, [`slice()`]()
+3. When you know where a substring starts inside a string, and you know at which character you want it to end, [`slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) can be used to extract it. Try the following:
+```
+browserType.slice(0,3);
+```
+This returns "moz"--the first parameter is the character position to start extracting at, and the second parameter is the character position after the last one to be extracted. So the slice happens from the first position, up to, but not including, the last position. In this example, since the starting index is 0, the second parameter is equal to the length of the string being returned.
+
+4. Also, if you know that you want to extract all of the remaining characters in a string after a certain character, you don't have to include the second parameter! Instead, you only need to include the character position from where you want to extract the remaining characters in a string. Try the following:
+```
+browserType.slice(2);
+```
+This returns "zilla"--this is because the character position of 2 is the letter z, and beccause you didn't include a second parameter, the substring that was returns was all of the remaining characters in the string.
+
+<hr>
+
+**Note**: The second parameter of `slice()` is optional: if you don't include it, the slice ends at the end of the original string. There are other options, too: study the MDN [`slice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) page to see what else you can find out.
+
+<hr>
+
+### Changing case
