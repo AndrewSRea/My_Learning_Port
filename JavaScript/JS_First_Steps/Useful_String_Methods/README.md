@@ -121,3 +121,18 @@ In the first exercise (again, see my accompanying [string-methods-examples.html]
 2. You'll then need to write a conditional test of the form *operand1 operator operand2*. Is the thing on the left equal to the thing on the right? Or, in this case, does the method call on the left return the result on the right?
 3. Hint: In this case, it is probably more useful to test whether the method call *isn't* equal to a certain result.
 
+### Fixing capitalization
+
+In this exercise, we have the names of cities in the United Kingdom, but the capitalization is all messed up. We want you to change them so that they are all lower case, except for a capital first letter. A good way to do this is to:
+
+1. Convert the whole of the string contained in the `input` variable to lower case and store it in a new variable.
+2. Grab the first letter of the string in this new variable and store it in another variable.
+3. Using this latest variable as a substring, replace the first letter of the lowercase string with the first letter of the lowerccase string changed to upper case. Store the result of this replace procedure in another new variable.
+4. Change the value of the `result` variable to equal to the final result, not the `input`.
+
+<hr>
+
+**Note**: A hint -- the parameters of the string methods don't have to be string literals; they can also be variables, or even variables with a method being invoked on them.
+
+<hr>
+
