@@ -31,54 +31,75 @@
         <h2>Strings Skills Test 1</h2>
 
         <section class="preview-1">
-            <div class="output-1">
-                <ul>
-                    
-                </ul>
-            </div>
+            
+
+
         </section>
 
         <h2>Strings Skills Test 2</h2>
 
         <section class="preview-2">
-            <div class="output-2">
-                <ul>
+           
 
-                </ul>
-            </div>
+
         </section>
 
         <h2>Strings Skills Test 3</h2>
 
         <section class="preview-3">
-            <div class="output-3">
-                <ul>
+            
 
-                </ul>
-            </div>
+
         </section>
     </body>
     <script>
 
         // *** Strings Skills Test 1 ***
 
-        const list1 = document.querySelector('.output-1 ul');
-            
+        // Add your code here
+
+        let quoteStart = 'Don\'t judge each day by the harvest you reap ';
+        
+        let quoteEnd = 'but by the seeds that you plant.';
+
+        let finalQuote = quoteStart + quoteEnd;
+
+        // Don't edit the code below here!
+
         const section1 = document.querySelector('.preview-1');
+        let para1 = document.createElement('p');
+        para1.textContent = finalQuote;
 
-        list1.section1 = '';
-
+        section1.appendChild(para1);
         
 
         // *** Strings Skills Test 2 ***
 
-        const list2 = document.querySelector('.output-2 ul');
-        
+        let quote = 'I do not like green eggs and ham. I do not like them, Sam-I-Am.';
+        let substring = 'green eggs and ham';
+
+        // Add your code here
+
+        let quoteLength = quote.length;
+
+        let index = quote.indexOf(substring);
+
+        let revisedQuote = quote.slice(0, index) + substring + '.';
+
+        // CORRECTION: According to Mozilla's instruction the `revisedQuote` line of code should be as follows:
+        // let revisedQuote = quote.slice(0, index + substring.length + 1);
+
+        // Don't edit the code below here!
+
         const section2 = document.querySelector('.preview-2');
+        let para2 = document.createElement('p');
+        para2.textContent = `The quote is ${ quoteLength } characters long.`;
+        let para3 = document.createElement('p');
+        para3.textContent = revisedQuote;
 
-        list2.section2 = '';
+        section2.appendChild(para2);
+        section2.appendChild(para3);
 
-        
 
         // *** Strings Skills Test 3 ***
 
