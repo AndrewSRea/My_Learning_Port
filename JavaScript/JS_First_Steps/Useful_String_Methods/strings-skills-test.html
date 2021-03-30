@@ -51,6 +51,13 @@
 
 
         </section>
+
+        <h2>Strings Skills Test 4</h2>
+
+        <section class="preview-4">
+
+
+        </section>
     </body>
     <script>
 
@@ -87,6 +94,7 @@
         let revisedQuote = quote.slice(0, index) + substring + '.';
 
         // CORRECTION: According to Mozilla's instruction the `revisedQuote` line of code should be as follows:
+        //
         // let revisedQuote = quote.slice(0, index + substring.length + 1);
 
         // Don't edit the code below here!
@@ -136,6 +144,28 @@
 
         section3.appendChild(para4);
         section3.appendChild(para5);
+
+
+        // *** Strings Skills Test 4 ***
+
+        let theorem = 'Pythagorean theorem';
+
+        let a = 5;
+        let b = 8;
+
+        let myString = `Using ${ theorem }, we can work out that if the two shortest sides of a right-angled triangle have lengths of ${ a } and ${ b }, the length of the hypotenuse is ${ Math.sqrt((a * a) + (b * b)) }.`;
+
+        // CORRECTION (of sorts): My solution produces the same result, although Mozilla's solution is as follows:
+        //
+        // For the hypotenuse solution: `... ${ Math.sqrt((a**2) + (b**2)) }.`;
+
+        // Don't edit the code below here!
+
+        const section4 = document.querySelector('.preview-4');
+        let para6 = document.createElement('p');
+        para6.textContent = myString;
+
+        section4.appendChild(para6);
 
     </script>
 </html>
