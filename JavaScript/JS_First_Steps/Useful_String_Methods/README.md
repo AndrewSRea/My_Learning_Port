@@ -115,7 +115,7 @@ Each example comes with a "Reset" button, which you ccan use to reset the code i
 
 ### Filtering greeting messages
 
-In the first exercise (again, see my accompanying [string-methods-examples.html]() file), we'll start you off simple--we have an array of greeting card messages, but we want to sort them to list just the Christmas messages. We want you to fill in a conditional test inside the `if( ... )` structure, to test each string and only print it in the list if it is a Christmas message.
+In the first exercise (again, see my accompanying [string-methods-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Useful_String_Methods/string-methods-examples.html) file), we'll start you off simple--we have an array of greeting card messages, but we want to sort them to list just the Christmas messages. We want you to fill in a conditional test inside the `if( ... )` structure, to test each string and only print it in the list if it is a Christmas message.
 
 1. First, think about how you could test whether the message in each case is a Christmas message. What string is present in all of those messages, and what method could you use to test whether it is present?
 2. You'll then need to write a conditional test of the form *operand1 operator operand2*. Is the thing on the left equal to the thing on the right? Or, in this case, does the method call on the left return the result on the right?
@@ -156,7 +156,7 @@ We'd recommend doing it like this:
 
 ## Skills test
 
-I have created an accompanying [strings-skills-test.html]() file to test my knowledge of the information provided by this **"Useful string methods"** page. See the results [here]().
+I have created an accompanying [strings-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Useful_String_Methods/strings-skills-test.html) file to test my knowledge of the information provided by this **"Useful string methods"** page. See the results [here]().
 
 ## Conclusion
 
