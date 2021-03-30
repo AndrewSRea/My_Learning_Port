@@ -62,13 +62,13 @@
         
         let quoteEnd = 'but by the seeds that you plant.';
 
-        let finalQuote = quoteStart + quoteEnd;
+        let finalQuote1 = quoteStart + quoteEnd;
 
         // Don't edit the code below here!
 
         const section1 = document.querySelector('.preview-1');
         let para1 = document.createElement('p');
-        para1.textContent = finalQuote;
+        para1.textContent = finalQuote1;
 
         section1.appendChild(para1);
         
@@ -103,11 +103,39 @@
 
         // *** Strings Skills Test 3 ***
 
-        const list3 = document.querySelector('.output-3 ul');
+        let quote2 = 'I dO nOT lIke gREen eGgS anD HAM';
+
+        // Add your code here
+
+        let fixedQuote = quote2.slice(0,1) + quote2.slice(1).toLowerCase();
+
+        fixedQuote = fixedQuote.replace('green eggs and ham', 'liver and onions');
+
+        let finalQuote2 = fixedQuote + '.';
+
+        // CORRECTION: (Although I think I created a simpler, faster way of converting `quote2` to the `finalQuote2`.)
+        // But this is Mozilla's solution:
+        // 
+        // let fixedQuote = quote.toLowerCase();
+        // let firstLetter = fixedQuote.slice(0,1);
+        // fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
+        //
+        // fixedQuote = fixedQuote.replace('green eggs and ham', 'liver and onions');
+        //
+        // let fullStop = '.';
+        // let finalQuote = fixedQuote + fullStop;
+        
+
+        // Don't edit the code below here!
         
         const section3 = document.querySelector('.preview-3');
+        let para4 = document.createElement('p');
+        para4.textContent = fixedQuote;
+        let para5 = document.createElement('p');
+        para5.textContent = finalQuote2;
 
-        list3.section3 = '';        
+        section3.appendChild(para4);
+        section3.appendChild(para5);
 
     </script>
 </html>
