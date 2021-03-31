@@ -64,19 +64,24 @@
         list1.section1 = '';
 
         // number 1
-                        'Underpants:6.99'
-                        'Socks:5.99'
-                        'T-shirt:14.99'
-                        'Trousers:31.99'
-                        'Shoes:23.99'
+        let products = ['Underpants:6.99',
+                        'Socks:5.99',
+                        'T-shirt:14.99',
+                        'Trousers:31.99',
+                        'Shoes:23.99'];
 
-        for (let i = 0; i <=0; i++) { // number 2
+        for (let i = 0; i < products.length; i++) { // number 2
             // number 3
+            let productsArray = products[i].split(':');
+            let name = productsArray[0];
+            let price = Number(productsArray[1]);
 
             // number 4
+            
+            total += price;
 
             // number 5
-            let itemText = 0;
+            let itemText = name + ' -- $' + price;
 
             const listItem = document.createElement('li');
             listItem.textContent = itemText;
@@ -84,7 +89,15 @@
         }
 
         totalBox.textContent = 'Total: $' + total.toFixed(2);
-        
+
+        /* To be truthful, some mistakes that I made with the code above: 
+           
+           1) I missed the instructions to convert the for loop conditional test from `i <= 0` to a conditional test which stops
+              the loop when `i` is no longer less than the `products` array's length.
+           2) The instructions weren't clear about creating variables in which to store the `split` array items (`name` and `price`).
+
+        */
+
 
         // *** Strings Skills Test 2 ***
 
