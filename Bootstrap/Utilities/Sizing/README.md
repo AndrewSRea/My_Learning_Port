@@ -23,3 +23,80 @@ Width and height utilities are generated from the utility API in `_utilities.scs
 ```
 You can also use `max-width: 100%;` and `max-height: 100%;` utilities as needed.
 ```
+<img src="..." class="mw-100" alt="...">
+```
+```
+<div style="height: 100px; background-color: rgba(255,0,0,.1);">
+    <div class="mh-100" style="width: 100px; height: 200px; background-color: rgba(0,0,255,.1);">Max-height 100%</div>
+</div>
+```
+
+## Relative to the viewport
+
+You can also use utilities to set the width and height relative to the viewport.
+```
+<div class="min-vw-100">Min-width 100vw</div>
+<div class="min-vh-100">Min-height 100vh</div>
+<div class="vw-100">Width 100vw</div>
+<div class="vh-100">Height 100vh</div>
+```
+
+## Sass
+
+### Utilities API
+
+Sizing utilities are declared in our utilities API is `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
+```
+"width": (
+    property: width,
+    class: w,
+    values: (
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto
+    )
+),
+"max-width": (
+    property: max-width,
+    class: mw,
+    values: (100: 100%)
+),
+"viewport-width": (
+    property: width,
+    class: vw,
+    values: (100: 100vw)
+),
+"min-viewport-width": (
+    property: min-width,
+    class: min-vw,
+    values: (100: 100vw)
+),
+"height": (
+    property: height,
+    class: h,
+    values: (
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto
+    )
+),
+"max-height": (
+    property: max-height,
+    class: mh,
+    values: (100: 100%)
+),
+"viewport-height": (
+    property: height,
+    class: vh,
+    values: (100: 100vh)
+),
+"min-viewport-height": (
+    property: min-height,
+    class: min-vh,
+    values: (100: 100vh)
+),
+```
