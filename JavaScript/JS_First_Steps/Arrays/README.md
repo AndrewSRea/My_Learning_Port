@@ -117,3 +117,55 @@ dogNames.toString();    // Rocket,Flash,Bella,Slugger
 
 ### Adding and removing array items
 
+We've not yet covered adding and removing aray items--let us look at this now. We'll use the `myArray` array we ended up with in the last section. If you've not already followed that section, create the array first in your console:
+```
+let myArray = ['Manchester', 'London', 'Liverpool', 'Birmingham', 'Leeds', 'Carlisle'];
+```
+First of all, to add or remove an item at the end of an array, we can use [`push()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push) and [`pop()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) respectively.
+
+1. Let's use `push()` first--note that you need to include one or more items that you want to add to the end of your array. Try this:
+```
+myArray.push('Cardiff');
+myArray;
+myArray.push('Bradford', 'Brighton');
+myArray;
+```
+2. The new length of the array is returned when the method call completes. If you wanted to store the new array length ion a variable, you could do something like this:
+```
+let newLength = myArray.push('Bristol');
+myArray;
+newLength;
+```
+3. Removing the last item from the array is as simple as running `pop()` on it. Try this:
+```
+myArray.pop();
+```
+4. The item that was removed is returned when the method call completes. To save that item in a new variable, you could do this:
+```
+let removedItem = myArray.pop();
+myArray;
+removedItem;
+```
+
+[`unshift()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) and [`shift()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) work in exactly the same way as `push()` and `pop()`, respectively, except that they work on the beginning of the array, not the end.
+
+1. First `unshift()`--try the following commands:
+```
+myArray.unshift('Edinburgh');
+myArray;
+```
+2. Now `shift()`; try these!
+```
+let removedItem = myArray.shift();
+myArray;
+removedItem;
+```
+
+## Active learning: Printing those products!
+
+Let's return to the example we described earlier--printing out product names and prices on an invoice, then totaling the prices and printing them at the bottom. In the editable example (see my accompanying [arrays-active-learning.html]() file), there are comments containing numbers--each of these marks a place where you have to add something to the code. They are as follows:
+
+1. Below the `// number 1` comment are a number of strings, each one containing a product name and price separated by a colon. We'd like you to turn this into an array and store it in an array called `products`.
+2. On the same line as the `// number 2` comment is the beginning of a for loop. In this line, we currently have `i <= 0`, which is a conditional test that cause the [for loop]() to only run once, because it is saying "stop when `i` is no longer less than or equal to 0", and `i` starts at 0. We'd like you to replace this with a conditional test that stops the loop when `i` is no longer less than the `products` array's length.
+3. Just below the `// number 3` comment, we want you to write a line of code that splits the current array item (`name:price`) into two separate items, one containing just the name and one containing just the price. If you are not sure how to do this, consult the [Useful string methods]() article for some help, or even better, look at the [Converting between strings and arrays]() section of this article.
+4. 
