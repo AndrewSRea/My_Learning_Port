@@ -68,8 +68,52 @@ for (let i = 0; i < sequence.length; i++) {
     console.log(sequence[i]);
 }
 ```
-You'll learn about loops properly later on (in the [Looping code]() article), but briefly, this code is saying:
+You'll learn about loops properly later on (in the [Looping code](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code) article), but briefly, this code is saying:
 
 1. Start looping at item number 0 in the array.
 2. Stop looping at the item number equal to the length of the array. This works for an array of any length but in this case, it stops looping at item number 7 (this is good, as the last item--which we want the loop to include--is item 6).
-3. For each item, print it out to the browser console with [`console.log()`]().
+3. For each item, print it out to the browser console with [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log).
+
+## Some useful array methods
+
+In this section, we'll look at some rather useful array-related methods that allow us to split strings into array items and vice versa, and add new items into arrays.
+
+### Converting between strings and arrays
+
+Often you'll be presented with some raw data contained in a big long string, and you might want to separate the useful items out into a more useful form and then do things to them, like display them in a data table. To do this, we can use the [`split()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) method. In its simplest form, this takes a single parameter, the character you want to separate the string at, and returns the substrings between the separator as iteems in an array.
+
+<hr>
+
+**Note**: Okay, this is technically a string method, not an array method, but we've put it in with arrays as it goes well here.
+
+<hr>
+
+1. Let's play with this, to see how it works. First, create a string in your console:
+```
+let myData = 'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle';
+```
+2. Now let's split it at each comma:
+```
+let myArray = myData.split(',');
+myArray;
+```
+3. Finally, try finding the length of your new array, and retrieving some items from it:
+```
+myArray.length;
+myArray[0];    // the first item in the array
+myArray[1];    // the second item in the array
+myArray[myArray.length-1];    // the last item in the array
+```
+4. You can also go the opposite way using the [`join()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) method. Try the following:
+```
+let myNewString = myArray.join(',');
+myNewString;
+```
+5. Another way of converting an array to a string is to use the [`toString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString) method. `toString()` is arguably simpler than `join()` as it doesn't take a parameter, but more limiting. With `join()`, you can specify different separators, whereas `toString()` always uses a comma. (Try running Step 4 with a different character than a comma.)
+```
+let dogNames = ['Rocket','Flash','Bella','Slugger'];
+dogNames.toString();    // Rocket,Flash,Bella,Slugger
+```
+
+### Adding and removing array items
+
