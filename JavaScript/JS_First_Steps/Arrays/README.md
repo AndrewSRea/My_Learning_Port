@@ -28,4 +28,48 @@ let random = ['tree', 795, [0, 1, 2]];
 
 ### Accessing and modifying array items
 
-You can then access individual items in the array using bracket notation, in the same way that you [accessed the letters in a string]().
+You can then access individual items in the array using bracket notation, in the same way that you [accessed the letters in a string](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#retrieving-a-specific-string-character).
+
+1. Enter the following into your console:
+```
+shopping[0];
+// returns "bread"
+```
+2. You can also modify an item in an array by giving a single array item a new value. Try this:
+```
+shopping[0] = 'tahini';
+shopping;
+// shopping will now return [ "tahini", "milk", "cheese", "hummus", "noodles" ]
+```
+
+<hr>
+
+**Note**: We've said it before, but just as a reminder--computers start counting from 0!
+
+<hr>
+
+3. Note that an array inside an array is called a multidimensional array. You can access an item inside an array that is itself inside another array by chaining two sets of square brackets together. For example, to access one of the items inside the array that is the third item inside the `random` array (see previous section), we could do something like this:
+```
+random[2][2];
+```
+4. Try making some more modifications to your array examples before moving on. Play around a bit, and see what works and what doesn't.
+
+### Finding the length of an array
+
+You can find out the length of an array (how many items are in it) in exactly the same way as you find out the length (in characters) of a string--by using the [`length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length) property. Try the following:
+```
+shopping.length;
+// should return 5
+```
+This has other uses, but it is most commonly used to tell a loop to keep going until it has looped through all the items in an array. So, for example:
+```
+let sequence = [1, 1, 2, 3, 5, 8, 13];
+for (let i = 0; i < sequence.length; i++) {
+    console.log(sequence[i]);
+}
+```
+You'll learn about loops properly later on (in the [Looping code]() article), but briefly, this code is saying:
+
+1. Start looping at item number 0 in the array.
+2. Stop looping at the item number equal to the length of the array. This works for an array of any length but in this case, it stops looping at item number 7 (this is good, as the last item--which we want the loop to include--is item 6).
+3. For each item, print it out to the browser console with [`console.log()`]().
