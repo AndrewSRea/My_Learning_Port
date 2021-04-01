@@ -25,6 +25,10 @@
                 margin: 15px 0 20px 15px;
                 padding: 10px;
             }
+
+            .output-2 {
+                margin-left: 15px;
+            }
         </style>
     </head>
     <body>
@@ -43,13 +47,13 @@
             </div>
         </section>
 
-        <h2>Strings Skills Test 2</h2>
+        <h2>Active Learning 2: Top 5 searches</h2>
 
-        <section class="preview-2">
-           
-
-
-        </section>
+        <div class="output-2" style="min-height: 150px;">
+            <input type="text">
+            <button>Search</button>
+            <ul></ul>
+        </div>
 
     </body>
     <script>
@@ -101,7 +105,42 @@
 
         // *** Strings Skills Test 2 ***
 
-        
+        const list2 = document.querySelector('.output-2 ul');
+        const searchInput = document.querySelector('.output-2 input');
+        const searchBtn = document.querySelector('.output-2 button');
+
+        list2.div = '';
+
+        let myHistory = [];
+
+        searchBtn.onclick = function() {
+            // we will only allow a term to be entered if the search input isn't empty
+            if (searchInput.value !== '') {
+                // number 1
+
+                // empty the list so that we don't display duplicate entries
+                // the display is regenerated every time a search term is entered.
+                list2.div = '';
+
+                // loop through the array, and display all the search terms in the list
+                for (let i = 0; i < myHistory.length; i++) {
+                    itemText = myHistory[i];
+                    const listItem = document.createElement('li');
+                    listItem.textContent = itemText;
+                    list2.appendChild(listItem);
+                }
+
+                // If the array length is 5 or more, remove the oldest search term
+                if (myHistory.length >= 5) {
+                    // number 2
+
+                }
+
+                // empty the search input and focus it, ready for the next term to be entered
+                searchInput.value = '';
+                searchInput.focus();
+            }
+        }
 
     </script>
 </html>
