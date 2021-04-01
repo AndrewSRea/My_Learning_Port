@@ -49,12 +49,12 @@
 
         <h2>Active Learning 2: Top 5 searches</h2>
 
-        <div class="output-2" style="min-height: 150px;">
+        <div class="output-2">
             <input type="text">
             <button>Search</button>
             <ul></ul>
         </div>
-
+       
     </body>
     <script>
 
@@ -109,7 +109,7 @@
         const searchInput = document.querySelector('.output-2 input');
         const searchBtn = document.querySelector('.output-2 button');
 
-        list2.div = '';
+        list2.innerHTML = '';
 
         let myHistory = [];
 
@@ -117,10 +117,11 @@
             // we will only allow a term to be entered if the search input isn't empty
             if (searchInput.value !== '') {
                 // number 1
+                myHistory.unshift(searchInput.value);
 
                 // empty the list so that we don't display duplicate entries
                 // the display is regenerated every time a search term is entered.
-                list2.div = '';
+                list2.innerHTML = '';
 
                 // loop through the array, and display all the search terms in the list
                 for (let i = 0; i < myHistory.length; i++) {
@@ -133,7 +134,7 @@
                 // If the array length is 5 or more, remove the oldest search term
                 if (myHistory.length >= 5) {
                     // number 2
-
+                    myHistory.pop();
                 }
 
                 // empty the search input and focus it, ready for the next term to be entered
@@ -141,6 +142,23 @@
                 searchInput.focus();
             }
         }
+
+        /* Again, to be truthful, I was getting a duplicate list every time I entered a search item and pressed "Search".
+           For example, when I entered "puppies", "puppies" would show as the first list item:
+
+           * puppies
+
+           Then when I entered "kitties", the list would look like this:
+
+           * puppies
+           * kitties
+           * puppies
+           
+           This was due to attaching my `list2` to a variable `section2` created from the `document.querySelector('output-2')`.
+           I didn't know I could use `innerHTML` to which I could attach my list. I thought it was reserved for Mozilla's
+           "playable-code", or a field I would have to create on my own in which I could type my own code in my browser.
+
+        */
 
     </script>
 </html>
