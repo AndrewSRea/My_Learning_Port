@@ -21,7 +21,7 @@
 
             section[class|=preview] {
                 border: 1px solid #828282;
-                width: 25%; 
+                width: 50%; 
                 margin: 15px 0 20px 15px;
                 padding: 10px;
             }
@@ -59,84 +59,74 @@
 
         // Add your code here
 
-        let quoteStart = 'Don\'t judge each day by the harvest you reap ';
-        
-        let quoteEnd = 'but by the seeds that you plant.';
+        let myArray = ['Spider-Man',
+                       'Daredevil',
+                       'Wolverine',];
 
-        let finalQuote1 = quoteStart + quoteEnd;
+        myArray[0] = 'Deadpool';
+        myArray[1] = 'Beast';
+        myArray.unshift('Iceman');
 
         // Don't edit the code below here!
 
         const section1 = document.querySelector('.preview-1');
         let para1 = document.createElement('p');
-        para1.textContent = finalQuote1;
+        para1.textContent = `Array: ${ myArray }`;
 
         section1.appendChild(para1);
         
 
         // *** Arrays Skills Test 2 ***
 
-        let quote = 'I do not like green eggs and ham. I do not like them, Sam-I-Am.';
-        let substring = 'green eggs and ham';
-
         // Add your code here
 
-        let quoteLength = quote.length;
+        let myString = 'Ryu+Ken+Chun-Li+Cammy+Guile+Sakura+Sagat+Juri';
 
-        let index = quote.indexOf(substring);
+        let myArray2 = myString.split('+');
 
-        let revisedQuote = quote.slice(0, index) + substring + '.';
+        let arrayLength = myArray2.length;
 
-        // CORRECTION: According to Mozilla's instruction the `revisedQuote` line of code should be as follows:
-        //
-        // let revisedQuote = quote.slice(0, index + substring.length + 1);
+        let lastItem = myArray2.pop();
 
         // Don't edit the code below here!
 
         const section2 = document.querySelector('.preview-2');
         let para2 = document.createElement('p');
-        para2.textContent = `The quote is ${ quoteLength } characters long.`;
+        para2.textContent = `Array: ${ myArray2 }`;
+
         let para3 = document.createElement('p');
-        para3.textContent = revisedQuote;
+        para3.textContent = `The length of the array is ${ arrayLength }.`;
+
+        let para4 = document.createElement('p');
+        para4.textContent = `The last item in the array is "${ lastItem }".`;
 
         section2.appendChild(para2);
         section2.appendChild(para3);
+        section2.appendChild(para4);
 
 
         // *** Arrays Skills Test 3 ***
 
-        let quote2 = 'I dO nOT lIke gREen eGgS anD HAM';
+        let myArray3 = [ "Ryu", "Ken", "Chun-Li", "Cammy", "Guile", "Sakura", "Sagat", "Juri" ];
 
         // Add your code here
 
-        let fixedQuote = quote2.slice(0,1) + quote2.slice(1).toLowerCase();
+        myArray3.pop();
+        myArray3.shift("Pikachu", "Bulbasaur");
 
-        fixedQuote = fixedQuote.replace('green eggs and ham', 'liver and onions');
+        for (i = 0; i < myArray3.length; i++) {
+            myArray3[i] += `(${ myArray3[i].indexOf() })`;
+        }
 
-        let finalQuote2 = fixedQuote + '.';
-
-        // CORRECTION: (Although I think I created a simpler, faster way of converting `quote2` to the `finalQuote2`.)
-        // But this is Mozilla's solution:
-        // 
-        // let fixedQuote = quote.toLowerCase();
-        // let firstLetter = fixedQuote.slice(0,1);
-        // fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
-        //
-        // fixedQuote = fixedQuote.replace('green eggs and ham', 'liver and onions');
-        //
-        // let fullStop = '.';
-        // let finalQuote = fixedQuote + fullStop;
-        
+        let myString2 = myArray3.join(' - ');
 
         // Don't edit the code below here!
         
         const section3 = document.querySelector('.preview-3');
-        let para4 = document.createElement('p');
-        para4.textContent = fixedQuote;
-        let para5 = document.createElement('p');
-        para5.textContent = finalQuote2;
 
-        section3.appendChild(para4);
+        let para5 = document.createElement('p');
+        para5.textContent = myString2;
+
         section3.appendChild(para5);
 
     </script>
