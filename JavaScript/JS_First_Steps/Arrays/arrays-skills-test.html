@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test Your Skills: Arrays</title>
+        <style>
+            p {
+                color: purple;
+                margin: 0.5em 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 25%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Arrays Skills Test 1</h2>
+
+        <section class="preview-1">
+            
+
+
+        </section>
+
+        <h2>Arrays Skills Test 2</h2>
+
+        <section class="preview-2">
+           
+
+
+        </section>
+
+        <h2>Arrays Skills Test 3</h2>
+
+        <section class="preview-3">
+            
+
+
+        </section>
+
+    </body>
+    <script>
+
+        // *** Arrays Skills Test 1 ***
+
+        // Add your code here
+
+        let quoteStart = 'Don\'t judge each day by the harvest you reap ';
+        
+        let quoteEnd = 'but by the seeds that you plant.';
+
+        let finalQuote1 = quoteStart + quoteEnd;
+
+        // Don't edit the code below here!
+
+        const section1 = document.querySelector('.preview-1');
+        let para1 = document.createElement('p');
+        para1.textContent = finalQuote1;
+
+        section1.appendChild(para1);
+        
+
+        // *** Arrays Skills Test 2 ***
+
+        let quote = 'I do not like green eggs and ham. I do not like them, Sam-I-Am.';
+        let substring = 'green eggs and ham';
+
+        // Add your code here
+
+        let quoteLength = quote.length;
+
+        let index = quote.indexOf(substring);
+
+        let revisedQuote = quote.slice(0, index) + substring + '.';
+
+        // CORRECTION: According to Mozilla's instruction the `revisedQuote` line of code should be as follows:
+        //
+        // let revisedQuote = quote.slice(0, index + substring.length + 1);
+
+        // Don't edit the code below here!
+
+        const section2 = document.querySelector('.preview-2');
+        let para2 = document.createElement('p');
+        para2.textContent = `The quote is ${ quoteLength } characters long.`;
+        let para3 = document.createElement('p');
+        para3.textContent = revisedQuote;
+
+        section2.appendChild(para2);
+        section2.appendChild(para3);
+
+
+        // *** Arrays Skills Test 3 ***
+
+        let quote2 = 'I dO nOT lIke gREen eGgS anD HAM';
+
+        // Add your code here
+
+        let fixedQuote = quote2.slice(0,1) + quote2.slice(1).toLowerCase();
+
+        fixedQuote = fixedQuote.replace('green eggs and ham', 'liver and onions');
+
+        let finalQuote2 = fixedQuote + '.';
+
+        // CORRECTION: (Although I think I created a simpler, faster way of converting `quote2` to the `finalQuote2`.)
+        // But this is Mozilla's solution:
+        // 
+        // let fixedQuote = quote.toLowerCase();
+        // let firstLetter = fixedQuote.slice(0,1);
+        // fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
+        //
+        // fixedQuote = fixedQuote.replace('green eggs and ham', 'liver and onions');
+        //
+        // let fullStop = '.';
+        // let finalQuote = fixedQuote + fullStop;
+        
+
+        // Don't edit the code below here!
+        
+        const section3 = document.querySelector('.preview-3');
+        let para4 = document.createElement('p');
+        para4.textContent = fixedQuote;
+        let para5 = document.createElement('p');
+        para5.textContent = finalQuote2;
+
+        section3.appendChild(para4);
+        section3.appendChild(para5);
+
+    </script>
+</html>
