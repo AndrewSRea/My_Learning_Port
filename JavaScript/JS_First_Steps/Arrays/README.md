@@ -189,4 +189,21 @@ To complete the app, we need you to:
 1. Add a line below the `// number 1` comment that adds the current value entered into the search input to the start of the array. This can be retrieved using `searchInput.value`.
 2. Add a line below the `// number 2` comment that removes the value currently at the end of the array.
 
-(See my accompanying [arrays-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Arrays/arrays-active-learning.html) file to see this action.)
+(See my accompanying [arrays-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Arrays/arrays-active-learning.html) file to see this in action.)
+
+## Skills test
+
+I have created an accompanying [arrays-skills-test.html]() file to test my knowledge of the information provided by this **"Arrays"** page. See the results [here]().
+
+## Conclusion
+
+After reading through this article, we are sure you will agree that arrays seem pretty darn useful; you'll see them crop up everywhere in JavaScript, often in association with loops in order to do the same thing to every item in an array. We'll be teaching you all the useful basics there are to know about loops in the next module but for now, you should give yourself a clap and take a well-deserved break; you've worked through all the articles in this module!
+
+The only thing left to do is work through this module's assessment, which will test your understanding of the articles that came before it.
+
+## See also
+
+* [Indexed collections](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections) -- an advanced level guide to arrays and their cousins, typed arrays.
+* [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) -- the `Array` object reference page--for a detailed reference guide to the features discussed in this page, and many more.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Next page]]()
