@@ -171,3 +171,22 @@ Let's return to the example we described earlier--printing out product names and
 4. As part of the above line of code, you'll also want to convert the pricce from a string to a number. If you can't remember how to do this, check out the [first strings article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Strings_in_JS#handling-text----strings-in-javascript).
 5. There is a variable called `total` that is created and given a value of 0 at the top of the code. Inside the loop (below `// number 4`), we want you to add a line that adds the current item price to that total in each iteration of the loop, so that at the end of the code the correct total is printed onto the invoice. You might need an [assignment operator](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#assignment-operators) to do this.
 6. We want you to change the line just below `// number 5` so that the `itemText` variable is made equal to "current item name -- $current item price". For example, "Shoes -- $23.99" in each case, so the correct information for each item is printed on the invoice, This is just simple string concatenation, which should be familiar to you.
+
+## Active learning: Top 5 searches
+
+A good use for array methods like `push()` and `pop()` is when you are maintaining a record of currently active items in a web app. In an animated scene, for example, you might have an array of objects representing the background graphics currently displayed, and you might only want 50 displayed at once, for performance or clutter reasons. As new objects are created and added to the array, older ones can be deleted from the array to maintain the desired number. 
+
+In this example, we're going to show a much simpler use--here we're giving you a fake search site, with a search box. The idea is that when terms are entered in the search box, the top 5 previous search terms are displayed in the list. When the number of terms goes over 5, the last term starts being deleted each time a new term is added to the top, so the 5 previous terms are always displayed.
+
+<hr>
+
+**Note**: In a real search app, you'd probably be able to click the previous search terms to return to previous searches, and it would be able to display actual search results! We are just keeping it simple for now.
+
+<hr>
+
+To complete the app, we need you to:
+
+1. Add a line below the `// number 1` comment that adds the current value entered into the search input to the start of the array. This can be retrieved using `searchInput.value`.
+2. Add a line below the `// number 2` comment that removes the value currently at the end of the array.
+
+(See my accompanying [arrays-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Arrays/arrays-active-learning.html) file to see this action.)
