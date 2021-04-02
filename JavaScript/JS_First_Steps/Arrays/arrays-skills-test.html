@@ -114,9 +114,18 @@
         myArray3.pop();
         myArray3.push("Pikachu", "Bulbasaur");
 
-        for (i = 0; i < myArray3.length; i++) {
-            myArray3[i] += `(${ myArray3[i].indexOf() })`;
-        }
+        // INCORRECT FUNCTION: See below...
+
+        // myArray3.forEach(function(numberAdd) {
+        //     myArray3[i] += `(${ myArray3[i].indexOf() })`;
+        // });
+
+        // CORRECT FUNCTION:
+
+        myArray3.forEach(function(element, index) {
+            let newElement = `${ element } (${index})`;
+            myArray3[index] = newElement;
+        });
 
         let myString2 = myArray3.join(' - ');
 
@@ -128,6 +137,15 @@
         para5.textContent = myString2;
 
         section3.appendChild(para5);
+
+
+        /*
+            I never would have been able to figure the CORRECT FUNCTION above. 
+            At first, I was trying to use a for loop, to no avail. Then, through an internet search using the instructions,
+            "Go over each item in the array and add its index number after the name inside the parentheses", I came across
+            the `forEach()` method, which seemed a bit too advanced for someone like me who still feels like a novice to
+            JavaScript. Hopefully, the `forEach()` method will be covered in later MDN modules.
+        */
 
     </script>
 </html>
