@@ -41,6 +41,12 @@ Where *size* is one of:
 
 (You can add more sizes by adding entries to the `$spacers` Sass map variable.)
 
+<hr>
+
+**Note**: I have been using these margin and padding spacing classes throughout all of my HTML code examples within this Bootstrap folder.
+
+<hr>
+
 ### Examples
 
 Here are some representative examples of these classes:
@@ -57,3 +63,10 @@ Here are some representative examples of these classes:
     padding-left: ($spacer * .5) !important;
     padding-right: ($spacer * .5) !important;
 }
+
+.p-3 {
+    padding: $spacer !important;
+}
+```
+
+### Horizontal centering
