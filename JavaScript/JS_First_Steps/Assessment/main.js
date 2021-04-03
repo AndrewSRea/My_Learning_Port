@@ -1,0 +1,1 @@
+// Adding a JS file to accompany the `index.html` file
