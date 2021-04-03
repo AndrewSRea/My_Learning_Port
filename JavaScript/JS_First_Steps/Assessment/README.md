@@ -55,7 +55,10 @@ Placing the event handler and incomplete fuction:
 
 Completing the `result()` function:
 
-
+1. Create a new variable called `newStory`, and set its value to equal `storyText`. This is needed so we can create a new random story each time the button is pressed and the function is run. If we made changes directly to `storyText`, we'd only be able to generate a new story once.
+2. Create three new variables called `xItem`, `yItem`, and `zItem`, and make them equal to the result of calling `randomValueFromArray()` on your three arrays (the result in each case will be a random item out of each array it is called on). For example, you can call the function and get it to return one random string out of `insertX` by writing `randomValueFromArray(insertX)`.
+3. Next, we want to replace the three placeholders in the `newStory` string--`:insertx:`, `:inserty:`, and `:insertz:`--with the strings stored in `xItem`, `yItem`, and `zItem`. There is a particular string method that will help you here--in each case, make the call to the method equal to `newStory`, so each time it is called, `newStory` is made equal to itself, but with substitutions made. So each time the button is pressed, these placeholders are each replaced with a random silly string. As a further hint, the method in question only replaces the first instance of the substring it finds, so you might need to make one of the calls twice.
+4. 
 
 
 
