@@ -80,3 +80,26 @@ Additionally, Bootstrap also includes an `.mx-auto` class for horizontally cente
 
 ## Negative margin
 
+In CSS, `margin` properties can utilize negative values (`padding` cannot). These negative margins are **disabled by default**, but can be enabled in Sass by setting `$enable-negative-margins: true`.
+
+The syntax is nearly the same as the default, positive margin utilities, but with the addition of `n` before the requested size. Here's an example class that's the opposite of `.mt-1`:
+```
+.mt-n1 {
+    margin-top: -0.25rem !important;
+}
+```
+
+## Gap
+
+When using `display: grid`, you can make use of `gap` utilities on the parent grid container. This can save on having to add margin utilities to individual grid items (children of a `display: grid` container). Gap utilities are responsive by default, and are generated via our utilities API, based on the `$spacers` Sass map.
+```
+<div class="d-grid gap-3">
+    <div class="p-2 bg-light border">Grid item 1</div>
+    <div class="p-2 bg-light border">Grid item 2</div>
+    <div class="p-2 bg-light border">Grid item 3</div>
+</div>
+```
+Support includes responsive options for all of Bootstrap's grid breakpoints, as well as six sizes from the `$spacers` map (`0-5`). There is no `.gap-auto` utility class as it's effectively the same as `.gap-0`.
+
+## Sass
+
