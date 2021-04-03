@@ -44,14 +44,19 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- When using `display: grid`, you can make use of `gap` utilities on the parent grid container.  -->
 
         <div class="container">
             <h3 class="mb-3">Spacing Utility Example: 02</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">When using <code>display: grid</code>, you can make use of <code>gap</code> utilities on the parent 
+                grid container.</h4>
 
-            
+            <div class="d-grid gap-3">
+                <div class="p-2 bg-light border">Grid item 1</div>
+                <div class="p-2 bg-light border">Grid item 2</div>
+                <div class="p-2 bg-light border">Grid item 3</div>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
