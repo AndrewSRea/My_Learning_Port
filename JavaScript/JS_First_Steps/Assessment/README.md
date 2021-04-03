@@ -13,7 +13,7 @@ Alternatively, you could use a site like [JSBin](https://jsbin.com/?html,output)
 
 <hr>
 
-**Note**: If you get stuck, then ask the Mozilla Developer Network for help--see the [Assessment or further help]() section at the bottom of this page.
+**Note**: If you get stuck, then ask the Mozilla Developer Network for help--see the [Assessment or further help](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Assessment#assessment-or-further-help) section at the bottom of this page.
 
 <hr>
 
@@ -88,7 +88,3 @@ If you would like your work assessed, or are stuck and want to ask for help:
     - A link to the actual task or assessment page, so the Mozilla assesors can find the question you want help with.
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Overview: First steps]]() - [[On to JavaScript building blocks]]()
-
-
-
-<!-- Don't forget to link to this "Assessment or further help" from the top of the page. -->
