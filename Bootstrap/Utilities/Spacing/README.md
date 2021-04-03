@@ -103,3 +103,152 @@ Support includes responsive options for all of Bootstrap's grid breakpoints, as 
 
 ## Sass
 
+### Maps
+
+Spacing utilities are declared via Sass map and then generated with Bootstrap's utilities API.
+```
+$spacer: 1rem;
+$spacers: (
+    0: 0,
+    1: $spacer / 4,
+    2: $spacer / 2,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+);
+
+$negative-spacers: if($enable-negative-margins, negativity-map($spacers), null);
+```
+
+### Utilities API
+
+Spacing utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
+```
+"margin": (
+    responsive: true,
+    property: margin,
+    class: m,
+    values: map-merge($spacers, (auto: auto))
+),
+"margin-x": (
+    responsive: true,
+    property: margin-right margin-left,
+    class: mx,
+    values: map-merge($spacers, (auto: auto))
+),
+"margin-y": (
+    responsive: true,
+    property: margin-top margin-bottom,
+    class: my,
+    values: map-merge($spacers, (auto: auto))
+),
+"margin-top": (
+    responsive: true,
+    property: margin-top,
+    class: mt,
+    values: map-merge($spacers, (auto: auto))
+),
+"margin-end": (
+    responsive: true,
+    property: margin-right,
+    class: me,
+    values: map-merge($spacers, (auto: auto))
+),
+"margin-bottom": (
+    responsive: true,
+    property: margin-bottom,
+    class: mb,
+    values: map-merge($spacers, (auto: auto))
+),
+"margin-start": (
+    responsive: true,
+    property: margin-left,
+    class: ms,
+    values: map-merge($spacers, (auto: auto))
+),
+// Negative margin utilities
+"negative-margin": (
+    responsive: true,
+    property: margin,
+    class: m,
+    values: $negative-spacers
+),
+"negative-margin-x": (
+    responsive: true,
+    property: margin-right margin-left,
+    class: mx,
+    values: $negative-spacers
+),
+"negative-margin-y": (
+    responsive: true,
+    property: margin-top margin-bottom,
+    class: my,
+    values: $negativev-spacers
+),
+"negative-margin-top": (
+    responsive: true,
+    property: margin-top,
+    class: mt,
+    values: $negative-spacers
+),
+"negative-margin-end": (
+    responsive: true,
+    property: margin-right,
+    class: me,
+    values: $negative-spacers
+),
+"negative-margin-bottom": (
+    responsive: true,
+    property: margin-bottom,
+    class: mb,
+    values: $negative-spacers
+),
+"negative-margin-start": (
+    responsive: true,
+    property: margin-left,
+    class: ms,
+    values: $negative-spacers
+),
+// Padding utilities
+"padding": (
+    responsive: true,
+    property: padding,
+    class: p,
+    values: $spacers
+),
+"padding-x": (
+    responsive: true,
+    property: padding-right padding-left,
+    class: px,
+    values: $spacers
+),
+"padding-y": (
+    responsive: true,
+    property: padding-top padding-bottom,
+    class: py,
+    values: $spacers
+),
+"padding-top": (
+    responsive: true,
+    property: padding-top,
+    class: pt,
+    values: $spacers
+),
+"padding-end": (
+    responsive: true,
+    property: padding-right,
+    class: pe,
+    values: $spacers
+),
+"padding-bottom": (
+    responsive: true,
+    property: padding-bottom,
+    class: pb,
+    values: $spacers
+),
+"padding-start": (
+    responsive: true,
+    property: padding-left,
+    class: ps,
+    values: $spacers
+),
