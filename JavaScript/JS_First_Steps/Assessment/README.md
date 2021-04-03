@@ -35,9 +35,18 @@ The following sections describe what you need to do.
 Basic setup:
 
 1. Create a new file ccalled `main.js`, in the same directory as your `index.html` file.
-2. Apply the external JavaScript file to your HTML by inserting a [`<script>`]() element into your HTML referencing `main.js`. Put it just before the closing `</body>` tag.
+2. Apply the external JavaScript file to your HTML by inserting a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element into your HTML referencing `main.js`. Put it just before the closing `</body>` tag.
 
 Initial variables and functions:
+
+1. In the raw text file, copy all of the code underneath the heading "1. COMPLETE VARIABLE AND FUNCTION DEFINITIONS" and paste it into the top of the `main.js` file. This gives you three variables that store references to the "Enter custom name" text field (`customName`), the "Generate random story" button (`randomize`), and the `<p>` element at the bottom of the HTML body that the story will be copied into (`story`), respectively. In addition, you've got a function called `randomValueFromArray()` that takes an array, and returns one of the items stored inside the array at random.
+2. Now look at the second section of the raw text file--"2. RAW TEXT STRINGS". This contains text strings that will act as input into our program. We'd like you to contain these inside variables inside `main.js`:
+    1. Store the first big, long string of text inside a variable called `storyText`.
+    2. Store the first set of three strings inside an array called `insertX`.
+    3. Store the second set of three strings inside an array called `insertY`.
+    4. Store the third set of three strings inside an array called `insertZ`.
+
+Placing the event handler and incomplete fuction:
 
 1. 
 
