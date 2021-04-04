@@ -18,6 +18,15 @@
             h3 {
                 text-decoration: underline;
             }
+
+            .container-fluid {
+                border: 1px solid #d3d3d3;
+            }
+
+            .bd-highlight {
+                background-color: rgba(86,61,124,0.15);
+                border: 1px solid rgba(86,61,124,0.15);
+            }
         </style>
    </head>
    <body>
@@ -34,27 +43,37 @@
             <h4 class="mb-3">Easily realign text to components with text alignment classes. For start, end, and center alignment,
                 responsive classes are available that use the same viewport width breakpoints as the grid system.</h4>
 
-            <hr>
+            <div class="container-fluid p-4">
+                <p class="text-start">Start aligned text on all viewport sizes.</p>
+                <p class="text-center">Center aligned text on all viewport sizes.</p>
+                <p class="text-end">End aligned text on all viewport sizes.</p>
 
-            <p class="text-start">Start aligned text on all viewport sizes.</p>
-            <p class="text-center">Center aligned text on all viewport sizes.</p>
-            <p class="text-end">End aligned text on all viewport sizes.</p>
-
-            <p class="text-sm-start">Start aligned text on viewports sized SM (small) or wider.</p>
-            <p class="text-md-start">Start aligned text on viewports sized MD (medium) or wider.</p>
-            <p class="text-lg-start">Start aligned text on viewports sized LG (large) or wider.</p>
-            <p class="text-xl-start">Start aligned text on viewports sized XL (extra-large) or wider.</p>
+                <p class="text-sm-start">Start aligned text on viewports sized SM (small) or wider.</p>
+                <p class="text-md-start">Start aligned text on viewports sized MD (medium) or wider.</p>
+                <p class="text-lg-start">Start aligned text on viewports sized LG (large) or wider.</p>
+                <p class="text-xl-start">Start aligned text on viewports sized XL (extra-large) or wider.</p>
+            </div>
         </div>
         <hr>
 
-        <!--   -->
+        <!-- Wrap text with a `.text-wrap` class. And prevent text from wrapping with a `.text-nowrap` class. -->
 
         <div class="container">
             <h3 class="mb-3">Text Utility Example: 02</h3>
 
-            <h4 class="mb-3"></h4>
+            <h4 class="mb-3">Wrap text with a <code>.text-wrap</code> class. And prevent text from wrapping with a <code>.text-nowrap</code> 
+                class.</h4>
 
-            
+            <div class="container-fluid p-4 mb-3">
+                <div class="badge bg-primary text-wrap" style="width: 6rem;">
+                    This text should wrap.
+                </div>
+            </div>
+            <div class="container-fluid p-4">
+                <div class="text-nowrap bd-highlight" style="width: 8rem;">
+                    This text should overflow the parent.
+                </div>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
