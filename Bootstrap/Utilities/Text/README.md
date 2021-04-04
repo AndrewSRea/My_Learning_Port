@@ -38,3 +38,15 @@ Prevent text from wrapping with a `.text-nowrap` class.
 ```
 
 ## Word break
+
+Prevent long strings of text from breaking your components' layout by usiong `.text-break` to set `word-wrap: break-word` and `word-break: break-word`. Bootstrap uses `word-wrap` instead of the more common `overflow-wrap` for wider browser support, and adds the deprecated `word-break: break-word` to avoid issues with flex containers.
+```
+<p class="text-break">mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
+```
+
+<hr>
+
+:exclamation: Note that [breaking words isn't possible in Arabic](), which is the most used RTL language. Therefore `.text-break` is removed from Bootstrap's RTL compiled CSS.
+
+<hr>
+
