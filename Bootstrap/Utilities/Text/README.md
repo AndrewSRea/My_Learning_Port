@@ -103,3 +103,161 @@ Change the line height with `.lh-*` utilities.
     But I will get there. This is real so take a chance and don't ever look back, don't ever look back. You could travel the world but nothing comes close to the golden coast. Of anything and everything. Venice beach and Palm Springs, summertime is everything. Do you ever feel already buried deep six feet under? It's time to bring out the big balloons. So cover your eyes, I have a surprise. So I don't have to say you were the one that got away.
 </p>
 ```
+
+## Monospace
+
+Change a selection to our monospace font stack with `.font-monospace`.
+```
+<p class="font-monospace">This is in monospace</p>
+```
+
+## Reset color
+
+Reset a text or link's color with `.text-reset`, so that it inherits the color from its parent.
+```
+<p class="text-muted">
+    Muted text with a <a href="#" class="text-reset">reset link</a>.
+</p>
+```
+
+## Text decoration
+
+Decorate text in components with text decoration classes.
+```
+<p class="text-decoration-underline">This text has a line underneath it.</p>
+<p class="text-decoration-line-through">This text has a line going through it.</p>
+<a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
+```
+
+## Sass
+
+### Variables
+
+```
+// stylelint-disable value-keyword-case
+
+$font-family-sans-serif:     system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace:      SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// stylelint-enable value-keyword-case
+
+$font-family-base:           var(--#{$variable-prefix}font-sans-serif);
+$font-family-code:           var(--#{$variable-prefix}font-monospace);
+
+// $font-size-root effects the value of `rem`, which is also used for font sizes, paddings, and margins
+// $font-size-base effects the font size of the body text
+
+$font-size-root:             null;
+$font-size-base:             1rem;   // Assumes the browser deefault, typically `16px`
+$font-size-sm:               $font-size-base * .875;
+$font-size-lg:               $font-size-base * 1.25;
+
+$font-weight-lighter:        lighter;
+$font-weight-light:          300;
+$font-weight-normal:         400;
+$font-weight-bold:           700;
+$font-weight-bolder:         bolder;
+
+$font-weight-base:           $font-weight-normal;
+
+$line-height-base:           1.5;
+$line-height-sm:             1.25;
+$line-height-lg:             2;
+
+$h1-font-size:               $font-size-base * 2.5;
+$h2-font-size:               $font-size-base * 2;
+$h3-font-size:               $font-size-base * 1.75;
+$h4-font-size:               $font-size-base * 1.5;
+$h5-font-size:               $font-size-base * 1.25;
+$h6-font-size:               $font-size-base;
+```
+
+## Maps
+
+Font-size utilities are generated from this map, in combination with our utilities API.
+```
+$font-sizes: (
+    1: $h1-font-size,
+    2: $h2-font-size,
+    3: $h3-font-size,
+    4: $h4-font-size,
+    5: $h5-font-size,
+    6: $h6-font-size
+);
+```
+
+## Utilities API
+
+Font and text utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+```
+"font-family": (
+    property: font-family,
+    class: font,
+    values: (monospace: var(--#{$variable-prefix}font-monospace))
+),
+"font-size": (
+    rfs: true,
+    property: font-size,
+    class: fs,
+    values: $font-sizes
+),
+"font-style": (
+    property: font-style,
+    class: fst,
+    values: italic normal
+),
+"font-weight": (
+    property: font-weight,
+    class: fw,
+    values: (
+        light: $font-weight-light,
+        lighter: $font-weight-lighter,
+        normal: $font-weight-normal,
+        bold: $font-weight-bold,
+        bolder: $font-weight-bolder
+    )
+),
+"line-height": (
+    property: line-height,
+    class: lh,
+    values: (
+        1: 1,
+        sm: $line-height-sm,
+        base: $line-height-base,
+        lg: $line-height-lg,
+    )
+),
+"text-align": (
+    responsive: true,
+    property: text-align,
+    class: text,
+    values: (
+        start: left,
+        end: right,
+        center: center,
+    )
+),
+"text-decoration": (
+    property: text-decoration,
+    values: none underline line-through
+),
+"text-transform": (
+    property: text-transform,
+    class: text,
+    values: lowercase uppercase capitalize
+),
+"white-space": (
+    property: white-space,
+    class: text,
+    values: (
+        wrap: normal,
+        nowrap: nowrap,
+    )
+),
+"word-wrap": (
+    property: word-wrap word-break,
+    class: text,
+    values: (break: break-word),
+    rtl: false
+),
+```
