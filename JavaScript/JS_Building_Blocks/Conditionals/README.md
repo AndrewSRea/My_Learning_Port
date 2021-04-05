@@ -116,4 +116,59 @@ function setWeather() {
 
 <hr>
 
-**Note**: You can also find Mozilla's example of this code [here]().
+**Note**: You can also find Mozilla's example of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-else-if.html).
+
+<hr>
+
+### A note on comparison operators
+
+Comparison operators are used to test the conditions inside our conditional statements. We first looked at comparison operators back in our [Basic math in JavaScript -- numbers and operators](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#comparison-operators) article. OUr choices are:
+
+* `===` and `!==` -- test if one value is identical to, or not identical to, another.
+* `<` and `>` -- test if one value is less than or greater than another.
+* `<=` and `>=` -- test if one value is less than or equal to, or greater than or equal to, another.
+
+<hr>
+
+**Note**: Review the material at the previous link if you want to refresh your memories on these.
+
+<hr>
+
+We wanted to make a special mention of testing Boolean (`true`/`false`) values, and a common pattern you'll come across again and again. Any value that is not `false`, `undefined`, `null`, `0`, `NaN`, or an empty string (`''`) actually returns `true` when tested as a conditional statement, therefore you can use a variable name on its own to test whetheer it is `true`, or even that it exists (that is, it is not undefined). So, for example:
+```
+let cheese = 'Cheddar';
+
+if (cheese) {
+    console.log('Yay! Cheese available for making cheese on toast.');
+} else {
+    console.log('No cheese on toast for you today.');
+}
+```
+And, returning to our previous exxample about the child doing a chore for their parent, you could write it like this:
+```
+let shoppingDon = false;
+let childsAllowance;
+
+if (shoppingDone) {   // don't need to explicitly specify `=== true`
+    childsAllowance = 10;
+} else {
+    childsAllowance = 5;
+}
+```
+
+### Nesting if...else
+
+It is perfectly OK to put one `if...else` statement insidee another one--to nest them. For example, we could update our waether forecast application to show a further set of choices depending on what the temperature is:
+```
+if (choice === 'sunny') {
+    if (temperature < 86) {
+        para.textContent = 'It is ' + temperature + ' degrees outside - nice and sunny. Let\'s go out to the beach, or the park, and get an ice cream.';
+    } else if (temperature >= 86) {
+        para.textContent = 'It is ' + temperature + ' degrees outside - REALLY HOT! If you want to go outside, make sure to put some sunscreen on.';
+    }
+}
+```
+Even though the code all works together, each `if...else` statement works completely independently of the other one.
+
+### Logical operators: AND, OR, and NOT
+
