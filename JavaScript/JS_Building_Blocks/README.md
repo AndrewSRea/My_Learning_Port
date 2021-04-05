@@ -4,7 +4,7 @@ In this module, we continue our coverage of all JavaScript's key fundamental fea
 
 ## Guides
 
-**[Making decisions in your code -- conditionals]()**
+**[Making decisions in your code -- conditionals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals#making-decisions-in-your-code----conditionals)**
 
 In any programming language, code needs to make decisions and carry out actions accordingly depending on different inputs. For example, in a game, if the player's number of lives is 0, then it's game over. In a weather app, if it is being looked at in the morning, show a sunrise graphic; show stars and a moon if it is night. In this article, we'll explore how conditional structures work in JavaScript.
 
