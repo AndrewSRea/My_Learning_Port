@@ -12,7 +12,7 @@ Conditional statements allow us to represnt such decision making in JavaScript, 
 
 Let's look at, by far, the most common type of conditional statement you'll use in JavaScript--the humber [`if...else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else).
 
-### Basic `if...else` syntax
+### Basic if...else syntax
 
 Basic `if...else` syntax looks like the following in [pseudocode](https://developer.mozilla.org/en-US/docs/Glossary/Pseudocode):
 ```
@@ -66,4 +66,54 @@ This code as shown always results in the `shoppingDone` variable returning `fals
 
 <hr>
 
-**Note**: You can see a more complex version of this with [Mozilla's example](). <!-- Don't forget this link to your code -->
+**Note**: You can see a more complex version of this with [Mozilla's example](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/allowance-updater.html).
+
+<hr>
+
+### else if
+
+The last example provided us with two choices, or outcomes--but what if we want more than two?
+
+There is a way to chain on extra choices/outcomes to your `if...else`--using `else if`. Each extra choice requires an additional block to put in between `if() { ... }` and `else { ... }`--check out the following more involved example, which could be part of a simple weather forecast application:
+```
+<label for="weather">Select the weather type today: </label>
+<select id="weather">
+    <option value="">--Make a choice--</option>
+    <option value="sunny">Sunny</option>
+    <option value="rainy">Rainy</option>
+    <option value="snowing">Snowing</option>
+    <option value="overcast">Overcast</option>
+</select>
+
+<p></p>
+```
+```
+const select = document.querySelector('select');
+const para = document.querySelector('p');
+
+select.addEventListener('change', setWeather);
+
+function setWeather() {
+    const choice = select.value;
+
+    if (choice === 'sunny') {
+        para.textContent = 'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+    } else if (choice === 'rainy') {
+        para.textContent = 'Rain is falling outside; take a rain coat and an umbrella, and don\'t stay out for too long.';
+    } else if (choice === 'snowing') {
+        para.textContent = 'The snow is coming down - it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+    } else if (choice === 'overcast') {
+        para.textContent = 'It isn\'t raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.';
+    } else {
+        para.textContent = '';
+    }
+}
+```
+1. Here we've got an HTML [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element allowing us to make different weather choices, and a simple paragraph.
+2. In the JavaScript, we are storing a reference to both the `<select>` and `<p>` eleemnts, and adding an event listener to the `<select>` element so that when its value is changed, the `setWeather()` function is run.
+3. When this function is run, we first set a variable called `choice` to the current value selected in the `<select>` element. We then use a conditional statement to show different text inside the paragraph depending on what the vallue of `choice` is. Notice how all the conditions are tested in `else if() { ... }` blocks, except for the first one, which is tested in an `if() { ... }` block.
+4. The very last choice, inside the `else { ... }` block, is basically a "last reesort" option --the code inside it will be run if none of the conditions are `true`. In this case, it serves to empty the text out of the paragraph if nothing is selected. For example, if a user decides to re-select the "--Make a choice--" placeholder option shown at the beginning.
+
+<hr>
+
+**Note**: You can also find Mozilla's example of this code [here]().
