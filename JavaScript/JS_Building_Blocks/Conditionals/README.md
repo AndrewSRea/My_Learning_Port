@@ -263,3 +263,47 @@ Here we've got:
 <hr>
 
 ## A switch example
+
+Let's have a look at a real example--we'll rewrite our weather foreccast application to use a switch statement instead:
+```
+<label for="weather">Select the weather type today: </label>
+<select id="weather">
+    <option value="">--Make a choice--</option>
+    <option value="sunny">Sunny</option>
+    <option value="rainy">Rainy</option>
+    <option value="snowing">Snowing</option>
+    <option value="overcast">Overcast</option>
+</select>
+
+<p></p>
+```
+```
+const select = document.querySelector('select');
+const para = document.querySelector('p');
+
+select.addEventListener('change', setWeather);
+
+function setWeather() {
+    const choice = select.value;
+
+    switch (choice) {
+        case 'sunny':
+            para.textContent = 'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+            break;
+        case 'rainy':
+            para.textContent = 'Rain is falling outside; take a rain coat and an umbrella, and don\'t stay out for too long.';
+            break;
+        case 'snowing':
+            para.textContent = 'The snow is coming down - it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+            break;
+        case 'overcast':
+            para.textContent = 'It isn\'t raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.';
+            break;
+        default:
+            para.textContent = '';
+    }
+}
+```
+<hr>
+
+**Note**: You can also find Mozilla's example of this code [here]().
