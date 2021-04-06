@@ -172,3 +172,94 @@ Even though the code all works together, each `if...else` statement works comple
 
 ### Logical operators: AND, OR, and NOT
 
+If you want to test multiple conditions without writing nested `if...else` statements, [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators) can help you. When used in conditions, the first two do the following:
+
+* `&&` -- AND; allows you to chain together two or more expressions so that all of them have to individually evaluate to `true` for the whole expression to return `true`.
+* `||` -- OR; allows you to chain together two or more expressionsso that one or more of them have to individually evaluate to `true` for the whole expression to return `true`.
+
+To give you an AND example, the previous example snippet can be rewritten to this:
+```
+if (choice === 'sunny' && temperature < 86) {
+    para.textContent = 'It is ' + temperature + ' degrees outside - nice and sunny. Let\'s go out to the beach, or the park, and get an ice cream.';
+} else if (choice === 'sunny' && temperature >= 86) {
+    para.textContent = 'It is ' + temperature + ' degrees outside - REALLY HOT! If you want to go outside, make sure to put some sunscreen on.';   
+}
+```
+So, for example, the first code block will only be run if `choice === 'sunny'` *and* `temperature < 86` return `true`.
+
+Let's look at a quick OR example:
+```
+if (iceCreamVanOutside || houseStatus === 'on fire') {
+    console.log('You should leave the house quickly.');
+} else {
+    console.log('Probably should just stay in then.');
+}
+```
+The last type of logical operator, NOT, expressed by the `!` operator, can be used to negate an expression. Let's combine it with OR in the above example:
+```
+if (!(iceCreamVanOutside || houseStatus === 'on fire')) {
+    console.log('Probably should just stay in then.');
+} else {
+    console.log('You should leave the house quickly.');
+}
+```
+In this snippet, if the OR statement returns `true`, the NOT operator will negate it so that the overall expression returns `false`.
+
+You can combine as many logical statements together as you want, in whatever structure. The following example executes the code inside only if both OR statements return true, meaning that the overall AND statement will return true:
+```
+if ((x === 5 || y > 3 || z <= 10) && (loggedIn || username === 'Steve')) {
+    // run the code
+}
+```
+A common mistake when using the logical OR operator in conditional statements is to try to state the variable whose value you are checking once, and then give a list of values it could be to return true, separated by `||` (OR) operators. For example:
+```
+if (x === 5 || 7 || 10 || 20) {
+    // run my code
+}
+```
+In this case, the condition inside `if (...)` will always evaluate to true since 7 (or any other non-zero value) always evaluates to `true`. This condition is actually saying "if x equals 5, or 7 is true -- which it always is". This is logically not what we want! To make this work, you've got to specify a complete test either side of each OR operator:
+```
+if (x === 5 || x === 7 || x === 10 || x === 20) {
+    // run my code
+}
+```
+
+## switch statements
+
+`if...else` statements do the job of enabling conditional code well, but they are not without their downsides. They are mainly good for cases where you've got a couple of choices, and each one requires a reasonable amount of code to be run, and/or the conditions are complex (for example, multiple logical operators). For cases where you just want to set a variable to a certain choice of value or print out a particular statement depending on a condition, the syntax can be a bit cumbersome, especially if you've got a large numbeer of choices.
+
+In such a case, [`switch` statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) are your friend--they take a single expression/value as an input, and then look through a number of choices until they find one that matches that value, executing the corresponding code that goes along with it. Here's some more pseudocode, to give you an idea:
+```
+switch (expression) {
+    case choice1:
+        run this code
+        break;
+    
+    case choice2:
+        run this code instead
+        break;
+
+    // include as many cases as you like
+
+    default:
+        actually, just run this code
+}
+```
+
+Here we've got:
+
+1. The keyword `switch`, followed by a set of parentheses.
+2. An expression or value inside the parentheses.
+3. The keyword `case`, followed by a choice that the expression/value could be, followed by a colon.
+4. Some code to run if the choice matches the expression.
+5. A `break` statement, followed by a semi-colon. If the previous choice matches the expression/value, the browser stops executing the code block here, and moves on to any code that appears below the swtich statement.
+6. As many other cases (bullets 3-5) as you like.
+7. The keyword `default`, followed by exactly the same code pattern as one of the cases (bullets 3-5), except that `default` does not have a choice after it, and you don't need to `break` statement as there is nothing to run after this in the block anyway. This is the default option that runs if none of the choices match.
+
+<hr>
+
+**Note**: You don't have to include the `default` section--you can safely omit it if there is no chance that the expression could end up equaling an unknown value. If there is a chance of this, however, you need to include it to handle unknown cases.
+
+<hr>
+
+## A switch example
