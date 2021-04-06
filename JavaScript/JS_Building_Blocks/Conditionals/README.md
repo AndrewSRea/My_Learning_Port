@@ -306,4 +306,23 @@ function setWeather() {
 ```
 <hr>
 
-**Note**: You can also find Mozilla's example of this code [here]().
+**Note**: You can also find Mozilla's example of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-switch.html).
+
+<hr>
+
+## Ternary operator
+
+There is one final bit of syntax we want to introduce to you before we get you to play with some examples. The [ternary or conditional operator]() is a small bit of syntax that tests a condition and returns one value/expression if it is `true`, and another if it is `false`--this can be useful in some situations, and can take up a lot less code than an `if...else` block if you have two choices that are chosen between via a `true`/`false` condition. The pseudocode looks like this:
+```
+( condition ) ? run this code : run this code instead
+```
+So, let's look at a simple example:
+```
+let greeting = ( isBirthday ) ? 'Happy birthday, Mrs. Smith - we hop you have a great day!' : 'Good morning, Mrs. Smith.';
+```
+Here we have a variable called `isBirthday`--if this is `true`, we give our guest a happy birthday message; if not, we give her the standard daily greeting.
+
+### Ternary operator example
+
+The ternary operator is not just for setting variable values; you can also run functions, or lines of code--anything you like. The following live example shows a simple theme chooser where the styling for the site is applied using a ternary operator.
+```
