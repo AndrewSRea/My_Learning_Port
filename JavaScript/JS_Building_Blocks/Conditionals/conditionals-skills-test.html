@@ -86,7 +86,23 @@
 
         // Add your code here
 
-        
+        if (machineActive === true) {
+            if (score < 0 || score > 100) {
+                response2 = 'This is not possible, an error has occurred.';
+            } else if (score >= 0 && score < 19) {
+                response2 = 'That was a terrible score -- total fail!';
+            } else if (score >= 20 && score < 39) {
+                response2 = 'You know some things, but it\'s a pretty bad score. Needs improvement.';
+            } else if (score >= 40 && score < 69) {
+                response2 = 'You did a passable job, not bad!';
+            } else if (score >= 70 && score < 89) {
+                response2 = 'That\'s a great score, you really know your stuff.';
+            } else if (score >= 90 && score <= 100) {
+                response2 = 'What an amazing score! Did you cheat? Are you for real?';
+            }
+        } else {
+            response2 = 'Please turn the machine on.';
+        }
 
         // Don't edit the code below here!
 
@@ -100,10 +116,18 @@
         section2.appendChild(para2);
         section2.appendChild(para3);
 
+        /* So, to be truthful: It took me quite a while to figure out the correct `if...else` structure for the `machineActive`
+           indicator (`true` on top? `false` on top?), then configuring the correct nested `else if` structure. But I finally
+           figured that structure out.
+           BUT...I had some real difficulty trying to figure out how to configure the `score` ranges; specifically, which ranges
+           required `less than` operators and `greater than` operators. I knew the `less than 0` and `greater than 100` range
+           just needed `score < 0 || score > 100` but the other ranges were difficult to configure, and my code was not working
+           --so I had to look at the solution for those ranges.
+        */ 
 
         // *** Arrays Skills Test 3 ***
 
         
-
+       
     </script>
 </html>
