@@ -374,4 +374,14 @@ Hints:
 * You are advised to use the logical OR to group multiple months together into a single condition; many of them share the same number of days.
 * Think about which number of days is the most common, and use that as a default value.
 
-(See my accompanying [conditionals-active-learning.html]() file to see this in action.)
+(See my accompanying [conditionals-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/conditionals-active-learning.html) file to see this in action.)
+
+## Acctive learning: More color choices!
+
+In this example, you are going to take the ternary operator example we saw earlier and convert the ternary operator into a switch statement to allow us to apply more choices to the simple website. Look at the `<select>`--this time you'll see that it has not two theme options, but five. You need to add a switch statement just underneath the `// ADD SWITCH STATEMENT` comment:
+
+* It should accept the `choice` variable as its input expression.
+* For each case, the choice should equal one of the possible `<option> value`s that can be selected. That is, `white`, `black`, `purple`, `yellow`, or `psychedelic`.
+* For each case, the `update()` function should be run, and be passed two color values, the first one for the background color, and the second one for the text color. Remember that color values are strings, so need to be wrapped in quotes.
+
+(See my accompanying [conditionals-active-learning-2.html]() file to see this in action.)
