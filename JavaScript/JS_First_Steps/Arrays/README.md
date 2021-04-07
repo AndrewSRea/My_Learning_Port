@@ -193,7 +193,7 @@ To complete the app, we need you to:
 
 ## Skills test
 
-I have created an accompanying [arrays-skills-test.html]() file to test my knowledge of the information provided by this **"Arrays"** page. See the results [here]().
+I have created an accompanying [arrays-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Arrays/arrays-skills-test.html) file to test my knowledge of the information provided by this **"Arrays"** page. See the results [here]().
 
 ## Conclusion
 
