@@ -10,10 +10,49 @@
         </style>
     </head>
     <body>
-        
+        <div class="output" style="height: 600px;">
+            <label for="theme" style="margin: 15px;">Select theme: </label>
+            <select id="theme">
+                <option value="white">White</option>
+                <option value="black">Black</option>
+                <option value="purple">Purple</option>
+                <option value="yellow">Yellow</option>
+                <option value="psychedelic">Psychedelic</option>
+            </select>
+            <h1 style="margin: 15px;">This is my website</h1>
+        </div>
 
         <script>
-            
+            const select = document.querySelector('select');
+            const html = document.querySelector('.output');
+
+            select.onchange = function() {
+                const choice = select.value;
+
+                // ADD SWITCH STATEMENT
+
+                switch (choice) {
+                    case 'black': 
+                        update('black','white');
+                        break;
+                    case 'purple': 
+                        update('purple','yellow');
+                        break;
+                    case 'yellow': 
+                        update('yellow','purple');
+                        break;
+                    case 'psychedelic': 
+                        update('limegreen','cyan');
+                        break;
+                    default:
+                        upudate('white','black');
+                }
+            }
+
+            function update(bgColor, textColor) {
+                html.style.backgroundColor = bgColor;
+                html.style.color = textColor;
+            }
         </script>
     </body>
 </html>
