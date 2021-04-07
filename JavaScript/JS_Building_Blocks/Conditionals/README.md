@@ -326,3 +326,32 @@ Here we have a variable called `isBirthday`--if this is `true`, we give our gues
 
 The ternary operator is not just for setting variable values; you can also run functions, or lines of code--anything you like. The following live example shows a simple theme chooser where the styling for the site is applied using a ternary operator.
 ```
+<label for="theme">Select them: </label>
+<select id="theme">
+    <option value="white">White</option>
+    <option value="black">Black</option>
+</select>
+
+<h1>This is my website</h1>
+```
+```
+const select = document.querySelector('select');
+const html = document.querySelector('html');
+document.body.style.padding = '10px';
+
+function update(bgColor, textColor) {
+    html.style.backgroundColor = bgColor;
+    html.style.color = textColor;
+}
+
+select.onchange = function() {
+    ( select.value === 'black' ) ? update('black','white') : update('white','black');
+}
+```
+Here we've got a `<select>` element to choose a theme (black or white), plus a simple `<h1>` to display a website title. We also have a function called `update()`, which takes two colors as parameters (inputs). The website's background color is set to the first provided color, and its text color is set to the second provided color.
+
+Finally, we've also got an [onchange]() event listener that serves to run a function containing a ternary operator. It starts with a test condition--`select.value === 'black'`. If this returns `true`, we run the `update()` function with parameters of black and white, meaning that we end up with a background color of black and a text color of white. If it returns `false`, we run the `update()` function with parameters of white and black, meaning that the site colors are inverted.
+
+<hr>
+
+**Note**: You can also find Mozilla's example of the code just above [here]().
