@@ -385,3 +385,18 @@ In this example, you are going to take the ternary operator example we saw earli
 * For each case, the `update()` function should be run, and be passed two color values, the first one for the background color, and the second one for the text color. Remember that color values are strings, so need to be wrapped in quotes.
 
 (See my accompanying [conditionals-active-learning-2.html]() file to see this in action.)
+
+## Skills test
+
+I have created an accompanying [conditionals-skills-test.html]() file to test my knowledge of the information provided by this **"Making decisions in your code -- conditionals"** page. See the results [here]().
+
+## Conclusion
+
+And that's all you really need to know about conditional structures in JavaScript right now! If there is anything you didn't understand, feel free to read through the article again, or [contact the Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Learn#contact_us) for help.
+
+## See also
+
+* [Comparison operators](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#comparison-operators)
+* [Conditional statements in detail](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements)
+* [if...else reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+* [Conditional (ternary) operator reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
