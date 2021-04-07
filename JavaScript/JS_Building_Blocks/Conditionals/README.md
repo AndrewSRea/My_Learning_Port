@@ -376,7 +376,7 @@ Hints:
 
 (See my accompanying [conditionals-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/conditionals-active-learning.html) file to see this in action.)
 
-## Acctive learning: More color choices!
+## Active learning: More color choices!
 
 In this example, you are going to take the ternary operator example we saw earlier and convert the ternary operator into a switch statement to allow us to apply more choices to the simple website. Look at the `<select>`--this time you'll see that it has not two theme options, but five. You need to add a switch statement just underneath the `// ADD SWITCH STATEMENT` comment:
 
