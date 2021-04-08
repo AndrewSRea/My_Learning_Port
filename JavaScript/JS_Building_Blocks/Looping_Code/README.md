@@ -26,7 +26,7 @@ loop (food = 0; foodNeeded = 10) {
         food += 2;   // Spend an hour collecting 2 more food
         // loop will then run again
     }
-}
+}.
 ```
 So the amount of food needed is set at 10, and the amount the farmer currently has is set at 0. In each iteration of the loop, we check whether the amount of food the farmer has is larger or equal to the amount he needs. If so, we can exit the loop. If not, the farmer spends an hour collecting two portions of food and the loop runs again.
 
@@ -37,3 +37,30 @@ At this point, you probably understand the high-level concepts behind loops, but
 Often, the code will be slightly different on each successive iteration of the loop, which means that you can complete a whole load of tasks that are similar but slightly different; if you've got a lot of different calculations to do, you want to do each different one, not the same one over and over again!
 
 Let's look at an example to perfectly illustrate why loops are such a good thing. Let's say we wanted to draw 100 random circles on a [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element.
+
+(See Mozilla's example of looping code in the accompanying [`random-canvas-circles.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) file.)
+
+You don't have to understand all the code for now, but let's look at the part of the code that actually draws the 100 circles:
+```
+for (let i = 0; i < 100; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(255,0,0,0.5)';
+    ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+    ctx.fill();
+}
+```
+* `random(x)`, defined earlier in the code, returns a whole number between `0` and `x-1`.
+* `WIDTH` and `HEIGHT` are the width and height of the inner browser window.
+
+You should get the basic idea--we are using a loop to run 100 iterations of this code, each one of which draws a circle in a random position on the page. The amount of code needed would be the same whether we were drawing 100 circles, 1000, or 10,000. Only one number has to change.
+
+If we weren't using a loop here, we'd have to repeat the following code for every circle we wanted to draw:
+```
+ctx.beginPath();
+ctx.fillStyle = 'rgba(255,0,0,0.5)';
+ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+ctx.fill();
+```
+This would get very boring and difficult to maintain very quickly. Loops really are the best.
+
+## The standard for loop
