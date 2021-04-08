@@ -52,10 +52,18 @@
 
         </section>
 
+        <h2>Conditionals Skills Test 4</h2>
+
+        <section class="preview-4">
+
+
+
+        </section>
+
     </body>
     <script>
 
-        // *** Arrays Skills Test 1 ***
+        // *** Conditionals Skills Test 1 ***
 
         let season = 'summer';
         let response;
@@ -78,7 +86,7 @@
         section1.appendChild(para1);
         
 
-        // *** Arrays Skills Test 2 ***
+        // *** Conditionals Skills Test 2 ***
 
         let response2;
         let score = 75;
@@ -125,9 +133,79 @@
            --so I had to look at the solution for those ranges.
         */ 
 
-        // *** Arrays Skills Test 3 ***
+        // *** Conditionals Skills Test 3 ***
 
-        
+        let response3;
+        let score2 = 75;
+        let machineActive2 = false;
+
+        if (machineActive2) {
+            // Add your code here
+            switch (true) {
+                case (score2 >= 0 && score2 < 19):
+                    response3 = 'That was a terrible score -- total fail!';
+                    break;
+                case (score2 >= 20 && score2 < 39):   
+                    response3 = 'You know some things, but it\'s a pretty bad score. Needs improvement.';
+                    break;
+                case (score2 >= 40 && score2 < 59): 
+                    response3 = 'You did a passable job, not bad!';
+                    break;
+                case (score2 >= 60 && score2 < 79): 
+                    response3 = 'That\'s a great score, you really know your stuff.';
+                    break;
+                case (score2 >= 80 && score2 <= 100): 
+                    reponse3 = 'What an amazing score! Did you cheat? Are you for real?';
+                    break;
+                default: 
+                    response3 = 'This is not possible, an error has ocurred.';
+            }
+        } else {
+            response3 = 'The machine is turned off. Turn it on to process your score.';
+        }
+
+        // Don't edit the code below here!
+
+        const section3 = document.querySelector('.preview-3');
+        let para4 = document.createElement('p');
+        let para5 = document.createElement('p');
+
+        para4.textContent = `Your score is ${ score2 }.`;
+        para5.textContent = response3;
+
+        section3.appendChild(para4);
+        section3.appendChild(para5);
+
+        /*
+            Again, to be truthful: I had a feeling having `score2` in both the `switch` statement and in the `case`s was wrong.
+            I didn't realize `true` was the value to be checked in the `switch` statement, in order to check whether the 
+            `machineActive` was switched on or not.
+        */
+
+
+        // *** Conditionals Skills Test 4 ***
+
+        let machineActive3 = true;
+        let pwd = 'cheese';
+
+        let machineResult;
+        let pwdResult;
+
+        // Add your code here
+
+
+
+        // Don't edit the code below here!
+
+        section4 = document.querySelector('.preview-4');
+        let para6 = document.createElement('p');
+        let para7 = document.createElement('p');
+
+        para6.textContent = machineResult;
+        para7.textContent = pwdResult;
+
+        section4.appendChild(para6);
+        section4.appendChild(para7);
        
     </script>
 </html>
