@@ -17,3 +17,31 @@ With inline elements:
 <span class="align-text-top">text-top</span>
 <span class="align-text-bottom">text-bottom</span>
 ```
+With table cells:
+```
+<table style="height: 100px;">
+    <tbody>
+        <tr>
+            <td class="align-baseline">baseline</td>
+            <td class="align-top">top</td>
+            <td class="align-middle">middle</td>
+            <td class="align-bottom">bottom</td>
+            <td class="align-text-top">text-top</td>
+            <td class="align-text-bottom">text-bottom</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+## Sass
+
+### Utilities API
+
+Vertical align utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+```
+"align": (
+    property: vertical-align,
+    class: align,
+    values: baseline top middle bottom text-bottom text-top
+),
+```
