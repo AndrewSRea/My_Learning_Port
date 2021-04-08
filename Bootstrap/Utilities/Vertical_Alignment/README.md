@@ -37,7 +37,7 @@ With table cells:
 
 ### Utilities API
 
-Vertical align utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+Vertical align utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
 ```
 "align": (
     property: vertical-align,
