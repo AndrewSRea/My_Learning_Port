@@ -193,7 +193,12 @@
 
         // Add your code here
 
-
+        if (machineActive3) {
+            machineResult = 'The machine is on and ready.';
+            pwdResult = pwd === 'cheese' ? 'Login successful.' : 'Password is incorrect. Please try again.';
+        } else {
+            machineResult = 'Please turn the machine on.';
+        }
 
         // Don't edit the code below here!
 
@@ -207,5 +212,14 @@
         section4.appendChild(para6);
         section4.appendChild(para7);
        
+        /*
+            More truthfulness (unfortunately): This line of code was incorrect:
+            
+            pwdResult = (pwd) ? 'Login successful.' : 'Password is incorrect. Please try again.';
+
+            The correct syntax should have been:
+
+            pwdResult = pwd = 'cheese' ? 'Login successful.' : 'Password is incorrect. Please try again.';
+        */
     </script>
 </html>
