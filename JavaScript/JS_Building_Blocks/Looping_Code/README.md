@@ -8,5 +8,4 @@ Loops, loops, loops. As well as being associated with [popular breakfast cereals
 
 Let's consider the case of a farmer who is making sure he has enough food to feed his family for the week. He might use the following loop to achieve this:
 
-![Image of a pseudocode loop]
-(https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code/loop_js-02-farm.png)
+![Image of a pseudocode loop](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code/loop_js-02-farm.png)
