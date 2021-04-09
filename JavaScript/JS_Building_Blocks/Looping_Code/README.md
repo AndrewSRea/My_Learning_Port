@@ -64,3 +64,35 @@ ctx.fill();
 This would get very boring and difficult to maintain very quickly. Loops really are the best.
 
 ## The standard for loop
+
+Let's start exploring some specific loop constructs. The first, which you'll use most of the time, is the [for]() loop. This has the following syntax:
+```
+for (initializer; condition; final-expression) {
+    // code to run
+}
+```
+Here we have:
+
+1. The keyword `for`, followed by some parentheses.
+2. Inside the parentheses, we have three items, separated by semi-colons:
+    1. An **initializer**--this is usually a variable set to a number, which is incremented to count the number of times the loop has run. It is also sometimes referred to as a **counter variable**.
+    2. A **condition**--as mentioned before, this defines when the loop should stop looping. This is generally an expression featuring a comparison operator, a test to see if the exit condition has been met.
+    3. A **final-expression**--this is always evaluated (or run) each time the loop has gone through a full iteration. It usually serves to increment (or, in some cases, decrement) the counter variable, to brind it closer to the point where the condition is no longer `true`.
+3. Some curly braces that contain a block of code--this code will be run each time the loop iterates.
+
+Let's look at a real example so we can visualize what these do more clearly.
+```
+const cats = ['Bill', 'Jeff', 'Pete', 'Biggles', 'Jasmin'];
+let info = 'My cats are called ';
+const para = document.querySelector('p');
+
+for (let i = 0; i < cats.length; i++) {
+    info += cats[i] + ', ';
+}
+
+para.textContent = info;
+```
+This gives us the following output:
+
+<p style="font-family">My cats are called Bill, Jeff, Pete, Biggles, Jasmin,</p>
+
