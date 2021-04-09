@@ -65,7 +65,7 @@ This would get very boring and difficult to maintain very quickly. Loops really 
 
 ## The standard for loop
 
-Let's start exploring some specific loop constructs. The first, which you'll use most of the time, is the [for]() loop. This has the following syntax:
+Let's start exploring some specific loop constructs. The first, which you'll use most of the time, is the [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) loop. This has the following syntax:
 ```
 for (initializer; condition; final-expression) {
     // code to run
@@ -142,3 +142,51 @@ for (let i = 0; i < cats.length; i++) {
 
 ## Exiting loops with break
 
+If you want to exit a loop before all the iterations have been completed, you can use the [break](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break) statement. We already met this in the previous article when we looked at [switch statements](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals#switch-statements)--when a case is met in a switch statement that matches the input expression, the `break` statement immediately exits the switch statement and moves on to the code after it.
+
+It's the same with loops--a `break` statement will immediately exit the loop and make the browser move on to any code that follows it.
+
+Say we wanted to search through an array of contacts and telephone numbers and return just the number we wanted to find? First, some simple HTML--a text `<input>` allowing us to enter a name to search for, a `<button>` element to submit a search, and a `<p>` element to display the result in:
+```
+<label for="search">Search by contact name: </label>
+<input id="search" type="text">
+<button>Search</button>
+
+<p></p>
+```
+Now on to the JavaScript:
+```
+const contacts = ['Chris:2232322', 'Sarah:3453456', 'Bill:7654322', 'Mary:9998769', 'Dianne:9384975'];
+const para = document.querySelector('p');
+const input = document.querySelector('input');
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', function() {
+    let searchName = input.value.toLowerCase();
+    input.value = '';
+    input.focus();
+    for (let i = 0; i < contacts.length; i++) {
+        let splitContact = contacts[i].split(':');
+        if (splitContact[0].toLowerCase() === searchName) {
+            para.textContent = splitContact[0] + '\'s number is ' + splitContact[1] + '.';
+            break;
+        } else if (i === contacts.length - 1) {
+            para.textContent = 'Contact not found.';
+        }
+    }
+});
+```
+1. First of all, we have some variable definitions--we have an array of contact information, with each item being a string containing a name and phone number separated by a colon.
+2. Next, we attach an event listener to the button (`btn`) so that when it is pressed, some code is run to perform the search and return the results.
+3. We store the value entered into the text input in a variable called `searchName`, before then emptying the text input and focusing it again, ready for the next search. Note that we also run the `toLowerCase()` method on the string, so that searches will be case-insensitive.
+4. Now on to the interesting part, the for loop:
+    1. We start the counter at `0`, run the loop until the counter is no longer less than `contacts.length`, and increment `i` by 1 after each iteration of the loop.
+    2. Inside the loop, we first split the current contact (`contacts[i]`) at the colon character, and store the resulting twwo values in an array called `splitContact`.
+    3. We then use a conditional statement to test whether `splitContact[0]` (the contact's name, again lower-cased with `toLowerCase()`) is equal to the inputted `searchName`. If it is, we enter a string into the paragraph to report what the contact's number is, and use `break` to end the loop.
+5. After (`contacts.length - 1`) iterations, if the contact name does not match the entered search, the paragraph text is set to "Contact not found.", and the loop continues looping until the condition is no longer true.
+
+<hr>
+
+**Note**: You can also find Mozilla's example of this code [here]().
+
+<hr>
