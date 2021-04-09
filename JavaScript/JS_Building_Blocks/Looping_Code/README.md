@@ -94,5 +94,30 @@ para.textContent = info;
 ```
 This gives us the following output:
 
-<p style="font-family">My cats are called Bill, Jeff, Pete, Biggles, Jasmin,</p>
+<p style="font-family: serif;">My cats are called Bill, Jeff, Pete, Biggles, Jasmin, </p>
 
+This shows a loop is used to iterate over the items in an array and do something with each of them--a very common pattern is JavaScript. Here:
+
+1. The counter variable (sometimes known as an initializer or an iteration variable), `i`, starts at `0` (`let i = 0`).
+2. The loop has been told to run until `i` is no longer smaller than the length of the `cats` array. This is important--the condition is the condition under which the loop will still run. So, in this case, while `i < cats.length` is still true, the loop will still run.
+3. Inside the loop, we concatenate the current loop item (`cats[i]`, which is `cats[whatever i is at the time]`) along with a comma and space, onto the end of the `info` variable. So:
+    1. During the first run, `i = 0`, therefore `cats[0] + ', '` (which is equal to `Bill, `) will be concatenated onto `info`.
+    2. During the second run, `i = 1`, so `cats[1] + ', '` (which is equal to `Jeff, `) will be concatenated onto `info`.
+    3. And so on. After each time the loop has run, 1 will be added to `i` (`i++`), then the process will start again.
+4. When `i` becomes equal to `cats.length` (in this case, 5), the loop will stop, and the browser will move on to the next bit of code below the loop.
+
+<hr>
+
+**Note**: We have made the condition `i < cats.length`, not `i <= cats.length`, because computers count from 0, not 1 -- we are starting `i` at `0`, and going up to `i = 4` (the index of the last array item). `cats.length` returns 5, as there are 5 items in the array, but we don't want to get up to `i = 5`, as that would return `undefined` for the last item (there is no array item with an index of 5). So, therefore, we want to go up to 1 less than `cats.length` (`i <`), not the same as `cats.length` (`i <=`).
+
+<hr>
+
+**Note**: A common mistake with conditions is making them use "equal to" (`===`) rather than say "less than or equal to" (`<=`). If we wanted to run our loop up to `i = 5`, the exit condition would need to be `i <= cats.length`. If we set it to `i === cats.length`, the loop would not run at all because `i` is not equal to `5` on the first loop iteration, so it would stop immediately.
+
+<hr>
+
+One small problem we are left with is that the final output sentence isn't very well-formed:
+
+<p style="font-family: serif; font-weight: 400;">My cats are called Bill, Jeff, Pete, Biggles, Jasmin, </p>
+
+Ideally, we want to change the concatenation on the final loop iteration so that we haven't got a comma on the end of the sentence. Well, no problem--
