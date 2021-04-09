@@ -94,7 +94,9 @@ para.textContent = info;
 ```
 This gives us the following output:
 
+<br>
 <p style="font-family: serif;">My cats are called Bill, Jeff, Pete, Biggles, Jasmin, </p>
+<br>
 
 This shows a loop is used to iterate over the items in an array and do something with each of them--a very common pattern is JavaScript. Here:
 
@@ -118,6 +120,25 @@ This shows a loop is used to iterate over the items in an array and do something
 
 One small problem we are left with is that the final output sentence isn't very well-formed:
 
+<br>
 <p style="font-family: serif; font-weight: 400;">My cats are called Bill, Jeff, Pete, Biggles, Jasmin, </p>
+<br>
 
-Ideally, we want to change the concatenation on the final loop iteration so that we haven't got a comma on the end of the sentence. Well, no problem--
+Ideally, we want to change the concatenation on the final loop iteration so that we haven't got a comma on the end of the sentence. Well, no problem--we can quite happily insert a conditional inside our for loop to handle this special case:
+```
+for (let i = 0; i < cats.length; i++) {
+    if ( i === cats.length - 1) {
+        info += 'and' + cats[i] + '.';
+    } else {
+        info += cats[i] + ', ';
+    }
+}
+```
+<hr>
+
+:exclamation: **Important**: With for -- as with all loops -- you must make sure that the initializer is incremented or, depending on the case, decremented, so that it eventually reaches the point where the condition is not true. If not, the loop will go on forever, and either the browser will force it to stop, or it will crash. This is called an **infinite loop**.
+
+<hr>
+
+## Exiting loops with break
+
