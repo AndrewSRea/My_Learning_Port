@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Basic "do...while" Loop Example</title>
+    </head>
+    <body>
+        <!-- This code example is the property of the Mozilla Developer Network, and was created by Chris Mills. 
+             https://github.com/chrisdavidmills -->
+
+        <p></p>
+
+
+        <script>
+            const cats = ['Bill', 'Jeff', 'Pete', 'Biggles', 'Jasmin'];
+            let info = 'My cats are called ';
+            const para = document.querySelector('p');
+
+            let i = 0;
+
+            do {
+                if (i === cats.length - 1) {
+                    info += 'and ' + cats[i] + '.';
+                } else {
+                    info += cats[i] + ', ';
+                }
+
+                i++;
+            } while (i < cats.length);
+
+            para.textContent = info;
+        </script>
+    </body>
+</html>
