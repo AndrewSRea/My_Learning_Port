@@ -187,6 +187,25 @@ btn.addEventListener('click', function() {
 
 <hr>
 
-**Note**: You can also find Mozilla's example of this code [here]().
+**Note**: You can also find Mozilla's example of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/contact-search.html).
 
 <hr>
+
+## Skipping iterations with continue
+
+The [continue]() statement works in a similar manner to `break`, but instead of breaking out of the loop entirely, it skips to the next iteration of the loop. Let's look at another example that takes a number as an input, and returns only the numbers that are squares of integers (whole numbers).
+
+The HTML is basically the same as the last example--a simple text input, and a paragraph for output. The JavaScript is mostly the same, too, although the loop itself is a bit different:
+```
+let num - input.value;
+
+for (let i = 1; i <= num; i++) {
+    let sqRoot = Math.sqrt(i);
+    if (Math.floor(sqRoot) !== sqRoot) {
+        continue;
+    }
+
+    para.textContent += i + ' ';
+}
+```
+You can see this example of Mozilla's code in action [here]().
