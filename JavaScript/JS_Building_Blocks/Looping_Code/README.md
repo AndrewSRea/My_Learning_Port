@@ -251,3 +251,36 @@ while (i < cats.length) {
 **Note**: This still works just the same as expected--have a look at it in Mozilla's example [here]().
 
 <hr>
+
+The [`do...while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while) loop is very similar, but provides a variation on the while structure:
+```
+initializer
+do {
+    // code to run
+
+    final-expression
+} while (condition)
+```
+In this case, the initializer again comes first, before the loop starts. The keyword directly precedes the curly braces containing the code to run and the final expression.
+
+The differentiator here is that the condition comes after everything else, wrapped in parentheses and preceded by a `while` keyword. In a `do...while` loop, the code inside the curly braces is always run once before the check is made to see if it should be executed again (in while and for, the check comes first, so the code might never be executed).
+
+Let's rewrite our cat listing example again to use a `do...while` loop:
+```
+let i = 0;
+
+do {
+    if (i === cats.length - 1) {
+        info += 'and ' + cats[i] + '.';
+    } else {
+        info += cats[i] + ', ';
+    }
+
+    i++;
+} while (i < cats.length);
+```
+<hr>
+
+**Note**: Again, this works just the same as expected--have a look at it in Mozilla's example [here]().
+
+<hr>
