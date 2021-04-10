@@ -197,7 +197,7 @@ The [continue]() statement works in a similar manner to `break`, but instead of 
 
 The HTML is basically the same as the last example--a simple text input, and a paragraph for output. The JavaScript is mostly the same, too, although the loop itself is a bit different:
 ```
-let num - input.value;
+let num = input.value;
 
 for (let i = 1; i <= num; i++) {
     let sqRoot = Math.sqrt(i);
@@ -208,4 +208,46 @@ for (let i = 1; i <= num; i++) {
     para.textContent += i + ' ';
 }
 ```
-You can see this example of Mozilla's code in action [here]().
+1. In this case, the input should be a number (`num`). The `for` loop is given a counter starting at 1 (as we are not interested in 0 in this case), an exit condition that says the loop will stop when the counter becomes bigger than the input `num`, and an iterator that adds 1 to the counter each time.
+2. Inside the loop, we find the square root of each number using [`Math.sqrt(i)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt), then check whether the square root is an integer (this is what [`Math.floor()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) does to the number it is passed).
+3. If the square root and the rounded down square root do not equal one another (`!==`), it means that the square root is not an integer, so we are not interested in it. In such a case, we use the `continue` statement to skip on to the next loop iteration without recording the number anywhere.
+4. If the square root is an integer, we skip past the `if` block entirely, so the `continue` statement is not executed; instead, we concatenate the current `i` value plus a space on to the end of the paragraph content.
+
+You can see this example of Mozilla's code in action [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/integer-squares.html).
+
+## while and do...while
+
+`for` is not the only type of loop available in JavaScript. There are actually many others and, while you don't need to understand all of these now, it is worth having a look at the structure of a couple of others so that you can recognize the same features at work in a slightly different way.
+
+First, let's have a look at the [`while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) loop. This loop's syntax looks like so:
+```
+initializer
+while (condition) {
+    // code to run
+
+    final-expression
+}
+```
+This works in a very similar way to the `for` loop, except that the initializer variable is set before the loop, and the final-expression is included inside the loop after the code to run, ratheer than these two items being included inside the parentheses. The condition is included inside the parentheses, which are preceded by the `while` keyword rather than `for`.
+
+The same three items are still present, and they are still defined in the same order as they are in the `for` loop. This makes sense, as you still have to have an initializer defined before you can check whether it has reached the point where the condition is no longer true; the final-expression is then run after the code inside the loop has run (an iteration has been completed), which will only happen if the condition is still true.
+
+Let's have a look again at our cats list example, but rewritten to use a while loop:
+```
+let i = 0;
+
+while (i < cats.length) {
+    if (i === cats.length - 1) {
+        info += 'and ' + cats[i] + '.';
+    } else {
+        info += cats[i] + ', ';
+    }
+
+    i++
+}
+```
+<hr>
+
+**Note**: This still works just the same as expected--have a look at it in Mozilla's example [here]().
+
+<hr>
