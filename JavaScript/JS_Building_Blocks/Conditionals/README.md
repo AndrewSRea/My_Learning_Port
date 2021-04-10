@@ -384,11 +384,11 @@ In this example, you are going to take the ternary operator example we saw earli
 * For each case, the choice should equal one of the possible `<option> value`s that can be selected. That is, `white`, `black`, `purple`, `yellow`, or `psychedelic`.
 * For each case, the `update()` function should be run, and be passed two color values, the first one for the background color, and the second one for the text color. Remember that color values are strings, so need to be wrapped in quotes.
 
-(See my accompanying [conditionals-active-learning-2.html]() file to see this in action.)
+(See my accompanying [conditionals-active-learning-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/conditionals-active-learning-2.html) file to see this in action.)
 
 ## Skills test
 
-I have created an accompanying [conditionals-skills-test.html]() file to test my knowledge of the information provided by this **"Making decisions in your code -- conditionals"** page. See the results [here]().
+I have created an accompanying [conditionals-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/conditionals-skills-test.html) file to test my knowledge of the information provided by this **"Making decisions in your code -- conditionals"** page. See the results [here]().
 
 ## Conclusion
 
@@ -400,3 +400,5 @@ And that's all you really need to know about conditional structures in JavaScrip
 * [Conditional statements in detail](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements)
 * [if...else reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
 * [Conditional (ternary) operator reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
+
+[[Opening module page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks#javascript-building-blocks) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals#making-decisions-in-your-code----conditionals) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code)
