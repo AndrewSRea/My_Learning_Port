@@ -284,3 +284,28 @@ do {
 **Note**: Again, this works just the same as expected--have a look at it in Mozilla's example [here]().
 
 <hr>
+
+:exclamation: **Important**: With while and do...while -- as with all loops -- you must make sure that the initializer is incremented or, depending on the case, decremented, so the condition eventually becomes false. If not, the loop will go on forever, and either the browser will force it to stop, or it will crash. This is called an **infinite loop**.
+
+<hr>
+
+## Active learning: Launch countdown!
+
+In this exercise, we want you to print out a simple launch countdown to the output box, from 10 down to Blastoff. Specifically, we want you to:
+
+* Loop from 10 down to 0. We've provided you with an initializer -- `let i = 10;`.
+* For each iteration, create a new paragraph and appeend it to the output `<div>`, which we've selected using `const output = document.querySelector('.output');`. In comments, we've provided you with three code lines that need to be used somewhere inside the loop:
+    - `const para = document.createElement('p');` -- creates a new paragraph.
+    - `output.appendChild(para);` -- appends the paragraph to the output `<div>`.
+    - `para.textContent =` -- makes the text inside the paragraph equal to whatever you put on the right-hand side, after the equals sign.
+* Different iteration numbers require different text to be put in the paragraph for that iteration (you'll need a conditional statement and multiple `para.textContent =` lines):
+    - If the number is 10, print "Countdown 10" to the paragraph.
+    - If the number is 0, print "Blast off!" to the paragraph.
+    - For any other number, print just the number to the paragraph.
+* Remember to include an iterator! However, in this example, we are counting down after each iteration, not up, so you **don't** want `i++` -- how do you iterate downwards?
+
+<hr>
+
+**Note**: If you start typing the loop (for example, (`while (i >= 0)`)), the browser might get stuck because you have not yet entered the end condition. So be careful with this. You can start writing your code in a comment to deal with this issue and remove the comment after you finish.
+
+<hr>
