@@ -328,3 +328,57 @@ We've already provided you with:
 * `admitted.textContent +=` -- the beginnings of a line that will concatenate something on to the end of `admitted.textContent`.
 
 Extra bonus question: After completing the above tasks successfully, you will be left with two lists of names, separated by commas, but they will be untidy--there will be a comm a at the end of each one. Can you work out how to write lines that slice the last comma off in each case, and add a full stop to the end? Have a look at the [Useful string methods](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods) article for help.
+
+(See my accompanying [loops-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/loops-active-learning.html) file to see the code for these two **Active learning** sections in action.)
+
+## Which loop type should you use?
+
+For basic uses, `for`, `while`, and `do...while` loops are largely interchangeable. They ccan all be used to solve the same problems, and which one you use will largely depend on your personal preference--which one you find easiest to remember or most intuitive. Let's have a look at them again.
+
+First `for`:
+```
+for (initializer; condition; final-expression) {
+    // code to run
+}
+```
+`while`:
+```
+initializer
+while (condition) {
+    // code to run
+
+    final-expression
+}
+```
+and finally `do...while`:
+```
+initializer
+do {
+    // code to run
+
+    final-expression
+} while (condition)
+```
+We would recommend `for`, at least to begin with, as it is probably the easiest for remembering everything--the initializer, condition, and final-expression all have to go neatly into the parentheses, so it is easy to see where they are and check that you aren't missing them.
+
+<hr>
+
+**Note**: There are other loop types/features, too, which are useful in advanced/specialized situations and beyond the scope of this article. If you want to go further with your loop learning, read Mozilla's advanced [Loops and iteration guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration).
+
+## Skills test
+
+I have created an accompanying [loops-skills-test.html]() file to test my knowledge of the information provided by this **"Looping code"** page. See the results [here]().
+
+## Conclusion
+
+This article has revealed to you the basic concepts behind, and different options available when, looping code in JavaScript. You should now be clear on why loops are a good mechanism for dealing with repetitive code are are raring to use them in your own examples!
+
+## See also
+
+* [Loops and iteration in detail](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
+* [for statement reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
+* [while](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) and [do...while](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while) references
+* [break](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break) and [continue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue) references
+* [What's the Best Way to Write a JavaScript For Loop?](https://www.impressivewebs.com/javascript-for-loop/) -- some advanced loop best practices
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals#making-decisions-in-your-code----conditionals) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code) - [[Next page]]()
