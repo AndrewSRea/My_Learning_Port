@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            p {
+                color: purple;
+                margin: 0.5em 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 50%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Looping Code Skills Test 1</h2>
+
+        <section class="preview-1">
+
+
+
+        </section>
+
+        <script>
+            /* *** Looping Code Skills Test 1 *** */ 
+
+            let myArray = ['tomatoes', 'chick peas', 'onions', 'rice', 'black beans'];
+            let list = document.createElement('ul');
+
+            // Add your code here
+
+            for (i = 0; i < myArray.length; i++) {
+                let listItem = document.createElement('li');
+                listItem.textContent = myArray[i];
+                list.appendChild(listItem);
+            }
+
+            // Don't edit the code below here!
+
+            const section = document.querySelector('.preview-1');
+            section.appendChild(list);
+        </script>
+    </body>
+</html>
