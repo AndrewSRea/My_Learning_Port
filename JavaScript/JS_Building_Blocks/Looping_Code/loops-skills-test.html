@@ -36,6 +36,22 @@
 
         </section>
 
+        <h2>Looping Code Skills Test 2</h2>
+
+        <section class="preview-2">
+
+
+
+        </section>
+
+        <h2>Looping Code Skills Test 3</h2>
+
+        <section class="preview-3">
+
+
+
+        </section>
+
         <script>
             /* *** Looping Code Skills Test 1 *** */ 
 
@@ -54,6 +70,89 @@
 
             const section = document.querySelector('.preview-1');
             section.appendChild(list);
+
+
+            /* *** Looping Code Skills Test 2 *** */
+
+            let name = 'Mustafa';
+            let j = 0;
+            let para = document.createElement('p');
+
+            let phonebook = [
+                { name : 'Chris', number : '1549' },
+                { name : 'Li Kang', number : '9634' },
+                { name : 'Anne', number : '9065' },
+                { name : 'Francesca', number : '3001' },
+                { name : 'Mustafa', number : '6888' },
+                { name : 'Tina', number : '4312' },
+                { name : 'Bert', number : '7780' },
+                { name : 'Jada', number : '2282' },
+            ]
+
+            // Add your code here
+
+            while (j < phonebook.length) {
+                if (phonebook[j].name === 'Mustafa') {
+                    para.textContent = phonebook[j].name + '\'s number is ' + phonebook[j].number;
+                    break;
+                } else if (phonebook[j] !== 'Mustafa') {
+                    para.textContent = 'Contact not found.';
+                }
+
+                j++;
+            }
+
+            /*
+                Well, the solution uses a `do...while` loop as follows (comment out the above code and uncomment the 
+                below code to see the solution in action):
+            
+                do {
+                    if (phonebook[j].name === name) {
+                        para.textContent = `${ phonebook[j].name }'s number is ${ phonebook[j].number }.`;
+                        break;
+                    }
+
+                    if (j === phonebook.length - 1) {
+                        para.textContent = 'Name not found in the phonebook.';
+                    }
+
+                    j++;
+                } while (j < phonebook.length);
+            */
+
+            // Don't edit the code below here!
+
+            let section2 = document.querySelector('.preview-2');
+            section2.appendChild(para);
+
+            
+            /* *** Looping Code Skills Test 3 *** */
+
+            let k = 500;
+            let para2 = document.createElement('p');
+
+            function isPrime(num) {
+                for (let k = 2; k < num; k++) {
+                    if (num % k === 0) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            // Add your code here
+
+            while (k >= 2) {
+                k = isPrime(k);
+                if ()
+            }
+
+            // Don't edit the code below here!
+            
+            let section3 = document.querySelector('.preview-3');
+            section3.appendChild(para2);
+
         </script>
     </body>
 </html>
