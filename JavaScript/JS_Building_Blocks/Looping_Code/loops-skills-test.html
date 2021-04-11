@@ -143,33 +143,21 @@
 
             // Add your code here
 
-            do {
-                if (isPrime(k) === false) {
+            while (k >= 2) {
+                if (!isPrime(k)) {
+                    k--;
                     continue;
-                } else {
-                    para.textContent += i + ' ';
                 }
-
-                i--;
-            } while (i > 1);
+                
+                para2.textContent += `${k} / `;
+                k--;
+            }
 
             // Don't edit the code below here!
             
             let section3 = document.querySelector('.preview-3');
             section3.appendChild(para2);
 
-
-            /* In my defense, the instructions from Mozilla state: "You should use a type of loop that you've not used in the
-               previous two tasks."
-               This exercise requires a `do...while` loop.
-
-               do {
-                   if (isPrime(k)) {
-                       para2.textContent += `${i} `;
-                   }
-                   i--;
-               } while (i > 1);
-            */
         </script>
     </body>
 </html>
