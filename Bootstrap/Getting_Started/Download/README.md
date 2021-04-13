@@ -49,3 +49,55 @@ Pull in Bootstrap's **source files** into nearly any project with some of the mo
 
 ### npm
 
+Install Bootstrap in your Node.js powered apps with [the npm package](https://www.npmjs.com/package/bootstrap):
+``` 
+$ npm install bootstrap@next
+```
+`const bootstrap = require('bootstrap')` or `import bootstrap from 'bootstrap'` will load all of Bootstrap's plugins onto a `bootstrap` object. The `bootstrap` module itself exports all of Bootstrap's plugins. You can manually load Bootstrap's plugins individually by loading the `/js/dist/*.js` files under the package's top-level directory.
+
+Bootstrap's `package.json` contains some additional metadata under the following keys:
+
+* `sass` - path to Bootstrap's main [Sass](https://sass-lang.com/) source file
+* `style` - path to Bootstrap's non-minified CSS that's been precompiled using the default settings (no customization)
+
+<hr>
+
+**Get started with Bootstrap via npm with Bootstrap's starter project!** Head to the [twbs/bootstrap-npm-starter](https://github.com/twbs/bootstrap-npm-starter) template repository to see how to build and customize Bootstrap in your own npm project. Includes Sass compiler, Autoprefixer, Stylelint, PurgeCSS, and Bootstrap Icons.
+
+<hr>
+
+### yarn
+
+Install Bootstrap in your Node.js powered apps with [the yarn package](https://classic.yarnpkg.com/en/package/bootstrap):
+```
+$ yarn add bootstrap@next
+```
+
+### RubyGems
+
+Install Bootstrap in your Ruby apps using [Bundler](https://bundler.io/) **(recommended)** and [RubyGems](https://rubygems.org/) by adding the following line to your [`Gemfile`](https://bundler.io/gemfile.html):
+```
+gem 'bootstrap', '~> 5.0.0.beta3'
+```
+Alternatively, if you're not using Bundler, you can install the gem by running this command:
+```
+$ gem install bootstrap -v 5.0.0.beta3
+```
+[See the gem's README](https://github.com/twbs/bootstrap-rubygem/blob/master/README.md) for further details.
+
+### Composer
+
+You can also install and manage Bootstrap's Sass and JavaScript using [Composer](https://getcomposer.org/):
+```
+$ composer require twbs/bootstrap:5.0.0-beta3
+```
+
+### NuGet
+
+If you develop in .NET, you can also install and manage Bootstrap's [CSS](https://www.nuget.org/packages/bootstrap/) or [Sass](https://www.nuget.org/packages/bootstrap.sass/) and JavaScript using [NuGet](https://www.nuget.org/):
+```
+PM> Install-Package bootstrap
+```
+```
+PM> Install-Package bootstrap.sass
+```
