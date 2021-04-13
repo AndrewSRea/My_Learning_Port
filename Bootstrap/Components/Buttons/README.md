@@ -157,7 +157,7 @@ Add `data-bs-toggle="button"` to toggle a button's `active` state. If you're pre
 
 ### Methods
 
-You can create a butom instance with the button constructor. For example:
+You can create a button instance with the button constructor. For example:
 ```
 var button = document.getElementById('myButton');
 var bsButton = new bootstrap.Button(button);
