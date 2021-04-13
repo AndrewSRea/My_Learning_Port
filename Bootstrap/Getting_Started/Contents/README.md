@@ -66,7 +66,7 @@ Bootstrap includes a handful of options for including some or all of our compile
 | `bootstrap.rtl.css` |   |   |   |   |
 | `bootstrap.min.css` |   |   |   |   |
 | `bootstrap.rtl.min.css` |   |   |   |   |
-| `bootstrap-grid.css` | [Only grid system]() | -- | -- | [Only flex utilities]()|
+| `bootstrap-grid.css` | [Only grid system]() | -- | -- | [Only flex utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) |
 | `bootstrap-grid.rtl.css` |   |   |   |   |
 | `bootstrap-grid.min.css` |   |   |   |   |
 | `bootstrap-grid.rtl.min.css` |   |   |   |   |
@@ -79,4 +79,35 @@ Bootstrap includes a handful of options for including some or all of our compile
 | `bootstrap-reboot.min.css` |   |   |   |   |
 | `bootstrap-reboot.rtl.min.css` |   |   |   |   |
 
+<!-- 1st link: to Layout folder / Grid system | 2nd link: DONE! | 3rd link: to Content folder / Reboot -->
+
 ## JS files
+
+Similarly, Bootstrap has options for including some or all of its compiled JavaScript.
+
+| JS files | Popper |
+| --- | --- |
+| `bootstrap.bundle.js` | Included |
+| `bootstrap.bundle.min.js` |   |
+| `bootstrap.js` | -- |
+| `bootstrap.min.js` |   |
+
+## Bootstrap source code
+
+The Bootstrap source code download includes the precompiled CSS and JavaScript assets, along with source Sass, JavaScript, and documentation. More specifically, it includes the following and more:
+```
+bootstrap/
+├── dist/
+│   ├── css/
+│   └── js/
+├── site/
+│   └──content/
+│      └── docs/
+│          └── 5.0/
+│              └── examples/
+├── js/
+└── scss/
+```
+The `scss/` and `js/` are the source code for Bootstrap's CSS and JavaScript. The `dist/` folder includes everything listed in the precompiled download section above. The `site/docs/` folder includes the source code for Bootstrap's documentation, and `examples/` of Bootstrap usage. Beyond that, any other included file provides support for packages, license information, and development.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#download) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Contents#contents) - [[Next page]]()
