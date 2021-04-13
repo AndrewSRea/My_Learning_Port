@@ -86,7 +86,7 @@ Bootstrap includes a handful of options for including some or all of our compile
 Similarly, Bootstrap has options for including some or all of its compiled JavaScript.
 
 | JS files | Popper |
-| --- | --- |
+| --- | :---: |
 | `bootstrap.bundle.js` | Included |
 | `bootstrap.bundle.min.js` |   |
 | `bootstrap.js` | -- |
