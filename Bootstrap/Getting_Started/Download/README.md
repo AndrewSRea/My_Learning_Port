@@ -7,7 +7,7 @@ Download Bootstrap to get the compiled CSS and JavaScript, source code, or inclu
 Download ready-to-use compiled code for **Bootstrap v5.0.0-beta3** to easily drop into your project, which includes:
 
 * Compiled and minified CSS bundles (see [CSS files comparison]()) <!-- link to next page, Contents (header: 'CSS files') -->
-* Compiled and minified JavaScript plugins (see [JS files compaarison]()) <!-- link to next page, Contents (header: 'JS files') -->
+* Compiled and minified JavaScript plugins (see [JS files comparison]()) <!-- link to next page, Contents (header: 'JS files') -->
 
 This doesn't include documentation, source files, or any optional JavaScript dependencies like Popper.
 
@@ -101,3 +101,5 @@ PM> Install-Package bootstrap
 ```
 PM> Install-Package bootstrap.sass
 ```
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Introduction#introduction) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#download) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Contents#contents)
