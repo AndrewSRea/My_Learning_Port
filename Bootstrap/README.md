@@ -26,7 +26,7 @@ As [Sass](https://sass-lang.com/) was mentioned above, if Sass is a necessary co
 
 I have created a folder for each section covered in Bootstrap's instructional website, listed below. To follow my instructional path, please click the link to my **Getting Started** folder.
 
-* [Getting Started]()
+* [Getting Started](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started#getting-started)
 * [Customize]()
 * [Layout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#bootstrap-layout)
 * [Content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#bootstrap-content)
