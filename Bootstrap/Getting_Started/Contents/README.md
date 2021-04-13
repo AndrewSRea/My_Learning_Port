@@ -61,7 +61,7 @@ This is the most basic form of Bootstrap: precompiled files for quick drop-in us
 Bootstrap includes a handful of options for including some or all of our compiled CSS.
 
 | CSS files | Layout | Content | Components | Utilities |
-| --- | --- | --- | --- | --- |
+| --- | :--- :| :---: | :---: | :---: |
 | `bootstrap.css` | Included | Included | Included | Included |
 | `bootstrap.rtl.css` |   |   |   |   |
 | `bootstrap.min.css` |   |   |   |   |
