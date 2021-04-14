@@ -52,7 +52,7 @@ Programmers call **functions** that are part of objects **methods**. You don't n
 
 The built-in code we've made use of so far comes in both forms: **functions** and **methods**. You can check the full list of the built-in functions, as well as the built-in objects and their corresponding methods [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects).
 
-You've also seen a lot of **custom functions** in the course so far--functions defined in your code, not inside the browser. Anytime you saw a custom name with parentheses straight after it, you were using a custom function. In our "random-canvas-circles.html" example(see my accompanying [random-canvas-circles.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) file) from our [loops article](), we included a custom `draw()` function that looked like this:
+You've also seen a lot of **custom functions** in the course so far--functions defined in your code, not inside the browser. Anytime you saw a custom name with parentheses straight after it, you were using a custom function. In our "random-canvas-circles.html" example(see my accompanying [random-canvas-circles.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) file) from our [loops article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code), we included a custom `draw()` function that looked like this:
 ```
 function draw() {
     ctx.clearRect(0,0,WIDTH,HEIGHT);
@@ -64,7 +64,7 @@ function draw() {
     }
 }
 ```
-This function draws 100 random circles inside a [`<canvas>`]() element. Every time we want to do that, we can just invoke the function with this:
+This function draws 100 random circles inside a [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element. Every time we want to do that, we can just invoke the function with this:
 ```
 draw();
 ```
@@ -74,4 +74,89 @@ function random(number) {
     return Math.floor(Math.random()*number);
 }
 ```
-We needed this function because the browser's built-in [Math.random()]() function only generates a random decimla number between 0 and 1. We wanted a random whole number between 0 and a specified number.
+We needed this function because the browser's built-in [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) function only generates a random decimla number between 0 and 1. We wanted a random whole number between 0 and a specified number.
+
+## Invoking functions
+
+You are probably clear on this by now, but just in case... to actually use a function after it has been defined, you've got to run--or invoke--it. This is done by including the name of the function in the code somewhere, followed by parentheses.
+```
+function myFunction() {
+    alert('hello');
+}
+
+myFunction();
+// calls the function once
+```
+
+<hr>
+
+:exclamation: This form of creating a function is also known as *function declaration*. It is always hoisted, so you can call function above the function declaration and it will work fine.
+
+<hr>
+
+## Anonymous functions
+
+You may see functions defined and invoked in slightly different ways. So far we have just created a function like so:
+```
+function myFunction() {
+    alert('hello');
+}
+```
+But you can also create a function that doesn't have a name:
+```
+function() {
+    alert('hello');
+}
+```
+This is called an **anonymous function**--it has no name! It also won't do anything on its own. You generally use an anonymous function along with an event handler. For example, the following would run the code inside the function whenever the associated button is clicked:
+```
+const myButton = document.querySelector('button');
+
+myButton.onclick = function() {
+    alert('hello');
+}
+```
+The above example would require there to be a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) element available on the page to select and click. You've already seen this structure a few times throughout the course, and you'll learn more about and see it in use in the next article.
+
+You can also assign an anonymous function to be the value of a variable, for example:
+```
+const myGreeting = function() {
+    alert('hello');
+}
+```
+
+<hr>
+
+:exclamation: This form of creating a function is also known as *function expression*. Unlike function declaration, function expressions are not hoisted.
+
+<hr>
+
+This function could now be invoked using:
+```
+myGreeting();
+```
+This effectively gives the function a name; you can also assign the function to be the value of multiple variables. For example:
+```
+let anotherGreeting = myGreeting;
+```
+This function could now be invoked using either of:
+```
+myGreeting();
+anotherGreeting();
+```
+But this would just be confusing, so don't do it! When creating functions, it is better to just stick to this form:
+```
+function myGreeting() {
+    alert('hello');
+}
+```
+You will mainly use anonymous functions to just run a load of code in response to an event firing--like a button being clicked--using an event handler. Again, this looks something like this:
+```
+myButton.onclick = function() {
+    alert('hello');
+    // I can put as much code
+    // inside here as I want
+}
+```
+
+## Function parameters
