@@ -251,4 +251,27 @@ Let's look at a real example to demonstrate scoping:
 output(x);
 ```
 You should see the value of variable `x` output to the screen.
-4. 
+4. Now try entering the following in your console:
+```
+output(y);
+output(z);
+```
+Both of these should return an error along the lines of "[ReferenceError: y is not defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined)". Why is that? Because of function scope--`y` and `z` are locked inside the `a()` and `b()` functions, so `output()` can't access them when called from the global scope.
+5. However, what about when it's called from inside another function? Try editing `a()` and `b()` so they look like this:
+```
+function a() {
+    let y = 2;
+    output(y);
+}
+
+function b() {
+    let z = 3;
+    output(z);
+}
+```
+Save the code and reload it in your browser, then try calling the `a()` and `b()` functions from the JavaScript console:
+```
+a();
+b();
+```
+You should see the `y` and `z` values output in the page.
