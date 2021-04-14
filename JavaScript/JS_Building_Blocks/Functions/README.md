@@ -193,3 +193,62 @@ let madeAString = myArray.join(' ');
 let madeAString = myarray.join();
 // returns 'I,love,chocolate,frogs'
 ```
+If no parameter is included to specify a joining/delimiting character, a comma is used by default.
+
+## Function scope and conflicts
+
+Let's talk a bit about [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope)--a very important concept whn dealing with functions. When you create a function, the variables and other things defined inside the function are inside their own separate **scope**, meaning that they are locked away in thir own separate compartments, unreachable from code outside the functions.
+
+The top level outside all your functions is called the **global scope**. Values defined in the global scope are accessible from everywhere in the code.
+
+JavaScript is set up like this for various reasons--but mainly because of security and organization. Sometimes you don't want variables to be accessible from everywhere in the code--external scripts that you call in from elsewhere could start to mess with your code and cause problems because they happen to be using the same variable names as other parts of the code, causing conflicts. This might be done maliciously, or just by accident.
+
+For example, say you have an HTML file that is calling in two external JavaScript files, and both of them have a variable and a function defined that use the same name:
+```
+<!-- Excerpt from my HTML -->
+<script src="first.js"></script>
+<script src="second.js"></script>
+<script>
+    greeting();
+</script>
+```
+```
+// first.js
+let name = 'Chris';
+function greeting() {
+    alert('Hello ' + name + ': welcome to our company.');
+}
+```
+```
+// second.js
+let name = 'Zaptec';
+function greeting() {
+    alert('Our company is called ' + name + '.');
+}
+```
+Both functions you want to call are called `greeting()`, but you can only ever access the `first.js` file's `greeting()` function (the second one is ignored). In addition, attempting to declare the `name` variable a second time with the `let` keyword in the `second.js` file results in an error.
+
+<hr>
+
+**Note**: You can see this example [running live on Mozilla's GitHub page](https://mdn.github.io/learning-area/javascript/building-blocks/functions/conflict.html) (and see the [source code here](https://github.com/mdn/learning-area/tree/master/javascript/building-blocks/functions)).
+
+<hr>
+
+Keeping parts of your code locked away in functions avoids such problems, and is considered the best practice.
+
+It is a bit like a zoo. The lions, zebras, tigers, and penguins are kept in their own enclosures, and only have access to the things inside their enclosures--in the same manner as the function scopes. If they were able to get into other enclosures, problems would occur. At best, different animals would feel really uncomfortable inside unfamiliar habitats--a lion or tiger would feel terrible inside the penguins' watery, icy domain. At worst, the lions and tigers might try to eat the penguins!
+
+The zookeeper is like the global scope--he or she has the keys to access every enclosure, to restock food, tend to sick animals, etc.
+
+### Active learning: Playing with scope
+
+Let's look at a real example to demonstrate scoping:
+
+1. First, make a local copy of our [function-scope.html]() example. This contains two functions called `a()` and `b()`, and three variables--`x`, `y`, and `z`--two of which are defined inside the functions, and one in the global scope. It also contains a third function called `output()`, which takes a single parameter and outputs it in a paragraph on the page.
+2. Open the example up in a browser and in your text editor.
+3. Open the JavaScript console in your browser developer tools. In the JavaScript console, enter the following command:
+```
+output(x);
+```
+You should see the value of variable `x` output to the screen.
+4. 
