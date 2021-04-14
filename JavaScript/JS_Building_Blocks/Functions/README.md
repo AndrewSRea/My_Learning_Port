@@ -327,3 +327,64 @@ This time, the `a()` and `b()` calls will both return an annoying [ReferenceErro
 <hr>
 
 ### Functions inside functions
+
+Keep in mind that you can call a function from anywhere, even inside another function. This is often used as a way to keep code tidy--if you have a big complex function, it is easier to understand if you break it down into several sub-functions:
+```
+function myBigFunction() {
+    let myValue;
+
+    subFunction1();
+    subFunction2();
+    subFunction3();
+}
+
+function subFunction1() {
+    console.log(myValue);
+}
+
+function subFunction2() {
+    console.log(myValue);
+}
+
+function subFunction3() {
+    console.log(myValue);
+}
+```
+Just make sure that the values being used inside the function are properly in scope. The example above would throw an error `ReferenceError: myValue is not defined`, because although the `myValue` variable is defined in the same scope as the function calls, it is not defined inside the function definitions--the actual code that is run when the functions are called. To make this work, you'd have to pass the value into the function as a parameter, like this:
+```
+function myBigFunction() {
+    let myValue = 1;
+
+    subFunction1(myValue);
+    subFunction2(myValue);
+    subFunction3(myValue);
+}
+
+function subFunction1(value) {
+    console.log(value);
+}
+
+function subFunction2(value) {
+    console.log(value);
+}
+
+function subFunction3(value) {
+    console.log(value);
+}
+```
+
+## Skills test
+
+I have created an accompanying [functions-skills-test.html]() file to test my knowledge of the information provided by this **"Functions -- reusable blocks of code"** page. See the results [here]().
+
+## Conclusion
+
+This article has explored the fundamental concepts behind functions, paving the way for the next one in which we get practical and take you through the steps to building up your own custom function.
+
+## See also
+
+* [Functions detailed guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) -- covers some advanced features not included here.
+* [Functions reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+* [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters), [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) -- advanced concept references.
+
+[[Previous page]]() - [[Top]]() - [[Next page]]()
