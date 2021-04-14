@@ -251,12 +251,14 @@ Let's look at a real example to demonstrate scoping:
 output(x);
 ```
 You should see the value of variable `x` output to the screen.
+
 4. Now try entering the following in your console:
 ```
 output(y);
 output(z);
 ```
 Both of these should return an error along the lines of "[ReferenceError: y is not defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined)". Why is that? Because of function scope--`y` and `z` are locked inside the `a()` and `b()` functions, so `output()` can't access them when called from the global scope.
+
 5. However, what about when it's called from inside another function? Try editing `a()` and `b()` so they look like this:
 ```
 function a() {
@@ -274,4 +276,54 @@ Save the code and reload it in your browser, then try calling the `a()` and `b()
 a();
 b();
 ```
-You should see the `y` and `z` values output in the page.
+You should see the `y` and `z` values output in the page. This works fine, as the `output()` function is being called inside the other functions--in the same scope as the variables it is printing are defined in, in each case. `output()` itself is available from anywhere, as it is defined in the global scope.
+
+6. Now try updating your code like this:
+```
+function a() {
+    let y = 2;
+    output(x);
+}
+
+function b() {
+    let z = 3;
+    output(x);
+}
+```
+7. Save and reload again, and try this again in your JavaScript console:
+```
+a();
+b();
+```
+Both the `a()` and `b()` call should output the value of x -- 1. These work fine because even though the `output()` calls are not in the same scope as `x` is defined in, `x` is a global variable so is available inside all code everywhere.
+
+8. Finally, try updating your code like this:
+```
+function a() {
+    let y = 2;
+    output(z);
+}
+
+function b() {
+    let z = 3;
+    output(y);
+}
+```
+9. Save and reload again, and try this again in your JavaScript console:
+```
+a();
+b();
+```
+This time, the `a()` and `b()` calls will both return an annoying [ReferenceError: variable name is not defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined) error--this is because the `output()` calls and the variables they are trying to print are not in the same function scopes--the variables are effectively invisible to those function calls.
+
+<hr>
+
+**Note**: The same scoping rules do not apply to loop (e.g. `for() { ... }`) and conditional blocks (e.g. `if() { ... }`) -- they look very similar, but they are not the same thing! Take care not to get these confused.
+
+<hr>
+
+**Note**: The [ReferenceError: "x" is not defined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined) error is one of the most common you'll encounter. If you get this error and you are sure that you have defined the variable in question, check what scope it is in.
+
+<hr>
+
+### Functions inside functions
