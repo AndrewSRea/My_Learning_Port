@@ -118,7 +118,7 @@ myButton.onclick = function() {
 ```
 The above example would require there to be a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) element available on the page to select and click. You've already seen this structure a few times throughout the course, and you'll learn more about and see it in use in the next article.
 
-You can also assign an anonymous function to be the value of a variable, for example:
+You can also assign an anonymous function to be the value of a variable. For example:
 ```
 const myGreeting = function() {
     alert('hello');
@@ -160,3 +160,36 @@ myButton.onclick = function() {
 ```
 
 ## Function parameters
+
+Some functions require **parameters** to be specified when you are invoking them--these are values that need to be included inside the function parentheses, which it needs to do its job properly.
+
+<hr>
+
+**Note**: Parameters are sometimes called arguments, properties, or even attributes.
+
+<hr>
+
+As an example, the browser's built-in `Math.random()` function doesn't require any parameters. When called, it always returns a random number between 0 and 1:
+```
+let myNumber = Math.random();
+```
+The browser's built-in string [`replace()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) function, however, needs two parameters--the substring to find in the main string, and the substring to replace that string with:
+```
+let myText = 'I am a string';
+let newString = myText.replace('string', 'sausage');
+```
+
+<hr>
+
+**Note**: When you need to specify multiple parameters, they are separated by commas.
+
+<hr>
+
+It should also be noted that sometimes parameters are optional--you don't have to specify them. If you don't, the function will generally adopt some kind of default behavior. As an example, the array [`join()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) function's parameter is optional:
+```
+let myArray = ['I', 'love', 'chocolate', 'frogs'];
+let madeAString = myArray.join(' ');
+// returns 'I love chocolate frogs'
+let madeAString = myarray.join();
+// returns 'I,love,chocolate,frogs'
+```
