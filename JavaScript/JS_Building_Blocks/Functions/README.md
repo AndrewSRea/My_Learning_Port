@@ -46,3 +46,32 @@ The JavaScript language has many built-in functions to allow you to do useful th
 
 Bear in mind that some built-in browser functions are not part of the core JavaScript language--some are defined as part of browser APIs, which build on top of the default language to provide even more functionality (refer to [this early section of our course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#so-what-can-it-really-do) for more descriptions). We'll look at using browser APIs in more detail in a later module.
 
+## Functions versus methods
+
+Programmers call **functions** that are part of objects **methods**. You don't need to learn about the inner workings of structured JavaScript objects yet--you can wait until our later module that will teach you all about the inner workings of objects, and how to create your own. For now, we just wanted to clear up any possible confusion of method versus function--you are likely to meet both terms as you look at the available related resources across the Web.
+
+The built-in code we've made use of so far comes in both forms: **functions** and **methods**. You can check the full list of the built-in functions, as well as the built-in objects and their corresponding methods [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects).
+
+You've also seen a lot of **custom functions** in the course so far--functions defined in your code, not inside the browser. Anytime you saw a custom name with parentheses straight after it, you were using a custom function. In our "random-canvas-circles.html" example(see my accompanying [random-canvas-circles.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) file) from our [loops article](), we included a custom `draw()` function that looked like this:
+```
+function draw() {
+    ctx.clearRect(0,0,WIDTH,HEIGHT);
+    for (let i = 0; i < 100; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,0,0,0.5)';
+        ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+        ctx.fill();
+    }
+}
+```
+This function draws 100 random circles inside a [`<canvas>`]() element. Every time we want to do that, we can just invoke the function with this:
+```
+draw();
+```
+...rather than having to write all that code out again every time we want to repeat it. And functions can contain whatever code you like--you can even call other functions from inside functions. The above function, for example, calls the `random()` function three times, which is defined by the following code:
+```
+function random(number) {
+    return Math.floor(Math.random()*number);
+}
+```
+We needed this function because the browser's built-in [Math.random()]() function only generates a random decimla number between 0 and 1. We wanted a random whole number between 0 and a specified number.
