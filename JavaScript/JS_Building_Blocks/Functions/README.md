@@ -2,3 +2,47 @@
 
 Another essential concept in coding is **functions**, which allow you to store a piece of code that does a single task inside a defined block, and then call that code whenever you need it using a single short command--rather than having to type out the same code multiple times. In this article, we'll explore fundamental concepts behind functions such as basic syntax, how to invoke and define them, scop, and parameters.
 
+## Where do I find functions?
+
+In JavaScript, you'll find functions everywhere. In fact, we've been using functions all the way through the course so far; we've just not been talking about them very much. Now is the time, however, for us to start talking about functions explicitly, and really exploring their syntax.
+
+Pretty much anytime you make use of a JavaScript structure that features a pair of parentheses -- `()` -- and you're **not** using a common built-in language structure like a [for loop](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#the-standard-for-loop), [while or do...while loop](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#while-and-dowhile), or [if...else statement](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals#making-decisions-in-your-code----conditionals), you are making use of a function.
+
+## Built-in browser functions
+
+We've made use of functions built in to the browsr a lot in this course. Every time we manipulated a text string, for example:
+```
+let myText = 'I am a string';
+let newString = myText.replace('string', 'sausage');
+console.log(newString);
+// the replace() string function takes a source string,
+// and a target string and replaces the source string,
+// with the target string, and returns the newly formed string
+```
+Or every time we manipulated an array:
+```
+let myArray = ['I', 'love', 'chocolate', 'frogs'];
+let madeAString = myArray.join(' ');
+console.log(madeAString);
+// the join() function takes an array, joins
+// all the array items together into a single
+// string, and returns this new string
+```
+Or every time we generated a random number:
+```
+let myNumber = Math.random();
+// the random() function generates a random number between
+// 0 and up to but not including 1, and returns that number
+```
+...we were using a function!
+
+<hr>
+
+**Note**: Feel fre to enter these lines into your browser's JavaScript console to re-familiarize yourself with their functionality, if needed.
+
+<hr>
+
+The JavaScript language has many built-in functions to allow you to do useful things without having to write all that code yourself. In fact, some of the code you are calling when you **invoke** (a fancy word for run, or execute) a built-in browser function couldn't be written in JavaScript--many of these functions are caalling parts of the background browser code, which is written largely in low-level system languages like C++, not web languages like JavaScript.
+
+Bear in mind that some built-in browser functions are not part of the core JavaScript language--some are defined as part of browser APIs, which build on top of the default language to provide even more functionality (refer to [this early section of our course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#so-what-can-it-really-do) for more descriptions). We'll look at using browser APIs in more detail in a later module.
+
