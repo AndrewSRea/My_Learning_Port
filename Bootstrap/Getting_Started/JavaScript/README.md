@@ -91,3 +91,35 @@ If you'd like to get a particular plugin instance, each plugin exposes a `getIns
 
 ### CSS selectors in constructors
 
+You can also use a CSS selector as the first argument instead of a DOM elemeent to initialize the plugin. Currently the element for the plugin is found by the `querySelector` method since Bootstrap's plugins support a single element only.
+```
+var modal = new bootstrap.Modal('#myModal');
+var dropdown = new bootstrap.Dropdown('[data-bs-toggle="dropdown"]');
+```
+
+### Asynchronous functions and transitions
+
+All programmatic API methods are **asynchronous** and return to the caller once the transition is started but **before it ends**.
+
+In order to execute an action once the transition is complete, you can listen to the corresponding event.
+```
+var myCollapseEl = document.getElementById('#myCollapse');
+
+myCollapseEl.addEventListener('shown.bs.collapse', function (event) {
+    // Action to execute once the collapsible area is expanded
+});
+```
+In addition, a method call on a **transitioning component will be ignored**.
+```
+var myCarouselEl = document.getElementById('myCarousel');
+var carousel = bootstrap.Carousel.getInstance(myCarouselEl);   // Retrieve a Carousel instance
+
+myCarouselEl.addEventListener('slid.bs.carousel', function (event) {
+    carousel.to('2');   // Will slide to the slide 2 as soon as the transition to slide 1 is finished
+});
+
+carousel.to('1');   // Will start sliding to the slide 1 and returns to the caller
+carousel.to('2');   // !! Will be ignored, as the transition to the slide 1 is not finished !!
+```
+
+### Default settings
