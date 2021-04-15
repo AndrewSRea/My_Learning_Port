@@ -19,6 +19,7 @@
                 margin-left: 15px;
             }
 
+            canvas,
             section[class|=preview] {
                 border: 1px solid #828282;
                 width: 50%; 
@@ -40,9 +41,11 @@
 
         <section class="preview-2">
            
-
-
         </section>
+
+        <canvas width="480" height="320">
+
+        </canvas>
 
         <h2>Conditionals Skills Test 3</h2>
 
@@ -86,50 +89,29 @@
 
         // *** Conditionals Skills Test 2 ***
 
-        let response2;
-        let score = 75;
-        let machineActive = false;
+        let canvas = document.querySelector('canvas');
+        let ctx = canvas.getContext('2d');
+        
+        let x = 50;
+        let y = 60;
+        let width = 100;
+        let height = 75;
+        let color = 'blue';
 
         // Add your code here
 
-        if (machineActive === true) {
-            if (score < 0 || score > 100) {
-                response2 = 'This is not possible, an error has occurred.';
-            } else if (score >= 0 && score < 19) {
-                response2 = 'That was a terrible score -- total fail!';
-            } else if (score >= 20 && score < 39) {
-                response2 = 'You know some things, but it\'s a pretty bad score. Needs improvement.';
-            } else if (score >= 40 && score < 69) {
-                response2 = 'You did a passable job, not bad!';
-            } else if (score >= 70 && score < 89) {
-                response2 = 'That\'s a great score, you really know your stuff.';
-            } else if (score >= 90 && score <= 100) {
-                response2 = 'What an amazing score! Did you cheat? Are you for real?';
-            }
-        } else {
-            response2 = 'Please turn the machine on.';
+        function drawRect() {
+            ctx.clearRect(0, 0, 0, 0);
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, width, height);
         }
+
+        drawRect();
 
         // Don't edit the code below here!
 
         const section2 = document.querySelector('.preview-2');
-        let para2 = document.createElement('p');
-        let para3 = document.createElement('p');
-
-        para2.textContent = `Your score is ${ score }`;
-        para3.textContent = response2;
-
-        section2.appendChild(para2);
-        section2.appendChild(para3);
-
-        /* So, to be truthful: It took me quite a while to figure out the correct `if...else` structure for the `machineActive`
-           indicator (`true` on top? `false` on top?), then configuring the correct nested `else if` structure. But I finally
-           figured that structure out.
-           BUT...I had some real difficulty trying to figure out how to configure the `score` ranges; specifically, which ranges
-           required `less than` operators and `greater than` operators. I knew the `less than 0` and `greater than 100` range
-           just needed `score < 0 || score > 100` but the other ranges were difficult to configure, and my code was not working
-           --so I had to look at the solution for those ranges.
-        */ 
+        
 
         // *** Conditionals Skills Test 3 ***
 
