@@ -112,13 +112,53 @@
 
         // Add your code here
 
-        function random(x, y) {
-            
+        /*
+            I have to admit that I had no clue how to solve this particular task, so I'm going to add some comments to try to
+            describe what is happening here in the code.
+        */
+
+        /* 
+            For the code block below, this is a function which returns a random integer between two bounds: the `min`imum number 
+            in the range, and the `max`imum number in the range. This function is called in the 2nd `chooseItem` function.
+            The `min` number in the `chooseItem` function is 0, and the `max` number is the `array.length`, or 8.
+            Thus, the `Math.floor(Math.random())` function becomes:
+
+            Math.floor(Math.random() * (8 - 0)) + 0; -- which will generate a random number between 0 and 7.
+
+            This number is stored in the constant variable `num`, and returned to the `chooseItem` array.
+        */
+
+        function random(min, max) {
+            const num = Math.floor(Math.random() * (max - min)) + min;
+            return num;
         }
+
+        /*
+            This one might be more advanced than I can comprehend at the moment:
+            For the code block below, this is a function which has as its parameter an `array` (the `names2` array above).
+            Somehow the parameter `array` knows how to connect to the `names2` array above.
+            A variable `choice` is made to equal a random array item in the `names2` array, with this piece of code:
+
+            `array` (which represents `names2`)[`random` (which calls the random function above)`(0, array.length)` (which
+            represent the `min` and `max` parameters in the `random` function above)]
+
+            Then the `chooseItem()` function is called in this line of code:
+
+            para2.textContent = chooseItem(names2);
+
+            The result from the function is stored in `para2.textContent`.
+        */
+
+        function chooseItem(array) {
+            let choice = array[random(0, array.length)];
+            return choice;
+        }
+
+        para2.textContent = chooseItem(names2);
 
         // Don't edit the code below here!
 
-        const section3 = document.querySelector('.preview-2');
+        const section3 = document.querySelector('.preview-3');
 
         section3.appendChild(para2);
 
