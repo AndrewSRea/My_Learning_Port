@@ -375,7 +375,7 @@ function subFunction3(value) {
 
 ## Skills test
 
-I have created an accompanying [functions-skills-test.html]() file to test my knowledge of the information provided by this **"Functions -- reusable blocks of code"** page. See the results [here]().
+I have created an accompanying [functions-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Functions/functions-skills-test.html) file to test my knowledge of the information provided by this **"Functions -- reusable blocks of code"** page. See the results [here]().
 
 ## Conclusion
 
@@ -387,4 +387,4 @@ This article has explored the fundamental concepts behind functions, paving the 
 * [Functions reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
 * [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters), [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) -- advanced concept references.
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code) - [[Next page]]()
