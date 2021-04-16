@@ -123,3 +123,102 @@ carousel.to('2');   // !! Will be ignored, as the transition to the slide 1 is n
 ```
 
 ### Default settings
+
+You can change the default settings for a plugin by modifying the plugin's `Constructor.Default` object:
+```
+// changes default for modal plugin's `keyboard` option to false
+bootstrap.Modal.Default.keyboard = false;
+```
+
+## No conflict (only if you use jQuery)
+
+Sometimes it is necessary to use Bootstrap plugins with other UI frameworks. In these circumstances, namespace collisions can occasionally occur. If this happens, you may call `.noConflict` on the plugin you wish to revert the value of.
+```
+var bootstrapButton = $.fn.button.noConflict();   // return $.fn.button to previously assigned value
+rapBtn = bootstrapButton;   // give $().bootstrapBtn the Bootstrap functionality
+```
+
+## Version numbers
+
+The version of each of Bootstrap's plugins can be accessed via the `VERSION` property of the plugin's constructor. For example, for the tooltip plugin:
+```
+bootstrap.Tooltip.VERSION;   // => "5.0.0-beta3"
+```
+
+## No special fallbacks when JavaScript is disabled
+
+Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use [`<noscript>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript) to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
+
+<hr>
+
+### :warning: Third-party libraries
+
+**Bootstrap does not officially support third-party JavaScript libraries** like Prototype or jQuery UI. Despite `.noConflict` and namespaced events, there may be compatibility problems that you need to fix on your own.
+
+<hr>
+
+## Sanitizer
+
+Tooltips and Popovers use Bootstrap's built-in sanitizer to sanitize options which accept HTML.
+
+The default `allowList` value is the following:
+```
+var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
+var DefaultAllowlist = {
+    // Global attributes allowed on any supplied element below.
+    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    a: ['target', 'href', 'title', 'rel'],
+    area: [],
+    b: [],
+    br: [],
+    col: [],
+    code: [],
+    div: [],
+    em: [],
+    hr: [],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    i: [],
+    img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
+    li: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    small: [],
+    span: [],
+    sub: [],
+    sup: [],
+    strong: [],
+    u: [],
+    ul: []
+}
+```
+If you want to add new values to this default `allowList`, you can do the following:
+```
+var myDefaultAllowList = bootstrap.Tooltip.Default.allowList;
+
+// To allow table elements
+myDefaultAllowList.table = [];
+
+// To allow td elements and data-bs-option attributes on td elements
+myDefaultAllowList.td = ['data-bs-option'];
+
+// You can push your custom regex to validate your attributes.
+// Be careful about your regular expressions being too lax
+var myCustomRegex = /^data-my-app-[\w-]+/
+myDefaultAllowList['*'].push(myCustomRegex);
+```
+If you want to bypass Bootstrap's sanitizer because you prefer to use a dedicated library, for example, [DOMPurify](https://www.npmjs.com/package/dompurify), you should do the following:
+```
+var yourTooltipEl = document.getElementById('yourTooltip');
+var tooltip = new bootstrap.Tooltip(yourTooltipEl, {
+    sanitizerFn: function (content) {
+        return DOMPurify.sanitize(content);
+    }
+});
+```
