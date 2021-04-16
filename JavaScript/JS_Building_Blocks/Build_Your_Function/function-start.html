@@ -35,12 +35,28 @@
     <body>
         <!-- This code example is the property of the Mozilla Developer Network, and was created by Chris Mills. 
              https://github.com/chrisdavidmills -->
-             
+
         <button>Display message box</button>
 
         <script>
             function displayMessage() {
+                const html = document.querySelector('html');
 
+                const panel = document.createElement('div');
+                panel.setAttribute('class', 'msgBox');
+                html.appendChild(panel);
+
+                const msg = document.createElement('p');
+                msg.textContent = 'This is a message box';
+                panel.textContent(msg);
+
+                const closeBtn = document.createElement('button');
+                closeBtn.textContent = 'x';
+                panel.appendChild(closeBtn);
+
+                closeBtn.onclick = function() {
+                    panel.parentNode.removeChild(panel);
+                }
             }
         </script>
     </body>
