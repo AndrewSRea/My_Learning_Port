@@ -35,4 +35,26 @@ function displayMessage() {
 
 }
 ```
-We start off with the keyword `function`, which means we are defining a function. 
+We start off with the keyword `function`, which means we are defining a function. This is followed by the name we want to give to our function, a set of parentheses, and a set of curly braces. Any parameters we want to give to our function go inside the parentheses, and the code that runs when we call thee function goes inside the curly braces.
+3. Finally, add the following code inside the curly braces:
+```
+const html = document.querySelector('html');
+
+const panel = document.querySelector('div');
+panel.setAttribute('class', 'msgBox');
+html.appendChild(panel);
+
+const msg = document.createElement('p');
+msg.textContent = 'This is a message box';
+panel.appendChild(msg);
+
+const closeBtn = document.createElement('button');
+closeBtn.textContent = 'x';
+panel.appendChild(closeBtn);
+
+closeBtn.onclick = function() {
+    panel.parentNode.removeChild(panel);
+}
+```
+This is quite a lot of code to go through, so we'll walk you through it bit by bit.
+
