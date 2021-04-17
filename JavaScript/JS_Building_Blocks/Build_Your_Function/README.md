@@ -218,3 +218,12 @@ displayMessage('Brian: Hi, there! How are you today?', 'chat');
 ```
 You can see how useful our (now not so) little function is becoming.
 
+## Skills test
+
+I have created an accompanying [functions-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Functions/functions-skills-test.html) file to test my knowledge of the information provided by this **"Build your own function"** page. See the results [here]().
+
+## Conclusion
+
+Congratulations on reaching the end! This article took you through the entire process of building up a practical custom function, which, with a bit more work, could be transplanted into a real project. In the next article, we'll wrap up functions by explaining another essential related concept--return values.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function) - [[Next page]]()
