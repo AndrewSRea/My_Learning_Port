@@ -84,7 +84,7 @@ panel.appendChild(closeBtn);
 ```
 Finally, we use a [`GlobalEventHandlers.onclick`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick) event handler to make it so that when the button is clicked, some code is run to delete the whole panel from the page--to close the message box.
 
-Briefly, the `onclick` handler is a property available on the button (or in fact, any element on the page) that can be set to a function to specify what code to run when the button is clicked. You'll learn a lot more about these in our later [events article](). <!-- link to JS_Building_Blocks - Intro_to_Events folder --> We are making the `onclick` handler equal to an anonymous function, which contains the code to run when the button is clicked. The line inside the function uses the [`Node.removeChild()`]() DOM API function to specify that we want to remove a specific child element of the HTML element--in this case, the "panel" `<div>`.
+Briefly, the `onclick` handler is a property available on the button (or in fact, any element on the page) that can be set to a function to specify what code to run when the button is clicked. You'll learn a lot more about these in our later [events article](). <!-- link to JS_Building_Blocks - Intro_to_Events folder --> We are making the `onclick` handler equal to an anonymous function, which contains the code to run when the button is clicked. The line inside the function uses the [`Node.removeChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild) DOM API function to specify that we want to remove a specific child element of the HTML element--in this case, the "panel" `<div>`.
 ```
 closeBtn.onclick = function() {
     panel.parentNode.removeChild(panel);
@@ -169,4 +169,52 @@ If we want to specify parameters inside parentheses for the function we are call
 4. Reload and try the code again and you'll see that it still works just fine, except that now you can also vary the message inside the parameter to get different messages displayed in the box!
 
 ### A more complex parameter
+
+On to the next parameter. This one is going to involve slightly more worm--we are going to set it so that depending on what the `msgType` parameter is set to, the function will display aa different icon and a different baackground color.
+
+1. First of all, download the icons needed for this exercise ([warning](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/icons/warning.png) and [chat](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/icons/chat.png)) from GitHub. Save them in a new folder called `icons` in the same location as your HTML file.
+
+<hr>
+
+**Note**: The warning and chat icons were originally found on [iconfinder.com](https://www.iconfinder.com/), and designed by [Nazaruddin Ansyari](https://www.iconfinder.com/nazarr)--Thanks! (The actual icon pages were since moved or removed.)
+
+<hr>
+
+2. Next, find the CSS inside your HTML file. We'll make a few changes to make way for the icons. First, update the `.msgBox` width from:
+```
+width: 200px;
+```
+to
+```
+width: 242px;
+```
+3. Next, add the following lines inside the `.msgBox p { ... }` rule:
+```
+padding-left: 82px;
+background-position: 25px center;
+background-repeat: no-repeat;
+```
+4. Now we need to add code to our `displayMessage()` function to handle displaying the icons. Add the following block just above the closing curly brace (`}`) of your function:
+```
+if (msgType === 'warning') {
+    msg.style.backgroundImage = 'url(icons/warning.png)';
+    panel.style.backgroundColor = 'red';
+} else if (msgType === 'chat') {
+    msg.style.backgroundImage = 'url(icons/chat.png)';
+    panel.style.backgroundColor = 'aqua';
+} else {
+    msg.style.paddingLeft = '20px;
+}
+```
+Here, if the `msgType` parameter is set as `'warning'`, the warning icon is displayed and the panel's background color is set to red. If it is set to `'chat'`, the chat icon is displayed and the panel's background color is set to aqua blue. If the `msgType` parameter is not set at all (or to something different), the the `else { ... }` part of the code comes into play, and the paragraph is given default padding and no icon, with no background panel color set, either. This provides a default state if no `msgType` parameter is provided, meaning that it is an optional parameter!
+5. Let's test out our updated function. Try updating the `displayMessage()` call from this:
+```
+displayMessage('Woo, this is a different message!');
+```
+to one of these:
+```
+displayMessage('Your inbox is almost full - delete some mails', 'warning');
+displayMessage('Brian: Hi, there! How are you today?', 'chat');
+```
+You can see how useful our (now not so) little function is becoming.
 
