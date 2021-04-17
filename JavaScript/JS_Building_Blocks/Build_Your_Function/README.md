@@ -136,3 +136,37 @@ If you tried the last experiment, make sure to undo the lsat change before carry
 
 ## Improving the function with parameters
 
+As it stands, the function is still not very useful--we don't want to just show the same default message every time. Let's improve our function by adding some parameters, allowing us to call it with some different options.
+
+1. First of all, update the first line of the function:
+```
+function displayMessage() {
+```
+to this:
+```
+function displayMessage(msgText, msgType) {
+```
+Now when we call the function, we can provide two variable values inside the parentheses to specify the message to display in the messaage box, and the type of message it is.
+2. To make use of the first parameter, update the following line inside your function:
+```
+msg.textContent = 'This is a message box';
+```
+to
+```
+msg.textContent = msgText;
+```
+3. Last but not least, you now need to update your function call to include some updated message text. Change the following line:
+```
+btn.onclick = displayMessage;
+```
+to this block:
+```
+btn.onclick = function() {
+    displayMessage('Woo, this is a different message!');
+};
+```
+If we want to specify parameters inside parentheses for the function we are calling, then we can't call it directly--we need to put it inside an anonymous function so that it isn't in the immediate scope and therefore isn't called immediately. Now it will not be called until the button is clicked.
+4. Reload and try the code again and you'll see that it still works just fine, except that now you can also vary the message inside the parameter to get different messages displayed in the box!
+
+### A more complex parameter
+
