@@ -101,3 +101,18 @@ That was a lot of code to work through--don't worry too much if you don't rememb
 
 ## Calling the function
 
+You've got your function definition written into your `<script>` element just fine, but it will do nothing as it stands.
+
+1. Try including the following line below your function to call it:
+```
+displayMessage();
+```
+This line invokes the function, making it run immediately. When you save your code and reload it in the browser, you'll see the little message box appear immediately, only once. We are only calling it once, after all.
+2. Now open your browser developer tools on the example page, go to the JavaScript console and type the line again there, and you'll see it appear again! So this is fun--we now have a reusable function that we can call any time we like.
+
+But we probably want it to appear in response to user and system actions. In a real application, such a message box would probably be called in response to new dta being available, or an error having occurred, or the user trying to delete their profile ("are you sure about this?"), or the user adding a new contact and the operation completing successfully, etc.
+
+In this demo, we'll get the message box to appear when the user clicks the button.
+
+3. Delete the previous line you added.
+4. Next, we'll select the button 
