@@ -115,4 +115,24 @@ But we probably want it to appear in response to user and system actions. In a r
 In this demo, we'll get the message box to appear when the user clicks the button.
 
 3. Delete the previous line you added.
-4. Next, we'll select the button 
+4. Next, we'll select the button and store a reference to it in a constant. Add the following line to your code, above the function definition:
+```
+const btn = document.querySelector('button');
+```
+5. Finally, add the following line below the previous one:
+```
+btn.onclick = displayMessage;
+```
+In a similar way to our `closeBtn.onclick...` line inside the function, here we are calling some code in response to a button being clicked. But in this case, instead of calling an anonymous function containing some code, we are calling our function name directly.
+6. Try saving and refreshing the page--now you should see the message box appear when you click the button.
+
+You might be wondering why we haven't included the parentheses after the function name. This is because we don't want to call the function immediately--only after the button hasa been clicked. If you try changing the line to
+```
+btn.onclick = displayMessage();
+```
+and saving and reloading, you'll see that the message box appears without the button being clicked! The parentheses in this context are sometimes called the "function invocation operator". You only use them when you want to run the function immediately in the current scope. In the same respect, the code inside the anonymous function is not run immediately, as it is inside the function scope.
+
+If you tried the last experiment, make sure to undo the lsat change before carrying on.
+
+## Improving the function with parameters
+
