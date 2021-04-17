@@ -39,6 +39,10 @@
         <button>Display message box</button>
 
         <script>
+            const btn = document.querySelector('button');
+
+            btn.onclick = displayMessage;
+
             function displayMessage() {
                 const html = document.querySelector('html');
 
