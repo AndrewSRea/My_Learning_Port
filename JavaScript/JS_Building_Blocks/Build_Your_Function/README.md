@@ -28,7 +28,7 @@ To begin with, let's put together a basic function.
 
 <hr>
 
-1. Start by accessing the [function-start.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-start.html) file and making a local copy. You'll see that the HTML is simple--the body contains just a single button. We've also provided some basic CSS to stylee the custom message box, and an empty [`<script>`]() element to put our JavaScript in.
+1. Start by accessing the [function-start.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-start.html) file and making a local copy. You'll see that the HTML is simple--the body contains just a single button. We've also provided some basic CSS to stylee the custom message box, and an empty [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element to put our JavaScript in.
 2. Next, add the following inside the `<script>` element:
 ```
 function displayMessage() {
@@ -58,3 +58,27 @@ closeBtn.onclick = function() {
 ```
 This is quite a lot of code to go through, so we'll walk you through it bit by bit.
 
+The first line uses a DOM API function called [`document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) to select the [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) element and store a reference to it in a constant called `html`, so we can do things to it later on:
+```
+const html = document.querySelector('html');
+```
+The next section uses another DOM API function called [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) to create a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) element and store a reference to it in a constant called `panel`. This element will be the outer container of our message box.
+
+We then use yet another DOM API function called [`Element.setAttribute()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute) to set a `class` attribute on our panel with a value of `msgBox`. This is to make it easier to style the element--if you look at the CSS on the page, you'll see that we are using a `.msgBox` class selector to style the message box and its contents.
+
+Finally, we call a DOM function called [`Node.appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild) on the `html` constant we stored earlier, which nests one element inside the other as a child of it. We specify the panel `<div>` as the child we want to append inside the `<html>` element. We need to do this as the element we created won't just appear on the page on its own--we need to specify where to put it.
+```
+const panel = document.createElement('div');
+panel.setAttribute('class', 'msgBox');
+html.appendChild(panel);
+```
+The next two sections make use of the same `createElement()` and `appendChild()` functions we've already seen to create two new elements--a [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) and a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)--and insert them in the page as children of the panel `<div>`. We use their [`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property--which represents the text content of an element--to insert a message inside the paragraph, and an 'x' inside the button. This button will be what needs to be clicked/activated when the user wants to close the message box.
+```
+const msg = document.createElement('p');
+msg.textContent = 'This is a message box';
+panel.appendChild(msg);
+
+const closeBtn = document.createElement('button');
+closeBtn.textContent = 'x';
+panel.appendChild(closeBtn);
+```
