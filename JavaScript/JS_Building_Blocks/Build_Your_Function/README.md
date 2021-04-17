@@ -82,3 +82,22 @@ const closeBtn = document.createElement('button');
 closeBtn.textContent = 'x';
 panel.appendChild(closeBtn);
 ```
+Finally, we use a [`GlobalEventHandlers.onclick`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick) event handler to make it so that when the button is clicked, some code is run to delete the whole panel from the page--to close the message box.
+
+Briefly, the `onclick` handler is a property available on the button (or in fact, any element on the page) that can be set to a function to specify what code to run when the button is clicked. You'll learn a lot more about these in our later [events article](). <!-- link to JS_Building_Blocks - Intro_to_Events folder --> We are making the `onclick` handler equal to an anonymous function, which contains the code to run when the button is clicked. The line inside the function uses the [`Node.removeChild()`]() DOM API function to specify that we want to remove a specific child element of the HTML element--in this case, the "panel" `<div>`.
+```
+closeBtn.onclick = function() {
+    panel.parentNode.removeChild(panel);
+}
+```
+Basically, this whole block of code is generating a block of HTML that looks like so, and inserting it into the page:
+```
+<div class="msgBox">
+    <p>This is a message box</p>
+    <button>x</button>
+</div>
+```
+That was a lot of code to work through--don't worry too much if you don't remember exactly how every bit of it works right now! The main part we want to focus on here is the function's structure and usage, but we wanted to show something interesting for this example.
+
+## Calling the function
+
