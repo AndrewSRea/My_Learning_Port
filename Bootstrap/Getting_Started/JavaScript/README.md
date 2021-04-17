@@ -1,6 +1,6 @@
 # JavaScript
 
-Bring Bootstrap to life with its optional JavaScript plugins. Learn about each plugin, Bootstrap's daata and programmatic API options, and more.
+Bring Bootstrap to life with its optional JavaScript plugins. Learn about each plugin, Bootstrap's data and programmatic API options, and more.
 
 ## Individual or compiled
 
