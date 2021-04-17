@@ -48,7 +48,7 @@
 
                 const msg = document.createElement('p');
                 msg.textContent = 'This is a message box';
-                panel.textContent(msg);
+                panel.appendChild(msg);
 
                 const closeBtn = document.createElement('button');
                 closeBtn.textContent = 'x';
@@ -58,6 +58,7 @@
                     panel.parentNode.removeChild(panel);
                 }
             }
+
         </script>
     </body>
 </html>
