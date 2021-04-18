@@ -69,5 +69,49 @@ The function calls on the line are run first, and their return values substitute
 
 Let's have a go at writing our own functions featuring return values.
 
-1. First of all, make a local copy of the [function-library.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-library.html) file from GitHub. This is a simple HTML page containing a text [`<input>`]() field and a paragraph. There's also a [`<script>`]() element, in which we have stored a reference to both HTML elements in two variables. This little page will allow you to enter a number into the text box, and display different numbers related to it in the paragraph below.
-2. 
+1. First of all, make a local copy of the [function-library.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-library.html) file from GitHub. This is a simple HTML page containing a text [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) field and a paragraph. There's also a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element, in which we have stored a reference to both HTML elements in two variables. This little page will allow you to enter a number into the text box, and display different numbers related to it in the paragraph below.
+2. Let's add some useful functions to this `<script>` element. Below the two existing lines of JavaScript, add the following function definitions:
+```
+function squared(num) {
+    return num * num;
+}
+
+function cubed(num) {
+    return num * num * num;
+}
+
+function factorial(num) {
+    if (num < 0) return undefined;
+    if (num == 0) return 1;
+    let x = num - 1;
+    while (x > 1) {
+        num *= x;
+        x--;
+    }
+    return num;
+}
+```
+The `squared()` and `cubed()` functions are fairly obvious--they return the square or cube of the number that was given as a parameter. The `factorial()` function returns the [factorial](https://en.wikipedia.org/wiki/Factorial) of the given number.
+3. Next, we're going to include a way to print out information about the number entered into the text input. Enter the following event handler below the existing functions:
+```
+input.onchange = function() {
+    const num = input.value;
+    if (isNaN(num)) {
+        para.textContent = 'You need to enter a number!';
+    } else {
+        para.textContent = num + ' squared is ' + squared(num) + '. ' +
+                           num + ' cubed is ' + cubed(num) + '. ' +
+                           num + ' factorial is ' + factorial(num) + '.';
+    }
+}
+```
+Here we are creating an `onchange` event handler. It runs whenever the `change` event fires on the text input--that is, when a new value is entered into the text `input`, and submitted (e.g., enter a value, then unfocus the input by pressing <kbd>Tab</kbd> or <kbd>Return</kbd>). When this anonymous function runs, the value in the `input` is stored in the `num` constant.
+
+Next, we do a conditional test. If the entered value is not a number, an error message is printed to the paragraph. The test looks at whether the expression `isNaN(num)` returns `true`. The [`isNaN()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN) function to test whether the `num` value is not a number--if so, it returns `true`, and if not, it returns `false`.
+
+If the test returns `false`, the `num` value is a number. Therefore, a sentence is printed out inside the paragraph element that states the square, cube, and factorial values of the number. The sentence calls the `squared()`, `cubed()`, and `factorial()` functions to calculate the required values.
+4. Save your code, load it in a browser, and try it out.
+
+(See my finished version of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Function_Return_Values/function-library.html), and see it running live [here]().)
+
+## Now it's your turn!
