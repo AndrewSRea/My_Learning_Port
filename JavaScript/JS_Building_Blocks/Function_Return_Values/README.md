@@ -115,3 +115,25 @@ If the test returns `false`, the `num` value is a number. Therefore, a sentence 
 (See my finished version of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Function_Return_Values/function-library.html), and see it running live [here]().)
 
 ## Now it's your turn!
+
+At this point, we'd like you to have a go at writing out a couple of functions of your own and adding them to the library. How about the square or cube root of the number? Or the circumference of a circle with a given radius?
+
+Some extra function related tips:
+
+* Look at another example of writing *error handling* into functions. It is generally a good idea to check that any necessary parameters are validated, and that any optional parameters have some kind of default value provided. This way, your program will be less likely to thorw errors.
+* Think about the idea of creating a *function library*. As you go further into your programming career, you'll start doing the same kinds of things over and over again. It is a good idea to create your own library of utility functions to do these sorts of things. You can copy them over to new code, or even just apply it to HTML pages wherever you need it.
+
+## Skills test
+
+I have created an accompanying [functions-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Functions/functions-skills-test.html) file to test my knowledge of the information provided by this **"Function return values"** page. See the results [here]().
+
+## Conclusion
+
+So there we have it--functions are fun, very useful, and although there's a lot to talk about in regards to their syntax and functionality, they are fairly understandable.
+
+## See also
+
+* [Function in-depth]() -- a detailed guide covering more advanced functions-related information.
+* [Callback functions in JavaScript]() -- a common JavaScript pattern is to pass a function into another function *as an argument*. It is then called inside the first function. This is a little beyond the scope of this course, but worth studying before too long.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values) - [[Next page]]()
