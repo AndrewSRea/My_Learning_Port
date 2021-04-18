@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mozilla's Functions Examples Library</title>
+        <style>
+            /* *** Functions Example 1 *** */
+
+            p {
+                font-family: 'helvetica neue', helvetica, sans-serif;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-align: center;
+                border: 2px solid rgba(0,0,200,0.6);
+                background: rgba(0,0,200,0.3);
+                color: rgba(0,0,200,0.6);
+                box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+                border-radius: 10px;
+                padding: 3px 10px;
+                display: inline-block;
+                cursor: pointer;
+            }
+
+            /* *** Functions Example 2 *** */
+
+            button {
+                display: block;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- *** Functions Example 1 *** -->
+
+        <p>Player 1: Chris</p>
+
+
+        <!-- *** Functions Example 2 *** -->
+
+        <button>Click me</button>
+
+        <script>
+            /* *** Functions Example 1 *** */ 
+
+            const para = document.querySelector('p');
+
+            para.addEventListener('click', updateName);
+
+            function updateName() {
+                let name = prompt('Enter a new name');
+                para.textContent = 'Player 1: ' + name;
+            }
+
+
+            /* *** Functions Example 2 *** */
+
+            document.addEventListener("DOMContentLoaded", function() {
+                function createParagraph() {
+                    let para2 = document.createElement('p');
+                    para2.textContent = 'You clicked the button';
+                    document.body.appendChild(para2);
+                }
+
+                const buttons = document.querySelectorAll('button');
+
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].addEventListener('click', createParagraph);
+                }
+            });
+        </script>
+    </body>
+</html>
