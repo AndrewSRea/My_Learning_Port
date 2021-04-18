@@ -27,3 +27,47 @@ If you look at the [`replace()`](https://developer.mozilla.org/en-US/docs/Web/Ja
 Some functions don't return any value. (In these cases, our reference pages list the return value as [`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void) or [`undefined`](https://developer.mozilla.org/en-US/docs/Glossary/undefined).) For example, in the [`displayMessage()`](https://github.com/AndrewSRea/My_Learning_Port/blob/98056a6a25062e1e52a5b61f3697782c1508c5b3/JavaScript/JS_Building_Blocks/Build_Your_Function/function-start.html#L51) function we built in the previous article, no specific value is returned when the function is invoked. It just makes a box appear somewhere on the screen--that's it!
 
 Generally, a return value is used where the function is an intermediate step in a calculation of some kind. You want to get to a final result, which involves some values that need to be calculated by a function. After the function calculates the value, it can return the result so it can be stored in a variable; and you can use this variable in the next stage of the calculation.
+
+### Using return values in your own functions
+
+To return a value from a custom function, you need to use the [return](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) keyword. We saw this in action recently in our [random-canvas-circles.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) example. Our `draw()` function draws 100 random circles somewhere on an HTML [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas):
+```
+function draw() {
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    for (let i = 0; i < 100; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,0,0,0.5)';
+        ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+        ctx.fill();
+    }
+}
+```
+Inside each loop iteration, three calls are made to the `random()` function, to generate a random value for the current circle's *x-coordinate*, *y-coordinate*, and *radius*, respectively. The `random()` function takes one parameter--a whole number--and it returns a whole random number between `0` and that number. It looks like this:
+```
+function random(number) {
+    return Math.floor(Math.random() * number);
+}
+```
+This could be written as follows:
+```
+function random(number) {
+    const result = Math.floor(Math.random() * number);
+    return result;
+}
+```
+But the first version is quicker to write, and more compact.
+
+We are returning the result of the calculation `Math.floor(Math.random() * number)` each time the function is called. This return value appears at the point the function is called, and the code continues.
+
+So when you execute the following:
+```
+ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+```
+The function calls on the line are run first, and their return values substituted for the function calls, before the line itself is then executed.
+
+## Active learning: our own return value function
+
+Let's have a go at writing our own functions featuring return values.
+
+1. First of all, make a local copy of the [function-library.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-library.html) file from GitHub. This is a simple HTML page containing a text [`<input>`]() field and a paragraph. There's also a [`<script>`]() element, in which we have stored a reference to both HTML elements in two variables. This little page will allow you to enter a number into the text box, and display different numbers related to it in the paragraph below.
+2. 
