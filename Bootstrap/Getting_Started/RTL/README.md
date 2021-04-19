@@ -150,3 +150,26 @@ Need both LTR and RTL on the same page? Thanks to [RTLCSS String Maps](https://r
 /*rtl:end:options*/
 ```
 After running Sass then RTLCSS, each selector in your CSS files will be prepended by `.ltr`, and `.rtl` for RTL files. Now you're able to use both files on the same page, and simply use `.ltr` or `.rtl` on your components wrappers to use one or the other direction.
+
+<hr>
+
+#### :warning: Edge cases and known limitations
+
+While this approach is understandable, please pay attention to the following:
+
+1. When switching `.ltr` and `.rtl`, make sure you add `dir` and `lang` attributes accordingly.
+2. Loading both files can be a real performance bottleneck: consider some [optimization](), <!-- link to Customize/Optimize --> and maybe try to [load one of those files asynchronously](https://www.filamentgroup.com/lab/load-css-simpler/).
+3. Nesting styles this way will prevent Bootstrap's `form-validation-state()` mixin from working as intended, thus require you tweak it a bit yourself. [See #31223](https://github.com/twbs/bootstrap/issues/31223).
+
+<hr>
+
+## The breadcrumb case
+
+The [breadcrumb separator](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Breadcrumb#breadcrumb) is the only case requiring its own brand new variable--namely `$breadcrumb-divider-flipped`--defaulting to `$breadcrumb-divider`.
+
+## Additional resources
+
+* [RTLCSS](https://rtlcss.com/)
+* [RTL Styling 101](https://rtlstyling.com/posts/rtl-styling)
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RTL#rtl) - [[Next module: Customize]]()
