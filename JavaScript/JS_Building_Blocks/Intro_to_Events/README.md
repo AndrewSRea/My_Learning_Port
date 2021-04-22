@@ -99,7 +99,7 @@ First, make a local copy of [random-color-eventhandlerproperty.html](https://git
 
 <hr>
 
-:warning: **Note**: The `onkeypress` event handler has been deprecated and is no longer a recommended feature. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible.; see the [compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress#browser_compatibility) to guide your decision. Be aware that this feature may cease to work at any time.
+:warning: **Note**: The `onkeypress` event handler has been deprecated and is no longer a recommended feature. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress#browser_compatibility) to guide your decision. Be aware that this feature may cease to work at any time.
 
 It is recommended to use the [`onkeydown`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeydown) event handler instead.
 
@@ -107,4 +107,54 @@ It is recommended to use the [`onkeydown`](https://developer.mozilla.org/en-US/d
 
 * [`btn.onmouseover`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseover) and [`btn.onmouseout`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseout) -- The color changes when the mouse pointer hovers over the button, or when the pointer moves off the button, respectively.
 
-Some events
+Some events are general and available nearly anywhere (e.g. an `onclick` handler can be registered on nearly any element), whereas some are more specific and only useful in certain situations (e.g. it makes sense to use [onplay](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onplay) only on specific elements, such as [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)).
+
+### Inline event handlers -- don't use these
+
+You might also see a pattern like this in your code:
+```
+<button onclick="bgChange()">Press me</button>
+```
+```
+function bgChange() {
+    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+}
+```
+
+<hr>
+
+**Note**: You can find the [full source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/random-color-eventhandlerattributes.html) for this example on GitHub (also [see it running live](https://mdn.github.io/learning-area/javascript/building-blocks/events/random-color-eventhandlerattributes.html)).
+
+<hr>
+
+The earliest method of registering event handlers found on the Web involved **event handler HTML attributes** (or **inline event handlers**) ike the one shown above--the attribute value is literally the JavaScript code you weant to run when the event occurs. The above example invokes a function defined inside a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on the same page, but you could also insert JavaScript direcctly inside the attribute. For example:
+```
+<button onclick="alert('Hello, this is my old-fashioned event handler!');">Press me</button>
+```
+You can find HTML attribute equivalents for many of the event handler properties; however, you shouldn't use these--they are considered bad practice. It might seem easy to use an event handler attribute if you are doing something really quick, but they quickly become unmanageable and inefficient.
+
+For a start, it is not a good idea to mix up your HTML and your JavaScript, as it becomes hard to parse--keeping your JavaScript separate is best practice; if it is in a separate file, you acn apply it to multiple HTML documents.
+
+Even in a single file, inline event handlers are not a good idea. One button is OK, but what if you had 100 buttons? You'd have to add 100 attributes to the file; it would quickly turn into a maintenance nightmare. With JavaScript, you could easily add an event handler function to all the buttons on the page no matter how may there were, using something like this:
+```
+const buttons = document.querySelectorAll('button');
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = bgChange;
+}
+```
+Note that another option here would be to use the [`forEach()`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach) built-in method available on [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) objects:
+```
+buttons.forEach(function(button) {
+    button.onclick = bgChange;
+});
+```
+
+<hr>
+
+**Note**: Separating your programming logic from your content also makes your site more friendly to search engines.
+
+<hr>
+
+### Adding and removing event handlers
