@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Random Color Example — Event Handler Property</title>
+        <style>
+            button {
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- This code example is the property of the Mozilla Developer Network, and was created by Chris Mills. 
+             https://github.com/chrisdavidmills -->
+
+        <button>Change color</button>
+        <script>
+            const btn = document.querySelector('button');
+
+            function random(number) {
+                return Math.floor(Math.random()*number);
+            }
+
+            function bgChange() {
+                const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+                document.body.style.backgroundColor = rndCol;
+            }
+
+            btn.onclick = bgChange;
+        </script>
+    </body>
+</html>
