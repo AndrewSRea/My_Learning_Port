@@ -79,3 +79,32 @@ btn.onclick = function() {
 The [onclick](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick) property is the event handler property being used in this situation. It is essentially a property like any other available on the button (e.g. [`btn.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent), or [`btn.style`](https://developer.mozilla.org/en-US/docs/Web/API/ElementCSSInlineStyle/style)), but it is a special type--when you set it to be equal to some code, that code is run when the event fires on the button.
 
 You could also set the handler property to be equal to a named function name (like we saw in [Build your own function](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function)). The following works just the same:
+```
+const btn = document.querySelector('button');
+
+function bgChange() {
+    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+}
+
+btn.onclick = bgChange;
+```
+There are many different event handler properties available. Let's experiment.
+
+First, make a local copy of [random-color-eventhandlerproperty.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/random-color-eventhandlerproperty.html), and open it in your browser. It's just a copy of the simple random color example we've played with already. Now try changing `btn.onclick` to the following different values in turn, and observing the results in the example:
+
+* [`btn.focus`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onfocus) and [`btn.onblur`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onblur) -- The color changes when the button is focused and unfocused; try pressing the tab to focus on the button and press the tab again to focus away from the button. These are often used to display information about filling in form fields when they are focused, or displaying an error message if a form field is filled with an incorrect value.
+* [`btn.ondblclick`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondblclick) -- The color changes only when the button is double-clicked.
+* [`window.onkeypress`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress), [`window.onkeydown`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeydown), [`window.onkeyup`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeyup) -- The color changes when a key is pressed on the keyboard. The `keypress` event refers to a general press (button down and then up), while `keydown` and `keyup` refer to just the key down and key up parts of the keystroke, respectively. Note: It doesn't work if you try to register this event handler on the button itself--we've had to register it on the [window]() object, which represents the entire browser window.
+
+<hr>
+
+:warning: **Note**: The `onkeypress` event handler has been deprecated and is no longer a recommended feature. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible.; see the [compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress#browser_compatibility) to guide your decision. Be aware that this feature may cease to work at any time.
+
+It is recommended to use the [`onkeydown`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeydown) event handler instead.
+
+<hr>
+
+* [`btn.onmouseover`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseover) and [`btn.onmouseout`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseout) -- The color changes when the mouse pointer hovers over the button, or when the pointer moves off the button, respectively.
+
+Some events
