@@ -49,4 +49,33 @@ In this code, we store a reference to the button inside a constant called `btn`,
 
 This code is run whenever the click event fires on the `<button>` element, that is, whenever a user selects it.
 
-(See an example of the output from the code above [here]().)
+(See an example of the output from the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Intro_to_Events/button-onclick-event-handler.html).)
+
+### It's not just web pages
+
+Another thing worth mentioning at this point is that events are not unique to JavaScript--most programming languages have some kind of event model, and the way the model works often differs from JavaScript's way. In fact, the event model in JavaScript for web pages differs from the event model for JavaScript as it is used in other environments.
+
+For example, [Node.js](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs) is a very popular JavaScript runtime that enables developers to use JavaScript to build network and server-side applications. The [Node.js event model](https://nodejs.org/docs/latest-v12.x/api/events.html) relies on listeners to listen for events and emitters to emit events periodically--it doesn't sound that different, but the code is quite different, making use of functions like `on()` to register an event listener, and `once()` to register an event listener that unregisters after it has run once. The [HTTP connect event docs](https://nodejs.org/docs/latest-v12.x/api/http.html#http_event_connect) provide a good example.
+
+You can also use JavaScript to build cross-browser add-ons--browser functionality enhancements--using a technology called [WebExtensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions). The event model is similar to the web events model, but a bit different--event listeners properties are camel-cased (such as `onMessage` rather than `onmessage`), and need to be combined with the `addListener` function. See the [`runtime.onMessage` page](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage#examples) for an example.
+
+You don't need to understand anything about other such environments at this stage in your learning; we just wanted to make it clear that events can differ in different programming environments.
+
+## Ways of using web events
+
+There are a number of ways to add event listener code to web pages so it runs when the associated event fires. In this section, we review the various machanisms and discuss which ones you should use.
+
+### Event handler properties
+
+These are the properties that exist to contain event handler code we have seen most frequently during the course. Returning to the above example:
+```
+const btn = document.querySelector('button');
+
+btn.onclick = function() {
+    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+}
+```
+The [onclick](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick) property is the event handler property being used in this situation. It is essentially a property like any other available on the button (e.g. [`btn.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent), or [`btn.style`](https://developer.mozilla.org/en-US/docs/Web/API/ElementCSSInlineStyle/style)), but it is a special type--when you set it to be equal to some code, that code is run when the event fires on the button.
+
+You could also set the handler property to be equal to a named function name (like we saw in [Build your own function](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function)). The following works just the same:
