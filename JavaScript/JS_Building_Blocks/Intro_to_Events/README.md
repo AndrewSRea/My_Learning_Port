@@ -18,7 +18,7 @@ In the case of the Web, events are fired inside the browser window, and tend to 
 
 You can gather from this (and from glancing at the MDN [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)) that there are **a lot** of events that can be responded to.
 
-Each available event has an **event handler**, which is a block of code (usually a JavaScript function that you as a programmer create) that runs when the event fires. When such a block of code is defined to run in response to an event, we say we aree **registering an event handler**. Note: Event handlers are sometime called **event listeners**--they are pretty much interchangeable for our purposes, although strictly speaking, they work together. The listener listens out for the event happening, and the handler is the code that is run in response to it happening.
+Each available event has an **event handler**, which is a block of code (usually a JavaScript function that you as a programmer create) that runs when the event fires. When such a block of code is defined to run in response to an event, we say we are **registering an event handler**. Note: Event handlers are sometime called **event listeners**--they are pretty much interchangeable for our purposes, although strictly speaking, they work together. The listener listens out for the event happening, and the handler is the code that is run in response to it happening.
 
 <hr>
 
@@ -128,7 +128,7 @@ function bgChange() {
 
 <hr>
 
-The earliest method of registering event handlers found on the Web involved **event handler HTML attributes** (or **inline event handlers**) ike the one shown above--the attribute value is literally the JavaScript code you weant to run when the event occurs. The above example invokes a function defined inside a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on the same page, but you could also insert JavaScript direcctly inside the attribute. For example:
+The earliest method of registering event handlers found on the Web involved **event handler HTML attributes** (or **inline event handlers**) ike the one shown above--the attribute value is literally the JavaScript code you weant to run when the event occurs. The above example invokes a function defined inside a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on the same page, but you could also insert JavaScript directly inside the attribute. For example:
 ```
 <button onclick="alert('Hello, this is my old-fashioned event handler!');">Press me</button>
 ```
@@ -222,7 +222,7 @@ Of the three mechanisms, you shouldn't use the HTML event handler attributes--th
 
 The other two are relatively interchangeable, at least for simple uses:
 
-* Event handler properties have less power and options, but better cross-browser compatibility (being supported as far bacck as Internet Explorer 8). You should probably start with these as you begin learning.
+* Event handler properties have less power and options, but better cross-browser compatibility (being supported as far back as Internet Explorer 8). You should probably start with these as you begin learning.
 * DOM Level 2 Events (`addEventListener()`, etc.) are more powerful, but can also become complex and are less well supported (supported as far back as Internet Explorer 9). You should also experiment with these, and try to use them where possible.
 
 The main advantages of the third mechanism are that you can remove event handler code if needed, using `removeEventListener()`, and you can add multiple listeners of the same type to elements if required. For example, you can call `addEventListener('click', function() { ... })` on an element multiple times, with different functions specified in the second argument. This is impossible with event handler properties because any subsequent attempts to set a property will overwrite earlier ones, e.g.:
@@ -242,3 +242,49 @@ If you are called on to support browsers older than Internet Explorer 8, you may
 
 ## Other event concepts
 
+In this section, we briefly cover some advanced concepts that are relevant to events. It is not important to understand these concepts fully at this point, but they might serve to explain some code patterns you'll likely come across.
+
+### Event objects
+
+Sometimes inside an event handler function, you'll see a parameter specified with a name such as `event`, `evt`, or `e`. This is called the **event object**, and it is automatically passed to event handlers to provide extra features and information. For example, let's rewrite our random color example again slightly:
+```
+function bgChange(e) {
+    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    e.target.style.backgroundColor = rndCol;
+    console.log(e);
+}
+
+btn.addEventListener('click', bgChange);
+```
+
+<hr>
+
+**Note**
+
+You can find the [full source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/random-color-eventobject.html) for this example on GitHub (also [see it running live](https://mdn.github.io/learning-area/javascript/building-blocks/events/random-color-eventobject.html)).
+
+<hr>
+
+Here you can see we are including an event object, **e**, in the function, and in the function setting a background color style on `e.target`--which is the button itself. The `target` property of the event object is always a reference to the element the event occurred upon. So, in this example, we are setting a random background color on the button, not the page.
+
+<hr>
+
+**Note**
+
+You can use any name you like for the event object--you just need to choose a name that you can then use to reference it inside the event handler function. `e`/`evt`/`event` are most commonly used by developers because they are short and easy to remember. It's always good to be consistent--with yourself, and with others if possible.
+
+<hr>
+
+`e.target` is incredibly useful when you want to set the same event handler on multiple elements and do something to all of them when an event occurs on them. You might, for example, have a set of 16 tiles that disappear when selected. It is useful to always be able to just set the thing to disappear as `e.target`, rather than having to select it in some more difficult way. In the following example (see my accompanying [useful-eventtarget.html]() file), we create 16 `<div>` elements using JavaScript. We then select all of them using [`document.querySelectorAll()`](), then loop through each one, adding an `onclick` handler to each that makes it so that a random color is applied to each one when selected:
+```
+const divs = document.querySelectorAll('div');
+
+for (let i = 0; i < divs.length; i++) {
+    divs[i].onclick = function(e) {
+        e.target.style.backgroundColor = bgChange();
+    }
+}
+```
+See this code running live [here](), and have fun clicking aroung on it!
+
+Most event handlers
