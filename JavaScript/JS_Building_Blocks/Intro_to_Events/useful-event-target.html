@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Useful Event Target Example</title>
+        <style>
+            div {
+                background-color: red;
+                height: 100px;
+                width: 25%;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- This code example is the property of the Mozilla Developer Network, and was created by Chris Mills. 
+             https://github.com/chrisdavidmills -->
+
+        <script>
+            for (let i = 1; i <= 16; i++) {
+                const myDiv = document.createElement('div');
+                document.body.appendChild(myDiv);
+            }
+
+            function random(number) {
+                return Math.floor(Math.random() * number);
+            }
+
+            function bgChange() {
+                const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+                return rndCol;
+            }
+
+            const divs = document.querySelectorAll('div');
+
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].onclick = function(e) {
+                    e.target.style.backgroundColor = bgChange();
+                }
+            }
+        </script>
+    </body>
+</html>
