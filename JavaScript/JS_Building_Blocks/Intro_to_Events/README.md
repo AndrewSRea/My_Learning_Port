@@ -275,7 +275,7 @@ You can use any name you like for the event object--you just need to choose a na
 
 <hr>
 
-`e.target` is incredibly useful when you want to set the same event handler on multiple elements and do something to all of them when an event occurs on them. You might, for example, have a set of 16 tiles that disappear when selected. It is useful to always be able to just set the thing to disappear as `e.target`, rather than having to select it in some more difficult way. In the following example (see my accompanying [useful-event-target.html]() file), we create 16 `<div>` elements using JavaScript. We then select all of them using [`document.querySelectorAll()`](), then loop through each one, adding an `onclick` handler to each that makes it so that a random color is applied to each one when selected:
+`e.target` is incredibly useful when you want to set the same event handler on multiple elements and do something to all of them when an event occurs on them. You might, for example, have a set of 16 tiles that disappear when selected. It is useful to always be able to just set the thing to disappear as `e.target`, rather than having to select it in some more difficult way. In the following example (see my accompanying [useful-event-target.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Intro_to_Events/useful-event-target.html) file), we create 16 `<div>` elements using JavaScript. We then select all of them using [`document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll), then loop through each one, adding an `onclick` handler to each that makes it so that a random color is applied to each one when selected:
 ```
 const divs = document.querySelectorAll('div');
 
@@ -287,4 +287,48 @@ for (let i = 0; i < divs.length; i++) {
 ```
 See this code running live [here](), and have fun clicking aroung on it!
 
-Most event handlers
+Most event handlers you'll encounter have a standard set of properties and functions (methods) available on the event object; see the [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object reference for a full list. Some more advanced handlers, however, add specialist properties contaiining extra data that they need to function. The [Media Recorder API](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API), for example, has a `dataavailable` event, which fires when some audio or video has been recorded and is available for doing something with (for example, saving it, or playing it back). The corresponding [`ondataavailable`](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/ondataavailable) handler's event object has a `data` property available containing the recorded audio or video data to allow you to access it and do something with it.
+
+### Preventing default behavior
+
+Sometimes, you'll come across a situation where you want to prevent an event from doing what it does by default. The most common example is that of a web form, for example, a custom registration form. When you fill in the details and select the submit button, the natural behavior is for the data to be submitted to a specified page on the server for processing, and the browser to be redirected to a "success message" page of some kind (or the same page, if another is not specified).
+
+The trouble comes when the user has not submitted the data correctly--as a developer, you want to prevent the submission to the server and give an error message saying what's wrong and what needs to be done to put things right. Some browsers support automatic form data validation features, but since many don't, you are advised to not rely on those and implement your own validation checks. Let's look at a simple example.
+
+First, a simple HTML form that requires you to enter your first and last name:
+```
+<form>
+    <div>
+        <label for="fname">First name: </label>
+        <input id="fname" type="text">
+    </div>
+    <div>
+        <label for="lname">Last name: </label>
+        <input id="lname" type="text">
+    </div>
+    <div>
+        <input id="submit" type="submit">
+    </div>
+</form>
+<p></p>
+```
+Now some JavaScript--here we implement a very simple check inside an [`onsubmit`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit) event handler (the submit event is fired on a form when it is submitted) that tests whether the text fields are empty. If they are, we call the `[preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) function on the event object--which stops the form submission--and then display an error message in the paragraph below our form to tell the user what's wrong:
+```
+const form = document.querySelector('form');
+const fname = document.getElementById('fname');
+const lname = document.getElementById('lname');
+const para = document.querySelector('p');
+
+form.onsubmit = function(e) {
+    if (fname.value === '' || lname.value === '') {
+        e.preventDefault();
+        para.textContent = 'You need to fill in both names!';
+    }
+}
+```
+Obviously, this is pretty weak form validation--it wouldn't stop the user validating the form with spaces or numbers entered into the fields, for example--but it is OK for example purposes.
+
+To see the full source code, see my accompanying [prevent-default-validation.html]() file, and also see it running live [here]().
+
+### Event bubbling and capture
+
