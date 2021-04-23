@@ -158,3 +158,87 @@ buttons.forEach(function(button) {
 <hr>
 
 ### Adding and removing event handlers
+
+The modern mechanism for adding event handlers is the [`addEventListener()`]() method. Using it, we could rewrite our random color example to look like this:
+```
+const btn = document.querySelector('button');
+
+function bgChange() {
+    const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+}
+
+btn.addEventListener('click', bgChange);
+```
+
+<hr>
+
+**Note**: You can find the [full source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/random-color-addeventlistener.html) for this example on GitHub (also [see it running live](https://mdn.github.io/learning-area/javascript/building-blocks/events/random-color-addeventlistener.html)).
+
+<hr>
+
+Inside the `addEventListener()` function, we specify two parameters: the name of the event we want to register this handler for, and the code that comprises the handler function we want to run in response to it. Note: It is perfectly appropriate to put all the code inside the `addEventListener()` function, in an anonymous function, like this:
+```
+btn.addEventListener('click', function() {
+    var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+});
+```
+This mechanism has some advantages over the older mechanisms discussed here earlier. First, there is a counterpart function, [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener), which removes a previously added event handler. For example, this would remove the event handler set in the first code block in this section:
+```
+btn.removeEventListener('click', bgChange);
+```
+Event handlers can also be removed by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) to [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and then, later, calling [`abort()`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort) on the controller owning the `AbortSignal`. For example, to add an event handler that we can remove with an `AbortSignal`:
+```
+const controller = new AbortController();
+btn.addEventListener('click', function() {
+    var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    document.body.style.backgroundColor = rndCol;
+}, { signal: controller.signal });   // pass an AbortSignal to this handler
+```
+Then the event handler created by the code above can be removed like this:
+```
+controller.abort();   // removes any/all event handlers associated with this controller
+```
+For simple, small programs, cleaning up old, unused event handlers isn't necessary--but for larger, more complex programs, it can improve efficiency. Plus, the ability to remove event handlers allows you to have the same button performing different actions in different circumstances--all you have to do is add or remove handlers.
+
+The second advantage that [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) has over the older mechanisms discussed here earlier is that it allows you to register multiple handlers for the same listener. The following two handlers wouldn't both be applied:
+```
+myElement.onclick = functionA;
+myElement.onclick = functionB;
+```
+The second line overwrites the value of `onclick` set by the first line. What would work, however, is the following:
+```
+myElement.addEventListener('click', functionA);
+myElement.addEventListener('click', functionB);
+```
+Both functions would now run when the element is selected.
+
+In addition, there are other powerful features and options available with this event machanism. These are a little out of scope for this article, but if you want to read them, visit the [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) reference pages.
+
+### What mechanism should I use?
+
+Of the three mechanisms, you shouldn't use the HTML event handler attributes--these are outdated, and bad practice, as mentioned above.
+
+The other two are relatively interchangeable, at least for simple uses:
+
+* Event handler properties have less power and options, but better cross-browser compatibility (being supported as far bacck as Internet Explorer 8). You should probably start with these as you begin learning.
+* DOM Level 2 Events (`addEventListener()`, etc.) are more powerful, but can also become complex and are less well supported (supported as far back as Internet Explorer 9). You should also experiment with these, and try to use them where possible.
+
+The main advantages of the third mechanism are that you can remove event handler code if needed, using `removeEventListener()`, and you can add multiple listeners of the same type to elements if required. For example, you can call `addEventListener('click', function() { ... })` on an element multiple times, with different functions specified in the second argument. This is impossible with event handler properties because any subsequent attempts to set a property will overwrite earlier ones, e.g.:
+```
+element.onclick = function1;
+element.onclick = function2;
+etc.
+```
+
+<hr>
+
+**Note**
+
+If you are called on to support browsers older than Internet Explorer 8, you may run into difficulties, as such ancient browsers use different event models from newer browsers. But never fear, most JavaScript libraries (for example, `jQuery`) have built-in functions that abstract away cross-browser differences. Don't worry about this too much at this stage in your learning journey.
+
+<hr>
+
+## Other event concepts
+
