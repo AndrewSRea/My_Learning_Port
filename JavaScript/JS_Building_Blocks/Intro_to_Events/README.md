@@ -275,7 +275,7 @@ You can use any name you like for the event object--you just need to choose a na
 
 <hr>
 
-`e.target` is incredibly useful when you want to set the same event handler on multiple elements and do something to all of them when an event occurs on them. You might, for example, have a set of 16 tiles that disappear when selected. It is useful to always be able to just set the thing to disappear as `e.target`, rather than having to select it in some more difficult way. In the following example (see my accompanying [useful-eventtarget.html]() file), we create 16 `<div>` elements using JavaScript. We then select all of them using [`document.querySelectorAll()`](), then loop through each one, adding an `onclick` handler to each that makes it so that a random color is applied to each one when selected:
+`e.target` is incredibly useful when you want to set the same event handler on multiple elements and do something to all of them when an event occurs on them. You might, for example, have a set of 16 tiles that disappear when selected. It is useful to always be able to just set the thing to disappear as `e.target`, rather than having to select it in some more difficult way. In the following example (see my accompanying [useful-event-target.html]() file), we create 16 `<div>` elements using JavaScript. We then select all of them using [`document.querySelectorAll()`](), then loop through each one, adding an `onclick` handler to each that makes it so that a random color is applied to each one when selected:
 ```
 const divs = document.querySelectorAll('div');
 
