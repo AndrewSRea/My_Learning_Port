@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prevent Default Example</title>
+        <style>
+            div {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- This code example is the property of the Mozilla Developer Network, and was created by Chris Mills. 
+             https://github.com/chrisdavidmills -->
+
+        <form>
+            <div>
+                <label for="fname">First name: </label>
+                <input id="fname" type="text">
+            </div>
+            <div>
+                <label for="lname">Last name: </label>
+                <input id="lname" type="text">
+            </div>
+            <div>
+                <input id="submit" type="submit">
+            </div>
+        </form>
+        <p></p>
+        <script>
+            const form = document.querySelector('form');
+            const fname = document.getElementById('fname');
+            const lname = document.getElementById('lname');
+            const para = document.querySelector('p');
+
+            form.onsubmit = function(e) {
+                if (fname.value === '' || lname.value === '') {
+                    e.preventDefault();
+                    para.textContent = 'You need to fill in both names!';
+                }
+            }
+        </script>
+    </body>
+</html>
