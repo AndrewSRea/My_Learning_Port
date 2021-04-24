@@ -332,3 +332,67 @@ To see the full source code, see my accompanying [prevent-default-validation.htm
 
 ### Event bubbling and capture
 
+The final subject to cover here is something that you won't come across often, but it can be a real pain if you don't understand it. Event bubbling and capture are two mechanisms that describe what happens when two handlers of the same event type are activated on one element. Let's look at an example to make this easier--open the [show-video-box.html](https://mdn.github.io/learning-area/javascript/building-blocks/events/show-video-box.html) example in a new tab (and the [source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/show-video-box.html) in another tab).
+
+This is a pretty siimple example that shows and hides a `<div>` with a `<video>` element inside it:
+```
+<button>Display video</button>
+
+<div class="hidden">
+    <video>
+        <source src="rabbit320.mp4" type="video/mp4">
+        <source src="rabbit320.webm" type="video/webm">
+        <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
+    </video>
+</div>
+```
+When the `<button>` is selected, the video is displayed, by changing the class attribute on the `<div>` from `hidden` to `showing` (the example's CSS contains these two classes, which position the box off the screen and on the screen, respectively):
+```
+btn.onclick = function() {
+    videoBox.setAttribute('class', 'showing');
+}
+```
+We then add a couple more `onclick` event handlers--the first one to the `<div>` and the second one to the `<video>`. Now, when the area of the `<div>` outside the video is selected, the box should be hidden again and when the video is selected, the video should start to play.
+```
+videoBox.onclick = function() {
+    videoBox.setAttribute('class', 'hidden');
+};
+
+video.onclick = function() {
+    video.play();
+};
+```
+But there's a problem--currently, when you select the video, it starts to play but it causes the `<div>` to be hidden at the same time. This is because the video is inside the `<div>`--it is part of it--so selecting the video actually runs *both* the above event handlers.
+
+#### Bubbling and capturing explained
+
+When an event is fired on an element that has parent elements (in this case, the `<video>` has the `<div>` as a parent), modern browsers run two different phases--the **capturing** phase and the **bubbling** phase.
+
+In the **capturing** phase:
+
+* The browser checks to see if the element's outermost ancestor ([`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html)) has an `onclick` event handler registered on it for the capturing phase, and runs it if so.
+* Then it moves on to the next element inside `<html>` and does the same thing, then the next one, and so on until it reaches the element that was actually selected.
+
+In the **bubbling** phase, the exact opposite occurs:
+
+* The browser checks to see if the element selected has an `onclick` event handler registered on it for the bubbling phase, and runs it if so.
+* Then it moves on to the next immediate ancestor element and does the same thing, then the next one, and so on until it reaches the `<html>` element.
+
+![Image of event capturing and bubbling](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events/bubbling-capturing.png)
+
+In modern browsers, by default, all event handlers are registered for the bubbling phase. So in our current example, when you select the video, the event bubbles from the `<video>` element outwards to the `<html>` element. Along the way:
+
+* It finds the `video.onclick...` handler and runs it, so the video first starts playing.
+* It then finds the `videoBox.onclick...` handler and runs it, so the video is hidden as well.
+
+<hr>
+
+**Note**
+
+In cases where both types of event handlers are present, bubbling and capturing, the capturing phase will run first, followed by the bubbling phase.
+
+<hr>
+
+#### Fixing the problem with `stopPropagation()`
+
+This is a very annoying behavior, but there is a way to fix it! The standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object has a function available on it called [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation) which, when invoked on a handler's event object, makes it so that 
