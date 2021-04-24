@@ -440,8 +440,8 @@ Also, it is important to understand that the different contexts in which JavaScr
 
 ## See also
 
-* [Event reference]()
-* [Event order]() (discussion of capturing and bubbling) -- an excellently detailed piece by Peter-Paul Koch.
-* [Event accessing]() (discussion of the event object) -- another excellently detailed piece by Peter-Paul Koch.
+* [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)
+* [Event order](https://www.quirksmode.org/js/events_order.html) (discussion of capturing and bubbling) -- an excellently detailed piece by Peter-Paul Koch.
+* [Event accessing](https://www.quirksmode.org/js/events_access.html) (discussion of the event object) -- another excellently detailed piece by Peter-Paul Koch.
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) - [[Next page]]()
