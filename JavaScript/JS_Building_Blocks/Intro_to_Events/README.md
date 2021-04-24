@@ -410,4 +410,38 @@ You can try making a local copy of the [show-video-box.html source code](https:/
 
 **Note**
 
-Why bother with both capturing and bubbling?
+Why bother with both capturing and bubbling? Well, in the bad old days when browsers were much less cross-compatible than they are now, Netscape only used event capturing, and Internet Explorer used only event bubbling. When the W3C decided to try to standardize the behavior and reach a consensus, they ended up with this system that included both, which is the one modern browsers implemented.
+
+<hr>
+
+**Note**
+
+As mentioned above, by default all event handlers are registered in the bubbling phase, and this makes more sense most of the time. If you really want to register an event in the capturing phase instead, you can do so by registering your handler using `addEventListener()`, and setting the optional third property to `true`.
+
+<hr>
+
+#### Event delegation
+
+Bubbling also allows us to take advantage of **event delegation**--this concept relies on the fact that if you want some code to run when you select any one of a large number of child elements, you can set the event listener on their parent and have events that happen on them bubble up to their parent rather than having to set the event listener on every child individually. Remember, bubbling involves checking the element the event is fired on for an event handler first, then moving up to the element's parent, etc.
+
+A good example is a series of list items--if you want each one to pop up a message when selected, you can set the `click` event listener on the parent `<ul>`, and events will bubble from the list items to the `<ul>`.
+
+This concept is explained further on David Walsh's blog, with multiple examples--see [How JavaScript Event Delegation Works](https://davidwalsh.name/event-delegate).
+
+## Skills test
+
+I have created an accompanying [events-skills-test.html]() file to test my knowledge of the information provided by this **"Introduction to events"** page. See the results [here]().
+
+## Conclusion
+
+You should now know all you need to know about web events at this early stage. As mentioned, events are not really part of the core JavaScript--they are defined in browser Web APIs.
+
+Also, it is important to understand that the different contexts in which JavaScript is used have different event models--from Web APIs to other areas such as browser WebExtensions and Node.js (server-side JavaScript). We are not expecting you to understand all of these areas now, but it certainly helps to understand the basics of events as you forge ahead with learning web development.
+
+## See also
+
+* [Event reference]()
+* [Event order]() (discussion of capturing and bubbling) -- an excellently detailed piece by Peter-Paul Koch.
+* [Event accessing]() (discussion of the event object) -- another excellently detailed piece by Peter-Paul Koch.
+
+[[Previous page]]() - [[Top]]() - [[Next page]]()
