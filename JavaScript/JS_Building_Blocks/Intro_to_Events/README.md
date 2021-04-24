@@ -395,4 +395,19 @@ In cases where both types of event handlers are present, bubbling and capturing,
 
 #### Fixing the problem with `stopPropagation()`
 
-This is a very annoying behavior, but there is a way to fix it! The standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object has a function available on it called [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation) which, when invoked on a handler's event object, makes it so that 
+This is a very annoying behavior, but there is a way to fix it! The standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object has a function available on it called [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation) which, when invoked on a handler's event object, makes it so that first handler is run but the event doesn't bubble any further up the chain, so no more handlers will be run.
+
+We can, therefore, fix our current problem by changing the second handler function in the previous code block to this:
+```
+video.onclick = function(e) {
+    e.stopPropagation();
+    video.play();
+};
+```
+You can try making a local copy of the [show-video-box.html source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/show-video-box.html) and fixing it yourself, or looking at the fixed result in [show-video-box-fixed.html](https://mdn.github.io/learning-area/javascript/building-blocks/events/show-video-box-fixed.html) (also see the [source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/show-video-box-fixed.html)) here).
+
+<hr>
+
+**Note**
+
+Why bother with both capturing and bubbling?
