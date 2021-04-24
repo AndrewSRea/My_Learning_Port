@@ -15,20 +15,19 @@
                 box-sizing: border-box;
             }
 
-            h2 {
+            h2,
+            button {
                 margin-left: 15px;
             }
 
-            button{
-                margin-left: 15px;
-            }
-
+            canvas,
             section[class|=preview] {
                 border: 1px solid #828282;
                 width: 50%; 
                 margin: 15px 0 20px 15px;
                 padding: 10px;
             }
+
         </style>
     </head>
     <body>
@@ -40,7 +39,7 @@
 
         </section>
 
-        <button class=".off">Machine is off</button>
+        <button class="off">Machine is off</button>
 
         <h2>Events Skills Test 2</h2>
 
@@ -49,6 +48,10 @@
 
 
         </section>
+
+        <canvas width="480" height="320">
+
+        </canvas>
 
         <h2>Events Skills Test 3</h2>
 
@@ -69,7 +72,7 @@
             btn.onclick = function() {
                 if (btn.className === 'off') {
                     btn.className = 'on';
-                    btn.textContent = 'Machiine is on';
+                    btn.textContent = 'Machine is on';
                 } else {
                     btn.className = 'off';
                     btn.textContent = 'Machine is off';
@@ -79,28 +82,28 @@
     
             // *** Functions Skills Test 2 ***
     
-            // let canvas = document.querySelector('canvas');
-            // let ctx = canvas.getContext('2d');
+            let canvas = document.querySelector('canvas');
+            let ctx = canvas.getContext('2d');
+
+            function drawCircle(x, y, size) {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.beginPath();
+                ctx.fillStyle = 'black';
+                ctx.arc(x, y, size, 0, 2 * Math.PI);
+                ctx.fill();
+            }
             
-            // let x = 50;
-            // let y = 60;
-            // let width = 100;
-            // let height = 75;
-            // let color = 'blue';
-    
+            let x = 50;
+            let y = 50;
+            const size = 30;
+
+            drawCircle(x, y, size);
+
             // Add your code here
-    
-            // function drawRect() {
-            //     ctx.clearRect(0, 0, 0, 0);
-            //     ctx.fillStyle = color;
-            //     ctx.fillRect(x, y, width, height);
-            // }
-    
-            // drawRect();
-    
-            // Don't edit the code below here!
-    
-            // const section2 = document.querySelector('.preview-2');
+
+            
             
     
             // *** Functions Skills Test 3 ***
