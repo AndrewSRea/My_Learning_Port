@@ -196,7 +196,7 @@ In practice, you'd call the function and pass in the color and weight parameters
 }
 ```
 
-### Color constrast
+### Color contrast
 
 In order to meet [WCAG 2.0 accessiblity standards for color constrast](https://github.com/twbs/bootstrap-npm-starter), authors **must** provide [a contrast ratio of, at least, 4.5:1](https://www.w3.org/WAI/WCAG20/quickref/20160105/Overview.php#visual-audio-contrast-contrast), with very few exceptions.
 
