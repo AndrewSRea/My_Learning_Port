@@ -4,7 +4,7 @@ Learn how to theme, customize, and extend Bootstrap with Sass, a boatload of glo
 
 ## Table of contents
 
-* [Sass]() - Utilize Bootstrap's source Sass files to take advantage of variables, maps, mixins, and functions.
+* [Sass](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - Utilize Bootstrap's source Sass files to take advantage of variables, maps, mixins, and functions.
 * [Options]() - Customize Bootstrap with built-in variables to easily toggle global CSS preferences.
 * [Color]() - Learn about and customize the color systems that support the entire toolkit.
 * [Components]() - Learn how Bootstrap builds nearly all its components responsively and with base and modifier classes.
