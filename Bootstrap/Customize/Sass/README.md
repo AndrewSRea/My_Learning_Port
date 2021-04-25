@@ -95,7 +95,7 @@ Repeat as necessary for any variable in Bootstrap, including the global options 
 
 <hr>
 
-**Get started with Bootstrap via npm with its starter project!** Head to the [twbs/bootstrap-npm-starter]() template repository to see how to build and customize Bootstrap in your own npm project. Includes Sass compiler, Autoprefixer, PurgeCSS, and Bootstrap Icons.
+**Get started with Bootstrap via npm with its starter project!** Head to the [twbs/bootstrap-npm-starter](https://github.com/twbs/bootstrap-npm-starter) template repository to see how to build and customize Bootstrap in your own npm project. Includes Sass compiler, Autoprefixer, PurgeCSS, and Bootstrap Icons.
 
 <hr>
 
@@ -153,4 +153,111 @@ $theme-colors: map-remove($theme-colors, "info", "light", "dark");
 
 ## Required keys
 
-To remove
+Bootstrap assumes the presence of some specific keys within Sass maps as it used and extended these itself. As you customize the included maps, you may encounter errors where a specific Sass map's key is being used.
+
+For example, Bootstrap uses the `primary`, `success`, and `danger` keys from `$theme-colors` for links, buttons, and form states. Replacing the values of these keys should present no issues, but removing them may cause Sass compilation issues. In these instances, you'll need to modify the Sass code that makes use of those values.
+
+## Functions
+
+### Colors
+
+Next to the [Sass maps]() we have, <!-- link to Customize/Color, "Color Sass maps" header" --> theme colors can also be used as standalone variables, like `$primary`.
+```
+.custom-element {
+    color: $gray-100;
+    background-color: $dark;
+}
+```
+You can lighten or darken colors with Bootstrap's `tint-color()` and `shade-color()` functions. These functions will mix colors with black and white, unlike Sass' native `lighten()` and `darken()` functions which will change the lightness by a fixed amount, which often doesn't lead to the desired effect.
+```
+// Tint a color: mix a color with white
+@function tint-color($color, $weight) {
+    @return mix(white, $color, $weight);
+}
+
+// Shade a color: mix a color with black
+@function shade-color($color, $weight) {
+    @return mix(black, $color, $weight);
+}
+
+// Shade the color if the weight is positive, else tint it
+@function shift-color($color, $weight) {
+    @return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight));
+}
+```
+In practice, you'd call the function and pass in the color and weight parameters.
+```
+.custom-element {
+    color: tint-color($primary, 10%);
+}
+
+.custom-element-2 {
+    color: shade-color($danger, 30%);
+}
+```
+
+### Color constrast
+
+In order to meet [WCAG 2.0 accessiblity standards for color constrast](https://github.com/twbs/bootstrap-npm-starter), authors **must** provide [a contrast ratio of, at least, 4.5:1](https://www.w3.org/WAI/WCAG20/quickref/20160105/Overview.php#visual-audio-contrast-contrast), with very few exceptions.
+
+An additional function Bootstrap includes is the color contrast function, `color-contrast`. It utilizes the [WCAG 2.0 algorithm](https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests) for calculating contrast thresholds based on [relative luminance](https://www.w3.org/WAI/GL/wiki/Relative_luminance) in a `sRGB` colorspace to automatically return a light (`#fff`), dark (`#212529`), or black (`#000`) contrast color based on the specified base color. This function is especially useful for mixins or loops where you're generating multiple classes.
+
+For example, to generate color swatches from our `$theme-colors` map:
+```
+@each $color, $value in $theme-colors {
+    .swatch-#{$color} {
+        color: color-contrast($value);
+    }
+}
+```
+It can also be used for one-off contrast needs:
+```
+.custom-element {
+    color: color-contrast(#000);   // returns `color: #fff`
+}
+```
+You can also specify a base color with Bootstrap's color map functions:
+```
+.custom-element {
+    color: color-contrast($dark);   // returns `color: #fff`
+}
+```
+
+### Escape SVG
+
+Bootstrap uses the `escape-svg` function to escape the `<`, `>`, and `#` characters for SVG background images. When using the `escape-svg` function, data URIs must be quoted.
+
+### Add and Subtract functions
+
+Bootstrap uses the `add` and `subtract` functions to wrap the CSS `calc` function. The primary purpose of these functions is to avoid errors when a "unitless" `0` value is passed into a `calc` expression. Expressions like `calc(10px - 0)` will return an error in all browsers, despite being mathematically correct.
+
+Example where the calc is valid:
+```
+$border-radius: .25rem;
+$border-width: 1px;
+
+.element {
+    // Output calc(.25rem - 1px) is valid
+    border-radius: calc($border-radius - $border-width);
+}
+
+.element {
+    // Output the same calc(.25rem - 1px) as above
+    border-radius: subtract($border-radius, $border-width);
+}
+```
+Example where the calc is invalid:
+```
+$border-radius: .25rem;
+$border-width: 0;
+
+.element {
+    // Output calc(.25rem - 0) is invalid
+    border-radius: calc($border-radius - $border-width);
+}
+
+.element {
+    // Output .25rem
+    border-radius: subtract($border-radius, $border-width);
+}
+```
