@@ -104,3 +104,53 @@ Repeat as necessary for any variable in Bootstrap, including the global options 
 Bootstrap includes a handful of Sass maps, key value pairs that make it easier to generate families of related CSS. Bootstrap uses Sass maps for its colors, grid breakpoints, and more. Just like Sass variables, all Sass maps include the `!default` flag and can be overridden and extended.
 
 Some of Bootstrap's Sass maps are merged into empty ones by default. This is done to allow easy expansion of a given Sass map, but comes at the cost of making *removing* items from a map slightly more difficult.
+
+### Modify map
+
+All variables in the `$theme-colors` map are defined as standalone variables. To modify an existing color in Bootstrap's `$theme-colors` map, add the following to your custom Sass file:
+```
+$primary: #0074d9;
+$danger: #ff4136;
+```
+Later on, these variables are set in Bootstrap's `$theme-colors` map:
+```
+$theme-colors: (
+    "primary": $primary,
+    "danger": $danger
+);
+```
+
+### Add to map
+
+Add new colors to `$theme-colors`, or any other map, by creating a new Sass map with your custom values and merging it with the original map. In this case, we'll create a new `$custom-colors` map and merge it with `$theme-colors`.
+```
+// Create your own map
+$custom-colors: (
+    "custom-color": #900
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+```
+
+### Remove from map
+
+To remove colors from `$theme-colors`, or any other map, use `map-remove`. Be aware you must insert it between Bootstrap's requirements and options:
+```
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+$theme-colors: map-remove($theme-colors, "info", "light", "dark");
+
+// Optional
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/mixins";
+// etc.
+```
+
+## Required keys
+
+To remove
