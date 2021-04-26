@@ -103,7 +103,24 @@
 
             // Add your code here
 
-            
+            window.addEventListener('keypress', (e) => {
+                switch(e.key) {
+                    case 'a':
+                        x -= 2;
+                        break;
+                    case 'd':
+                        x += 2;
+                        break;
+                    case 'w':
+                        y -= 2;
+                        break;
+                    case 's':
+                        y += 2;
+                        break;
+                }
+
+                drawCircle(x, y, size);
+            });
             
     
             // *** Functions Skills Test 3 ***
