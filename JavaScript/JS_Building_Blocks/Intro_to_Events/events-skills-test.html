@@ -16,7 +16,7 @@
             }
 
             h2,
-            button {
+            #ex-1 {
                 margin-left: 15px;
             }
 
@@ -26,6 +26,15 @@
                 width: 50%; 
                 margin: 15px 0 20px 15px;
                 padding: 10px;
+            }
+
+            .ex-3 {
+                display: block;
+                margin: 20px 0 20px 20px;
+            }
+
+            .button-bar {
+                padding: 20px 0;
             }
 
         </style>
@@ -39,7 +48,7 @@
 
         </section>
 
-        <button class="off">Machine is off</button>
+        <button class="off" id="ex-1">Machine is off</button>
 
         <h2>Events Skills Test 2</h2>
 
@@ -61,9 +70,16 @@
 
         </section>
 
+        <div class="button-bar">
+            <button data-color="red" class="ex-3">Red</button>
+            <button data-color="yellow" class="ex-3">Yellow</button>
+            <button data-color="green" class="ex-3">Green</button>
+            <button data-color="purple" class="ex-3">Purple</button>
+        </div>
+
         <script>
     
-            // *** Functions Skills Test 1 ***
+            // *** Events Skills Test 1 ***
     
             let btn = document.querySelector('.off');
     
@@ -80,7 +96,7 @@
             }
             
     
-            // *** Functions Skills Test 2 ***
+            // *** Events Skills Test 2 ***
     
             let canvas = document.querySelector('canvas');
             let ctx = canvas.getContext('2d');
@@ -122,64 +138,61 @@
                 drawCircle(x, y, size);
             });
             
+            /*
+                Ugh! OK, more truthyness: I had solved this "Events Skills Test 2" in a previously-created folder so I will
+                attempt to describe this solution:
+
+                First, an `addEventListener` is set on the `window` itself to "listen" for two parameters: a `keypress` and
+                an event (e).
+                Then a `switch` statement is created to evaulate multiple possible expressions--in this case, a keyboard event
+                happening (e.key). The keyboard event will be when the user presses (`keypress`) either the 'W' key, or the 'A'
+                key, or the 'S' key, or the 'D' key.
+                Each `case` in the `switch` statement is set to (e.key) value: 'w', 'a', 's', and 'd'.
+                For each `case`, the `x` or`y` parameter of the `drawCircle()` function is changed:
+
+                If 'a' is pressed, the value of `x` is subtracted by 2.
+                If 'd' is pressed, the value of `x` is added by 2.
+                If 'w' is pressed, the value of `y` is subtracted by 2.
+                If 's' is pressed, the value of `y` is added by 2.
+
+                This moves the circle in the <canvas> by 2 grid points up, down, left, or right, depending on which key is pressed.
+            */
+
     
-            // *** Functions Skills Test 3 ***
+            // *** Events Skills Test 3 ***
     
-            // let names2 = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada'];
-            // let para2 = document.createElement('p');
-    
+            let buttonBar = document.querySelector('.button-bar');
+
             // Add your code here
-    
+
+            function setColor(e) {
+                buttonBar.style.backgroundColor = e.target.getAttribute('data-color');
+            }
+
+            buttonBar.addEventListener('click', setColor);
+
             /*
-                I have to admit that I had no clue how to solve this particular task, so I'm going to add some comments to try to
-                describe what is happening here in the code.
+                Started this example as:
+
+                buttonBar.addEventListener('click', function(e) {
+
+                });
+
+                ...but I could not figure out how to grab the `data-color` from each button and use it as the background color.
+                So I am going to explain the solution above:
+
+                First, a function is created called `setColor` with an event object (e) parameter. The event target (e.target) 
+                is 'data-color' of all the buttons in the button bar. When a button is selected, the attribute (the color) of 
+                the button's 'data-color' is made to equal the color of the background of the button bar.
+
+                The button bar has an event listener set on it, to listen for a 'click' (any one of the buttons), and when a
+                button is clicked, the `setColor()` function is run.
             */
-    
-            /* 
-                For the code block below, this is a function which returns a random integer between two bounds: the `min`imum number 
-                in the range, and the `max`imum number in the range. This function is called in the 2nd `chooseItem` function.
-                The `min` number in the `chooseItem` function is 0, and the `max` number is the `array.length`, or 8.
-                Thus, the `Math.floor(Math.random())` function becomes:
-    
-                Math.floor(Math.random() * (8 - 0)) + 0; -- which will generate a random number between 0 and 7.
-    
-                This number is stored in the constant variable `num`, and returned to the `chooseItem` array.
-            */
-    
-            // function random(min, max) {
-            //     const num = Math.floor(Math.random() * (max - min)) + min;
-            //     return num;
-            // }
-    
+
             /*
-                This one might be more advanced than I can comprehend at the moment:
-                For the code block below, this is a function which has as its parameter an `array` (the `names2` array above).
-                Somehow the parameter `array` knows how to connect to the `names2` array above.
-                A variable `choice` is made to equal a random array item in the `names2` array, with this piece of code:
-    
-                `array` (which represents `names2`)[`random` (which calls the random function above)`(0, array.length)` (which
-                represent the `min` and `max` parameters in the `random` function above)]
-    
-                Then the `chooseItem()` function is called in this line of code:
-    
-                para2.textContent = chooseItem(names2);   <-- THIS is how `array` connects to the `names2` array. The `names2` array
-                                                              becomes the representation of the `array` parameter.
-    
-                The result from the function is stored in `para2.textContent`.
+                I think I obviously need to review the JavaScript Building Blocks module since I'm not able to figure out the
+                solutions for many of these Skills Tests.
             */
-    
-            // function chooseItem(array) {
-            //     let choice = array[random(0, array.length)];
-            //     return choice;
-            // }
-    
-            // para2.textContent = chooseItem(names2);
-    
-            // Don't edit the code below here!
-    
-            // const section3 = document.querySelector('.preview-3');
-    
-            // section3.appendChild(para2);
     
         </script>
     </body>
