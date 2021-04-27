@@ -34,3 +34,11 @@ btn.onclick = function() {
         overlay.style.backgroundColor = 'rgba(0,0,0,0)';
     }
 }
+
+/*
+    Overall, I would say I did fairly well! But...
+
+    1. I need to remember that EVERYTHING can be stored in a variable to be used throughout the code.
+
+    2. I definitely need to review my "Intro_to_Events" folder to fully understand how events are used in functions.
+*/
