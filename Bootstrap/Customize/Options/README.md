@@ -23,4 +23,4 @@ You can find and customize these variables for key global options in Bootstrap's
 | `$enable-deprecation-messages` | `true` (default) or `false` | Set to `false` to hide warnings when using any of the deprecated mixins and functions that are planned to be removed in `v6`. |
 | `$enable-important-utilities` | `true` (default) or `false` | Enables the `!important` suffix in utility classes. |
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Colors#color)
