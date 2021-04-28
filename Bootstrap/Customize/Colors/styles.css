@@ -77,3 +77,200 @@ h3 {
     background-color: #031633;
 }
 
+.swatch-indigo {
+    color: #fff;
+    background-color: #6610f2;
+}
+
+.swatch-indigo::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "7.18" "\a" "7.18" "\a" "2.92";
+    background-color: #6610f2;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-indigo-100 {
+    color: #000;
+    background-color: #e0cffc;
+}
+
+.bd-indigo-200 {
+    color: #000;
+    background-color: #c29ffa;
+}
+
+.bd-indigo-300 {
+    color: #000;
+    background-color: #a370f7;
+}
+
+.bd-indigo-400 {
+    color: #fff;
+    background-color: #8540f5;
+}
+
+.bd-indigo-500 {
+    color: #fff;
+    background-color: #6610f2;
+}
+
+.bd-indigo-600 {
+    color: #fff;
+    background-color: #520dc2;
+}
+
+.bd-indigo-700 {
+    color: #fff;
+    background-color: #3d0a91;
+}
+
+.bd-indigo-800 {
+    color: #fff;
+    background-color: #290661;
+}
+
+.bd-indigo-900 {
+    color: #fff;
+    background-color: #140330;
+}
+
+.swatch-purple {
+    color: #fff;
+    background-color: #6f42c1;
+}
+
+.swatch-purple::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "6.51" "\a" "6.51" "\a" "3.22";
+    background-color: #6f42c1;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-purple-100 {
+    color: #000;
+    background-color: #e2d9f3;
+}
+
+.bd-purple-200 {
+    color: #000;
+    background-color: #c5b3e6;
+}
+
+.bd-purple-300 {
+    color: #000;
+    background-color: #a98eda;
+}
+
+.bd-purple-400 {
+    color: #000;
+    background-color: #8c68cd;
+}
+
+.bd-purple-500 {
+    color: #fff;
+    background-color: #6f42c1;
+}
+
+.bd-purple-600 {
+    color: #fff;
+    background-color: #59359a;
+}
+
+.bd-purple-700 {
+    color: #fff;
+    background-color: #432874;
+}
+
+.bd-purple-800 {
+    color: #fff;
+    background-color: #2c1a4d;
+}
+
+.bd-purple-900 {
+    color: #fff;
+    background-color: #160d27;
+}
+
+.swatch-pink {
+    color: #fff;
+    background-color: #d63384;
+}
+
+.swatch-pink::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "4.50" "\a" "4.50" "\a" "4.66";
+    background-color: #d63384;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-pink-100 {
+    color: #000;
+    background-color: #f7d6e6;
+}
+
+.bd-pink-200 {
+    color: #000;
+    background-color: #efadce;
+}
+
+.bd-pink-300 {
+    color: #000;
+    background-color: #e685b5;
+}
+
+.bd-pink-400 {
+    color: #000;
+    background-color: #de5c9d;
+}
+
+.bd-pink-500 {
+    color: #fff;
+    background-color: #d63384;
+}
+
+.bd-pink-600 {
+    color: #fff;
+    background-color: #ab296a;
+}
+
+.bd-pink-700 {
+    color: #fff;
+    background-color: #801f4f;
+}
+
+.bd-pink-800 {
+    color: #fff;
+    background-color: #561435;
+}
+
+.bd-pink-900 {
+    color: #fff;
+    background-color: #2b0a1a;
+}
