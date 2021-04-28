@@ -47,3 +47,78 @@ Here are two examples of how Bootstrap loops over the `$theme-colors` map to gen
 ```
 
 ## Responsive
+
+These Sass loops aren't limited to color maps, either. You can also generate responsive variations of your components. Take for example Bootstrap's responsive alignment of the dropdowns where Bootstrap mixes an `@each` loop for the `$grid-breakpoints` Sass map with a media query include.
+```
+// We deliberately hardcode the `bs-` prefix because we check
+// this custom property in JS to determine Popper's positioning
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .dropdown-menu#{$infix}-start {
+            --bs-position: start;
+
+            &[data-bs-popper] {
+                right: auto #{"/* rtl:ignore */"};
+                left: 0 #{"/* rtl:ignore */"};
+            }
+        }
+
+        .dropdown-menu#{$infix}-end {
+            --bs-position: end;
+
+            &[data-bs-popper] {
+                right: 0 #{"/* rtl:ignore */"};
+                left: auto #{"/* rtl:ignore */"};
+            }
+        }
+    }
+}
+```
+Should you modify your `$grid-breakpoints`, your changes will apply to all the loops iterating over that map.
+```
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+```
+For more information and examples on how to modify our Sass maps and variables, please refer to [the Sass section of the Grid documentation](). <!-- when you get the Layout folder sorted, go to Layout/Grid, header "Sass" -->
+
+## Creating your own
+
+Bootstrap encourages you to adopt these guidelines when building with Bootstrap to create your own components. It has extended this approach itself to the custom components in its documentation and examples. Components like Bootstrap's callouts are built just like its provided components with base and modifier classes.
+```
+<div class="callout">
+    <strong>This is a callout.</strong> Bootstrap built it custom for its docs so its messages to you stand out. It has three variants via modifier classes.
+</div>
+```
+In your CSS, you'd have something like the following where the bulk of the styling is done via `.callout`. Then, the unique styles between each variant is controlled via modifer class.
+```
+// Base class
+.callout {}
+
+// Modifier classes
+.callout-info {}
+.callout-warning {}
+.callout-danger {}
+```
+For the callouts, that unique styling is just a `border-left-color`. When you combine that base class with one of those modifier classes, you get your complete component family:
+```
+<div class="callout-info">
+    <strong>This is an info callout.</strong> Example text to show it in action.
+</div>
+<div class="callout-warning">
+    <strong>This is a warning callout.</strong> Example text to show it in action.
+</div>
+<div class="callout-danger">
+    <strong>This is a danger callout.</strong> Example text to show it in action.
+</div>
+```
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Colors#color) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Components#components) - [[Next page]]()
