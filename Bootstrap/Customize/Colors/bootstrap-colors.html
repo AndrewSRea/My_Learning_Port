@@ -1,234 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Bootstrap Colors Utilities Examples</title>
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <style>
-            .container {
-                margin: 20px;
-            }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bootstrap Colors Utilities Examples</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+            <h2 class="mb-3">Bootstrap Customized Color Systems</h2>
 
-            h2,
-            h3 {
-                margin: 30px;
-            }
+            <hr>
 
-            h3 {
-                text-decoration: underline;
-            }
-        </style>
-   </head>
-   <body>
-        <h2 class="mb-3">Bootstrap Customized Color Systems</h2>
+            <h3 class="mb-3">Theme colors</h3>
 
-        <hr>
-
-        <h3 class="mb-3">Theme colors</h3>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-primary text-white">Primary</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-secondary text-white">Secondary</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-success text-white">Success</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-danger text-white">Danger</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-warning text-white">Warning</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-info text-white">Info</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-light text-dark">Light</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 mb-3 bg-dark text-white">Dark</div>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <h3 class="mb-3">All Bootstrap colors</h3>
-
-        <div class="container">
-            <div class="row font-monospace">
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-blue">
-                        <strong class="d-block">$blue</strong>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-primary text-white">Primary</div>
                     </div>
-                    <div class="p-3 bd-blue-100">$blue-100</div>
-                    <div class="p-3 bd-blue-200">$blue-200</div>
-                    <div class="p-3 bd-blue-300">$blue-300</div>
-                    <div class="p-3 bd-blue-400">$blue-400</div>
-                    <div class="p-3 bd-blue-500">$blue-500</div>
-                    <div class="p-3 bd-blue-600">$blue-600</div>
-                    <div class="p-3 bd-blue-700">$blue-700</div>
-                    <div class="p-3 bd-blue-800">$blue-800</div>
-                    <div class="p-3 bd-blue-900">$blue-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-indigo">
-                        <strong class="d-block">$indigo</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-secondary text-white">Secondary</div>
                     </div>
-                    <div class="p-3 bd-indigo-100">$indigo-100</div>
-                    <div class="p-3 bd-indigo-200">$indigo-200</div>
-                    <div class="p-3 bd-indigo-300">$indigo-300</div>
-                    <div class="p-3 bd-indigo-400">$indigo-400</div>
-                    <div class="p-3 bd-indigo-500">$indigo-500</div>
-                    <div class="p-3 bd-indigo-600">$indigo-600</div>
-                    <div class="p-3 bd-indigo-700">$indigo-700</div>
-                    <div class="p-3 bd-indigo-800">$indigo-800</div>
-                    <div class="p-3 bd-indigo-900">$indigo-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-purple">
-                        <strong class="d-block">$purple</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-success text-white">Success</div>
                     </div>
-                    <div class="p-3 bd-purple-100">$purple-100</div>
-                    <div class="p-3 bd-purple-200">$purple-200</div>
-                    <div class="p-3 bd-purple-300">$purple-300</div>
-                    <div class="p-3 bd-purple-400">$purple-400</div>
-                    <div class="p-3 bd-purple-500">$purple-500</div>
-                    <div class="p-3 bd-purple-600">$purple-600</div>
-                    <div class="p-3 bd-purple-700">$purple-700</div>
-                    <div class="p-3 bd-purple-800">$purple-800</div>
-                    <div class="p-3 bd-purple-900">$purple-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-pink">
-                        <strong class="d-block">$pink</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-danger text-white">Danger</div>
                     </div>
-                    <div class="p-3 bd-pink-100">$pink-100</div>
-                    <div class="p-3 bd-pink-200">$pink-200</div>
-                    <div class="p-3 bd-pink-300">$pink-300</div>
-                    <div class="p-3 bd-pink-400">$pink-400</div>
-                    <div class="p-3 bd-pink-500">$pink-500</div>
-                    <div class="p-3 bd-pink-600">$pink-600</div>
-                    <div class="p-3 bd-pink-700">$pink-700</div>
-                    <div class="p-3 bd-pink-800">$pink-800</div>
-                    <div class="p-3 bd-pink-900">$pink-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-red">
-                        <strong class="d-block">$red</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-warning text-white">Warning</div>
                     </div>
-                    <div class="p-3 bd-red-100">$red-100</div>
-                    <div class="p-3 bd-red-200">$red-200</div>
-                    <div class="p-3 bd-red-300">$red-300</div>
-                    <div class="p-3 bd-red-400">$red-400</div>
-                    <div class="p-3 bd-red-500">$red-500</div>
-                    <div class="p-3 bd-red-600">$red-600</div>
-                    <div class="p-3 bd-red-700">$red-700</div>
-                    <div class="p-3 bd-red-800">$red-800</div>
-                    <div class="p-3 bd-red-900">$red-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-orange">
-                        <strong class="d-block">$orange</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-info text-white">Info</div>
                     </div>
-                    <div class="p-3 bd-orange-100">$orange-100</div>
-                    <div class="p-3 bd-orange-200">$orange-200</div>
-                    <div class="p-3 bd-orange-300">$orange-300</div>
-                    <div class="p-3 bd-orange-400">$orange-400</div>
-                    <div class="p-3 bd-orange-500">$orange-500</div>
-                    <div class="p-3 bd-orange-600">$orange-600</div>
-                    <div class="p-3 bd-orange-700">$orange-700</div>
-                    <div class="p-3 bd-orange-800">$orange-800</div>
-                    <div class="p-3 bd-orange-900">$orange-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-green">
-                        <strong class="d-block">$green</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-light text-dark">Light</div>
                     </div>
-                    <div class="p-3 bd-green-100">$green-100</div>
-                    <div class="p-3 bd-green-200">$green-200</div>
-                    <div class="p-3 bd-green-300">$green-300</div>
-                    <div class="p-3 bd-green-400">$green-400</div>
-                    <div class="p-3 bd-green-500">$green-500</div>
-                    <div class="p-3 bd-green-600">$green-600</div>
-                    <div class="p-3 bd-green-700">$green-700</div>
-                    <div class="p-3 bd-green-800">$green-800</div>
-                    <div class="p-3 bd-green-900">$green-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-teal">
-                        <strong class="d-block">$teal</strong>
-                    </div>
-                    <div class="p-3 bd-teal-100">$teal-100</div>
-                    <div class="p-3 bd-teal-200">$teal-200</div>
-                    <div class="p-3 bd-teal-300">$teal-300</div>
-                    <div class="p-3 bd-teal-400">$teal-400</div>
-                    <div class="p-3 bd-teal-500">$teal-500</div>
-                    <div class="p-3 bd-teal-600">$teal-600</div>
-                    <div class="p-3 bd-teal-700">$teal-700</div>
-                    <div class="p-3 bd-teal-800">$teal-800</div>
-                    <div class="p-3 bd-teal-900">$teal-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-cyan">
-                        <strong class="d-block">$cyan</strong>
-                    </div>
-                    <div class="p-3 bd-cyan-100">$cyan-100</div>
-                    <div class="p-3 bd-cyan-200">$cyan-200</div>
-                    <div class="p-3 bd-cyan-300">$cyan-300</div>
-                    <div class="p-3 bd-cyan-400">$cyan-400</div>
-                    <div class="p-3 bd-cyan-500">$cyan-500</div>
-                    <div class="p-3 bd-cyan-600">$cyan-600</div>
-                    <div class="p-3 bd-cyan-700">$cyan-700</div>
-                    <div class="p-3 bd-cyan-800">$cyan-800</div>
-                    <div class="p-3 bd-cyan-900">$cyan-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-gray">
-                        <strong class="d-block">$gray</strong>
-                    </div>
-                    <div class="p-3 bd-gray-100">$gray-100</div>
-                    <div class="p-3 bd-gray-200">$gray-200</div>
-                    <div class="p-3 bd-gray-300">$gray-300</div>
-                    <div class="p-3 bd-gray-400">$gray-400</div>
-                    <div class="p-3 bd-gray-500">$gray-500</div>
-                    <div class="p-3 bd-gray-600">$gray-600</div>
-                    <div class="p-3 bd-gray-700">$gray-700</div>
-                    <div class="p-3 bd-gray-800">$gray-800</div>
-                    <div class="p-3 bd-gray-900">$gray-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 position-relative swatch-blue">
-                        <strong class="d-block">$blue</strong>
-                    </div>
-                    <div class="p-3 bd-blue-100">$blue-100</div>
-                    <div class="p-3 bd-blue-200">$blue-200</div>
-                    <div class="p-3 bd-blue-300">$blue-300</div>
-                    <div class="p-3 bd-blue-400">$blue-400</div>
-                    <div class="p-3 bd-blue-500">$blue-500</div>
-                    <div class="p-3 bd-blue-600">$blue-600</div>
-                    <div class="p-3 bd-blue-700">$blue-700</div>
-                    <div class="p-3 bd-blue-800">$blue-800</div>
-                    <div class="p-3 bd-blue-900">$blue-900</div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 mb-2 bd-black text-white">
-                        <strong class="d-block">$black</strong>
-                    </div>
-                    <div class="p-3 mb-2 bd-white border">
-                        <strong class="d-block">$white</strong>
+                    <div class="col-md-4">
+                        <div class="p-3 mb-3 bg-dark text-white">Dark</div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-   </body>
+
+            <hr>
+
+            <h3 class="mb-3">All Bootstrap colors</h3>
+
+            <div class="container">
+                <div class="row font-monospace">
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-blue">
+                            <strong class="d-block">$blue</strong>
+                        </div>
+                        <div class="p-3 bd-blue-100">$blue-100</div>
+                        <div class="p-3 bd-blue-200">$blue-200</div>
+                        <div class="p-3 bd-blue-300">$blue-300</div>
+                        <div class="p-3 bd-blue-400">$blue-400</div>
+                        <div class="p-3 bd-blue-500">$blue-500</div>
+                        <div class="p-3 bd-blue-600">$blue-600</div>
+                        <div class="p-3 bd-blue-700">$blue-700</div>
+                        <div class="p-3 bd-blue-800">$blue-800</div>
+                        <div class="p-3 bd-blue-900">$blue-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-indigo">
+                            <strong class="d-block">$indigo</strong>
+                        </div>
+                        <div class="p-3 bd-indigo-100">$indigo-100</div>
+                        <div class="p-3 bd-indigo-200">$indigo-200</div>
+                        <div class="p-3 bd-indigo-300">$indigo-300</div>
+                        <div class="p-3 bd-indigo-400">$indigo-400</div>
+                        <div class="p-3 bd-indigo-500">$indigo-500</div>
+                        <div class="p-3 bd-indigo-600">$indigo-600</div>
+                        <div class="p-3 bd-indigo-700">$indigo-700</div>
+                        <div class="p-3 bd-indigo-800">$indigo-800</div>
+                        <div class="p-3 bd-indigo-900">$indigo-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-purple">
+                            <strong class="d-block">$purple</strong>
+                        </div>
+                        <div class="p-3 bd-purple-100">$purple-100</div>
+                        <div class="p-3 bd-purple-200">$purple-200</div>
+                        <div class="p-3 bd-purple-300">$purple-300</div>
+                        <div class="p-3 bd-purple-400">$purple-400</div>
+                        <div class="p-3 bd-purple-500">$purple-500</div>
+                        <div class="p-3 bd-purple-600">$purple-600</div>
+                        <div class="p-3 bd-purple-700">$purple-700</div>
+                        <div class="p-3 bd-purple-800">$purple-800</div>
+                        <div class="p-3 bd-purple-900">$purple-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-pink">
+                            <strong class="d-block">$pink</strong>
+                        </div>
+                        <div class="p-3 bd-pink-100">$pink-100</div>
+                        <div class="p-3 bd-pink-200">$pink-200</div>
+                        <div class="p-3 bd-pink-300">$pink-300</div>
+                        <div class="p-3 bd-pink-400">$pink-400</div>
+                        <div class="p-3 bd-pink-500">$pink-500</div>
+                        <div class="p-3 bd-pink-600">$pink-600</div>
+                        <div class="p-3 bd-pink-700">$pink-700</div>
+                        <div class="p-3 bd-pink-800">$pink-800</div>
+                        <div class="p-3 bd-pink-900">$pink-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-red">
+                            <strong class="d-block">$red</strong>
+                        </div>
+                        <div class="p-3 bd-red-100">$red-100</div>
+                        <div class="p-3 bd-red-200">$red-200</div>
+                        <div class="p-3 bd-red-300">$red-300</div>
+                        <div class="p-3 bd-red-400">$red-400</div>
+                        <div class="p-3 bd-red-500">$red-500</div>
+                        <div class="p-3 bd-red-600">$red-600</div>
+                        <div class="p-3 bd-red-700">$red-700</div>
+                        <div class="p-3 bd-red-800">$red-800</div>
+                        <div class="p-3 bd-red-900">$red-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-orange">
+                            <strong class="d-block">$orange</strong>
+                        </div>
+                        <div class="p-3 bd-orange-100">$orange-100</div>
+                        <div class="p-3 bd-orange-200">$orange-200</div>
+                        <div class="p-3 bd-orange-300">$orange-300</div>
+                        <div class="p-3 bd-orange-400">$orange-400</div>
+                        <div class="p-3 bd-orange-500">$orange-500</div>
+                        <div class="p-3 bd-orange-600">$orange-600</div>
+                        <div class="p-3 bd-orange-700">$orange-700</div>
+                        <div class="p-3 bd-orange-800">$orange-800</div>
+                        <div class="p-3 bd-orange-900">$orange-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-green">
+                            <strong class="d-block">$green</strong>
+                        </div>
+                        <div class="p-3 bd-green-100">$green-100</div>
+                        <div class="p-3 bd-green-200">$green-200</div>
+                        <div class="p-3 bd-green-300">$green-300</div>
+                        <div class="p-3 bd-green-400">$green-400</div>
+                        <div class="p-3 bd-green-500">$green-500</div>
+                        <div class="p-3 bd-green-600">$green-600</div>
+                        <div class="p-3 bd-green-700">$green-700</div>
+                        <div class="p-3 bd-green-800">$green-800</div>
+                        <div class="p-3 bd-green-900">$green-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-teal">
+                            <strong class="d-block">$teal</strong>
+                        </div>
+                        <div class="p-3 bd-teal-100">$teal-100</div>
+                        <div class="p-3 bd-teal-200">$teal-200</div>
+                        <div class="p-3 bd-teal-300">$teal-300</div>
+                        <div class="p-3 bd-teal-400">$teal-400</div>
+                        <div class="p-3 bd-teal-500">$teal-500</div>
+                        <div class="p-3 bd-teal-600">$teal-600</div>
+                        <div class="p-3 bd-teal-700">$teal-700</div>
+                        <div class="p-3 bd-teal-800">$teal-800</div>
+                        <div class="p-3 bd-teal-900">$teal-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-cyan">
+                            <strong class="d-block">$cyan</strong>
+                        </div>
+                        <div class="p-3 bd-cyan-100">$cyan-100</div>
+                        <div class="p-3 bd-cyan-200">$cyan-200</div>
+                        <div class="p-3 bd-cyan-300">$cyan-300</div>
+                        <div class="p-3 bd-cyan-400">$cyan-400</div>
+                        <div class="p-3 bd-cyan-500">$cyan-500</div>
+                        <div class="p-3 bd-cyan-600">$cyan-600</div>
+                        <div class="p-3 bd-cyan-700">$cyan-700</div>
+                        <div class="p-3 bd-cyan-800">$cyan-800</div>
+                        <div class="p-3 bd-cyan-900">$cyan-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-gray">
+                            <strong class="d-block">$gray</strong>
+                        </div>
+                        <div class="p-3 bd-gray-100">$gray-100</div>
+                        <div class="p-3 bd-gray-200">$gray-200</div>
+                        <div class="p-3 bd-gray-300">$gray-300</div>
+                        <div class="p-3 bd-gray-400">$gray-400</div>
+                        <div class="p-3 bd-gray-500">$gray-500</div>
+                        <div class="p-3 bd-gray-600">$gray-600</div>
+                        <div class="p-3 bd-gray-700">$gray-700</div>
+                        <div class="p-3 bd-gray-800">$gray-800</div>
+                        <div class="p-3 bd-gray-900">$gray-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 position-relative swatch-blue">
+                            <strong class="d-block">$blue</strong>
+                        </div>
+                        <div class="p-3 bd-blue-100">$blue-100</div>
+                        <div class="p-3 bd-blue-200">$blue-200</div>
+                        <div class="p-3 bd-blue-300">$blue-300</div>
+                        <div class="p-3 bd-blue-400">$blue-400</div>
+                        <div class="p-3 bd-blue-500">$blue-500</div>
+                        <div class="p-3 bd-blue-600">$blue-600</div>
+                        <div class="p-3 bd-blue-700">$blue-700</div>
+                        <div class="p-3 bd-blue-800">$blue-800</div>
+                        <div class="p-3 bd-blue-900">$blue-900</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 mb-2 bd-black text-white">
+                            <strong class="d-block">$black</strong>
+                        </div>
+                        <div class="p-3 mb-2 bd-white border">
+                            <strong class="d-block">$white</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
 </html>
