@@ -407,3 +407,201 @@ h3 {
     background-color: #331904;
 }
 
+.swatch-yellow {
+    color: #fff;
+    background-color: #ffc107;
+}
+
+.swatch-yellow::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "12.8" "\a" "1.63" "\a" "12.8";
+    background-color: #ffc107;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-yellow-100 {
+    color: #000;
+    background-color: #fff3cd;
+}
+
+.bd-yellow-200 {
+    color: #000;
+    background-color: #ffe69c;
+}
+
+.bd-yellow-300 {
+    color: #000;
+    background-color: #ffda6a;
+}
+
+.bd-yellow-400 {
+    color: #000;
+    background-color: #ffcd39;
+}
+
+.bd-yellow-500 {
+    color: #000;
+    background-color: #ffc107;
+}
+
+.bd-yellow-600 {
+    color: #000;
+    background-color: #cc9a06;
+}
+
+.bd-yellow-700 {
+    color: #000;
+    background-color: #997404;
+}
+
+.bd-yellow-800 {
+    color: #fff;
+    background-color: #664d03;
+}
+
+.bd-yellow-900 {
+    color: #fff;
+    background-color: #332701;
+}
+
+.swatch-green {
+    color: #fff;
+    background-color: #198754;
+}
+
+.swatch-blue::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "4.53" "\a" "4.53" "\a" "4.63";
+    background-color: #198754;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-green-100 {
+    color: #000;
+    background-color: #d1e7dd;
+}
+
+.bd-green-200 {
+    color: #000;
+    background-color: #a3cfbb;
+}
+
+.bd-green-300 {
+    color: #000;
+    background-color: #75b798;
+}
+
+.bd-green-400 {
+    color: #000;
+    background-color: #479f76;
+}
+
+.bd-green-500 {
+    color: #fff;
+    background-color: #198754;
+}
+
+.bd-green-600 {
+    color: #fff;
+    background-color: #146c43;
+}
+
+.bd-green-700 {
+    color: #fff;
+    background-color: #0f5132;
+}
+
+.bd-green-800 {
+    color: #fff;
+    background-color: #0a3622;
+}
+
+.bd-green-900 {
+    color: #fff;
+    background-color: #051b11;
+}
+
+.swatch-teal {
+    color: #fff;
+    background-color: #20c997;
+}
+
+.swatch-teal::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "9.86" "\a" "2.12" "\a" "9.86";
+    background-color: #20c997;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-teal-100 {
+    color: #000;
+    background-color: #d2f4ea;
+}
+
+.bd-teal-200 {
+    color: #000;
+    background-color: #a6e9d5;
+}
+
+.bd-teal-300 {
+    color: #000;
+    background-color: #79dfc1;
+}
+
+.bd-teal-400 {
+    color: #000;
+    background-color: #4dd4ac;
+}
+
+.bd-teal-500 {
+    color: #000;
+    background-color: #20c997;
+}
+
+.bd-teal-600 {
+    color: #000;
+    background-color: #1aa179;
+}
+
+.bd-teal-700 {
+    color: #fff;
+    background-color: #13795b;
+}
+
+.bd-teal-800 {
+    color: #fff;
+    background-color: #0d503c;
+}
+
+.bd-teal-900 {
+    color: #fff;
+    background-color: #06281e;
+}
+
