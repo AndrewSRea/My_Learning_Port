@@ -11,3 +11,69 @@ h3 {
     text-decoration: underline;
 }
 
+.swatch-blue {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.swatch-blue::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "4.50" "\a" "4.50" "\a" "4.66";
+    background-color: #0d6efd;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-blue-100 {
+    color: #000;
+    background-color: #cfe2ff;
+}
+
+.bd-blue-200 {
+    color: #000;
+    background-color: #9ec5fe;
+}
+
+.bd-blue-300 {
+    color: #000;
+    background-color: #6ea8fe;
+}
+
+.bd-blue-400 {
+    color: #000;
+    background-color: #3d8bfd;
+}
+
+.bd-blue-500 {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.bd-blue-600 {
+    color: #fff;
+    background-color: #0a58ca;
+}
+
+.bd-blue-700 {
+    color: #fff;
+    background-color: #084298;
+}
+
+.bd-blue-800 {
+    color: #fff;
+    background-color: #052c65;
+}
+
+.bd-blue-900 {
+    color: #fff;
+    background-color: #031633;
+}
+
