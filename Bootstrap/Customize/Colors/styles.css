@@ -274,3 +274,136 @@ h3 {
     color: #fff;
     background-color: #2b0a1a;
 }
+
+.swatch-red {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.swatch-red::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "4.52" "\a" "4.52" "\a" "4.63";
+    background-color: #dc3545;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-red-100 {
+    color: #000;
+    background-color: #f8d7da;
+}
+
+.bd-red-200 {
+    color: #000;
+    background-color: #f1aeb5;
+}
+
+.bd-red-300 {
+    color: #000;
+    background-color: #ea868f;
+}
+
+.bd-red-400 {
+    color: #000;
+    background-color: #e35d6a;
+}
+
+.bd-red-500 {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.bd-red-600 {
+    color: #fff;
+    background-color: #b02a37;
+}
+
+.bd-red-700 {
+    color: #fff;
+    background-color: #842029;
+}
+
+.bd-red-800 {
+    color: #fff;
+    background-color: #58151c;
+}
+
+.bd-red-900 {
+    color: #fff;
+    background-color: #2c0b0e;
+}
+
+.swatch-orange {
+    color: #fff;
+    background-color: #fd7e14;
+}
+
+.swatch-orange::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "8.17" "\a" "2.57" "\a" "8.17";
+    background-color: #fd7e14;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-orange-100 {
+    color: #000;
+    background-color: #ffe5d0;
+}
+
+.bd-orange-200 {
+    color: #000;
+    background-color: #fecba1;
+}
+
+.bd-orange-300 {
+    color: #000;
+    background-color: #feb272;
+}
+
+.bd-orange-400 {
+    color: #000;
+    background-color: #fd9843;
+}
+
+.bd-orange-500 {
+    color: #000;
+    background-color: #fd7e14;
+}
+
+.bd-orange-600 {
+    color: #000;
+    background-color: #ca6510;
+}
+
+.bd-orange-700 {
+    color: #fff;
+    background-color: #984c0c;
+}
+
+.bd-orange-800 {
+    color: #fff;
+    background-color: #653208;
+}
+
+.bd-orange-900 {
+    color: #fff;
+    background-color: #331904;
+}
+
