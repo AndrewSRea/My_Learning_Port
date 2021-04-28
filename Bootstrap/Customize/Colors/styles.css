@@ -1,0 +1,13 @@
+.container {
+    margin: 20px;
+}
+
+h2,
+h3 {
+    margin: 30px;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
