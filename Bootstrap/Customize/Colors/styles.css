@@ -342,7 +342,7 @@ h3 {
 }
 
 .swatch-orange {
-    color: #fff;
+    color: #000;
     background-color: #fd7e14;
 }
 
@@ -356,7 +356,7 @@ h3 {
     white-space: pre;
     content: "8.17" "\a" "2.57" "\a" "8.17";
     background-color: #fd7e14;
-    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #000 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
         #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
     background-repeat: no-repeat;
     background-size: .5rem 100%;
@@ -408,7 +408,7 @@ h3 {
 }
 
 .swatch-yellow {
-    color: #fff;
+    color: #000;
     background-color: #ffc107;
 }
 
@@ -422,7 +422,7 @@ h3 {
     white-space: pre;
     content: "12.8" "\a" "1.63" "\a" "12.8";
     background-color: #ffc107;
-    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #000 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
         #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
     background-repeat: no-repeat;
     background-size: .5rem 100%;
@@ -478,7 +478,7 @@ h3 {
     background-color: #198754;
 }
 
-.swatch-blue::after {
+.swatch-green::after {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -540,7 +540,7 @@ h3 {
 }
 
 .swatch-teal {
-    color: #fff;
+    color: #000;
     background-color: #20c997;
 }
 
@@ -554,7 +554,7 @@ h3 {
     white-space: pre;
     content: "9.86" "\a" "2.12" "\a" "9.86";
     background-color: #20c997;
-    background-image: linear-gradient(to bottom, transparent 0.25rem, #fff 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #000 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
         #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
     background-repeat: no-repeat;
     background-size: .5rem 100%;
@@ -605,3 +605,138 @@ h3 {
     background-color: #06281e;
 }
 
+.swatch-cyan {
+    color: #000;
+    background-color: #0dcaf0;
+}
+
+.swatch-cyan::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "10.7" "\a" "1.95" "\a" "10.7";
+    background-color: #0dcaf0;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #000 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-cyan-100 {
+    color: #000;
+    background-color: #cff4fc;
+}
+
+.bd-cyan-200 {
+    color: #000;
+    background-color: #9eeaf9;
+}
+
+.bd-cyan-300 {
+    color: #000;
+    background-color: #6edff6;
+}
+
+.bd-cyan-400 {
+    color: #000;
+    background-color: #3dd5f3;
+}
+
+.bd-cyan-500 {
+    color: #000;
+    background-color: #0dcaf0;
+}
+
+.bd-cyan-600 {
+    color: #000;
+    background-color: #0aa2c0;
+}
+
+.bd-cyan-700 {
+    color: #fff;
+    background-color: #087990;
+}
+
+.bd-cyan-800 {
+    color: #fff;
+    background-color: #055160;
+}
+
+.bd-cyan-900 {
+    color: #fff;
+    background-color: #032830;
+}
+
+.swatch-gray {
+    color: #000;
+    background-color: #adb5bd;
+}
+
+.swatch-gray::after {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding-left: 1rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    white-space: pre;
+    content: "10.1" "\a" "2.07" "\a" "10.1";
+    background-color: #adb5bd;
+    background-image: linear-gradient(to bottom, transparent 0.25rem, #000 0.25rem 0.75rem, transparent 0.75rem 1.25rem, 
+        #fff 1.25rem 1.75rem, transparent 1.75rem 2.25rem, #000 2.25rem 2.75rem, transparent 2.75rem);
+    background-repeat: no-repeat;
+    background-size: .5rem 100%;
+}
+
+.bd-gray-100 {
+    color: #000;
+    background-color: #f8f9fa;
+}
+
+.bd-gray-200 {
+    color: #000;
+    background-color: #e9ecef;
+}
+
+.bd-gray-300 {
+    color: #000;
+    background-color: #dee2e6;
+}
+
+.bd-gray-400 {
+    color: #000;
+    background-color: #ced4da;
+}
+
+.bd-gray-500 {
+    color: #000;
+    background-color: #adb5bd;
+}
+
+.bd-gray-600 {
+    color: #fff;
+    background-color: #6c757d;
+}
+
+.bd-gray-700 {
+    color: #fff;
+    background-color: #495057;
+}
+
+.bd-gray-800 {
+    color: #fff;
+    background-color: #343a40;
+}
+
+.bd-gray-900 {
+    color: #fff;
+    background-color: #212529;
+}
+
+.bd-black {
+    background-color: #000;
+}
