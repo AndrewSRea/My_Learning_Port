@@ -25,7 +25,7 @@ The table below illustrates how each container's `max-width` compares to the ori
 | `.container-xxl` | 100% | 100% | 100% | 100% | 100% | 1320px |
 | `.container-fluid` | 100% | 100% | 100% | 100% | 100% | 100% |
 
-See an example of a responsive container in my accompanying [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/container-example.html) file.
+See an example of a responsive container in my accompanying [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-example.html) file.
 
 ## Default container
 
