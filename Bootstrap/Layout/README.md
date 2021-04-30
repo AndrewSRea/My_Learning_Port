@@ -1,4 +1,16 @@
-# Bootstrap Layout
+# Layout
+
+## Table of contents
+
+* [Breakpoints]()
+* [Containers]()
+* [Grid]()
+* [Columns]()
+* [Gutters]()
+* [Utilities]()
+* [Z-index]()
+
+[[Next module: Content]]()
 
 ## Breakpoints
 
@@ -8,7 +20,7 @@ Breakpoints are the triggers in Bootstrap for how your responsive layout changes
 
 * **Breakpoints are the building blocks of responsive design.** Use them to control when your layout can be adapted at a particular viewport or device size.
 
-* **Use media queries to architect your CSS by breakpoint.** Media queries are a feature of CSS that allow you to conditionally apply styles based on a set of browser and operating system parameters. Bootstrap most commonly uses ```min-width``` in their media queries.
+* **Use media queries to architect your CSS by breakpoint.** Media queries are a feature of CSS that allow you to conditionally apply styles based on a set of browser and operating system parameters. Bootstrap most commonly uses `min-width` in their media queries.
 
 * **Mobile first, responsive design is the goal.** Bootstrap's CSS aims to apply the bare minimum of styles to make a layout work at the smallest breakpoint, and then layers on styles to adjust that design for larger devices. This optimizes your CSS, improves rendering time, and provides a great experience for your visitors.
 
