@@ -1,10 +1,11 @@
-## Grid system
+# Grid system
 
 Use Bootstrap's powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve-column system, six default responsive tiers, Sass variables and mixins, and dozens of predefined classes.
 
-### Example
+## Example
 
-Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with flexbox and is fully responsive. Below is an example and an in-depth explanation for how the grid system comes together.
+Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) and is fully responsive. Below is an example and an in-depth explanation for how the grid system comes together.
+
 (All of the code examples below can be found in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
 ```
 <div class="container">
