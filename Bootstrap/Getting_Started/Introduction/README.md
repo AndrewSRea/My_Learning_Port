@@ -4,7 +4,7 @@ Get started with Bootstrap, the world's most popular framework for building resp
 
 ## Quick start
 
-Looking to quickly add Bootstrap to your project? Use jsDelivr, a free open source [CDN (Content Delivery Network)](https://en.wikipedia.org/wiki/Content_delivery_network). Using a package manager or need to download the source files? [Head to the downloads page](). <!-- link to the next folder: Download -->
+Looking to quickly add Bootstrap to your project? Use jsDelivr, a free open source [CDN (Content Delivery Network)](https://en.wikipedia.org/wiki/Content_delivery_network). Using a package manager or need to download the source files? [Head to the downloads page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#download).
 
 ### CSS 
 
@@ -19,7 +19,7 @@ Many of Bootstrap's components require the use of JavaScript to function. Specif
 
 #### Bundle
 
-Include every Bootstrap JavaScript plugin and dependency with one of our two bundles. Both `bootstrap.bundle.js` and `bootstrap.bundle.min.js` include **Popper** for Bootstrap's tooltips and popovers. For more information about what's included in Bootstrap, please refer to the [contents]() section. <!-- link to the Getting_Started - Contents section -->
+Include every Bootstrap JavaScript plugin and dependency with one of our two bundles. Both `bootstrap.bundle.js` and `bootstrap.bundle.min.js` include **Popper** for Bootstrap's tooltips and popovers. For more information about what's included in Bootstrap, please refer to the [contents](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Contents#precompiled-bootstrap) section.
 ```
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 ```
@@ -34,7 +34,7 @@ If you decide to go with the separate scripts solution, Popper must come first (
 
 #### Modules
 
-If you use `<script type="module">`, please refer to the [using Bootstrap as a module]() section. <!-- link to the Getting_Started / JavaScript folder ('Using Bootstrap as a module' header) -->
+If you use `<script type="module">`, please refer to the [using Bootstrap as a module](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#using-bootstrap-as-a-module) section.
 
 #### Components
 
@@ -44,14 +44,14 @@ Curious which components explicitly require Bootstrap's JavaScript and Popper? S
 
 * [Alerts](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Alerts#alerts) for dismissing
 * [Buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Buttons#buttons) for toggling states and checkbox/radio functionality
-* [Carousel]() for all slide behaviors, controls, and indicators
-* [Collapse]() for toggling visibility of content
-* [Dropdowns]() for displaying and positioning (also requires Popper)
-* [Modals]() for displaying, positioning, and scroll behavior
-* [Navbar]() for extending Bootstraps [Collapse]() plugin to implement responsive behavior
-* [Toasts]() for displaying and dismissing
-* [Tooltips]() and [popovers]() for displaying and positioning (also requires Popper)
-* [Scrollspy]() for scroll behavior and navigation updates
+* [Carousel](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Carousel#carousel) for all slide behaviors, controls, and indicators
+* [Collapse](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) for toggling visibility of content
+* [Dropdowns](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#dropdowns) for displaying and positioning (also requires Popper)
+* [Modals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#modal) for displaying, positioning, and scroll behavior
+* [Navbar](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#navbar) for extending Bootstraps [Collapse](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) plugin to implement responsive behavior
+* [Toasts](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#toasts) for displaying and dismissing
+* [Tooltips](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#tooltips) and [popovers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Popovers#popovers) for displaying and positioning (also requires Popper)
+* [Scrollspy](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Scrollspy#scrollspy) for scroll behavior and navigation updates
 
 ## Starter template
 
@@ -87,9 +87,7 @@ Be sure to have your pages set up with the latest design and development standar
 ```
 (I have an example of this starter template [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/starter-template.html).)
 
-For next steps, visit the [Layout docs]() or [Bootstrap's official examples](https://getbootstrap.com/docs/5.0/examples/) to start laying out your site's content and components.
-
-<!-- you need to reconfigure your Layout folder, then put the link to the 'Grid system' header into the 'Layout docs' link above -->
+For next steps, visit the [Layout docs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system) or [Bootstrap's official examples](https://getbootstrap.com/docs/5.0/examples/) to start laying out your site's content and components.
 
 ## Important globals
 
@@ -129,7 +127,7 @@ Learn more about [box model and sizing at CSS Tricks](https://css-tricks.com/box
 
 ### Reboot
 
-For improved cross-browser rendering, we use [Reboot]() to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+For improved cross-browser rendering, we use [Reboot]() to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements. <!-- link to Content/Reboot -->
 
 ## Community
 
