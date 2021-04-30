@@ -10,18 +10,18 @@ Breakpoints are customizable widths that determine how your responsive layout be
 
 * **Mobile first, responsive design is the goal.** Bootstrap's CSS aims to apply the bare minimum of styles to make a layout work at the smallest breakpoint, and then layers on styles to adjust that design for larger devices. This optimizes your CSS, improves rendering time, and provides a great experience for your visitors.
 
-### Available breakpoints
+## Available breakpoints
 
 Bootstrap includes six default breakpoints, sometimes referred to as *grid tiers*, for building responsively. These breakpoints can be customized if you're using Bootstrap's source [Sass](https://sass-lang.com/) files.
 
 | Breakpoint | Class infix | Dimensions |
 | --- | --- | --- |
-| X-Small | *None* | less than 576px |
-| Small | `sm` | greater than or equal to 576px |
-| Medium | `md` | greater than or equal to 768px |
-| Large | `lg` | greater than or equal to 992px |
-| Extra large | `xl` | greater than or equal to 1200px |
-| Extra extra large | `xxl` | greater than or equal to 1400px |
+| X-Small | *None* | &lt; 576px |
+| Small | `sm` | &ge; 576px |
+| Medium | `md` | &ge; 768px |
+| Large | `lg` | &ge; 992px |
+| Extra large | `xl` | &ge; 1200px |
+| Extra extra large | `xxl` | &ge; 1400px |
 
 Each breakpoint was chosen to comfortably hold containers whose widths are multiples of 12. Breakpoints are also representative of a subset of common device sizes and viewport dimensions--they don't specifically target every use case or device. Instead, the ranges provide a strong and consistent foundation to build on for nearly any device.
 These breakpoints are customizable via [Sass](https://sass-lang.com/)--you'll find them in a Sass map in Bootstrap's `_variables.scss` stylesheet. (Perhaps I will have to create a Sass folder within this Bootstrap folder.)
@@ -36,15 +36,15 @@ $grid-breakpoints: (
 );
 ```
 
-More information, and examples on how to modify Sass maps and variables, is available on the [Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#sass-1) below.
+For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation](). <!-- link to Layout/Grid folder, "Sass" header -->
 
-### Media Queries
+## Media Queries
 
-Since Bootstrap is developed to be mobile first, we use a handful of [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to create sensible breakpoints for Bootstrap's layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
+Since Bootstrap is developed to be mobile first, it uses a handful of [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) to create sensible breakpoints for its layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
 
-#### Min-width
+### Min-width
 
-Bootstrap primarly uses the following media query ranges--or breakpoints--in Bootstrap's source Sass files for its layout, grid system, and components.
+Bootstrap primarly uses the following media query ranges--or breakpoints--in its source Sass files for its layout, grid system, and components.
 ```
 // Source mixins
 
@@ -59,6 +59,7 @@ Bootstrap primarly uses the following media query ranges--or breakpoints--in Boo
 // Usage
 
 // Example: Hide starting at `min-width: 0`, and then show at the `sm` breakpoint
+
 .custom-class {
     display: none;
 }
@@ -68,8 +69,7 @@ Bootstrap primarly uses the following media query ranges--or breakpoints--in Boo
     }
 }
 ```
-
-These Sass mixins translate in Bootstrap's compiled CSS using the values declared in Bootstrap's Sass variables. For example:
+These Sass mixins translate in Bootstrap's compiled CSS using the values declared in its Sass variables. For example:
 ```
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
@@ -90,7 +90,7 @@ These Sass mixins translate in Bootstrap's compiled CSS using the values declare
 @media (min-width: 1400px) { ... }
 ```
 
-#### Max-width
+### Max-width
 
 Bootstrap occasionally uses media queries that go in the other direction (the given screen size *or smaller*):
 ```
@@ -103,13 +103,13 @@ Bootstrap occasionally uses media queries that go in the other direction (the gi
 @include media-breakpoint-down(xxl) { ... }
 
 // Example: Style from medium breakpoint and down
+
 @include media-breakpoint-down(md) {
     .custom-class {
         display: block;
     }
 }
 ```
-
 These mixins take those declared breakpoints, subtract `.02px` from them, and use them as Bootstrap's `max-width` values. For example:
 ```
 // X-Small devices (portrait phones, less than 576px)
@@ -131,9 +131,13 @@ These mixins take those declared breakpoints, subtract `.02px` from them, and us
 // No media query since the xxl breakpoint has no upper bound on its width
 ```
 
-**Why subtract .02px?** Browsers don't currently support [range context queries](https://www.w3.org/TR/mediaqueries-4/#range-context), so Bootstrap works around the limitations of [min- and max- prefixes](https://www.w3.org/TR/mediaqueries-4/#mq-min-max) and viewports with fractional widths (which can occur under certain conditions on high-dpi [*dots per inch*] devices, for instance) by using values with higher precision.
+<hr>
 
-#### Single breakpoint
+**Why subtract .02px?** Browsers don't currently support [range context queries](https://www.w3.org/TR/mediaqueries-4/#range-context), so Bootstrap works around the limitations of [`min-` and `max-` prefixes](https://www.w3.org/TR/mediaqueries-4/#mq-min-max) and viewports with fractional widths (which can occur under certain conditions on high-dpi [*dots per inch*] devices, for instance) by using values with higher precision.
+
+<hr>
+
+### Single breakpoint
 
 There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
 ```
@@ -149,7 +153,7 @@ For example, the `@include media-breakpoint-only(md) { ... }` will result in:
 @media (min-width: 768px) and (max-width: 991.98px) { ... }
 ```
 
-#### Between breakpoints
+### Between breakpoints
 
 Similarly, media queries may span multiple breakpoint widths:
 ```
@@ -162,6 +166,8 @@ Which results in:
 @media (min-width: 768px) and (max-width: 1199.98px) { ... }
 ```
 
-### A code example using Bootstrap breakpoints
+## A code example using Bootstrap breakpoints
 
 I am going to create an HTML document named [breakpoints-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/breakpoints-example.html) which incorporates Bootstrap's breakpoint components into three rows of columns. When `breakpoints-example.html` is opened in a browser, if the browser window's width is shifted to a smaller or larger width, the columns will also change in width, and will also stack on top of each other in a smaller browser window, or sit side-by-side each other in a larger browser window.
+
+[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#layout) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Breakpoints#breakpoints) - [[Next page]]()
