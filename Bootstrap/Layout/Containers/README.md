@@ -46,7 +46,7 @@ Responsive containers allow you to specify a class that is 100% wide until the s
 <div class="container-xl">100% wide until extra large breakpoint</div>
 <div class="container-xxl">100% wide until extra extra large breakpoint</div>
 ```
-See an example of the code above in my accompanying [responsive-containers.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-containers.html) file.
+See an example of the code above in my accompanying [responsive-containers.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/responsive-containers.html) file.
 
 ## Fluid containers
 
@@ -89,6 +89,6 @@ In addition to customizing the Sass, you can also create your own containers wit
 ```
 For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation]() below. <!-- link to Layout/Grid folder, "Sass" header -->
 
-### A code example using Bootstrap's responsive containers
+## A code example using Bootstrap's responsive containers
 
-I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/container-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
+I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
