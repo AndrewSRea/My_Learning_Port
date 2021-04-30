@@ -1,10 +1,11 @@
-## Containers
+# Containers
 
-Containers are a fundamental building block of Bootstrap which contain, pad, and align your content within a given device or viewport.
+Containers are a fundamental building block of Bootstrap that contain, pad, and align your content within a given device or viewport.
 
-### How they work
+## How they work
 
-Containers are the most basic layout element in Bootstrap and are **required when using Bootstrap's default grid system**. Containers are used to contain, pad, and (sometimes) center the content within them. While containers *can* be nested, most do not require a nested container.
+Containers are the most basic layout element in Bootstrap and are **required when using Bootstrap's default grid system**. Containers are used to contain, pad, and (sometimes) center the content within them. While containers *can* be nested, most layouts do not require a nested container.
+
 Bootstrap comes with three different containers:
 
 * `.container`, which sets a `max-width` at each responsive breakpoint.
@@ -26,7 +27,7 @@ The table below illustrates how each container's `max-width` compares to the ori
 
 See an example of a responsive container in my accompanying [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/container-example.html) file.
 
-### Default container
+## Default container
 
 Bootstrap's default `.container` class is a responsive, fixed-width container, meaning its `max-width` changes at each breakpoint.
 ```
@@ -35,7 +36,7 @@ Bootstrap's default `.container` class is a responsive, fixed-width container, m
 </div>
 ```
 
-### Responsive containers
+## Responsive containers
 
 Responsive containers allow you to specify a class that is 100% wide until the specified breakpoint is reached, after which we apply `max-width`s for each of the higher breakpoints. For example, `.container-sm` is 100% wide to start until the `sm` breakpoint is reached, where it will scale up with `md `, `lg`, `xl`, and `xxl`. 
 ```
@@ -47,7 +48,7 @@ Responsive containers allow you to specify a class that is 100% wide until the s
 ```
 See an example of the code above in my accompanying [responsive-containers.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-containers.html) file.
 
-### Fluid containers
+## Fluid containers
 
 Use `.container-fluid` for a full width container, spanning the entire width of the viewport.
 ```
@@ -56,7 +57,7 @@ Use `.container-fluid` for a full width container, spanning the entire width of 
 </div>
 ```
 
-### Sass
+## Sass
 
 As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifying the Sass map (found in `_variables.scss`) that powers them:
 ```
@@ -68,9 +69,10 @@ $container-max-widths: (
     xxl: 1320px
 );
 ```
-In addition to customizing the Sass, you can also create your own containers with Bootstrap's mixin.
+In addition to customizing the Sass, you can also create your own containers with Bootstrap's Sass mixin.
 ```
 // Source mixin
+
 @mixin make-container($padding-x: $container-padding-x) {
     width: 100%;
     padding-right: $padding-x;
@@ -80,11 +82,12 @@ In addition to customizing the Sass, you can also create your own containers wit
 }
 
 // Usage
+
 .custom-container {
     @include make-container();
 }
 ```
-For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to the [Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#sass-1) below.
+For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation]() below. <!-- link to Layout/Grid folder, "Sass" header -->
 
 ### A code example using Bootstrap's responsive containers
 
