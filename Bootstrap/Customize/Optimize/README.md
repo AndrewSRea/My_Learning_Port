@@ -100,3 +100,29 @@ While Bootstrap doesn't have a prebuilt example for using [PurgeCSS](https://git
 
 Lastly, this [CSS Tricks article on unused CSS](https://css-tricks.com/how-do-you-remove-unused-css-from-a-site/) shows how to use PurgeCSS and other similar tools.
 
+## Minify and gzip
+
+Whenever possible, be sure to compress all the code you serve to your visitors. If you're using Bootstrap `dist` files, try to stick to the minified versions (indicated by the `.min.css` and `.min.js` extensions). If you're building Bootstrap from the source with your own build system, be sure to implement your own minifiers for HTML, CSS, and JS.
+
+## Nonblocking files
+
+While minifying and using compression might seem like enough, making your files nonblocking ones is also a big step in making your site well-optimized and fast enough.
+
+If you are using a [Lighthouse](https://developers.google.com/web/tools/lighthouse/) plugin in Google Chrome, you may have stumbled over FCP. [The First Contentful Paint](https://web.dev/fcp/) metric measures the time from when the page starts loading to when any part of the page's content is rendered on the screen.
+
+You can improve FCP by deferring non-critical JavaScript or CSS. What does that mean? Simply, JavaScript or stylesheets that don't need to be present on the first paint of your page should be marked with `async` or `defer` attributes.
+
+This ensures that the less important resources are loaded later and not blocking the first paint. On the other hand, critical resources ccan be included as inline scripts or styles.
+
+If you want to learn more about this, there are already a lot of great articles about it:
+
+* [https://web.dev/render-blocking-resources](http://web.dev/render-blocking-resources)
+* [https://web.dev/defer-non-critical-css](https://web.dev/defer-non-critical-css)
+
+## Always use HTTPS
+
+Your website should only be available over HTTPS connections in production. HTTPS improves the security, privacy, and availability of all sites, and [there is no such thing as non-sensitive web traffic](https://https.cio.gov/everything/). The steps to configure your website to be served exclusively over HTTPS vary widely depending on your architecture and web hosting provider, and thus are beyond the scope of these docs.
+
+Sites served over HTTPS should also access all stylesheets, scripts, and other assets over HTTPS connections. Otherwise, you'll be sending users [mixed active content](), leading to potential vulnerabilities where a site an be compromised by altering a depnedency. This can lead to security issues and in-browser warnings displayed to users. Whether you're getting Bootstrap from a CDN or serving it yourself, ensure that you only access it over HTTPS connections.
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/CSS_Variables#css-variables) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Optimize#optimize) - [[Next module: Layout]]()
