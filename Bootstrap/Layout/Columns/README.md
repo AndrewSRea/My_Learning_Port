@@ -136,7 +136,7 @@ If more than 12 columns are placed within a single row, each group of extra colu
     </div>
 </div>
 ```
-(This code example can be found in my accompanying [`misc-column-examples.html`]() file.)
+(This code example can be found in my accompanying [`misc-column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Columns/misc-column-examples.html) file.)
 
 ### Column breaks
 
@@ -155,7 +155,7 @@ Breaking columns to a new line in flexbox requires a small hack: add an element 
     </div>
 </div>
 ```
-You may also apply this break at specific breakpoints with Bootstrap's [responsive display utilities](#display-property).
+You may also apply this break at specific breakpoints with Bootstrap's [responsive display utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Display#display-property).
 ```
 <div class="container">
     <div class="row">
@@ -170,11 +170,11 @@ You may also apply this break at specific breakpoints with Bootstrap's [responsi
     </div>
 </div>
 ```
-(The code examples under the **Column wrapping** and **Column breaks** headers can be found in my accompanying[`misc-column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/misc-column-examples.html) file.)
+(The two code examples above can be found in my accompanying[`misc-column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Columns/misc-column-examples.html) file.)
 
-### Reordering
+## Reordering
 
-#### Order classes 
+### Order classes 
 
 Use `.order-` classes for controlling the **visual order** of your content. These classes are responsive, so you can set the `order` by breakpoint (e.g., `.order-1.order-md-2`). Includes support for `1` through `5` across all six grid tiers.
 ```
@@ -209,11 +209,11 @@ There are also responsive `.order-first` and `.order-last` classes that can chan
 </div>
 ```
 
-#### Offsetting columns
+### Offsetting columns
 
-You can offset grid columns in two ways: Bootstrap's responsive `.offset-` grid classes and Bootstrap's [margin utilities](#spacing). Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
+You can offset grid columns in two ways: Bootstrap's responsive `.offset-` grid classes and Bootstrap's [margin utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing). Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.
 
-##### Offset classes
+#### Offset classes
 
 Move columns to the right using `.offset-md-*` classes. These classes increase the left margin of a column by `*` columns. For example, `.offset-md-4` moves `.col-md-4` over four columns.
 ```
@@ -231,7 +231,7 @@ Move columns to the right using `.offset-md-*` classes. These classes increase t
     </div>
 </div>
 ```
-In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in [the grid example]().
+In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in [the grid example](https://getbootstrap.com/docs/5.0/examples/grid/).
 ```
 <div class="container">
     <div class="row">
@@ -245,7 +245,7 @@ In addition to column clearing at responsive breakpoints, you may need to reset 
 </div>
 ```
 
-##### Margin utilities
+#### Margin utilities
 
 With the move to flexbox in v4, you can use margin utilities like `.me-auto` to force sibling columns away from one another.
 ```
@@ -265,7 +265,7 @@ With the move to flexbox in v4, you can use margin utilities like `.me-auto` to 
 </div>
 ```
 
-### Standalone column classes
+## Standalone column classes
 
 The `.col-*` classes can also be used outside a `.row` to give an element a specific width. Whenever column classes are used as non-direct children of a row, the paddings are omitted.
 ```
@@ -294,3 +294,8 @@ The classes can be used together with utilities to create responsive floated ima
     </p>
 </div>
 ```
+## A code example using Bootstrap's columns
+
+
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Columns#columns) - [[Next page]]()
