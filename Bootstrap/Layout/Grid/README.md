@@ -320,13 +320,13 @@ To nest your content with the default grid, add a new `.row` and set of `.col-sm
     </div>
 </div>
 ```
-(The code example above can be found in my accompanying [`nesting-grid-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/nesting-grid-example.html) file.)
+(The code example above can be found in my accompanying [`nesting-grid-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/nesting-grid-example.html) file.)
 
-### Sass
+## Sass
 
 When using Bootstrap's source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our predefined grid classes use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts.
 
-#### Variables
+### Variables
 
 Variables and maps determine the number of columns, the gutter width, and the media query point at which to begin floating columns. We use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below.
 ```
@@ -353,7 +353,7 @@ $container-max-widths: (
 );
 ```
 
-#### Mixins
+### Mixins
 
 Mixins are used in conjunction with the grid variables to generate semantic CSS for individual grid columns.
 ```
@@ -368,7 +368,7 @@ Mixins are used in conjunction with the grid variables to generate semantic CSS 
 @include make-col-offset($size, $columns: $grid-columns);
 ```
 
-#### Example usage
+### Example usage
 
 You can modify the variables to your own custom values, or just use the mixins with their default values. Here's an example of using the default settings to create a two-column layout with a gap between.
 ```
@@ -414,11 +414,11 @@ You can modify the variables to your own custom values, or just use the mixins w
 </div>
 ```
 
-### Customizing the grid
+## Customizing the grid
 
 Using Bootstrap's built-in grid Sass variables and maps, it's possible to completely customize the predefined grid classes. Change the number of tiers, the media query dimensions, and the container widths--then recompile.
 
-#### Columns and gutters
+### Columns and gutters
 
 The number of grid columns can be modified via Sass variables. `$grid-columns` is used to generate the widths (in percent) of each individual column while `$grid-gutter-width` sets the width for the column gutters.
 ```
@@ -426,7 +426,7 @@ $grid-columns: 12 !default;
 $grid-gutter-width: 1.5rem !default;
 ```
 
-#### Grid tiers
+### Grid tiers
 
 Moving beyond the columns themselves, you may also customize the number of grid tiers. If you wanted just four grid tiers, you'd update the `$grid-breakpoints` and `$container-max-widths` to something like this:
 ```
@@ -445,4 +445,8 @@ $container-max-widths: (
 ```
 When making any changes to the Sass variables or maps, you'll need to save your changes and recompile. Doing so will output a brand new set of predefined grid classes for column widths, offsets, and ordering. Responsive visibility utilities will also be updated to use the custom breakpoints. Make sure to set grid values in `px` (not `rem`, `em`, or `%`).
 
-### A code example of Bootstrap's responsive grid system
+## A code example of Bootstrap's responsive grid system
+
+
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Containers#containers) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system) - [[Next page]]()
