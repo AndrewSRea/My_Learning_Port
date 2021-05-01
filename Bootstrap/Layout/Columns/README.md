@@ -52,7 +52,6 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
     </div>
 </div>
 ```
-##### Another example of vertical alignment
 ```
 <div class="container">
     <div class="row">
@@ -68,7 +67,7 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
     </div>
 </div>
 ```
-(The two code examples above can be found in my accompanying [`column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/column-examples.html) file.)
+(The two code examples above can be found in my accompanying [`column-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Columns/column-examples.html) file.)
 
 #### Horizontal alignment
 ```
