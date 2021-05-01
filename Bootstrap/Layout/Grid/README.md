@@ -283,7 +283,7 @@ Use these row columns classes to quickly create basic grid layouts or to control
     </div>
 </div>
 ```
-(All of the code examples above can be found in my accompanying [`row-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/row-columns.html) file.)
+(All of the code examples above can be found in my accompanying [`row-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/row-columns.html) file.)
 
 You can also use the accompanying Sass mixin, `.row-cols()`:
 ```
@@ -298,10 +298,9 @@ You can also use the accompanying Sass mixin, `.row-cols()`:
 }
 ```
 
-### Nesting
+## Nesting
 
 To nest your content with the default grid, add a new `.row` and set of `.col-sm-*` columns within an existing `.col-sm-*` column. Nested rows should include a set of columns which add up to 12 or fewer (it is not required that you use all 12 available columns).
-(The code example below can be found in my accompanying [`nesting-grid-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/nesting-grid-example.html) file.)
 ```
 <div class="container">
     <div class="row">
@@ -316,11 +315,12 @@ To nest your content with the default grid, add a new `.row` and set of `.col-sm
                 <div class="col-4 col-sm-6">
                     Level 2: .col-4 .col-sm-6
                 </div>
-            </div>
+            </div>      
         </div>
     </div>
 </div>
 ```
+(The code example above can be found in my accompanying [`nesting-grid-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/nesting-grid-example.html) file.)
 
 ### Sass
 
