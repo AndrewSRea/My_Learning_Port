@@ -122,9 +122,9 @@ Use flexbox alignment utilities to vertically and horizontally align columns.
     </div>
 </div>
 ```
-(The code example above can be found in my accompanying [`horizontal-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/horizontal-columns.html) file.)
+(The code example above can be found in my accompanying [`horizontal-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Columns/horizontal-columns.html) file.)
 
-#### Column wrapping
+### Column wrapping
 
 If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.
 ```
@@ -136,8 +136,9 @@ If more than 12 columns are placed within a single row, each group of extra colu
     </div>
 </div>
 ```
+(This code example can be found in my accompanying [`misc-column-examples.html`]() file.)
 
-#### Column breaks
+### Column breaks
 
 Breaking columns to a new line in flexbox requires a small hack: add an element with `width: 100%` whenever you want to wrap your columns to a new line. Normally this is accomplished with multiple `.row`s, but not every implementation method can account for this.
 ```
