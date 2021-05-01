@@ -158,16 +158,15 @@ Use `col-{breakpoint}-auto` classes to size columns based on the natural width o
     </div>
 </div>
 ```
-(The three code examples above can be found in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
+(And again, this code can be seen in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/grid-examples.html) file.)
 
-### Responsive classes
+## Responsive classes
 
 Bootstrap's grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit.
 
-#### All breakpoints
+### All breakpoints
 
 For grids that are the same from the smallest of devices to the largest, use the `.col` and `.col-*` classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to `.col`.
-(All of the code examples below can be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-grid-examples.html) file.)
 ```
 <div class="container">
     <div class="row">
@@ -182,6 +181,7 @@ For grids that are the same from the smallest of devices to the largest, use the
     </div>
 </div>
 ```
+(This code example can be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-grid-examples.html) file.)
 
 #### Stacked to horizontal
 
