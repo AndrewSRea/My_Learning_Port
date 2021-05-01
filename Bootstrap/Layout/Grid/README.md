@@ -181,9 +181,9 @@ For grids that are the same from the smallest of devices to the largest, use the
     </div>
 </div>
 ```
-(This code example can be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/responsive-grid-examples.html) file.)
+(This code example can be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/responsive-grid-examples.html) file.)
 
-#### Stacked to horizontal
+### Stacked to horizontal
 
 Using a single set of `.col-sm-*` classes, you can create a basic grid system that starts out stacked and becomes horizontal at the small breakpoint (`sm`).
 ```
@@ -199,8 +199,9 @@ Using a single set of `.col-sm-*` classes, you can create a basic grid system th
     </div>
 </div>
 ```
+(This code example can also be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/responsive-grid-examples.html) file.)
 
-#### Mix and match
+### Mix and match
 
 Don't want your columns to simply stack in some grid tiers? Use a combination of different classes for each tier as needed. See the example below for a better idea of how it works.
 ```
@@ -225,12 +226,13 @@ Don't want your columns to simply stack in some grid tiers? Use a combination of
     </div>
 </div>
 ```
+(And again, this code example can also be found in my accompanying [`responsive-grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/responsive-grid-examples.html) file.)
 
-#### Row columns
+### Row columns
 
 Use the responsive `.row-cols-*` classes to quickly set the number of columns which best render your content and layout. Whereas normal `.col-*` classes apply to the individual columns (e.g., `.col-md-4`), the row columns classes are set on the parent `.row` as a shortcut. With `.row-cols-auto`, you can give the columns their natural width.
+
 Use these row columns classes to quickly create basic grid layouts or to control your card layouts.
-(All of the code examples below can be found in my accompanying [`row-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/row-columns.html) file.)
 ```
 <div class="container">
     <div class="row row-cols-2">
@@ -281,6 +283,7 @@ Use these row columns classes to quickly create basic grid layouts or to control
     </div>
 </div>
 ```
+(All of the code examples above can be found in my accompanying [`row-columns.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/row-columns.html) file.)
 
 You can also use the accompanying Sass mixin, `.row-cols()`:
 ```
