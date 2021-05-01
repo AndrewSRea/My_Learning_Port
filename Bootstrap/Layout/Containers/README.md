@@ -87,7 +87,7 @@ In addition to customizing the Sass, you can also create your own containers wit
     @include make-container();
 }
 ```
-For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation]() below. <!-- link to Layout/Grid folder, "Sass" header -->
+For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#sass) below.
 
 ## A code example using Bootstrap's responsive containers
 
