@@ -172,4 +172,6 @@ The [breadcrumb separator](https://github.com/AndrewSRea/My_Learning_Port/tree/m
 * [RTLCSS](https://rtlcss.com/)
 * [RTL Styling 101](https://rtlstyling.com/posts/rtl-styling)
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RTL#rtl) - [[Next module: Customize]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize#customize)
