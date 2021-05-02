@@ -5,11 +5,11 @@ Learn how to theme, customize, and extend Bootstrap with Sass, a boatload of glo
 ## Table of contents
 
 * [Sass](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - Utilize Bootstrap's source Sass files to take advantage of variables, maps, mixins, and functions.
-* [Options]() - Customize Bootstrap with built-in variables to easily toggle global CSS preferences.
-* [Color]() - Learn about and customize the color systems that support the entire toolkit.
-* [Components]() - Learn how Bootstrap builds nearly all its components responsively and with base and modifier classes.
-* [CSS variables]() - Use Bootstrap's CSS custom properties for fast and forward-looking design and development.
-* [Optimize]() - Keep your projects lean, responsive, and maintainable so you can deliver the best experience.
+* [Options](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Options#options) - Customize Bootstrap with built-in variables to easily toggle global CSS preferences.
+* [Color](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Colors#color) - Learn about and customize the color systems that support the entire toolkit.
+* [Components](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Components#components) - Learn how Bootstrap builds nearly all its components responsively and with base and modifier classes.
+* [CSS variables](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/CSS_Variables#css-variables) - Use Bootstrap's CSS custom properties for fast and forward-looking design and development.
+* [Optimize](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Optimize#optimize) - Keep your projects lean, responsive, and maintainable so you can deliver the best experience.
 
 ## Overview
 
@@ -20,7 +20,7 @@ Bootstrap's two preferred methods are:
 1. Using Bootstrap [via package manager](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#package-managers) so you can use and extend its source files.
 2. Using Bootstrap's compiled distribution fles or [jsDelivr](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#cdn-via-jsdelivr) so you can add onto or override Bootstrap's styles.
 
-While the Bootstrap devs cannot go into details here on how to use every package manager, they can give some guidance on [using Bootstrap with your own Sass compiler](). <!-- link to Customize/Sass -->
+While the Bootstrap devs cannot go into details here on how to use every package manager, they can give some guidance on [using Bootstrap with your own Sass compiler](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass).
 
 For those who want to use the distribution files, review the [getting started page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Introduction#introduction) for how to utilize Boostrap's global options, making use of and changing its color system, how to build its components, how to use its growing list of CSS custom properties, and how to optimize your code when building with Bootstrap.
 
