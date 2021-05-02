@@ -88,7 +88,7 @@ $grid-breakpoints: (
     xxl: 1400px
 );
 ```
-For more information and examples on how to modify our Sass maps and variables, please refer to [the Sass section of the Grid documentation](). <!-- when you get the Layout folder sorted, go to Layout/Grid, header "Sass" -->
+For more information and examples on how to modify our Sass maps and variables, please refer to [the Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#sass).
 
 ## Creating your own
 
@@ -120,5 +120,7 @@ For the callouts, that unique styling is just a `border-left-color`. When you co
     <strong>This is a danger callout.</strong> Example text to show it in action.
 </div>
 ```
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Colors#color) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Components#components) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/CSS_Variables#css-variables)
