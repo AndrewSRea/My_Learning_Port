@@ -76,4 +76,6 @@ These validation warnings don't matter in practice since the non-hacky portion o
 
 Bootstrap's HTML docs likewise have some trivial and inconsequential HTML validation warnings due to its inclusion of a workaround for [a certain Firefox bug](https://bugzilla.mozilla.org/show_bug.cgi?id=654072).
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Contents#contents) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Browsers_and_Devices#browsers-and-devices) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#javascript)
