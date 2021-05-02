@@ -78,7 +78,7 @@ Working with RTL, through Bootstrap's source Sass or compiled CSS, shouldn't be 
 
 ## Customize from source
 
-When it comes to [customization](), <!-- link to Customize / Sass folder --> the preferred way is to take advantage of variables, maps, and mixins. This approach works the same for RTL, even if it's post-processed from the compiled files, thanks to [how RTLCSS works](https://rtlcss.com/learn/getting-started/why-rtlcss/).
+When it comes to [customization](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass), the preferred way is to take advantage of variables, maps, and mixins. This approach works the same for RTL, even if it's post-processed from the compiled files, thanks to [how RTLCSS works](https://rtlcss.com/learn/getting-started/why-rtlcss/).
 
 ### Custom RTL values
 
@@ -158,7 +158,7 @@ After running Sass then RTLCSS, each selector in your CSS files will be prepende
 While this approach is understandable, please pay attention to the following:
 
 1. When switching `.ltr` and `.rtl`, make sure you add `dir` and `lang` attributes accordingly.
-2. Loading both files can be a real performance bottleneck: consider some [optimization](), <!-- link to Customize/Optimize --> and maybe try to [load one of those files asynchronously](https://www.filamentgroup.com/lab/load-css-simpler/).
+2. Loading both files can be a real performance bottleneck: consider some [optimization](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Optimize#optimize), and maybe try to [load one of those files asynchronously](https://www.filamentgroup.com/lab/load-css-simpler/).
 3. Nesting styles this way will prevent Bootstrap's `form-validation-state()` mixin from working as intended, thus require you tweak it a bit yourself. [See #31223](https://github.com/twbs/bootstrap/issues/31223).
 
 <hr>
