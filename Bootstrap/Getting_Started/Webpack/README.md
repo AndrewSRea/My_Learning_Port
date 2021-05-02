@@ -26,7 +26,7 @@ Bootstrap depends on [Popper](https://popper.js.org/), which is specified in the
 
 To enjoy the full potential of Bootstrap and customize it to your needs, use the source files as a part of your project's bundling process.
 
-First, create your own `_custom.scss` and use it to override the [built-in custom variables](). <!-- link to `Customize` folder / `Sass` --> Then, use your main Sass file to import your custom variables, followed by Bootstrap:
+First, create your own `_custom.scss` and use it to override the [built-in custom variables](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass). Then, use your main Sass file to import your custom variables, followed by Bootstrap:
 ```
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
