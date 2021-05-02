@@ -66,7 +66,7 @@ Bootstrap includes a handful of options for including some or all of our compile
 | `bootstrap.rtl.css` |   |   |   |   |
 | `bootstrap.min.css` |   |   |   |   |
 | `bootstrap.rtl.min.css` |   |   |   |   |
-| `bootstrap-grid.css` | [Only grid system]() | -- | -- | [Only flex utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) |
+| `bootstrap-grid.css` | [Only grid system](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system) | -- | -- | [Only flex utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) |
 | `bootstrap-grid.rtl.css` |   |   |   |   |
 | `bootstrap-grid.min.css` |   |   |   |   |
 | `bootstrap-grid.rtl.min.css` |   |   |   |   |
@@ -78,8 +78,6 @@ Bootstrap includes a handful of options for including some or all of our compile
 | `bootstrap-reboot.rtl.css` |   |   |   |   |
 | `bootstrap-reboot.min.css` |   |   |   |   |
 | `bootstrap-reboot.rtl.min.css` |   |   |   |   |
-
-<!-- 1st link: to Layout folder / Grid system | 2nd link: DONE! | 3rd link: to Content folder / Reboot -->
 
 ## JS files
 
