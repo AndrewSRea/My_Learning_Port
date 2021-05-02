@@ -125,8 +125,10 @@ Gutter classes can also be added to [row columns](https://github.com/AndrewSRea/
 
 ## No gutters
 
-The gutters between columns in our predefined grid classes can be removed with `.g-0`. This removes the negative `margin`s from `.row` and the horizontal `padding` from all immediate children columns.<br/>
-**Need an edge-to-edge design?** Drop the parent `.container` or `.container-fluid`.<br/>
+The gutters between columns in our predefined grid classes can be removed with `.g-0`. This removes the negative `margin`s from `.row` and the horizontal `padding` from all immediate children columns.
+
+**Need an edge-to-edge design?** Drop the parent `.container` or `.container-fluid`.
+
 In practice, here's how it looks. Note you can continue to use this with all other predefined grid classes (including column widths, responsive tiers, reorders, and more).
 ```
 <div class="row g-0">
@@ -149,3 +151,9 @@ $gutters: (
     5: $spacer * 3,
 );
 ```
+
+## A code example using Bootstrap's gutters
+
+
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Columns#columns) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Gutters#gutters) - [[Next page]]()
