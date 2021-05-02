@@ -161,7 +161,7 @@ For example, Bootstrap uses the `primary`, `success`, and `danger` keys from `$t
 
 ### Colors
 
-Next to the [Sass maps]() we have, <!-- link to Customize/Color, "Color Sass maps" header" --> theme colors can also be used as standalone variables, like `$primary`.
+Next to the [Sass maps](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Colors#color-sass-maps) we have, theme colors can also be used as standalone variables, like `$primary`.
 ```
 .custom-element {
     color: $gray-100;
@@ -261,5 +261,7 @@ $border-width: 0;
     border-radius: subtract($border-radius, $border-width);
 }
 ```
+
+<hr>
 
 [[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize#customize) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass)
