@@ -53,4 +53,6 @@ On browsers that support `prefers-reduced-motion`, and where the user has *not* 
 * [Microsoft Accessibility Insights](https://accessibilityinsights.io/)
 * [Deque Axe testing tools](https://www.deque.com/axe/)
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Parcel#parcel) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#accessibility) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs)
