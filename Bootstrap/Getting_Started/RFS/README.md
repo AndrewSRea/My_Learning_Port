@@ -51,8 +51,7 @@ When you don't want to use the includes, there are also two functions:
 * `rfs-value()` converts a value into a `rem` value if a `px` value is passed, in other cases it returns the same result.
 * `rfs-fluid-value()` returns the fluid version of a value if the property needs rescaling.
 
-In this example, we use one of Bootstrap's built-in [responsive breakpoint mixins]() to only apply styling below the `lg` breakpoint.
-<!-- when you reconfigure your `Layout` folder, need a link to the `Breakpoints` folder within -->
+In this example, we use one of Bootstrap's built-in [responsive breakpoint mixins](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Breakpoints#breakpoints) to only apply styling below the `lg` breakpoint.
 ```
 .selector {
     @include media-breakpoint-down(lg) {
