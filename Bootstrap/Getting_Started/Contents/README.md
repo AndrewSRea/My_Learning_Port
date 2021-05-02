@@ -110,4 +110,6 @@ bootstrap/
 ```
 The `scss/` and `js/` are the source code for Bootstrap's CSS and JavaScript. The `dist/` folder includes everything listed in the precompiled download section above. The `site/docs/` folder includes the source code for Bootstrap's documentation, and `examples/` of Bootstrap usage. Beyond that, any other included file provides support for packages, license information, and development.
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#download) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Contents#contents) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Browsers_and_Devices#browsers-and-devices)
