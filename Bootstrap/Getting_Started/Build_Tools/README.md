@@ -61,4 +61,6 @@ Learn more about using Hugo by reading its [documentation](https://gohugo.io/doc
 
 Should you encounter problems with installing dependencies, uninstall all previous dependency versions (global and local). Then, rerun `npm install`.
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Build_Tools#build-tools) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Webpack#webpack-and-bundlers)
