@@ -74,4 +74,6 @@ In this example, we use one of Bootstrap's built-in [responsive breakpoint mixin
 
 RFS is a separate project under the Bootstrap organization. More about RFS and its configuration can be found on its [GitHub repository](https://github.com/twbs/rfs/tree/v9.0.3).
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#accessibility) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RTL#rtl)
