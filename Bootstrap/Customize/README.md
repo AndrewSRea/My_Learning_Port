@@ -39,4 +39,6 @@ Several Bootstrap components include embedded SVGs in Bootstrap's CSS to style c
 
 Based on [community conversation](https://github.com/twbs/bootstrap/issues/25394), some options for addressing this in your own codebase include replacing the URLs with locally hosted assets, removing the images and using inline images (not possible in all components), and modifying your CSP. Bootstrap's recommendation is to carefully review your own security policies and decide on a best path forward, if necessary.
 
+<hr>
+
 [[Next module: Layout]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#bootstrap-layout)
