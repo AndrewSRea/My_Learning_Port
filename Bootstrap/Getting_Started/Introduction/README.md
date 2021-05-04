@@ -127,7 +127,7 @@ Learn more about [box model and sizing at CSS Tricks](https://css-tricks.com/box
 
 ### Reboot
 
-For improved cross-browser rendering, we use [Reboot]() to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements. <!-- link to Content/Reboot -->
+For improved cross-browser rendering, we use [Reboot](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#reboot) to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
 ## Community
 
