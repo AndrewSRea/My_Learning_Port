@@ -312,6 +312,8 @@ If yiou are using the `<picture>` element to specify multiple `<source>` element
 
 ## Tables
 
+<!-- link on Content/Reboot, header "Tables" -->
+
 Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.
 
 ### Overview
