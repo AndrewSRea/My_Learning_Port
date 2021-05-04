@@ -1,10 +1,11 @@
-## Reboot
+# Reboot
 
 Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.
 
-### Approach
+## Approach
 
-Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some `<table>` styles for a simpler baseline and later provide `.table`, `.table-bordered`, and more.<br/>
+Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some `<table>` styles for a simpler baseline and later provide `.table`, `.table-bordered`, and more.
+
 Here are Bootstrap's guildelines and reasons for choosing what to override in Reboot:
 
 * Update some browser default values to use `rem`s instead of `em`s for scalable component spacing.
@@ -12,7 +13,7 @@ Here are Bootstrap's guildelines and reasons for choosing what to override in Re
 * For easier scaling across device sizes, block elements should use `rem`s for `margin`s.
 * Keep declarations of `font`-related properties to a minimum, using `inherit` whenever possible.
 
-### Page defaults
+## Page defaults
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
@@ -21,7 +22,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 * The `<body>` also sets a global `font-family`, `font-weight`, `line-height`, and `color`. This is inherited later by some form elements to prevent font inconsistencies.
 * For safety, the `<body>` has a declared `background-color`, defaulting to `#fff`.
 
-### Native font stack
+## Native font stack
 
 Bootstrap utilizes a "native font stack" or "system font stack" for optimum text rendering on every device and OS. These system fonts have been designed specifically with today's devices in mind, with improved rendering on screens, variable font support, and more. Read more about [native font stacks in this *Smashing Magazine* article](https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/).
 ```
@@ -45,9 +46,10 @@ $font-family-sans-serif :
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 ```
 Note that because the font stack includes emoji fonts, many common symbol/dingbat unicode characters will be rendered as multi-colored pictographs. Their appearance will vary, depending on the style used in the browser/platform's native emoji font, and they won't be affected by any CSS `color` styles.
+
 This `font-family` is applied to the `<body>` and automatically inherited globally throughout Bootstrap. To switch the global `font-family`, update `$font-family-base` and recompile Bootstrap.
 
-### Headings and paragraphs
+## Headings and paragraphs
 
 All heading elements--e.g. `<h1>`--and `<p>` are reset to have their `margin-top` removed. Headings have `margin-bottom: .5rem` added and paragraphs `margin-bottom: 1rem` for easy spacing.
 
@@ -60,52 +62,44 @@ All heading elements--e.g. `<h1>`--and `<p>` are reset to have their `margin-top
 | `<h5></h5>` | <h5>h5. Bootstrap heading</h5> |
 | `<h6></h6>` | <h6>h6. Bootstrap heading</h6> |
 
-### Lists
+## Lists
 
 All lists--`<ul>`, `<ol>`, and `<dl>`--have their `margin-top` removed and a `margin-bottom: 1rem`. Nested lists have no `margin-bottom`. Reboot also resets the `padding-left` on `<ul>` and `<ol>` elements.
 
-* Lorem ipsum dolor sit amet
-* Consectetur adipiscing elit
-* Integer molestie lorem at massa
-* Facilisis in pretium nisl aliquet
-* Nulla volutpat aliquam velit
-  - Phasellus iaculis neque
-  - Purus sodales ultricies
-  - Vestibulum laoret porttitor sem
-  - Ac tristique libero volutpat at
-* Faucibus porta lacus fringilla vel
-* Aenean sit amet erat nunc
-* Eget porttitor lorem
+* All lists have their top margin removed
+* And their bottom margin normalized
+* Nested lists have no bottom margin
+  - This way they have a more even appearance
+  - Particularly when followed by more list items
+* The left padding has also been reset
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-4. Facilisis in pretium nisl aliquet
-5. Nulla volutpat aliquam velit
-6. Faucibus porta lacus fringilla vel
-7. Aenean sit amet erat nunc
-8. Eget porttitor lorem
+1. Here's an ordered list
+2. With a few list items
+3. It has the same overall look
+4. As the previous unordered list
 
 For simpler styling, clear hierarchy, and better spacing, description lists have updated `margin`s. `<dd>`s reset `margin-left` to `0` and add `margin-bottom: .5rem`. `<dt>`s are **bolded**.
 
 **Description lists**
 A description list is perfect for defining terms.
 
-**Euismod**
-Vestibulum id ligula porta felis euismod semper eget lacinia odio sem.
-Donec id elit non mi porta gravida at eget metus.
+**Term**
+Definition for the term.
 
-**Malesuada porta**
-Etiam porta sem malesuada magna mollis euismod.
+A second definition for the same term.
 
-### Inline code
+**Another term**
+Definition for this other term.
+
+
+## Inline code
 
 Wrap inline snippets of code with `<code>`. Be sure to escape HTML angle brackets.
 ```
 For example, <code>&lt;section&gt;</code> should be wrapped as inline.
 ```
 
-### Code blocks
+## Code blocks
 
 Use `<pre>`s for multiple lines of code. Once again, be sure to escape any angle brackets in the code for proper rendering. The `<pre>` element is reset to remove its `margin-top` and use `rem` units for its `margin-bottom`.
 ```
@@ -114,14 +108,14 @@ Use `<pre>`s for multiple lines of code. Once again, be sure to escape any angle
 </code></pre>
 ```
 
-### Variables
+## Variables
 
 For indicating variables, use the `<var>` tag.
 ```
 <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
 ```
 
-### User input
+## User input
 
 Use the `<kbd>` to indicate input that is typically entered via keyboard.
 ```
@@ -129,16 +123,16 @@ To switch directories, type <kbd>cd</kbd> followed by the name of the directory.
 To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
 ```
 
-### Sample output
+## Sample output
 
 For indicating sample output from a program, use the `<samp>` tag.
 ```
 <samp>This text is meant to be treated as sample output from a computer program.</samp>
 ```
 
-### Tables
+## Tables
 
-Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and more come with [the `.table` class](#tables).
+Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and more come with [the `.table` class](). <!-- link to Content/Tables -->
 
 | Table heading | Table heading | Table heading | Table heading |
 | --- | --- | --- | --- |
@@ -147,7 +141,7 @@ Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure
 | Table cell | Table cell | Table cell | Table cell |
 ###### This is an example table, and this is its caption to describe the contents.
 
-### Forms
+## Forms
 
 Various form elements have been rebooted for simpler base styles. Here are some of the most notable changes:
 
@@ -157,24 +151,25 @@ Various form elements have been rebooted for simpler base styles. Here are some 
 * `<input>`s, `<select>`s, `<textarea>`s, and `<button>`s are mostly addressed by Normalize, but Reboot removes their `margin` and sets `line-height: inherit`, too.
 * `<textarea>`s are modified to only be resizable vertically as horizontal resizing often "breaks" page layout.
 * `<button>`s and `<input>` button elements have `cursor: pointer` when `:not(:disabled)`.
+<!-- Create a link to a file showing the form creations -->
+<hr>
 
-These changes, and more, are demonstrated below. <!-- Create a link to a file showing the form creations -->
-
-
-##### :warning: Date & color input support
+### :warning: Date & color input support
 
 Keep in mind date inputs are [not fully supported](https://caniuse.com/input-datetime) by all browsers, namely Safari.
 
-#### Pointers on buttons
+<hr>
+
+### Pointers on buttons
 
 Reboot includes an enhancement for `role="button"` to change the default cursor to `pointer`. Add this attribute to elements to help indicate elements are interactive. This role isn't necessary for `<button>` elements, which get their own `cursor` change.
 ```
 <span role="button" tabindex="0">Non-button element button</span>
 ```
 
-### Misc elements
+## Misc elements
 
-#### Address
+### Address
 
 The `<address>` element is updated to reset the browser default `font-style` from `italic` to `normal`. `line-height` is also now inherited, and `margin-bottom: 1rem` has been added. `<address>`s are for presenting contact information for the nearest ancestor (or an entire body of work). Preserve formatting by ending lines with `<br>`.
 
@@ -191,29 +186,29 @@ The `<address>` element is updated to reset the browser default `font-style` fro
 <address>
   <strong>Full Name</strong>
   <br>
-  <a href="mailto:first.last@example.com">first.last@example.com</a>
+  <a href="mailto:first.last@example.com" style="text-decoration: underline;">first.last@example.com</a>
 </address>
 
-#### Blockquote
+### Blockquote
 
 The default `margin` on blockquotes is `1em 40px`, so we reset that to `0 0 1rem` for something more consistent with other elements.
 
 <blockquote>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+    A well-known quote, contained in a blockquote element.
   </p>
 </blockquote>
 <p>
-  Someone famous in <cite title="Source Title">Source Title</cite>
+  Someone famous in <cite title="Source Title"><em>Source Title</em></cite>
 </p>
 
-#### Inline elements
+### Inline elements
 
 The `<abbr>` element receives basic styling to make it stand out amongst paragraph text.
 
 <p>Nulla <abbr title="attribute">attr</abbr> vitae elit libero, a pharetra augue.</p>
 
-#### Summary
+### Summary
 
 The default `cursor` on summary is `text`, so we reset that to `pointer` to convey that the element can be interacted with by clicking on it.
 
@@ -226,15 +221,23 @@ The default `cursor` on summary is `text`, so we reset that to `pointer` to conv
   <p>Here are even more details about the details.</p>
 </details>
 
-### HTML5 `[hidden]` attribute
+## HTML5 `[hidden]` attribute
 
 HTML5 adds [a new global attribute named \[hidden\]](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden), which is styled as `display: none` by default. Borrowing an idea from [PureCSS](https://purecss.io/), Bootstrap improves upon this default by making `[hidden] { display: none !important; }` to help prevent its `display` from getting accidentally overridden.
 ```
 <input type="text" hidden>
 ```
 
-##### :warning: jQuery incompatibility
+<hr>
+
+### :warning: jQuery incompatibility
 
 `[hidden]` is not compatible with jQuery's `$(...).hide()` and `$(...).show()` methods. Therefore, Bootstrap doesn't currently especially endorse `[hidden]` over other techniques for managing the `display` of elements.
 
-To merely toggle the visibility of an element, meaning its `display` is not modified and the element can still affect the flow of the document, use [the `.invisible` class]() instead. <!-- link to Utilities folder / Visibility -->
+<hr>
+
+To merely toggle the visibility of an element, meaning its `display` is not modified and the element can still affect the flow of the document, use [the `.invisible` class](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Visibility#visibility) instead.
+
+<hr>
+
+[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#content) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#reboot) - [[Next page]]()
