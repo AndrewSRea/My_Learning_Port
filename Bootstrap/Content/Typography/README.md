@@ -258,4 +258,57 @@ In Bootstrap 5, they have enabled responsive font sizes by default, allowing tex
 
 ### Variables
 
-Headings have some dedicated
+Headings have some dedicated variables for sizing and spacing.
+```
+$headings-margin-bottom:     $spacer / 2;
+$headings-font-family:       null;
+$headings-font-style:        null;
+$headings-font-weight:       500;
+$headings-line-height:       1.2;
+$headings-color:             null;
+```
+Miscellaneous typography elements covered here and in [Reboot](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#reboot) also have dedicated variables.
+```
+$lead-font-size:                  $font-size-base * 1.25;
+$lead-font-weight:                300;
+
+$small-font-size:                 .875em;
+
+$sub-sup-font-size:               .75em;
+
+$text-muted:                      $gray-600;
+
+$initialism-font-size:            $small-font-size;
+
+$blockquote-margin-y:             $spacer;
+$blockquote-font-size:            $font-size-base * 1.25;
+$blockquote-footer-color:         $gray-600
+$blockquote-footer-font-size:     $small-font-size;
+
+$hr-margin-y:                     $spacer;
+$hr-color:                        inherit;
+$hr-height:                       $border-width;
+$hr-opacity:                      .25;
+
+$legend-margin-bottom:            .5rem;
+$legend-font-size:                1.5rem;
+$legend-font-weight:              null;
+
+$mark-padding:                    .2em;
+
+$dt-font-weight:                  $font-weight-bold;
+
+$nested-kbd-font-weight:          $font-weight-bold;
+
+$list-inline-padding:             .5rem;
+
+$mark-bg:                         #fcf8e3;
+```
+
+### Mixins
+
+There are no dedicated mixins for typography, but Bootstrap does use [Responsive Font Sizing (RFS)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs).
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#reboot) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Typography#typography) - [[Next page]]()
