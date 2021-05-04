@@ -1,12 +1,12 @@
-## Typography
+# Typography
 
 Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.
 
-### Global settings
+## Global settings
 
-Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the [textual utility classes](). <!-- link to Utilities foldes / Text -->
+Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the [textual utility classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Text#text).
 
-* Use a [native font stack](#native-font-stack) that selects the best `font-family` for each OS and device.
+* Use a [native font stack](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#native-font-stack) that selects the best `font-family` for each OS and device.
 * For a more inclusive and accessible type scale, Bootstrap uses the browser's default root `font-size` (typically 16px) so visitors can customize their browser defaults as needed.
 * Use the `$font-family-base`, `$font-size-base`, and `$line-height-base` attributes as our typographic base applied to the `<body>`.
 * Set the global link color via `$link-color`.
@@ -14,7 +14,7 @@ Bootstrap sets basic global display, typography, and link styles. When more cont
 
 These styles can be found within `_reboot.scss`, and the global variables are defined in `_variables.scss`. Make sure to set `$font-size-base` in `rem`.
 
-### Headings
+## Headings
 
 All HTML headings, `<h1>` through `<h6>`, are available.
 
@@ -44,7 +44,7 @@ All HTML headings, `<h1>` through `<h6>`, are available.
 <p class="h6">h6. Bootstrap heading</p>
 ```
 
-#### Customizing headings
+### Customizing headings
 
 Use the included utility classes to recreate the small secondary heading text from Bootstrap 3.
 ```
@@ -54,7 +54,7 @@ Use the included utility classes to recreate the small secondary heading text fr
 </h3>
 ```
 
-### Display headings
+## Display headings
 
 Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a **display heading**--a larger, slightly more opinionated heading style.
 ```
@@ -80,7 +80,7 @@ $display-font-weight: 300;
 $display-line-height: $headings-line-height;
 ```
 
-### Lead
+## Lead
 
 Make a paragraph stand out by adding `.lead`.
 ```
@@ -89,7 +89,7 @@ Make a paragraph stand out by adding `.lead`.
 </p>
 ```
 
-### Inline text elements
+## Inline text elements
 
 Styling for common inline HTML5 elements.
 ```
@@ -118,39 +118,44 @@ If you want to style your text, you should use the following classes instead:
 
 While not shown above, feel free to use `<b>` and `<i>` in HTML5. `<b>` is meant to highlight words or phrases without conveying addtional importance, while `<i>` is mostly for voice, technical terms, etc.
 
-#### Side note
+<hr>
+
+### :attention: Side note
 
 From my studies on HTML5, I know enough to remember that the HTML tags `<strong>` and `<em>` should be used instead of `<b>` and `<i>`, respectively, because `<strong>` and `<em>` are vital elements in creating a more accessible user experience, especially in regards to screen readers.
 
-### Text utilities
+<hr>
 
-Change text alignment, transform, style, weight, line-height, decoration, and color with Bootstrap's [text utilities]() and [color utilities](). <!-- link to Utilities folder, and the "Text" and "Colors" sections -->
+## Text utilities
 
-### Abbreviations
+Change text alignment, transform, style, weight, line-height, decoration, and color with Bootstrap's [text utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Text#text) and [color utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Colors#colors).
+
+## Abbreviations
 
 Stylized implementation of HTML's `<abbr>` element for abbreviations and acronyms to show the expanded version on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.
+
 Add `.initialism` to an abbreviation for a slightly smaller font-size.
 ```
 <p><abbr title="attribute">attr</attr></p>
 <p><abbr title=HyperText Markup Language" class="initialism">HTML</abbr></p>
 ```
 
-### Blockquotes
+## Blockquotes
 
 For quoting blocks of content from another source within tour document. Wrap `<blockquote class="blockquote">` around any HTML as the quote.
 ```
 <blockquote class="blockquote">
-    <p>Lorem ipsum dolor si amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    <p>A well-known quote, contained in a blockquote element.</p>
 </blockquote>
 ```
 
-#### Naming a source
+### Naming a source
 
 The HTML spec requires that blockquote attribution be placed outisde the `<blockquote>`. When providing attribution, wrap your `<blockquote>` in a `<figure>` and use a `<figcaption>` or a block level element (e.g., `<p>`) with the `.blockquote-footer` class. Be sure to wrap the name of the source work in `<cite>` as well.
 ```
 <figure>
     <blockquote class="blockquote">
-        <p>Lorem ipsum dolor si amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <p>A well-known quote, contained in a blockquote element.</p>
     </blockquote>
     <figcaption class="blockquote-footer">
         Someone famous in <cite title="Source Title">Source Title</cite>
@@ -158,13 +163,13 @@ The HTML spec requires that blockquote attribution be placed outisde the `<block
 </figure>
 ```
 
-#### Alignment
+### Alignment
 
 Use text utilities as needed to change the alignment of your blockquote.
 ```
 <figure class="text-center">
     <blockquote class="blockquote">
-        <p>Lorem ipsum dolor si amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <p>A well-known quote, contained in a blockquote element.</p>
     </blockquote>
     <figcaption class="blockquote-footer">
         Someone famous in <cite title="Source Title">Source Title</cite>
@@ -174,7 +179,7 @@ Use text utilities as needed to change the alignment of your blockquote.
 ```
 <figure class="text-end>
     <blockquote class="blockquote">
-        <p>Lorem ipsum dolor si amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <p>A well-known quote, contained in a blockquote element.</p>
     </blockquote>
     <figcaption class="blockquote-footer">
         Someone famous in <cite title="Source Title">Source Title</cite>
@@ -182,42 +187,40 @@ Use text utilities as needed to change the alignment of your blockquote.
 </figure>
 ```
 
-### Lists
+## Lists
 
-#### Unstyled
+### Unstyled
 
 Remove the default `list-style` and left margin on list items (immediate children only). **This only applies to immediate children list items**, meaning you will need to add the class for any nested lists as well.
 ```
 <ul class="list-unstyled">
-    <li>Lorem ipsum dolor sit amet</li>
-    <li>Consectetur adipiscing elit</li>
-    <li>Integer molestie lorem at massa</li>
-    <li>Facilisis in pretium misl aliquet</li>
+    <li>This is a list.</li>
+    <li>It appear completely unstyled.</li>
+    <li>Structurally, it's still a list.</li>
+    <li>However, this style only applies to immediate child elements.</li>
+    <li>Nested lists:
         <ul>
-            <li>Phasellus iaculis neque</li>
-            <li>Purus sodales ultricies</li>
-            <li>Vestibulum laoreet porttitor sem</li>
-            <li>Ac tristique libero volutpat at</li>
+            <li>are unaffected by this style</li>
+            <li>will still show a bullet</li>
+            <li>and have appropriate left margin</li>
         </ul>
     </li>
-    <li>Faucibus porta lacus fringilla vel</li>
-    <li>Aenean sit amet erat nunc</li>
-    <li>Eget porttitor lorem</li>
+    <li>This may still come in handy in some situations.</li>
 </ul>
 ```
 
-#### Inline
+### Inline
 
 Remove a list's bullets and apply some light `margin` with a combination of two classes, `.list-inline` and `.list-inline-item`.
 ```
 <ul class="list-inline">
-    <li class="list-inline-item">Lorem ipsum</li>
-    <li class="list-inline-item">Phasellus iaculis</li>
-    <li class="list-inline-item">Nulla volutpat</li>
+    <li class="list-inline-item">This is a list item.</li>
+    <li class="list-inline-item">And another one.</li>
+    <li class="list-inline-item">But they're displayed inline.</li>
 </ul>
 ```
 
-#### Description list alignment
+### Description list alignment
 
 Align terms and description horizontally by using Bootstrap's grid system's predefined classes (or semantic mixins). For longer terms, you can optionally add a `.text-truncate` class to truncate the text with an ellipsis.
 ```
@@ -225,28 +228,34 @@ Align terms and description horizontally by using Bootstrap's grid system's pred
     <dt class="col-sm-3">Description lists</dt>
     <dd class="col-sm-9">A description list is perfect  for defining terms.</dd>
 
-    <dt class="col-sm-3">Euismod</dt>
+    <dt class="col-sm-3">Term</dt>
     <dd class="col-sm-9">
-        <p>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</p>
-        <p>Donec id elit non mi porta gravida at eget metus.</p>
+        <p>Definition for the term.</p>
+        <p>And some more placeholder definition text.</p>
     </dd>
 
-    <dt class="col-sm-3">Malesuada porta</dt>
-    <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
+    <dt class="col-sm-3">Another term</dt>
+    <dd class="col-sm-9">This definition is short, so no extra paragraphs or anything.</dd>
 
     <dt class="col-sm-3 text-truncate">Truncated term is truncated.</dt>
-    <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
+    <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
 
     <dt class="col-sm-3">Nesting</dt>
     <dd class="col-sm-9">
         <dl class="row">
             <dt class="col-sm-4">Nesting definition list</dt>
-            <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
+            <dd class="col-sm-8">I heard you like definition lists. Let me put a definition list inside your definition list.</dd>
         </dl>
     </dd>
 </dl>
 ```
 
-### Responsive font sizes
+## Responsive font sizes
 
-In Bootstrap 5, they have enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the [RFS page](https://getbootstrap.com/docs/5.0/getting-started/rfs/) to find out how this works.
+In Bootstrap 5, they have enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the [RFS page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs) to find out how this works.
+
+## Sass
+
+### Variables
+
+Headings have some dedicated
