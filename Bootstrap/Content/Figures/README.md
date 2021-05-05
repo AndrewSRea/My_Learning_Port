@@ -30,4 +30,4 @@ $figure-caption-color:         $gray-600;
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next module: Forms]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Figures#figures) - [[Next module: Forms]]()
