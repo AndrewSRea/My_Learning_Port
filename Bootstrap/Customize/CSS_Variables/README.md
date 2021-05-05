@@ -42,7 +42,7 @@ Here are the variables Bootstrap includes (note that the `:root` is required) th
 
 Bootstrap is also beginning to make use of custom properties as local variables for various components. This way Bootstrap can reduce its compiled CSS, ensure styles aren't inherited in placces like nested tables, and allow some basic restyling and extending of Bootstrap components after Sass compilation.
 
-Have a look at Bootstrap's table documentation for some [insight into how it's using CSS variables](). <!-- when you get the "Content" folder sorted, link to Content/Tables, header "How do the variants and accented tables work?" -->
+Have a look at Bootstrap's table documentation for some [insight into how it's using CSS variables](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#how-do-the-variants-and-accented-tables-work).
 
 Bootstrap is also using CSS variables across its grids--primarily for gutters--with more component usage coming in the future.
 
