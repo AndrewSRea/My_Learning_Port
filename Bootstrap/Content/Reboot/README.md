@@ -132,7 +132,7 @@ For indicating sample output from a program, use the `<samp>` tag.
 
 ## Tables
 
-Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and more come with [the `.table` class](). <!-- link to Content/Tables -->
+Tables are slightly adjusted to style `<caption>`s, collapse borders, and ensure consistent `text-align` throughout. Additional changes for borders, padding, and more come with [the `.table` class](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#tables).
 
 | Table heading | Table heading | Table heading | Table heading |
 | --- | --- | --- | --- |
