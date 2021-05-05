@@ -40,7 +40,7 @@ Using the most basic table markup, here's how `.table`-based tables look in Boot
 </table>
 ```
 
-### Variants
+## Variants
 
 Use contextual classes to color tables, table rows, or individual cells.
 ```
@@ -77,13 +77,17 @@ Use contextual classes to color tables, table rows, or individual cells.
 </tr>
 ```
 
-#### :warning: Conveying meaning to assistive technologies
+<hr>
+
+### :warning: Conveying meaning to assistive technologies
 
 Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies - such as screen readers. Ensure that information denoted by color is either obvious from the conten  itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
 
-### Accented tables
+<hr>
 
-#### Striped rows
+## Accented tables
+
+### Striped rows
 
 Use `.table-striped` to add zebra-striping to any table row within the `<tbody>`.
 ```
@@ -103,7 +107,7 @@ These classes can also be added to table variants:
 </table>
 ```
 
-#### Hoverable rows
+### Hoverable rows
 
 Add `.table-hover` to enable a hover state on table rows with a `<tbody>`.
 ```
@@ -123,7 +127,7 @@ These hoverable rows can also be combined with the striped variant:
 </table>
 ```
 
-#### Active tables
+### Active tables
 
 Highlight a table row or cell by adding a `.table-active` class.
 ```
@@ -167,9 +171,9 @@ Highlight a table row or cell by adding a `.table-active` class.
 </table>
 ```
 
-### How do the variants and accented tables work?
+## How do the variants and accented tables work?
 
-For the accented tables ([striped rows](#striped-rows), [hoverable rows](#hoverable-rows), and [active tables](#active-tables)), Bootstrap used some techniques to make these effects work for all of the [table variants](#variants):
+For the accented tables ([striped rows](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#striped-rows), [hoverable rows](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#hoverable-rows), and [active tables](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#active-tables)), Bootstrap used some techniques to make these effects work for all of the [table variants](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#variants):
 
 * Bootstrap starts by setting the background of a table cell with the `--bs-table-bg` custom property. All table variants then set that custom property to colorize the table cells. This way, we don't get into trouble if semi-transparent colors are used as table backgrounds.
 * Then Bootstrap adds a gradient on the table cells with `background-image: linear-gradient(var)--bs-table-accent-bg), var(--bs-table-accent-bg));` to layer on top of any specified `background-color`. Since `--bs-table-accent-bg` is transparent by default, we have an invisible transparent linear gradient by default.
@@ -200,9 +204,9 @@ Behind the scenes, it looks like this:
 }
 ```
 
-### Table borders
+## Table borders
 
-#### Bordered tables
+### Bordered tables
 
 Add `.table-bordered` for borders on all sides of the table and cells.
 ```
@@ -210,14 +214,14 @@ Add `.table-bordered` for borders on all sides of the table and cells.
     ...
 </table>
 ```
-[Border color utilities]() <!-- link to Utilities folder / Borders / Border color --> can be added to change colors:
+[Border color utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Borders#border-color) can be added to change colors:
 ```
 <table class="table table-bordered border-primary">
     ...
 </table>
 ```
 
-#### Tables without borders
+### Tables without borders
 
 Add `.table-borderless` for a table without borders.
 ```
@@ -231,7 +235,7 @@ Add `.table-borderless` for a table without borders.
 </table>
 ```
 
-### Small tables
+## Small tables
 
 Add `.table-sm` to make any `.table` more compact by cutting all cell `padding` in half.
 ```
@@ -245,9 +249,9 @@ Add `.table-sm` to make any `.table` more compact by cutting all cell `padding` 
 </table>
 ```
 
-### Vertical alignment
+## Vertical alignment
 
-Table cells of `<thead>` are always vertical aligned to the bottom. Table cells in `<tbody>` inherit their alignment from `<table>` and are aligned to the top by default. Use the [vertical align]() <!-- link to Utilities folder / Vertical alignment --> classes to re-align where needed.
+Table cells of `<thead>` are always vertical aligned to the bottom. Table cells in `<tbody>` inherit their alignment from `<table>` and are aligned to the top by default. Use the [vertical align](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Vertical_Alignment#vertical-alignment) classes to re-align where needed.
 ```
 <table class="table table-sm table-dark">
     <div class="table-responsive">
@@ -276,7 +280,7 @@ Table cells of `<thead>` are always vertical aligned to the bottom. Table cells 
 </table>
 ```
 
-### Nesting
+## Nesting
 
 Border styles, active styles, and table variants are not inherited by nesting tables.
 ```
@@ -298,14 +302,14 @@ Border styles, active styles, and table variants are not inherited by nesting ta
 </table>
 ```
 
-### How nesting works
+## How nesting works
 
 To prevent *any* styles from leaking to nested tables, Bootstrap uses the child combinator (`>`) selector in its CSS. Since Bootstrap needs to target all the `td`s and `th`s in the `thead`, `tbody`, and  `tfoot`, Bootstrap's selector would look pretty long without it. As such, Bootstrap uses the rather odd looking `.table > :not(caption) > * > *` selector to target all `td`s and `th`s of the `.table`, but none of any potential nested tables.
 Note that if you add `<tr>`s as direct children of a table, those `<tr>` will be wrapped in a `<tbody>` by default, thus making our selectors work as intended.
 
-### Anatomy
+## Anatomy
 
-#### Table head
+### Table head
 
 Similar to tables and dark tables, use the modifier classes `.table-light` or `.table-dark` to make `<thead>`s appear light or dark gray.
 ```
@@ -329,7 +333,7 @@ Similar to tables and dark tables, use the modifier classes `.table-light` or `.
 </table>
 ```
 
-#### Table foot
+### Table foot
 
 ```
 <table class="table">
@@ -345,7 +349,7 @@ Similar to tables and dark tables, use the modifier classes `.table-light` or `.
 </table>
 ```
 
-#### Captions
+### Captions
 
 A `<caption>` functions like a heading for a table. It helps users with screen readers to find a table and understand what it's about and decide if they want to read it.
 ```
@@ -394,15 +398,19 @@ You can also put the `<caption>` on the top of the table with `.caption-top`.
 </table>
 ```
 
-### Responsive tables
+## Responsive tables
 
 Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a `.table` with `.table-responsive`. Or, pick a maximum breakpoint with which to have a responsive table up to by using `.table-responsive{-sm|-md|-lg|-xl|-xxl}`.
 
-#### :warning: Vertical clipping/truncation
+<hr>
+
+### :warning: Vertical clipping/truncation
 
 Reponsive tables make use of `overflow-y: hidden`, which clips off any content that goes beyond the bottom or top edges of the table. In particular, this can clip off dropdown menus and other third-party widgets.
 
-#### Always responsive
+<hr>
+
+### Always responsive
 
 Across every breakpoint, use `.table-responsive` for horizontally scrolling tables.
 ```
@@ -413,9 +421,10 @@ Across every breakpoint, use `.table-responsive` for horizontally scrolling tabl
 </div>
 ```
 
-#### Breakpoint specific
+### Breakpoint specific
 
 Use `.table-responsive{-sm|-md|-lg|-xl|-xxl}` as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally.
+
 **These tables may appear broken until their responsive styles apply at specific viewport widths.**
 ```
 <div class="table-responsive">
@@ -455,55 +464,68 @@ Use `.table-responsive{-sm|-md|-lg|-xl|-xxl}` as needed to create responsive tab
 </div>
 ```
 
-### Customizing in Sass
+## Sass
+
+### Variables
+
+```
+$table-cell-padding-y:          .5rem;
+$table-cell-padding-x:          .5rem;
+$table-cell-padding-y-sm:       .25rem;
+$table-cell-padding-x-sm:       .25rem;
+
+$table-cell-vertical-align:     top;
+
+$table-color:                   $body-color;
+$table-bg:                      transparent;
+
+$table-th-font-weight:          null;
+
+$table-striped-color:           $table-color;
+$table-striped-bg-factor:       .05;
+$table-striped-bg:              rgba($black, $table-striped-bg-factor);
+
+$table-active-color:            $table-color;
+$table-active-bg-factor:        .1;
+$table-active-bg:               rgba($black, $table-active-bg-factor);
+
+$table-hover-color:             $table-color;
+$table-hover-bg-factor:         .075;
+$table-hover-bg:                rgba($black, $table-hover-bg-factor);
+
+$table-border-factor:           .1;
+$table-border-width:            $border-width;
+$table-border-color:            $border-color;
+
+$table-striped-order:           odd;
+
+$table-group-separator-color:   currentColor;
+
+$table-caption-color:           $text-muted;
+
+$table-bg-scale:                -80%;
+```
+
+### Loop
+
+```
+$table-variants: (
+    "primary":     shift-color($primary, $table-bg-scale),
+    "secondary":   shift-color($secondary, $table-bg-scale),
+    "success":     shift-color($success, $table-bg-scale),
+    "info":        shift-color($info, $table-bg-scale),
+    "warning":     shift-color($warning, $table-bg-scale),
+    "danger":      shift-color($danger, $table-bg-scale),
+    "light":       $light,
+    "dark":        $dark,
+);
+```
+
+### Customizing
 
 * The factor variables (`$table-striped-bg-factor`, `$table-active-bg-factor` & `$table-hover-bg-factor`) are used to determine the contrast in table variants.
 * Apart from the light & dark table variants, theme colors are lightened by the `$table-bg-level` variable.
-```
-$table-cell-padding-y:        .5rem;
-$table-cell-padding-x:        .5rem;
-$table-cell-padding-y-sm:     .5rem;
-$table-cell-padding-x-sm:     .5rem;
 
-$table-cell-vertical-align:   top;
+<hr>
 
-$table-color:                 $body-color;
-$table-bg:                    transparent;
-
-$table-th-font-weight:        null;
-
-$table-striped-color:         $table-color;
-$table-striped-bg-factor:     .05;
-$table-striped-bg:            rgba($black, $table-striped-bg-factor);
-
-$table-active-color:          $table-color;
-$table-active-bg-factor:      .1;
-$table-active-bg:             rgba($black, $table-active-bg-factor);
-
-$table-hover-color:           $table-color;
-$table-hover-bg-factor:       .075;
-$table-hover-bg:              rgba($black, $table-hover-bg-factor);
-
-$table-border-factor:         .1;
-$table-border-width:          $border-width;
-$table-border-color:          $border-color;
-
-$table-striped-order:         odd;
-
-$table-group-separator-color: currentColor;
-
-$table-caption-color:         $text-muted;
-
-$table-bg-scale:              -80%;
-
-$table-variants: (
-    "primary":   shift-color($primary, $table-bg-scale),
-    "secondary": shift-color($secondary, $table-bg-scale),
-    "success":   shift-color($success, $table-bg-scale),
-    "info":      shift-color($info, $table-bg-scale),
-    "warning":   shift-color($warning, $table-bg-scale),
-    "danger":    shift-color($danger, $table-bg-scale),
-    "light":     $light,
-    "dark":      $dark,
-);
-```
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Images#images) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#tables) - [[Next page]]()
