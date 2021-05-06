@@ -276,6 +276,8 @@ Learn more about [support for datalist elements](https://caniuse.com/datalist).
 ```
 (The "File input," "Color," and "Datalists" code examples above can be found in my accompanying [`form-controls-example-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example-2.html) file.)
 
+<!-- add link to the Customize folder README opening page -->
+
 ## Select menus
 
 Customize the native `<select>`s with custom CSS that changes the element's initial appearance.
@@ -343,7 +345,9 @@ Add the `disabled` Boolean attribute on a select to give it a grayed out appeara
 
 (All of the code examples in this **Select menus** section can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example.html) file.)
 
-## Checks and radios
+<!-- add link to the Customize folder README opening page -->
+
+## Checks and radios 
 
 Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap's completely rewritten checks component.
 
@@ -436,6 +440,8 @@ Add the `disabled` attribute and the associated `<label>`s are automatically sty
 </div>
 ```
 (All of the code examples in this **Radios** section can be found in my accompanying [`radio-button-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/radio-button-examples.html) file.)
+
+<!-- add link to the Customize folder README opening page -->
 
 ### Switches
 
@@ -1516,6 +1522,8 @@ While these feedback styles cannot be styled with CSS, you can still customize t
     </div>
 </form>
 ```
+
+<!-- add link to the Customize folder README opening page -->
 
 ### Server side
 
