@@ -32,11 +32,11 @@ Breaking it down, here's how the grid system comes together:
 
 * **Containers center and horizontally pad your content.** Use `.container` for a responsive pixel width, ` .container-fluid` for `width: 100%` across all viewports and devices, or a responsive container (e.g., `.container-md`) for a combination of fluid and pixel widths.
 
-* **Rows are wrappers for columns.** Each column has horizontal `padding` (called a gutter) for controlling the space between them. This `padding` is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to [uniformly apply column sizing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#row-columns) and [gutter classes]() <!-- link to Layout/Gutters --> to change the spacing of your content.
+* **Rows are wrappers for columns.** Each column has horizontal `padding` (called a gutter) for controlling the space between them. This `padding` is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to [uniformly apply column sizing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#row-columns) and [gutter classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Gutters#gutters) to change the spacing of your content.
 
 * **Columns are incredibly flexible.** There are 12 template columns available per row, allowing you to create different combinations of elements that span any number of columns. Column classes indicate the number of template columns to span (.e.g, `col-4` spans four). `width`s are set in percentages so you always have the same relative sizing.
 
-* **Gutters are also responsive and customizable.** [Gutter classes are available]() <!-- link to Layout/Gutters --> across all breakpoints, with all the same sizes as Bootstrap's [margin and padding spacing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing). Change horizontal gutters with `.gx-*` classes, vertical gutters with `.gy-*`, or all gutters with `.g-*` classes. `.g-0` is also available to remove gutters.
+* **Gutters are also responsive and customizable.** [Gutter classes are available](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Gutters#gutters) across all breakpoints, with all the same sizes as Bootstrap's [margin and padding spacing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing). Change horizontal gutters with `.gx-*` classes, vertical gutters with `.gy-*`, or all gutters with `.g-*` classes. `.g-0` is also available to remove gutters.
 
 * **Sass variables, maps, and mixins power the grid.** If you don't want to use the predefined grid classes in Bootstrap, you can use Bootstrap's [grid's source Sass](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#sass) to create your own with more semantic markup. Bootstrap also includes some CSS custom properties to consume these Sass variables for even greater flexibility for you.
 
@@ -62,9 +62,9 @@ As noted above, each of these breakpoints have their own container, unique class
 | **Class prefix** | `.col-` | `.col-sm-` | `.col-md-` | `.col-lg-` | `.col-xl-` | `.col-xxl-` |
 | **# of columns** | 12 | same | same | same | same | same |
 | **Gutter width** | 1.5rem (.75rem on left and right) | same | same | same | same | same |
-| **Custom gutters** | [Yes](#gutters) | same | same | same | same | same | <!-- link to Layout/Gutters -->
+| **Custom gutters** | [Yes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Gutters#gutters) | same | same | same | same | same |
 | **Nestable** | [Yes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#nesting) | same | same | same | same | same |
-| **Column ordering** | [Yes](#reordering) | same | same | same | same | same | <!-- link to Layout/Columns, "Reordering" header -->
+| **Column ordering** | [Yes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Columns#reordering) | same | same | same | same | same |
 
 ## Auto-layout columns
 
