@@ -96,7 +96,7 @@ For example, here are two grid layouts that apply to every device and viewport, 
     </div>
 </div>
 ```
-(See an example of this code in action in my accompanying [grid-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/grid-examples.html) file.)
+(See an example of this code in action in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/grid-examples.html) file.)
 
 ### Setting one column width
 
@@ -127,7 +127,7 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
     </div>
 </div>
 ```
-(Again, see this code in action in the [grid-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/grid-examples.html) file.)
+(Again, see this code in action in the [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Grid/grid-examples.html) file.)
 
 ### Variable width content
 
