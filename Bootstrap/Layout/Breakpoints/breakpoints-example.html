@@ -19,6 +19,22 @@
             h3 {
                 text-decoration: underline;
             }
+
+            .col {
+                border: 2px solid #828282;
+            }
+
+            .first {
+                background-color: #FFC0CB;
+            }
+
+            .second {
+                background-color: #ADD8E6;
+            }
+
+            .third {
+                background-color: #EE82EE;
+            }
         </style>
    </head>
    <body>
@@ -27,30 +43,32 @@
         <hr>
 
         <div class="container">
-            <div class="row">
-                <div class="col first">
+            <h3 class="mb-4">Adjust the width of the screen to make the screen smaller or larger to see how breakpoints work on the 
+                columns below.</h3>
+            <div class="row mb-3">
+                <div class="col first p-3">
                     This is a single column.
                 </div>
             </div>
-            <div class="row">
-                <div class="col col-xl-6 second">
+            <div class="row mb-3">
+                <div class="col col-xl-6 second p-3">
                     This is the first column.
                 </div>
-                <div class="col col-xl-6 second">
+                <div class="col col-xl-6 second p-3">
                     This is the second column.
                 </div>
             </div>
             <div class="row third-row">
-                <div class="col col-xl-3 third">
+                <div class="col col-xl-3 third p-3">
                     This is the first column.
                 </div>
-                <div class="col col-xl-3 third">
+                <div class="col col-xl-3 third p-3">
                     This is the second column.
                 </div>
-                <div class="col col-xl-3 third">
+                <div class="col col-xl-3 third p-3">
                     This is the third column.
                 </div>
-                <div class="col col-xl-3 third">
+                <div class="col col-xl-3 third p-3">
                     This is the fourth column.
                 </div>
             </div>
