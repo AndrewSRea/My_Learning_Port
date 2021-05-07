@@ -90,8 +90,4 @@ In addition to customizing the Sass, you can also create your own containers wit
 ```
 For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#sass) below.
 
-## A code example using Bootstrap's responsive containers
-
-I am going to create an HTML document named [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-example.html) which incorporates Bootstrap's responsive container component. I will also add three boxes into the container, just to be able to see the effect when the browser is opened for the `container-example.html` document, and the browser is shifted in size from small (mobile) to large (desktop).
-
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Breakpoints#breakpoints) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Containers#containers) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system)
