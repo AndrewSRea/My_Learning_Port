@@ -56,6 +56,7 @@ Use `.container-fluid` for a full width container, spanning the entire width of 
     ...
 </div>
 ```
+See an example of this code in my accompanying [container-fluid-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-fluid-example.html) file.
 
 ## Sass
 
