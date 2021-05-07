@@ -5,8 +5,6 @@ Use Bootstrap's powerful mobile-first flexbox grid to build layouts of all shape
 ## Example
 
 Bootstrap's grid system uses a series of containers, rows, and columns to layout and align content. It's built with [flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) and is fully responsive. Below is an example and an in-depth explanation for how the grid system comes together.
-
-(All of the code examples below can be found in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
 ```
 <div class="container">
     <div class="row">
@@ -23,6 +21,8 @@ Bootstrap's grid system uses a series of containers, rows, and columns to layout
 </div>
 ```
 The above example creates three equal-width columns across all devices and viewports using Bootstrap's predefined grid classes. Those columns are centered in the page with parent `.container`.
+
+(See the code example above in my accompanying [`grid-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/grid-examples.html) file.)
 
 ## How it works 
 
