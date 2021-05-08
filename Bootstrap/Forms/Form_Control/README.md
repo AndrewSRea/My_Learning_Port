@@ -14,7 +14,7 @@ Give textual form controls like `<input>`s and `<textarea>`s an upgrade with cus
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 ```
-(The code example above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example.html) file.)
+(The code example above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Form_Control/form-controls-example.html) file.)
 
 ## Sizing
 
@@ -24,7 +24,7 @@ Set heights using classes like `.form-control-lg` and `.form-control-sm`.
 <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
 <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" aria-label=".form-control-sm example">
 ```
-(The code example above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example.html) file.)
+(The code example above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Form_Control/form-controls-example.html) file.)
 
 ## Disabled
 
@@ -33,7 +33,7 @@ Add the `disabled` Boolean attribute on an input to give it a grayed out appeara
 <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled>
 <input class="form-control" type="text" placeholder="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
 ```
-(The code example above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example.html) file.)
+(The code example above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Form_Control/form-controls-example.html) file.)
 
 ## Readonly
 
@@ -74,7 +74,7 @@ If you want to have `<input readonly>` elements in your form styled as plain tex
     </div>
 </form>
 ```
-(The "readonly" code examples above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example.html) file.)
+(The "readonly" code examples above can be found in my accompanying [`form-controls-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Form_Control/form-controls-example.html) file.)
 
 ## File input
 
@@ -123,7 +123,7 @@ Learn more about [support for datalist elements](https://caniuse.com/datalist).
     <option value="Chicago">
 </datalist>
 ```
-(The "File input," "Color," and "Datalists" code examples above can be found in my accompanying [`form-controls-example-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example-2.html) file.)
+(The "File input," "Color," and "Datalists" code examples above can be found in my accompanying [`form-controls-example-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Form_Control/form-controls-example-2.html) file.)
 
 ## Sass
 
