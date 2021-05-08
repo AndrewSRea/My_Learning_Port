@@ -124,3 +124,59 @@ Learn more about [support for datalist elements](https://caniuse.com/datalist).
 </datalist>
 ```
 (The "File input," "Color," and "Datalists" code examples above can be found in my accompanying [`form-controls-example-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/form-controls-example-2.html) file.)
+
+## Sass
+
+### Variables
+
+`$input-*` are shared across most of Bootstrap's form controls (and not buttons).
+```
+$input-padding-y:                 $input-btn-padding-y;
+$input-padding-x:                 $input-btn-padding-x;
+$input-font-family:               $input-btn-font-family;
+$input-font-size:                 $input-btn-font-size;
+$input-font-weight:               $font-weight-base;
+$input-line-height:               $input-btn-line-height;
+
+$input-padding-y-sm:              $input-btn-padding-y-sm;
+$input-padding-x-sm:              $input-btn-padding-x-sm;
+$input-font-size-sm:              $input-btn-font-size-sm;
+
+$input-padding-y-lg:              $input-btn-padding-y-lg;
+$input-padding-x-lg:              $input-btn-padding-x-lg;
+$input-font-size-lg:              $input-btn-font-size-lg;
+
+$input-bg:                        $white;
+$input-disabled-bg:               $gray-200;
+$input-disabled-border-color:     $null;
+
+$input-color:                     $body-color;
+$input-border-color:              $gray-400;
+$input-border-width:              $input-btn-border-width;
+$input-box-shadow:                $box-shadow-inset;
+
+$input-border-radius:             $border-radius;
+$input-border-radius-sm:          $border-radius-sm;
+$input-border-radius-lg:          $border-radius-lg;
+
+$input-focus-bg:                  $input-bg;
+$input-focus-border-color:        $tint-color($component-active-bg, 50%);
+$input-focus-color:               $input-color;
+$input-focus-width:               $input-btn-focus-width;
+$input-focus-box-shadow:          $input-btn-focus-box-shadow;
+
+$input-placeholder-color:         $gray-600;
+$input-plaintext-color:           $body-color;
+
+$input-height-border:             $input-border-width * 2;
+
+$input-height-inner:              add($input-line-height * 1em, $input-padding-y * 2);
+$input-height-inner-half:         add($input-line-height * .5em, $input-padding-y);
+$input-height-inner-quarter:      add($input-line-height * .25em, $input-padding-y / 2);
+
+$input-height:                    add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false));
+$input-height-sm:                 add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false));
+$input-height-lg:                 add($input-line-height * 1em, add($input-padding-y-lg * 2, $input-height-border, false));
+
+$input-transition:                border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+```
