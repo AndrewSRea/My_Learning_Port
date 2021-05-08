@@ -78,7 +78,7 @@ Add the `disabled` attribute and the associated `<label>`s are automatically sty
 ```
 (This code example can be found in my accompanying [`radio-button-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/radio-button-examples.html) file.)
 
-#### Disabled
+### Disabled
 
 Add the `disabled` attribute and the associated `<label>`s are automatically styled to match with a lighter color to help indicate the input's state.
 ```
@@ -95,11 +95,9 @@ Add the `disabled` attribute and the associated `<label>`s are automatically sty
     </label>
 </div>
 ```
-(All of the code examples in this **Radios** section can be found in my accompanying [`radio-button-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/radio-button-examples.html) file.)
+(And this code example can be found in my accompanying [`radio-button-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/radio-button-examples.html) file.)
 
-<!-- add link to the Customize folder README opening page -->
-
-### Switches
+## Switches
 
 A switch has the markup of a custom checkbox but uses the `.form-switch` class to render a toggle switch. Switches also support the `disabled` attribute.
 ```
@@ -120,8 +118,9 @@ A switch has the markup of a custom checkbox but uses the `.form-switch` class t
     <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
 </div>
 ```
+(This code example can be found in my accompanying [`checkbox-radio-misc-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples.html) file.)
 
-### Default (stacked)
+## Default (stacked)
 
 By default, any number of checkboxes and radios that are immediate siblings will be vertically stacked and appropriately spaced with `.form-check`.
 ```
@@ -158,8 +157,9 @@ By default, any number of checkboxes and radios that are immediate siblings will
     </label>
 </div>
 ```
+(The two code examples above can be found in my accompanying [`checkbox-radio-misc-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples.html) file.)
 
-### Inline
+## Inline
 
 Group checkboxes or radios on the same horizontal row by adding `.form-check-inline` to any `.form-check`.
 ```
@@ -190,9 +190,9 @@ Group checkboxes or radios on the same horizontal row by adding `.form-check-inl
     <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
 </div>
 ```
-(All of the code examples from the **Switches**, **Default (stacked)**, and **Inline** sections can be found in my accompanying [`checkbox-radio-misc-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples.html) file.)
+(The two code examples above can be found in my accompanying [`checkbox-radio-misc-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples.html) file.)
 
-### Without labels
+## Without labels
 
 Omit the wrapping `.form-check` for checkboxes and radios which have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using `aria-label`). See the [forms overview accessibility](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#accessibility) section for details.
 ```
@@ -203,12 +203,13 @@ Omit the wrapping `.form-check` for checkboxes and radios which have no label te
     <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="...">
 </div>
 ```
+(See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples-2.html) file.)
 
-### Toggle buttons
+## Toggle buttons
 
-Create button-like checkboxes and radio buttons by using `.btn` styles rather than `.form-check-label` on the `<label>` elements. These toggle buttons can further be grouped in a [button group]() if needed. <!-- link to Components folder / Button group -->
+Create button-like checkboxes and radio buttons by using `.btn` styles rather than `.form-check-label` on the `<label>` elements. These toggle buttons can further be grouped in a [button group](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Button_Group#button-group) if needed.
 
-#### Checkbox toggle buttons
+### Checkbox toggle buttons
 
 ```
 <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
@@ -222,15 +223,15 @@ Create button-like checkboxes and radio buttons by using `.btn` styles rather th
 <input type="checkbox" class="btn-check" id="btn-check-3" autocomplete="off" disabled>
 <label class="btn btn-primary" for="btn-check-3">Disabled</label>
 ```
-See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples-2.html) file.
+(This code example is also in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples-2.html) file.)
 
 <hr>
 
-:warning: Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](). <!-- link to Components folder / Buttons / Button plugin --> However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
+:warning: Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Buttons#button-plugin). However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
 
 <hr>
 
-#### Radio toggle buttons
+### Radio toggle buttons
 
 ```
 <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
@@ -245,9 +246,9 @@ See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`]
 <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
 <label class="btn btn-secondary" for="option4">Radio</label>
 ```
-See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples-2.html) file.
+(Again, see this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples-2.html) file.)
 
-#### Outlined styles
+### Outlined styles
 
 Defined variants of `.btn`, such as the various outlined styles, are supported.
 ```
@@ -263,4 +264,4 @@ Defined variants of `.btn`, such as the various outlined styles, are supported.
 <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
 <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
 ```
-See this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-radio-misc-examples-2.html) file.
+(And again, see this code example in my accompanying [`checkbox-radio-misc-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-radio-misc-examples-2.html) file.)
