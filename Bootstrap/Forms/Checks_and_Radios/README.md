@@ -1,16 +1,16 @@
-<!-- add link to the Customize folder README opening page -->
-
-## Checks and radios 
+# Checks and radios 
 
 Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap's completely rewritten checks component.
 
-### Approach
+## Approach
 
 Browser default checkboxes and radios are replaced with the help of `.form-check`, a series of classes for both input types that improves the layout and behavior of their HTML elements, which provide greater customization and cross browser consistency. Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+
 Structurally, Boostrap's `<input>`s and `<label>`s are sibling elements as opposed to an `<input>` within a `<label>`. This is slightly more verbose as you must specify `id` and `for` attributes to relate the `<input>` and `<label>`. Bootstrap uses the sibling selector (`~`) for all of its `<input>` states, like `:checked` or `:disabled`. When combined with the `.form-check-label` class, Bootstrap can easily style the text for each item based on the `<input>`'s state.
+
 Bootstrap's checks use custom icons built by Bootstrap to indicate checked or indeterminate states.
 
-### Checks
+## Checks
 
 ```
 <div class="form-check">
@@ -26,8 +26,9 @@ Bootstrap's checks use custom icons built by Bootstrap to indicate checked or in
     </label>
 </div>
 ```
+(You can find this code example in my accompanying [`checkbox-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-examples.html) file.)
 
-#### Indeterminate
+### Indeterminate
 
 Checkboxes can utilize the `:indeterminate` pseudo-class when manually set via JavaScript (there is no available HTML attribute for specifying it).
 ```
@@ -38,8 +39,9 @@ Checkboxes can utilize the `:indeterminate` pseudo-class when manually set via J
     </label>
 </div>
 ```
+(Again, this code example can be found in my accompanying [`checkbox-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-examples.html) file.)
 
-#### Disabled
+### Disabled
 
 Add the `disabled` attribute and the associated `<label>`s are automatically styled to match with a lighter color to help indicate the input's state.
 ```
@@ -56,9 +58,9 @@ Add the `disabled` attribute and the associated `<label>`s are automatically sty
     </label>
 </div>
 ```
-(All of the code examples in this **Checks** section can be found in my accompanying [`checkbox-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/checkbox-examples.html) file.)
+(And this code example can be found in my accompanying [`checkbox-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/checkbox-examples.html) file.)
 
-### Radios
+## Radios
 
 ```
 <div class="form-check">
@@ -74,6 +76,7 @@ Add the `disabled` attribute and the associated `<label>`s are automatically sty
     </label>
 </div>
 ```
+(This code example can be found in my accompanying [`radio-button-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Checks_and_Radios/radio-button-examples.html) file.)
 
 #### Disabled
 
