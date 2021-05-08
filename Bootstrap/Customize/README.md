@@ -31,7 +31,7 @@ Several Bootstrap components include embedded SVGs in Bootstrap's CSS to style c
 * [Accordion](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Accordion#accordion)
 * [Close button](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Close_Button#close-button) (used in alerts and modals)
 * [Form checkboxes and radio buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#checks-and-radios)
-* [Form switches]() <!-- link to Forms/Checks_and_Radios - "Switches" header -->
+* [Form switches](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#switches)
 * [Form validation icons]() <!-- link to Forms/Validation - "Server side" header -->
 * [Select menus](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Select#select)
 * [Carousel controls](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Carousel#carousel)
