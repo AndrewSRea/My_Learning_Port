@@ -4,37 +4,25 @@
 
 Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
 
-* **[Form control](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Form_Control#form-controls)**
+## Table of contents
 
-Style textual inputs and textareas with support for multiple states.
+* [Form control](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Form_Control#form-controls) - Style textual inputs and textareas with support for multiple states.
 
-* **[Select](#select-menus)**
+* [Select](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Select#select) - Improve browser default select elements with a custom initial appearance.
 
-Improve browser default select elements with a custom initial appearance.
+* [Checks & radios](#checks-and-radios) - Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
-* **[Checks & radios](#checks-and-radios)**
+* [Range]() - Replace browser default range inputs with Bootstrap's custom version.
 
-Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
+* [Input group]() - Attach labels and buttons to your inputs for increased semantic value.
 
-* **[Range]()**
+* [Floating labels]() - Create beautifully simple form labels that float over your input fields.
 
-Replace browser default range inputs with Bootstrap's custom version.
+* [Layout]() - Create inline, horizontal, or complex grid-based layouts with your forms.
 
-* **[Input group]()**
+* [Validation]() - Validate your forms with custom or native validation behaviors and styles.
 
-Attach labels and buttons to your inputs for increased semantic value.
-
-* **[Floating labels]()**
-
-Create beautifully simple form labels that float over your input fields.
-
-* **[Layout]()**
-
-Create inline, horizontal, or complex grid-based layouts with your forms.
-
-* **[Validation]()**
-
-Validate your forms with custom or native validation behaviors and styles.
+<hr>
 
 ## Overview
 
