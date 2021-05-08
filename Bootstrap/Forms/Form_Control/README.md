@@ -180,3 +180,28 @@ $input-height-lg:                 add($input-line-height * 1em, add($input-paddi
 
 $input-transition:                border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 ```
+`$form-label-*` and `$form-text-*` are for Bootstrap's `<label>`s and `.form-text` component.
+```
+$form-label-margin-bottom:
+$form-label-font-size:
+$form-label-font-style:
+$form-label-font-weight:
+$form-label-color:
+```
+```
+$form-text-
+$form-text-
+$form-text-
+$form-text-
+$form-text-
+```
+`$form-file-*` are for file input.
+```
+$form-file-
+$form-file-
+$form-file-
+```
+
+<hr>
+
+[[Back to Table of contents]]() - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Form_Control#form-controls) - [[Next page]]()
