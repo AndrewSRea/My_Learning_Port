@@ -4,42 +4,44 @@
 
 Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
 
-#### [Form control](#form-controls)
+* **[Form control](#form-controls)**
 
 Style textual inputs and textareas with support for multiple states.
 
-#### [Select](#select-menus)
+* **[Select](#select-menus)**
 
 Improve browser default select elements with a custom initial appearance.
 
-#### [Checks & radios](#checks-and-radios)
+* **[Checks & radios](#checks-and-radios)**
 
 Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
-#### [Range]()
+* **[Range]()**
 
 Replace browser default range inputs with Bootstrap's custom version.
 
-#### [Input group]()
+* **[Input group]()**
 
 Attach labels and buttons to your inputs for increased semantic value.
 
-#### [Floating labels]()
+* **[Floating labels]()**
 
 Create beautifully simple form labels that float over your input fields.
 
-#### [Layout]()
+* **[Layout]()**
 
 Create inline, horizontal, or complex grid-based layouts with your forms.
 
-#### [Validation]()
+* **[Validation]()**
 
 Validate your forms with custom or native validation behaviors and styles.
 
 ## Overview
 
-Bootstrap's form controls expand on their [Rebooted form styles](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#forms) with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.
+Bootstrap's form controls expand on their [Rebooted form styles](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#forms) with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.
+
 Be sure to use an appropriate `type` attribute on all inputs (e.g., `email` for email address or `number` for numerical information) to take advantage of newer input controls like email verification, number selection, and more.
+
 Here's a quick example to demonstrate Bootstrap's form styles. Keep reading for documentation on required classes, form layout, and more.
 ```
 <form>
@@ -70,6 +72,7 @@ Block-level or inline-level form text can be created using `.form-text`.
 ### :warning: Associating form text with form controls
 
 Form text should be explicitly associated with the form control it relates to using the `aria-describedby` attribute. This will ensure that assistive technologies--such as screen readers--will announce this form text when the user focuses or enters the control.
+
 <hr>
 
 Form text below inputs can be styled with `.form-text`. If a block-level element will be used, a top margin is added for easy spacing from the inputs above.
@@ -107,6 +110,7 @@ Add the `disabled` Boolean attribute on an input to prevent user interactions an
 <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
 ```
 Add the `disabled` attribute to a `<fieldset>` to disable all the controls within. Browsers treat all native form controls (`<input>`, `<select>`, and `<button>` elements) inside a `<fieldset disabled>` as disabled, preventing both keyboard and mouse interactions on them.
+
 However, if your form also includes custom button-like elements such as `<a class="btn btn-*">...</a>`, these will only be given a style of `pointer-events: none`, meahning they are still focusable and operable using the keyboard. In this case, you must manually modify these controls by adding `tabindex="-1"` to prevent them from receiving focus and `aria-disabled="disabled"` to signal their state assistive technologies.
 ```
 <form>
@@ -134,11 +138,12 @@ However, if your form also includes custom button-like elements such as `<a clas
     </fieldset>
 </form>
 ```
-(The code example above can be found in my accompanying [`disabled-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/disabled-forms-example.html) file.)
+(The code example above can be found in my accompanying [`disabled-forms-example.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/disabled-forms-example.html) file.)
 
 ## Accessibility
 
 Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of assistive technologies. The simplest way to achieve this is to use a `<label>` element, or--in the case of buttons--to include sufficiently descriptive text as part of the `<button>...</button>` content.
+
 For situations where it's not possible to include a visible `<label>` or appropriate text content, there are alternative ways of still providing an accessible name, such as:
 
 * `<label>` elements hidden using the `.visually-hidden` class.
@@ -147,7 +152,41 @@ For situations where it's not possible to include a visible `<label>` or appropr
 * Explicitly setting the accessible name on an element using `aria-label`.
 
 If none of these are present, assistive technologies may resort to using the `placeholder` attribute as a fallback for the accessible name on `<input>` and `<textarea>` elements. The examples in this section provide a few suggested, case-specific approaches.
+
 While using visually hidden content (`.visually-hidden`, `aria-label`, and even `placeholder` content, which disappears once a form field has content) will benefit assistive technology users, a lack of visible label text may still be problematic for certain users. Some form of visible label is generally the best approach, both for accessibility and usability.
+
+## Sass 
+
+Many form variables are set at a general level to be re-used and extended by individual form components. You'll see these most often as `$btn-input-*` and `$input-*` variables.
+
+### Variables
+
+`$btn-input-*` variables are shared global variables between Bootstrap's [buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Buttons#buttons) and its form components. You'll find theese frequently reassigned as values to other component-specific variables.
+```
+$input-btn-padding-y:             .375rem;
+$input-btn-padding-x:             .75rem;
+$input-btn-font-family:           null;
+$input-btn-font-size:             $font-size-base;
+$input-btn-line-height:           $line-height-base;
+
+$input-btn-focus-width:           .25rem;
+$input-btn-focus-color-opacity:   .25;
+$input-btn-focus-color:           rgba($component-active-bg, $input-btn-focus-color-opacity);
+$input-btn-focus-blur:            0;
+$input-btn-focus-box-shadow:      0 0 $input-btn-focus-blur $input-btn-focus-width $input-btn-focus-color;
+
+$input-btn-padding-y-sm:          .25rem;
+$input-btn-padding-x-sm:          .5rem;
+$input-btn-font-size-sm:          $font-size-sm;
+
+$input-btn-padding-y-lg:          .5rem;
+$input-btn-padding-x-lg:          1rem;
+$input-btn-font-size-lg:          $font-size-lg;
+
+$input-btn-border-width:          $border-width;
+```
+
+[[Next page]]() - [[Next module: Components]]()
 
 ## Form controls
 
