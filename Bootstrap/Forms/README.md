@@ -1,10 +1,10 @@
 <!-- GO BACK TO THE README in the Customize folder and add links for certain Forms folder and/or headers -->
 
-# Bootstrap Forms
+# Forms
 
 Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
 
-* **[Form control](#form-controls)**
+* **[Form control](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Form_Control#form-controls)**
 
 Style textual inputs and textareas with support for multiple states.
 
@@ -185,6 +185,8 @@ $input-btn-font-size-lg:          $font-size-lg;
 
 $input-btn-border-width:          $border-width;
 ```
+
+<hr>
 
 [[Next page]]() - [[Next module: Components]]()
 
