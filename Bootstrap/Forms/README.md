@@ -10,7 +10,7 @@ Examples and usage guidelines for form control styles, layout options, and custo
 
 * [Select](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Select#select) - Improve browser default select elements with a custom initial appearance.
 
-* [Checks & radios](#checks-and-radios) - Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
+* [Checks & radios](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#checks-and-radios) - Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
 * [Range]() - Replace browser default range inputs with Bootstrap's custom version.
 
