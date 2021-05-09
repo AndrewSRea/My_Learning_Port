@@ -1,8 +1,8 @@
-## Floating labels
+# Floating labels
 
 Create beautifully simple form labels which float over your input fields.
 
-### Example
+## Example
 
 Wrap a pair of `<input class="form-control">` and `<label>` elements in `.form-floating` to enable floating labels with Bootstrap's textual form fields. A `placeholder` is required on each `<input>` as Bootstrap's method of CSS-only floating labels uses the `:placeholder-shown` pseudo-element. Also, note that the `<input>` must come first so Bootstrap can utilize a sibling selector (e.g., `~`).
 ```
@@ -29,9 +29,9 @@ Form validation styles also work as expected. (To be covered in the [Validation]
     <label for="floatingInputInvalid">Invalid input</label>
 </form>
 ```
-All of the code examples in this **Floating labels** section can be found in my accompanying [`floating-labels-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/floating-labels-examples.html) file.
+(The three code examples above can be found in my accompanying [`floating-labels-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Floating_Labels/floating-labels-examples.html) file.)
 
-### Textareas
+## Textareas
 
 By default, `<textarea>`s with `.form-control` will be the same height as `<input>`s.
 ```
@@ -47,8 +47,9 @@ To set a custom height on your `<textarea>`, do not use the `rows` attribute. In
     <label for="floatingTextarea2">Comments</label>
 </div>
 ```
+(These two code examples above can be found in my accompanying [`floating-labels-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Floating_Labels/floating-labels-examples.html) file.)
 
-### Selects
+## Selects
 
 Other than `.form-control`, floating labels are only available on `.form-select`s. They work in the same way, but unlike `<input>`s, they'll always show the `<label>` in its floated state.
 ```
@@ -62,8 +63,9 @@ Other than `.form-control`, floating labels are only available on `.form-select`
     <label for="floatingSelect">Works with selects</label>
 </div>
 ```
+(This code example can be found in my accompanying [`floating-labels-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Floating_Labels/floating-labels-examples-2.html) file.)
 
-### Layout of form fields with floating labels
+# Layout
 
 When working with the Bootstrap grid system, be sure to place form elements within column classes.
 ```
@@ -87,4 +89,5 @@ When working with the Bootstrap grid system, be sure to place form elements with
     </div>
 </div>
 ```
-The two code examples just above can be found in my accompanying [`floating-labels-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/floating-labels-examples-2.html) file.
+(And this code example can also be found in my accompanying [`floating-labels-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms//Floating_Labels/floating-labels-examples-2.html) file.)
+
