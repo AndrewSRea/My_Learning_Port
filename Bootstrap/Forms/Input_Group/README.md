@@ -309,3 +309,7 @@ Input groups include support for custom selects and custom file inputs. Browser 
 </div>
 ```
 (And once more, this code example can be found in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/custom-forms-examples.html) file.)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Range#range) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Input_Group#input-group) - [[Next page]]()
