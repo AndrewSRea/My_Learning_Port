@@ -1,11 +1,10 @@
-## Input group
+# Input group
 
 Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.
 
-### Basic example
+## Basic example
 
 Place one add-on or button on either side of an input. You may also place one on both sides of an input. Remember to place `<label>`s outside the input group.
-See all the code examples in this **Input group** section in my accompanying [`input-group-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples.html) file.
 ```
 <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">@</span>
@@ -40,8 +39,9 @@ See all the code examples in this **Input group** section in my accompanying [`i
     <textarea class="form-control" aria-label="With textarea"></textarea>
 </div>
 ```
+(See this code example in my accompanying [`input-group-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples.html) file.)
 
-### Wrapping
+## Wrapping
 
 Input groups wrap by default via `flex-wrap: wrap` in order to accomodate custom field validation within an input group. You may disable this with `.flex-nowrap`.
 ```
@@ -50,10 +50,12 @@ Input groups wrap by default via `flex-wrap: wrap` in order to accomodate custom
     <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
 </div>
 ```
+(And see this code example in my accompanying [`input-group-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples.html) file.)
 
-### Sizing
+## Sizing
 
 Add the relative form sizing classes to the `.input-group` itself and contents within will automatically resize--no need for repeating the form control size classes on each element.
+
 **Sizing on the individual input group elements isn't supported.**
 ```
 <div class="input-group input-group-sm mb-3">
@@ -71,8 +73,9 @@ Add the relative form sizing classes to the `.input-group` itself and contents w
     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 </div>
 ```
+(Again, see this code example in my accompanying [`input-group-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples.html) file.)
 
-### Checkboxes and radios
+## Checkboxes and radios
 
 Place any checkbox or radio option within an input group's addon instead of text.
 ```
@@ -90,8 +93,9 @@ Place any checkbox or radio option within an input group's addon instead of text
     <input type="text" class="form-control" aria-label="Text input with radio button">
 </div>
 ```
+(And again, see this code example in my accompanying [`input-group-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples.html) file.)
 
-### Multiple inputs
+## Multiple inputs
 
 While multiple `<input>`s are supported visually, validation styles are only available for input groups with a single `<input>`.
 ```
@@ -101,9 +105,9 @@ While multiple `<input>`s are supported visually, validation styles are only ava
     <input type="text" aria-label="Last name" class="form-control">
 </div>
 ```
-See this code example in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+(This code example can be found in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples-2.html) file.)
 
-### Mutliple addons
+## Mutliple addons
 
 Multiple add-ons are supported and can be mixed with checkbox and radio input versions.
 ```
@@ -119,9 +123,9 @@ Multiple add-ons are supported and can be mixed with checkbox and radio input ve
     <span class="input-group-text">0.00</span>
 </div>
 ```
-See this code example in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+(See this code example in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples-2.html) file.)
 
-### Button addons
+## Button addons
 
 ```
 <div class="input-group mb-3">
@@ -146,9 +150,9 @@ See this code example in my accompanying [`input-group-examples-2.html`](https:/
     <button class="btn btn-outline-secondary" type="button">Button</button>
 </div>
 ```
-See this code example in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+(And this code example can be found in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples-2.html) file.)
 
-### Buttons with dropdowns
+## Buttons with dropdowns
 
 ```
 <div class="input-group mb-3">
@@ -195,9 +199,9 @@ See this code example in my accompanying [`input-group-examples-2.html`](https:/
     </ul>
 </div>
 ```
-See this code example in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+(And again, this code example can be found in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples-2.html) file.)
 
-### Segmented buttons
+## Segmented buttons
 
 ```
 <div class="input-group mb-3">
@@ -230,13 +234,13 @@ See this code example in my accompanying [`input-group-examples-2.html`](https:/
     </ul>
 </div>
 ```
-See this code example in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/input-group-examples-2.html) file.
+(Also, this code example can be found in my accompanying [`input-group-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/input-group-examples-2.html) file.)
 
-### Custom forms
+## Custom forms
 
 Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported.
 
-#### Custom select
+### Custom select
 
 ```
 <div class="input-group mb-3">
@@ -279,9 +283,9 @@ Input groups include support for custom selects and custom file inputs. Browser 
     <button class="btn btn-outline-secondary" type="button">Button</button>
 </div>
 ```
-See this code example in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/custom-forms-examples.html) file.
+(And again, this code example can be foundin my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/custom-forms-examples.html) file.)
 
-#### Custom file input
+### Custom file input
 
 ```
 <div class="input-group mb-3">
@@ -304,4 +308,4 @@ See this code example in my accompanying [`custom-forms-examples.html`](https://
     <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
 </div>
 ```
-See this code example in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/custom-forms-examples.html) file.
+(And once more, this code example can be found in my accompanying [`custom-forms-examples.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Input_Group/custom-forms-examples.html) file.)
