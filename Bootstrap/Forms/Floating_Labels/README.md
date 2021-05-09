@@ -65,7 +65,7 @@ Other than `.form-control`, floating labels are only available on `.form-select`
 ```
 (This code example can be found in my accompanying [`floating-labels-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Floating_Labels/floating-labels-examples-2.html) file.)
 
-# Layout
+## Layout
 
 When working with the Bootstrap grid system, be sure to place form elements within column classes.
 ```
@@ -91,3 +91,21 @@ When working with the Bootstrap grid system, be sure to place form elements with
 ```
 (And this code example can also be found in my accompanying [`floating-labels-examples-2.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms//Floating_Labels/floating-labels-examples-2.html) file.)
 
+## Sass
+
+### Variables
+
+```
+$form-floating-height:            add(3.5rem, $input-height-border);
+$form-floating-padding-x:         $input-padding-x;
+$form-floating-padding-y:         1rem;
+$form-floating-input-padding-t:   1.625rem;
+$form-floating-input-padding-b:   .625rem;
+$form-floating-label-opacity:     .65;
+$form-floating-label-transform:   scale(.85) translateY(-.5rem) translateX(.15rem);
+$form-floating-transition:        opacity .1s ease-in-out, transform .1s ease-in-out;
+```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Input_Group#input-group) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Floating_Labels#floating-labels) - [[Next page]]()
