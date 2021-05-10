@@ -27,7 +27,7 @@ Feel free to build your forms however you like, with `<fieldset>`s, `<div>`s, or
     <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
 </div>
 ```
-(This code example above can be found in my accompanying [form-layout-examples.html]() file.)
+(This code example above can be found in my accompanying [form-layout-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples.html) file.)
 
 ## Form grid
 
@@ -42,7 +42,7 @@ More complex forms can be built using Bootstrap's grid classes. Use these for fo
     </div>
 </div>
 ```
-(And this code example above can also be found in my accompanying [form-layout-examples.html]() file.)
+(And this code example above can also be found in my accompanying [form-layout-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples.html) file.)
 
 ## Gutters
 
@@ -104,7 +104,7 @@ More complex layouts can also be created with the grid system.
     </div>
 </form>
 ```
-(And the two code examples above can be found in my accompanying [form-layout-examples.html]() file.)
+(And the two code examples above can be found in my accompanying [form-layout-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples.html) file.)
 
 ## Horizontal form
 
@@ -161,6 +161,7 @@ At times, you might need to use margin or padding utilities to create that perfe
     <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
 ```
+(This code example above can be found in my accompanying [form-layout-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples-2.html) file.)
 
 ### Horizontal form label sizing
 
@@ -185,6 +186,7 @@ Be sure to use `.col-form-label-sm` or `.col-form-label-lg` to your `<label>`s o
     </div>
 </div>
 ```
+(And this code example above can also be found in my accompanying [form-layout-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples-2.html) file.)
 
 ## Column sizing
 
@@ -202,6 +204,7 @@ As shown in the previous examples, Bootstrap's grid system allows you to place a
     </div>
 </div>
 ```
+(And again, his code example above can be found in my accompanying [form-layout-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples-2.html) file.)
 
 ## Auto-sizing
 
@@ -277,6 +280,7 @@ You can then remix that once again with size-specific column classes.
     </div>
 </form>
 ```
+(This code example above can also be found in my accompanying [form-layout-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples-2.html) file.)
 
 ## Inline forms
 
@@ -315,6 +319,7 @@ Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifi
     </div>
 </form>
 ```
+(And once more, this code example above can be found in my accompanying [form-layout-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Layout/form-layout-examples-2.html) file.)
 
 <hr>
 
