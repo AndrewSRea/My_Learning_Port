@@ -1,28 +1,32 @@
-## Validation
+# Validation
 
 Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.
-<hr>
-:warning: Currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap works on a solution, the technology recommends either using the server-side option or the default browser validation method.
+
 <hr>
 
-### How it works
+:warning: Currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap works on a solution, the technology recommends either using the server-side option or the default browser validation method.
+
+<hr>
+
+## How it works
 
 Here's how form validation works with Bootstrap:
 
 * HTML form validation is applied via CSS's two pseudo-classes, `:invalid` and `:valid`. It applies to`<input>`, `<select>`, and `<textarea>` elements.
 * Bootstrap scopes the `:invalid` and `:valid` styles to parent `.was-validated` class, usually applied to the `<form>`. Otherwise, any required field without a value shows up as invalid on page load. This way, you may choose when to activate them (typically after form submission is attempted).
 * To reset the appearance of the form (for instance, in the case of dynamic form submissions using AJAX), remove the `.was-validated` class from the `<form>` again after submission.
-* As a fallback, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes for [server-side validation](#server-side). They do not require a `.was-validated` class from the `<form>` again after submission.
+* As a fallback, `.is-invalid` and `.is-valid` classes may be used instead of the pseudo-classes for [server-side validation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Validation#server-side). They do not require a `.was-validated` class from the `<form>` again after submission.
 * Due to constraints in how CSS works, Bootstrap cannot (at present) apply styles to a `<label>` that comes before a form control in the DOM without the help of custom JavaScript.
 * All modern browsers support the [constraint validation API](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-constraint-validation-api), a serikes of JavaScript methods for validating form controls.
-* Feedback message may utilize the [browser defaults](#browser-defaults) (different for each browser, and unstylable via CSS) or Bootstrap's custom feedback styles with additional HTML and CSS.
+* Feedback message may utilize the [browser defaults](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Validation#browser-defaults) (different for each browser, and unstylable via CSS) or Bootstrap's custom feedback styles with additional HTML and CSS.
 * You may provide custom validity messages with `setCustomValidity` in JavaScript.
 
 With that in mind, consider the following demos for Bootstrap's custom form validation styles, optional server-side classes, and browser defaults.
 
-### Custom styles
+## Custom styles
 
 For custom Bootstrap form validation messages, you'll need to add the `novalidate` Boolean attribute to your `<form>`. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; our JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you'll see the `:invalid` and `:valid` styles applied to your form controls.
+
 Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for `<select>`s are only available with `.form-select`, and not `.form-control`.
 ```
 <form class="row g-3 needs-validation" novalidate>
@@ -113,9 +117,10 @@ Custom feedback styles apply custom colors, borders, focus styles, and backgroun
 })()
 ```
 
-### Browser defaults
+## Browser defaults
 
 Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you'll see a slightly different style of feedback.
+
 While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.
 ```
 <form class="row g-3">
@@ -163,12 +168,12 @@ While these feedback styles cannot be styled with CSS, you can still customize t
 </form>
 ```
 
-<!-- add link to the Customize folder README opening page -->
-
-### Server side
+## Server side
 
 Bootstrap recommends using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with `.is-invalid` and `.is-valid`. Note that `.invalid-feedback` is also supported with these classes.
+
 For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using `aria-describedby` (noting that this attribute allows more than one `id` to be referenced, in case the field already points to additional form text).
+
 To fix [issues with border radii](https://github.com/twbs/bootstrap/issues/25110), input groups require an additional `.has-validation` class.
 ```
 <form class="row g-3">
@@ -237,7 +242,7 @@ To fix [issues with border radii](https://github.com/twbs/bootstrap/issues/25110
 </form>
 ```
 
-### Supported elements
+## Supported elements
 
 Validation styles area available for the following form controls and components:
 
@@ -291,7 +296,7 @@ Validation styles area available for the following form controls and components:
 </form>
 ```
 
-### Tooltips
+## Tooltips
 
 If your form layout allows it, you can swap the `.{valid|invalid}-feedback` classes for `.{valid|invalid}-tooltip` classes to display validation feedback in a styled tooltip. Be sure to have a parent with `position: relative` on it for tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup.
 ```
@@ -349,6 +354,73 @@ If your form layout allows it, you can swap the `.{valid|invalid}-feedback` clas
     </div>
 </form>
 ```
+
+## Sass
+
+### Variables
+
+```
+$form-feedback-margin-top:           $form-text-margin-top;
+$form-feedback-font-size:            $form-text-font-size;
+$form-feedback-font-style:           $form-text-font-style;
+$form-feedback-valid-color:          $success;
+$form-feedback-invalid-color:        $danger;
+
+$form-feedback-icon-valid-color:     $form-feedback-valid-color;
+$form-feedback-icon-valid:           url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/></svg>");
+$form-feedback-icon-invalid-color:   $form-feedback-invalid-color;
+$form-feedback-icon-invalid:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='#{$form-feedback-icon-invalid-color}'><circle cx='6' cy='6' r='4.5'/><path stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/><circle cx='6' cy='8.2' r='.6' fill='#{$form-feedback-icon-invalid-color}' stroke='none'/></svg>");
+```
+
+### Mixins
+
+Two mixins are combined together, through Bootstrap's [loop](), to generate Bootstrap's form validation feedback styles.
+```
+@mixin form-validation-state-selection($state) {
+    @if ($state == "valid" or $state == "invalid) {
+        .was-validated #{if(&, "&", "")}:#{$state},
+        #{if(&, "&", "")}.is-#{$state} {
+            @content;
+        }
+    } @else {
+        #{if(&, "&", "")}.is-#{$state} {
+            @content;
+        }
+    }
+}
+
+@mixin form-validation-state(
+    $state,
+    $color,
+    $icon,
+    $tooltip-color: color-contrast($color),
+    $tooltip-bg-color: rgba($color, $form-feedback-tooltip-opacity),
+    $focus-box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($color, $input-btn-focus-color-opacity)
+) {
+    .#{$state}-feedback {
+        display: none;
+        width: 100%;
+        margin-top: $form-feedback-margin-top;
+        @include font-size($form-feedback-font-size);
+        font-style: $form-feedback-font-style;
+        color: $color;
+    }
+
+    .#{$state}-tooltip {
+        position: absolute;
+        top: 100%;
+        z-index: 5;
+        display: none;
+        max-width: 100%;   // Contain to parent when possible
+        padding: $form-feedback-tooltip-padding-y $form-feedback-tooltip-padding-x;
+        margin-top: .1rem;
+        @include font-size($form-feedback-tooltip-font-size);
+        line-height: $form-feedback-tooltip-line-height;
+        color: $tooltip-color;
+        background-color: $tooltip-bg-color;
+        @include border-radius($form-feedback-tooltip-border-radius);
+    }
+}
 
 ### Customizing
 
