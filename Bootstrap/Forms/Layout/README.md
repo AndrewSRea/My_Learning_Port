@@ -27,6 +27,7 @@ Feel free to build your forms however you like, with `<fieldset>`s, `<div>`s, or
     <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
 </div>
 ```
+(This code example above can be found in my accompanying [form-layout-examples.html]() file.)
 
 ## Form grid
 
@@ -41,6 +42,7 @@ More complex forms can be built using Bootstrap's grid classes. Use these for fo
     </div>
 </div>
 ```
+(And this code example above can also be found in my accompanying [form-layout-examples.html]() file.)
 
 ## Gutters
 
@@ -102,6 +104,7 @@ More complex layouts can also be created with the grid system.
     </div>
 </form>
 ```
+(And the two code examples above can be found in my accompanying [form-layout-examples.html]() file.)
 
 ## Horizontal form
 
@@ -315,4 +318,4 @@ Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifi
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Floating_Labels#floating-labels) - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Floating_Labels#floating-labels) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Layout#layout) - [[Next page]]()
