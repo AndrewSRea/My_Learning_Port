@@ -1,8 +1,8 @@
-## Form layout
+# Layout
 
 Give your forms some structure--from inline to horizontal to custom grid implementations--with Bootstrap's form layout options.
 
-### Forms
+## Forms
 
 Every group of form fields should reside in a `<form>` element. Bootstrap provides no default styling for the `<form>` element, but there are some powerful browser features that are provided by default.
 
@@ -12,9 +12,10 @@ Every group of form fields should reside in a `<form>` element. Bootstrap provid
 
 Since Bootstrap applies `display: block` and `width: 100%` to almost all of its form controls, forms will, by default, stack vertically. Additional classes can be used to vary this layout on a per-form basis.
 
-### Utilities
+## Utilities
 
-[Margin utilities]() <!-- link to Utilities folder / Spacing --> are the easiest way to add some structure to forms. They provide basic grouping of labels, controls, optional form text, and form validation messaging. We recommend sticking to `margin-bottom` utilities, and using a single direction throughout the form for consistency.
+[Margin utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing) are the easiest way to add some structure to forms. They provide basic grouping of labels, controls, optional form text, and form validation messaging. We recommend sticking to `margin-bottom` utilities, and using a single direction throughout the form for consistency.
+
 Feel free to build your forms however you like, with `<fieldset>`s, `<div>`s, or nearly any other element.
 ```
 <div class="mb-3">
@@ -27,7 +28,7 @@ Feel free to build your forms however you like, with `<fieldset>`s, `<div>`s, or
 </div>
 ```
 
-### Form grid
+## Form grid
 
 More complex forms can be built using Bootstrap's grid classes. Use these for form layouts which require multiple columns, varied widths, and additional alignment options. **Requires the `$enable-grid-classes` Sass variable to be enabled** (on by default).
 ```
@@ -41,9 +42,9 @@ More complex forms can be built using Bootstrap's grid classes. Use these for fo
 </div>
 ```
 
-### Gutters
+## Gutters
 
-By adding [gutter modifier classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#gutters), you can have control over the gutter width as well as laying out form fields in an inline direction. **Also requires the `$enable-grid-classes` Sass variable to be enabled** (on by default).
+By adding [gutter modifier classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Gutters#gutters), you can have control over the gutter width as well as laying out form fields in an inline direction. **Also requires the `$enable-grid-classes` Sass variable to be enabled** (on by default).
 ```
 <div class="row g-3">
     <div class="col">
@@ -102,9 +103,10 @@ More complex layouts can also be created with the grid system.
 </form>
 ```
 
-### Horizontal form
+## Horizontal form
 
 Create horizontal forms with the grid by adding the `.row` class to form groups and using the `.col-*-*` classes to specify the width of your labels and controls. Be sure to add `.col-form-label` to your `<label>`s as well so they're vertically centered with their associated form controls.
+
 At times, you might need to use margin or padding utilities to create that perfect alignment you need. In the example below, Bootstrap has removed the `padding-top` on its stacked radio inputs to better align the text baseline.
 ```
 <form>
@@ -181,7 +183,7 @@ Be sure to use `.col-form-label-sm` or `.col-form-label-lg` to your `<label>`s o
 </div>
 ```
 
-### Column sizing
+## Column sizing
 
 As shown in the previous examples, Bootstrap's grid system allows you to place any number of `.col`s within a `.row`. They'll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining `.col`s equally split the rest, with specific column classes like `.col-sm-7`.
 ```
@@ -198,7 +200,7 @@ As shown in the previous examples, Bootstrap's grid system allows you to place a
 </div>
 ```
 
-### Auto-sizing
+## Auto-sizing
 
 The example below uses a flexbox utility to vertically center the contents and changes `.col` to `.col-auto` so that your columns only take up as much space as needed. Put another way, the column sizes itself based on the contents.
 ```
@@ -273,9 +275,9 @@ You can then remix that once again with size-specific column classes.
 </form>
 ```
 
-### Inline forms
+## Inline forms
 
-Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifier classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#gutters), we'll have gutters in horizontal and vertical directions. The `.align-items-center` aligns the form elements to the middle, making the `.form-checkbox` align property.
+Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifier classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Gutters#gutters), we'll have gutters in horizontal and vertical directions. The `.align-items-center` aligns the form elements to the middle, making the `.form-checkbox` align property.
 ```
 <form class="row row-cols-lg-auto g-3 align-items-center">
     <div class="col-12">
@@ -313,4 +315,4 @@ Use the `.col-auto` class to create horizontal layouts. By adding [gutter modifi
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Floating_Labels#floating-labels) - [[Top]]() - [[Next page]]()
