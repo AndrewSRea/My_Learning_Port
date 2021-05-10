@@ -420,13 +420,99 @@ Two mixins are combined together, through Bootstrap's [loop](), to generate Boot
         background-color: $tooltip-bg-color;
         @include border-radius($form-feedback-tooltip-border-radius);
     }
+
+    @include form-validation-state-selector($state) {
+        ~ .#{$state}-feedback,
+        ~ .#{$state}-tooltip {
+            display: block;
+        }
+    }
+
+    .form-control {
+        @include form-validation-state-selector($state) {
+            border-color: $color;
+
+            @if $enable-validation-icons {
+                padding-right: $input-height-inner;
+                background-image: escape-svg($icon);
+                background-repeat: no-repeat;
+                background-position: right $input-height-inner-quarter center;
+                background-size: $input-height-inner-half $input-height-inner-half;
+            }
+
+            &:focus {
+                border-color: $color;
+                box-shadow: $focus-box-shadow;
+            }
+        }
+    }
+
+    // stylelint-disable-next-line selector-no-qualifying-type
+    textarea.form-control {
+        @include form-validation-state-selector($state) {
+            @if $enable-validation-icons {
+                padding-right: $input-height-inner;
+                background-position: top $input-height-inner-quarter right $input-height-inner-quarter;
+            }
+        }
+    }
+
+    .form-select {
+        @include form-validation-state-selector($state) {
+            border-color: $color;
+
+            @if $enable-validation-icons {
+                &:not([multiple]):not([size]),
+                &:not([multiple])[size="1"] {
+                    padding-right: $form-select-feedback-icon-padding-end;
+                    background-image: escape-svg($form-select-indicator), escape-svg($icon);
+                    background-position: $form-select-bg-position, $form-select-feedback-icon-position;
+                    background-size: $form-select-bg-size, $form-select-feedback-icon-size;
+                }
+            }
+
+            &:focus {
+                border-color: $color;
+                box-shadow: $focus-box-shadow;
+            }
+        }
+    }
+
+    .form-check-input {
+        @include form-validation-state-selector($state) {
+            border-color: $color;
+
+            &:checked {
+                background-color: $color;
+            }
+
+            &:focus {
+                box-shadow: $focus-box-shadow;
+            }
+
+            ~ .form-check-label {
+                color: $color;
+            }
+        }
+    }
+    .form-check-inline .form-check-input {
+        ~ .#{$state}-feedback {
+            margin-left: .5em;
+        }
+    }
+
+    .input-group .form-control,
+    .input-group .form-select {
+        @include form-validation-state-selector($state) {
+            z-index: 3;
+        }
+    }
 }
+```
 
-### Customizing
+### Map
 
-Validating states can be customized via Sass with the `$form-validation-states` map. Located in Bootstrap's `_variables.scss` file, this Sass map is looped over to generate the default `valid`/`invalid` validation states. Included is a nested map for customizing each state's color and icon. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback.
-Please note that we do not recommend customizing these values without also modifying the `form-validation-state` mixin.
-This is the Sass map from `_variables.scss`. Override this and recompile your Sass to generate different states:
+This is the validation Sass map from `_variables.scss`. Override or extend this to generate different or additional states.
 ```
 $form-validation-states: (
     "valid": (
@@ -439,9 +525,23 @@ $form-validation-states: (
     )
 );
 ```
-This is the loop from `forms/_validation.scss`. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop:
+Many of `$form-validation-states` can contain three optional parameters to override tooltips and focus styles.
+
+### Loop
+
+Used to iterate over `$form-validation-states` map values to generate Bootstrap's validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via loop.
 ```
 @each $state, $data in $form-validation-states {
-    @include form-validation-state($state, map-gt($data, color), map-get($data, icon));
+    @include form-validation-state($state, $data...);
 }
 ```
+
+### Customizing
+
+Validating states can be customized via Sass with the `$form-validation-states` map. Located in Bootstrap's `_variables.scss` file, this Sass map is looped over to generate the default `valid`/`invalid` validation states. Included is a nested map for customizing each state's color and icon. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback.
+
+Please note that **Bootstrap does not recommend customizing `form-validation-state`s values without also modifying the `form-validation-state` mixin**.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Layout#layout) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Validation#validation) - [Next module: Components]()
