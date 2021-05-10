@@ -12,15 +12,15 @@ Examples and usage guidelines for form control styles, layout options, and custo
 
 * [Checks & radios](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#checks-and-radios) - Use Bootstrap's custom radio buttons and checkboxes in forms for selecting input options.
 
-* [Range]() - Replace browser default range inputs with Bootstrap's custom version.
+* [Range](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Range#range) - Replace browser default range inputs with Bootstrap's custom version.
 
-* [Input group]() - Attach labels and buttons to your inputs for increased semantic value.
+* [Input group](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Input_Group#input-group) - Attach labels and buttons to your inputs for increased semantic value.
 
-* [Floating labels]() - Create beautifully simple form labels that float over your input fields.
+* [Floating labels](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Floating_Labels#floating-labels) - Create beautifully simple form labels that float over your input fields.
 
-* [Layout]() - Create inline, horizontal, or complex grid-based layouts with your forms.
+* [Layout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Layout#layout) - Create inline, horizontal, or complex grid-based layouts with your forms.
 
-* [Validation]() - Validate your forms with custom or native validation behaviors and styles.
+* [Validation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Validation#validation) - Validate your forms with custom or native validation behaviors and styles.
 
 <hr>
 
