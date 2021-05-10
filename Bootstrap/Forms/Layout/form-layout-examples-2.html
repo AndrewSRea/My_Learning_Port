@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Form Layout Examples 2</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+        <!-- Creating horizontal forms with grid classes `.row`, and `.col-*-*` to specify widths of labels and controls -->
+
+        <div class="container">
+            <h3 class="mb-3">Creating horizontal forms with grid classes <code>.row</code>, and <code>.col-*-*</code> to specify 
+                widths of labels and controls</h3>
+
+            <form>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="inputEmail3">
+                    </div>
+                </div>
+                 <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3">
+                    </div>
+                </div>
+                <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                First radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                            <label class="form-check-label" for="gridRadios1">
+                                Second radio
+                            </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                            <label class="form-check-label" for="gridRadios3">
+                                Third disabled radio
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row mb-3">
+                    <div class="col-sm-10 offset-sm-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck1">
+                            <label class="form-check-label" for="gridCheck1">
+                                Example checkbox
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+        </div>
+        <hr>
+
+        <!-- Horizontal form label sizing using `.col-form-label-{breakpoint}` classes -->
+
+        <div class="container">
+            <h3 class="mb-3">Horizontal form label sizing using <code>.col-form-label-{breakpoint}</code> classes</h3>
+            
+            <div class="row mb-3">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="col-form-label-sm">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="colFormLabel" placeholder="col-form-label">
+                </div>
+            </div>
+            <div class="row">
+                <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control form-control-lg" id="colFormLabelLg" placeholder="col-form-label-lg">
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Form fields with column sizing using `.col` and `.row` classes -->
+
+        <div class="container">
+            <h3 class="mb-3">Form fields with column sizing using <code>.col</code> and <code>.row</code> classes</h3>
+
+            <div class="row g-3">
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" placeholder="City" aria-label="City">
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="State" aria-label="State">
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" placeholder="Zip" aria-label="Zip">
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Auto-sizing form field columns based on their contents using the `.col-auto` class -->
+
+        <div class="container">
+            <h3 class="mb-3">Auto-sizing form field columns based on their contents using the <code>.col-auto</code> class</h3>
+
+            <form class="row gy-2 gx-3 align-items-center">
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingInput">Name</label>
+                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+                </div>
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+                    <select class="form-select" id="autoSizingSelect">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                        <label class="form-check-label" for="autoSizingCheck">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <!-- Altering the example just above using size-specific column classes -->
+
+        <div class="container">
+            <h3>Altering the example just above using size-specific column classes</h3>
+
+            <form class="row gx-3 gy-2 align-items-center">
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputName">Name</label>
+                    <input type="text" class="form-control" id="specificSizeInputName" placeholder="Jane Doe">
+                </div>
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="visually-hidden" for="specificSizeSelect">Preference</label>
+                    <select class="form-select" id="specificSizeSelect">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
+                        <label class="form-check-label" for="autoSizingCheck2">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <!-- Creating inline forms using the `.col-auto` classes on the <form> element -->
+
+        <div class="container">
+            <h3>Creating inline forms using the <code>.col-auto</code> classes on the <code>&lt;form&gt;</code> element</h3>
+
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlinFormInputGroupUsername">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                    </div>
+                </div>
+            
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
