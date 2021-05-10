@@ -116,7 +116,7 @@ Custom feedback styles apply custom colors, borders, focus styles, and backgroun
         })
 })()
 ```
-(The code examples above can be found in my accompanying [form-validation-examples.html]() file.)
+(The code examples above can be found in my accompanying [form-validation-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Validation/form-validation-examples.html) file.)
 
 ## Browser defaults
 
@@ -168,7 +168,7 @@ While these feedback styles cannot be styled with CSS, you can still customize t
     </div>
 </form>
 ```
-(And this code example can also be found in my accompanying [form-validation-examples.html]() file.)
+(And this code example can also be found in my accompanying [form-validation-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Validation/form-validation-examples.html) file.)
 
 ## Server side
 
@@ -243,7 +243,7 @@ To fix [issues with border radii](https://github.com/twbs/bootstrap/issues/25110
     </div>
 </form>
 ```
-(And again, this code example can be found in my accompanying [form-validation-examples.html]() file.)
+(And again, this code example can be found in my accompanying [form-validation-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Validation/form-validation-examples.html) file.)
 
 ## Supported elements
 
@@ -298,7 +298,7 @@ Validation styles area available for the following form controls and components:
     </div>
 </form>
 ```
-(The code example above can be found in my accompanying [form-validation-examples-2.html]() file.)
+(The code example above can be found in my accompanying [form-validation-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Validation/form-validation-examples-2.html) file.)
 
 ## Tooltips
 
@@ -358,7 +358,7 @@ If your form layout allows it, you can swap the `.{valid|invalid}-feedback` clas
     </div>
 </form>
 ```
-(And also, this code example can be found in my accompanying [form-validation-examples-2.html]() file.)
+(And also, this code example can be found in my accompanying [form-validation-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Forms/Validation/form-validation-examples-2.html) file.)
 
 ## Sass
 
