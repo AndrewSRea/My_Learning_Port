@@ -32,7 +32,7 @@ Several Bootstrap components include embedded SVGs in Bootstrap's CSS to style c
 * [Close button](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Close_Button#close-button) (used in alerts and modals)
 * [Form checkboxes and radio buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#checks-and-radios)
 * [Form switches](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#switches)
-* [Form validation icons]() <!-- link to Forms/Validation - "Server side" header -->
+* [Form validation icons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Validation#server-side)
 * [Select menus](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Select#select)
 * [Carousel controls](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Carousel#carousel)
 * [Navbar toggle buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#responsive-behaviors)
@@ -41,4 +41,4 @@ Based on [community conversation](https://github.com/twbs/bootstrap/issues/25394
 
 <hr>
 
-[[Next module: Layout]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#bootstrap-layout)
+[[Previous module: Getting started]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started#getting-started) - [[Next module: Layout]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#layout)
