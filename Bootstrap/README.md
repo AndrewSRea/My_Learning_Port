@@ -31,7 +31,7 @@ I have created a folder for each section covered in Bootstrap's instructional we
 * [Layout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#layout)
 * [Content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#content)
 * [Forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#forms)
-* [Components]() <!-- insert when Components is reconfigured -->
+* [Components](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components#components)
 * [Helpers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers)
 * [Utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities#utilities)
 * [Extensions]()
