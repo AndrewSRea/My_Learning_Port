@@ -178,4 +178,4 @@ $input-btn-border-width:          $border-width;
 
 [[Next page: Form control]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Form_Control#form-controls)
 
-[[Previous module: Content]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#content) - [[Next module: Components]]()
+[[Previous module: Content]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#content) - [[Next module: Components]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components#components)
