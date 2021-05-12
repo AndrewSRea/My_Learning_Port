@@ -27,11 +27,11 @@ As [Sass](https://sass-lang.com/) was mentioned above, if Sass is a necessary co
 I have created a folder for each section covered in Bootstrap's instructional website, listed below. To follow my instructional path, please click the link to my **Getting Started** folder.
 
 * [Getting Started](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started#getting-started)
-* [Customize]()
-* [Layout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#bootstrap-layout)
-* [Content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#bootstrap-content)
-* [Forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#bootstrap-forms)
-* [Components](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components#bootstrap-components)
+* [Customize](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize#customize)
+* [Layout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#layout)
+* [Content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#content)
+* [Forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#forms)
+* [Components]() <!-- insert when Components is reconfigured -->
 * [Helpers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers)
 * [Utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities#utilities)
 * [Extensions]()
