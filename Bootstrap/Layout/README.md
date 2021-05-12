@@ -10,4 +10,4 @@
 * [Utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Utilities#utilities-for-layout)
 * [Z-index](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Z-Index#z-index)
 
-[[Next module: Content]]()
+[[Previous module: Customize]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize#customize) - [[Next module: Content]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content#content)
