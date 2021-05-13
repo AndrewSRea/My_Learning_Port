@@ -41,8 +41,8 @@ Below is an offcanvas example that is shown by default (via `.show` on `.offcanv
 
 Use the buttons in my accompanying [offcanvas-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Offcanvas/offcanvas-examples.html) file, under the header **Offcanvas Component Example 02**, to show and hide an offcanvas element via JavaScript that toggles the `.show` class on an element with the `.offcanvas` class.
 
-* `.offcanvas` hides content (default)
-* `.offcanvas.show` shows content
+* `.offcanvas` hides content (default).
+* `.offcanvas.show` shows content.
 
 You can use a link with the `href` attribute, or a button with the `data-bs-target` attribute. In both cases, the `data-bs-toggle="offcanvas" is required.
 ```
@@ -190,4 +190,83 @@ $offcanvas-box-shadow:              $modal-content-box-shadow-xs;
 
 The offcanvas plugin utilizes a few classes and attributes to handle the heavy lifting:
 
-* `.offcanvas`
+* `.offcanvas` hides the content.
+* `.offcanvas.show` shows the content.
+* `.offcanvas-start` hides the offcanvas on the left.
+* `.offcanvas-end` hides the offcanvas on the right.
+* `.offcanvas-bottom` hides the offcanvas on the bottom.
+
+Add a dismiss button with the `data-bs-dismiss="offcanvas"` attribute, which triggers the JavaScript functionality. Be sure to use the `<button>` element with it for proper behavior across all devices.
+
+### Via data attributes
+
+Add `data-bs-toggle="offcanvas"` and a `data-bs-target` or `href` to the element to automatically assign control of one offcanvas element. The `data-bs-target` attribute accepts a CSS selector to apply the offcanvas to. Be sure to add the class `offcanvas` to the offcanvas element. If you'd like it to default open, add the additional class `show`.
+
+### Via JavaScript
+
+Enable manually with:
+```
+var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'));
+var offcanvasList = offcanvasElementList.map(function(offcanvasEl) {
+    return new bootstrap.Offcanvas(offcanvasEl);
+});
+```
+
+### Options
+
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-backdrop=""`.
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `backdrop` | Boolean | `true` | Apply a backdrop on body while offcanvas is open. |
+| `keyboard` | Boolean | `true` | Closes the offcanvas when escape key is pressed. |
+| `scroll` | Boolean | `false` | Allow body scrolling while offcanvas is open. |
+
+### Methods
+
+<hr>
+
+#### Asynchronous methods and transitions
+
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.
+
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
+
+<hr>
+
+Activates your content as an offcanvas element. Accepts an optional options `object`.
+
+You can create an offcanvas instance with the constructor. For example:
+```
+var myOffcanvas = document.getElementById('myOffcanvas');
+var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
+```
+
+| Method | Description |
+| --- | --- |
+| `toggle` | Toggles an offcanvas element to shown or hidden. **Returns to the caller before the offcanvas element has actually been shown or hidden** (i.e. before the `shown.bs.offcanvas` or `hidden.bs.offcanvas` event occurs). |
+| `show` | Shows an offcanvas element. **Returns to the caller before the offcanvas element has actually been shown** (i.e. before the `shown.bs.offcanvas` event occurs). |
+| `hide` | Hides an offcanvas element. **Returns to the caller before the offcanvas element has actually been hidden** (i.e. before the `hidden.bs.offcanvas` event occurs). |
+| `getInstance` | *Static* method which allows you to get the offcanvas instance associated with a DOM element. |
+
+### Events
+
+Bootstrap's offcanvas class exposes a few events for hooking into offcanvas functionality.
+
+| Event type | Description |
+| --- | --- |
+| `show.bs.offcanvas` | This event fires immediately when the `show` instance method is called. |
+| `shown.bs.offcanvas` | This event is fired when an offcanvas element has been made visible to the user (will wait for CSS transitions to complete). |
+| `hide.bs.offcanvas` | This event is fired immediately when the `hide` method has been called. |
+| `hidden.bs.offcanvas` | This event is fired when an offcanvas element has been hidden from the user (will wait for CSS transitions to complete). |
+
+```
+var myOffcanvas = document.getElementById('myOffcanvas');
+myOffcanvas.addEventListener('hidden.bs.offcanvas', function() {
+    // do something...
+});
+```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#navbar) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Offcanvas) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Pagination#pagination)
