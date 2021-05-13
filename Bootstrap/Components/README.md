@@ -17,7 +17,7 @@
 * [Modal](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#modal)
 * [Navs & tabs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#navs-and-tabs)
 * [Navbar](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#navbar)
-* [Offcanvas]()
+* [Offcanvas](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Pagination#pagination)
 * [Pagination](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Pagination#pagination)
 * [Popovers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Popovers#popovers)
 * [Progress](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Progress#progress-bars)
