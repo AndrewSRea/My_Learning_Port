@@ -166,3 +166,28 @@ Scrolling the `<body>` element is disabled when an offcanvas and its background 
 
 ## Accessibility
 
+Since the offcanvas panel is conceptually a modal dialog, be sure to add `aria-labelledby="..."`--referencing the offcanvas title--to `.offcanvas`. Note that you don't need to add `role="dialog"` since Bootstrap already added it via JavaScript.
+
+## Sass
+
+### Variables
+
+```
+$offcanvas-padding-y:               $modal-inner-padding;
+$offcanvas-padding-x:               $modal-inner-padding;
+$offcanvas-horizontal-width:        400px;
+$offcanvas-vertical-height:         30vh;
+$offcanvas-transition-duration:     .3s;
+$offcanvas-border-color:            $modal-content-border-color;
+$offcanvas-border-width:            $modal-content-border-width;
+$offcanvas-title-line-height:       $modal-title-line-height;
+$offcanvas-bg-color:                $modal-content-bg;
+$offcanvas-color:                   $modal-content-color;
+$offcanvas-box-shadow:              $modal-content-box-shadow-xs;
+```
+
+## Usage
+
+The offcanvas plugin utilizes a few classes and attributes to handle the heavy lifting:
+
+* `.offcanvas`
