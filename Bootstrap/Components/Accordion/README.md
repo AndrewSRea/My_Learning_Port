@@ -53,6 +53,7 @@ The accordion uses [collapse](https://github.com/AndrewSRea/My_Learning_Port/tre
     </div>
 </div>
 ```
+(See the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file.)
 
 ### Flush
 
@@ -97,6 +98,7 @@ Add `.accordion-flush` to remove the default `background-color`, some borders, a
     </div>
 </div>
 ```
+(And see this code example in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file.)
 
 ### Always open
 
@@ -141,6 +143,7 @@ Omit the `data-bs-parent` attribute on each `.accordion-collapse` to make accord
     </div>
 </div>
 ```
+(And again, see the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file.)
 
 ## Accessiblity
 
