@@ -26,4 +26,4 @@
 * [Toasts](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#toasts)
 * [Tooltips](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#tooltips)
 
-[[Previous module: Forms]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#forms) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers)
+[[Previous module: Forms]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#forms) - [[Next module: Helpers]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers)
