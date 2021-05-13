@@ -146,7 +146,7 @@ Omit the `data-bs-parent` attribute on each `.accordion-collapse` to make accord
 
 Please read the [collapse accessiblity section](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#acccessibility) for more information.
 
-## Sass$accordion-
+## Sass
 
 ### Variables
 
