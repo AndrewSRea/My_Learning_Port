@@ -146,7 +146,7 @@ Need more than one icon for your alerts? Consider using more Bootstrap Icons and
 Using the alert JavaScript plugin, it's possible to dismiss any alert inline. Here's how:
 
 * Be sure you've loaded the alert plugin, or the compiled Bootstrap JavaScript.
-* Add a [close button](#close-button) and the `.alert-dismissible` class, which adds extra padding to the right of the alert and positions the close button.
+* Add a [close button](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Close_Button#close-button) and the `.alert-dismissible` class, which adds extra padding to the right of the alert and positions the close button.
 * On the close button, add the `data-bs-dismiss="alert"` attribute, which triggers the JavaScript functionality. Be sure to use the `<button>` element with it for proper behavior across all devices.
 * To animate alerts when dismissing them, be sure to add the `.fade` and `.show` classes.
 
@@ -163,6 +163,57 @@ You can see this in action with a live demo (in my accompanying [alert-examples.
 :warning: When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, Bootstrap recommends including additional JavaScript that listens for the `closed.bs.alert` event and programmatically sets `focus()` to the most appropriate location in the page. If you're planning to move focus to a non-interactive element that normally does not receive focus, make sure to add `tabindex="-1"` to the element.
 
 <hr>
+
+## Sass
+
+### Variables
+
+```
+$alert-padding-y:               $spacer;
+$alert-padding-x:               $spacer;
+$alert-margin-bottom:           1rem;
+$alert-border-radius:           $border-radius;
+$alert-link-font-weight:        $font-weight-bold;
+$alert-border-width:            $border-width;
+$alert-bg-scale:                -80%;
+$alert-border-scale:            -70%;
+$alert-color-scale:             40%;
+$alert-dismissible-padding-r:   $alert-padding-x * 3;   // 3x covers width of x plus default padding on either side
+```
+
+### Variant mixin
+
+Used in combination with `$theme-colors` to create contextual modifier classes for Bootstrap's alerts.
+```
+@mixin aalert-variant($background, $border, $color) {
+    color: $color;
+    @include gradient-bg($background);
+    border-color: $border;
+
+    .alert-link {
+        color: shade-color($color, 20%);
+    }
+}
+```
+
+### Loop
+
+Loop that generates the modifier classes with the `alert-variant()` mixin.
+```
+// Generate contextual modifier classes for colorizing the alert.
+
+@each $state, $value in $theme-colors {
+    $alert-background: shift-color($value, $alert-bg-scale);
+    $alert-border: shift-color($value, $alert-border-scale);
+    $alert-color: shift-color($value, $alert-color-scale);
+    @if (contrast-ratio($alert-background, $alert-color) < $min-contrast-ratio) {
+        $alert-color: mix($value, color-contrast($alert-background), abs($alert-color-scale));
+    }
+    .alert-#{$state} {
+        @include alert-variant($alert-background, $alert-border, $alert-color);
+    }
+}
+```
 
 ## JavaScript behavior
 
@@ -219,3 +270,5 @@ myAlert.addEventListener('closed.bs.alert', function() {
     // document.getElementById('...').focus()
 });
 ```
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Accordion#accordion) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Alerts#alerts) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Badge#badges)
