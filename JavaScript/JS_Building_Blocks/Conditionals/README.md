@@ -110,9 +110,9 @@ function setWeather() {
 }
 ```
 1. Here we've got an HTML [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element allowing us to make different weather choices, and a simple paragraph.
-2. In the JavaScript, we are storing a reference to both the `<select>` and `<p>` eleemnts, and adding an event listener to the `<select>` element so that when its value is changed, the `setWeather()` function is run.
+2. In the JavaScript, we are storing a reference to both the `<select>` and `<p>` elements, and adding an event listener to the `<select>` element so that when its value is changed, the `setWeather()` function is run.
 3. When this function is run, we first set a variable called `choice` to the current value selected in the `<select>` element. We then use a conditional statement to show different text inside the paragraph depending on what the vallue of `choice` is. Notice how all the conditions are tested in `else if() { ... }` blocks, except for the first one, which is tested in an `if() { ... }` block.
-4. The very last choice, inside the `else { ... }` block, is basically a "last reesort" option --the code inside it will be run if none of the conditions are `true`. In this case, it serves to empty the text out of the paragraph if nothing is selected. For example, if a user decides to re-select the "--Make a choice--" placeholder option shown at the beginning.
+4. The very last choice, inside the `else { ... }` block, is basically a "last resort" option --the code inside it will be run if none of the conditions are `true`. In this case, it serves to empty the text out of the paragraph if nothing is selected. For example, if a user decides to re-select the "--Make a choice--" placeholder option shown at the beginning.
 
 <hr>
 
@@ -134,7 +134,7 @@ Comparison operators are used to test the conditions inside our conditional stat
 
 <hr>
 
-We wanted to make a special mention of testing Boolean (`true`/`false`) values, and a common pattern you'll come across again and again. Any value that is not `false`, `undefined`, `null`, `0`, `NaN`, or an empty string (`''`) actually returns `true` when tested as a conditional statement, therefore you can use a variable name on its own to test whetheer it is `true`, or even that it exists (that is, it is not undefined). So, for example:
+We wanted to make a special mention of testing Boolean (`true`/`false`) values, and a common pattern you'll come across again and again. Any value that is not `false`, `undefined`, `null`, `0`, `NaN`, or an empty string (`''`) actually returns `true` when tested as a conditional statement, therefore you can use a variable name on its own to test whether it is `true`, or even that it exists (that is, it is not undefined). So, for example:
 ```
 let cheese = 'Cheddar';
 
@@ -158,7 +158,7 @@ if (shoppingDone) {   // don't need to explicitly specify `=== true`
 
 ### Nesting if...else
 
-It is perfectly OK to put one `if...else` statement insidee another one--to nest them. For example, we could update our waether forecast application to show a further set of choices depending on what the temperature is:
+It is perfectly OK to put one `if...else` statement inside another one--to nest them. For example, we could update our waether forecast application to show a further set of choices depending on what the temperature is:
 ```
 if (choice === 'sunny') {
     if (temperature < 86) {
@@ -226,7 +226,7 @@ if (x === 5 || x === 7 || x === 10 || x === 20) {
 
 ## switch statements
 
-`if...else` statements do the job of enabling conditional code well, but they are not without their downsides. They are mainly good for cases where you've got a couple of choices, and each one requires a reasonable amount of code to be run, and/or the conditions are complex (for example, multiple logical operators). For cases where you just want to set a variable to a certain choice of value or print out a particular statement depending on a condition, the syntax can be a bit cumbersome, especially if you've got a large numbeer of choices.
+`if...else` statements do the job of enabling conditional code well, but they are not without their downsides. They are mainly good for cases where you've got a couple of choices, and each one requires a reasonable amount of code to be run, and/or the conditions are complex (for example, multiple logical operators). For cases where you just want to set a variable to a certain choice of value or print out a particular statement depending on a condition, the syntax can be a bit cumbersome, especially if you've got a large number of choices.
 
 In such a case, [`switch` statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) are your friend--they take a single expression/value as an input, and then look through a number of choices until they find one that matches that value, executing the corresponding code that goes along with it. Here's some more pseudocode, to give you an idea:
 ```
@@ -264,7 +264,7 @@ Here we've got:
 
 ## A switch example
 
-Let's have a look at a real example--we'll rewrite our weather foreccast application to use a switch statement instead:
+Let's have a look at a real example--we'll rewrite our weather forecast application to use a switch statement instead:
 ```
 <label for="weather">Select the weather type today: </label>
 <select id="weather">
