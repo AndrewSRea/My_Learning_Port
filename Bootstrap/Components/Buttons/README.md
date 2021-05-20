@@ -17,6 +17,7 @@ Bootstrap includes several predefined button styles, each serving its own semant
 
 <button type="button" class="btn btn-link">Link</button>
 ```
+(See the code example above in my accompanying [button-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples.html) file.)
 
 <hr>
 
@@ -41,6 +42,7 @@ When using button classes on `<a>` elements that are used to trigger in-page fun
 <input class="btn btn-primary" type="submit" value="Submit">
 <input class="btn btn-primary" type="reset" value="Reset">
 ```
+(This code example can also be found in my accompanying [button-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples.html) file.)
 
 ## Outline buttons
 
@@ -55,6 +57,7 @@ In need of a button, but not the hefty background colors they bring? Replace the
 <button type="button" class="btn btn-outline-light">Light</button>
 <button type="button" class="btn btn-outline-dark">Dark</button>
 ```
+(And this code example can also be found in my accompanying [button-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples.html) file.)
 
 <hr>
 
@@ -73,6 +76,7 @@ Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes
 <button type="button" class="btn btn-primary btn-sm">Small button</button>
 <button type="button" class="btn btn-secondary btn-sm">Small button</button>
 ```
+(The two code examples above can also be found in my accompanying [button-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples.html) file.)
 
 ## Disabled state
 
@@ -81,6 +85,8 @@ Make buttons look inactive by adding the `disabled` Boolean attribute to any `<b
 <button type="button" class="btn btn-lg btn-primary" disabled>Primary button</button>
 <button type="button" class="btn btn-secondary btn-lg" disabled>Button</button>
 ```
+(See the code example above in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
+
 Disabled buttons using the `<a>` element behave a bit different:
 
 * `<a>`s don't support the `disabled` attribute, so you must add the `.disabled` class to make it visually appear disabled.
@@ -91,6 +97,7 @@ Disabled buttons using the `<a>` element behave a bit different:
 <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Primary link</a>
 <a href="#" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Link</a>
 ```
+(And this code example can be found in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
 
 <hr>
 
@@ -109,6 +116,8 @@ Create responsive stacks of full-width, "block buttons" like those in Bootstrap 
     <button class="btn btn-primary" type="button">Button</button>
 </div>
 ```
+(Again, this code example can be found in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
+
 Here we create a responsive variation, starting with vertically stacked buttons until the `md` breakpoint, where `.d-md-block` replaces the `.d-grid` class, thus nullifying the `gap-2` utility. Resize your browser to see them change.
 ```
 <div class="d-grid gap-2 d-md-block">
@@ -116,6 +125,8 @@ Here we create a responsive variation, starting with vertically stacked buttons 
     <button class="btn btn-primary" type="button">Button</button>
 </div>
 ```
+(And this code example can be found in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
+
 You can adjust the width of your block buttons with grid column width classes. For example, for a half-width "block button", use `.col-6`. Center it horizontally with `.mx-auto`, too.
 ```
 <div class="d-grid gap-2 col-6 mx-auto">
@@ -123,6 +134,8 @@ You can adjust the width of your block buttons with grid column width classes. F
     <button class="btn btn-primary" type="button">Button</button>
 </div>
 ```
+(Once again, this code example can be found in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
+
 Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we've taken our previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they're no longer stacked.
 ```
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -130,6 +143,7 @@ Additional utilities can be used to adjust the alignment of buttons when horizon
     <button class="btn btn-primary" type="button">Button</button>
 </div>
 ```
+(And again, this code example can be found in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
 
 ## Button plugin
 
@@ -154,6 +168,7 @@ Add `data-bs-toggle="button"` to toggle a button's `active` state. If you're pre
 <a href="#" class="btn btn-primary active" role="button" data-bs-toggle="button" aria-pressed="true">Active toggle link</a>
 <a href="#" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true" role="button" data-bs-toggle="button">Disabled toggle link</a>
 ```
+(And these two code examples can be found in my accompanying [button-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Buttons/button-examples-2.html) file.)
 
 ### Methods
 
@@ -175,4 +190,176 @@ buttons.forEach(function(button) {
     var button = new bootstrap.Button(button);
     button.toggle();
 });
+```
+
+## Sass
+
+### Variables
+
+```
+$btn-padding-y:                    $input-btn-padding-y;
+$btn-padding-x:                    $input-btn-padding-x;
+$btn-font-family:                  $input-btn-font-family;
+$btn-font-size:                    $input-btn-font-size;
+$btn-line-height:                  $input-btn-line-height;
+$btn-white-space:                  null;   // Set to `nowrap` to prevent text wrapping
+
+$btn-padding-y-sm:                 $input-btn-padding-y-sm;
+$btn-padding-x-sm:                 $input-btn-padding-x-sm;
+$btn-font-size-sm:                 $input-btn-font-size-sm;
+
+$btn-padding-y-lg:                 $input-btn-padding-y-lg;
+$btn-padding-x-lg:                 $input-btn-padding-x-lg;
+$btn-font-size-lg:                 $input-btn-font-size-lg;
+
+$btn-border-width:                 $input-btn-border-width;
+
+$btn-font-weight:                  $font-weight-normal;
+$btn-box-shadow:                   inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
+$btn-focus-width:                  $input-btn-focus-width;
+$btn-focus-box-shadow:             $input-btn-focus-box-shadow;
+$btn-disabled-opacity:             .65;
+$btn-active-box-shadow:            inset 0 3px 5px rgba($black, .125);
+
+$btn-link-color:                   $link-color;
+$btn-link-hover-color:             $link-hover-color;
+$btn-disabled-color:               $gray-600;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:                $border-radius;
+$btn-border-radius-sm:             $border-radius-sm;
+$btn-border-radius-lg:             $border-radius-lg;
+
+$btn-transition:                   color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+$btn-hover-bg-shade-amount:        15%;
+$btn-hover-bg-tint-amount:         15%;
+$btn-hover-border-shade-amount:    20%;
+$btn-hover-border-tint-amount:     10%;
+$btn-active-bg-shade-amount:       20%;
+$btn-active-bg-tint-amount:        20%;
+$btn-active-border-shade-amount:   25%;
+$btn-active-border-tint-amount:    10%;
+```
+
+### Mixins
+
+There are three mixins for buttons: button and button outline variant mixins (both based on `$theme-colors`), plus a button size mixin.
+```
+@mixin button-variant(
+    $background,
+    $border,
+    $color: color-contrast($background),
+    $hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)),
+    $hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)),
+    $hover-color: color-contrast($hover-background),
+    $active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)),
+    $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)),
+    $active-color: color-contrast($active-background),
+    $disabled-background: $background,
+    $disabled-border: $border,
+    $disabled-color: color-contrast($disabled-background)
+) {
+    color: $color;
+    @include gradient-bg($background);
+    border-color: $border;
+    @include box-shadow($btn-box-shadow);
+
+    &:hover {
+        color: $hover-color;
+        @include gradient-bg($hover-background);
+        border-color: $hover-border;
+    }
+
+    .btn-check:focus + &,
+    &:focus {
+        color: $hover-color;
+        @include gradient-bg($hover-background);
+        border-color: $hover-border;
+        @if $enable-shadows {
+            @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5));
+        } @else {
+            // Avoid using mixin so we can pass custom focus shadow properly
+            box-shadow: 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5);
+        }
+    }
+
+    .btn-check:checked + &,
+    .btn-check:active + &,
+    &:active,
+    &.active,
+    .show > &.dropdown-toggle {
+        color: $active-color;
+        background-color: $active-background;
+        // Remove CSS gradients if they're enabled
+        background-image: if($enable-gradients, none, null);
+        border-color: $active-border;
+
+        &:focus {
+            @if $enable-shadows {
+                @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5));
+            } @else {
+                // Avoid using mixin so we can pass custom focus shadow properly
+                box-shadow: 0 0 0 $btn-focus-width rgb a(mix($color, $border, 15%), .5);
+            }
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $disabled-color;
+        background-color: $disabled-background;
+        // Remove CSS gradients if they're enabled
+        background-image: if($enable-gradients, none, null);
+        border-color: $disabled-border;
+    }
+}
+```
+```
+@mixin button-outline-variant(
+    $color,
+    $color-hover: color-contrast($color),
+    $active-background: $color,
+    $active-border: $color,
+    $active-color: color-contrast($active-background)
+) {
+    color: $color;
+    border-color: $color;
+
+    &:hover {
+        color: $color-hover;
+        background-color: $active-background;
+        border-color: $active-border;
+    }
+
+    .btn-check:focus + &,
+    &:focus {
+        box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+    }
+
+    .btn-check:checked + &,
+    .btn-check:active + &,
+    &:active,
+    &.active,
+    &.dropdown-toggle.show {
+        color: $active-color;
+        background-color: $active-background;
+        border-color: $active-border;
+
+        &:focus {
+            @if $enable-shadows {
+                @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, .5));
+            } @else {
+                // Avoid using mixin so we can pass custom focus shadow properly
+                box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+            }
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        color: $color;
+        background-color: transparent;
+    }
+}
 ```
