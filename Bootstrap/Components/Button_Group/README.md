@@ -12,17 +12,19 @@ Wrap a series of buttons with `.btn` in `.btn-group`.
     <button type="button" class="btn btn-primary">Right</button>
 </div>
 ```
+(See the code example above in my accompanying [button-group-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples.html) file.)
 
 <hr>
 
 ### :warning: Ensure correct `role` and provide a label
 
 In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate `role` attribute needs to be provided. For button groups, this would be `role="group"`, while toolbars should have a `role="toolbar"`.
+
 In addition, groups and toolbars should be given an explicit label, as most assistive technologies will otherwise not announce them, despite the presence of the correct role attribute. In the examples provided here, Bootstrap uses `aria-label`, but alternatives such as `aria-labelledby` can also be used.
 
 <hr>
 
-These classes can also be added to groups of links, as an alternative to the [`.nav` navigation components](#navs-and-tabs).
+These classes can also be added to groups of links, as an alternative to the [`.nav` navigation components](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#navs-and-tabs).
 ```
 <div class="btn-group">
     <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
@@ -30,6 +32,7 @@ These classes can also be added to groups of links, as an alternative to the [`.
     <a href="#" class="btn btn-primary">Link</a>
 </div>
 ```
+(And this code example can also be found in my accompanying [button-group-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples.html) file.)
 
 ## Mixed styles
 
@@ -40,6 +43,7 @@ These classes can also be added to groups of links, as an alternative to the [`.
     <button type="button" class="btn btn-success">Right</button>
 </div>
 ```
+(Again, this code example can also be found in my accompanying [button-group-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples.html) file.)
 
 ## Outlined styles
 
@@ -50,10 +54,11 @@ These classes can also be added to groups of links, as an alternative to the [`.
     <button type="button" class="btn btn-outline-primary">Right</button>
 </div>
 ```
+(And again, this code example can also be found in my accompanying [button-group-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples.html) file.)
 
 ## Checkbox and radio button groups
 
-Combine button-like checkbox and radio [toggle buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms#checks-and-radios) into a seamless looking button group.
+Combine button-like checkbox and radio [toggle buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Forms/Checks_and_Radios#checks-and-radios) into a seamless looking button group.
 ```
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
     <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
@@ -78,6 +83,7 @@ Combine button-like checkbox and radio [toggle buttons](https://github.com/Andre
     <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
 </div>
 ```
+(And the two code examples above can be found in my accompanying [button-group-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples.html) file.)
 
 ## Button toolbar
 
@@ -100,6 +106,8 @@ Combine sets of button groups into button toolbars for more complex components. 
     </div>
 </div>
 ```
+(See the code example above in my accompanying [button-group-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples-2.html) file.)
+
 Feel free to mix input groups with button groups in your toolbars. Similar to the example above, you'll likely need some utilities to space things properly.
 ```
 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
@@ -127,6 +135,7 @@ Feel free to mix input groups with button groups in your toolbars. Similar to th
     </div>
 </div>
 ```
+(See this code example in my accompanying [button-group-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples-2.html) file.)
 
 ## Sizing
 
@@ -136,6 +145,7 @@ Instead of applying button sizing classes to every button in a group, just add `
 <div class="btn-group" role="group" aria-label="...">...</div>
 <div class="btn-group btn-group-sm" role="group" aria-label="...">...</div>
 ```
+(And this code example can also be found in my accompanying [button-group-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples-2.html) file.)
 
 ## Nesting
 
@@ -156,6 +166,7 @@ Place a `.btn-group` within another `.btn-group` when you want dropdown menus mi
     </div>
 </div>
 ```
+(And again, this code example can be found in my accompanying [button-group-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples-2.html) file.)
 
 ## Vertical variation
 
@@ -165,3 +176,8 @@ Make a set of buttons appear vertically stacked rather than horizontally. **Spli
     ...
 </div>
 ```
+(And an example of this code can be found in my accompanying [button-group-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Button_Group/button-group-examples-2.html) file.)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Buttons#buttons) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Button_Group#button-group) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Card#cards)
