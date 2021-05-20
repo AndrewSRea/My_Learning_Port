@@ -271,4 +271,6 @@ myAlert.addEventListener('closed.bs.alert', function() {
 });
 ```
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Accordion#accordion) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Alerts#alerts) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Badge#badges)
