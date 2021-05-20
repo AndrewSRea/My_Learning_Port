@@ -374,7 +374,7 @@ There are three mixins for buttons: button and button outline variant mixins (bo
 
 ### Loops
 
-Button variants (for regular and outline buttons) use their respective mixins with our `$theme-colors` map to generate the modifier classes in `scss/_buttons.scss`.
+Button variants (for regular and outline buttons) use their respective mixins with Bootstrap's `$theme-colors` map to generate the modifier classes in `scss/_buttons.scss`.
 ```
 @each $color, $value in $theme-colors {
     .btn-#{$color} {
