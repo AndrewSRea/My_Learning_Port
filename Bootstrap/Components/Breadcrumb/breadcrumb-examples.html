@@ -20,7 +20,9 @@
         <!-- Using an ordered or unordered list with linked list items to create a minimally styled breadcrumb -->
 
         <div class="container">
-            <h3 class="mb-3">Breadcrumb Component Example 01</h3>
+            <h3 class="mb-2">Breadcrumb Component Example 01</h3>
+
+            <p class="fs-5 mb-3">Using an ordered or unordered list with linked list items to create a minimally styled breadcrumb.</p>
             
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -49,7 +51,11 @@
              They can be changed by modifying a local CSS custom property, `--bs-breadcrumb-divider`. -->
 
         <div class="container">
-            <h3 class="mb-3">Breadcrumb Component Example 02</h3>
+            <h3 class="mb-2">Breadcrumb Component Example 02</h3>
+
+            <p class="fs-5 mb-3">Dividers (<code>/</code>) are automatically added in CSS through the <code>::before</code> 
+                pseudo-element and the <code>content</code> property. They can be changed by modifying a local CSS custom property, 
+                <code>--bs-breadcrumb-divider</code>.</p>
             
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -65,6 +71,8 @@
         <div class="container">
             <h3 class="mb-3">Breadcrumb Component Example 03</h3>
 
+            <p class="fs-5 mb-3">Using an embedded SVG icon as the divider.</p>
+
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -78,6 +86,9 @@
 
         <div class="container">
             <h3 class="mb-3">Breadcrumb Component Example 04</h3>
+
+            <p class="fs-5 mb-3">Removing the divider setting using an empty string as the value in the Sass variable 
+                <code>--bs-breadcrumb-divider</code>.</p>
 
             <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
