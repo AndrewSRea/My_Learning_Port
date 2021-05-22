@@ -4,13 +4,16 @@ Toggle contextual overlays for displaying lists of links and more with the Boots
 
 ## Overview
 
-Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They're made interactive with the included Bootstrap dropdown JavaScript plugin. They're toggled by clicking, not by hovering; this is [an intentional dessign decision](https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/).
+Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They're made interactive with the included Bootstrap dropdown JavaScript plugin. They're toggled by clicking, not by hovering; this is [an intentional design decision](https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/).
+
 Dropdowns are built on a third party library, [Popper](https://popper.js.org/), which provides dynamic positioning and viewport detection. Be sure to include [popper.min.js](https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js) before Bootstrap's JavaScript or use `bootstrap.bundle.min.js` / `bootstrap.bundle.js` which contains Popper. Popper isn't used to position dropdowns in navbars though as dynamic positioning isn't required.
 
 ## Accessibility
 
 The [WAI ARIA](https://www.w3.org/TR/wai-aria/) standard defines an actual [`role-"menu"` widget](https://www.w3.org/TR/wai-aria/#menu), but this is specific to application-like menus which trigger actions or functions. ARIA menus can only contain menu items, checkbox menu items, radio button menu items, radio button groups, and sub-menus.
+
 Bootstrap's dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, Bootstrap does not expect (nor automatically add) any of the `role` and `aria-` attributes required for true ARIA menus. Authors will have to include these more specific attributes themselves.
+
 However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual `.dropdown-item` elements using the cursor keys and close the menu with the <kbd>ESC</kbd> key.
 
 ## Examples
@@ -32,6 +35,8 @@ Any single `.btn` can be turned into a dropdown toggle with some markup changes.
     </ul>
 </div>
 ```
+(See the code example above in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
+
 And with `<a>` elements:
 ```
 <div class="dropdown">
@@ -46,6 +51,8 @@ And with `<a>` elements:
     </ul>
 </div>
 ```
+(And this code example can also be found in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
+
 The best part is you can do this with any button variant, too:
 ```
 <!-- Example single danger button -->
@@ -62,10 +69,12 @@ The best part is you can do this with any button variant, too:
     </ul>
 </div>
 ```
+(This code example can also be found in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
 
 ### Split button
 
 Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of `.dropdown-toggle-split` for proper spacing around the dropdown caret.
+
 Bootstrap uses this extra class to reduce the horizontal `padding` on either side of the caret by 25% and remove the `margin-left` that's added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button.
 ```
 <!-- Example split danger button -->
@@ -83,6 +92,7 @@ Bootstrap uses this extra class to reduce the horizontal `padding` on either sid
     </ul>
 </div>
 ```
+(And again, this code example can be found in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
 
 ## Sizing
 
@@ -130,6 +140,7 @@ Button dropdowns work with buttons of all sizes, including default and split dro
     </ul>
 </div>
 ```
+(These two code examples can be found in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
 
 ## Dark dropdowns
 
@@ -148,6 +159,8 @@ Opt into darker dropdowns to match a dark navbar or custom style by adding `.dro
     </ul>
 </div>
 ```
+(And again, this code example can be found in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
+
 And putting it to use in a navbar:
 ```
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -173,6 +186,7 @@ And putting it to use in a navbar:
     </div>
 </nav>
 ```
+(And this code example can be found in my accompanying [dropdowns-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples.html) file.)
 
 ## Directions
 
@@ -211,6 +225,7 @@ Trigger dropdown menus above elements by adding `.dropup` to the parent element.
     </ul>
 </div>
 ```
+(See the code example above in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
 
 ### Dropright
 
@@ -239,6 +254,7 @@ Trigger dropdown menus at the right of the elements by adding `.dropend` to the 
     </ul>
 </div>
 ```
+(And this code example can also be found in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
 
 ### Dropleft
 
@@ -269,6 +285,7 @@ Trigger dropdown menus at the left of the elements by adding `.dropstart` to the
     </button>
 </div>
 ```
+(And again, this code example can be found in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
 
 ## Menu items
 
@@ -285,6 +302,8 @@ Historically, dropdown menu contents *had* to be links, but that's no longer the
     </ul>
 </div>
 ```
+(Once again, this code example can be found in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
+
 You can also create non-interactive dropdown items with `.dropdown-item-text`. Feel free to style further with custom CSS or text utilities.
 ```
 <ul class="dropdown-menu">
@@ -294,6 +313,7 @@ You can also create non-interactive dropdown items with `.dropdown-item-text`. F
     <li><a class="dropdown-item" href="#">Something else here</a></li>
 </ul>
 ```
+(And once more, this code example can be found in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
 
 ### Active
 
@@ -305,6 +325,7 @@ Add `.active` to items in the dropdown to **style them as active**. To convey th
     <li><a class="dropdown-item" href="#">Another link</a></li>
 </ul>
 ```
+(Again, this code example can be found in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
 
 ### Disabled
 
@@ -316,10 +337,12 @@ Add `.disabled` to items in the dropdown to **styles them as disabled**.
     <li><a class="dropdown-item" href="#">Another link</a></li>
 </ul>
 ```
+(And one more time, this code example can be found in my accompanying [dropdowns-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-2.html) file.)
 
 ## Menu alignment
 
 By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. You can change this with the directional `.drop*` classes, but you can also control them with additional modifier classes.
+
 Add `.dropdown-menu-end` to a `.dropdown-menu` to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning `.dropdown-menu-end` will appear on the left side.
 
 <hr>
@@ -340,10 +363,12 @@ Add `.dropdown-menu-end` to a `.dropdown-menu` to right align the dropdown menu.
     </ul>
 </div>
 ```
+(See the code example above in my accompanying [dropdowns-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-3.html) file.)
 
 ### Responsive alignment
 
 If you want to use responsive alignment, disable dynamic positioning by adding the `data-bs-display="static"` attribute and use the responsive variation classes.
+
 To align **right** the dropdown menu with the given breakpoint or larger, add `.dropdown-menu-{sm|-md|-lg|-xl|-xxl}-end`.
 ```
 <div class="btn-group">
@@ -357,6 +382,8 @@ To align **right** the dropdown menu with the given breakpoint or larger, add `.
     </ul>
 </div>
 ```
+(Again, this code example can be found in my accompanying [dropdowns-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-3.html) file.)
+
 To align **left** the dropdown menu with the given breakpoint or larger, add `.dropdown-menu-end` and `.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-start`.
 ```
 <div class="btn-group">
@@ -370,6 +397,8 @@ To align **left** the dropdown menu with the given breakpoint or larger, add `.d
     </ul>
 </div>
 ```
+(And again, this code example can be found in my accompanying [dropdowns-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-3.html) file.)
+
 Note that you don't need to add a `data-bs-display="static"` attribute to dropdown buttons in navbars, since Popper isn't used in navbars.
 
 ### Alignment options
@@ -453,6 +482,7 @@ Taking most of the options shown above, here's a small kitchen sink demo of vari
     </ul>
 </div>
 ```
+(And all of the code examples above can be found in my accompanying [dropdowns-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-3.html) file.)
 
 ## Menu content
 
@@ -466,6 +496,7 @@ Add a header to label sections of actions in any dropdown menu.
     <li><a class="dropdown-item" href="#">Another action</a></li>
 </ul>
 ```
+(See the code example above in my accompanying [dropdowns-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-4.html) file.)
 
 ### Dividers
 
@@ -479,10 +510,11 @@ Separate groups of related menu items with a divider.
     <li><a class="dropdown-item" href="#">Separated link</a></li>
 </ul>
 ```
+(And this code example can be found in my accompanying [dropdowns-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-4.html) file.)
 
 ### Text
 
-Place any freeform text within a dropdown menu with text and use [spacing utilities](). <!-- link to Utilities folder / Spacing --> Note that you'll likely need additional sizing styles to constrain the menu width.
+Place any freeform text within a dropdown menu with text and use [spacing utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing). Note that you'll likely need additional sizing styles to constrain the menu width.
 ```
 <div class="dropdown-menu p-4 text-muted" style="max-width: 200px;">
     <p>
@@ -493,10 +525,11 @@ Place any freeform text within a dropdown menu with text and use [spacing utilit
     </p>
 </div>
 ```
+(And again, this code example can be found in my accompanying [dropdowns-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-4.html) file.)
 
 ### Forms
 
-Put a form within a dropdown menu, or make it into a dropdown menu, and use [margin or padding utilities]() <!-- link to Utilities folder / Spacing / Margin and padding --> to give it the negative space you require.
+Put a form within a dropdown menu, or make it into a dropdown menu, and use [margin or padding utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#margin-and-padding) to give it the negative space you require.
 ```
 <div class="dropdown-menu">
     <form class="px-4 py-3">
@@ -544,6 +577,7 @@ Put a form within a dropdown menu, or make it into a dropdown menu, and use [mar
     <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
 ```
+(These two code examples above can be found in my accompanying [dropdowns-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-4.html) file.)
 
 ## Dropdown options
 
@@ -575,6 +609,65 @@ Use `data-bs-offset` or `data-bs-reference` to change the location of the dropdo
     </div>
 </div>
 ```
+(See the code example above in my accompanying [dropdowns-examples-5.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-5.html) file.)
+
+### Auto close behavior
+
+By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the `autoClose` option to change this behavior of the dropdown.
+```
+<div class="btn-group">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+        Default dropdown
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+    </ul>
+</div>
+
+<div class="btn-group">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+        Clickable outside
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableOutside">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+    </ul>
+</div>
+
+<div class="btn-group">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        Clickable inside
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+    </ul>
+</div>
+
+<div class="btn-group">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+        Manual close
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li>
+    </ul>
+</div>
+```
+(And this code example can be found in my accompanying [dropdowns-examples-5.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Dropdowns/dropdowns-examples-5.html) file.)
+
+## Sass
+
+### Variables
+
+Variables for all dropdowns:
+```
+$dropdown-
 
 ## Usage
 
