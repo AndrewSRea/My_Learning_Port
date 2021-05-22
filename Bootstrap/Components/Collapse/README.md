@@ -8,13 +8,13 @@ The collapse JavaScript plugin is used to show and hide content. Buttons or anch
 
 <hr>
 
-:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessiblity documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessiblity documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
 ## Example
 
-Click the buttons in my example in [collapse-examples.html]() to show and hide another element via class changes:
+Click the buttons in my example in [collapse-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Collapse/collapse-examples.html) to show and hide another element via class changes: <!-- replace URL with link to GitHub Page -->
 
 * `.collapse` hides content.
 * `.collapsing` is applied during transitions.
@@ -36,6 +36,7 @@ Generally, Boostrap recommends using a button with the `data-bs-target` attribut
     </div>
 </div>
 ```
+(See the code example above in my accompanying [collapse-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Collapse/collapse-examples.html) file.)
 
 ## Multiple targets
 
@@ -63,12 +64,40 @@ A `<button>` or `<a>` can show and hide multiple elements by referencing them wi
     </div>
 </div>
 ```
+(And this code example can be found in my accompanying [collapse-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Collapse/collapse-examples.html) file.)
 
 ## Acccessibility
 
-Be sure to add `aria-expanded` to the control element. This attribute explicitly conveys the current state of the collapsible element tied to the control to screen readers and similar assistive technologies. If the collapsible element is closed by default, the attribute on the control element should have a value of `aria-expanded="false"`. If you've set the collapsible element to be open by default using the `show` class, set `aria-expanded="true"` on the control instead. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsible element). If the control element's HTML element is not a button (e.g., an `<a>` or `<div>`), the attribute `role="button"` should be added to the element. 
+Be sure to add `aria-expanded` to the control element. This attribute explicitly conveys the current state of the collapsible element tied to the control to screen readers and similar assistive technologies. If the collapsible element is closed by default, the attribute on the control element should have a value of `aria-expanded="false"`. If you've set the collapsible element to be open by default using the `show` class, set `aria-expanded="true"` on the control instead. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsible element). If the control element's HTML element is not a button (e.g., an `<a>` or `<div>`), the attribute `role="button"` should be added to the element.
+
 If your control element is targeting a single collapsible element - i.e. the `data-bs-target` attribute is pointing to an `id` selector - you should add the `aria-controls` attribute to the control element, containing the `id` of the collapsible element. Modern screen readers and similar assistive technologies make use of this attribute to provide users with additional shortcuts to navigate directly to the collapsible element itself.
+
 Note that Bootstrap's current implementation does not cover the various *optional* keyboard interactions described in the [WAI-ARIA Authoring Practices 1.1 accordion pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#accordion) - you will need to include these yourself with custom JavaScript.
+
+## Sass
+
+### Variables
+
+```
+$transition-collapse:     height .35s ease;
+```
+
+### Classes
+
+Collapse transition classes can be found in `scss/_transitions.scss` as these are shared across multiple components (collapse and accordion).
+```
+.collapse {
+    &:not(.show) {
+        display: none;
+    }
+}
+
+.collapsing {
+    height: 0;
+    overflow: hidden;
+    @include transition($transition-collapse);
+}
+```
 
 ## Usage
 
@@ -83,6 +112,7 @@ These classes can be found in `_transitions.scss`.
 ### Via data attributes
 
 Just add `data-bs-toggle="collapse"` and a `data-bs-target` to the element to automatically assign control of one or more collapsible elements. The `data-bs-target` attribute accepts a CSS selector to apply the collapse to. Be sure to add the class `collapse` to the collapsible element. If you'd like it to default open, add the additional class `show`.
+
 To add accordion-like group management to a collapsible area, add the data attribute `data-bs-parent="#selector"`. Refer to the demo to see this in action.
 
 ### Via JavaScript
@@ -111,11 +141,12 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 #### :warning: Asynchronous methods and transitions
 
 All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.
-[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
 
 <hr>
 
 Activates your content as a collapsible element. Accepts an optional options `object`.
+
 You can create a collapse instance with the constructor. For example:
 ```
 var myCollapse = document.getElementById('myCollapse');
@@ -149,3 +180,7 @@ myCollapsible.addEventListener('hidden.bs.collapse', function() {
     // do something...
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Close_Button#close-button) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#dropdowns)
