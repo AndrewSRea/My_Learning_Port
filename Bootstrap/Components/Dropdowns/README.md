@@ -667,7 +667,125 @@ By default, the dropdown menu is closed when clicking inside or outside the drop
 
 Variables for all dropdowns:
 ```
-$dropdown-
+$dropdown-min-width:             10rem;
+$dropdown-padding-x:             0;
+$dropdown-padding-y:             .5rem;
+$dropdown-spacer:                .125rem;
+$dropdown-font-size:             $font-size-base;
+$dropdown-color:                 $body-color;
+$dropdown-bg:                    $white;
+$dropdown-border-color:          rgba($black, .15);
+$dropdown-border-radius:         $border-radius;
+$dropdown-border-width:          $border-width;
+$dropdown-inner-border-radius:   subtract($dropdown-border-radius, $dropdown-border-width);
+$dropdown-divider-bg:            $dropdown-border-color;
+$dropdown-divider-margin-y:      $spacer / 2;
+$dropdown-box-shadow:            $box-shadow;
+
+$dropdown-link-color:            $gray-900;
+$dropdown-link-hover-color:      shade-color($gray-900, 10%);
+$dropdown-link-hover-bg:         $gray-200;
+
+$dropdown-link-active-color:     $component-active-color;
+$dropdown-link-active-bg:        $component-active-bg;
+
+$dropdown-link-disabled-color:   $gray-500;
+
+$dropdown-item-padding-y:        $spacer / 4;
+$dropdown-item-padding-x:        $spacer;
+
+$dropdown-header-color:          $gray-600;
+$dropdown-header-padding:        $dropdown-padding-y $dropdown-item-padding-x;
+```
+Variables for the [dark dropdown](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#dark-dropdowns):
+```
+$dropdown-dark-color:                 $gray-300;
+$dropdown-dark-bg:                    $gray-500;
+$dropdown-dark-border-color:          $dropdown-border-color;
+$dropdown-dark-divider-bg:            $dropdown-divider-bg;
+$dropdown-dark-box-shadow:            null;
+$dropdown-dark-link-color:            $dropdown-dark-color;
+$dropdown-dark-link-hover-color:      $white;
+$dropdown-dark-link-hover-bg:         rgba($white, .15);
+$dropdown-dark-link-active-color:     $dropdown-link-active-color;
+$dropdown-dark-active-bg:             $dropdown-link-active-bg;
+$dropdown-dark-link-disabled-color:   $gray-500;
+$dropdown-dark-header-color:          $gray-500;
+```
+Variables for the CSS-based carets that indicate a dropdown's interactivity:
+```
+$caret-width:              .3em;
+$caret-vertical-align:     $caret-width * .85;
+$caret-spacing:            $caret-width * .85;
+```
+
+### Mixins
+
+Mixins are used to generate the CSS-based carets and can be found in `scss/mixins/_caret.scss`.
+```
+@mixin caret-down {
+    border-top: $caret-width solid;
+    border-right: $caret-width solid transparent;
+    border-bottom: 0;
+    border-left: $caret-width solid transparent;
+}
+
+@mixin caret-up {
+    border-top: 0;
+    border-right: $caret-width solid transparent;
+    border-bottom: $caret-width solid;
+    border-left: $caret-width solid transparent;
+}
+
+@mixin caret-end {
+    border-top: $caret-width solid transparent;
+    border-right: 0;
+    border-bottom: $caret-width solid transparent;
+    border-left: $caret-width solid;
+}
+
+@mixin caret-start {
+    border-top: $caret-width solid transparent;
+    border-right: $caret-width solid;
+    border-bottom: $caret-width solid transparent;
+}
+
+@mixin caret($direction: down) {
+    @if $enable-caret {
+        &::after {
+            display: inline-block;
+            margin-left: $caret-spacing;
+            vertical-align: $caret-vertical-align;
+            content: "";
+            @if $direction == down {
+                @incklude caret-down();
+            } @else if $direction == up {
+                @include caret-up();
+            } @else if $direction == end {
+                @include caret-end();
+            }
+        }
+
+        @if $direction == start {
+            &::after {
+                display: none;
+            }
+
+            &::before {
+                display: inline-block;
+                margin-right: $caret-spacing;
+                vertical-align: $caret-vertical-align;
+                content: "";
+                @include caret-start();
+            }
+        }
+
+        &:empty::after {
+            margin-left: 0;
+        }
+    }
+}
+```
 
 ## Usage
 
@@ -713,15 +831,15 @@ Regardless of whether you call your dropdown via JavaScript or instead use the d
 
 ### Options
 
-Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-offset=""`.
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-bs-`, as in `data-bs-offset=""`. Make sure to change the case type of the option name from camelCase to kebab-case when passing the options via data attributes. For example, instead of using `data-bs-autoClose="false"`, use `data-bs-auto-close="false"`.
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `flip` | Boolean | `true` | Allow Dropdown to flip in case of an overlapping on the reference element. For more information, refer to Popper's [flip docs](https://popper.js.org/docs/v2/modifiers/flip/) |
-| `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the dropdown menu. By default, it's `'clippingParents'` and can accept an HTMLElement reference (JavaScript only). For moree information, refer to Popper's [preventOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
-| `reference` | string \| element \| object | `'toggle'` | Reference element of the dropdown menu. Accepts the values of `'toggle'`, `'parent'`, an HTMLElement reference or an object providing `getBoundingClientRect`. For more information, refer to Popper's [constrictor docs](https://popper.js.org/docs/v2/constructors/#createpopper) and [virtual element docs](https://popper.js.org/docs/v2/virtual-elements/). |
-| `display` | string | `dynamic` | By default, we use Popper for dynamic positioning. Disable this with `static`. |
+| `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the dropdown menu (applies only to Popper's preventOverflow modifer (via JavaScript only). For more information, refer to Popper's [detectOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
+| `reference` | string \| element \| object | `'toggle'` | Reference element of the dropdown menu. Accepts the values of `'toggle'`, `'parent'`, an HTMLElement reference or an object providing `getBoundingClientRect`. For more information, refer to Popper's [constructor docs](https://popper.js.org/docs/v2/constructors/#createpopper) and [virtual element docs](https://popper.js.org/docs/v2/virtual-elements/). |
+| `display` | string | `dynamic` | By default, Bootstrap uses Popper for dynamic positioning. Disable this with `static`. |
 | `offset` | array \| string \| function | `[0, 2]` | Offset of the dropdown relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `[`[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)`]`.<br>For more information, refer to Popper's [offset docs](https://popper.js.org/docs/v2/modifiers/offset/#options). |
+| `autoClose` | Boolean \| string | `true` | Configure the auto close behavior of the dropdown:<br>* `true` - the dropdown will be closed by clicking outside or inside the dropdown menu.<br>* `false` - the dropdown will be closed by clicking the toggle button and manually calling the `hide` or `toggle` method. (Also will not be closed by pressing <kbd>esc</kbd> key.)<br>* `'inside'` - the dropdown will be closed (only) by clicking inside the dropdown menu.<br>* `'outside'` - the dropdown will be closed (only) by clicking outside the dropdown menu. |
 | `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper. |
 
 #### Using function with `popperConfig`
@@ -764,3 +882,7 @@ myDropdown.addEventListener('show.bs.dropdown', function() {
     // do something...
 }) ;
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#dropdowns) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/List_Group)
