@@ -10,6 +10,10 @@
             .container {
                 margin: 20px;
             }
+
+            .half-width {
+                width: 50%;
+            }
         </style>
    </head>
    <body>
@@ -54,7 +58,7 @@
             <p class="fs-5 mb-3">Use <code>&lt;label&gt;</code>s in your <code>.list-group-item</code>s to create large hit areas 
                 so that users will be able to click checkboxes more easily.</p>
 
-            <div class="list-group">
+            <div class="list-group half-width">
                 <label class="list-group-item">
                     <input class="form-check-input me-1" type="checkbox" value="">
                     First checkbox
@@ -144,7 +148,7 @@
 
             <div role="tabpanel">
                 <!-- List group -->
-                <div class="list-group" id="myList" role="tablist">
+                <div class="list-group half-width" id="myList" role="tablist">
                     <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
                     <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
                     <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
