@@ -10,7 +10,7 @@ Before getting started with Bootstrap's modal component, be sure to read the fol
 * Clicking on the modal "backdrop" will automatically close the modal.
 * Bootstrap only supports one modal window at a time. Nested modals aren't supported as the designers at Bootstrap believe them to be por user experiences.
 * Modals use `position: fixed`, which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You'll likely run into issues when nesting a `.modal` within another fixed element.
-* Once again, due to `position: fixed`, there are some caveats with using modals on mobile devices. [See Bootstrap's support docs](https://getbootstrap.com/docs/5.0/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile) for details.
+* Once again, due to `position: fixed`, there are some caveats with using modals on mobile devices. [See Bootstrap's support docs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Browsers_and_Devices#modals-and-dropdowns-on-mobile) for details.
 * Due to how HTML5 defines its semantics, [the `autofocus` HTML attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus) has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:
 ```
 var myModal = document.getElementById('myModal');
@@ -22,7 +22,7 @@ myModal.addEventListener('shown.bs.modal', function() {
 ```
 <hr>
 
-:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
@@ -52,7 +52,7 @@ Below is a *static* modal example (meaning its `position` and `display` have bee
     </div>
 </div>
 ```
-This example is not shown as a live example as modal constructs do not appear unless activated by a user's action. Please refer to the [live demo](#live-demo) below.
+This example is not shown as a live example as modal constructs do not appear unless activated by a user's action. Please refer to the [live demo](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#live-demo) below.
 
 ### Live demo
 
@@ -82,6 +82,7 @@ Toggle a working modal demo by clicking the button on this example below. It wil
     </div>
 </div>
 ```
+(See the code example above in my accompanying [modal-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples.html) file.)
 
 ### Static backdrop
 
@@ -111,6 +112,7 @@ When backdrop is set to static, the modal will not close when clicking outside i
     </div>
 </div>
 ```
+(Again, this code example can be found in my accompanying [modal-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples.html) file.)
 
 ### Scrolling long content
 
@@ -121,6 +123,7 @@ When modals become too long for the user's viewport or device, they scroll indep
     ...
 </div>
 ```
+(And again, this code example can be found in my accompanying [modal-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples.html) file.)
 
 ### Vertically centered
 
@@ -136,6 +139,7 @@ Add `.modal-dialog-centered` to `.modal-dialog` to vertically center the modal.
     ...
 </div>
 ```
+(And once more, this code example can be found in my accompanying [modal-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples.html) file.)
 
 ### Tooltips and popovers
 
@@ -149,6 +153,7 @@ Add `.modal-dialog-centered` to `.modal-dialog` to vertically center the modal.
     <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
 </div>
 ```
+(See the code example above in my accompanying [modal-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples-2.html) file.)
 
 ### Using the grid
 
@@ -183,11 +188,13 @@ Utilize the Bootstrap grid system within a modal by nesting `.container-fluid` w
     </div>
 </div>
 ```
+(And this code example can also be found in my accompanying [modal-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples-2.html) file.)
 
 ### Varying modal content
 
 Have a bunch of buttons that all trigger the same modal with slightly different contents? Use `event.relatedTarget` and [HTML `data-bs-*` attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) to vary the contents of the modal depending on which button was clicked.
-Below is a live demo followed by example HTML and JavaScript. For more information, [read the modal events docs](#events) for details on `relatedTarget`.
+
+Below is a live demo followed by example HTML and JavaScript. For more information, [read the modal events docs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#events) for details on `relatedTarget`.
 ```
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">Open modal for @mdo</button>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@fat">Open modal for @fat</button>
@@ -238,6 +245,47 @@ exampleModal2.addEventListener('show.bs.modal', function(event) {
     modalBodyInput.value = recipient;
 });
 ```
+(This code example can be found in my accompanying [modal-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples-2.html) file.)
+
+### Toggle between modals
+
+Toggle between multiple modals with some clever placement of the `data-bs-target` and `data-bs-toggle` attributes. For example, you could toggle a password reset modal from within an already open sign in modal. **Please note multiple modals cannot be open at the same time**--this method simply toggles between two separate modals.
+```
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Show a second modal and hide this one with the button below.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Hide this modal and show the first with the button below.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
+```
+(Again, this code example can be found in my accompanying [modal-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples-2.html) file.)
 
 ### Change animation
 
