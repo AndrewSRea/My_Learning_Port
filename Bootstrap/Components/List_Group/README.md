@@ -131,7 +131,7 @@ These work great with custom content as well.
 
 <hr>
 
-:exclamation: I have not added the two code examples under the header **Numbered** to any of my accompanying HTML document examples because the numbers in the numbered lists are generated with JavaScript, and I have not yet mastered JavaScript at a level to understand how to generate these numbers.
+:exclamation: I have not added the two code examples under the header **Numbered** to any of my accompanying HTML document examples because the numbers in the numbered lists are generated with JavaScript, and I have not yet mastered JavaScript at a level to which I understand how to generate these numbers.
 
 <hr>
     
@@ -329,6 +329,83 @@ And if you want `<label>`s as the `.list-group-item` for large hit areas, you ca
 ```
 (Again, this code example can be found in my accompanying [list-group-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/List_Group/list-group-examples-3.html) file.)
 
+## Sass
+
+### Variables
+
+```
+$list-group-color:                 $gray-900;
+$list-group-bg:                    $white;
+$list-group-border-color:          rgba($black, .125);
+$list-group-border-width:          $border-width;
+$list-group-border-radius:         $border-radius;
+
+$list-group-item-padding-y:        $spacer / 2;
+$list-group-item-padding-x:        $spacer;
+$list-group-item-bg-scale:         -80%;
+$list-group-item-color-scale:      40%;
+
+$list-group-hover-bg:              $gray-100;
+$list-group-active-color:          $component-active-color;
+$list-group-active-bg:             $component-active-bg;
+$list-group-active-border-color:   $list-group-active-bg;
+
+$list-group-disabled-color:        $gray-600;
+$list-group-disabled-bg:           $list-group-action-color;
+
+$list-group-action-color:          $gray-700;
+$list-group-action-hover-color:    $list-group-action-color;
+
+$list-group-action-active-color:   $body-color;
+$list-group-action-active-bg:      $gray-200;
+```
+
+### Mixins
+
+Used in combination with `$theme-colors` to generate the [contextual variant classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/List_Group#contextual-classes) for `.list-group-item`s.
+```
+@mixin list-group-item-variant($state, $background, $color) {
+    .list-group-item-#{$state} {
+        color: $color;
+        background-color: $background;
+
+        &.list-group-item-action {
+            &:hover,
+            &:focus {
+                color: color;
+                background-color: shade-color($background, 10%);
+            }
+
+            &.active {
+                color: $white;
+                background-color: $color;
+                border-color: $color;
+            }
+        }
+    }
+}
+```
+
+### Loop
+
+Loop that generates the modifier classes with the `list-group-item-variant()` mixin.
+```
+// List group contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+@each $state, $value in $theme-colors {
+    $list-group-variant-bg: shift-color($value, $list-group-item-bg-scale);
+    $list-group-variant-color: shift-color($value, $list-group-item-color-scale);
+    @if (contrast-ratio($list-group-variant-bg, $list-group-variant-color) < $min-contrast-ratio) {
+        $list-group-variant-color: mix($value, color-contrast($list-group-variant-bg), abs($list-group-item-color-scale));
+    }
+
+    @include list-group-item-variant($state, $list-group-variant-bg, $list-group-variant-color);
+}
+```
+
 ## JavaScript behavior
 
 Use the tab JavaScript plugin--include it individually or through the compiled `bootstrap.js` file--to extend Bootstrap's list group to create tabbable panes of local content.
@@ -376,7 +453,7 @@ You can activate a list group navigation without writing any JavaScript by simpl
     </div>
 </div>
 ```
-(Again, this code example can be found in my accompanying [list-group-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/List_Group/list-group-examples-2.html) file.)
+(Again, this code example can be found in my accompanying [list-group-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/List_Group/list-group-examples-3.html) file.)
 
 ### Via JavaScript
 
@@ -412,6 +489,7 @@ To make tabs panel fade in, add `.fade` to each `.tab-pane`. The first tab pane 
     <div class="tab-pane fade" id="settings" role="tabpanel">...</div>
 </div>
 ```
+(See the code example above in my accompanying [list-group-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/List_Group/list-group-examples-4.html) file.)
 
 ### Methods
 
@@ -488,3 +566,7 @@ tabEl.addEventListener('shown.bs.tab', function(event) {
     event.relatedTarget;   // previous active tab
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#dropdowns) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/List_Group#list-group) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#modal)
