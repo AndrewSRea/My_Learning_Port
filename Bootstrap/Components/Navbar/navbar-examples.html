@@ -66,7 +66,8 @@
 
         <div class="container">
             <h4 class="mb-3">The <code>.navbar-brand</code> can be applied to most elements, but an anchor works best, as some 
-                elements might require utility classes or custom styles.</h4>
+                elements might require utility classes or custom styles.<br>Add text within an element with the <code>.navbar-brand</code>
+                class.</h4>
 
             <!-- As a link -->
             <nav class="navbar navbar-light bg-light mb-3">
@@ -84,27 +85,36 @@
         </div>
         <hr>
 
-        <!-- Adding images to the `.navbar-brand` will likely always require custom styles or utilities to properly size.
-             Below are some examples to demonstrate. -->
+        <!-- You can replace the text within the `.navbar-brand` with an <img>. -->
 
         <div class="container">
-            <h4 class="mb-3">Adding images to the <code>.navbar-brand</code> will likely always require custom styles or utilities 
-                to properly size. Below are some examples to demonstrate.</h4>
+            <h3 class="mb-2">Navbar Component Example 03</h3>
 
-            <!-- Just an image -->
+            <p class="fs-5 mb-3">You can replace the text within the <code>.navbar-brand</code> with an <code>&lt;img&gt;</code>.</p>
+
             <nav class="navbar navbar-light bg-light mb-3">
                 <div class="container">
                     <a class="navbar-brand" href="#">
-                        <img src="images/bootstrap-logo.svg" alt="" width="30" height="24">
+                        <img src="../images/bootstrap-logo.svg" alt="" width="30" height="24">
                     </a>
                 </div>
             </nav>
+        </div>
+        <hr>
 
-            <!-- Just an image and text -->
+        <!-- You can also make use of some additional utilities to add an image and text at the same time.
+             Note the addition of `.d-inline-block` and `.align-text-top` on the <img>. -->
+
+        <div class="container">
+            <h3 class="mb-2">Navbar Component Example 04</h3>
+
+            <p class="fs-5 mb-3">You can also make use of some additional utilities to add an image and text at the same time.
+                Note the addition of <code>.d-inline-block</code> and <code>.align-text-top</code> on the <code>&lt;img&gt;</code>.</p>
+
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                        <img src="images/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-top">
+                        <img src="../images/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-top">
                         Bootstrap
                     </a>
                 </div>
@@ -144,6 +154,7 @@
                 </div>
             </nav>
         </div>
+        <hr>
 
         <!-- Bootstrap uses classes for its navs, so you can avoid the list-based approach if desired -->
 
