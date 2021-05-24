@@ -449,6 +449,7 @@ You can activate a tab or pill navigation without writing any JavaScript by simp
     <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
 </div>
 ```
+(See this code example in my accompanying [nav-tabs-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-4.html) file.)
 
 ### Via JavaScript
 
@@ -484,6 +485,7 @@ To make tabs fade in, add `.fade` to each `.tab-pane`. The first tab pane must a
     <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
 </div>
 ```
+(And this code example can also be found in my accompanying [nav-tabs-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-4.html) file.)
 
 ### Methods
 
@@ -493,7 +495,7 @@ To make tabs fade in, add `.fade` to each `.tab-pane`. The first tab pane must a
 
 All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.
 
-[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
 
 <hr>
 
@@ -530,10 +532,11 @@ Activates a tab element and content container. Tab should have either a `data-bs
     firstTab.show();
 </script>
 ```
+(Again, this code example can be found in my accompanying [nav-tabs-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-4.html) file.)
 
 #### show
 
-Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. **Returns to the caller before the tab pane has actually been shown** (i.e. beforee the `shown.bs.tab` event occurs).
+Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. **Returns to the caller before the tab pane has actually been shown** (i.e. before the `shown.bs.tab` event occurs).
 ```
 var someTabTriggerEl = document.querySelector('#someTabTrigger');
 var tab = new bootstrap.Tab(someTabTriggerEl);
@@ -578,3 +581,7 @@ tabEl.addEventListener('shown.bs.tab', function(event) {
     event.relatedTarget;   // previous active tab
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#modal) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#navs-and-tabs) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#navbar)
