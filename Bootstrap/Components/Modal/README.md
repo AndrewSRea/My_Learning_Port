@@ -290,6 +290,7 @@ Toggle between multiple modals with some clever placement of the `data-bs-target
 ### Change animation
 
 The `$modal-fade-transform` variable determines the transform state of `.modal-dialog` before the modal fade-in animation, the `$modal-show-transform` variable determines the transform of `.modal-dialog` at the end of the modal fade-in animation.
+
 If you want, for example, a zoom-in animation, you can set `$modal-fade-transform: scale(.8)`.
 
 ### Remove animation
@@ -330,6 +331,7 @@ Bootstrap's default modal without modifier class constitutes the "medium" size m
 <div class="modal-dialog modal-lg">...</div>
 <div class="modal-dialog modal-sm">...</div>
 ```
+(See my accompanying [modal-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples-3.html) file for an example of the **Optional sizes** listed above.)
 
 ## Fullscreen Modal
 
@@ -349,6 +351,88 @@ Another override is the option to pop up a modal that covers the user viewport, 
 <div class="modal-dialog modal-fullscreen-sm-down">
     ...
 </div>
+```
+(See my accompanying [modal-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Modal/modal-examples-3.html) file for an example of all the **Fullscreen Modal** options listed above.)
+
+## Sass
+
+### Variables
+
+```
+$modal-inner-padding:                 $spacer;
+
+$modal-footer-margin-between:         .5rem;
+
+$modal-dialog-margin:                 .5rem;
+$modal-dialog-margin-y-sm-up:         1.75rem;
+
+$modal-title-line-height:             $line-height-base;
+
+$modal-content-color:                 null;
+$modal-content-bg:                    $white;
+$modal-content-border-color:          rgba($black, .2);
+$modal-content-border-width:          $border-width;
+$modal-content-border-radius:         $border-radius-lg;
+$modal-content-inner-border-radius:   subtract($modal-content-border-radius, $modal-content-border-width);
+$modal-content-box-shadow-xs:         $box-shadow-sm;
+$modal-content-box-shadow-sm-up:      $box-shadow;
+
+$modal-backdrop-bg:                   $black;
+$modal-backdrop-opacity:              .5;
+$modal-header-border-color:           $border-color;
+$modal-footer-border-color:           $modal-header-border-color;
+$modal-header-border-width:           $modal-content-border-width;
+$modal-footer-border-width:           $modal-header-border-width;
+$modal-header-padding-y:              $modal-inner-padding;
+$modal-header-padding-x:              $modal-inner-padding;
+$modal-header-padding:                $modal-header-padding-y $modal-header-padding-x;   // Keep this for backwards compatibility
+
+$modal-sm:                            300px;
+$modal-md:                            500px;
+$modal-lg:                            800px;
+$modal-xl:                            1140px;
+
+$modal-fade-transform:                translate(0, -50px);
+$modal-show-transform:                none;
+$modal-transition:                    transform .3s ease-out;
+$modal-scale-transform:               scale(1.02);
+```
+
+### Loop
+
+[Responsive fullscreen modals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#fullscreen-modal) are generated via the `$breakpoints` map and a loop in `scss/_modal.scss`.
+```
+@each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    $postfix: if($infix != "", $infix + "-down", "");
+
+    @include media-breakpoint-down($breakpoint) {
+        ,modal-fullscreen{$postfix} {
+            width: 100vw;
+            max-width: none;
+            height: 100%;
+            margin: 0;
+
+            .modal-content {
+                height: 100%;
+                border: 0;
+                @include border-radius(0);
+            }
+
+            .modal-header {
+                @include border-radius(0);
+            }
+
+            .modal-body {
+                overflow-y: auto;
+            }
+
+            .modal-footer {
+                @include border-radius(0);
+            }
+        }
+    }
+}
 ```
 
 ## Usage
@@ -387,7 +471,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 
 All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**. 
 
-[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
 
 <hr>
 
@@ -412,6 +496,11 @@ myModal.toggle();
 Manually opens a modal. **Returns to the caller before the modal has actually been shown** (i.e. before the `shown.bs.modal` event occurs).
 ```
 myModal.show();
+```
+Also, you can pass a DOM element as an argument that can be received in the modal events (as the `relatedTarget` property).
+```
+var modalToggle = document.getElementById('toggleMyModal');   // relatedTarget
+myModal.show(modalToggle);
 ```
 
 #### hide
@@ -461,3 +550,7 @@ myModalEl.addEventListener('hidden.bs.modal', function(event) {
     // do something...
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/List_Group#list-group) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#navs-and-tabs)
