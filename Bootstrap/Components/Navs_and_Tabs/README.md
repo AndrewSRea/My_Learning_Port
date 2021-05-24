@@ -5,11 +5,13 @@ Documentation and examples for how to use Bootstrap's included navigation compon
 ## Base nav
 
 Navigation available in Bootstrap shares general markup and styles, from the base `.nav` class to the active and disabled states. Swap modifier classes to switch between each style.
+
 The base `.nav` component is built with flexbox and provides a strong foundation for building all typs of navigation components. It includes some style overrides (for working with lists), some link padding for larger hit areas, and basic disabled styling.
 
 <hr>
 
 :warning: The base `.nav` component does not include any `.active` state. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling.
+
 To convey the active state to assistive technologies, use the `aria-current` attribute--using the `page` value for current page, or `true` for the current item in a set.
 
 <hr>
@@ -30,6 +32,8 @@ To convey the active state to assistive technologies, use the `aria-current` att
     </li>
 </ul>
 ```
+(See this code example in my accompanying [nav-tabs-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples.html) file.)
+
 Classes are used throughout, so your markup can be super flexible. Use `<ul>`s like above, `<ol>` if the order of your items is important, or roll your own with a `<nav>` element. Because the `.nav` uses `display: flex`, the nav links behave the same as nav items would, but without the extra markup.
 ```
 <nav class="nav">
@@ -39,6 +43,7 @@ Classes are used throughout, so your markup can be super flexible. Use `<ul>`s l
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 </nav>
 ```
+(And this code example can also be found in my accompanying [nav-tabs-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples.html) file.)
 
 ## Available styles
 
@@ -46,7 +51,8 @@ Change the style of `.nav`s component with modifiers and utilities. Mix and matc
 
 ### Horizontal alignment
 
-Change the horizontal alignment of your nav with [flexbox utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#grid-system). By default, navs are left-aligned, but you can easily change them to center or right-aligned.
+Change the horizontal alignment of your nav with [flexbox utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system). By default, navs are left-aligned, but you can easily change them to center or right-aligned.
+
 Centered with `.justify-content-center`:
 ```
 <ul class="nav justify-content-center">
@@ -64,6 +70,8 @@ Centered with `.justify-content-center`:
     </li>
 </ul>
 ```
+(Again, this code example can be found in my accompanying [nav-tabs-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples.html) file.)
+
 Right-aligned with `.justify-content-end`:
 ```
 <ul class="nav justify-content-end">
@@ -81,6 +89,7 @@ Right-aligned with `.justify-content-end`:
     </li>
 </ul>
 ```
+(And again, this code example can be found in my accompanying [nav-tabs-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples.html) file.)
 
 ### Vertical
 
@@ -101,6 +110,8 @@ Stack your navigation by changing the flex item direction with the `.flex-column
     </li>
 </ul>
 ```
+(Once again, this code example can be found in my accompanying [nav-tabs-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples.html) file.)
+
 As always, vertical navigation is possible without `<ul>`s, too.
 ```
 <nav class="nav flex-column">
@@ -110,10 +121,11 @@ As always, vertical navigation is possible without `<ul>`s, too.
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 </nav>
 ```
+(And once more, this code example can be found in my accompanying [nav-tabs-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples.html) file.)
 
 ### Tabs
 
-Takes the basic nav from above and adds the `.nav-tabs` class to generate a tabbed interface. Use them to create tabbable regions with Bootstrap's [tab JavaScript plugin](#javascript-behavior).
+Takes the basic nav from above and adds the `.nav-tabs` class to generate a tabbed interface. Use them to create tabbable regions with Bootstrap's [tab JavaScript plugin](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#javascript-behavior).
 ```
 <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -130,6 +142,7 @@ Takes the basic nav from above and adds the `.nav-tabs` class to generate a tabb
     </li>
 </ul>
 ```
+(See this code example in my accompanying [nav-tabs-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-2.html) file.)
 
 ### Pills
 
@@ -150,6 +163,7 @@ Take that same HTML, but use `.nav-pills` instead:
     </li>
 </ul>
 ```
+(And this code example can also be found in my accompanying [nav-tabs-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-2.html) file.)
 
 ### Fill and justify
 
@@ -170,6 +184,8 @@ Force your `.nav`'s contents to extend the full available width with one of two 
     </li>
 </ul>
 ```
+(Again, this code example can be found in my accompanying [nav-tabs-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-2.html) file.)
+
 When using a `<nav>`-based navigation, you can safely omit `.nav-item` as only `.nav-link` is required for styling `<a>` elements.
 ```
 <nav class="nav nav-pills nav-fill">
@@ -179,6 +195,8 @@ When using a `<nav>`-based navigation, you can safely omit `.nav-item` as only `
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 </nav>
 ```
+(And again, this code example can be found in my accompanying [nav-tabs-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-2.html) file.)
+
 For equal-width elements, use `.nav-justified`. All horizontal space will be occupied by nav links, but unlike the `.nav-fill` above, every nav item will be the same width.
 ```
 <ul class="nav nav-pills nav-justified">
@@ -196,6 +214,8 @@ For equal-width elements, use `.nav-justified`. All horizontal space will be occ
     </li>
 </ul>
 ```
+(Once again, this code example can be found in my accompanying [nav-tabs-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-2.html) file.)
+
 Similar to the `.nav-fill` example using a `<nav>`-based navigation.
 ```
 <nav class="nav nav-pills nav-justified">
@@ -205,10 +225,11 @@ Similar to the `.nav-fill` example using a `<nav>`-based navigation.
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 </nav>
 ```
+(And once more, this code example can be found in my accompanying [nav-tabs-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-2.html) file.)
 
 ## Working with flex utilities
 
-If you need responsive nav variations, consider using a seeries of [flexbox utilities](). <!-- link to Utilities folder / Flex --> While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap's nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint.
+If you need responsive nav variations, consider using a seeries of [flexbox utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex). While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap's nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint.
 ```
 <nav class="nav nav-pills flex-column flex-sm-row">
     <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Active</a>
@@ -217,15 +238,17 @@ If you need responsive nav variations, consider using a seeries of [flexbox util
     <a class="flex-sm-fill text-sm-center nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 </nav>
 ```
+(See this code example in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
 
 ## Regarding accessiblity
 
 If you're using navs to provide a navigation bar, be sure to add a `role="navigation"` to the most logical parent container of the `<ul>`, or wrap a `<nav>` element around the whole navigation. Do not add the role to the `<ul>` itself, as this would prevent it from being announced as an actual list by assistive technologies.
-Note that navigation bars, even if visually styled as tabs with the `.nav-tabs` class, should **not** be given `role="tablist"`, `role="tab"`, or `role="tabpanel"` attributes. These are only appropriate for dynamic tabbed interfaces, as described in the [WAI ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel). See [JavaScript behavior](#javascript-behavior) for dynamic tabbed interfaces in this section for an example. Thee `aria-current` attribute is not necessary on dynamic tabbed interfaces since Bootstrap's JavaScript handles the selected state by adding `aria-selected="true"` on the active tab.
+
+Note that navigation bars, even if visually styled as tabs with the `.nav-tabs` class, should **not** be given `role="tablist"`, `role="tab"`, or `role="tabpanel"` attributes. These are only appropriate for dynamic tabbed interfaces, as described in the [WAI ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel). See [JavaScript behavior](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#javascript-behavior) for dynamic tabbed interfaces in this section for an example. Thee `aria-current` attribute is not necessary on dynamic tabbed interfaces since Bootstrap's JavaScript handles the selected state by adding `aria-selected="true"` on the active tab.
 
 ## Using dropdowns
 
-Add dropdown menus with a little extra HTML and the [dropdowns JavaScript plugin](#dropdowns).
+Add dropdown menus with a little extra HTML and the [dropdowns JavaScript plugin](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#usage).
 
 ### Tabs with dropdowns
 
@@ -252,6 +275,7 @@ Add dropdown menus with a little extra HTML and the [dropdowns JavaScript plugin
     </li>
 </ul>
 ```
+(And this code example can also be found in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
 
 ### Pills with dropdowns
 
@@ -278,11 +302,41 @@ Add dropdown menus with a little extra HTML and the [dropdowns JavaScript plugin
     </li>
 </ul>
 ```
+(And again, this code example can be found in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
+
+## Sass
+
+### Variables
+
+```
+$nav-link-padding-y:                  .5rem;
+$nav-link-padding-x:                  1rem;
+$nav-link-font-size:                  null;
+$nav-link-font-weight:                null;
+$nav-link-color:                      $link-color;
+$nav-link-hover-color:                $link-hover-color;
+$nav-link-transition:                 color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+$nav-link-disabled-color:             $gray-600;
+
+$nav-tabs-border-color:               $gray-300;
+$nav-tabs-border-width:               $border-width;
+$nav-tabs-border-radius:              $border-radius;
+$nav-tabs-link-hover-border-color:    $gray-200 $gray-200 $nav-tabs-border-color;
+$nav-tabs-link-active-color:          $gray-700;
+$nav-tabs-link-active-bg:             $body-bg;
+$nav-tabs-link-active-border-color:   $gray-300 $gray-300 $nav-tabs-link-active-bg;
+
+$nav-pills-border-radius:             $border-radius;
+$nav-pills-link-active-color:         $component-active-color;
+$nav-pills-link-active-bg:            $component-active-bg;
+```
 
 ## JavaScript behavior
 
 Use the tab JavaScript plugin--include it individually or through the compiled `bootstrap.js` file--to extend Bootstrap's navigational tabs and pills to create tabbable panes of local content.
-Dynamic tabbed interfaces, as described in the [WAI ARIA Authoring Practices](), require `role="tablist"`, `role="tab"`, `role="tabpanel"`, and additional `aria-` attributes in order to convey their structure, functionality, and current stat to users of assistive technologies (such as screen readers). As a best practice, Bootstrap recommends using `<button>` elements for the tabs, as these are controls that trigger a dynamic change, rather than links that navigate to a new page or location.
+
+Dynamic tabbed interfaces, as described in the [WAI ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel), require `role="tablist"`, `role="tab"`, `role="tabpanel"`, and additional `aria-` attributes in order to convey their structure, functionality, and current stat to users of assistive technologies (such as screen readers). As a best practice, Bootstrap recommends using `<button>` elements for the tabs, as these are controls that trigger a dynamic change, rather than links that navigate to a new page or location.
+
 Note that dynamic tabbed interfaces should *not* contain dropdown menus, as this cause both usability and accessiblity issues. From a usability perspective, the fact that the currently displayed tab's trigger element is not immediately visible (as it's inside the closed dropdown menu) can cause confusion. From an accessiblity point of view, there is no sensible way to map this sort of construct to a standard WAI ARIA pattern, meaning that it cannot be easily made understandable to users of assistive technologies.
 ```
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -302,6 +356,8 @@ Note that dynamic tabbed interfaces should *not* contain dropdown menus, as this
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
 </div>
 ```
+(Once again, this code example can be found in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
+
 To help fit your needs, this works with `<ul>`-based markup, as shown above, or with any arbitrary "roll your own" markup. Note that if you're using `<nav>`, you shouldn't add `role="tablist"` directly to it, as this would override the element's native role as a navigation landmark. Instead, switch to an alternative element (in the example below, a simple `<div>`) and wrap the `<nav>` around it.
 ```
 <nav>
@@ -317,6 +373,8 @@ To help fit your needs, this works with `<ul>`-based markup, as shown above, or 
     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
 </div>
 ```
+(And again, this code example can be found in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
+
 The tabs plugin also works with pills.
 ```
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -336,6 +394,8 @@ The tabs plugin also works with pills.
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
 </div>
 ```
+(Once more, this code example can be found in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
+
 And with vertical pills.
 ```
 <div class="d-flex align-items-start">
@@ -353,8 +413,12 @@ And with vertical pills.
     </div>
 </div>
 ```
+(And again, this code example can be found in my accompanying [nav-tabs-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navs_and_Tabs/nav-tabs-examples-3.html) file.)
+
 <hr>
+
 :exclamation: The tabs plugin doesn't seem to work seamlessly with nav pills, as it seems to be creating a dark border around both the pills themselves and the gutters in-between.
+
 <hr>
 
 ### Using data attributes
