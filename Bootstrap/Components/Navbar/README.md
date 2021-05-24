@@ -6,16 +6,16 @@ Documentation and examples for Bootstrap's powerful, responsive navigation heade
 
 Here's what you need to know before getting started with the navbar:
 
-* Navbars require a wrapping `.navbar` with `.navbar-expand{-sm|-md|-lg|-xl|-xxl}` for responsive collapsing and [color scheme](#color-schemes) classes.
-* Navbars and their contents are fluid by default. Change the [container](#containers) to limit their horizontal width in different ways.
-* Use Bootstrap's [spacing]() and [flex]() <!-- link to Utilities folder / Spacing and Flex --> utility classes for controlling spacing and alignment within navbars.
+* Navbars require a wrapping `.navbar` with `.navbar-expand{-sm|-md|-lg|-xl|-xxl}` for responsive collapsing and [color scheme](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#color-schemes) classes.
+* Navbars and their contents are fluid by default. Change the [container](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#containers) to limit their horizontal width in different ways.
+* Use Bootstrap's [spacing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing) and [flex](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) utility classes for controlling spacing and alignment within navbars.
 * Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on Bootstrap's Collapse JavaScript plugin.
 * Ensure accessibility by using a `<nav>` element or, if using a more generic element such as a `<div>`, add a `role="navigation"` to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
 * Indicate the current item by using `aria-current="page"` for the current page or `aria-current="true"` for the current item in a set.
 
 <hr>
 
-:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
@@ -25,11 +25,11 @@ Navbars come with built-in support for a handful of sub-components. Choose from 
 
 * `.navbar-brand` foor your company, product, or project name.
 * `.navbar-nav` for a full-height and lightweight navigation (including support for dropdowns).
-* `.navbar-toggler` for use with our collapse plugin and other [navigation toggling](#responsive-behaviors) behaviors.
+* `.navbar-toggler` for use with our collapse plugin and other [navigation toggling](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#responsive-behaviors) behaviors.
 * Flex and spacing utilities for any form controls and actions.
 * `.navbar-text` for adding vertically centered strings of text.
 * `.collapse.navbar-collapse` for grouping and hiding navbar contents by a parent breakpoint.
-* Add an optional `.navbar-scroll` to set a `max-height` and [scroll expanded navbar content](#scrolling).
+* Add an optional `.navbar-scroll` to set a `max-height` and [scroll expanded navbar content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#scrolling).
 
 Here's an example of all the sub-components included in a responsive light-themed navbar that automatically collapses at the `lg` (large) breakpoint.
 ``` 
@@ -70,11 +70,17 @@ Here's an example of all the sub-components included in a responsive light-theme
     </div>
 </nav>
 ```
-This example uses [background]() (`bg-light`) and [spacing]() (`my-2`, `my-lg-0`, `me-sm-0`, `my-sm-0`) utility classes. <!-- both links are toward Utilities / Background and Spacing, respectively -->
+This example uses [background](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Background#background) (`bg-light`) and [spacing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing) (`my-2`, `my-lg-0`, `me-sm-0`, `my-sm-0`) utility classes.
+
+(See this code example in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
 
 ### Brand
 
 The `.navbar-brand` can be applied to most elements, but an anchor works best, as some elements might require utility classes or custom styles.
+
+#### Text
+
+Add your text within an element with the `.navbar-brand` class.
 ```
 <!-- As a link -->
 <nav class="navbar navbar-light bg-light">
@@ -90,9 +96,12 @@ The `.navbar-brand` can be applied to most elements, but an anchor works best, a
     </div>
 </nav>
 ```
-Adding images to the `.navbar-brand` will likely always require custom styles or utilities to properly size. Here aree some examples to demonstrate.
+(See this code example in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
+
+#### Image
+
+You can replace the text within the `.navbar-brand` with an `<img>`.
 ```
-<!-- Just an image -->
 <nav class="navbar navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -101,8 +110,12 @@ Adding images to the `.navbar-brand` will likely always require custom styles or
     </div>
 </nav>
 ```
+(And this code example can also be found in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
+
+#### Image and text
+
+You can also make use of some additional utilities to add an image and text at the same time. Note the addition of `.d-inline-block` and `.align-text-top` on the `<img>`.
 ```
-<!-- Just an image and text -->
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -112,11 +125,14 @@ Adding images to the `.navbar-brand` will likely always require custom styles or
     </div>
 </nav>
 ```
+(And again, this code example can also be found in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
 
 ### Nav
 
-Navbar navigation links build Bootstrap's `.nav` options with their modifier class and require the use of [toggler classes](#toggler) for proper responsive styling. **Navigation in navbars will also grow to occupy as much horizontal space as possible** to keep your navbar contents securely aligned.
+Navbar navigation links build Bootstrap's `.nav` options with their modifier class and require the use of [toggler classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#toggler) for proper responsive styling. **Navigation in navbars will also grow to occupy as much horizontal space as possible** to keep your navbar contents securely aligned.
+
 Add the `.active` class on `.nav-link` to indicate the current page.
+
 Please note that you should also add the `aria-current` attribute on the active `.nav-link`.
 ```
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -144,6 +160,8 @@ Please note that you should also add the `aria-current` attribute on the active 
     </div>
 </nav>
 ```
+(Again, this code example can be found in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
+
 And because Bootstrap uses classes for its navs, you can avoid the list-based approach entirely if you like.
 ```
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -163,6 +181,8 @@ And because Bootstrap uses classes for its navs, you can avoid the list-based ap
     </div>
 </nav>
 ```
+(Once again, this code example can be found in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
+
 You can also use dropdowns in your navbar. Dropdown menus require a wrapping element for positioning, so be sure to use separate and nested elements for `.nav-item` and `.nav-link` as shown below.
 ```
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -197,6 +217,7 @@ You can also use dropdowns in your navbar. Dropdown menus require a wrapping ele
     </div>
 </nav>
 ```
+(And again, this code example can be found in my accompanying [navbar-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Navbar/navbar-examples.html) file.)
 
 ### Forms
 
