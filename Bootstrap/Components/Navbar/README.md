@@ -557,7 +557,7 @@ Sometimes you want to use the collapse plugin to trigger a container element for
     </nav>
 </div>
 ```
-When you do this, Bootstrap recommends including additional JavaScript to move the focus progammatically to the containeer when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes *before* the toggler in the document's structure. Bootstrap also recommends making sure that the toggler has the `aria-controls` attribute, pointing to the`id` of the content container. In theory, this allows asistive technology users to jump directly from the toggler to the container it controls--but support for this is currently quite patchy.
+When you do this, Bootstrap recommends including additional JavaScript to move the focus progammatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes *before* the toggler in the document's structure. Bootstrap also recommends making sure that the toggler has the `aria-controls` attribute, pointing to the`id` of the content container. In theory, this allows asistive technology users to jump directly from the toggler to the container it controls--but support for this is currently quite patchy.
 
 ## Sass
 
