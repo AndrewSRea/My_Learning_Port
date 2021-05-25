@@ -6,7 +6,7 @@ Automatically update Bootstrap navigation or list group components based on scro
 
 Scrollspy has a few requirements to function properly:
 
-* It must be used on a Bootstrap [nav component](#navs-and-tabs) or [list group](#list-group).
+* It must be used on a Bootstrap [nav component](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navs_and_Tabs#navs-and-tabs) or [list group](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/List_Group#list-group).
 * Scrollspy requires `position: relative;` on the element you're spying on, usually the `<body>`.
 * Anchors (`<a>`) are required and must point to an element with that `id`.
 
@@ -57,6 +57,7 @@ Scroll the area below the navbar and watch the active class change. The dropdown
     <p>...</p>
 </div>
 ```
+(This code example can be found in my accompanying [scrollspy-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Scrollspy/scrollspy-examples.html) file.)
 
 ## Example with nested nav
 
@@ -95,6 +96,7 @@ Scrollspy also works with nested `.nav`s. If a nested `.nav` is `.active`, its p
     <p>...</p>
 </div>
 ```
+(And this code example can be found in my accompanying [scrollspy-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Scrollspy/scrollspy-examples-2.html) file.)
 
 ## Example with list-group
 
@@ -117,6 +119,7 @@ Scrollspy also works with `.list-group`s. Scroll the area next to the list group
     <p>...</p>
 </div>
 ```
+(And this code example can be found in my accompanying [scrollspy-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Scrollspy/scrollspy-examples-3.html) file.)
 
 ## Usage
 
@@ -209,3 +212,7 @@ firstScrollSpyEl.addEventListener('activate.bs.scrollspy', function() {
     // do something...
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Progress#progress-bars) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Scrollspy#scrollspy) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Spinners#spinners)
