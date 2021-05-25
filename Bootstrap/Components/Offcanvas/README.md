@@ -7,7 +7,7 @@ Build hidden sidebars into your project for navigation, shopping carts, and more
 Offcanvas is a sidebar component that can be toggled via JavaScript to appear from the left, right, or bottom edge of the viewport. Buttons or anchors are used as triggers that are attached to specific elements you toggle, and data attributes are used to invoke Bootstrap's JavaScript.
 
 * Offcanvas shares some of the same JavaScript code as modals. Conceptually, they are quite similar, but they are separate plugins.
-* Similarly, some [[source Sass]]() <!-- link to "Sass" header below --> variables for offcanvas's styles and dimensions are inherited from the modal's variables.
+* Similarly, some [[source Sass]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Offcanvas#sass) variables for offcanvas's styles and dimensions are inherited from the modal's variables.
 * When shown, offcanvas includes a default backdrop that ccan be clicked to hide the offcanvas. 
 * Similar to modals, only one offcanvas can be shown at a time.
 
@@ -126,6 +126,7 @@ Try the top, right, and bottom examples out from the code examples below.
     </div>
 </div>
 ```
+(These three code examples above can be found in my accompanying [offcanvas-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Offcanvas/offcanvas-examples.html) file.)
 
 ## Backdrop
 
@@ -163,6 +164,7 @@ Scrolling the `<body>` element is disabled when an offcanvas and its background 
     </div>
 </div>
 ```
+(And this code example can also be found in my accompanying [offcanvas-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Offcanvas/offcanvas-examples.html) file.)
 
 ## Accessibility
 
