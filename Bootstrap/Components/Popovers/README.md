@@ -7,7 +7,7 @@ Documentation and examples for adding Bootstrap popovers, like those found in iO
 Things to know when using the popover plugin:
 
 * Popovers rely on the 3rd party library [Popper](https://popper.js.org/) for positioning. You must include [popper.min.js](https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js) before bootstrap.js or use `bootstrap.min.js`/`bootstrap.bundle.js` which contains Popper in order for popovers to work!
-* Popovers require the [tooltip plugin](#tooltips) as a dependency.
+* Popovers require the [tooltip plugin](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#tooltips) as a dependency.
 * Popovers are opt-in for performance reasons, so **you must initialize them yourself**.
 * Zero-length `title` and `content` values will never show a popover.
 * Specify `container: 'body'` to avoid rendering problems in more complex components (like Bootstrap's input groups, button groups, etc).
@@ -19,11 +19,11 @@ Things to know when using the popover plugin:
 
 <hr>
 
-:warning: By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the [sanitizer section in Bootstrap's JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) for more details.
+:warning: By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the [sanitizer section in Bootstrap's JavaScript documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#sanitizer) for more details.
 
 <hr>
 
-:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:warning: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
@@ -33,9 +33,9 @@ Keep reading to see how popovers work with some examples.
 
 One way to initialize all popovers on a page would be to select them by their `data-bs-toggle` attribute:
 ```
-var popoverTriggerList = []. slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
 var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-    retunr new bootstrap.Popover(popoverTriggerEl);
+    return new bootstrap.Popover(popoverTriggerEl);
 });
 ```
 
@@ -53,6 +53,7 @@ var popover = new bootstrap.Popover(document.querySelector('.example-popover'), 
 ```
 <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It very engaging. Right?">Click to toggle popover</button>
 ```
+(This code example can be found in my accompanying [popovers-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Popovers/popovers-examples.html) file.)
 
 <hr>
 
@@ -77,6 +78,7 @@ Four options are available: top, right, bottom, and left aligned. Directions are
     Popover on left
 </button>
 ```
+(And this code example can also be found in my accompanying [popovers-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Popovers/popovers-examples.html) file.)
 
 ### Dismiss on next click
 
@@ -91,22 +93,55 @@ For proper cross-browser and cross-platform behavior, you must use the `<a>` tag
 <hr>
 
 ```
-<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And heere's some amazing content. It's very engaging,. Right?">Dismissible popover</a>
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging,. Right?">Dismissible popover</a>
 ```
 ```
 var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
     trigger: 'focus'
 });
 ```
+(Again, this code example can be found in my accompanying [popovers-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Popovers/popovers-examples.html) file.)
 
 ### Disabled elements
 
 Elements with the `disabled` attribute aren't interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you'll want to trigger the popover from a wrapper `<div>` or `<span>`, ideally made keyboard-focusable using `tabindex="0"`.
+
 For disabled popover triggers, you may also prefer `data-bs-trigger="hover focus" so that the popover appears as immediate visual feedback to your users as they may not expect to *click* on a disabled element.
 ```
 <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
     <button class="btn btn-primary" type="button" disabled>Disabled button</button>
 </span>
+```
+(And again, this code example can be found in my accompanying [popovers-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Popovers/popovers-examples.html) file.)
+
+## Sass
+
+### Variables
+
+```
+$popover-font-size:               $font-size-sm;
+$popover-bg:                      $white;
+$popover-max-width:               276px;
+$popover-border-width:            $border-width;
+$popover-border-color:            rgba($black, .2);
+$popover-border-radius:           $border-radius-lg;
+$popover-inner-border-radius:     subtract($popover-border-radius, $popover-border-width);
+$popover-box-shadow:              $box-shadow;
+
+$popover-header-bg:               shade-color($popover-bg, 6%);
+$popover-header-color:            $headings-color;
+$popover-header-padding-y:        .5rem;
+$popover-header-padding-x:        $spacer;
+
+$popover-body-color:              $body-color;
+$popover-body-padding-y:          $spacer;
+$popover-body-padding-x:          $spacer;
+
+$popover-arrow-width:             1rem;
+$popover-arrow-height:            .5rem;
+$popover-arrow-color:             $popover-bg;
+
+$popover-arrow-outer-color:       fade-in($popover-border-color, .05);
 ```
 
 ## Usage
@@ -121,8 +156,10 @@ var popover = new bootstrap.Popover(exampleEl, options);
 
 ### :exclamation: Making popovers work for keyboard and assistive technology users
 
-To allow keyboard users to activate your popovers, you should only add them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as `<span>`s) can be made focusable by adding the `tabindex="0"` attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce the popover's content in this situation. Additionally, do not rely solely on `hover` as the trigger for your popovers, as this will make them implossible to trigger for keyboard users.<br>
-While you can insert rich, structured HTML in popovers with the `html` option, we strongly recommend that you avoid adding an excessive amount of content. The way popovers currently work is that, once displayed, their content is tied to the trigger element with the `aria-describedby` attribute. As a result, the entirety of the popover's content will be announced to assistive technology users as one long, uninterrupted stream.<br>
+To allow keyboard users to activate your popovers, you should only add them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as `<span>`s) can be made focusable by adding the `tabindex="0"` attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce the popover's content in this situation. Additionally, do not rely solely on `hover` as the trigger for your popovers, as this will make them implossible to trigger for keyboard users.
+
+While you can insert rich, structured HTML in popovers with the `html` option, we strongly recommend that you avoid adding an excessive amount of content. The way popovers currently work is that, once displayed, their content is tied to the trigger element with the `aria-describedby` attribute. As a result, the entirety of the popover's content will be announced to assistive technology users as one long, uninterrupted stream.
+
 Additionally, while it is possible to also include interactive controls (such as form elements or links) in your popover (by adding these elements to the `allowList` of allowed attributes and tags), be aware that currently the popover does not manage keyboard focus order. When a keyboard user opens a popover, focus remains on the triggering element, and as the popover usually does not immediately follow the trigger in the document's structure, there is no guarantee that moving forward/pressing <kbd>TAB</kbd> will move a keyboard user into the popover itself. In short, simply adding interactive controls to a popover is likely to make these controls unreachable/unusable for keyboard users and users of assistive technologies, or at the very least, make for an illogical overall focus order. In these cases, consider using a modal dialog instead.
 
 <hr>
@@ -152,8 +189,8 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | `fallbackPlacements` | array | `['top', 'right', 'bottom', 'left']` | Define fallback placements by providing a list of placements in array (in order of preference). For more information, refer to Popper's [behavior docs](https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements). |
 | `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the popover. By default, it's `'clippingParents'` and can accept an HTMLElement reference (JavaScript only). For more information, refer to Popper's [preventOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
 | `customClass` | string \| function | `''` | Add classes to the popover when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: `'class-1 class-2'`.<br>You can also pass a function that should return a single string containing additional class names. |
-| `sanitize` | Boolean | `true` | Enable or disable the sanitization. If activated, `'template'`, `'content'`, and `'title'` options will be sanitized. See the [sanitizer section in our JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer). |
-| `allowList` | object | [Default value](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) | Object which contains allowed attributes and tags. |
+| `sanitize` | Boolean | `true` | Enable or disable the sanitization. If activated, `'template'`, `'content'`, and `'title'` options will be sanitized. See the [sanitizer section in Bootstrap's JavaScript documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#sanitizer). |
+| `allowList` | object | [Default value](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#sanitizer) | Object which contains allowed attributes and tags. |
 | `sanitizeFn` | null \| function | `null` | Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform santization. |
 | `offset` | array \| string \| function | `[0, 8]` | Offset of the popover relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`.<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `[`[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)`]`.<br>For more information, refer to Popper's [offset docs](https://popper.js.org/docs/v2/modifiers/offset/#options). |
 | `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper. |
@@ -185,7 +222,7 @@ var popover = new bootstrap.Popover(element, {
 #### :warning: Asynchronous methods and transitions
 
 All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.<br>
-[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
 
 <hr>
 
@@ -269,3 +306,7 @@ myPopoverTrigger.addEventListener('hidden.bs.popover', function() {
     // do something...
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Pagination#pagination) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Popovers#popovers) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Progress#progress-bars)
