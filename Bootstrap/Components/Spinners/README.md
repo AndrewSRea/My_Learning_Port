@@ -4,12 +4,13 @@ Indicate the loading state of a component or page with Bootstrap spinners, built
 
 ## About
 
-Bootstrap "spinners" can be used to show the loading state in your projects. They're built only with HTML and CSS, meaning you don't need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with Bootstrap's amazing utility classes.<br>
+Bootstrap "spinners" can be used to show the loading state in your projects. They're built only with HTML and CSS, meaning you don't need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with Bootstrap's amazing utility classes.
+
 For accessibility purposes, each loader here includes `role="status"` and a nested `<span class="visually-hidden">Loading...</span>`.
 
 <hr>
 
-:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
@@ -21,10 +22,11 @@ Use the border spinners for a lightweight loading indicator.
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
+(This code example can be found in my accompanying [spinners-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples.html) file.)
 
 ## Colors
 
-The border spinner uses `currentColor` for its `border-color`, meaning you can customize the color with [text color utilities](). <!-- link to Utilities folder /  Colors --> You can use any of Bootstrap's text color utilities on the standard spinner.
+The border spinner uses `currentColor` for its `border-color`, meaning you can customize the color with [text color utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Colors#colors). You can use any of Bootstrap's text color utilities on the standard spinner.
 ```
 <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
@@ -51,6 +53,7 @@ The border spinner uses `currentColor` for its `border-color`, meaning you can c
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
+(And this code example can also be found in my accompanying [spinners-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples.html) file.)
 
 <hr>
 
@@ -66,7 +69,9 @@ If you don't fancy a border spinner, switch to the grow spinner. While it doesn'
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
-Once again, this spinner is buuilt with `currentColor`, so you can easily change its appearance with [text color utilities](). <!-- link to Utilities folder / Colors --> Here it is in blue, along with the supported variants.
+(Again, this code example can be found in my accompanying [spinners-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples.html) file.)
+
+Once again, this spinner is buuilt with `currentColor`, so you can easily change its appearance with [text color utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Colors#colors). Here it is in blue, along with the supported variants.
 ```
 <div class="spinner-grow text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
@@ -93,6 +98,7 @@ Once again, this spinner is buuilt with `currentColor`, so you can easily change
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
+(And again, this code example can be found in my accompanying [spinners-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples.html) file.)
 
 ## Alignment
 
@@ -100,16 +106,17 @@ Spinners in Bootstrap are built with `rem`s, `currentColor`, and `display: inlin
 
 ### Margin
 
-Use [margin utilities]() <!-- link to Utilities / Spacing --> like `.m-5` for easy spacing.
+Use [margin utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing) like `.m-5` for easy spacing.
 ```
 <div class="spinner-border m-5" role="status">
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
+(This code example can be found in my accompanying [spinners-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-2.html) file.)
 
 ### Placement
 
-Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities to place spinners exactly where you need them in any situation.
+Use [flexbox utiilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex), [float utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Float#float), or [text alignment](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Text#text-alignment) utilities to place spinners exactly where you need them in any situation.
 
 #### Flex
 
@@ -126,6 +133,7 @@ Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities
     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
 </div>
 ```
+(These two code examples can be found in my accompanying [spinners-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-2.html) file.)
 
 #### Floats
 
@@ -136,6 +144,7 @@ Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities
     </div>
 </div>
 ```
+(And this code example can also be found in my accompanying [spinners-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-2.html) file.)
 
 #### Text align
 
@@ -146,6 +155,7 @@ Use [flexbox utiilities](), [float utilities](), or [text alignment]() utilities
     </div>
 </div>
 ```
+(Again, this code example can be found in my accompanying [spinners-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-2.html) file.)
 
 ## Size
 
@@ -158,6 +168,8 @@ Add `.spinner-border-sm` and `.spinner-grow-sm` to make a smaller spinner that c
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
+(This code example can be found in my accompanying [spinners-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-3.html) file.)
+
 Or, use custom CSS or inline styles to change the dimensions as needed.
 ```
 <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
@@ -167,6 +179,7 @@ Or, use custom CSS or inline styles to change the dimensions as needed.
     <span class="visually-hidden">Loading...</span>
 </div>
 ```
+(And this code example can also be found in my accompanying [spinners-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-3.html) file.)
 
 ## Buttons
 
@@ -191,3 +204,44 @@ Use spinners within buttons to indicate an action is currently processing or tak
     Loading...
 </button>
 ```
+(And these two code examples can also be found in my accompanying [spinners-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Spinners/spinners-examples-3.html) file.)
+
+## Sass
+
+### Variables
+
+```
+$spinner-width:             2rem;
+$spinner-height:            $spinner-width;
+$spinner-vertical-align:    -.125em;
+$spinner-border-width:      .25em;
+$spinner-animation-speed:   .75s;
+
+$spinner-width-sm:          1rem;
+$spinner-height-sm:         $spinner-width-sm;
+$spinner-border-width-sm:   .2em;
+```
+
+### Keyframes
+
+Used for creating the CSS animations for Bootstrap's spinners. Included in `scss/_spinners.scss`.
+```
+@keyframes spinner-border {
+    to { transfrom: rotate(360deg) #{"/* rtl:ignore */"}; }
+}
+```
+```
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: none;
+    }
+}
+```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Scrollspy#scrollspy) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Spinners#spinners) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#toasts)
