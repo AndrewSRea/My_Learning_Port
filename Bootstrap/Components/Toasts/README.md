@@ -1,6 +1,7 @@
 # Toasts
 
-Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.<br>
+Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.
+
 Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems. They're built with flexbox, so they're easy to align and position.
 
 ## Overview
@@ -12,7 +13,7 @@ Things to know when using the toast plugin:
 
 <hr>
 
-:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of our accessibility documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
@@ -20,7 +21,8 @@ Things to know when using the toast plugin:
 
 ### Basic
 
-To encourage extensible and predictable toasts, Bootstrap recommends a header and body. Toast headers use `display: flex`, allowing easy alignment of content thanks to our margin and flexbox utilities.<br>
+To encourage extensible and predictable toasts, Bootstrap recommends a header and body. Toast headers use `display: flex`, allowing easy alignment of content thanks to our margin and flexbox utilities.
+
 Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap requires a single element to contain your "toasted" content and strongly encourage a dismiss button.
 ```
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -35,6 +37,7 @@ Toasts are as flexible as you need and have very little required markup. At a mi
     </div>
 </div>
 ```
+(This code example can be found in my accompanying [toasts-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples.html) file.)
 
 ### Live
 
@@ -56,6 +59,7 @@ Click the button below to show it as a toast (positioning with Bootstrap's utili
     </div>
 </div>
 ```
+(And this code example can also be found in my accompanying [toasts-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples.html) file.)
 
 ### Translucent
 
@@ -73,6 +77,7 @@ Toasts are slightly translucent, too, so they blend over whatever thy might appe
     </div>
 </div>
 ```
+(Again, this code example can be found in my accompanying [toasts-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples.html) file.)
 
 ### Stacking
 
@@ -104,10 +109,11 @@ You can stack toasts by wrapping them in a toadt container, which will verticall
     </div>
 </div>
 ```
+(And again, this code example can be found in my accompanying [toasts-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples.html) file.)
 
 ### Custom content
 
-Customize your toasts by removing sub-components, tweaking with [utilities](), <!-- link to Utilities folder / Utility API --> or adding your own markup. Here Bootstrap has created a simpler toast by removing the default `.toast-header`, adding a custom hide icon from [Bootstrap icons](https://icons.getbootstrap.com/), and using some [flexbox utilities]() to adjust the layout. <!-- link to Utilities folder / Flex -->
+Customize your toasts by removing sub-components, tweaking with [utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#utility-api), or adding your own markup. Here Bootstrap has created a simpler toast by removing the default `.toast-header`, adding a custom hide icon from [Bootstrap icons](https://icons.getbootstrap.com/), and using some [flexbox utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) to adjust the layout.
 ```
 <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
@@ -118,6 +124,8 @@ Customize your toasts by removing sub-components, tweaking with [utilities](), <
     </div>
 </div>
 ```
+(This code example can be found in my accompanying [toasts-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples-2.html) file.)
+
 Alternatively, you can also add additional controls and components to toasts.
 ```
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -130,10 +138,11 @@ Alternatively, you can also add additional controls and components to toasts.
     </div>
 </div>
 ```
+(And this code example can also be found in my accompanying [toasts-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples-2.html) file.)
 
 ### Color schemes
 
-Building on the above example, you can create different toast color schemes with our [color]() and [background](). <!-- link to Utilities folder / Colors + Background, respectively --> In this example, `.bg-primary` and `.text-white` have been added, and then `.btn-close-white` to the close button. For a crisp edge, the default border is removed with `.border-0`.
+Building on the above example, you can create different toast color schemes with our [color](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Colors#colors) and [background](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Background#background). In this example, `.bg-primary` and `.text-white` have been added, and then `.btn-close-white` to the close button. For a crisp edge, the default border is removed with `.border-0`.
 ```
 <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
@@ -144,6 +153,7 @@ Building on the above example, you can create different toast color schemes with
     </div>
 </div>
 ```
+(Again, this code example can be found in my accompanying [toasts-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples-2.html) file.)
 
 ## Placement
 
@@ -181,6 +191,8 @@ Placec toasts with custom CSS as you need them. The top right is often used for 
     </div>
 </div>
 ```
+(And again, this code example can be found in my accompanying [toasts-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples-2.html) file.)
+
 For systems that generate more notifications, consider using a wrapping element so they can easily stack.
 ```
 <div aria-live="polite" aria-atomic="true" class="position-relative">
@@ -217,6 +229,8 @@ For systems that generate more notifications, consider using a wrapping element 
     </div>
 </div>
 ```
+(Once again, this code example can be found in my accompanying [toasts-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples-2.html) file.)
+
 You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically.
 ```
 <!-- Flexbox container for aligning the toasts -->
@@ -236,13 +250,17 @@ You can also get fancy with flexbox utilities to align toasts horizontally and/o
     </div>
 </div>
 ```
+(And once more, this code example can be found in my accompanying [toasts-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Toasts/toasts-examples-2.html) file.)
 
 ## Accessibility
 
-Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user's focus or otherwise interrupt the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as single (atomic) unit, ratheer than announcing what was changed (which could lead to problems if you only update part of the toast's content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the [alert component](#alerts) instead of toast.<br>
-Note that the live region needs to be present in the markup *before* the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.<br>
-You also need to adapt the `role` and `aria-live` level depending on the content. If it's an important message like an error, use `role="alert" aria-live="assertive"`, otherwise use `role="status" aria-live="polite"` attributes.<br>
-As the content you're displaying changes, be sure to update the [`delay` timeout](#options) to ensure people have enough time to read the toast.
+Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user's focus or otherwise interrupt the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as single (atomic) unit, rather than announcing what was changed (which could lead to problems if you only update part of the toast's content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the [alert component](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Alerts#alerts) instead of toast.
+
+Note that the live region needs to be present in the markup *before* the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.
+
+You also need to adapt the `role` and `aria-live` level depending on the content. If it's an important message like an error, use `role="alert" aria-live="assertive"`, otherwise use `role="status" aria-live="polite"` attributes.
+
+As the content you're displaying changes, be sure to update the [`delay` timeout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#options) to ensure people have enough time to read the toast.
 ```
 <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-delay="1000">
     <div role="alert" aria-live="assertive" aria-atomic="true">...</div>
@@ -250,7 +268,7 @@ As the content you're displaying changes, be sure to update the [`delay` timeout
 ```
 When using `autohide: false`, you must add a close button to allow users to dismiss the toast.
 ```
-<div role="alert" aria-live="asseertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+<div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
     <div class="toast-header">
         <img src="..." class="rounded me-2" alt="...">
         <strong class="me-auto">Bootstrap</strong>
@@ -261,6 +279,29 @@ When using `autohide: false`, you must add a close button to allow users to dism
         Hello, world! This is a toast message.
     </div>
 </div>
+```
+While technically it's possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long [`delay` timeout](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#options), keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don't receive focus when they are displayed). If you absolutely must have further controls, Bootstrap recommends using a toast with `autohide: false`.
+
+## Sass
+
+### Variables
+
+```
+$toast-max-width:
+$toast-padding-x:
+$toast-padding-y:
+$toast-font-size:
+$toast-color:
+$toast-background-color:
+$toast-border-width:
+$toast-border-color:
+$toast-border-radius:
+$toast-box-shadow:
+$toast-spacing:
+
+$toast-header-color:
+$toast-header-background-color:
+$toast-header-border-color:
 ```
 
 ## JavaScript behavior
@@ -291,8 +332,9 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 
 #### :warning: Asynchronous methods and transitions
 
-All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.<br>
-[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.
+
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
 
 <hr>
 
@@ -305,7 +347,7 @@ toast.show();
 
 #### hide
 
-Hides an element's toast. **Returns to the caller before the toast has actually been hidden** (i.e. before the `hidden.bs.toast` event occurs). You have to manually call this method if you deeclared `autohide` as `false`.
+Hides an element's toast. **Returns to the caller before the toast has actually been hidden** (i.e. before the `hidden.bs.toast` event occurs). You have to manually call this method if you declared `autohide` as `false`.
 ```
 toast.hide();
 ```
@@ -332,3 +374,7 @@ myToastEl.addEventListener('hidden.bs.toast', function() {
     // do something...
 });
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Spinners#spinners) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#toasts) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#tooltips)
