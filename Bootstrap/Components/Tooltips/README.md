@@ -6,9 +6,9 @@ Documentation and examples for adding custom Bootstrap tooltips with CSS and Jav
 
 Things to know when using the tooltip plugin:
 
-* Tooltips rely on thee third party library [Popper]() for positioning. You must include [popper.min.js]() before bootstrap.js, or use `bootstrap.bundle.min.js`/`bootstrap.bundle.js` which contains Popper in order for tooltips to work!
+* Tooltips rely on the third party library [Popper](https://popper.js.org/) for positioning. You must include [popper.min.js](https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js) before bootstrap.js, or use `bootstrap.bundle.min.js`/`bootstrap.bundle.js` which contains Popper in order for tooltips to work!
 * Tooltips are opt-in for performance reasons, so **you must initialize them yourself**.
-* Tooltips with zero-length titles are neer displayed.
+* Tooltips with zero-length titles are never displayed.
 * Specify `container: 'body'` to avoid rendering problems in more complex components (like Bootstrap's input groups, button groups, etc).
 * Triggering tooltips on hidden elements will not work.
 * Tooltips for `.disabled` or `disabled` elements must be triggered on a wrapper element.
@@ -18,11 +18,11 @@ Things to know when using the tooltip plugin:
 
 <hr>
 
-:exclamation: By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the [sanitizer section in Bootstrap's JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) for more details.
+:exclamation: By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the [sanitizer section in Bootstrap's JavaScript documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#sanitizer) for more details.
 
 <hr>
 
-:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://getbootstrap.com/docs/5.0/getting-started/accessibility/#reduced-motion).
+:exclamation: The animation effect of this component is dependent on the `prefers-reduced-motion` media query. See the [reduced motion section of Bootstrap's accessibility documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Accessibility#reduced-motion).
 
 <hr>
 
@@ -57,17 +57,47 @@ Hover over the links below to see the tooltips:
 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left">
     Tooltip on left
 </button>
-
-<!-- And with custom HTML added: -->
-
+```
+And with custom HTML added:
+```
 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-html="true" title="<em>Tooltip</em> <u>with</u> <b>top</b>">
     Tooltip with HTML
 </button>
 ```
+With an SVG:
+```
+<a href="#" class="d-inline-block" data-bs-toggle="tooltip" title data-bs-origin-title="Default tooltip">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100">
+        <rect width="100%" height="100%" fill="#563d7c"></rect>
+        <circle cx="50" cy="50" r="30" fill="#007bff"></circle>
+    </svg>
+</a>
+```
+
+## Sass
+
+### Variables
+
+```
+$tooltip-font-size:         $font-size-sm;
+$tooltip-max-width:         200px;
+$tooltip-color:             $white;
+$tooltip-bg:                $black;
+$tooltip-border-radius:     $border-radius;
+$tooltip-opacity:           .9;
+$tooltip-padding-y:         $spacer / 4;
+$tooltip-padding-x:         $spacer / 2;
+$tooltip-margin:            0;
+
+$tooltip-arrow-width:       .8rem;
+$tooltip-arrow-height:      .4rem;
+$tooltip-arrow-color:       $tooltip-bg;
+```
 
 ## Usage
 
-The tooltip plugin generates content and markup on demand, and by defualt places tooltips after their trigger eleement.<br>
+The tooltip plugin generates content and markup on demand, and by defualt places tooltips after their trigger element.
+
 Trigger the tooltip via JavaScript:
 ```
 var exampleEl = document.getElementById('example');
@@ -78,11 +108,11 @@ var tooltip = new bootstrap.Tooltip(exampleEl, options);
 
 ### :exclamation: Overflow `auto` and `scroll`
 
-Tooltip position attempts to automatically change when a parent container has `overflow: auto` or `overflow: scroll` like Bootstrap's `.table-responsive`, but still keeps the original placement's positioning . To resolve, set the `boundary` option to anything other than default value, `'scrollParent'`, such as `'window'`:
+Tooltip position attempts to automatically change when a **parent container** has `overflow: auto` or `overflow: scroll` like Bootstrap's `.table-responsive`, but still keeps the original placement's positioning . To resolve this, set the [`boundary` option]() (for the flip modifier using the `popperConfig` option) to any HTMLElement to override the default value, `'clippingParents'`, such as `document.body`:
 ```
 var exampleEl = document.getElementById('example');
 var tooltip = new bootstrap.Tooltip(exampleEl, {
-    boundary: 'window'
+    boundary: document.body   // or document.querySelector('#boundary')
 });
 ```
 
@@ -103,7 +133,7 @@ You should only add tooltips to HTML elements that are traditionally keyboard-fo
 <!-- HTML to write -->
 <a href="#" data-bs-toggle="tooltip" title="Some tooltip text!">Hover over me</a>
 
-<!--  Generate markup by thee plugin -->
+<!--  Generate markup by the plugin -->
 <div class="tooltip bs-tooltip-top" role="tooltip">
     <div class="tooltip-arrow"></div>
     <div class="tooltip-inner">
@@ -114,7 +144,7 @@ You should only add tooltips to HTML elements that are traditionally keyboard-fo
 
 ### Disabled elements
 
-Elements with the `disabled` attribute aren't interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you'll want to triggeer the tooltip from a wrapper `<div>` or `<span>`, ideally made keyboard-focusable using `tabindex="0"`.
+Elements with the `disabled` attribute aren't interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you'll want to trigger the tooltip from a wrapper `<div>` or `<span>`, ideally made keyboard-focusable using `tabindex="0"`.
 ```
 <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
     <button class="btn btn-primary" type="button" disabled>Disabled button</button>
@@ -143,10 +173,10 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | `title` | string \| element \| function | `''` | Default title value if `title` attribute isn't present.<br>If a function is given, it will be called with its `this` reference set to the element that the tooltip is attached to. |
 | `trigger` | string | `'hover focus` | How tooltip is triggered - click \| hover \| focus \| manual. You may pass multiple triggers; separate them with a space.<br>`'manual'` indicates that the tooltip will be triggered programatically via the `.tooltip('show')`, `.tooltip('hide')` and `.tooltip('toggle')` methods; this valu cannot be combined with any other trigger.<br>`'hover'` on its own will result in tooltips that cannot be triggered via the keyboard, and should only be used if alternative methods for conveying the same information for keyboard users is present. |
 | `fallbackPlacements` | array | `['top', 'right', 'bottom', 'left']` | Define fallback placements by providing a list of placements in array (in order of preference). For more information, refer to Popper's [behavior docs](https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements). |
-| `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the tooltip. By default, it's `'clippingParents'` and can accept an HTMLElement reference (JavaScript only). For more information, refer to Popper's [preventOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
+| `boundary` | string \| element | `'clippingParents'` | Overflow constraint boundary of the tooltip. By default, it's `'clippingParents'` and can accept an HTMLElement reference (JavaScript only). For more information, refer to Popper's [detectOverflow docs](https://popper.js.org/docs/v2/utils/detect-overflow/#boundary). |
 | `customClass` | string \| function | `''` | Add classes to the tooltip when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: `'class-1 class-2'`.<br>You can also pass a function that should return a single string containing additional class names. |
-| `sanitize` | Boolean | `true` | Enable or disable the sanitization. If activated, `'template'` and `'title'` options will be sanitized. See the [sanitizer section in Bootstrap's JavaScript documentation](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer). |
-| `allowList` | object | [Default value](https://getbootstrap.com/docs/5.0/getting-started/javascript/#sanitizer) | Object which contains allowed attributes and tags |
+| `sanitize` | Boolean | `true` | Enable or disable the sanitization. If activated, `'template'` and `'title'` options will be sanitized. See the [sanitizer section in Bootstrap's JavaScript documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#sanitizer). |
+| `allowList` | object | [Default value](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#sanitizer) | Object which contains allowed attributes and tags |
 | `sanitizeFn` | null \| function | `null` | Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization. |
 | `offset` | array \| string \| function | `[0,0]` | Offset of the tooltip relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`<br>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: `[`[skidding](https://popper.js.org/docs/v2/modifiers/offset/#skidding-1), [distance](https://popper.js.org/docs/v2/modifiers/offset/#distance-1)`]`. |
 | `popperConfig` | null \| object \| function | `null` | To change Bootstrap's default Popper config, see [Popper's configuration](https://popper.js.org/docs/v2/constructors/#options).<br>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helos you use and merge the default with your own configuration. The function must return a configuration object for Popper. |
@@ -178,7 +208,7 @@ var tooltip = new bootstrap.Tooltip(element, {
 #### :warning: Asynchronous methods and transitions
 
 All API methods are **asynchronous** and start a **transition**. They return to the caller as soon as the transition is started but **before it ends**. In addition, a method call on a **transitioning component will be ignored**.<br>
-[See Bootstrap's JavaScript documentation for more information](https://getbootstrap.com/docs/5.0/getting-started/javascript/#asynchronous-functions-and-transitions).
+[See Bootstrap's JavaScript documentation for more information](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/JavaScript#asynchronous-functions-and-transitions).
 
 <hr>
 
@@ -205,7 +235,7 @@ tooltip.toggle();
 
 #### dispose
 
-Hides and destroys an element's tooltip. (Removes stored data on the DOM element.) Tooltips that use delegation (which are created using [the `selector` option](#options)) cannot be individually destroyed on descendant trigger elements.
+Hides and destroys an element's tooltip. (Removes stored data on the DOM element.) Tooltips that use delegation (which are created using [the `selector` option](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#options)) cannot be individually destroyed on descendant trigger elements.
 ``` 
 tooltip.dispose();
 ```
@@ -266,3 +296,7 @@ myTooltipEl.addEventListener('hidden.bs.tooltip', function() {
 
 tooltip.hide();
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#toasts) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#tooltips) - [[Next module: Helpers]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers)
