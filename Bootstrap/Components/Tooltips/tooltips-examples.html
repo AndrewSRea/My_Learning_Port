@@ -13,12 +13,18 @@
         </style>
    </head>
    <body>
+       <h2 class="m-3">Bootstrap Tooltips Component Examples</h2>
+
+       <hr>
+
         <!-- Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left.
              Directions are mirrored when using Bootstrap in RTL. -->
 
         <div class="container">
-            <h4 class="mb-3">Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left.
-                Directions are mirrored when using Bootstrap in RTL.</h4>
+            <h3 class="mb-2">Tooltips Component Example 01</h3>
+            
+            <p class="fs-5 mb-3">Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left.
+                Directions are mirrored when using Bootstrap in RTL.</p>
             
             <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
                 Tooltip on top
@@ -41,12 +47,19 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- And here is a tooltip overlaid on an SVG. -->
 
         <div class="container">
-            <h4 class="mb-3"></h4>
-
+            <h3 class="mb-2">Tooltips Component Example 02</h3>
             
+            <p class="fs-5 mb-3">And here is a tooltip overlaid on an SVG.</p>
+
+            <a href="#" class="d-inline-block" data-bs-toggle="tooltip" title data-bs-origin-title="Default tooltip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100">
+                    <rect width="100%" height="100%" fill="#563d7c"></rect>
+                    <circle cx="50" cy="50" r="30" fill="#007bff"></circle>
+                </svg>
+            </a>
         </div>
         <hr>
 
