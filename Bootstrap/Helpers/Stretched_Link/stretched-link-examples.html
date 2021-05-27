@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Bootstrap Stretched Link Helpers Examples</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+            .container {
+                margin: 20px;
+            }
+        </style>
+   </head>
+   <body>
+        <h2 class="mb-3">Bootstrap Stretched Helpers Examples</h2>
+
+        <hr>
+
+        <!-- Add the `.stretched-link` class to a link to make its containing block clickable. In the example below, 
+             cards can have the `.stretched-link` added to them without having to make any specific HTML changes. -->
+
+        <div class="container">
+            <h3 class="mb-2">Stretched Link Helpers Example 01</h3>
+
+            <p class="fs-5 mb-3">Add the <code>.stretched-link</code> class to a link to make its containing block clickable. In the 
+                example below, cards can have the <code>.stretched-link</code> added to them without having to make any specific 
+                HTML changes.</p>
+
+            <div class="card" style="width: 18rem;">
+                <img src="images/dark-grey-bg.jpg" class="card-img-top card-image" alt="Image Sub">
+                <div class="card-body">
+                    <h5 class="card-title">Card with stretched link</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                    <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Most custom components do not have `position: relative` by default, so `.position-relative` is added here
+             to prevent the link from stretching outside the parent element. -->
+
+        <div class="container">
+            <h3 class="mb-2">Stretched Link Helpers Example 02</h3>
+
+            <p class="fs-5 mb-3">Most custom components do not have <code>position: relative</code> by default, so <code>.position-relative</code> 
+                is added here to prevent the link from stretching outside the parent element.</p>
+
+            <div class="d-flex position-relative">
+                <img src="images/dark-grey-bg.jpg" class="flex-shrink-0 me-3" width="144" height="144" alt="Image Sub">
+                <div>
+                    <h5 class="mt-0">Custom component with stretched link</h5>
+                    <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+                    <a href="#" class="stretched-link">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Another custom card component with the `.position-link` class added to prevent the link from stretching
+             outside the parent element. This example uses rows and columns to size the content within the card. -->
+        
+        <div class="container">
+            <h3 class="mb-2">Stretched Link Helpers Example 03</h3>
+
+            <p class="fs-5 mb-4">Another custom card component with the <code>.position-link</code> class added to prevent the link 
+                from stretching outside the parent element. This example uses rows and columns to size the content within the card.</p>
+
+            <div class="row g-0 bg-light position-relative">
+                <div class="col-md-6 mb-md-0 p-md-4">
+                    <img src="images/dark-grey-bg.jpg" class="w-100" alt="Image Sub">
+                </div>
+                <div class="col-md-6 p-4 ps-md-0">
+                    <h5 class="mt-0">Columns with stretched link</h5>
+                    <p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+                    <a href="#" class="stretched-link">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- If a stretched link doesn't seem to work, the containing block will probably be the cause. In this example,
+             a `position` value other than `static` will make an element a containing block. In this case, `position:
+             relative;`. -->
+
+        <div class="container">
+            <h3 class="mb-3">Stretched Link Helpers Example 04</h3>
+
+            <p class="fs-5 mb-3">If a stretched link doesn't seem to work, the containing block will probably be the cause. In this 
+                example, a <code>position</code> value other than <code>static</code> will make an element a containing block. In 
+                this case, <code>position: relative;</code>.</p>
+
+            <div class="card" style="width: 18rem;">
+                <img src="images/dark-grey-bg.jpg" class="card-img-top" alt="Image Sub">
+                <div class="card-body">
+                    <h5 class="card-title">Card with stretched links</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bullk of the card's content.</p>
+                    <p class="card-text">
+                        <a href="#" class="stretched-link text-danger" style="position: relative;">Stretched link willl not work here, because <code>position: relative</code> is added to the link</a>
+                    </p>
+                    <p class="card-text bg-light" style="transform: rotate(0);">
+                        This <a href="#" class="text-warning stretched-link">stretched link</a> will only be spread over the <code>p</code>-tag, because a transform is applied to it.
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+   </body>
+</html>
