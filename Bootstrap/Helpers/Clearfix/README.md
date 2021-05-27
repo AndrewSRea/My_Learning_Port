@@ -35,4 +35,4 @@ The following example shows how the clearfix can be used. Without the clearfix, 
 
 <hr>
 
-[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Clearfix#clearfix) - [[Next page]]()
+[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Clearfix#clearfix) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Colored_Links#colored-links)
