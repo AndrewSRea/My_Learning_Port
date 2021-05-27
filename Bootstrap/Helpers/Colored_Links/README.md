@@ -13,6 +13,7 @@ You can use the `.link-*` classes to colorize links. Unlike the [`.text-*` class
 <a href="#" class="link-light">Light link</a>
 <a href="#" class="link-dark">Dark link</a>
 ```
+(This code example can be found in my accompanying [colored-links-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Colored_Links/colored-links-examples.html) file.)
 
 <hr>
 
@@ -20,4 +21,4 @@ You can use the `.link-*` classes to colorize links. Unlike the [`.text-*` class
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Clearfix#clearfix) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Clearfix#clearfix) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Ratio#ratios)
