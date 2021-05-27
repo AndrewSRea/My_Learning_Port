@@ -23,4 +23,4 @@ Both `visually-hidden` and `visually-hidden-focusable` can also be used as mixin
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Position#position) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Visually_Hidden#visually-hidden) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Stretched_Link#stretched-link)
