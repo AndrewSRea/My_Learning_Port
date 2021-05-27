@@ -35,4 +35,4 @@ Responsive variations also exist for `.sticky-top` utility.
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Ratio#ratios) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Position#position) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Visually_Hidden#visually-hidden)
