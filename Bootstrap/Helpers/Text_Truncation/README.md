@@ -16,7 +16,7 @@ For longer content, you can add a `.text-truncate` class to truncate the text wi
     Praeterea iter est quasdam res quas ex communi.
 </span>
 ```
-(This code example can be found in my accompanying [text-truncation-examples.html]() file.)
+(This code example can be found in my accompanying [text-truncation-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Text_Truncation/text-truncation-examples.html) file.)
 
 <hr>
 
