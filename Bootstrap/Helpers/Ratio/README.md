@@ -22,6 +22,7 @@ Wrap any embed, like an `<iframe>`, in a parent element with `.ratio` and an asp
     <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
 </div>
 ```
+(This code example can be found in my accompanying [ratio-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Ratio/ratio-examples.html) file.)
 
 ## Aspect ratios
 
@@ -40,6 +41,7 @@ Aspect ratios can be customized with modifier classes. By default, the following
     <div>21x9</div>
 </div>
 ```
+(And this code example can be found in my accompanying [ratio-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Ratio/ratio-examples-2.html) file.)
 
 ## Custom ratios
 
@@ -64,6 +66,7 @@ This CSS variable makes it easy to modify the aspect ratio across breakpoints. T
     <div>4x3, then 2x1</div>
 </div>
 ```
+(And this code example can also be found in my accompanying [ratio-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Ratio/ratio-examples-2.html) file.)
 
 <hr>
 
