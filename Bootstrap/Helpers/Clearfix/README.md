@@ -31,7 +31,8 @@ The following example shows how the clearfix can be used. Without the clearfix, 
     <button type="button" class="btn btn-secondary float-end">Example Button floated right</button>
 </div>
 ```
+(This code example can be found in my accompanying [clearfix-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Clearfix/clearfix-examples.html) file.)
 
 <hr>
 
-[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers) - [[Top]]() - [[Next page]]()
+[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Clearfix#clearfix) - [[Next page]]()
