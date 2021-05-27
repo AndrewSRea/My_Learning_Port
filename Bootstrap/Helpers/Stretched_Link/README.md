@@ -17,7 +17,7 @@ Mulltiple links and tap targets are not recommended with stretched links. Howeve
     </div>
 </div>
 ```
-(This code example can be found in my accompanying [stretched-link-examples.html]() file.)
+(This code example can be found in my accompanying [stretched-link-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Stretched_Link/stretched-link-examples.html) file.)
 
 Most custom components do not have `position: relative` by default, so we need to add the `.position-relative` here to prevent the link from stretching outside the parent element.
 ```
@@ -42,7 +42,7 @@ Most custom components do not have `position: relative` by default, so we need t
     </div>
 </div>
 ```
-(These two code examples can be found in my accompanying [stretched-link-examples.html]() file.)
+(These two code examples can be found in my accompanying [stretched-link-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Stretched_Link/stretched-link-examples.html) file.)
 
 ### Identifying the containing block
 
@@ -68,8 +68,8 @@ If the stretched link doesn't seem to work, the [containing block]() will probab
     </div>
 </div>
 ```
-(And this code example can also be found in my accompanying [stretched-link-examples.html]() file.)
+(And this code example can also be found in my accompanying [stretched-link-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Helpers/Stretched_Link/stretched-link-examples.html) file.)
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Visually_Hidden#visually-hidden) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Stretched_Link#stretched-link) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Text_Truncation#text-truncation)
