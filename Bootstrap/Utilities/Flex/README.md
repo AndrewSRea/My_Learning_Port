@@ -11,6 +11,8 @@ Apply `display` utilities to create a flexbox container and transform **direct c
 ```
 <div class="d-inline-flex p-2 bd-highlight">I'm an inline flex box container!</div>
 ```
+(These two code examples above can be found in my accompanying [flex-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-1.html) file.)
+
 Responsive variations also exist for `.d-flex` and `.d-inline-flex`.
 
 * `.d-flex`
@@ -43,6 +45,8 @@ Use `.flex-row` to set a horizontal direction (the browser default), or `.flex-r
     <div class="p-2 bd-highlight">Flex item 3</div>
 </div>
 ```
+(This code example can be found in my accompanying [flex-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-1.html) file.)
+
 Use `.flex-column`to set a vertical direction, or `.flex-column-reverse` to start the vertical direction from the opposite side.
 ```
 <div class="d-flex flex-column bd-highlight mb-3">
@@ -56,6 +60,8 @@ Use `.flex-column`to set a vertical direction, or `.flex-column-reverse` to star
     <div class="p-2 bd-highlight">Flex item 3</div>
 </div>
 ```
+(And this code example can also be found in my accompanying [flex-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-1.html) file.)
+
 Responsive variations also exist for `flex-direction`.
 
 * `.flex-row`
@@ -94,6 +100,8 @@ Use `.justify-content` utilities on flexbox containers to change the alignment o
 <div class="d-flex justify-content-around">...</div>
 <div class="d-flex justify-content-evenly">...</div>
 ```
+(This code example can be found in my accompanying [flex-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-2.html) file.)
+
 Responsive variations also exist for `justify-content`.
 
 * `.justify-content-start`
@@ -143,6 +151,8 @@ Use `align-items` utilities on flexbox containers to change the alignment of fle
 <div class="d-flex align-items-baseline">...</div>
 <div class="d-flex align-items-stretch">...</div>
 ```
+(And this code example can also be found in my accompanying [flex-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-2.html) file.)
+
 Responsive variations also exist for `align-items`.
 
 * `.align-items-start`
@@ -186,6 +196,8 @@ Use `align-self` utilities on flexbox items to individually change their alignme
 <div class="align-self-baseline">Aligned flex item</div>
 <div class="align-self-stretch">Aligned flex item</div>
 ```
+(Again, this code example can be found in my accompanying [flex-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-12.html) file.)
+
 Responsive variations also exist for `align-self`.
 
 * `.align-self-start`
@@ -220,6 +232,7 @@ Responsive variations also exist for `align-self`.
 * `.align-self-xxl-stretch`
 
 ## Fill
+
 Use the `.flex-fill` class on a series of sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space.
 ```
 <div class="d-flex bd-highlight">
@@ -228,6 +241,8 @@ Use the `.flex-fill` class on a series of sibling elements to force them into wi
     <div class="p-2 flex-fill bd-highlight">Flex item</div>
 </div>
 ```
+(This code example can be found in my accompanying [flex-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-3.html) file.)
+
 Responsive variations also exist for `flex-fill`.
 
 * `.flex-fill`
@@ -247,6 +262,8 @@ Use `.flex-grow-*` utilities to toggle a flex item's ability to grow to fill ava
     <div class="p-2 bd-highlight">Third flex item</div>
 </div>
 ```
+(And this code example can also be found in my accompanying [flex-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-3.html) file.)
+
 Use `.flex-shrink-*` utilities to toggle a flex item's ability to shrink, if necessary. In the example below, the second flex item with `.flex-shrink-1` is forced to wrap its contents to a new line, "shrinking" to allow more space for the previous flex item with `.w-100`.
 ```
 <div class="d-flex bd-highlight">
@@ -254,6 +271,8 @@ Use `.flex-shrink-*` utilities to toggle a flex item's ability to shrink, if nec
     <div class="p-2 flex-shrink-1 bd-highlight">Flex item</div>
 </div>
 ```
+(Again, this code example can be found in my accompanying [flex-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-3.html) file.)
+
 Responsive variations also exist for `flex-grow` and `flex-shrink`.
 
 * `.flex-{grow|shrink}-0`
@@ -291,6 +310,7 @@ Flexbox can do some pretty awesome things when you mix flex alignments with auto
     <div class="ms-auto p-2 bd-highlight">Flex item</div>
 </div>
 ```
+(And again, this code example can be found in my accompanying [flex-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-3.html) file.)
 
 ### With align items
 
@@ -308,6 +328,7 @@ Vertically move one flex item to the top or bottom of a container by mixing `ali
     <div class="mt-auto p-2 bd-highlight">Flex item</div>
 </div>
 ```
+(This code example can be found in my accompanying [flex-utilities-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-4.html) file.)
 
 ## Wrap
 
@@ -327,6 +348,8 @@ Change how flex items wrap in a flex container. Choose from no wrapping at all (
     ...
 </div>
 ```
+(And these three code examples above can be found in my accompanying [flex-utilities-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-4.html) file.)
+
 Responsive variations also exist for `flex-wrap`.
 
 * `.flex-nowrap`
@@ -358,6 +381,8 @@ Change the *visual* order of specific flex items with a handful of `order` utili
     <div class="order-1 p-2 bd-highlight">Third flex item</div>
 </div>
 ```
+(And once more, this code example can be found in my accompanying [flex-utilities-examples-4.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-4.html) file.)
+
 Responsive variations also exist for `order`.
 
 * `.order-0`
@@ -415,6 +440,7 @@ Additionally, there are also responsive `.order-first` and `.order-last` classes
 ## Align content
 
 Use `align-content` utilities on flexbox containers to align flex items *together* on the cross axis. Choose from `start` (browser default), `end`, `center`, `between`, `around`, or `stretch`. To demonstrate these utilities, `flex-wrap` is enforced on the container and the number of flex items is increased.
+
 **Heads up!** This property has no effect on single rows of flex items.
 ```
 <div class="d-flex align-content-start flex-wrap">
@@ -446,6 +472,7 @@ Use `align-content` utilities on flexbox containers to align flex items *togethe
     ...
 </div>
 ```
+(And these six code examples can be found in my accompanying [flex-utilities-examples-5.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-5.html) file.)
 
 Responsive variations also exist for `align-content`.
 
@@ -479,3 +506,143 @@ Responsive variations also exist for `align-content`.
 * `.align-content-xxl-center`
 * `.align-content-xxl-around`
 * `.align-content-xxl-stretch`
+
+## Media object
+
+Looking to replicate the [media object component]() from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before.
+```
+<div class="d-flex">
+    <div class="flex-shrink-0">
+        <img src="..." alt="...">
+    </div>
+    <div class="flex-grow-1 ms-3">
+        This is some content from a media component. You can replace this with any content and adjust it as needed.
+    </div>
+</div>
+```
+
+And say you want to vertically center the content next to the image:
+```
+<div class="d-flex align-items-center">
+    <div class="flex-shrink-0">
+        <img src="..." alt="...">
+    </div>
+    <div class="flex-grow-1 ms-3">
+        This is some content from a media component. You can replace this with any content and adjust it as needed.
+    </div>
+</div>
+```
+
+## Sass
+
+### Utilities API
+
+Flexbox utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+```
+"flex": (
+    responsive: true,
+    property: flex,
+    values: (fill: 1 1 auto)
+),
+"flex-direction": (
+    responsive: true,
+    property: flex-direction,
+    class: flex,
+    values: row column row-reverse column-reverse
+),
+"flex-grow": (
+    responsive: true,
+    property: flex-grow,
+    class: flex,
+    values: (
+        grow-0: 0,
+        grow-1: 1,
+    )
+),
+"flex-shrink": (
+    responsive: true,
+    property: flex-shrink,
+    class: flex,
+    values: (
+        shrink-0: 0,
+        shrink-1: 1,
+    )
+),
+"flex-wrap": (
+    responsive: true,
+    property: flex-wrap,
+    class: flex,
+    values: wrap nowrap wrap-reverse
+),
+"gap": (
+    responsive: true,
+    property: gap,
+    class: gap,
+    values: $spacers
+),
+"justify-content": (
+    responsive: true,
+    property: justify-content,
+    values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly,
+    )
+),
+"align-items": (
+    responsive: true,
+    property: align-items,
+    values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        baseline: baseline,
+        stretch: stretch,
+    )
+),
+"align-content": (
+    responsive: true,
+    property: align-content,
+    values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        stretch: stretch,
+    )
+),
+"align-self": (
+    responsive: true,
+    property: align-self,
+    values: (
+        auto: auto,
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        baseline: baseline,
+        stretch: stretch,
+    )
+),
+"order": (
+    responsive: true,
+    property: order,
+    values: (
+        first: -1,
+        0: 0,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        last: 6,
+    ),
+),
+```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Display#display-property) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Float#float)
