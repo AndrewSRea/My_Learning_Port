@@ -11,14 +11,6 @@
                 margin: 20px;
             }
 
-            h2 {
-                margin: 30px;
-            }
-
-            h3 {
-                text-decoration: underline;
-            }
-
             .flex-item {
                 background-color: #d3d3d3;
                 border: 1px solid #9d9d9d;
@@ -36,7 +28,7 @@
         </style>
    </head>
    <body>
-        <h2 class="mb-3">Bootstrap Flex Utilities Code Examples - Page 3</h2>
+        <h2 class="m-3">Bootstrap Flex Utilities Examples - Page 3</h2>
 
         <hr>
 
@@ -45,11 +37,11 @@
              space. -->
 
         <div class="container">
-            <h3 class="mb-3">Flex Utility Example: 07</h3>
+            <h3 class="mb-2">Flex Utility Example 07</h3>
 
-            <h4 class="mb-3">Use the <code>.flex-fill</code> class on a series of sibling elements to force them into widths equal 
+            <p class="fs-5 mb-3">Use the <code>.flex-fill</code> class on a series of sibling elements to force them into widths equal 
                 to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available 
-                horizontal space.</h4>
+                horizontal space.</p>
 
             <div class="d-flex bd-highlight">
                 <div class="p-2 flex-fill bd-highlight flex-item">Flex item with a lot of content</div>
@@ -64,22 +56,30 @@
              necessary space. -->
 
         <div class="container">
-            <h3 class="mb-3">Flex Utility Example: 08</h3>
+            <h3 class="mb-2">Flex Utility Example 08</h3>
 
-            <h4 class="mb-3">Use <code>.flex-grow-*</code> utilities to toggle a flex item's ability to grow to fill available space. 
+            <p class="fs-5 mb-3">Use <code>.flex-grow-*</code> utilities to toggle a flex item's ability to grow to fill available space. 
                 In this example, the <code>.flex-grow-1</code> element uses all available space it can, while allowing the remaining 
-                two flex items their necessary space.</h4>
+                two flex items their necessary space.</p>
 
             <div class="d-flex bd-highlight">
                 <div class="p-2 flex-grow-1 bd-highlight flex-item">Flex item</div>
                 <div class="p-2 bd-highlight flex-item">Flex item</div>
                 <div class="p-2 bd-highlight flex-item">Third flex item</div>
             </div>
-            <hr>
+        </div>
+        <hr>
 
-            <h4 class="mb-3">Use <code>.flex-shrink-*</code> utillities to toggle a flex item's ability to shrink, if necessary. In
+        <!-- Use `.flex-shrink-*` utilities to toggle a flex item's ability to shrink. In this example, the second flex item with 
+             `.flex-shrink-1` is forced to wrap its contents to a new line, "shrinking" to allow more space for the previous flex 
+             item with `.w-100`. -->
+
+        <div class="container">
+            <h3 class="mb-2">Flex Utility Example 09</h3>
+
+            <p class="fs-5 mb-3">Use <code>.flex-shrink-*</code> utilities to toggle a flex item's ability to shrink, if necessary. In
                 this example, the second flex item with <code>.flex-shrink-1</code> is forced to wrap its contents to a new line,
-                "shrinking" to allow more space for the previous flex item with <code>.w-100</code>.</h4>
+                "shrinking" to allow more space for the previous flex item with <code>.w-100</code>.</p>
 
             <div class="d-flex bd-highlight">
                 <div class="p-2 w-100 bd-highlight flex-item">Flex item</div>
@@ -93,11 +93,11 @@
              (`.me-auto`), and pushing two items to the left (`.ms-auto`). -->
 
              <div class="container">
-                <h3 class="mb-3">Flex Utility Example: 09</h3>
+                <h3 class="mb-2">Flex Utility Example 10</h3>
     
-                <h4 class="mb-3">Flexbox works amazingly when you mix flex alignments with auto margins. Shown below are 
+                <p class="fs-5 mb-3">Flexbox works amazingly when you mix flex alignments with auto margins. Shown below are 
                     three examples of controlling flex items via auto margins: default (no auto margin), pushing two items 
-                    to the right (<code>.me-auto</code>), and pushing two items to the left (<code>.ms-auto</code>).</h4>
+                    to the right (<code>.me-auto</code>), and pushing two items to the left (<code>.ms-auto</code>).</p>
     
                 <div class="d-flex bd-highlight mb-3 flex-box-auto">
                     <div class="p-2 bd-highlight flex-item-auto">Flex item</div>
