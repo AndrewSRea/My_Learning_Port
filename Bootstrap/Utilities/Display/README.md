@@ -8,7 +8,7 @@ Change the value of the [`display` property](https://developer.mozilla.org/en-US
 
 ## Notation
 
-Display utility classes that apply to all [breakpoints](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#breakpoints), from `xs` to `xxl`, have no breakpoint abbreviation in them. This is because those classes are applied from `min-width: 0;` and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
+Display utility classes that apply to all [breakpoints](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Breakpoints#breakpoints), from `xs` to `xxl`, have no breakpoint abbreviation in them. This is because those classes are applied from `min-width: 0;` and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
 
 As such, the classes are named using the format:
 
@@ -42,6 +42,7 @@ The media queries affect screen widths with the given breakpoint *or larger*. Fo
 <span class="d-block p-2 bg-primary text-white">d-block</span>
 <span class="d-block p-2 bg-dark text-white">d-block</span>
 ```
+(The two code examples above can be found in my accompanying [display-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Display/display-utilities-examples-1.html) file.)
 
 ## Hiding elements
 
@@ -72,6 +73,7 @@ To show an element only on a given interval of screen sizes, you can combine one
 <div class="d-lg-none">hide on lg and wider screens</div>
 <div class="d-none d-lg-block">hide on screens smaller than lg</div>
 ```
+(This code example can be found in my accompanying [display-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Display/display-utilities-examples-1.html) file.)
 
 ## Display in print
 
@@ -94,6 +96,7 @@ The print and display classes can be combined.
 <div class="d-none d-print-block">Print Only (Hide on screen only)</div>
 <div class="d-none d-lg-block d-print-block">Hide up to large on screen, but always show on print</div>
 ```
+(And this code example can also be found in my accompanying [display-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Display/display-utilities-examples-1.html) file.)
 
 ## Sass
 
@@ -109,3 +112,7 @@ Display utilities are declared in our utilities API in `scss/_utilities.scss`. [
     values: inline inline-block block grid table table-row table-cell flex inline-flex none
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Colors#colors) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Display#display-property) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex)
