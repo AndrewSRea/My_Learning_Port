@@ -4,7 +4,7 @@ Convey meaning through `color` with a handful of color utility classes. Includes
 
 ## Colors
 
-Colorize text with color utilities. If you want to colorize links, you can use the [`.link-*` helper classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#colored-links) which have `:hover` and `:focus` states.
+Colorize text with color utilities. If you want to colorize links, you can use the [`.link-*` helper classes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers/Colored_Links#colored-links) which have `:hover` and `:focus` states.
 ```
 <p class="text-primary">.text-primary</p>
 <p class="text-secondary">.text-primary</p>
@@ -20,6 +20,7 @@ Colorize text with color utilities. If you want to colorize links, you can use t
 <p class="text-black-50">.text-primary</p>
 <p class="text-white-50 bg-dark">.text-primary</p>
 ```
+(This code example can be found in my accompanying [colors-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Colors/colors-utilities-examples-1.html) file.)
 
 <hr>
 
@@ -35,7 +36,7 @@ Sometimes contextual classes cannot be applied due to the specificity of another
 
 ## Sass
 
-In addition to the following Sass functionality, consider reading about our included [CSS custom properties](https://getbootstrap.com/docs/5.0/customize/css-variables/) (aka CSS variables) for colors and more.
+In addition to the following Sass functionality, consider reading about our included [CSS custom properties](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/CSS_Variables#css-variables) (aka CSS variables) for colors and more.
 
 ### Variables
 
@@ -127,3 +128,7 @@ Color utilities are declared in Bootstrap's utilities API in `scss/_utilities.sc
     )
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Borders#borders) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Colors#colors) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Display#display-property)
