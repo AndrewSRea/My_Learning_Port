@@ -19,7 +19,7 @@ The `$utilities` map contains all of Bootstrap's utilities and is later merged w
 | `class` | Optional | Variable for the class name if you don't want it to be the same as the property. In case you don't provide the `class` key, and `property` key is an array of strings, the class name will be the first element of the `property` array. |
 | `state` | Optional | List of pseudo-class variants like `:hover` or `:focus` to generate for the utility. No default value. |
 | `responsive` | Optional | Boolean indicating if responsive classes need to be generated. `false` by default. |
-| `rfs` | Optional | Boolean to enable fluid rescaling. Have a look at the [RFS](https://getbootstrap.com/docs/5.0/getting-started/rfs/) page to find out how this works. `false` by default. |
+| `rfs` | Optional | Boolean to enable fluid rescaling. Have a look at the [RFS](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/RFS#rfs) page to find out how this works. `false` by default. |
 | `print` | Optional | Boolean indicating if print classes need to be generated. `false` by default. |
 | `rtl` | Optional | Boolean indicating if utility should be kept in RTL. `true` by default. |
 
@@ -108,7 +108,7 @@ Output:
 
 ### Responsive utilities
 
-Add the `responsive` Boolean to generate responsive utilities (e.g., `.opacity-md-25`) across [all breakpoints](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#breakpoints). <!-- gonna have to change this link when subfolders are created -->
+Add the `responsive` Boolean to generate responsive utilities (e.g., `.opacity-md-25`) across [all breakpoints](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Breakpoints#breakpoints).
 ```
 $utilities: (
     "opacity": (
@@ -328,3 +328,7 @@ Output:
 /* rtl:end:remove */
 ```
 This doesn't output anything in RTL, thanks to [the RTLCSS `remove` control directive](https://rtlcss.com/learn/usage-guide/control-directives/#remove).
+
+<hr>
+
+[[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities#utilities) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#utility-api) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Background#background)
