@@ -10,6 +10,7 @@ Change the way in which the content is selected when the user interacts with it.
 <p class="user-select-auto">This paragraph has default select behavior.</p>
 <p class="user-select-none">This paragraph will not be selectable when clicked by the user.</p>
 ```
+(This code example can be found in my accompanying [interactions-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Interactions/interactions-examples-1.html) file.)
 
 ## Pointer events
 
@@ -19,6 +20,7 @@ Bootstrap provides `.pe-none` and `.pe-auto` classes to prevent or add element i
 <p><a href="#" class="pe-auto">This link</a> can be clicked (this is default behavior).</p>
 <p class="pe-none"><a href="#" tabindex="-1" aria-disabled="true">This link</a> cannot be clicked because the <code>pointer-events</code> property is inherited from its parent. However, <a href="#" class="pe-auto">this link</a> has a <code>pe-auto</code> class and can be clicked.</p>
 ```
+(And this code example can also be found in my accompanying [interactions-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Interactions/interactions-examples-1.html) file.)
 
 <hr>
 
@@ -42,3 +44,7 @@ Interaction utilities are declared in our utilities API in `scss/_utilities.scss
     values: none auto,
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Float#float) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Interactions#interactions) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Overflow#overflow)
