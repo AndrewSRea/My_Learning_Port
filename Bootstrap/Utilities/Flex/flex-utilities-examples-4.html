@@ -11,14 +11,6 @@
                 margin: 20px;
             }
 
-            h2 {
-                margin: 30px;
-            }
-
-            h3 {
-                text-decoration: underline;
-            }
-
             .flex-box {
                 background-color: #d3d3d3;
                 border: 1px solid #9d9d9d;
@@ -35,7 +27,7 @@
         </style>
    </head>
    <body>
-        <h2 class="mb-3">Bootstrap Flex Utilities Code Examples - Page 4</h2>
+        <h2 class="m-3">Bootstrap Flex Utilities Examples - Page 4</h2>
 
         <hr>
 
@@ -43,10 +35,10 @@
              column`, and `margin-top: auto` or `margin-bottom: auto`. -->
 
         <div class="container">
-            <h3 class="mb-3">Flex Utility Example: 10</h3>
+            <h3 class="mb-2">Flex Utilities Example 10</h3>
 
-            <h4 class="mb-3">Vertically move one flex item to the top or bottom of a container by mixing <code>align-items</code>, 
-                <code>flex-direction: column</code>, and <code>margin-top: auto</code> or <code>margin-bottom: auto</code>.</h4>
+            <p class="fs-5 mb-3">Vertically move one flex item to the top or bottom of a container by mixing <code>align-items</code>, 
+                <code>flex-direction: column</code>, and <code>margin-top: auto</code> or <code>margin-bottom: auto</code>.</p>
 
             <div class="d-flex align-items-start flex-column bd-highlight mb-3 flex-box" style="height: 200px;">
                 <div class="mb-auto p-2 bd-highlight flex-item">Flex item</div>
@@ -62,12 +54,16 @@
         </div>
         <hr>
 
-        <!--  -->
+        <!-- Change how flex items wrap in a flex container. Choose from no wrapping at all (browser default)
+             with `.flex-nowrap` (the 1st example), wrapping with `.flex-wrap` (the 2nd example), or reverse
+             wrapping with `.flex-wrap-reverse` (the 3rd example). -->
 
         <div class="container">
-            <h3 class="mb-3">Flex Utility Example: 11</h3>
+            <h3 class="mb-2">Flex Utilities Example 11</h3>
 
-            <h4 class="mb-3"></h4>
+            <p class="fs-5 mb-3">Change how flex items wrap in a flex container. Choose from no wrapping at all (browser default)
+                with <code>.flex-nowrap</code> (the 1st example), wrapping with <code>.flex-wrap</code> (the 2nd example), or reverse
+                wrapping with <code>.flex-wrap-reverse</code> (the 3rd example).</p>
 
             <div class="container-fluid mb-3 p-4">
                 <div class="d-flex flex-nowrap flex-box">
@@ -126,11 +122,11 @@
              for any additional values needed. -->
 
              <div class="container">
-                <h3 class="mb-3">Flex Utility Example: 12</h3>
+                <h3 class="mb-2">Flex Utilities Example 12</h3>
     
-                <h4 class="mb-3">Change the visual order of specific flex items with a handful or <code>order</code> utilities. 
+                <p class="fs-5 mb-3">Change the visual order of specific flex items with a handful of <code>order</code> utilities. 
                     Bootstrap only provides options for making an item first or last. As <code>order</code> takes any integer 
-                    value from 0 to 5, add custom CSS for any additional values needed.</h4>
+                    value from 0 to 5, add custom CSS for any additional values needed.</p>
     
                 <div class="d-flex flex-nowrap bd-highlight flex-box">
                     <div class="order-3 p-2 bd-highlight flex-item">First flex item</div>
