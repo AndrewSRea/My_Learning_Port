@@ -10,6 +10,7 @@ These utility classes float an element to the left or right, or disable floating
 <div class="float-end">Float end on all viewport sizes</div><br>
 <div class="float-none">Don't float on all viewport sizes</div>
 ```
+(This code example can be found in my accompanying [float-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Float/float-utilities-examples-1.html) file.)
 
 ## Responsive 
 
@@ -20,6 +21,8 @@ Responsive variations also exist for each `float` value.
 <div class="float-lg-start">Float start on viewports sized LG (large) or wider</div><br>
 <div class="float-xl-start">Float start on viewports sized XL (extra-large) or wider</div>
 ```
+(And this code example can also be found in my accompanying [float-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Float/float-utilities-examples-1.html) file.)
+
 Here are all the support classes:
 
 * `.float-start`
@@ -57,3 +60,7 @@ Float utilities are declared in our utilities API in `scss/_utilities.scss`. [Le
     )
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Float#float) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Interactions#interactions)
