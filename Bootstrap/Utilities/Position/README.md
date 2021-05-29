@@ -41,6 +41,7 @@ Where *position* is one of:
     <div class="position-absolute bottom-0 end-0">
 </div>
 ```
+(This code example can be found in my accompanying [position-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Position/position-utilities-examples-1.html) file. The varying "position" elements can only be viewed one at a time by commenting/uncommenting the code of each separate `<div>`.)
 
 ## Center elements
 
@@ -60,6 +61,8 @@ This class applies the transformations `translateX(-50%)` and `translateY(-50%)`
     <div class="position-absolute top-100 start-100 translate-middle">
 </div>
 ```
+(And this code example can also be found in my accompanying [position-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Position/position-utilities-examples-1.html) file. The varying "position" elements can only be viewed one at a time by commenting/uncommenting the code of each separate `<div>`.)
+
 By adding `.translate-middle-x` or `.translate-middle-y` classes, elements can be positioned only in horizontal or vertical direction.
 ```
 <div class="position-relative">
@@ -74,6 +77,7 @@ By adding `.translate-middle-x` or `.translate-middle-y` classes, elements can b
     <div class="position-absolute bottom-0 end-0">
 </div>
 ```
+(Again, this code example can be found in my accompanying [position-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Position/position-utilities-examples-1.html) file. The varying "position" elements can only be viewed one at a time by commenting/uncommenting the code of each separate `<div>`.)
 
 ## Examples
 
@@ -91,6 +95,8 @@ Here are some real life examples of these classes:
     Alerts <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
 </button>
 ```
+(This code example can be found in my accompanying [position-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Position/position-utilities-examples-2.html) file.)
+
 You can use these classes with existing components to create new ones. Remember that you can extend its functionality by adding entries to the `$position-values` variable.
 ```
 <div class="position-relative m-4">
@@ -102,6 +108,7 @@ You can use these classes with existing components to create new ones. Remember 
     <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-seccondary rounded-pill" style="width: 2rem; height: 2rem;">3</button>
 </div>
 ```
+(And this code example can also be found in my accompanying [position-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Position/position-utilities-examples-2.html) file.
 
 ## Sass
 
@@ -152,3 +159,7 @@ Position utilities are declared in our utilities API in `scss/_utilities.scss`. 
     )
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Overflow#overflow) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Position#position) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Shadows#shadows)
