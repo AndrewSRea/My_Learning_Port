@@ -509,7 +509,7 @@ Responsive variations also exist for `align-content`.
 
 ## Media object
 
-Looking to replicate the [media object component]() from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before. <!-- new Component: "Media object" -->
+Looking to replicate the **media object component** from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before.
 ```
 <div class="d-flex">
     <div class="flex-shrink-0">
@@ -539,7 +539,7 @@ And say you want to vertically center the content next to the image:
 
 ### Utilities API
 
-Flexbox utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+Flexbox utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
 ```
 "flex": (
     responsive: true,
