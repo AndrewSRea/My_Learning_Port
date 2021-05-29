@@ -509,7 +509,7 @@ Responsive variations also exist for `align-content`.
 
 ## Media object
 
-Looking to replicate the [media object component]() from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before.
+Looking to replicate the [media object component]() from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before. <!-- new Component: "Media object" -->
 ```
 <div class="d-flex">
     <div class="flex-shrink-0">
@@ -520,6 +520,7 @@ Looking to replicate the [media object component]() from Bootstrap 4? Recreate i
     </div>
 </div>
 ```
+(This code example can be found in my accompanying [flex-utilities-examples-6.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-6.html) file.)
 
 And say you want to vertically center the content next to the image:
 ```
@@ -532,6 +533,7 @@ And say you want to vertically center the content next to the image:
     </div>
 </div>
 ```
+(And this code example can also be found in my accompanying [flex-utilities-examples-6.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Flex/flex-utilities-examples-6.html) file.)
 
 ## Sass
 
