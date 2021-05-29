@@ -11,6 +11,7 @@ While shadows on components are disabled by default in Bootstrap and can be enab
 <div class="shadow p-3 mb-5 bg-body rounded">Regular shadow</div>
 <div class="shadow-lg p-3 mb-5 bg-body rounded">Larger shadow</div>
 ```
+(This code example can be found in my accompanying [shadows-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Shadows/shadows-utilities-examples-1.html) file.)
 
 ## Sass
 
@@ -25,7 +26,7 @@ $box-shadow-inset:     inset 0 1px 2px rgba($black, .075);
 
 ### Utilities API
 
-Shadow utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+Shadow utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
 ```
 "shadow": (
     property: box-shadow,
@@ -38,3 +39,7 @@ Shadow utilities are declared in Bootstrap's utilities API in `scss/_utilities.s
     )
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Position#position) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Shadows#shadows) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Sizing#sizing)
