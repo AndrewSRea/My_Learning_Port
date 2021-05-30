@@ -15,6 +15,7 @@ Easily realign text to components with text alignment classes. For start, end, a
 <p class="text-lg-start">Start aligned text on viewports sized LG (large) or wider.</p>
 <p class="text-xl-start">Start aligned text on viewports sized XL (extra-large) or wider.</p>
 ```
+(This code example can be found in my accompanying [text-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-1.html) file.)
 
 <hr>
 
@@ -36,6 +37,7 @@ Prevent text from wrapping with a `.text-nowrap` class.
     This text should overflow the parent.
 </div>
 ```
+(These two code examples above can also be found in my accompanying [text-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-1.html) file.)
 
 ## Word break
 
@@ -43,10 +45,11 @@ Prevent long strings of text from breaking your components' layout by usiong `.t
 ```
 <p class="text-break">mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
 ```
+(This code example can be found in my accompanying [text-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-2.html) file.)
 
 <hr>
 
-:exclamation: Note that [breaking words isn't possible in Arabic](), which is the most used RTL language. Therefore `.text-break` is removed from Bootstrap's RTL compiled CSS.
+:exclamation: Note that [breaking words isn't possible in Arabic](https://rtlstyling.com/posts/rtl-styling#3.-line-break), which is the most used RTL language. Therefore `.text-break` is removed from Bootstrap's RTL compiled CSS.
 
 <hr>
 
@@ -59,6 +62,8 @@ Transform text in components with text capitalization classes.
 <p class="text-capitalize">CapiTaliZed text.</p>
 ```
 Note how `.text-capitalize` only changes the first letter of each word, leaving the case of any other letters unaffected.
+
+(And this code example can also be found in my accompanying [text-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-2.html) file.)
 
 ## Font size
 
@@ -73,6 +78,8 @@ Quickly change the `font-size` of text. While Bootstrap's heading classes (e.g.,
 ```
 Customize your avaiable `font-size`s by modifying the `$font-sizes` Sass map.
 
+(Again, this code example can be found in my accompanying [text-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-2.html) file.)
+
 ## Font weight and italics
 
 Quickly change the `font-weight` or `font-style` of text with these utilities. `font-style` utilities are abbreviated as `.fst-*` and `font-weight` utilities are abbreviated as `.fw-*`.
@@ -85,6 +92,7 @@ Quickly change the `font-weight` or `font-style` of text with these utilities. `
 <p class="fst-italic">Italic text.</p>
 <p class="fst-normal">Text with normal font style.</p>
 ```
+(And again, this code example can be found in my accompanying [text-utilities-examples-2.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-2.html) file.)
 
 ## Line height
 
@@ -103,6 +111,7 @@ Change the line height with `.lh-*` utilities.
     But I will get there. This is real so take a chance and don't ever look back, don't ever look back. You could travel the world but nothing comes close to the golden coast. Of anything and everything. Venice beach and Palm Springs, summertime is everything. Do you ever feel already buried deep six feet under? It's time to bring out the big balloons. So cover your eyes, I have a surprise. So I don't have to say you were the one that got away.
 </p>
 ```
+(This code example can be found in my accompanying [text-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-3.html) file.)
 
 ## Monospace
 
@@ -110,6 +119,7 @@ Change a selection to our monospace font stack with `.font-monospace`.
 ```
 <p class="font-monospace">This is in monospace</p>
 ```
+(And this code example can also be found in my accompanying [text-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-3.html) file.)
 
 ## Reset color
 
@@ -119,6 +129,7 @@ Reset a text or link's color with `.text-reset`, so that it inherits the color f
     Muted text with a <a href="#" class="text-reset">reset link</a>.
 </p>
 ```
+(Again, this code example can be found in my accompanying [text-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-3.html) file.)
 
 ## Text decoration
 
@@ -128,6 +139,7 @@ Decorate text in components with text decoration classes.
 <p class="text-decoration-line-through">This text has a line going through it.</p>
 <a href="#" class="text-decoration-none">This link has its text decoration removed.</a>
 ```
+(And again, this code example can be found in my accompanying [text-utilities-examples-3.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Text/text-utilities-examples-3.html) file.)
 
 ## Sass
 
@@ -188,7 +200,7 @@ $font-sizes: (
 
 ## Utilities API
 
-Font and text utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]()
+Font and text utilities are declared in Bootstrap's utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#using-the-api)
 ```
 "font-family": (
     property: font-family,
@@ -261,3 +273,7 @@ Font and text utilities are declared in Bootstrap's utilities API in `scss/_util
     rtl: false
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Spacing#spacing) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Text#text) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Vertical_Alignment)
