@@ -40,3 +40,7 @@ Visibility utilities are declared in our utilities API in `scss/_utilities.scss`
     )
 )
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Vertical_Alignment#vertical-alignment) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Visibility#visibility) - [[Next module: Extend]]()
