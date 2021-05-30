@@ -34,4 +34,4 @@ I have created a folder for each section covered in Bootstrap's instructional we
 * [Components](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components#components)
 * [Helpers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Helpers#helpers)
 * [Utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities#utilities)
-* [Extensions]()
+* [Extend](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Extend#extend)
