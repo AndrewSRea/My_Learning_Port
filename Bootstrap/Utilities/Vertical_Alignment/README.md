@@ -32,6 +32,7 @@ With table cells:
     </tbody>
 </table>
 ```
+(These two code examples can be found in my accompanying [vert-align-utilities-examples-1.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Utilities/Vertical_Alignment/vert-align-utilities-examples-1.html) file.)
 
 ## Sass
 
@@ -45,3 +46,7 @@ Vertical align utilities are declared in Bootstrap's utilities API in `scss/_uti
     values: baseline top middle bottom text-bottom text-top
 ),
 ```
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Text#text) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Vertical_Alignment#vertical-alignment) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Visibility#visibility)
