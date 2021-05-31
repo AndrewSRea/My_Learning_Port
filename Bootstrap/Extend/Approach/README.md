@@ -70,3 +70,16 @@ Specifically regarding custom CSS, utilities can help combat increasing file siz
 
 ## Flexible HTML
 
+While not always possible, Bootstrap thrives to avoid being overly dogmatic in its HTML requirements for components. Thus, Bootstrap focuses on single classes in its CSS selectors and tries to avoid immediate children selectors (`>`). This gives you more flexibility in your implementation and helps keep Bootstrap's CSS simpler and less specific.
+
+## Code conventions
+
+[Code Guide](https://codeguide.co/) (from Bootstrap co-creator, @mdo) documents how Bootstrap writes its HTML and CSS across Bootstrap. It specifies guidelines for general formatting, common sense defaults, property and attribute orders, and more.
+
+Bootstrap uses [Stylelint](https://stylelint.io/) to enforce these standards and more in its Sass/CSS. [Bootstrap's custom Stylelint config](https://github.com/twbs/stylelint-config-twbs-bootstrap) is open source and available for others to use and extend.
+
+Bootstrap uses [vnu-jar](https://www.npmjs.com/package/vnu-jar) to enforce standard and semantic HTML, as well as detecting common errors.
+
+<hr>
+
+[[Back to Table of Contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Extend#extend) - [[Next page]]()
