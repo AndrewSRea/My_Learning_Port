@@ -35,4 +35,6 @@ While Bootstrap hasn't tried these out themselves, they do look promising and pr
 * [icofont](https://icofont.com/)
 * [CoreUI Icons](https://icons.coreui.io/)
 
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Extend/Approach#approach) - [Back to Table of contents](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Extend#extend) - [[Back to the Bootstrap introductory page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap#bootstrap)
