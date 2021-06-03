@@ -26,7 +26,7 @@ To get started, let's return to our number guessing game--except this time we'll
 
 ## Fixing syntax errors
 
-Earlier on in the course, we got you to type some simple JavaScript commands into the **developer tools JavaScript console**. What's even more useful is that the console gives you error messages whenever a syntax error exists inside the JavaScript being fed into the browser's JavaScript engine. Now let's go hunting.
+Earlier on in the course, we got you to type some simple JavaScript commands into the [developer tools JavaScript console](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools). What's even more useful is that the console gives you error messages whenever a syntax error exists inside the JavaScript being fed into the browser's JavaScript engine. Now let's go hunting.
 
 1. Go to the tab that you've got `number-game-errors.html` open in, and open your JavaScript console. You should see an error message along the following lines in the console:
 ```
@@ -36,7 +36,7 @@ TypeError: guessSubmit.addeventListener is not a function
     - A red "x" to indicate that this is an error.
     - An error message to indicate what's gone wrong: "TypeError: guessSubmit.addeventListener is not a function".
     - A "Learn More" link that links through to an MDN page that explains what this error means in greater detail.
-    - The name of the JavaScript file, which links thorugh to the Debugger tab of the developeer tools. If you follow this link, you'll see the exact line where the error is highlighted.
+    - The name of the JavaScript file, which links thorugh to the Debugger tab of the developer tools. If you follow this link, you'll see the exact line where the error is highlighted.
     - The line number where the error is, and the character number in that line where the error is first seen. In this case, we've got line 86, character number 3 (no "character number" actually designated in Chrome DevTools).
 3. If we look at line 86 in our code editor, we'll find this line:
 ```
@@ -48,6 +48,8 @@ guessSubmit.addeventListener('click', checkGuess);
 <hr>
 
 **Note**: See the MDN [TypeError: "x" is not a function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_function) reference page for more details about this error.
+
+<hr>
 
 ### Syntax errors, round two
 
@@ -61,7 +63,7 @@ guessSubmit.addeventListener('click', checkGuess);
 
 <hr>
 
-**Note**: This error didn't come up as soon as the page was loaded because this error occurred inside a function (inside the `checkGuess() { ... }` block). As you'll learn in more detail in our later [functions article](), <!-- link to JS_Building_Blocks / Functions --> code inside functions runs in a separate scope than code outside functions. In this case, the code was not run and the error was not thrown until the `checkGuess()` function was run by line 86.
+**Note**: This error didn't come up as soon as the page was loaded because this error occurred inside a function (inside the `checkGuess() { ... }` block). As you'll learn in more detail in our later [functions article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code), code inside functions runs in a separate scope than code outside functions. In this case, the code was not run and the error was not thrown until the `checkGuess()` function was run by line 86.
 
 <hr>
 
@@ -141,6 +143,10 @@ Rounding a random decimal number between 0 and 1 down will always return 0, so a
 ```
 Math.floor(Math.random()*100);
 ```
+Hence us wanting to add 1, to give us a random number between 1 and 100:
+```
+Math.floor(Math.random()*100) + 1;
+```
 Try updating both lines like this, then save and refresh--the game should now play like we are intending it to!
 
 ## Other common errors
@@ -219,10 +225,11 @@ For all of these errors, think about how we tackled the examples we looked at in
 
 So there we have it, the basics of figuring out errors in simple JavaScript programs. It won't always be that simple to work out what's wrong in your code, but at least this will save you a few hours of sleep and allow you to progress a bit faster when things don't turn out right, especially in the earlier stages of your learning journey.
 
-##
-See also
+## See also
 
 * There are many other types of errors that aren't listed here; MDN is compiling a reference that explains what they mean in detail--see MDN's [JavaScript error reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors).
-* If you come across any errors in your code that you aren't sure how to fix afteer reaeding this article, you can geet help! Ask for help on the [MDN Discourse forum Learning category](https://discourse.mozilla.org/c/mdn/learn/250), or in the [MDN Web Docs room](https://chat.mozilla.org/#/room/#mdn:mozilla.org) on [Matrix](https://wiki.mozilla.org/Matrix). Tell the admins in each learning hub what your error is, and they will try to help you. A listing of your code would be useful as well.
+* If you come across any errors in your code that you aren't sure how to fix after reaeding this article, you can get help! Ask for help on the [MDN Discourse forum Learning category](https://discourse.mozilla.org/c/mdn/learn/250), or in the [MDN Web Docs room](https://chat.mozilla.org/#/room/#mdn:mozilla.org) on [Matrix](https://wiki.mozilla.org/Matrix). Tell the admins in each learning hub what your error is, and they will try to help you. A listing of your code would be useful as well.
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)   [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript)     [[Next page]]()
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)   [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript)     [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#storing-the-information-you-need----variables)
