@@ -84,9 +84,9 @@ const guessField = document.querySelector('.guessField');
 let guessCount = 1;
 let resetButton;
 ```
-This section of the code sets up the variables and constants we need to store the data our program will use. Variables are basically containers for values (such as numbers, or strings of text). You create a variable with the keyword `let` (or `var`) followed by a name for your variable (a [future article]() will show the difference between these two keywords). <!-- link to Variables folder --> Constants are used to store values that are immutable or can't be changed and are created with the keyword `const`. In this case, we are using constants to store references to parts of our user interface; the text inside some of them might change, but the HTML elements referenced stay the same.
+This section of the code sets up the variables and constants we need to store the data our program will use. Variables are basically containers for values (such as numbers, or strings of text). You create a variable with the keyword `let` (or `var`) followed by a name for your variable (a [future article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#the-difference-between-var-and-let) will show the difference between these two keywords). Constants are used to store values that are immutable or can't be changed and are created with the keyword `const`. In this case, we are using constants to store references to parts of our user interface; the text inside some of them might change, but the HTML elements referenced stay the same.
 
-You can assign a value to your variable or constant with an equals sign (`=`) followed by the valu you want to give it.
+You can assign a value to your variable or constant with an equals sign (`=`) followed by the value you want to give it.
 
 In our example:
 
@@ -108,7 +108,7 @@ In our example:
 
 <hr>
 
-**Note**: You'll learn a lot more about variables/constants later on in the course, starting with the [next article](). <!-- Variables folder -->
+**Note**: You'll learn a lot more about variables/constants later on in the course, starting with the [next article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#storing-the-information-you-need----variables).
 
 <hr>
 
@@ -132,7 +132,7 @@ After pressing <kbd>Return</kbd>/<kbd>Enter</kbd>, you should see an alert come 
 
 <hr>
 
-**Note**: You'll learn a lot more about functions [later in the course](). <!-- JS_Building_Blocks folder / Functions -->
+**Note**: You'll learn a lot more about functions [later in the course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code).
 
 <hr>
 
@@ -168,7 +168,7 @@ This is equivalent to:
 ```
 name = name + ' says hello!';
 ```
-When we are running true/false tests (for example, inside conditionals--see [below]()), <!-- Conditionals down below --> we use [comparison operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators). For example:
+When we are running true/false tests (for example, inside conditionals--see [below](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#conditionals)), we use [comparison operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators). For example:
 
 | Operator | Name | Example |
 | :---: | --- | --- |
@@ -290,6 +290,8 @@ This rather long block of code completely resets everything to how it was at the
 
 **At this point, you should have a fully working (simple) game--congratulations!**
 
+(See the finished product [here](), and the finished code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/First_Splash_JS/number-guessing-game-start.html).)
+
 All we have left to do now in this article is talk about a few other important code features that you've already seen, although you may have not realized it.
 
 ### Loops
@@ -355,7 +357,7 @@ The `value` property represents the current value entered into the text field. Y
 guesses.value
 ```
 The browser returns `undefined`, because the paragraphs don't have the `value` property.
-7. To change the text inside a paragraph, you need the [`textContent`]() property instead. Try this:
+7. To change the text inside a paragraph, you need the [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property instead. Try this:
 ```
 guesses.textContent = 'Where is my paragraph?';
 ```
@@ -373,4 +375,4 @@ Every element on a page has a `style` property, which itself contains an object 
 
 So that's it for building the example. You got to the end--well done! Have fun playing around with the final code.
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript)     [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)     [[Next]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript)
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript)
