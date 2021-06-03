@@ -10,7 +10,7 @@ JavaScript is a scripting or programming language that allows you to implement c
 
 * [CSS](https://developer.mozilla.org/en-US/docs/Glossary/CSS) is a language of style rules that we use to apply styling to our HTML content. For example, setting background colors and fonts, and laying out our content in multiple columns.
 
-* [JavaScript]() is a scripting language that enables you to create dynamically updating content, control multimedia, animate images, and pretty much everything else. (OK, not everything, but it is amazing what you can achieve with a few lines of JavaScript code.)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Glossary/JavaScript) is a scripting language that enables you to create dynamically updating content, control multimedia, animate images, and pretty much everything else. (OK, not everything, but it is amazing what you can achieve with a few lines of JavaScript code.)
 
 The three layers build on top of one another nicely. Let's take a simple text label as an example. We can mark it up using HTML to give it structure and purpose:
 ```
@@ -72,18 +72,18 @@ They generally fall into to categories:
 
 <hr>
 
-**Note**: Many of the above demos won't work in an older browser--when experimenting, it's a good idea to use a modern browser like Firefox, Chrome, Edge, or Opera to run your code in. You will need to consider [cross browser testing]() in more detail when you get closer to delivering production code (i.e. real code that real customers will use).
+**Note**: Many of the above demos won't work in an older browser--when experimenting, it's a good idea to use a modern browser like Firefox, Chrome, Edge, or Opera to run your code in. You will need to consider [cross browser testing](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing) in more detail when you get closer to delivering production code (i.e. real code that real customers will use).
 
 <hr>
 
 **Third party APIs** are not built into the browser, by default, and you generally have to grab their code and information from somewhere on the Web. For example:
 
-* The [Twitter API]() allows you to do things like displaying your latest tweets on your website.
-* The [Google Maps API]() and [OpenStreetMap API]() allows you to embed custom maps into your website, and other such functionality.
+* The [Twitter API](https://developer.twitter.com/en/docs) allows you to do things like displaying your latest tweets on your website.
+* The [Google Maps API](https://developers.google.com/maps/) and [OpenStreetMap API](https://wiki.openstreetmap.org/wiki/API) allows you to embed custom maps into your website, and other such functionality.
 
 <hr>
 
-**Note**: These APIs are advanced, and we'll not be covering any of these in this module. You can find out much more about these in the [Client-side web APIs module](). <!-- your "Client-side_Web_APIs" folder -->
+**Note**: These APIs are advanced, and we'll not be covering any of these in this module. You can find out much more about these in the [Client-side web APIs module](). <!-- your "Client-side_Web_APIs" folder (when created) -->
 
 <hr>
 
@@ -95,7 +95,7 @@ Here we'll actually start looking at some code, and while doing so, explore what
 
 Let's briefly recap the story of what happens when you load a web page in a browser (first talked about in Mozilla's [How CSS works](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works#how_does_css_actually_work) article). When you load a web page in your browser, you are running your code (the HTML, CSS, and JavaScript) inside an execution environment (the browser tab). This is like a factory that takes in raw materials (the code) and outputs a product (the web page).
 
-A very common use of JavaScript is to dynamically modify HTML and CSS to update a user interface, via the Document Object Model API (as mentioned above). Note that the code in your web documents is generally loaded and executed in the order it appears on the page. If the JavaScript loads and tries to run before the HTML and CSS it is affecting has been loaded, errors can occur. You will learn ways around this later in the article, in the [Script loading strategies]() section.
+A very common use of JavaScript is to dynamically modify HTML and CSS to update a user interface, via the Document Object Model API (as mentioned above). Note that the code in your web documents is generally loaded and executed in the order it appears on the page. If the JavaScript loads and tries to run before the HTML and CSS it is affecting has been loaded, errors can occur. You will learn ways around this later in the article, in the [Script loading strategies](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#script-loading-strategies) section.
 
 ### Browser security
 
@@ -122,7 +122,7 @@ function updateName() {
 ```
 Here we are selecting a text paragraph (line 1), then attaching an event listener to it (line 3) so that when the paragraph is clicked, the `updateName()` code block (lines 5-8) is run. The `updateName()` code block (these types of reusable code blocks are called "functions") asks the user for a new name, and then inserts that name into the paragraph to update the display.
 
-If you swapped the order of the first two lines of code, it would no longer work--instead, you'd get an error returned in the [browser developer console]()--`TypeError: para is undefined`. This means that the `para` object does not exist yet, so we can't add an event listener to it.
+If you swapped the order of the first two lines of code, it would no longer work--instead, you'd get an error returned in the [browser developer console](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools)--`TypeError: para is undefined`. This means that the `para` object does not exist yet, so we can't add an event listener to it.
 
 <hr>
 
@@ -144,7 +144,7 @@ There are advantages to both types of language, but we won't discuss them right 
 
 You might also hear the terms **server-side** and **client-side** code, especially in the content of web development. Client-side code is code that is run on the user's computer--when a web page is viewed, the page's client-side code is downloaded, then run and displayed by the browser. In this module, we are explicitly talking about **client-side JavaScript**.
 
-Server-side code, on the other hand, is run on the server, then its results are downloaded and displayed in the browser. Examples of popular server-side web languages include PHP, Python, Ruby, ASP.NET and... JavaScript! JavaScript can also be used as a server-side language, for example, in the popular Node.js environment--you acn find out more about the server-side JavaScript in Mozilla's [Dynamic Websites - Server-side programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side) topic. (This will also be a folder I intend to create inside the **My_Learning_Port** folder.)
+Server-side code, on the other hand, is run on the server, then its results are downloaded and displayed in the browser. Examples of popular server-side web languages include PHP, Python, Ruby, ASP.NET and... JavaScript! JavaScript can also be used as a server-side language, for example, in the popular Node.js environment--you acn find out more about the server-side JavaScript in Mozilla's [Dynamic Websites - Server-side programming]() topic. <!-- your own folder, "Server-side website programming" -->
 
 ### Dynamic versus static code
 
@@ -186,9 +186,11 @@ document.addEventListener("DOMContentLoaded", function() {
 ```
 5. Save your file and refresh the browser--now you should see that when you click the button, a new paragraph is generated and placed below.
 
+(See the finished result [here]() and the finished code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/What_Is_JS/apply-javascript.html).)
+
 <hr>
 
-**Note**: If your example dosn't sem to work, go through the steps again and check that you did everything right. Did you save your local copy of the starting code as an `.html` file? Did you add your `<script>` element just before the `</head>` tag? Did you enter the JavaScript exactly as shown? **JavaScript is case sensitive, and very fussy, so you need to enter the syntax exactly as shown, otherwise it may not work.**
+**Note**: If your example doesn't seem to work, go through the steps again and check that you did everything right. Did you save your local copy of the starting code as an `.html` file? Did you add your `<script>` element just before the `</head>` tag? Did you enter the JavaScript exactly as shown? **JavaScript is case sensitive, and very fussy, so you need to enter the syntax exactly as shown, otherwise it may not work.**
 
 <hr>
 
@@ -216,6 +218,8 @@ for(let i = 0; i < buttons.length; i++) {
 }
 ```
 4. Save and refresh your browser, and you should see the same thing! It works just the same, but now we've got our JavaScript in an external file. This is generally a good thing in terms of organizing your code and making it reusable across multiple HTML files. Plus, the HTML is easier to read without huge chunks of script dumped in it.
+
+(See the code for the `script.js` file [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/What_Is_JS/script.js).)
 
 ### Inline JavaScript handlers
 
@@ -258,17 +262,17 @@ There are a number of issues involved with getting scripts to load at the right 
 
 In the above code examples, in the internal and external examples, the JavaScript is loaded and run in the head of the document, before the HTML body is parsed. This could cause an error, so we've used some constructs to get around it.
 
-In the internal example, you acn see this structure around the code:
+In the internal example, you can see this structure around the code:
 ```
 document.addEventListener("DOMContentLoaded", function() {
     ...
 });
 ```
-This is an event listener, which listens for the browser's "DOMContentLoaded" event, which signifies that the HTML body is completely loaded and parsed. The JavaScript inside this block will not run until after that event is fired, therefore the error is avoided (you'll [learn about events]() later in the course). <!-- link to JS_Building_Blocks / Intro_to_Events -->
+This is an event listener, which listens for the browser's "DOMContentLoaded" event, which signifies that the HTML body is completely loaded and parsed. The JavaScript inside this block will not run until after that event is fired, therefore the error is avoided (you'll [learn about events](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) later in the course).
 
 In the external example, we use a more modern JavaScript feature to solve the problem, the `defer` attribute, which tells the browser to continue downloading the HTML content once the `<script>` tag element has been reached.
 ```
-<script srcc="script.js" defer></script>
+<script src="script.js" defer></script>
 ```
 In this case, both the script and the HTML will load simultaneously and the code will work.
 
@@ -282,7 +286,7 @@ An old-fashioned solution to this problem used to be to put your script element 
 
 ### async and defer
 
-There are actually two modeern features we can use to bypass the problem of the blocking script--`async` and `defer` (which we saw above). Let's look at the difference between these two.
+There are actually two modern features we can use to bypass the problem of the blocking script--`async` and `defer` (which we saw above). Let's look at the difference between these two.
 
 Scripts loaded using the `async` atribute (see below) will download the script without blocking rendering the page and will execute it as soon as the script finishes downloading. You get no guarantee that scripts will run in any specific order, only that they will not stop the rest of the page from displaying. It is best to use `async` when the scripts in the page run independently from each other and depend on no other script on the page.
 
@@ -318,12 +322,12 @@ To summarize:
 
 As with HTML and CSS, it is possible to write comments into your JavaScript code that will be ignored by the browser, and exist to provide instructions to your fellow developers on how the code works (and you, if you come back to your code after six months and can't remember what you did). Comments are very useful, and you should use them often, particularly for larger applications. There are two types:
 
-* A single line comment is written after a double forward slash (//), e.g.
+* A single line comment is written after a double forward slash ( // ), e.g.:
 ```
 // I am a comment
 ```
 
-* A multi-line comment is written between the strings /* and */, e.g.
+* A multi-line comment is written between the strings /* and */, e.g.:
 ```
 /*
     I am also
@@ -367,4 +371,6 @@ So there you go, your first step into the world of JavaScript. We've begun with 
 
 JavaScript may seem a bit daunting right now, but don't worry--this course will take you through it in simple steps that will make sense going forward. The next article will plunge straight into the practical, getting you to jump straight in and build your own JavaScript examples.
 
-[[Top](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript)]     [[Next](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)]
+<hr>
+
+[[Back to JavaScript First Steps opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps#javascript-first-steps) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#what-is-javascript) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/First_Splash_JS#a-first-splash-into-javascript)
