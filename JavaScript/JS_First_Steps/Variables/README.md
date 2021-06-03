@@ -1,10 +1,10 @@
 # Storing the information you need -- Variables
 
-After reading the laast couple or articles, you should now know what JavaScript is, what it can do for you, how you use it alongside other web technologies, and whaat its main features look like from a high level. In this article, we will get down to the real basics, looking at how to work with the most basic building blocks of JavaScript -- Variables.
+After reading the last couple or articles, you should now know what JavaScript is, what it can do for you, how you use it alongside other web technologies, and what its main features look like from a high level. In this article, we will get down to the real basics, looking at how to work with the most basic building blocks of JavaScript -- Variables.
 
 ## Tools you need
 
-Throughout this article, you'll be asked to type in lines of code to test your understanding of the content. If you aare using a desktop browser, the best place to type your sample code is your browser's JavaScript console (see [What are browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools) for more information on how to access this tool).
+Throughout this article, you'll be asked to type in lines of code to test your understanding of the content. If you are using a desktop browser, the best place to type your sample code is your browser's JavaScript console (see [What are browser developer tools](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools) for more information on how to access this tool).
 
 ## What is a variable?
 
@@ -48,7 +48,7 @@ Another special thing about variables is that they can contain just about anythi
 
 <hr>
 
-**Note**: We say variables contain values. This is an important distinction to make. Variables aren't the values themselves; they aree containers for values. You can think of them being like little cardboard boxes that you can store things in.
+**Note**: We say variables contain values. This is an important distinction to make. Variables aren't the values themselves; they are containers for values. You can think of them being like little cardboard boxes that you can store things in.
 
 <hr>
 
@@ -79,11 +79,11 @@ scoobyDoo;
 
 <hr>
 
-**Note**: Don't confuse a variable that exists but has no defined vallue with a variable that doesn't exist at all--they are very different things. In the box analogy you saw above, not existing would mean theere's no box (variable) for a value to go in. No value defined would mean that there IS a box, but it has no value inside it.
+**Note**: Don't confuse a variable that exists but has no defined vallue with a variable that doesn't exist at all--they are very different things. In the box analogy you saw above, not existing would mean there's no box (variable) for a value to go in. No value defined would mean that there IS a box, but it has no value inside it.
 
 <hr>
 
-## Initilaizing a variable
+## Initializing a variable
 
 Once you've declared a variable, you can initialize it with a value. You do this by typin the variable name, followed by an equals sign (=), followed by the value you want to give it. For example:
 ```
@@ -105,9 +105,9 @@ This is probably what you'll do most of the time, as it is quicker than doing th
 
 At this point, you may be thinking "why do we need two keywords for defining variables?? Whay have `var` *and* `let`?"
 
-The reasons are somewhat historical. Back when JavaScript was first created, there was only `var`. This works basiccally fine in most cases, but it has some issues in the way it works--its design can sometimes be confusing or downright annoying. So, `let` was created in modern versions of JavaScript, a new keyword for creating variables that works somewhat differently to `var`, fixing its issues in the process.
+The reasons are somewhat historical. Back when JavaScript was first created, there was only `var`. This works basically fine in most cases, but it has some issues in the way it works--its design can sometimes be confusing or downright annoying. So, `let` was created in modern versions of JavaScript, a new keyword for creating variables that works somewhat differently to `var`, fixing its issues in the process.
 
-A couple of simple differences are explained below. We won't go into all the differences now, but you'll start to discover them as you learn more about JavaScript (if you really want to read about them no, feel fre to check out the [MDN `let` reference page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)).
+A couple of simple differences are explained below. We won't go into all the differences now, but you'll start to discover them as you learn more about JavaScript (if you really want to read about them no, feel free to check out the [MDN `let` reference page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)).
 
 For a start, if you write a multiline JavaScript program that declares and initializes a variable, you can actually declare a variable with `var` after you initialize it and it will still work. For example:
 ```
@@ -149,7 +149,7 @@ myName = 'Bob';
 ```
 Again, this is a sensible language decision. There is no reason to redeclare variables--it just makes things more confusing.
 
-For these reasons and more, we recommend that you use `let` as much as possible in your code, rather than `var`. There is no reason to use `var`, unless you need to support old versions of Internet Explorer with your code (it doesn't support `let` un til version 11; the modern Microsoft Edge browser supports `let` just fine).
+For these reasons and more, we recommend that you use `let` as much as possible in your code, rather than `var`. There is no reason to use `var`, unless you need to support old versions of Internet Explorer with your code (it doesn't support `let` until version 11; the modern Microsoft Edge browser supports `let` just fine).
 
 ## Updating a variable
 
@@ -166,10 +166,10 @@ You can call a variable pretty much anything you like, but there are limitations
 * You shouldn't use other characters because they may causse errors or be hard to understand for an international audience.
 * Don't use underscores at the start of variable names--this is used in certain JavaScript constructs to mean specific things, so may get confusing.
 * Don't use numbers at the start of variables. This isn't allowed and causes an error.
-* A safe convention to stick to is so-called ["lower camel case"](https://en.wikipedia.org/wiki/Camel_case#Variations_and_synonyms), where you stick together multiple words, using loweer case for the whole first word and then capitalize subsequent words. We've been using this for our variable names in the article so far.
+* A safe convention to stick to is so-called ["lower camel case"](https://en.wikipedia.org/wiki/Camel_case#Variations_and_synonyms), where you stick together multiple words, using lower case for the whole first word and then capitalize subsequent words. We've been using this for our variable names in the article so far.
 * Make variable names intuitive, so they describe the data they contain. Don't just use single letters/numbers, or big long phrases.
-* variables aare case sensitive--so `myage` is a different variable from `myAge`.
-* One last point: you also need to aavoid using JavaScript reserved words aas your variable names--by this, we mean the words that make up the actual syntax of JavaScript! So, you can't use words like `var`, `function`, `let`, and `for` as variable names. Browsers recognize them as different code items, and so you'll get errors.
+* variables are case sensitive--so `myage` is a different variable from `myAge`.
+* One last point: you also need to avoid using JavaScript reserved words as your variable names--by this, we mean the words that make up the actual syntax of JavaScript! So, you can't use words like `var`, `function`, `let`, and `for` as variable names. Browsers recognize them as different code items, and so you'll get errors.
 
 <hr>
 
@@ -209,21 +209,21 @@ So far we've looked at the first two, but there are others.
 
 ### Numbers
 
-You can store numbers in variables, either whole numbers like 30 (also called integers) or decimal numbers like 2.456 (also called floats or floating point numbers). You don't need to declare variable types in JavaScript, unlike some other programming languages. When you give a variable a number valuee, you don't include quotes:
+You can store numbers in variables, either whole numbers like 30 (also called integers) or decimal numbers like 2.456 (also called floats or floating point numbers). You don't need to declare variable types in JavaScript, unlike some other programming languages. When you give a variable a number value, you don't include quotes:
 ```
 let myAge = 17;
 ```
 
 ### Strings
 
-Strings are pieces of text. When you give a variable aa string value, you need to wrap it in single or double quote marks; otherwise, JavaScript tries to interpret it asa another variable name.
+Strings are pieces of text. When you give a variable a string value, you need to wrap it in single or double quote marks; otherwise, JavaScript tries to interpret it asa another variable name.
 ```
 let dolphinGoodbye = 'So long and thanks for all the fish';
 ```
 
 ### Booleans
 
-Booleans are true/false values--they can have two values, `true` or `false`. These aare generally used to test a condition, after which code is run as appropriate. So, for example, a simple case would be:
+Booleans are true/false values--they can have two values, `true` or `false`. These are generally used to test a condition, after which code is run as appropriate. So, for example, a simple case would be:
 ```
 let iAmAlive = true;
 ```
@@ -247,11 +247,11 @@ myNumberArray[2];   // should return 40
 ```
 The square brackets specify an index value corresponding to the position of the value you want returned. You might have noticed that arrays in JavaScript are zero-indexed: the first element is at index 0.
 
-You'll learn a lot more about arrays in a [future article](). <!-- link to JS_First_Steps / Arrays -->
+You'll learn a lot more about arrays in a [future article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays).
 
 ### Objects
 
-In programming, an object is a structure of code that models a real-life object. You can haave a simple object that represents a box and contains information about its width, length, and height, or you could have an object that represents a person, and contains data about their name, height, weight, what language they speak, how to say hello to them, and more.
+In programming, an object is a structure of code that models a real-life object. You can have a simple object that represents a box and contains information about its width, length, and height, or you could have an object that represents a person, and contains data about their name, height, weight, what language they speak, how to say hello to them, and more.
 
 Try entering the following line into your console:
 ```
@@ -261,7 +261,7 @@ To retrieve the information stored in the object, you can use the following synt
 ```
 dog.name
 ```
-We won't be looking at objects anymore for now--you can lelarn more about those in [a future module](). <!-- link to Intro_JS_Objects folder (README) -->
+We won't be looking at objects anymore for now--you can lelarn more about those in [a future module](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects).
 
 ## Dynamic typing
 
@@ -302,5 +302,7 @@ I have created an accompanying [variables-skills-test.html]() file to test my kn
 ## Summary
 
 By now, you should know a reasonable amount about JavaScript variables and how to create them. In the next article, we'll focus on numbers in more detail, looking at how to do basic math in JavaScript.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#storing-the-information-you-need----variables) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#basic-math-in-javascript----numbers-and-operators)
