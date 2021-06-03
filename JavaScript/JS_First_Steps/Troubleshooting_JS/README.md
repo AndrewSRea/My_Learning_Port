@@ -183,11 +183,11 @@ to
 ```
 if (userGuess = randomNumber) {
 ```
-the test would always return `true`, causing the problem to report that the game has been won. Be caareful!
+the test would always return `true`, causing the problem to report that the game has been won. Be careful!
 
 ### SyntaxError: missing ) after argument list
 
-This one is pretty simple--it generally means thaat you've missed the closing parenthesis at the end of a function/method call.
+This one is pretty simple--it generally means that you've missed the closing parenthesis at the end of a function/method call.
 
 <hr>
 
