@@ -149,6 +149,8 @@ Math.floor(Math.random()*100) + 1;
 ```
 Try updating both lines like this, then save and refresh--the game should now play like we are intending it to!
 
+(See the finished product [here](), and the finished code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Troubleshooting_JS/number-game-errors.html).)
+
 ## Other common errors
 
 There are other common errors you'll come across in your code. This section highlights most of them.
