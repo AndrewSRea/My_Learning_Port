@@ -261,7 +261,7 @@ To retrieve the information stored in the object, you can use the following synt
 ```
 dog.name
 ```
-We won't be looking at objects anymore for now--you can lelarn more about those in [a future module](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects).
+We won't be looking at objects anymore for now--you can learn more about those in [a future module](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects).
 
 ## Dynamic typing
 
