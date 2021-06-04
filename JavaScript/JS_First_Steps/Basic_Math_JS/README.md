@@ -132,7 +132,7 @@ num2 + num1 / 8 + 2;
 
 Some of this last set of calculations might not give you quite the result you were expecting; the section below might well give the answer as to why.
 
-### Operator precendence
+### Operator precedence
 
 Let's look at the last example from above, assuming that `num2` holds the value 50 and `num1` holds the value 10 (as originally stated above):
 ```
