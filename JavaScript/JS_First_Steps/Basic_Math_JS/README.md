@@ -34,7 +34,7 @@ The second bit of good news is that unlike some other programming languages, Jav
 
 ### It's all numbers to me
 
-Let's quickly play with some numbers to reacquaint ourselves with the basic syntax we need. Enter the commands listed below into your **developer tools JavaScript console**.
+Let's quickly play with some numbers to reacquaint ourselves with the basic syntax we need. Enter the commands listed below into your [developer tools JavaScript console](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools).
 
 1. First of all, let's declare a couple of variables and initialize them with an integer and a float, respectively, then type the variable names back in to check that everything is in order:
 ```
@@ -223,13 +223,13 @@ x *= y;      // x now contains the value 12
 
 <hr>
 
-**Note**: There are lots of [other assignment operators available](), but these are the basic ones you should learn now.
+**Note**: There are lots of [other assignment operators available](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#assignment_operators), but these are the basic ones you should learn now.
 
 <hr>
 
 ## Active learning: sizing a canvas box
 
-In this exercise, you will manipulate some numbers and operators to change the size of a box. The box is drawn using a browser API called the [Canvas API](). There is no need to worry about how this works--just concentrate on the math for now. The width and height of the box (in pixels) are defined by the variables `x` and `y`, which are initially both given a value of 50.
+In this exercise, you will manipulate some numbers and operators to change the size of a box. The box is drawn using a browser API called the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API). There is no need to worry about how this works--just concentrate on the math for now. The width and height of the box (in pixels) are defined by the variables `x` and `y`, which are initially both given a value of 50.
 
 **[Open this exercise in a new window.](https://mdn.github.io/learning-area/javascript/introduction-to-js-1/maths/editable_canvas.html)**
 
@@ -324,5 +324,7 @@ In the next article, we'll explore text and how JavaScript allows us to manipula
 <hr>
 
 **Note**: If you do enjoy math and want to read more about how it is implemented in JavaScript, you can find a lot more detail in MDN's main JavaScript section. Great places to start are MDN's [Numbers and dates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates) and [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators) articles.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables#storing-the-information-you-need----variables) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#basic-math-in-javascript----numbers-and-operators) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Strings_in_JS#handling-text----strings-in-javascript)
