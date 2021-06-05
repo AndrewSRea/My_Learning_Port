@@ -4,13 +4,13 @@ Next, we'll turn our attention to strings--this is what pieces of text are calle
 
 ## The power of words
 
-Words are very important to humans--they are a large part of how we communicate. Since the Web is a largely text-based medium designed to allow humans to communicate and share information, it is useful for us to have control over the words that appear on it. [HTML]() provides structure and meaning to our text, [CSS]() allows us to precisely style it, and JavaScript contains a number of features for manipulating strings, creating custom welcome messages and prompts, showing the right text labels when needed, sorting terms into the desired order, and much more.
+Words are very important to humans--they are a large part of how we communicate. Since the Web is a largely text-based medium designed to allow humans to communicate and share information, it is useful for us to have control over the words that appear on it. [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML) provides structure and meaning to our text, [CSS](https://developer.mozilla.org/en-US/docs/Glossary/CSS) allows us to precisely style it, and JavaScript contains a number of features for manipulating strings, creating custom welcome messages and prompts, showing the right text labels when needed, sorting terms into the desired order, and much more.
 
 Pretty much all of the programs we've shown you so far in the course have involved some string manipulation.
 
 ## Strings -- the basics
 
-Strings are dealt with similarly to numbers at first glance but when you dig deeper, you'll start to see some notable differences. Let's start by entering some basic lines into the **browser developer console** to familiarize ourselves.
+Strings are dealt with similarly to numbers at first glance but when you dig deeper, you'll start to see some notable differences. Let's start by entering some basic lines into the [browser developer console](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools) to familiarize ourselves.
 
 ### Creating a string
 
@@ -117,7 +117,7 @@ button.onclick = function() {
     alert('Hello ' + name + ', nice to see you!');
 }
 ```
-See the code example [here](), and see it in action [here]().
+See the code example [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Strings_in_JS/simple-concatenation-example.html), and see it in action [here]().
 
 Here we're using a [`window.prompt()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt) function in line 4, which asks the user to answer a question via a popup dialog box, then stores the text they enter inside a given variable--in this case `name`. We then use a [`window.alert()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) function in line 5 to display another popup containing a string we've assembled from two string literals and the `name` variable, via concatenation.
 
@@ -188,7 +188,7 @@ examReport = `You scored ${ examScore }/${ examHighestScore } (${ Math.round((ex
 ```
 * The first two placeholders here are pretty simple, only including a simple value in the string.
 * The third one calculates a percentage result and rounds it to the nearest integer.
-* The fourth one uses a [ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to check whether the score is above a certain mark and prints a pass or fail message depending on the result.
+* The fourth one includes a [ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) to check whether the score is above a certain mark and prints a pass or fail message depending on the result.
 
 Another point to note is that if you want to split a traditional string over multiple lines, you need to include a newline character, `\n`:
 ```
@@ -205,10 +205,12 @@ See MDN's [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Skills test
 
-I have created an accompanying [strings-skills-test.html]() file to test my knowledge of the information provided by this **"Handling text -- strings in JavaScript"** page. See the results [here]().
+See the [Test your skills: Strings]() page for some further tests to verify my knowledge of the information provided by the **Handling text -- strings in JavaScript** article. (This skills test also incorporates knowledge learned from the next article, **Useful string methods**.)
 
 ## Conclusion
 
 So that's the very basics of strings covered in JavaScript. In the next article, we'll build on this, looking at some of the built-in methods available to strings in JavaScript and how we can use them to manipulate our strings into just the form we want.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS#basic-math-in-javascript----numbers-and-operators) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Strings_in_JS#handling-text----strings-in-javascript) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods)
