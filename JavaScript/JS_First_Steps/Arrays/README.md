@@ -8,7 +8,7 @@ Arrays are generally described as "list-like objects"; they are basically single
 
 If we didn't have arrays, we'd have to store every item in a separate variable, then call the code that does the printing and adding separately for each item. This would be much longer to write out, less efficient, and more error-prone. If we had 10 items to add to the invoice, it would already be annoying but what about 100 items, or 1000? We'll return to this example later on in the article.
 
-As in previous articles, let's learn about the real basics of arrays by entering some examples into the **browser developer console**.
+As in previous articles, let's learn about the real basics of arrays by entering some examples into the [browser developer console](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools).
 
 ### Creating arrays
 
@@ -193,7 +193,7 @@ To complete the app, we need you to:
 
 ## Skills test
 
-I have created an accompanying [arrays-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Arrays/arrays-skills-test.html) file to test my knowledge of the information provided by this **"Arrays"** page. See the results [here]().
+See the [Test your skills: Arrays]() page for some further tests to verify my knowledge of the information provided by the **Arrays** article.
 
 ## Conclusion
 
@@ -206,4 +206,6 @@ The only thing left to do is work through this module's assessment, which will t
 * [Indexed collections](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections) -- an advanced level guide to arrays and their cousins, typed arrays.
 * [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) -- the `Array` object reference page--for a detailed reference guide to the features discussed in this page, and many more.
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Next page]]()
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Assessment#silly-story-generator)
