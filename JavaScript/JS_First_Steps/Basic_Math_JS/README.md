@@ -313,7 +313,7 @@ You can see the equality operator being used just inside the `updateBtn()` funct
 
 ## Skills test
 
-I have created an accompanying [math-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Basic_Math_JS/Skills_Test/README.md#test-your-skills-math) file to test my knowledge of the information provided by this **"Basic math in JavaScript -- numbers and operators"** page. See the results [here]().
+See the [Test your skills: Math](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Basic_Math_JS/Skills_Test#test-your-skills-math) page for some further tests to verify my knowledge of the information provided by the **Basic math in JavaScript -- numbers and operators** article.
 
 ## Summary
 
