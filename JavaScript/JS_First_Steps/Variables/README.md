@@ -297,7 +297,7 @@ daysInWeek = 8;
 
 ## Skills test
 
-I have created an accompanying [variables-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Variables/Skills_Test/variables-skills-test.html) file to test my knowledge of the information provided by this **"Storing the information you need -- Variables"** page. See the results [here]().
+See the [Test your skills: Variables](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Variables/Skills_Test#test-your-skills-variables) page for some further tests to verify my knowledge of the information provided by the **Storing the information you need -- Variables** article.
 
 ## Summary
 
