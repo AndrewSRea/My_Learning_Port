@@ -25,7 +25,7 @@ para1.textContent = finalQuote;
 
 section.appendChild(para1);
 ```
-See my finished code for this test under the **Strings Skills Test 1** header in my accompanying [strings-skills-test.html]() file, and see the result of this finished code [here](), under the **Strings Skills Test 1** header.
+See my finished code for this test under the **Strings Skills Test 1** header in my accompanying [strings-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Useful_String_Methods/Skills_Test/strings-skills-test.html) file, and see the result of this finished code [here](), under the **Strings Skills Test 1** header.
 
 ## Strings Skills 2
 
@@ -53,7 +53,7 @@ para2.textContent = revisedQuote;
 section.appendChild(para1);
 section.appendChild(para2);
 ```
-See my finished code for this test under the **Strings Skills Test 2** header in my accompanying [strings-skills-test.html]() file, and see the result of this finished code [here](), under the **Strings Skills Test 2** header.
+See my finished code for this test under the **Strings Skills Test 2** header in my accompanying [strings-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Useful_String_Methods/Skills_Test/strings-skills-test.html) file, and see the result of this finished code [here](), under the **Strings Skills Test 2** header.
 
 ## Strings Skills 3
 
@@ -80,7 +80,7 @@ para2.textContent = finalQuote;
 section.appendChild(para1);
 section.appendChild(para2);
 ```
-See my finished code for this test under the **Strings Skills Test 3** header in my accompanying [strings-skills-test.html]() file, and see the result of this finished code [here](), under the **Strings Skills Test 3** header.
+See my finished code for this test under the **Strings Skills Test 3** header in my accompanying [strings-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Useful_String_Methods/Skills_Test/strings-skills-test.html) file, and see the result of this finished code [here](), under the **Strings Skills Test 3** header.
 
 ## Strings Skills 4
 
@@ -109,6 +109,7 @@ para1.textContent = myString;
 
 section.appendChild(para1);
 ```
+See my finished code for this test under the **Strings Skills Test 4** header in my accompanying [strings-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Useful_String_Methods/Skills_Test/strings-skills-test.html) file, and see the result of this finished code [here](), under the **Strings Skills Test 4** header.
 
 <hr>
 
