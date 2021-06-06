@@ -34,7 +34,7 @@ The following sections describe what you need to do.
 
 Basic setup:
 
-1. Create a new file ccalled `main.js`, in the same directory as your `index.html` file.
+1. Create a new file called `main.js`, in the same directory as your `index.html` file.
 2. Apply the external JavaScript file to your HTML by inserting a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element into your HTML referencing `main.js`. Put it just before the closing `</body>` tag.
 
 Initial variables and functions:
@@ -69,12 +69,14 @@ Completing the `result()` function:
 ## Hints and tips
 
 * You don't need to edit the HTML in any way, except to apply the JavaScript to your HTML.
-* If you are unsure whether the JavaScript is applied to your HTML properly, try removing everything else from the JavaScript file temporarily, adding in a simple bit of JavaSccript that you know will create an obvious effect, then saving and refreshing. The following, for example, turns the background of the `<html>` element red--so the entire browser window should go red if the JavaScript is applied properly:
+* If you are unsure whether the JavaScript is applied to your HTML properly, try removing everything else from the JavaScript file temporarily, adding in a simple bit of JavaScript that you know will create an obvious effect, then saving and refreshing. The following, for example, turns the background of the `<html>` element red--so the entire browser window should go red if the JavaScript is applied properly:
 ```
 document.querySelector('html').style.backgroundColor = 'red';
 ```
 * [`Math.round()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round) is a built-in JavaScript method that rounds the result of a calculation to the nearest whole number.
-* There are three instances of strings that need to be replaced. You may repeat the `replace()` method multiple times, or you ccan use regular expressions. For instance, `let text = 'I am the biggest lover, I love my love'; text.replace(/love/g,'like');` will replace all instances of 'love' to 'like'. Remember, Strings are immutable!
+* There are three instances of strings that need to be replaced. You may repeat the `replace()` method multiple times, or you can use regular expressions. For instance, `let text = 'I am the biggest lover, I love my love'; text.replace(/love/g,'like');` will replace all instances of 'love' to 'like'. Remember, Strings are immutable!
+
+See the finished JavaScript code of this Assessment [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Assessment/main.js), and the product produced by this code [here]().
 
 ## Assessment or further help
 
@@ -87,4 +89,6 @@ If you would like your work assessed, or are stuck and want to ask for help:
     - A link to the example you want assessed or need help with, in an online shareable editor (as mentioned in step 1 above). This is a good practice to get into--it's very hard to help someone with a coding problem if you can't see their code.
     - A link to the actual task or assessment page, so the Mozilla assesors can find the question you want help with.
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Overview: First steps]]() - [[On to JavaScript building blocks]]()
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Back to the opening page of this module: JavaScript First Steps]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps#javascript-first-steps) - [[On to JavaScript building blocks]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks#javascript-building-blocks)
