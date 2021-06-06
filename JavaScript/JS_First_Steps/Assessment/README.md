@@ -91,4 +91,4 @@ If you would like your work assessed, or are stuck and want to ask for help:
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Back to the opening page of this module: JavaScript First Steps]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps#javascript-first-steps) - [[On to JavaScript building blocks]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks#javascript-building-blocks)
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays) - [[Back to the opening page of this module: JavaScript First Steps]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps#javascript-first-steps) - [[Next module: JavaScript building blocks]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks#javascript-building-blocks)
