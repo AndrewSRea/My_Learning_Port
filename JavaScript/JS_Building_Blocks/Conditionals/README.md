@@ -66,7 +66,7 @@ This code as shown always results in the `shoppingDone` variable returning `fals
 
 <hr>
 
-**Note**: You can see a more complex version of this with [Mozilla's example](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/allowance-updater.html).
+**Note**: You can see a more complex version of this in my accompanying [allowance-updater.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/allowance-updater.html) file.
 
 <hr>
 
@@ -116,7 +116,7 @@ function setWeather() {
 
 <hr>
 
-**Note**: You can also find Mozilla's example of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-else-if.html).
+**Note**: You can also find an example of this code in my accompanying [simple-else-if.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-else-if.html) file.
 
 <hr>
 
@@ -130,7 +130,7 @@ Comparison operators are used to test the conditions inside our conditional stat
 
 <hr>
 
-**Note**: Review the material at the previous link if you want to refresh your memories on these.
+**Note**: Review the material at the previous link just above if you want to refresh your memories on these.
 
 <hr>
 
@@ -144,7 +144,7 @@ if (cheese) {
     console.log('No cheese on toast for you today.');
 }
 ```
-And, returning to our previous exxample about the child doing a chore for their parent, you could write it like this:
+And, returning to our previous example about the child doing a chore for their parent, you could write it like this:
 ```
 let shoppingDon = false;
 let childsAllowance;
@@ -158,7 +158,7 @@ if (shoppingDone) {   // don't need to explicitly specify `=== true`
 
 ### Nesting if...else
 
-It is perfectly OK to put one `if...else` statement inside another one--to nest them. For example, we could update our waether forecast application to show a further set of choices depending on what the temperature is:
+It is perfectly OK to put one `if...else` statement inside another one--to nest them. For example, we could update our weather forecast application to show a further set of choices depending on what the temperature is:
 ```
 if (choice === 'sunny') {
     if (temperature < 86) {
@@ -306,7 +306,7 @@ function setWeather() {
 ```
 <hr>
 
-**Note**: You can also find Mozilla's example of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-switch.html).
+**Note**: You can also find an example of this code in my accompanying [simple-switch.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-switch.html) file.
 
 <hr>
 
@@ -354,7 +354,9 @@ Finally, we've also got an [onchange]() event listener that serves to run a func
 
 <hr>
 
-**Note**: You can also find Mozilla's example of the code just above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-ternary.html).
+**Note**: You can also find an example of the code just above in my accompanying [simple-ternary.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/simple-ternary.html) file.
+
+<hr>
 
 ## Active learning: A simple calendar
 
@@ -388,7 +390,7 @@ In this example, you are going to take the ternary operator example we saw earli
 
 ## Skills test
 
-I have created an accompanying [conditionals-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Conditionals/conditionals-skills-test.html) file to test my knowledge of the information provided by this **"Making decisions in your code -- conditionals"** page. See the results [here]().
+See the [Test your skills: Conditionals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals/Skills_Test#test-your-skills-conditionals) page for some further tests to verify my knowledge of the information provided by the **Making decisions in your code -- conditionals** article.
 
 ## Conclusion
 
