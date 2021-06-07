@@ -369,7 +369,7 @@ We would recommend `for`, at least to begin with, as it is probably the easiest 
 
 ## Skills test
 
-See the [Test your skills: Loops]() page for some further tests to verify my knowledge of the information provided by the **Looping code** article.
+See the [Test your skills: Loops](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code/Skills_Test#test-your-skills-loops) page for some further tests to verify my knowledge of the information provided by the **Looping code** article.
 
 ## Conclusion
 
