@@ -38,7 +38,7 @@ Often, the code will be slightly different on each successive iteration of the l
 
 Let's look at an example to perfectly illustrate why loops are such a good thing. Let's say we wanted to draw 100 random circles on a [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element.
 
-(See Mozilla's example of looping code in the accompanying [`random-canvas-circles.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) file.)
+(See Mozilla's example of looping code in my accompanying [`random-canvas-circles.html`](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/random-canvas-circles.html) file.)
 
 You don't have to understand all the code for now, but let's look at the part of the code that actually draws the 100 circles:
 ```
@@ -127,7 +127,7 @@ One small problem we are left with is that the final output sentence isn't very 
 Ideally, we want to change the concatenation on the final loop iteration so that we haven't got a comma on the end of the sentence. Well, no problem--we can quite happily insert a conditional inside our for loop to handle this special case:
 ```
 for (let i = 0; i < cats.length; i++) {
-    if ( i === cats.length - 1) {
+    if (i === cats.length - 1) {
         info += 'and' + cats[i] + '.';
     } else {
         info += cats[i] + ', ';
