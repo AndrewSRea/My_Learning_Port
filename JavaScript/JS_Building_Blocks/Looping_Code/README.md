@@ -187,13 +187,13 @@ btn.addEventListener('click', function() {
 
 <hr>
 
-**Note**: You can also find Mozilla's example of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/contact-search.html).
+**Note**: You can also find Mozilla's example of this code in my accompanying [contact-search.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/contact-search.html) file.
 
 <hr>
 
 ## Skipping iterations with continue
 
-The [continue]() statement works in a similar manner to `break`, but instead of breaking out of the loop entirely, it skips to the next iteration of the loop. Let's look at another example that takes a number as an input, and returns only the numbers that are squares of integers (whole numbers).
+The [continue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue) statement works in a similar manner to `break`, but instead of breaking out of the loop entirely, it skips to the next iteration of the loop. Let's look at another example that takes a number as an input, and returns only the numbers that are squares of integers (whole numbers).
 
 The HTML is basically the same as the last example--a simple text input, and a paragraph for output. The JavaScript is mostly the same, too, although the loop itself is a bit different:
 ```
@@ -213,7 +213,7 @@ for (let i = 1; i <= num; i++) {
 3. If the square root and the rounded down square root do not equal one another (`!==`), it means that the square root is not an integer, so we are not interested in it. In such a case, we use the `continue` statement to skip on to the next loop iteration without recording the number anywhere.
 4. If the square root is an integer, we skip past the `if` block entirely, so the `continue` statement is not executed; instead, we concatenate the current `i` value plus a space on to the end of the paragraph content.
 
-You can see this example of Mozilla's code in action [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/integer-squares.html).
+You can see this example of Mozilla's code in action in my accompanying [integer-squares.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/integer-squares.html) file.
 
 ## while and do...while
 
@@ -228,7 +228,7 @@ while (condition) {
     final-expression
 }
 ```
-This works in a very similar way to the `for` loop, except that the initializer variable is set before the loop, and the final-expression is included inside the loop after the code to run, ratheer than these two items being included inside the parentheses. The condition is included inside the parentheses, which are preceded by the `while` keyword rather than `for`.
+This works in a very similar way to the `for` loop, except that the initializer variable is set before the loop, and the final-expression is included inside the loop after the code to run, rather than these two items being included inside the parentheses. The condition is included inside the parentheses, which are preceded by the `while` keyword rather than `for`.
 
 The same three items are still present, and they are still defined in the same order as they are in the `for` loop. This makes sense, as you still have to have an initializer defined before you can check whether it has reached the point where the condition is no longer true; the final-expression is then run after the code inside the loop has run (an iteration has been completed), which will only happen if the condition is still true.
 
@@ -248,7 +248,7 @@ while (i < cats.length) {
 ```
 <hr>
 
-**Note**: This still works just the same as expected--have a look at it in Mozilla's example [here]().
+**Note**: This still works just the same as expected--have a look at Mozilla's example in my accompanying [while.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/while.html) file.
 
 <hr>
 
@@ -281,7 +281,7 @@ do {
 ```
 <hr>
 
-**Note**: Again, this works just the same as expected--have a look at it in Mozilla's example [here]().
+**Note**: Again, this works just the same as expected--have a look at Mozilla's example in my accompanying [do-while.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/do-while.html) file.
 
 <hr>
 
@@ -294,7 +294,7 @@ do {
 In this exercise, we want you to print out a simple launch countdown to the output box, from 10 down to Blastoff. Specifically, we want you to:
 
 * Loop from 10 down to 0. We've provided you with an initializer -- `let i = 10;`.
-* For each iteration, create a new paragraph and appeend it to the output `<div>`, which we've selected using `const output = document.querySelector('.output');`. In comments, we've provided you with three code lines that need to be used somewhere inside the loop:
+* For each iteration, create a new paragraph and append it to the output `<div>`, which we've selected using `const output = document.querySelector('.output');`. In comments, we've provided you with three code lines that need to be used somewhere inside the loop:
     - `const para = document.createElement('p');` -- creates a new paragraph.
     - `output.appendChild(para);` -- appends the paragraph to the output `<div>`.
     - `para.textContent =` -- makes the text inside the paragraph equal to whatever you put on the right-hand side, after the equals sign.
@@ -309,6 +309,8 @@ In this exercise, we want you to print out a simple launch countdown to the outp
 **Note**: If you start typing the loop (for example, (`while (i >= 0)`)), the browser might get stuck because you have not yet entered the end condition. So be careful with this. You can start writing your code in a comment to deal with this issue and remove the comment after you finish.
 
 <hr>
+
+(See my accompanying [loops-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/loops-active-learning.html) file to see this in action, under the **Looping Code Learning Example 1** header.)
 
 ## Active learning: Filling in a guest list
 
@@ -329,11 +331,11 @@ We've already provided you with:
 
 Extra bonus question: After completing the above tasks successfully, you will be left with two lists of names, separated by commas, but they will be untidy--there will be a comm a at the end of each one. Can you work out how to write lines that slice the last comma off in each case, and add a full stop to the end? Have a look at the [Useful string methods](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods#useful-string-methods) article for help.
 
-(See my accompanying [loops-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/loops-active-learning.html) file to see the code for these two **Active learning** sections in action.)
+(See my accompanying [loops-active-learning.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Looping_Code/loops-active-learning.html) file to see this in action, under the **Looping Code Learning Example 2** header.)
 
 ## Which loop type should you use?
 
-For basic uses, `for`, `while`, and `do...while` loops are largely interchangeable. They ccan all be used to solve the same problems, and which one you use will largely depend on your personal preference--which one you find easiest to remember or most intuitive. Let's have a look at them again.
+For basic uses, `for`, `while`, and `do...while` loops are largely interchangeable. They can all be used to solve the same problems, and which one you use will largely depend on your personal preference--which one you find easiest to remember or most intuitive. Let's have a look at them again.
 
 First `for`:
 ```
@@ -367,7 +369,7 @@ We would recommend `for`, at least to begin with, as it is probably the easiest 
 
 ## Skills test
 
-I have created an accompanying [loops-skills-test.html]() file to test my knowledge of the information provided by this **"Looping code"** page. See the results [here]().
+See the [Test your skills: Loops]() page for some further tests to verify my knowledge of the information provided by the **Looping code** article.
 
 ## Conclusion
 
@@ -380,5 +382,7 @@ This article has revealed to you the basic concepts behind, and different option
 * [while](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) and [do...while](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while) references
 * [break](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break) and [continue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue) references
 * [What's the Best Way to Write a JavaScript For Loop?](https://www.impressivewebs.com/javascript-for-loop/) -- some advanced loop best practices
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Conditionals#making-decisions-in-your-code----conditionals) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code)
