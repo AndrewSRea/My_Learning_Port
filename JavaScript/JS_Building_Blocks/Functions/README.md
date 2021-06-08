@@ -1,6 +1,6 @@
 # Functions -- reusable blocks of code
 
-Another essential concept in coding is **functions**, which allow you to store a piece of code that does a single task inside a defined block, and then call that code whenever you need it using a single short command--rather than having to type out the same code multiple times. In this article, we'll explore fundamental concepts behind functions such as basic syntax, how to invoke and define them, scop, and parameters.
+Another essential concept in coding is **functions**, which allow you to store a piece of code that does a single task inside a defined block, and then call that code whenever you need it using a single short command--rather than having to type out the same code multiple times. In this article, we'll explore fundamental concepts behind functions such as basic syntax, how to invoke and define them, scope, and parameters.
 
 ## Where do I find functions?
 
@@ -38,11 +38,11 @@ let myNumber = Math.random();
 
 <hr>
 
-**Note**: Feel fre to enter these lines into your browser's JavaScript console to re-familiarize yourself with their functionality, if needed.
+**Note**: Feel free to enter these lines into your browser's JavaScript console to re-familiarize yourself with their functionality, if needed.
 
 <hr>
 
-The JavaScript language has many built-in functions to allow you to do useful things without having to write all that code yourself. In fact, some of the code you are calling when you **invoke** (a fancy word for run, or execute) a built-in browser function couldn't be written in JavaScript--many of these functions are caalling parts of the background browser code, which is written largely in low-level system languages like C++, not web languages like JavaScript.
+The JavaScript language has many built-in functions to allow you to do useful things without having to write all that code yourself. In fact, some of the code you are calling when you **invoke** (a fancy word for run, or execute) a built-in browser function couldn't be written in JavaScript--many of these functions are calling parts of the background browser code, which is written largely in low-level system languages like C++, not web languages like JavaScript.
 
 Bear in mind that some built-in browser functions are not part of the core JavaScript language--some are defined as part of browser APIs, which build on top of the default language to provide even more functionality (refer to [this early section of our course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/What_Is_JS#so-what-can-it-really-do) for more descriptions). We'll look at using browser APIs in more detail in a later module.
 
@@ -74,7 +74,7 @@ function random(number) {
     return Math.floor(Math.random()*number);
 }
 ```
-We needed this function because the browser's built-in [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) function only generates a random decimla number between 0 and 1. We wanted a random whole number between 0 and a specified number.
+We needed this function because the browser's built-in [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) function only generates a random decimal number between 0 and 1. We wanted a random whole number between 0 and a specified number.
 
 ## Invoking functions
 
@@ -90,7 +90,7 @@ myFunction();
 
 <hr>
 
-:exclamation: This form of creating a function is also known as *function declaration*. It is always hoisted, so you can call function above the function declaration and it will work fine.
+:exclamation: This form of creating a function is also known as *function declaration*. It is always hoisted, so you can call the function above the function declaration and it will work fine.
 
 <hr>
 
@@ -197,7 +197,7 @@ If no parameter is included to specify a joining/delimiting character, a comma i
 
 ## Function scope and conflicts
 
-Let's talk a bit about [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope)--a very important concept whn dealing with functions. When you create a function, the variables and other things defined inside the function are inside their own separate **scope**, meaning that they are locked away in thir own separate compartments, unreachable from code outside the functions.
+Let's talk a bit about [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope)--a very important concept when dealing with functions. When you create a function, the variables and other things defined inside the function are inside their own separate **scope**, meaning that they are locked away in their own separate compartments, unreachable from code outside the functions.
 
 The top level outside all your functions is called the **global scope**. Values defined in the global scope are accessible from everywhere in the code.
 
@@ -244,7 +244,7 @@ The zookeeper is like the global scope--he or she has the keys to access every e
 
 Let's look at a real example to demonstrate scoping:
 
-1. First, make a local copy of our [function-scope.html]() example. This contains two functions called `a()` and `b()`, and three variables--`x`, `y`, and `z`--two of which are defined inside the functions, and one in the global scope. It also contains a third function called `output()`, which takes a single parameter and outputs it in a paragraph on the page.
+1. First, make a local copy of our [function-scope.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-scope.html) example. This contains two functions called `a()` and `b()`, and three variables--`x`, `y`, and `z`--two of which are defined inside the functions, and one in the global scope. It also contains a third function called `output()`, which takes a single parameter and outputs it in a paragraph on the page.
 2. Open the example up in a browser and in your text editor.
 3. Open the JavaScript console in your browser developer tools. In the JavaScript console, enter the following command:
 ```
@@ -375,7 +375,7 @@ function subFunction3(value) {
 
 ## Skills test
 
-I have created an accompanying [functions-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Functions/functions-skills-test.html) file to test my knowledge of the information provided by this **"Functions -- reusable blocks of code"** page. See the results [here]().
+See the [Test your skills: Functions]() page for some further tests to verify my knowledge of the information provided by the **Functions -- reusable blocks of code** article.
 
 ## Conclusion
 
@@ -386,5 +386,7 @@ This article has explored the fundamental concepts behind functions, paving the 
 * [Functions detailed guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) -- covers some advanced features not included here.
 * [Functions reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
 * [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters), [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) -- advanced concept references.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#looping-code) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function)
