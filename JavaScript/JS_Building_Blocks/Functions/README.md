@@ -375,7 +375,7 @@ function subFunction3(value) {
 
 ## Skills test
 
-See the [Test your skills: Functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions/Skills_Test#test-your-skills-functions) page for some further tests to verify my knowledge of the information provided by the **Functions -- reusable blocks of code** article.
+See the [Test your skills: Functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions/Skills_Test#test-your-skills-functions) page for some further tests to verify my knowledge of the information provided by the **Functions -- reusable blocks of code** article. (This skills test also incorporates knowledge learned from the next two articles, [Build your own function](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function), and [Function return values](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values).)
 
 ## Conclusion
 
