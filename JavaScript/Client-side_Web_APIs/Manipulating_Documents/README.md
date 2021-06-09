@@ -15,3 +15,9 @@ Despite the limitations, Web APIs still give us access to a lot of functionality
 * The document (represented by the DOM in browsers) is the actual page loaded into the window, and is represented in JavaScript by the [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object. You can use this object to return and manipulate information on the HTML and CSS that comprises the document. For example, get a reference to an element in the DOM, change its text content, apply new styles to it, create elements and add them to the current element as children, or even delete it altogether.
 
 In this article, we'll focus mainly on manipulating the document, but we'll show a few other useful bits besides.
+
+## The document object model
+
+The document currently loaded in each one of your browser tabs is represented by a document object model. This is a "tree structure" representation created by the browser that enables the HTML structure to be easily accessed by programming languages--for example, the browser itself uses it to apply styling and other information to the correct elements as it renders a page, and developers like you can manipulate the DOM with JavaScript after the page has been rendered.
+
+We have create a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). 
