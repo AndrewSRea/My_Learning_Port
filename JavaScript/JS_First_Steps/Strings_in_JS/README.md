@@ -205,7 +205,7 @@ See MDN's [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaS
 
 ## Skills test
 
-See the [Test your skills: Strings]() page for some further tests to verify my knowledge of the information provided by the **Handling text -- strings in JavaScript** article. (This skills test also incorporates knowledge learned from the next article, **Useful string methods**.)
+See the [Test your skills: Strings](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Useful_String_Methods/Skills_Test#test-your-skills-strings) page for some further tests to verify my knowledge of the information provided by the **Handling text -- strings in JavaScript** article. (This skills test also incorporates knowledge learned from the next article, **Useful string methods**.)
 
 ## Conclusion
 
