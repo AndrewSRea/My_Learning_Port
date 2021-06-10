@@ -77,3 +77,43 @@ link.textContent = 'Mozilla Developer Network';
 link.href = 'https://developer.mozilla.org';
 ```
 
+Note that, as with many things in JavaScript, there are many ways to select an element and store a reference to it in a variable. [`Document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) is the recommended modern approach, which is convenient because it allows you to select elements using CSS selectors. The above `querySelector()` call will match the first `<a>` element that appears in the document. If you wanted to match and do things to multiple elements, you could use [`Document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll), which matches every element in the document that matches the selector, and stores references to them in an [array](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Arrays#arrays)-like object called a [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList).
+
+There are older methods available for grabbing element references, such as:
+
+* [`Document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById), which selects an element with a given `id` attribute value, e.g. `<p id="myId">My paragraph</p>`. The ID is passed to the function as a parameter, i.e. `const elementRef = document.getElementById('myId')`.
+* [`Document.getElementsByTagName`](), which returns an array-like object containing all the elements on the page of a given type. For example, `<p>`s, `<a>`s, etc. The element type is passed to the function as a parameter, i.e. `const elementRefArray = document.getElementsByTagName('p')`.
+
+These two work better in older browsers than the modern methods like `querySelector()`, but are not as convenient. Have a look and see what others you can find!
+
+### Creating and placing new nodes
+
+The above has given you a little taste of what you can do, but let's go further and look at how we can create new elements.
+
+1. Going back to the current example (my accompanying [dom-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html)), let's start by grabbing a refernce to our [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element--add the following code at the bottom of your existing script (do the same with the other lines, too):
+```
+const sect = document.querySelector('section');
+```
+2. Now let's create a new paragraph using [`Document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and give it some text content in the same way as before:
+```
+const para = document.createElement('p');
+para.textContent = 'We hope you enjoyed the ride.';
+```
+3. You can now append the new paragraph at the end of the section using [`Node.appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild):
+```
+sect.appendChild(para);
+```
+4. Finally for this part, let's add a text node to the paragraph the link sits inside, to round off the sentence nicely. First we will create the text node using [`Document.createTextNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode):
+```
+const text = document.createTextNode(' - the premier source for web development knowledge.');
+```
+5. Now we'll grab a reference to the paragraph the link is inside, and append the text node to it:
+```
+const linkPara = document.querySelector('p');
+linkPara.appendChild(text);
+```
+
+That's most of you need for adding nodes to the DOM--you'll make a lot of use of these methods when building dynamic interfaces (we'll look at some examples later).
+
+### Moving and removing elements
+
