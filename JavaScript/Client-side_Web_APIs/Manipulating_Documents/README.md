@@ -155,7 +155,7 @@ para.style.padding = '10px';
 para.style.width = '250px';
 para.style.textAlign = 'center';
 ```
-2. Reload the page and you'll see that the styles have been applied to the paragraph. If you look at that paragraph in your browser's [Page Inspector/DOM inspector](), you'll see that these lines are indeed adding inline styles to the document:
+2. Reload the page and you'll see that the styles have been applied to the paragraph. If you look at that paragraph in your browser's [Page Inspector/DOM inspector](https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector), you'll see that these lines are indeed adding inline styles to the document:
 ```
 <p style="color: white; background-color: black; padding: 10px; width: 250px; text-align: center;">We hope you enjoyed the ride.</p>
 ```
@@ -166,4 +166,73 @@ para.style.textAlign = 'center';
 
 <hr>
 
+There is another common way to dynamically manipulate styles on your document, which we'll look at now.
 
+1. Delete the previous five lines you added to the JavaScript.
+2. Add the following inside your HTML `<head>`:
+```
+<style>
+    .highlight {
+        color: white;
+        background-color: black;
+        padding: 10px;
+        width: 250px;
+        text-align: center;
+    }
+</style>
+```
+3. Now we'll turn to a very useful method for general HTML manipulation -- [`Element.setAttribute()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute) -- this takes two arguments, the attribute you want to set on the element, and the value you want to set it to. In this case, we will set a class name of highlight on our paragraph:
+```
+para.setAttribute('class', 'highlight');
+```
+4. Refresh your page, and you'll see no change--the CSS is still applied to the paragraph, but this time by giving it a class that is selected by our CSS rule, not as inline CSS styles.
+
+Which method you choose is up to you; both have their advantages and disadvantages. The first method takes less setup and is good for simple uses, whereas the second method is more purist (no mixing CSS and JavaScript, no inline styles, which are seen as a bad practice). As you start building larger and more involved apps, you will probably start using the second method more, but it is really up to you.
+
+At this point, we haven't really done anything useful! There is no point using JavaScript to create static content--you might as well just write it into your HTML and not use JavaScript. It is more complex than HTML, and creating your content with JavaScript also has other issues attached to it (such as not being readable by search engines).
+
+In the next couple of sections, we will look at a couple of more practical uses of DOM APIs.
+
+<hr>
+
+**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html), and see it running live [here](). <!-- GitHub page -->
+
+<hr>
+
+## Active learning: Getting useful information from the Window object
+
+So far we've only really looked at using [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) and [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) features to manipulate documents, but there is no reason why you can't get data from other sources and use it in your UI. You just have to make sure your data is in the right format; JavaScript makes it easier than many other languages, being weakly typed--for example, numbers will convert to strings automatically when you want to print them to the screen.
+
+In this example, we will solve a common problem--making sure your application is as big as the window it is viewed in, whatever size it is. This is often useful in situations like games, where you want to use as much of the screen area as possible to play the game in.
+
+To start with, make a local copy of our [window-resize-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/window-resize-example.html) and [bgtile.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/bgtile.png) demo files. Open it and have a look--you'll see that we've got a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) element covering a small part of the screen, which has got a background tile applied to it. We'll use that to represent our app UI area.
+
+1. First of all, let's grab a reference to the `<div>`, and then grab the width and height of the viewport (the inner window, where your document is displayed) and store them in variables--these two values are handily contained in the [`Window.innerWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth) and [`Window.innerHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight) properties. Add the following lines inside the existing [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element:
+```
+const div = document.querySelector('div');
+let winWidth = window.innerWidth;
+let winHeight = window.innerHeight;
+```
+2. Next, we'll dynamically alter the width and height of the `<div>` to equal that of the viewport. Add the following two lines below your first ones:
+```
+div.style.width = winWidth + 'px';
+div.style.height = winHeight + 'px';
+```
+3. Save and try refreshing your browser--you should now see the `<div>` become as big as your viewport, whatever size of screen you are using. If you now try resizing your window to make it bigger, you'll see that the `<div>` stays the same size--we are only setting it once.
+4. How about we use an event so that the `<div>` resizes as we resize the window? The [`Window`]() object has an event available on it called resize, which is fired every time the window is resized--let's access that via the [`Window.onresize`]() event handler and rerun our sizing code each time it changes. Add the following to the bottom of your code:
+```
+window.onresize = function() {
+    winWidth = window.innerWidth;
+    winHeight = window.innerHeight;
+    div.style.width = winWidth + 'px';
+    div.style.height = winHeight + 'px';
+}
+```
+
+<hr>
+
+**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/window-resize-example.html), and see it running live [here](). <!-- GitHub page -->
+
+<hr>
+
+## Active learning: A dynamic shopping list
