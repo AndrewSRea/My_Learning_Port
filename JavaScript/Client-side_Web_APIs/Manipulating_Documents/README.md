@@ -20,4 +20,46 @@ In this article, we'll focus mainly on manipulating the document, but we'll show
 
 The document currently loaded in each one of your browser tabs is represented by a document object model. This is a "tree structure" representation created by the browser that enables the HTML structure to be easily accessed by programming languages--for example, the browser itself uses it to apply styling and other information to the correct elements as it renders a page, and developers like you can manipulate the DOM with JavaScript after the page has been rendered.
 
-We have create a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). 
+We have create a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). Try opening this up in your browser--it is a very simple page containing a [`<section>`]() element inside which you can find an image, and a paragraph with a link inside. The HTML source code looks like this:
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Simple DOM example</title>
+    </head>
+    <body>
+        <section>
+            <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+            <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+        </section>
+    </body>
+</html>
+```
+The DOM on the other hand looks like this:
+
+![Image of a DOM tree](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents/dom-screenshot.png)
+
+<hr>
+
+**Note**: This DOM tree diagram was create using Ian Hickson's [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/) **A useful tool to keep in mind!**
+
+<hr>
+
+You can see here that each element and bit of text in the document has its own entry in the tree--each one is called a **node**. You will also encounter various terms used to describe the type of node, and their position in the tree in relation to one another:
+
+* **Element node**: An element, as it exists in the DOM.
+* **Root node**: The top node in the tree, which in the case of HTML is always the `HTML` node (other markup vocabularies like SVG and custom XML will have different root elements).
+* **Child node**: A node *directly* inside another node. For example, `IMG` is a child of `SECTION` in the above example.
+* **Descendant node**: A node *anywhere* inside another node. For example, `IMG` is a child of `SECTION` in the above example, and it is also a descendant. `IMG` is not a child of `BODY`, as it is two levels below it in the tree, but it is a descendant of `BODY`.
+* **Parent node**: A node which has another node inside it. For example, `BODY` is the parent node of `SECTION` in the above example.
+* **Sibling nodes**: Nodes that sit on the same level in the DOM tree. For example, `IMG` and `P` are siblings in the above example.
+* **Text node**: A node containing a text string.
+
+It is useful to familiarize yourself with this terminology before working with the DOM, as a number of the code terms you'll come across make use of them. You may have also come across them if you have studied CSS (e.g. descendant selector, child selector).
+
+## Active learning: Basic DOM manipulation
+
+To start learning about DOM manipulation, let's begin with a practical example.
+
+1. Take a local copy of the [dom-example.html page](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) and the [image](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dinosaur.png) that goes along with it.
