@@ -4,6 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Simple DOM example</title>
+        <style>
+            /* This CSS style block is being used in conjunction with the alternate "Manipulating CSS styles (B)" JavaScript
+               code block below. */
+
+            .highlight {
+                color: white;
+                background-color: black;
+                padding: 10px;
+                width: 250px;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <section>
@@ -34,13 +46,20 @@
 
             // linkPara.parentNode.removeChild(linkPara);
 
-            /* Manipulating CSS styles */
+            /* Manipulating CSS styles (A) */
 
-            para.style.color = 'white';
-            para.style.backgroundColor = 'black';
-            para.style.padding = '10px';
-            para.style.width = '250px';
-            para.style.textAlign = 'center';
+            // para.style.color = 'white';
+            // para.style.backgroundColor = 'black';
+            // para.style.padding = '10px';
+            // para.style.width = '250px';
+            // para.style.textAlign = 'center';
+
+            /* Manipulating CSS styles (B) */
+            
+            /* An alternate way to dynamically manipulate styles on your document. (Comment/uncomment either the code block above
+               or the code block below to each code block's effect on the 'para' element above.) */
+
+            para.setAttribute('class', 'highlight');
         </script>
     </body>
 </html>
