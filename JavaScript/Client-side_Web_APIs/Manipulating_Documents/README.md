@@ -117,3 +117,53 @@ That's most of you need for adding nodes to the DOM--you'll make a lot of use of
 
 ### Moving and removing elements
 
+There may be times when you want to move nodes, or delete them from the DOM altogether. This is perfectly possible.
+
+If we wanted to move the paragraph with the link inside it to the bottom of the section, we could do this:
+```
+sect.appendChild(linkPara);
+```
+This moves the paragraph down to the bottom of the section. You might have thought it would make a second copy of it, but this is not the case--`linkPara` is a reference to the one and only copy of that paragraph. If you wanted to make a copy and add that as well, you'd need to use [`Node.cloneNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode) instead.
+
+Removing a node is pretty simple as well, at least when you have a reference to the node to be removed and its parent. In our current case, we just use [`Node.removeChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild), like this:
+```
+sect.removeChild(linkPara);
+```
+When you want to remove a node based only on a reference to itself, which is fairly common, you can use [`Element.remove()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove):
+```
+linkPara.remove();
+```
+This method is not supported in older browsers. They have no method to tell a node to remove itself, so you'd have to do the following.
+```
+linkPara.parentNode.removeChild(linkPara);
+```
+Have a go at adding the above lines to your code.
+
+### Manipulating styles
+
+It is possible to manipulate CSS styles via JavaScript in a variety of ways.
+
+To start with, you can get a list of all the stylesheets attached to a document using [`Document.stylesheets`](https://developer.mozilla.org/en-US/docs/Web/API/Document/styleSheets), which returns an array-like object with [`CSSStyleSheet`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet) objects. You can then add/remove styles as wished. However, we're not going to expand on those features because they are a somewhat archaic and difficult way to manipulate style. There are much easier ways.
+
+The first way is to add inline styles directly onto elements you want to dynamically style. This is done with the [`HTMLElement.style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, which contains inline styling information for each element in the document. You can set properties of this object to directly update element styles.
+
+1. As an example, try adding these lines to our ongoing example:
+```
+para.style.color = 'white';
+para.style.backgroundColor = 'black';
+para.style.padding = '10px';
+para.style.width = '250px';
+para.style.textAlign = 'center';
+```
+2. Reload the page and you'll see that the styles have been applied to the paragraph. If you look at that paragraph in your browser's [Page Inspector/DOM inspector](), you'll see that these lines are indeed adding inline styles to the document:
+```
+<p style="color: white; background-color: black; padding: 10px; width: 250px; text-align: center;">We hope you enjoyed the ride.</p>
+```
+
+<hr>
+
+**Note**: Notice how the JavaScript property versions of the CSS styles are written in lower camel case whereas the CSS versions are hyphenated (e.g. `backgroundColor` versus `background-color`). Make sure you don't get these mixed up, otherwise it won't work.
+
+<hr>
+
+
