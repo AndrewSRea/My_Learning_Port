@@ -20,7 +20,7 @@ In this article, we'll focus mainly on manipulating the document, but we'll show
 
 The document currently loaded in each one of your browser tabs is represented by a document object model. This is a "tree structure" representation created by the browser that enables the HTML structure to be easily accessed by programming languages--for example, the browser itself uses it to apply styling and other information to the correct elements as it renders a page, and developers like you can manipulate the DOM with JavaScript after the page has been rendered.
 
-We have create a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). Try opening this up in your browser--it is a very simple page containing a [`<section>`]() element inside which you can find an image, and a paragraph with a link inside. The HTML source code looks like this:
+We have create a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). Try opening this up in your browser--it is a very simple page containing a [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element inside which you can find an image, and a paragraph with a link inside. The HTML source code looks like this:
 ```
 <!DOCTYPE html>
 <html>
@@ -63,3 +63,17 @@ It is useful to familiarize yourself with this terminology before working with t
 To start learning about DOM manipulation, let's begin with a practical example.
 
 1. Take a local copy of the [dom-example.html page](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) and the [image](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dinosaur.png) that goes along with it.
+2. Add a `<script></script>` element just above the closing `</body>` tag.
+3. To manipulate an element inside the DOM, you first need to select it and store a reference to it inside a variable. Inside your script element, add the following line:
+```
+const link = document.querySelector('a');
+```
+4. Now we have the element reference stored in a variable, we can start to manipulate it using properties and methods available to it (these are defined on interfaces like [`HTMLAnchorElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement) in the case of the [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element, its more general parent interface [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement), and [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) -- which represents all nodes in a DOM). First of all, let's change the text inside the link by updating the value of the [`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property. Add the following line below the previous one:
+```
+link.textContent = 'Mozilla Developer Network';
+```
+5. We should also change the URL the link is pointing to, so that it doesn't go to the wrong place when it is clicked on. Add the following line, again at the bottom:
+```
+link.href = 'https://developer.mozilla.org';
+```
+
