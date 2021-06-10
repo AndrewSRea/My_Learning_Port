@@ -42,7 +42,7 @@ The DOM on the other hand looks like this:
 
 <hr>
 
-**Note**: This DOM tree diagram was create using Ian Hickson's [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/) **A useful tool to keep in mind!**
+**Note**: This DOM tree diagram was created using Ian Hickson's [Live DOM viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/). **A useful tool to keep in mind!**
 
 <hr>
 
