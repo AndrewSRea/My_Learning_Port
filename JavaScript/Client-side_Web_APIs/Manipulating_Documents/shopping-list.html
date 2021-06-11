@@ -31,7 +31,22 @@
         </ul>
 
         <script>
+            let shoppingList = document.querySelector('ul');
+            let inputField = document.querySelector('input');
+            let btn = document.querySelector('button');
 
+            btn.onclick = function() {
+                let inputVal = inputField.value;
+                inputVal = '';
+                let listItem = document.createElement('li');
+                let spanner = document.createElement('span');
+                let newBtn = document.createElement('button');
+
+                listItem.appendChild(spanner);
+                listItem.appendChild(newBtn);
+
+                spanner.textContent = inputVal;
+            }
         </script>
     </body>
 </html>
