@@ -31,24 +31,40 @@
         </ul>
 
         <script>
-            let shoppingList = document.querySelector('ul');
-            let inputField = document.querySelector('input');
-            let btn = document.querySelector('button');
+            /* Comments added about any errors or notes on the code below. In some areas, I will comment out my incorrect code
+               and replace it with the correct code. */ 
+
+            // Mozilla is using "const" instead of "let". A constant can't be changed through reassignment, and it can't be 
+            // redeclared. (I used "let".)
+
+            const shoppingList = document.querySelector('ul');
+            const inputField = document.querySelector('input');
+            const btn = document.querySelector('button');
 
             btn.onclick = function() {
                 let inputVal = inputField.value;
-                inputVal = '';
-                let listItem = document.createElement('li');
-                let spanner = document.createElement('span');
-                let newBtn = document.createElement('button');
+                // inputVal = '';
+                inputField.value = '';
 
-                listItem.appendChild(spanner);
-                listItem.appendChild(newBtn);
+                // Again, "const"s instead of "let"s
 
-                spanner.textContent = inputVal;
+                const listItem = document.createElement('li');
+                const spanner = document.createElement('span');
+                const newBtn = document.createElement('button');
+
+                listItem.appendChild(spanner); // a
+                listItem.appendChild(newBtn); // b
+
+                spanner.textContent = inputVal; // a
+                // I missed a step here: "8. Set the text content of the span to the input element value you saved earlier, 
+                // and the text content of the button to 'Delete'". (The instructions would have been clearer if they would have
+                // said to add text to the inside of the button.)
+                newBtn.textContent = 'Delete';
                 shoppingList.appendChild(listItem);
 
-                newBtn.onclick = function() {
+                // I missed adding an event (e) to the function.
+
+                newBtn.onclick = function(e) {
                     shoppingList.removeChild(listItem);
                 }
 
