@@ -46,6 +46,13 @@
                 listItem.appendChild(newBtn);
 
                 spanner.textContent = inputVal;
+                shoppingList.appendChild(listItem);
+
+                newBtn.onclick = function() {
+                    shoppingList.removeChild(listItem);
+                }
+
+                inputField.focus();
             }
         </script>
     </body>
