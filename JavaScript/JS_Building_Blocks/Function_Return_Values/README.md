@@ -92,6 +92,7 @@ function factorial(num) {
 }
 ```
 The `squared()` and `cubed()` functions are fairly obvious--they return the square or cube of the number that was given as a parameter. The `factorial()` function returns the [factorial](https://en.wikipedia.org/wiki/Factorial) of the given number.
+
 3. Next, we're going to include a way to print out information about the number entered into the text input. Enter the following event handler below the existing functions:
 ```
 input.onchange = function() {
@@ -110,6 +111,7 @@ Here we are creating an `onchange` event handler. It runs whenever the `change` 
 Next, we do a conditional test. If the entered value is not a number, an error message is printed to the paragraph. The test looks at whether the expression `isNaN(num)` returns `true`. The [`isNaN()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN) function to test whether the `num` value is not a number--if so, it returns `true`, and if not, it returns `false`.
 
 If the test returns `false`, the `num` value is a number. Therefore, a sentence is printed out inside the paragraph element that states the square, cube, and factorial values of the number. The sentence calls the `squared()`, `cubed()`, and `factorial()` functions to calculate the required values.
+
 4. Save your code, load it in a browser, and try it out.
 
 (See my finished version of this code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Function_Return_Values/function-library.html), and see it running live [here]().)
@@ -120,12 +122,12 @@ At this point, we'd like you to have a go at writing out a couple of functions o
 
 Some extra function related tips:
 
-* Look at another example of writing *error handling* into functions. It is generally a good idea to check that any necessary parameters are validated, and that any optional parameters have some kind of default value provided. This way, your program will be less likely to thorw errors.
+* Look at another example of writing *error handling* into functions. It is generally a good idea to check that any necessary parameters are validated, and that any optional parameters have some kind of default value provided. This way, your program will be less likely to throw errors.
 * Think about the idea of creating a *function library*. As you go further into your programming career, you'll start doing the same kinds of things over and over again. It is a good idea to create your own library of utility functions to do these sorts of things. You can copy them over to new code, or even just apply it to HTML pages wherever you need it.
 
 ## Skills test
 
-I have created an accompanying [functions-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Functions/functions-skills-test.html) file to test my knowledge of the information provided by this **"Function return values"** page. See the results [here]().
+See the [Test your skills: Functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions/Skills_Test#test-your-skills-functions) page for some further tests to verify my knowledge of the information provided by the **Function return values** article. (This skills test also incorporates knowledge learned from the previous two articles, [Functions -- reusable blocks of code](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code), and [Build your own function](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function).)
 
 ## Conclusion
 
@@ -135,5 +137,7 @@ So there we have it--functions are fun, very useful, and although there's a lot 
 
 * [Function in-depth](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) -- a detailed guide covering more advanced functions-related information.
 * [Callback functions in JavaScript](https://www.impressivewebs.com/callback-functions-javascript/) -- a common JavaScript pattern is to pass a function into another function *as an argument*. It is then called inside the first function. This is a little beyond the scope of this course, but worth studying before too long.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events)
