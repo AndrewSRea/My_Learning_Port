@@ -1,16 +1,16 @@
 # Build your own function
 
-With most of the essential theory dealt with in the previous article, this article provides practical experience. Here you will get some practice buuilding your own custom function. Along the way, we'll also explain some useful details of dealing with functions.
+With most of the essential theory dealt with in the previous article, this article provides practical experience. Here you will get some practice building your own custom function. Along the way, we'll also explain some useful details of dealing with functions.
 
 ## Active learning: Let's build a function
 
-The custom function we are going to build will be called `displayMessage()`. It will display a custom message box on a web page and will act as a customized replacement for a browser's built-in [alert()]() function. We've seen this before, but let's just refresh our memories. Type the following in your browser's JavaScript console, on any page you like:
+The custom function we are going to build will be called `displayMessage()`. It will display a custom message box on a web page and will act as a customized replacement for a browser's built-in [alert()](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) function. We've seen this before, but let's just refresh our memories. Type the following in your browser's JavaScript console, on any page you like:
 ```
 alert('This is a message');
 ```
 The `alert` function takes a single argument--the string that is displayed in the alert box. Try varying the string to change the message.
 
-The `alert` function is limited: you can alter the message, but you can't easily vary anything else, such as the color, icon, or anything else. We'll build one that will prove to b more fun.
+The `alert` function is limited: you can alter the message, but you can't easily vary anything else, such as the color, icon, or anything else. We'll build one that will prove to be more fun.
 
 <hr>
 
@@ -28,14 +28,15 @@ To begin with, let's put together a basic function.
 
 <hr>
 
-1. Start by accessing the [function-start.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-start.html) file and making a local copy. You'll see that the HTML is simple--the body contains just a single button. We've also provided some basic CSS to stylee the custom message box, and an empty [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element to put our JavaScript in.
+1. Start by accessing the [function-start.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/function-start.html) file and making a local copy. You'll see that the HTML is simple--the body contains just a single button. We've also provided some basic CSS to style the custom message box, and an empty [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element to put our JavaScript in.
 2. Next, add the following inside the `<script>` element:
 ```
 function displayMessage() {
 
 }
 ```
-We start off with the keyword `function`, which means we are defining a function. This is followed by the name we want to give to our function, a set of parentheses, and a set of curly braces. Any parameters we want to give to our function go inside the parentheses, and the code that runs when we call thee function goes inside the curly braces.
+We start off with the keyword `function`, which means we are defining a function. This is followed by the name we want to give to our function, a set of parentheses, and a set of curly braces. Any parameters we want to give to our function go inside the parentheses, and the code that runs when we call the function goes inside the curly braces.
+
 3. Finally, add the following code inside the curly braces:
 ```
 const html = document.querySelector('html');
@@ -108,9 +109,10 @@ You've got your function definition written into your `<script>` element just fi
 displayMessage();
 ```
 This line invokes the function, making it run immediately. When you save your code and reload it in the browser, you'll see the little message box appear immediately, only once. We are only calling it once, after all.
+
 2. Now open your browser developer tools on the example page, go to the JavaScript console and type the line again there, and you'll see it appear again! So this is fun--we now have a reusable function that we can call any time we like.
 
-But we probably want it to appear in response to user and system actions. In a real application, such a message box would probably be called in response to new dta being available, or an error having occurred, or the user trying to delete their profile ("are you sure about this?"), or the user adding a new contact and the operation completing successfully, etc.
+But we probably want it to appear in response to user and system actions. In a real application, such a message box would probably be called in response to new data being available, or an error having occurred, or the user trying to delete their profile ("are you sure about this?"), or the user adding a new contact and the operation completing successfully, etc.
 
 In this demo, we'll get the message box to appear when the user clicks the button.
 
@@ -124,15 +126,16 @@ const btn = document.querySelector('button');
 btn.onclick = displayMessage;
 ```
 In a similar way to our `closeBtn.onclick...` line inside the function, here we are calling some code in response to a button being clicked. But in this case, instead of calling an anonymous function containing some code, we are calling our function name directly.
+
 6. Try saving and refreshing the page--now you should see the message box appear when you click the button.
 
-You might be wondering why we haven't included the parentheses after the function name. This is because we don't want to call the function immediately--only after the button hasa been clicked. If you try changing the line to
+You might be wondering why we haven't included the parentheses after the function name. This is because we don't want to call the function immediately--only after the button has been clicked. If you try changing the line to
 ```
 btn.onclick = displayMessage();
 ```
 and saving and reloading, you'll see that the message box appears without the button being clicked! The parentheses in this context are sometimes called the "function invocation operator". You only use them when you want to run the function immediately in the current scope. In the same respect, the code inside the anonymous function is not run immediately, as it is inside the function scope.
 
-If you tried the last experiment, make sure to undo the lsat change before carrying on.
+If you tried the last experiment, make sure to undo the last change before carrying on.
 
 ## Improving the function with parameters
 
@@ -146,7 +149,8 @@ to this:
 ```
 function displayMessage(msgText, msgType) {
 ```
-Now when we call the function, we can provide two variable values inside the parentheses to specify the message to display in the messaage box, and the type of message it is.
+Now when we call the function, we can provide two variable values inside the parentheses to specify the message to display in the message box, and the type of message it is.
+
 2. To make use of the first parameter, update the following line inside your function:
 ```
 msg.textContent = 'This is a message box';
@@ -166,11 +170,12 @@ btn.onclick = function() {
 };
 ```
 If we want to specify parameters inside parentheses for the function we are calling, then we can't call it directly--we need to put it inside an anonymous function so that it isn't in the immediate scope and therefore isn't called immediately. Now it will not be called until the button is clicked.
+
 4. Reload and try the code again and you'll see that it still works just fine, except that now you can also vary the message inside the parameter to get different messages displayed in the box!
 
 ### A more complex parameter
 
-On to the next parameter. This one is going to involve slightly more worm--we are going to set it so that depending on what the `msgType` parameter is set to, the function will display aa different icon and a different baackground color.
+On to the next parameter. This one is going to involve slightly more work--we are going to set it so that depending on what the `msgType` parameter is set to, the function will display a different icon and a different background color.
 
 1. First of all, download the icons needed for this exercise ([warning](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/icons/warning.png) and [chat](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/functions/icons/chat.png)) from GitHub. Save them in a new folder called `icons` in the same location as your HTML file.
 
@@ -206,7 +211,8 @@ if (msgType === 'warning') {
     msg.style.paddingLeft = '20px;
 }
 ```
-Here, if the `msgType` parameter is set as `'warning'`, the warning icon is displayed and the panel's background color is set to red. If it is set to `'chat'`, the chat icon is displayed and the panel's background color is set to aqua blue. If the `msgType` parameter is not set at all (or to something different), the the `else { ... }` part of the code comes into play, and the paragraph is given default padding and no icon, with no background panel color set, either. This provides a default state if no `msgType` parameter is provided, meaning that it is an optional parameter!
+Here, if the `msgType` parameter is set as `'warning'`, the warning icon is displayed and the panel's background color is set to red. If it is set to `'chat'`, the chat icon is displayed and the panel's background color is set to aqua blue. If the `msgType` parameter is not set at all (or to something different), then the `else { ... }` part of the code comes into play, and the paragraph is given default padding and no icon, with no background panel color set, either. This provides a default state if no `msgType` parameter is provided, meaning that it is an optional parameter!
+
 5. Let's test out our updated function. Try updating the `displayMessage()` call from this:
 ```
 displayMessage('Woo, this is a different message!');
@@ -220,10 +226,12 @@ You can see how useful our (now not so) little function is becoming.
 
 ## Skills test
 
-I have created an accompanying [functions-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Functions/functions-skills-test.html) file to test my knowledge of the information provided by this **"Build your own function"** page. See the results [here]().
+See the [Test your skills: Functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions/Skills_Test#test-your-skills-functions) page for some further tests to verify my knowledge of the information provided by the **Build your own function** article. (This skills test also incorporates knowledge learned from the previous article, [Functions -- reusable blocks of code](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code), and the next article, [Function return values](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values).)
 
 ## Conclusion
 
 Congratulations on reaching the end! This article took you through the entire process of building up a practical custom function, which, with a bit more work, could be transplanted into a real project. In the next article, we'll wrap up functions by explaining another essential related concept--return values.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Build_Your_Function#build-your-own-function) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values)
