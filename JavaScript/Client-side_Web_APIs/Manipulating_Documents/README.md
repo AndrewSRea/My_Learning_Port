@@ -255,6 +255,25 @@ To complete the exercise, follow the steps below, and make sure that the list be
 8. Set the text content of the span to the input element value you saved earlier, and the text content of the button to 'Delete'.
 9. Append the list item as a child of the list.
 10. Attach an event handler to the delete button so that when clicked, it will delete the entire list item it is inside.
-11. Finally, use the [`focus()`]() method to focus the input element ready for entering the next shopping list item.
+11. Finally, use the [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus) method to focus the input element ready for entering the next shopping list item.
 
-(See the finished product from the steps above [here](), and see the code [along with my commented notes about the code] [here]().)
+(See the finished product from the steps above [here](), and see the code [along with my commented notes about the code] [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/shopping-list.html).)
+
+## Summary
+
+We have reached the end of our study of document and DOM manipulation. At this point, you should understand what the important parts of a web browser are with respect to controlling documents and other aspects of the user's web experience. Most importantly, you should understand what the Document Object Model is, and how to manipulate it to create useful functionality.
+
+## See also
+
+There are lots more features you can use to manipulate your documents. Check out some of the Mozilla Developer Network references and see what you can discover:
+
+* [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+* [`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+* [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node)
+* [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement), [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement), [`HTMLImageElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement), etc.
+
+(See Mozilla's [Web API index](https://developer.mozilla.org/en-US/docs/Web/API) for the full list of Web APIs document on MDN!)
+
+<hr>
+
+[[Previous page]]() - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents#manipulating-documents) - [[Next page]]()
