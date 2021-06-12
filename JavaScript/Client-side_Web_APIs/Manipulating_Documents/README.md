@@ -253,3 +253,8 @@ To complete the exercise, follow the steps below, and make sure that the list be
 6. Create three new elements--a list item ([`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li)), [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span), and [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button), and store them in variables. 
 7. Append the span and the button as children of the list item.
 8. Set the text content of the span to the input element value you saved earlier, and the text content of the button to 'Delete'.
+9. Append the list item as a child of the list.
+10. Attach an event handler to the delete button so that when clicked, it will delete the entire list item it is inside.
+11. Finally, use the [`focus()`]() method to focus the input element ready for entering the next shopping list item.
+
+(See the finished product from the steps above [here](), and see the code [along with my commented notes about the code] [here]().)
