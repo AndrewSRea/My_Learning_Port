@@ -10,6 +10,10 @@
                 font-size: 2em;
                 margin: 10px 1px 0;
             }
+
+            p {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+            }
           </style>
     </head>
     <body>
@@ -44,8 +48,8 @@
                 if (isNaN(num)) {
                     para.textContent = 'You need to enter a number!';
                 } else {
-                    para.textContent = num + ' squared is ' + squared(num) + '. ' +
-                                       num + ' cubed is ' + cubed(num) + '. ' +
+                    para.textContent = num + ' squared is ' + squared(num) + '.  ' +
+                                       num + ' cubed is ' + cubed(num) + '.  ' +
                                        num + ' factorial is ' + factorial(num) + '.';
                 }
             }
