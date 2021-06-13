@@ -18,7 +18,7 @@ In the case of the Web, events are fired inside the browser window, and tend to 
 
 You can gather from this (and from glancing at the MDN [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)) that there are **a lot** of events that can be responded to.
 
-Each available event has an **event handler**, which is a block of code (usually a JavaScript function that you as a programmer create) that runs when the event fires. When such a block of code is defined to run in response to an event, we say we are **registering an event handler**. Note: Event handlers are sometime called **event listeners**--they are pretty much interchangeable for our purposes, although strictly speaking, they work together. The listener listens out for the event happening, and the handler is the code that is run in response to it happening.
+Each available event has an **event handler**, which is a block of code (usually a JavaScript function that you as a programmer create) that runs when the event fires. When such a block of code is defined to run in response to an event, we say we are **registering an event handler**. Note: Event handlers are sometimes called **event listeners**--they are pretty much interchangeable for our purposes, although strictly speaking, they work together. The listener listens out for the event happening, and the handler is the code that is run in response to it happening.
 
 <hr>
 
@@ -28,7 +28,7 @@ Each available event has an **event handler**, which is a block of code (usually
 
 ### A simple example
 
-Let's look at a simple example of what we mean here. You've already seen events and event handlers used in many of the examples, but let's recap just to cement our knowledge. In the following example, we have a single [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button), which when pressed, makes the background change to a random color:
+Let's look at a simple example of what we mean here. You've already seen events and event handlers used in many of the examples, but let's recap just to cement our knowledge. In the following example, we have a single [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) which, when pressed, makes the background change to a random color:
 ```
 <button>Change color</button>
 ```
@@ -63,7 +63,7 @@ You don't need to understand anything about other such environments at this stag
 
 ## Ways of using web events
 
-There are a number of ways to add event listener code to web pages so it runs when the associated event fires. In this section, we review the various machanisms and discuss which ones you should use.
+There are a number of ways to add event listener code to web pages so it runs when the associated event fires. In this section, we review the various mechanisms and discuss which ones you should use.
 
 ### Event handler properties
 
@@ -93,9 +93,9 @@ There are many different event handler properties available. Let's experiment.
 
 First, make a local copy of [random-color-eventhandlerproperty.html](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/random-color-eventhandlerproperty.html), and open it in your browser. It's just a copy of the simple random color example we've played with already. Now try changing `btn.onclick` to the following different values in turn, and observing the results in the example:
 
-* [`btn.focus`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onfocus) and [`btn.onblur`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onblur) -- The color changes when the button is focused and unfocused; try pressing the tab to focus on the button and press the tab again to focus away from the button. These are often used to display information about filling in form fields when they are focused, or displaying an error message if a form field is filled with an incorrect value.
+* [`btn.onfocus`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onfocus) and [`btn.onblur`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onblur) -- The color changes when the button is focused and unfocused; try pressing the tab to focus on the button and press the tab again to focus away from the button. These are often used to display information about filling in form fields when they are focused, or displaying an error message if a form field is filled with an incorrect value.
 * [`btn.ondblclick`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondblclick) -- The color changes only when the button is double-clicked.
-* [`window.onkeypress`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress), [`window.onkeydown`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeydown), [`window.onkeyup`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeyup) -- The color changes when a key is pressed on the keyboard. The `keypress` event refers to a general press (button down and then up), while `keydown` and `keyup` refer to just the key down and key up parts of the keystroke, respectively. Note: It doesn't work if you try to register this event handler on the button itself--we've had to register it on the [window]() object, which represents the entire browser window.
+* [`window.onkeypress`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress), [`window.onkeydown`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeydown), [`window.onkeyup`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeyup) -- The color changes when a key is pressed on the keyboard. The `keypress` event refers to a general press (button down and then up), while `keydown` and `keyup` refer to just the key down and key up parts of the keystroke, respectively. Note: It doesn't work if you try to register this event handler on the button itself--we've had to register it on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object, which represents the entire browser window.
 
 <hr>
 
@@ -128,15 +128,15 @@ function bgChange() {
 
 <hr>
 
-The earliest method of registering event handlers found on the Web involved **event handler HTML attributes** (or **inline event handlers**) ike the one shown above--the attribute value is literally the JavaScript code you weant to run when the event occurs. The above example invokes a function defined inside a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on the same page, but you could also insert JavaScript directly inside the attribute. For example:
+The earliest method of registering event handlers found on the Web involved **event handler HTML attributes** (or **inline event handlers**) like the one shown above--the attribute value is literally the JavaScript code you want to run when the event occurs. The above example invokes a function defined inside a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on the same page, but you could also insert JavaScript directly inside the attribute. For example:
 ```
 <button onclick="alert('Hello, this is my old-fashioned event handler!');">Press me</button>
 ```
 You can find HTML attribute equivalents for many of the event handler properties; however, you shouldn't use these--they are considered bad practice. It might seem easy to use an event handler attribute if you are doing something really quick, but they quickly become unmanageable and inefficient.
 
-For a start, it is not a good idea to mix up your HTML and your JavaScript, as it becomes hard to parse--keeping your JavaScript separate is best practice; if it is in a separate file, you acn apply it to multiple HTML documents.
+For a start, it is not a good idea to mix up your HTML and your JavaScript, as it becomes hard to parse--keeping your JavaScript separate is best practice; if it is in a separate file, you can apply it to multiple HTML documents.
 
-Even in a single file, inline event handlers are not a good idea. One button is OK, but what if you had 100 buttons? You'd have to add 100 attributes to the file; it would quickly turn into a maintenance nightmare. With JavaScript, you could easily add an event handler function to all the buttons on the page no matter how may there were, using something like this:
+Even in a single file, inline event handlers are not a good idea. One button is OK, but what if you had 100 buttons? You'd have to add 100 attributes to the file; it would quickly turn into a maintenance nightmare. With JavaScript, you could easily add an event handler function to all the buttons on the page no matter how many there were, using something like this:
 ```
 const buttons = document.querySelectorAll('button');
 
@@ -159,7 +159,7 @@ buttons.forEach(function(button) {
 
 ### Adding and removing event handlers
 
-The modern mechanism for adding event handlers is the [`addEventListener()`]() method. Using it, we could rewrite our random color example to look like this:
+The modern mechanism for adding event handlers is the [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method. Using it, we could rewrite our random color example to look like this:
 ```
 const btn = document.querySelector('button');
 
@@ -285,9 +285,9 @@ for (let i = 0; i < divs.length; i++) {
     }
 }
 ```
-See this code running live [here](), and have fun clicking aroung on it!
+See this code running live [here](), and have fun clicking around on it!
 
-Most event handlers you'll encounter have a standard set of properties and functions (methods) available on the event object; see the [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object reference for a full list. Some more advanced handlers, however, add specialist properties contaiining extra data that they need to function. The [Media Recorder API](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API), for example, has a `dataavailable` event, which fires when some audio or video has been recorded and is available for doing something with (for example, saving it, or playing it back). The corresponding [`ondataavailable`](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/ondataavailable) handler's event object has a `data` property available containing the recorded audio or video data to allow you to access it and do something with it.
+Most event handlers you'll encounter have a standard set of properties and functions (methods) available on the event object; see the [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) object reference for a full list. Some more advanced handlers, however, add specialist properties containing extra data that they need to function. The [Media Recorder API](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API), for example, has a `dataavailable` event, which fires when some audio or video has been recorded and is available for doing something with (for example, saving it, or playing it back). The corresponding [`ondataavailable`](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/ondataavailable) handler's event object has a `data` property available containing the recorded audio or video data to allow you to access it and do something with it.
 
 ### Preventing default behavior
 
@@ -312,7 +312,7 @@ First, a simple HTML form that requires you to enter your first and last name:
 </form>
 <p></p>
 ```
-Now some JavaScript--here we implement a very simple check inside an [`onsubmit`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit) event handler (the submit event is fired on a form when it is submitted) that tests whether the text fields are empty. If they are, we call the `[preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) function on the event object--which stops the form submission--and then display an error message in the paragraph below our form to tell the user what's wrong:
+Now some JavaScript--here we implement a very simple check inside an [`onsubmit`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit) event handler (the submit event is fired on a form when it is submitted) that tests whether the text fields are empty. If they are, we call the [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) function on the event object--which stops the form submission--and then display an error message in the paragraph below our form to tell the user what's wrong:
 ```
 const form = document.querySelector('form');
 const fname = document.getElementById('fname');
@@ -328,13 +328,13 @@ form.onsubmit = function(e) {
 ```
 Obviously, this is pretty weak form validation--it wouldn't stop the user validating the form with spaces or numbers entered into the fields, for example--but it is OK for example purposes.
 
-To see the full source code, see my accompanying [prevent-default-validation.html]() file, and also see it running live [here]().
+To see the full source code, see my accompanying [prevent-default-validation.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_Building_Blocks/Intro_to_Events/prevent-default-validation.html) file, and also see it running live [here]().
 
 ### Event bubbling and capture
 
 The final subject to cover here is something that you won't come across often, but it can be a real pain if you don't understand it. Event bubbling and capture are two mechanisms that describe what happens when two handlers of the same event type are activated on one element. Let's look at an example to make this easier--open the [show-video-box.html](https://mdn.github.io/learning-area/javascript/building-blocks/events/show-video-box.html) example in a new tab (and the [source code](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/show-video-box.html) in another tab).
 
-This is a pretty siimple example that shows and hides a `<div>` with a `<video>` element inside it:
+This is a pretty simple example that shows and hides a `<div>` with a `<video>` element inside it:
 ```
 <button>Display video</button>
 
@@ -430,7 +430,7 @@ This concept is explained further on David Walsh's blog, with multiple examples-
 
 ## Skills test
 
-I have created an accompanying [events-skills-test.html]() file to test my knowledge of the information provided by this **"Introduction to events"** page. See the results [here]().
+See the [Test your skills: Events]() page for some further tests to verify my knowledge of the information provided by the **Introduction to events** article.
 
 ## Conclusion
 
@@ -440,8 +440,11 @@ Also, it is important to understand that the different contexts in which JavaScr
 
 ## See also
 
+* [domevents.dev](https://domevents.dev/) -- a very useful interactive playground app that enables learning about the behavior of the DOM Event system through exploration.
 * [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)
 * [Event order](https://www.quirksmode.org/js/events_order.html) (discussion of capturing and bubbling) -- an excellently detailed piece by Peter-Paul Koch.
 * [Event accessing](https://www.quirksmode.org/js/events_access.html) (discussion of the event object) -- another excellently detailed piece by Peter-Paul Koch.
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) - [[Next page]]()
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Assessment#image-gallery)
