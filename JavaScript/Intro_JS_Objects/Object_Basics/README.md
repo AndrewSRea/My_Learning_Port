@@ -12,7 +12,7 @@ As with many things in JavaScript, creating an object often begins with defining
 ```
 const person = {};
 ```
-Now open your browser's JavaScript console, enter `person` into it, and press <kbd>Enter</kbd>/<kbd>Return<kbd>. You should get a result similar to one of the below lines:
+Now open your browser's JavaScript console, enter `person` into it, and press <kbd>Enter</kbd>/<kbd>Return</kbd>. You should get a result similar to one of the below lines:
 ```
 [object Object]
 Object { }
@@ -162,4 +162,67 @@ greeting: function() {
     alert('Hi! I\'m ' + this.name.first + '.');
 }
 ```
-You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside -- so in this case, `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the [Object-oriented JavaScript for beginners]() article, 
+You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside -- so in this case, `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) article, when we start creating constructors and so on, `this` is very useful -- it always ensures that the correct values are used when a member's context changes (for example, two different `person` object instances may have different names, but we want to use their own name when saying their greeting).
+
+Let's illustrate what we mean with a simplified pair of person objects:
+```
+const person1 = {
+    name: 'Chris',
+    greeting: function() {
+        alert('Hi! I\'m ' + this.name + '.');
+    }
+}
+
+const person2 = {
+    name: 'Deepti',
+    greeting: function() {
+        alert('Hi! I\'m ' + this.name + '.');
+    }
+}
+```
+In this case, `person.greeting()` outputs "Hi! I'm Chris."; `person2.greeting()`, on the other hand, outputs "Hi! I'm Deepti.", even though the method's code is exactly the same in each case. As we said earlier, `this` is equal to the object the code is inside -- this isn't hugely useful when you are writing out object literals by hand, but it really comes into its own when you are dynamically generating objects (for example, using constructors). It will all become clearer later on.
+
+## You've been using objects all along
+
+As you've been going through these examples, you have probably been thinking that the dot notation you've been using is very familiar. That's because you've been using it throughout the course! Every time we've been working through an example that uses a built-in browser API or JavaScript object, we've been using objects, because such features are built using exactly the same kind of object structures that we've been looking at here, albeit more complex ones than in our own basic custom examples.
+
+So when you used string methods like:
+```
+myString.split(',');
+```
+You were using a method available on an instance of the [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) class. Every time you create a string in your code, that string is automatically created as an instance of `String`, and therefore has several common methods and properties available on it.
+
+When you accessed the document object model using lines like this:
+```
+const myDiv = document.createElement('div');
+const myVideo = document.querySelector('video');
+```
+You were using methods available on an instance of the [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) class. For each webpage loaded, an instance of `Document` is created, called `document`, which represents the entire page's structure, content, and other features such as its URL. Again, this means that it has several common methods and properties available on it.
+
+The same is true of pretty much any other built-in object or API you've been using -- [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math), and so on.
+
+Note that built-in objects and APIs don't always create object instances automatically. As an example, the [Notifications API]() -- which allows modern browsers to fire system notifications -- requires you to instantiate a new object instance using the constructor for each notification you want to fire. Try entering the following into your JavaScript console:
+```
+const myNotification = new Notification('Hello!');
+```
+Again, we'll look at constructors in a later article.
+
+<hr>
+
+**Note**: It is useful to think about the way objects communicate as **message passing** -- when an object needs another object to perform some kind of action, often it sends a message to another object via one of its methods, and waits for a response, which we know as a return value.
+
+<hr>
+
+## Test your skills!
+
+
+
+## Summary
+
+Congratulations, you've reached the end of our first JS objects article -- you should now have a good idea of how to work with objects in JavaScript -- including creating your own simple objects. You should also appreciate that objects are very useful as structures for storing related data and functionality -- if you tried to keep track of all the properties and methods in our `person` object as separate variables and functions, it would be inefficient and frustrating, and we'd run the risk of clashing with other variables and function that have the same names. Objects let us keep the information safely locked away in their own package, out of harm's way.
+
+In the next article, we'll start to look at object-oriented programming (OOP) theory, and how such techniques can be used in JavaScript.
+
+<hr>
+
+[[Back to the Introduction to JavaScript Objects opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Basics#javascript-object-basics) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners)
