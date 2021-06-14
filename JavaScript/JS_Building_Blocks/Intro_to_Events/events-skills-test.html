@@ -158,6 +158,25 @@
                 This moves the circle in the <canvas> by 2 grid points up, down, left, or right, depending on which key is pressed.
             */
 
+            /* 06/14/21: I just discovered my own alternate solution to the "Events Skills Test 2" above:
+                
+               In replacement of this code:
+
+               window.addEventListener('keypress', (e) => {
+                   switch(e.key) {
+                       ... 
+                   }
+               }
+
+               ...this code may be used instead:
+
+               window.onkeydown = function(e) {
+                   switch(e.key){
+                       ...
+                   }
+               }
+            */
+
     
             // *** Events Skills Test 3 ***
     
