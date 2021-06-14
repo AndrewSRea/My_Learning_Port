@@ -430,7 +430,7 @@ This concept is explained further on David Walsh's blog, with multiple examples-
 
 ## Skills test
 
-See the [Test your skills: Events]() page for some further tests to verify my knowledge of the information provided by the **Introduction to events** article.
+See the [Test your skills: Events](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events/Skills_Test#test-your-skills-events) page for some further tests to verify my knowledge of the information provided by the **Introduction to events** article.
 
 ## Conclusion
 
