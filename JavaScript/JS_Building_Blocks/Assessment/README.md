@@ -79,4 +79,6 @@ overlay.style.backgroundColor = xxx;
 
 * You don't need to edit the HTML or CSS in any way.
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) - [[Beginning of JavaScript Building Blocks module]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks#javascript-building-blocks) - [[Next module]]()
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) - [[Beginning of JavaScript Building Blocks module]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks#javascript-building-blocks) - [[Next module: Introducing JavaScript Objects]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects)
