@@ -8,7 +8,7 @@ In JavaScript, most things are objects, from core JavaScript features like array
 
 In the first article looking at JavaScript objects, we'll look at fundamental JavaScript object syntax, and revisit some JavaScript features we've already looked at earlier on in the course, reiterating the fact that many of the features you've already dealt with are, in fact, objects.
 
-**[Object-oriented JavaScript for beginners]()**
+**[Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners)**
 
 With the basics out of the way, we'll now focus on object-oriented JavaScript (OOJS)--this article presents a basic view of object-oriented programming (OOP) theory, then explore how JavaScript emulates object classes via constructor functions, and how to create object instances.
 
