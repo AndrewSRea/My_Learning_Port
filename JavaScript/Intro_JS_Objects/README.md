@@ -4,7 +4,7 @@ In JavaScript, most things are objects, from core JavaScript features like array
 
 ## Guides
 
-**[Object basics]()**
+**[Object basics](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Basics#javascript-object-basics)**
 
 In the first article looking at JavaScript objects, we'll look at fundamental JavaScript object syntax, and revisit some JavaScript features we've already looked at earlier on in the course, reiterating the fact that many of the features you've already dealt with are, in fact, objects.
 
