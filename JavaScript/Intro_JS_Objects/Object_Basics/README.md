@@ -98,3 +98,68 @@ name.last
 Otherwise you methods will no longer work.
 
 ## Bracket notation
+
+There is another way to access object properties -- using bracket notation. Instead of using these:
+```
+person.age
+person.name.first
+```
+You can use
+```
+person['age']
+person['name']['first']
+```
+This looks very similar to how you access items in an array, and it is basically the same thing -- instead of using an index number to select an item, you are using the name associated with each member's value. It is no wonder that objects are sometimes called **associative arrays** -- they map strings to values in the same way that arrays map numbers to values.
+
+## Setting object members
+
+So far we've only looked at retrieving (or **getting**) object members -- you can also **set** (update) the value of object members by declaring the member you want to set (using dot or bracket notation), like this:
+```
+person.age = 45;
+person['name']['last'] = 'Cratchit';
+```
+Try entering the above lines, and then getting the members again to see how they've changed, like so:
+```
+person.age
+person['name']['last']
+```
+Setting members doesn't just stop at updating the values of existing properties and methods; you can alos create completely new members. Try these in the JS console:
+```
+person['eyes'] = 'hazel';
+person.farewell = function() { alert("Bye, everybody!"); }
+```
+You can now test out your new members:
+```
+person['eyes']
+person.farewell()
+```
+One useful aspect of bracket notation is that it can be used to set not only member values dynamically, but member names, too. Let's say we wanted users to be able to store custom value types in their people data, by typing the member name and value into two text inputs. We could get those values like this:
+```
+let myDataName = nameInput.value;
+let myDataValue = nameValue.value;
+```
+We could then add this new member name and value to the `person` object like this:
+```
+person[myDataName] = myDataValue;
+```
+To test this, try adding the following lines into your code, just below the closing curly brace of the `person` object:
+```
+let myDataName = 'height';
+let myDataValue = '1.75m';
+person[myDataName] = myDataValue;
+```
+Now try saving and refreshing, and entering the following into your text input:
+```
+person.height
+```
+Adding a property to an object using the method above isn't possible with dot notation, which can only accept a literal member name, not a variable value pointing to a name.
+
+## What is "this"?
+
+You may have noticed something slightly strange in our methods. Look at this one, for example:
+```
+greeting: function() {
+    alert('Hi! I\'m ' + this.name.first + '.');
+}
+```
+You are probably wondering what "this" is. The `this` keyword refers to the current object the code is being written inside -- so in this case, `this` is equivalent to `person`. So why not just write `person` instead? As you'll see in the [Object-oriented JavaScript for beginners]() article, 
