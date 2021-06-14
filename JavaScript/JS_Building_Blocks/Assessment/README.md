@@ -4,9 +4,9 @@ Now that we've looked at the fundamental building blocks of JavaScript, we'll te
 
 ## Starting point
 
-To get this assessment started, you should go and [grab the ZIP](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/gallery/gallert-start.zip?raw=true) file for the example, unzip it somewhere on your computer, and do the exercise locally to begin with.
+To get this assessment started, you should go and [grab the ZIP](https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/gallery/gallery-start.zip?raw=true) file for the example, unzip it somewhere on your computer, and do the exercise locally to begin with.
 
-Alternatively, you could use a site like [JSBin](https://jsbin.com) or [Glitch](https://glitch.com) to do your assessment. You could paste the HTML, CSS, and JavaScript into one of these online editors. If the online editor you are using doesn't have separate JavaScript/CSS panels, feel free to put them inline `<script>`/`<style>` elements inside the HTML page.
+Alternatively, you could use a site like [JSBin](https://jsbin.com) or [Glitch](https://glitch.com) to do your assessment. You could paste the HTML, CSS, and JavaScript into one of these online editors. If the online editor you are using doesn't have separate JavaScript/CSS panels, feel free to put inline `<script>`/`<style>` elements inside the HTML page.
 
 ## Project brief
 
@@ -20,7 +20,7 @@ You have been provided with some HTML, CSS, and image assets and a few lines of 
     <button class="dark">Darken</button>
 </div>
 
-<div classs="thumb-bar">
+<div class="thumb-bar">
 
 </div>
 ```
@@ -56,7 +56,7 @@ You need to:
 
 ### Adding an onclick handler to each thumbnail image
 
-In each loop iteration, you need to add an `onclick` handler to the current `newImage`--this handler should find the value of the `src` attribute of the current image. Set the `src` attribute value of the `displayed-img <img>` to the `src` value passed in as a paramter.
+In each loop iteration, you need to add an `onclick` handler to the current `newImage`--this handler should find the value of the `src` attribute of the current image. Set the `src` attribute value of the `displayed-img <img>` to the `src` value passed in as a parameter.
 
 Alternatively, you can add one event listener to the thumb bar.
 
