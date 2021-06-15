@@ -215,7 +215,7 @@ Again, we'll look at constructors in a later article.
 
 ## Test your skills!
 
-
+See the [Test your skills: Object basics](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Basics/Skills_Test#test-your-skills-object-basics) page for some further tests to verify my knowledge of the information provided by the **JavaScript object basics** article.
 
 ## Summary
 
