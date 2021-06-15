@@ -99,7 +99,33 @@
     
             // *** Object Basics Skills Test 2 ***
     
-            
+            let bandInfo;
+
+            // Put your code here
+
+            const faveBand = {
+                name: ['The Strokes'],
+                nationality: ['North American'],
+                genre: ['indie rock'],
+                members: ['Julian Casablancas', 'Nikolai Fraiture', 'Albert Hammond, Jr.', 'Fabrizio Moretti', 'Nick Valensi'],
+                formed: 1998,
+                split: false,
+                albums: {
+                    name: ['Is This It', 'Room on Fire', 'First Impressions of Earth', 'Angles', 'Comedown Machine', 'The New Abnormal'],
+                    released: [2001, 2003, 2006, 2011, 2013, 2020]
+                }
+            }
+
+            bandInfo = `One of my favorite bands is ${ faveBand.name }, a ${ faveBand.nationality } ${ faveBand.genre } band which has
+                been active since ${ faveBand.formed } to this present day. Their first album, "${ faveBand.albums.name[0] }", debuted
+                back in ${ faveBand.albums.released[0] }.`;
+
+            // Don't edit the code below here
+
+            const section2 = document.querySelector('.preview-2');
+            let para3 = document.createElement('p');
+            para3.textContent = bandInfo;
+            section2.appendChild(para3);
 
             // *** Object Basics Skills Test 3 ***
     
