@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test Your Skills: Object Basics</title>
+        <style>
+            p {
+                color: purple;
+                margin: 0.5em 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 50%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
+
+            .descriptive {
+                margin-left: 15px;
+                font-size: 1.1em;
+                color: black;
+            }
+
+            code {
+                color: red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h2>Object Basics Skills Test 1</h2>
+
+        <section class="preview-1">
+            
+
+
+        </section>
+
+        <p class="descriptive">Open your browser's DevTools console to see the output from the <code>greeting()</code> method.</p>
+
+        <h2>Object Basics Skills Test 2</h2>
+
+        <section class="preview-2">
+           
+
+
+        </section>
+
+        <h2>Object Basics Skills Test 3</h2>
+
+        <section class="preview-3">
+            
+
+
+        </section>
+
+        <script>
+    
+            // *** Object Basics Skills Test 1 ***
+    
+            let cat = {
+                name: 'Bertie',
+                breed: 'Cymric',
+                color: 'white',
+                greeting: function() {
+                    console.log('Meow!');
+                }
+            }
+
+            // Put your code here
+
+            let catName = cat['name'];
+            cat.greeting();
+            cat.color = 'black';
+
+            // Don't edit the code below here
+
+            const section1 = document.querySelector('.preview-1');
+            let para1 = document.createElement('p');
+            let para2 = document.createElement('p');
+
+            para1.textContent = `The cat's name is ${ catName }.`;
+            para2.textContent = `The cat's color is ${ cat.color }.`;
+
+            section1.appendChild(para1);
+            section1.appendChild(para2);
+            
+    
+            // *** Object Basics Skills Test 2 ***
+    
+            
+
+            // *** Object Basics Skills Test 3 ***
+    
+            
+        </script>
+    </body>
+</html>
