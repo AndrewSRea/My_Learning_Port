@@ -70,3 +70,30 @@ para1.textContent = bandInfo;
 section.appendChild(para1);
 ```
 See my finished code for this test under the **Object Basics Skills Test 2** header, under the opening `<script>` tag, in my accompanying [object-basics-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Basics/Skills_Test/object-basics-skills-test.html) file, and see the result of this finished code [here](), under the **Object Basics Skills Test 2** header.
+
+## Object basics 3
+
+Finally, for our object basics assessment, we want you to return to the `cat` object literal from Task #1. We want you to rewrite the `greeting()` method so that it logs `"Hello, said Bertie the Cymric."` to the browser DevTools' console, but in a way that will work across *any* cat object of the same structure, regardless of its name or breed.
+
+When you are done, write your own object called `cat2`, which has the same structure, exactly the same `greeting()` method, but a different `name`, `breed`, and `color`.
+
+Call both `greeting()` methods to check that they log appropriate greetings to the console.
+
+The code is not very [DRY]() (each bit of code should only be defined once) -- you've got the same method defined twice, for example. Describe how you'd make it more DRY? If you are not sure, then don't worry -- this is what we'll be looking at in future articles in the series!
+
+Try updating the live code below to recreate the finished example:
+```
+let cat = {
+    name: 'Bertie',
+    breed: 'Cymric',
+    color: 'white',
+    greeting: function() {
+        console.log('Meow!');
+    }
+}
+```
+See my finished code for this test under the **Object Basics Skills Test 3** header, under the opening `<script>` tag, in my accompanying [object-basics-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Basics/Skills_Test/object-basics-skills-test.html) file, and see the result of this finished code [here](), under the **Object Basics Skills Test 3** header.
+
+<hr>
+
+[[Back to the JavaScript object basics page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Basics#javascript-object-basics)
