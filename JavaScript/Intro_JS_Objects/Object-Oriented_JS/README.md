@@ -49,3 +49,9 @@ In the rest of the article, we'll start to look at how OOP theory can be put int
 **Note**: The images above are the property of the Mozilla Developer Network. 
 
 <hr>
+
+## Constructors and object instances
+
+JavaScript uses special functions called **constructor functions** to define and initialize objects and their features. They are useful because you'll often come across situations in which you don't know how many objects you will be creating; constructors provide the means to create as many objects as you need in an effective way, attaching data and functions to them as required.
+
+Let's explore creating classes via constructors and creating object instances from them in JavaScript. First of all, we'd like you to make a new local copy of the [oojs.html](https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs.html) file we saw in our first Objects article (which I will call [second-oojs.html]() here in my **Object-Oriented_JS** folder).
