@@ -40,4 +40,12 @@ This is really useful -- teachers and students share many common features such a
 
 You can now create object instances from your child classes. For example:
 
-![Image of object instances from child classes]()
+![Image of object instances from child classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_JS/mdn-graphics-instantiation-teacher-3.png)
+
+In the rest of the article, we'll start to look at how OOP theory can be put into practice in JavaScript.
+
+<hr>
+
+**Note**: The images above are the property of the Mozilla Developer Network. 
+
+<hr>
