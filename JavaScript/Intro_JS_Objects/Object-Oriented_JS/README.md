@@ -55,3 +55,60 @@ In the rest of the article, we'll start to look at how OOP theory can be put int
 JavaScript uses special functions called **constructor functions** to define and initialize objects and their features. They are useful because you'll often come across situations in which you don't know how many objects you will be creating; constructors provide the means to create as many objects as you need in an effective way, attaching data and functions to them as required.
 
 Let's explore creating classes via constructors and creating object instances from them in JavaScript. First of all, we'd like you to make a new local copy of the [oojs.html](https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs.html) file we saw in our first Objects article (which I will call [second-oojs.html]() here in my **Object-Oriented_JS** folder).
+
+### A simple example
+
+1. Let's start by looking at how you could define a person with a normal function. Add this function within the `<script>` element:
+```
+function createNewPerson(name) {
+    const obj = {};
+    obj.name = name;
+    obj.greeting = function() {
+        alert('Hi! I\'m ' + obj.name + '.');
+    };
+    return obj;
+}
+```
+
+2. You can now create a new person by calling this function -- try the following lines in your browser's JavaScript console:
+```
+const salva = createNewPerson('Salva');
+salva.name;
+salva.greeting();
+```
+This works well enough, but it is a bit long-winded; if we know we want to create an object, why do we need to explicitly a new empty object and return it? Fortunately, JavaScript provides us with a handy shortcut, in the form of constructor functions -- let's make one now!
+
+3. Replace your previous function with the following:
+```
+function Person(name) {
+    this.name = name;
+    this.greeting = function() {
+        alert('Hi! I\'m ' + this.name + '.');
+    };
+}
+```
+
+The constructor function is JavaScript's version of a class. Notice that it has all the features you'd expect in a function, although it doesn't return anything or explicitly create an object -- it basically just define properties and methods. Notice also the `this` keyword being used here as well -- it is basically saying that whenever one of these object instances is created, the object's `name` property will be equal to the name value passed to the constructor call, and the `greeting()` method will use the name value passed to the constructor call, too.
+
+<hr>
+
+**Note**: A constructor function name usually starts with a capital letter -- this convention is used to make constructor functions easier to recognize in code.
+
+<hr>
+
+So how do we call a constructor to create some objects?
+
+1. Add the following lines below your previous code addition:
+```
+let person1 = new Person('Bob');
+let person2 = new Person('Sarah');
+```
+
+2. Save your code and reload it in the browser, and try entering the following lines into your JS console:
+```
+person1.name;
+person1.greeting();
+person2.name;
+person2.greeting();
+```
+
