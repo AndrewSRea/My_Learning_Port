@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Object-oriented JavaScript example</title>
+        <title>Object-oriented JavaScript - second example</title>
     </head>
 
     <body>
@@ -20,7 +20,18 @@
             this.gender = gender;
             this.interests = interests;
             this.bio = function() {
-                let bioString = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ' + this.gender + ' likes ';
+                let bioString = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
+
+                // `if...else if` conditional statement added from my comments below
+                
+                if (gender === 'male') {
+                    bioString += 'He likes ';
+                } else if (gender === 'female') {
+                    bioString += 'She likes ';
+                } else {
+                    bioString += 'They like ';
+                }
+
                 for (i = 0; i < this.interests.length; i++) {
                     if (i === this.interests.length - 1) {
                         bioString += 'and ' + this.interests[i] + '.';
@@ -35,8 +46,8 @@
             };
         }
 
-        let person1 = new Person('Bob', 'Smith', 32, 'He', ['music', 'skiing']);
-        let person2 = new Person('Sarah', 'Collins', 28, 'She', ['dancing', 'macrame', 'bicycling', 'hiking']);
+        let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+        let person2 = new Person('Sarah', 'Collins', 28, 'female', ['dancing', 'macrame', 'bicycling', 'hiking']);
 
         /* 
             YEEEESSSSS!!! Pat on my back for getting this right unassisted! (Well, I actually went back to my "JavaScript / JS_
@@ -57,6 +68,8 @@
 
             ...and then put the variable `gender` inside the `bioString`. (Not forgetting, of course, to declare the variable `gender`
             before the `if...else if` conditional statement.)
+
+            *** I ADDED THIS CODE SNIPPET TO THE CODE ABOVE, AND RECONFIGURED IT CORRECTLY!! ***
         */ 
 
     </script>
