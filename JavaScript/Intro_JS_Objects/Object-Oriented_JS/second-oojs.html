@@ -11,14 +11,38 @@
     </body>
 
     <script>
-        function Person(name) {
-            this.name = name;
+        function Person(first, last, age, gender, interests) {
+            this.name = {
+                first: first,
+                last: last
+            };
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+            this.bio = function() {
+                let bioString = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ' + this.gender + ' likes ';
+                for (i = 0; i < this.interests.length; i++) {
+                    if (i === this.interests.length - 1) {
+                        bioString += 'and ' + this.interests[i] + '.';
+                    } else {
+                        bioString += this.interests[i] + ', ';
+                    }
+                }
+                alert(bioString);
+            };
             this.greeting = function() {
-                alert('Hi! I\'m ' + this.name + '.');
+                alert('Hi! I\'m ' + this.name.first + '.');
             };
         }
 
-        let person1 = new Person('Bob');
-        let person2 = new Person('Sarah');
+        let person1 = new Person('Bob', 'Smith', 32, 'He', ['music', 'skiing']);
+        let person2 = new Person('Sarah', 'Collins', 28, 'She', ['dancing', 'macrame', 'bicycling', 'hiking']);
+
+        /* 
+            YEEEESSSSS!!! Pat on my back for getting this right unassisted! (Well, I actually went back to my "JavaScript / JS_
+            Building_Blocks / Looping_Code" folder, and looked up "The standard for loop" section of that README for the solution:
+            https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#the-standard-for-loop)
+        */ 
+
     </script>
 </html>
