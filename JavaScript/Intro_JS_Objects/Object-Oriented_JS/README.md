@@ -202,7 +202,7 @@ These make sense, but there are other ways -- we want to make you familiar with 
 
 ### The `Object()` constructor
 
-First of all, you can use the [Object()]() constructor to create a new object. Yes, even generic objects have a constructor, which generates an empty object.
+First of all, you can use the [Object()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) constructor to create a new object. Yes, even generic objects have a constructor, which generates an empty object.
 
 1. Try entering this into your browser's JavaScript console:
 ```
@@ -232,3 +232,35 @@ let person1 = new Object({
 ## Using the `create()` method
 
 Constructors can help you give your code order -- you can create constructors in one place, then create instances as needed, and it is clear where they came from.
+
+However, some people prefer to create object instances without first creating constructors, especially if they are creating only a few instances of an object. JavaScript has a built-in method called [`create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) that allows you to do that. With it, you can create a new object, using an existing object as the prototype of the newly created object.
+
+1. With your finished exercise from the previous sections loaded in the browser, try this in your JavaScript console:
+```
+let person2 = Object.create(person1);
+```
+
+2. Now try these:
+```
+person2.name;
+person2.greeting();
+```
+You'll see that `person2` has been created based on `person1` as its prototype -- it has the same properties and method available to it.
+
+One limitation of `create()` is that IE8 does not support it. So constructors may be more effective if you want to support older browsers.
+
+We'll explore the effects of `create()` in more detail later on.
+
+## Test your skills!
+
+See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Object-oriented JavaScript for beginners** article. (This skills test also incorporates knowledge learned from the next two articles, [Object prototypes](), and [Inheritance in JavaScript]().)
+
+## Summary
+
+This article has provided a simplified view of object-oriented theory -- this isn't the whole story, but it gives you an idea of what we are dealing with here. In addition, we have started to look at different ways of generating object instances.
+
+In the next article, we'll explore JavaScript object prototypes.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Basics#javascript-object-basics) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) - [Next page]()
