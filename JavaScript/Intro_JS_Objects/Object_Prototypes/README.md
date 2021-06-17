@@ -16,12 +16,18 @@ In JavaScript, a link is made between the object instance and its prototype (its
 
 <hr>
 
-**Note**: It's important to understand that there is a distinction between an **object's `prototype`** (available via [`Object.getPrototype(obj)`](), or via the deprecated [`__proto__`]() property) and **the `prototype` property on constructor functions**.
+**Note**: It's important to understand that there is a distinction between an **object's `prototype`** (available via [`Object.getPrototype(obj)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf), or via the deprecated [`__proto__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto) property) and **the `prototype` property on constructor functions**.
 
-The constructor function `Foobar()` has its own `prototype`, which can be found by calling [`Object.getPrototypeOf(Foobar)`](). However, this differs from its `prototype` property, `Foobar.prototype`, which is the blueprint for instances of this constructor function.
+The constructor function `Foobar()` has its own `prototype`, which can be found by calling [`Object.getPrototypeOf(Foobar)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf). However, this differs from its `prototype` property, `Foobar.prototype`, which is the blueprint for instances of this constructor function.
 
 If we were to create a new instance -- `let fooInstance = new Foobar()` -- `fooInstance` would take its prototype from its constructor function's `prototype` property. Thus `Object.getPrototypeOf(fooInstance) === Foobar.prototype`.
 
 <hr>
 
 Let's look at an example to make this a bit clearer.
+
+## Understanding prototype objects
+
+Here we'll go back to the example in which we finished writing our `Person()` constructor -- load the example in your browser. You can use our [oojs-class-further-exercises.html](https://mdn.github.io/learning-area/javascript/oojs/introduction/oojs-class-further-exercises.html) example (see also the [source code](https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html)), if you don't already have it working through the last article. (I have carried this file over from my **Object-Oriented_JS** folder and listed it in this folder as [third-oojs.html]().)
+
+In this e
