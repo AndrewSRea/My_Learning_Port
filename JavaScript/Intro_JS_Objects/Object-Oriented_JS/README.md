@@ -112,3 +112,84 @@ person2.name;
 person2.greeting();
 ```
 
+Cool! You can now see that we have two new objects on the page, each of which is stored under a different namespace -- when you access their properties and methods, you have to start calls with `person1` or `person2`; the functionality contained within is neatly packacged away so it won't clash with other functionality. They do, however, have the same `name` property and `greeting()` method available. Note that they are using their own `name` that was assigned to them when they were created; this is one reason why it is very important to use `this`, so each one uses its own value, and not some other value.
+
+Let's look at constructor calls again:
+```
+let person1 = new Person('Bob');
+let person2 = new Person('Sarah');
+```
+In each case, the `new` keyword is used to tell the browser we want to create a new object instance, followed by the function name with its required parameters contained in parentheses, and the result is stored in a variable -- very similar to how a standard function is called. Each instance is created according to this definition:
+```
+function.Person(name) {
+    this.name = name;
+    this.greeting = function() {
+        alert('Hi! I\'m ' + this.name + '.');
+    };
+}
+```
+After the new objects have been created, the `person1` and `person2` variables contain the following objects:
+```
+{
+    name: 'Bob',
+    greeting: function() {
+        alert('Hi! I\'m ' + this.name + '.');
+    }
+}
+
+{
+    name: 'Sarah',
+    greeting: function() {
+        alert('Hi! I\m ' + this.name + '.');
+    }
+}
+```
+Note that when we are calling our constructor function, we are defining `greeting()` every time, which isn't ideal. To avoid this, we can define functions on the prototype instead, which we will look at later.
+
+### Creating our finished constructor
+
+The example we looked at above was only a simple example to get us started. Let's now get on and create our final `Person()` constructor function.
+
+1. Remove the code you inserted so far, and add in this replacement constructor -- this is exactly the same as the simple example in principle, with just a bit more complexity:
+```
+function Person(first, last, age, gender, interests) {
+    this.name = {
+        first: first,
+        last: last
+    };
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+    this.bio = function() {
+        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+    };
+    this.greeting = function() {
+        alert('Hi! I\'m ' + this.name.first + '.');
+    };
+}
+```
+
+2. Now add the following line below it, to create an object instance from it:
+```
+let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+```
+
+You can now see that you can access the properties and methods just like we did previously -- try these in your JS console:
+```
+person1['age']
+person1.interests[1]
+person1.bio()
+// etc.
+```
+
+### Further exercises
+
+To start with, try adding a couple more object creation lines of your own, and try getting and setting the members of the resulting object instances.
+
+In addition, there are a couple of problems with our `bio()` method -- the output always includes the pronoun "He", even if you person is female, or some other preferred gender classification. And the bio only includes two interests, even if more are listed in the `interests` array. Can you work out how to fix this in the class definition (constructor)? You can put any code you like inside a constructor (you'll probably need a few conditionals and a loop). Think about how the sentences should be structured differently depending on gender, and depending on whether the number of listed interests is 1, 2, or more than 2.
+
+<hr>
+
+**Note**: If you get stuck, we have provided an [answer inside our GitHub repo](https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html) ([see it live](https://mdn.github.io/learning-area/javascript/oojs/introduction/oojs-class-further-exercises.html)) -- try writing it yourself first though!
+
+<hr>
