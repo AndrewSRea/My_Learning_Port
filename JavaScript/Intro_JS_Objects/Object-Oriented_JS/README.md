@@ -193,3 +193,42 @@ In addition, there are a couple of problems with our `bio()` method -- the outpu
 **Note**: If you get stuck, we have provided an [answer inside our GitHub repo](https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html) ([see it live](https://mdn.github.io/learning-area/javascript/oojs/introduction/oojs-class-further-exercises.html)) -- try writing it yourself first though!
 
 <hr>
+
+## Other ways to create object instances
+
+So far, we've seen two different ways to create an object instance -- [declaring an object literal](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Basics#object-basics), and using a constructor function (see above).
+
+These make sense, but there are other ways -- we want to make you familiar with these in case you come across them in your travels around the Web.
+
+### The `Object()` constructor
+
+First of all, you can use the [Object()]() constructor to create a new object. Yes, even generic objects have a constructor, which generates an empty object.
+
+1. Try entering this into your browser's JavaScript console:
+```
+let person 1 = new Object();
+```
+
+2. This stores an empty object in the `person1` variable. You can then add properties and methods to this object using dot or bracket notation as desired; try these examples in your console:
+```
+person1.name = 'Chris';
+person1['age'] = 38;
+person1.greeting = function() {
+    alert('Hi! I\'m ' + this.name + '.');
+};
+```
+
+3. You can also pass an object literal to the `Object()` constructor as a parameter, to prefill it with properties/methods. Try this in your JS console:
+```
+let person1 = new Object({
+    name: 'Chris', 
+    age: 38,
+    greeting: function() {
+        alert('Hi! I\'m ' + this.name + '.');
+    }
+});
+```
+
+## Using the `create()` method
+
+Constructors can help you give your code order -- you can create constructors in one place, then create instances as needed, and it is clear where they came from.
