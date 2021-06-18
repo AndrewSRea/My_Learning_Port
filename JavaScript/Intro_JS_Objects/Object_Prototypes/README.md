@@ -285,4 +285,4 @@ In the next article, we'll look at how you can implement inheritance of function
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Using protoypes in JavaScript module]]() [[Inheritance in JavaScript module]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Using protoypes in JavaScript module]]() - [[Inheritance in JavaScript module]]()
