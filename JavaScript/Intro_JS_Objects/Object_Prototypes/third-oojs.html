@@ -47,5 +47,9 @@
         let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
         let person2 = new Person('Sarah', 'Collins', 28, 'female', ['dancing', 'macrame', 'bicycling', 'hiking']);
 
+        Person.prototype.farewell = function() {
+            alert(this.name.first + ' has left the building. Bye for now!');
+        };
+
     </script>
 </html>
