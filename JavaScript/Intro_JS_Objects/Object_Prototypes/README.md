@@ -8,7 +8,7 @@ Prototypes are the mechanism by which JavaScript objects inherit features from o
 
 <hr>
 
-## A protype-based language
+## A prototype-based language
 
 JavaScript is often described as a **prototype-based language** -- to provide inheritance, objects can have a **`prototype` object**, which acts as a template object that it inherits methods and properties from.
 
@@ -140,7 +140,149 @@ let myString = 'This is my string.`;
 
 ## Revisiting `create()`
 
+Earlier on we showed how the [`Object.create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) method can be used to create a new object instance.
 
+1. For example, try this in your previous example's JavaScript console:
+```
+let person2 = Object.create(person1);
+```
 
+2. What `create()` actually does is to create a new object from a specified prototype object. Here, `person2` is being created using `person1` as a prototype object. (I'm actually typing `let person3 = ...` since I have a `person2` object created from the previous `second-oojs.html` file.) You can check this by entering the following in the console:
+```
+person2.__proto__
+```
+This will return the `person1` object.
 
-[[Previous page]]() - [[Top]]() - [[Next page]]() <!-- Next page link will be to the "Using prototypes in JavaScript" subfolder -->
+## The constructor property
+
+Every constructor function has a `prototype` property whose value is an object containing a [`constructor`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) property. This `constructor` property points to the original constructor function.
+
+As you will see in the next section, properties defined on the `Person.prototype` property (or, in general, on a constructor function's `prototype` property, which is an object, as mentioned in the above section) become available to all the instance objects created using the `Person()` constructor. Hence, the constructor property is also available to both `person1` and `person2` objects.
+
+1. For example, try these commands in the console: 
+```
+person1.constructor
+person2.constructor
+```
+These should both return the `Person()` constructor, as it contains the original definition of these instances.
+
+A clever trick is that you can put parentheses onto the end of the `constructor` property (containing any required parameters) to create another object instance from that constructor. The constructor is a function after all, so can be invoked using parentheses; you just need to include the `new` keyword to specify that you want to use the function as a constructor.
+
+2. Try this in the console:
+```
+let person3 = new person1.constructor('Karen', 'Stephenson', 26, 'female', ['playing drums', 'mountain climbing']);
+```
+
+3. Now try accessing your new object's features, for example:
+```
+person3.name.first
+person3.age
+person3.bio()
+```
+This works well. You won't need to use it often, but it can be really useful when you create a new instance and don't have a reference to the original constructor easily available for some reason.
+
+The [`constructor`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor) property has other uses. For example, if you have an object instance and you want to return the name of the constructor it is an instance of, you can use the following:
+```
+instanceName.constructor.name
+```
+Try this, for example:
+```
+person1.constructor.name
+```
+
+<hr>
+
+**Note**: The value of `constructor.name` can change (due to prototypical inheritance, binding, preprocessors, transpilers, etc.). Therefore, for more complex examples, you'll want to use the [`instanceOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator instead.
+
+<hr>
+
+## Modifying prototypes
+
+Let's have a look at an example of modifying the `prototype` property of a constructor function -- methods added to the prototype are then available on all object instances created from the constructor. At this point, we'll finally add something to our `Person()` constructor's prototype.
+
+1. Go back to our [oojs-class-further-exercises.html](https://mdn.github.io/learning-area/javascript/oojs/introduction/oojs-class-further-exercises.html) example and make a local copy of the [source code](https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html). (See my accompanying [third-oojs.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Prototypes/third-oojs.html) file.) Below the existing JavaScript, add the following code, which adds a new method to the constructor's `prototype` property:
+```
+Person.prototype.farewell = function() {
+    alert(this.name.first + ' has left the building. Bye for now!');
+};
+```
+
+2. Save the code and load the page in the browser, and try entering the following into the text input:
+```
+person1.farewell();
+```
+You should get an alert message displayed, featuring the person's name as defined inside the constructor. This is really useful, but what is even more useful is that the whole inheritance chain has updated dynamically, automatically making this new method available on all object instances derived from the constructor.
+
+Think about this for a moment. In our code, we define the constructor, then we create an instance object from the constructor, *then* we add a new method to the constructor's prototype:
+```
+function Person(first, last, age, gender, interests) {
+
+    // property and method definitions
+
+}
+
+let person1 = new Person('Tammi', 'Smith', 32, 'neutral', ['music', 'skiing', 'kickboxing']);
+
+Person.prototype.farewell = function() {
+    alert(this.name.first + ' has left the building. Bye for now!');
+};
+```
+But the `farewell()` method is *still* available on the `person1` object instance -- its members have been automatically updated to include the newly defined `farewell()` method.
+
+<hr>
+
+**Note**: Conversely, deleting properties defined on the constructor's prototype using the [`delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete) operator removes the respective properties from all other class instances, too.
+
+In the above example, performing `delete person1.__proto__.farewell` or `delete Person.prototype.farewell` would remove the `farewell()` method from all `Person` instances.
+
+In order to mitigate this issue, you could use [`Object.defineProperty()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) instead.
+
+<hr>
+
+You will rarely see properties defined on the `prototype` property, because they are not very flexible when defined like this. For example, you could add a property like this:
+```
+Person.prototype.fullName = 'Bob Smith';
+```
+This isn't very flexible, as the person might not be called that. It'd be much better to build the `fullName` out of `name.first` and `name.last`:
+```
+Person.prototype.fullName = this.name.first + ' ' + this.name.last;
+```
+However, this deosn't work. That's because `this` will be referencing the global scope in this case, not the function scope. Calling this property would return `undefined`. This worked fine on the method we defined earlier in the prototype because it is sitting inside a function scope, which will be transferred successfully to the object instance scope. So you might define constant properties on the prototype (i.e. ones that never need to change), but generally it works better to define properties inside the constructor.
+
+In fact, a fairly common pattern for more object definitions is to define the properties inside the constructor, and the methods on the prototype. This makes the code easier to read, as the constructor only contains the property definitions, and the methods are split off into separate blocks. For example:
+```
+// Constructor with property definitions
+
+function Test(a, b, c, d) {
+    // property definitions
+}
+
+// First method definition
+
+Test.prototype.x = function() { ... };
+
+// Second method definition
+
+Test.prototype.y = function() { ... };
+
+// etc.
+```
+This pattern can be seen in action in Piotr Zalewa's [school plan app](https://github.com/zalun/school-plan-app/blob/master/stage9/js/index.js) example.
+
+## Test your skills!
+
+See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Object protptypes** article. (This skills test also incorporates knowledge learned from the previous article, [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), and the next article, [Inheritance in JavaScript]().)
+
+## Summary 
+
+This article has covered JavaScript object prototypes, including how prototype object chains allow objects to inherit features from one another, the prototype property and how it can be used to add methods to constructors, and other related topics.
+
+In the next article, we'll look at how you can implement inheritance of functionality between two of your own custom objects.
+
+<hr>
+
+:exclamation: I'm going to break the **Introducing JavaScript objects** module chain here, and insert a module after this one showcasing Mozilla's more in-depth guide to [Using prototypes in JavaScript](). I will also put this in the page links below, along with the link to the [Inheritance in JavaScript]() module.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Using protoypes in JavaScript module]]() [[Inheritance in JavaScript module]]()
