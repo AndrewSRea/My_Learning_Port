@@ -6,6 +6,8 @@ Prototypes are the mechanism by which JavaScript objects inherit features from o
 
 **Note**: This article covers traditional JavaScript constructors and classes. In the next article, we talk about the modern way of doing things, which provides easier syntax to achieve the same things -- see [ECMAScript 2015 classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance#ecmascript_2015_classes).
 
+<hr>
+
 ## A protype-based language
 
 JavaScript is often described as a **prototype-based language** -- to provide inheritance, objects can have a **`prototype` object**, which acts as a template object that it inherits methods and properties from.
@@ -88,3 +90,57 @@ Most modern browsers, however, do offer property available called [`__proto__`](
 Since ECMAScript 2015, you can access an object's prototype object indirectly via `Object.getPrototype(obj)`.
 
 <hr>
+
+## The prototype property: Where inherited members are defined
+
+So, where are the inherited properties and methods defined? If you look at the [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) reference page, you'll see listed in the left hand side a large number of properties and methods -- many more than the number of inherited members we saw available on the `person1` object. Some are inherited, and some aren't -- why is this?
+
+As mentioned above, the inherited ones are the ones defined on the `prototype` property (you could call it a sub-namespace) -- that is, the ones that begin with `Object.prototype.`, and not the ones that begin with just `Object.` The `prototype` property's value is an object, which is basically a bucket for storing properties and methods that we want to be inherited by objects further down the prototype chain.
+
+So [`Object.prototype.toString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString), [`Object.prototype.valueOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf), etc., are available to any object types that inherit from `Object.prototype`, including new object instances created from the `Person()` constructor.
+
+[`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is), [`Object.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys), and other members not defined inside the `prototype` bucket, are not inherited by object instances or object types that inherit from `Object.prototype`. They are methods/properties available just on the `Object()` constructor itself.
+
+<hr>
+
+**Note**: This seems strange -- how can you have a method defined on a constructor, which is itself a function?
+
+Well, a function is also a type of object. See the [`Function()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) constructor reference if you don't believe us.
+
+<hr>
+
+1. You can check out existing prototype properties for yourself -- go back to our previous example and try entering the following into the JavaScript console:
+```
+Person.prototype
+```
+
+2. The output won't show you very much because we haven't defined anything on our custom constructor's prototype! By default, a constructor's `prototype` always starts empty. Now try the following:
+```
+Object.prototype
+```
+You'll see a large number of methods defined on `Object`'s `prototype` property, which are then available on objects that inherit from `Object`, as shown earlier.
+
+You'll see other examples of prototype chain inheritance all over JavaScript -- try looking for the methods and properties defined on the prototype of the [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date), [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), and [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) global objects, for example. These all have a number of members defined on their prototype, which is why, for example, when you create a string like this:
+```
+let myString = 'This is my string.`;
+```
+`myString` immediately has a number of useful methods available on it, like [`split()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split), [`indexOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf), [`replace()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace), etc.
+
+<hr>
+
+**Note**: It is worth reading our more in-depth guide to "[Using prototypes in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#using_prototypes_in_javascript)", once you've made sense of this section and wish to know more. This section is intenionally simplified to make these concepts to make these concepts a little easier to understand when you first meet them.
+
+(I will add a subfolder named **Using_Prototypes_JS** to the overall **Intro_JS_Objects**. Follow this [link to that subfolder](), or click the "[Next page]" link at the bottom of this article.)
+
+<hr>
+
+**Important**: The `prototype` property is one of the most confusingly-named parts of JavaScript -- you might think that it points to the prototype object of the current object, but it doesn't (that's an internal object that can be accessed by `__proto__`, remember?). `prototype` instead is a property containing an object on which you define members that you want to be inherited.
+
+<hr>
+
+## Revisiting `create()`
+
+
+
+
+[[Previous page]]() - [[Top]]() - [[Next page]]() <!-- Next page link will be to the "Using prototypes in JavaScript" subfolder -->
