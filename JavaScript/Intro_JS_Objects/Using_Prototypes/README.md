@@ -399,7 +399,7 @@ console.log(inst.foo_prop);
 console.log(inst.bar_prop);
 ```
 
-| **Pros and cons of extending `Object.prototype`** |   |
+|   | **Pros and cons of extending `Object.prototype`** |
 | --- | --- |
 | **Pro(s)** | Supported in all browsers -- including older browsers (going all the way back to IE 5.5). Also, it is very fast, very standard, and very JIT-optimizable. |
 | **Con(s)** | 1. In order to use this method, the function in question must be initialized. During this initialization, the constructor may store unique information that must be generated per-object. This unique information would only be generated once, potentially leading to problems.<br>2. The initialization of the constructor may put unwanted methods onto the object.<br>Both of those are generally not problems in practice. |
@@ -407,5 +407,46 @@ console.log(inst.bar_prop);
 #### #2. `Object.create`
 
 ```
+// Technique 1
+function foo(){}
+foo.prototype = {
+    foo_prop: "foo val"
+};
+function bar(){}
+var proto = Object,create(
+    foo.prototype
+);
+proto.bar_prop = "bar val";
+bar.prototype = proto;
+var inst = new bar;
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
+```
+// Technique 2
+function foo(){}
+foo.prototype = {
+    foo_prop: "foo val"
+};
+function bar(){}
+var proto = Object.create(
+    foo.prototype,
+    {
+        bar_prop: {
+            value: "bar val"
+        }
+    }
+);
+bar.prototype = proto;
+var inst = new bar;
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
 
+|   | **Pros and cons of `Object.create`** |
+| --- | --- |
+| **Pro(s)** | Supported in all modern browsers. Allows the direct setting of `__proto__` in a way that is a single event, which permits the browser to further optimize the object. Also allows the creation of objects without a prototype, using `Object.create(null)`. |
+| **Con(s)** | Not supported in IE8 and below. However, as Microsoft has discontinued extended support for systems running IE8 and below, that should not be a concern for most applications. Additionally, the slow object initialization can be a performance black hole if using the second argument, because each object-descriptor property has its own separate descriptor object. When dealing with hundreds of thousands of object descriptors in the form of objects, that lag time might become a serious issue. |
+
+#### #3: `Object.setPrototypeOf`
 
