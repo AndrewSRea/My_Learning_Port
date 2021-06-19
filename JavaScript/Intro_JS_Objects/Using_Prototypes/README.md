@@ -189,3 +189,26 @@ Otherwise, if the `__proto__` of `doSomeInstancing` does not have the property, 
 If the property is not found in the `__proto__` of the `__proto__` of `doSomeInstancing`, then the `__proto__` of the `__proto__` of the `__proto__` of `doSomeInstancing` is looked through. However, there is a problem: the `__proto__` of the `__proto__` of the `__proto__` of `doSomeInstancing` does not exist. Then, and only then, after the entire prototype chain of `__proto__`s is looked through, and there are no more `__proto__`s, does the browser assert that the property does not exist and conclude that the value at the property is `undefined`.
 
 Let's try entering some more code into the console:
+```
+function doSomething(){}
+doSomething.prototype.foo = "bar";
+var doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value";
+console.log("doSomeInstancing.prop:      " + doSomeInstancing.prop);
+console.log("doSomeInstancing.foo:       " + doSomeInstancing.foo);
+console.log("doSomething.prop:           " + doSomething.prop);
+console.log("doSomething.foo:            " + doSomething.foo);
+console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
+console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
+```
+This results in the following:
+```
+doSomeInstancing.prop:      some value
+doSomeInstancing.foo:       bar
+doSomething.prop:           undefined
+doSomething.foo:            undefined
+doSomething.prototype.prop: undefined
+doSomething.prototype.foo:  bar
+```
+
+## Different ways to create objects and the resulting prototype chain
