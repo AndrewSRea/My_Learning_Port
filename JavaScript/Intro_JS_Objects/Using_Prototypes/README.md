@@ -212,3 +212,135 @@ doSomething.prototype.foo:  bar
 ```
 
 ## Different ways to create objects and the resulting prototype chain
+
+### Object created with syntax constructs 
+
+```
+var o = {a: 1};
+
+// The newly created object o has Object.prototype as its [[Prototype]]
+// o has no own property named 'hasOwnProperty'
+// hasOwnProperty is an own property of Object.prototype.
+// So o inherits hasOwnProperty from Object.prototype
+// Object.prototype has null as its prototype.
+// o ---> Object.prototype ---> null
+
+var b = ['yo', 'whadup', '?'];
+
+// Arrays inherit from Array.prototype
+// (which has methods indexOf, forEach, etc.)
+// The prototype chain looks like:
+// b ---> Array.prototype ---> Object.prototype ---> null
+
+function f() {
+    return 2;
+}
+
+// Functions inherit from Function.prototype
+// (which has methods call, bind, etc.)
+// f ---> Function.prototype ---> Object.prototype ---> null
+```
+
+### With a constructor
+
+A "constructor" in JavaScript is just a function that happens to be called with the [new operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new).
+```
+function Graph() {
+    this.vertices = [];
+    this.edges = [];
+}
+
+Graph.prototype = {
+    addVertex: function(v) {
+        this.vertices.push(v);
+    }
+};
+
+var g = new Graph();
+// g is an object with own properties 'vertices' and 'edges'.
+// g.[[Prototype]] is the value of Graph.prototype when new Graph() is executed.
+```
+
+### With `Object.create()`
+
+ECMAScript 5 introduced a new method: [`Object.create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create). Calling this method creates a new object. The prototype of this object is the first argument of the function:
+```
+var a = {a: 1};
+// a ---> Object.prototype ---> null
+
+var b = Object.create(a);
+// b ---> a ---> Object.prototype ---> null
+console.log(b.a);   // 1 (inherited)
+
+var c = Object.create(b);
+// c ---> b ---> a ---> Object.prototype ---> null
+
+var d = Object.create(null);
+// d ---> null
+console.log(d.hasOwnProperty);
+// undefined, because d doesn't inherit from Object.prototype
+```
+
+### `delete` Operator with `Object.create` and `new` operator
+
+Using `Object.create` of another object demonstrates prototypical inheritance with the `delete` operation:
+```
+var a = {a: 1};
+
+var b = Object.create(a);
+
+console.log(a.a);   // print 1
+console.log(b.a);   // print 1
+b.a = 5;
+console.log(a.a);   // print 1
+console.log(b.a);   // print 5
+delete b.a;
+console.log(a.a);   // print 1
+console.log(b.a);   // print 1 (b.a. value 5 is deleted but it is showing value from its prototype chain)
+delete a.a;         // This can also be done via 'delete Object.getPrototypeOf(b).a'
+console.log(a.a);   // print undefined
+console.log(b.a);   // print undefined
+```
+In the following example, calling `new Graph()` creates a `Graph` instance that has its own `vertices` property, and that doesn't inherit any `vertices` property. So when the `vertices` property is deleted from that `Graph` instance, the instance then has neither its own `vertices` property nor any inherited `vertices` property.
+```
+function Graph() {
+    this.vertices = [4,4];
+}
+
+var g = new Graph();
+console.log(g.vertices);   // print [4,4]
+console.log(g.__proto__.vertices)   // print undefined
+g.vertices = 25;
+console.log(g.vertices);   // print 25
+delete g.vertices;
+console.log(g.vertices);   // print undefined
+```
+
+### With `class` keyword
+
+ECMAScript 2015 introduced a new set of keywrods implementing [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). The new keywords include [`class`](), [`constructor`](), [`static`](), [`extends`](), and [`super`]().
+```
+'use strict';
+
+class Polygon {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }
+}
+
+class Square extends Polygon {
+    constructor(sideLength) {
+        super(sideLength, sideLength);
+    }
+    get area() {
+        return this.height * this.width;
+    }
+    set sideLength(newLength) {
+        this.height = newLength;
+        this.width = newLength;
+    }
+}
+
+var square = new Square(2);
+```
