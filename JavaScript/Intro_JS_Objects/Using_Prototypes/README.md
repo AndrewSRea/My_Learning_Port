@@ -399,7 +399,7 @@ console.log(inst.foo_prop);
 console.log(inst.bar_prop);
 ```
 
-| **Pros and cons of extending `Object.prototype`** |
+| **Pros and cons of extending `Object.prototype`** |   |
 | --- | --- |
 | **Pro(s)** | Supported in all browsers -- including older browsers (going all the way back to IE 5.5). Also, it is very fast, very standard, and very JIT-optimizable. |
 | **Con(s)** | 1. In order to use this method, the function in question must be initialized. During this initialization, the constructor may store unique information that must be generated per-object. This unique information would only be generated once, potentially leading to problems.<br>2. The initialization of the constructor may put unwanted methods onto the object.<br>Both of those are generally not problems in practice. |
