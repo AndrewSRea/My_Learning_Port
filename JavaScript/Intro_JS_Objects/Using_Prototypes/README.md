@@ -1,6 +1,6 @@
 # Inheritance and the prototype chain
 
-[The section on **Using protoypes in JavaScript** is [below]().]
+[The section on **Using protoypes in JavaScript** is [below](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#using-prototypes-in-javascript).]
 
 JavaScript is a bit confusing for developers experienced in class-based languages (like Java or C++), as it is dynamic and does not provide a `class` implementation per se (the `class` keyword is introduced in ES2015, but is syntactical sugar -- JavaScript remains prototype-based.
 
@@ -96,3 +96,96 @@ console.log(p.m());   // 5
 ```
 
 ## Using prototypes in JavaScript
+
+Let's look at what happens behind the scenes in a bit more detail.
+
+In JavaScript, as mentioned above, functions are able to have properties. All functions have a special property named `prototype`. For the best learning experience, it is highly recommended that you open a console, navigate to the "console" tab, copy-and-paste in the below JavaScript code, and run it by pressing the <kbd>Enter</kbd>/<kbd>Return</kbd> key. (The console is included in most web browser's Developer Tools. More information is available for [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools), [Chrome DevTools](https://developer.chrome.com/docs/devtools/), and [Edge DevTools](https://docs.microsoft.com/en-us/archive/microsoft-edge/legacy/developer/).)
+
+(I have created an accompanying blank HTML document, [prototype-console-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Using_Prototypes/prototype-console-example.html), for use in opening up a browser console and typing the code seen below into the console.)
+```
+function doSomething(){}
+console.log( doSomething.prototype );
+
+// It does not matter how you declare the function;
+// a function in JavaScript will always have a default
+// prototype property - with one exception: an arrow
+// function doesn't have a default prototype property;
+
+const doSomethingFromArrowFunction = () => {};
+console.log( doSomethingFromArrowFunction.prototype );
+```
+As seen above, `doSomething()` has a default `prototype` property, as demonstrated by the console. After running this code, the console should have displayed an object that looks similar to this:
+```
+{
+    constructor: ƒ doSomething(),
+    __proto__: {
+        constructor: ƒ Object(),
+        hasOwnProperty: ƒ hasOwnProperty(),
+        isPrototypeOf: ƒ isPrototypeOf(),
+        propertyIsEnumerable: ƒ propertyIsEnumerable(),
+        toLocaleString: ƒ toLocaleString(),
+        toString: ƒ toString(),
+        valueOf: ƒ valueOf()
+    }
+}
+```
+We can add properties to the prototype of `doSomething()`, as shown below:
+```
+function doSomething(){}
+doSomething.prototype.foo = "bar";
+console.log( doSomething.prototype );
+```
+This results in:
+```
+{
+    foo: "bar",
+    constructor: ƒ doSomething(),
+    __proto__: {
+        constructor: ƒ Object(),
+        hasOwnProperty: ƒ hasOwnProperty(),
+        isPrototypeOf: ƒ isPrototypeOf(),
+        propertyIsEnumerable: ƒ propertyIsEnumerable(),
+        toLocaleString: ƒ toLocaleString(),
+        toString: ƒ toString(),
+        valueOf: ƒ valueOf()
+    }
+}
+```
+We can now use the `new` operator to create an instance of `doSomething()` based on this prototype. To use the new operator, call the function normally except prefix it with `new`. Calling a function with the `new` operator returns an object that is an instance of the function. Properties can then be added onto this object.
+
+Try the following code:
+```
+function doSomething(){}
+doSomething.prototype.foo = "bar";   // add a property onto the prototype
+var doSomeInstancing = new doSomething();
+doSomeInstancing.prop = "some value";   // add a property onto the object
+console.log( doSomeInstancing );
+```
+This results in an output similar to the following:
+```
+{
+    prop: "some value",
+    __proto__: {
+        foo: "bar",
+        constructor: ƒ doSomething(),
+        __proto__: {
+            constructor: ƒ Object(),
+            hasOwnProperty: ƒ hasOwnProperty(),
+            isPrototypeOf: ƒ isPrototypeOf(),
+            propertyIsEnumerable: ƒ propertyIsEnumerable(),
+            toLocaleString: ƒ toLocaleString(),
+            toString: ƒ toString(),
+            valueOf: ƒ valueOf()
+        }
+    }
+}
+```
+As seen above, the `__proto__` of `doSomeInstancing` is `doSomething.prototype`. But what does it do? When you access a property of `doSomeInstancing`, the browser first looks to see if `doSomeInstancing` has that property.
+
+If `doSomeInstancing` does not have the property, then the browser looks for the property in the `__proto__` of `doSomeInstancing` (a.k.a. `doSomething.prototype`). If the `__proto__` of `doSomeInstancing` has the property being looked for, then that property on the `__proto__` of `doSomeInstancing` is used.
+
+Otherwise, if the `__proto__` of `doSomeInstancing` does not have the property, then the `__proto__` of the `__proto__` of `doSomeInstancing` is checked for the property. By default, the `__proto__` of any function's prototype property is `window.Object.prototype`. So, the `__proto__` of the `__proto__` of `doSomeInstancing` (a.k.a. the `__proto__` of `doSomething.prototype` (a.k.a. `Object.prototype`)) is then looked through for the property being searched for.
+
+If the property is not found in the `__proto__` of the `__proto__` of `doSomeInstancing`, then the `__proto__` of the `__proto__` of the `__proto__` of `doSomeInstancing` is looked through. However, there is a problem: the `__proto__` of the `__proto__` of the `__proto__` of `doSomeInstancing` does not exist. Then, and only then, after the entire prototype chain of `__proto__`s is looked through, and there are no more `__proto__`s, does the browser assert that the property does not exist and conclude that the value at the property is `undefined`.
+
+Let's try entering some more code into the console:
