@@ -318,7 +318,7 @@ console.log(g.vertices);   // print undefined
 
 ### With `class` keyword
 
-ECMAScript 2015 introduced a new set of keywrods implementing [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). The new keywords include [`class`](), [`constructor`](), [`static`](), [`extends`](), and [`super`]().
+ECMAScript 2015 introduced a new set of keywrods implementing [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). The new keywords include [`class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class), [`constructor`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor), [`static`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static), [`extends`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends), and [`super`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super).
 ```
 'use strict';
 
@@ -344,3 +344,68 @@ class Square extends Polygon {
 
 var square = new Square(2);
 ```
+
+### Performance
+
+The lookup time for properties that are high up on the prototype chain can have a negative impact on the performance, and this may be significant in the code where performance is critical. Additionally, trying to access nonexistent properties will always traverse the full prototype chain.
+
+Also, when iterating over the properties of an object, **every** enumerable property that is on the prototype chain will be enumerated. To check whether an object has a property defined on *itself* and not somewhere on its prototype chain, it is necessary to use the [`hasOwnProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) method which all objects inherit from `Object.prototype`. To give you a concrete example, let's take the above graph example code to illustrate it:
+```
+console.log(g.hasOwnProperty('vertices'));
+// true
+
+console.log(g.hasOwnProperty('nope'));
+// false
+
+console.log(g.hasOwnProperty('addVertex'));
+// false
+
+console.log(Object.getPrototype(g).hasOwnProperty('addVertex'));
+// true
+```
+[`hasOwnProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) is the only thing in JavaScript which deals with properties and does **not** traverse the prototype chain.
+
+Note: It is **not** enough to check whether a property is [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined). The property might very well exist, but its value just happens to be set to `undefined`.
+
+### Summary of methods for extending the prototype chain
+
+Here are all 4 ways and their pros/cons. All of the examples listed below create exactly the same resulting `inst` object (thus logging the same results to the console), except in different ways.
+
+#### #1: New initialization
+
+<hr>
+
+**Warning**: One misfeature that is often used is to extend `Object.prototype` or one of the other built-in prototypes.
+
+This technique is called "monkey patching" and breaks *encapsulation*. While used by popular frameworks such as Prototype.js, there is still no good reason for cluttering built-in types with additional *non-standard* functionality.
+
+The **only** good reason for extending a built-in prototype is to backport the features of newer JavaScript engines, like `Array.forEach`.
+
+<hr>
+
+##### Code example
+
+```
+function foo(){}
+foo.prototype = {
+    foo_prop: "foo val"
+};
+function bar(){}
+var proto = new foo;
+proto.bar_prop = "bar val";
+bar.prototype = proto;
+var inst = new bar;
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
+
+| **Pros and cons of extending `Object.prototype`** |
+| --- | --- |
+| **Pro(s)** | Supported in all browsers -- including older browsers (going all the way back to IE 5.5). Also, it is very fast, very standard, and very JIT-optimizable. |
+| **Con(s)** | 1. In order to use this method, the function in question must be initialized. During this initialization, the constructor may store unique information that must be generated per-object. This unique information would only be generated once, potentially leading to problems.<br>2. The initialization of the constructor may put unwanted methods onto the object.<br>Both of those are generally not problems in practice. |
+
+#### #2. `Object.create`
+
+```
+
+
