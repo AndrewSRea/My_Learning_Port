@@ -130,7 +130,7 @@ let myString = 'This is my string.`;
 
 **Note**: It is worth reading our more in-depth guide to "[Using prototypes in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#using_prototypes_in_javascript)", once you've made sense of this section and wish to know more. This section is intenionally simplified to make these concepts to make these concepts a little easier to understand when you first meet them.
 
-(I will add a subfolder named **Using_Prototypes_JS** to the overall **Intro_JS_Objects**. Follow this [link to that subfolder](), or click the "[Next page]" link at the bottom of this article.)
+(I will add a subfolder named **Using_Prototypes_JS** to the overall **Intro_JS_Objects**. Follow this [link to that subfolder](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain), or click the "[Next page]" link at the bottom of this article.)
 
 <hr>
 
@@ -281,8 +281,8 @@ In the next article, we'll look at how you can implement inheritance of function
 
 <hr>
 
-:exclamation: I'm going to break the **Introducing JavaScript objects** module chain here, and insert a module after this one showcasing Mozilla's more in-depth guide to [Using prototypes in JavaScript](). I will also put this in the page links below, along with the link to the [Inheritance in JavaScript]() module.
+:exclamation: I'm going to break the **Introducing JavaScript objects** module chain here, and insert a module after this one showcasing Mozilla's more in-depth guide to [Using prototypes in JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain). I will also put this in the page links below, along with the link to the [Inheritance in JavaScript]() module.
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Using protoypes in JavaScript module]]() - [[Inheritance in JavaScript module]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Using prototypes in JavaScript module]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain) - [[Inheritance in JavaScript module]]()
