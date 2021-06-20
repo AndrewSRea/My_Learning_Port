@@ -408,6 +408,7 @@ console.log(inst.bar_prop);
 
 ```
 // Technique 1
+
 function foo(){}
 foo.prototype = {
     foo_prop: "foo val"
@@ -424,6 +425,7 @@ console.log(inst.bar_prop);
 ```
 ```
 // Technique 2
+
 function foo(){}
 foo.prototype = {
     foo_prop: "foo val"
@@ -443,10 +445,98 @@ console.log(inst.foo_prop);
 console.log(inst.bar_prop);
 ```
 
-|   | **Pros and cons of `Object.create`** |
+|   | **Pros and cons of [`Object.create`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)** |
 | --- | --- |
 | **Pro(s)** | Supported in all modern browsers. Allows the direct setting of `__proto__` in a way that is a single event, which permits the browser to further optimize the object. Also allows the creation of objects without a prototype, using `Object.create(null)`. |
 | **Con(s)** | Not supported in IE8 and below. However, as Microsoft has discontinued extended support for systems running IE8 and below, that should not be a concern for most applications. Additionally, the slow object initialization can be a performance black hole if using the second argument, because each object-descriptor property has its own separate descriptor object. When dealing with hundreds of thousands of object descriptors in the form of objects, that lag time might become a serious issue. |
 
 #### #3: `Object.setPrototypeOf`
 
+```
+// Technique 1
+
+function foo(){}
+foo.prototype = {
+    foo_prop: "foo val"
+};
+function bar(){}
+var proto = {
+    bar_prop: "bar val"
+};
+Object.setPrototypeOf(
+    proto, foo.prototype
+);
+bar.prototype = proto;
+var inst = new bar;
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
+```
+// Technique 2
+
+function foo(){}
+foo.prototype = {
+    foo_prop: "foo val"
+};
+function bar(){}
+var proto;
+proto=Object.setPrototypeOf(
+    { bar_prop: "bar val" },
+    foo.prototype
+);
+bar.prototype = proto;
+var inst = new bar;
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
+
+|   | **Pros and cons of [`Object.setPrototypeOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)** |
+| --- | --- |
+| **Pro(s)** | Supported in all modern browsers. Allows the dynamic manipulation of an object's prototype and can even force a prototype on a prototype-less object created with `Object.create(null)`. |
+| **Con(s)** | Ill-performing. Should be deprecated. Many browsers optimize the prototype and try to guess the location of the method in memory when calling an instance in advance; but setting the prototype dynamically disrupts all those optimizations. It might cause some browsers to recompile your code for de-optimization, to make it work according to the specs. Not supported in IE8 and below. |
+
+#### #4: Setting the `__proto__` property
+
+```
+// Technique 1
+
+function A(){}
+A.prototype = {
+    foo_prop: "foo val"
+};
+function bar(){}
+var proto = {
+    bar_prop: "bar val",
+    __proto__: A.prototype
+};
+bar.prototype = proto;
+var inst = new bar;
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
+```
+// Technique 2
+
+var inst = {
+    __proto__: {
+        bar_prop: "bar val",
+        __proto__: {
+            foo_prop: "foo val",
+            __proto__: Object.prototype
+        }
+    }
+};
+console.log(inst.foo_prop);
+console.log(inst.bar_prop);
+```
+
+|   | **Pros and cons of setting the [`__proto__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto) property |
+| --- | --- |
+| **Pro(s)** | Supported in all modern browsers. Setting `__proto__` to something that is not an object only fails silently. It does not throw an exception. |
+| **Con(s)** | Non-performant and deprecated. Many browsers optimize the prototype and try to guess the location of the method in the memory when calling an instance in advance; but setting the prototype dynamically disrupts all those optimizations and can even force some browsers to recompile for de-optimization of your code, to make it work according to the specs. Not supported in IE10 and below. |
+
+## `prototype` and `Object.getPrototypeOf`
+
+JavaScript is a bit confusing for developers coming from Java and C++, as it's all dynamic, all runtime, and it has no classes at all. It's all just instances (objects). Even the "classes" we simulate are just a function object.
+
+You probably already noticed that our [function A]()
