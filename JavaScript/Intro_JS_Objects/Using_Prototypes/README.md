@@ -539,4 +539,34 @@ console.log(inst.bar_prop);
 
 JavaScript is a bit confusing for developers coming from Java and C++, as it's all dynamic, all runtime, and it has no classes at all. It's all just instances (objects). Even the "classes" we simulate are just a function object.
 
-You probably already noticed that our [function A]()
+You probably already noticed that our [function A](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#4-setting-the-__proto__-property) has a special property called `prototype`. This special property works with the JavaScript `new` operator. The reference to the prototype object is copied to the internal `[[Prototype]]` property of the new instance. For example, when you do `var a1 = new A()`, JavaScript (after creating the object in memory and before running function `A()` with `this` defined to it) sets `a1.[[Prototype]] = A.prototype`. When you access properties of the instance, JavaScript first checks whether they exist on that object directly, and if not, it looks in `[[Prototype]]`. This means that all the stuff you define in `prototype` is effectively shared by all instances, and you can even later change parts of `prototype` and have the changes appear in all existing instances, if you wanted to.
+
+If, in the example above, you do `var a1 = new A(); var a2 = new A();` then `a1.doSomething` would actually refer to `Object.getPrototypeOf(a1).doSomething`, which is the same as the `A.prototype.doSomething` you defined, i.e. `Object.getPrototypeOf(a1).doSomething == Object.getPrototypeOf(a2).doSomething == A.prototype.doSomething`.
+
+In short, `prototype` is for types, while `Object.getPrototype()` is the same for instances.
+
+`[[Prototype]]` is looked at *recursively*, i.e. `a1.doSomething`, `Object.getPrototypeOf(a1).doSomething`, `Object.getPrototypeOf(Object.getPrototypeOf(a1)).doSomething`, etc., until it's found or `Object.getPrototypeOf` returns null.
+
+So, when you call...
+```
+var o = new Foo();
+```
+JavaScript actually just does...
+```
+var o = new Object();
+o.[[Prototype]] = Foo.prototype;
+Foo.call(o);
+```
+...(or something like that), and when you do...
+```
+o.someProp;
+```
+...it checks whether `o` has a property `someProp`. If not, it checks `Object.getPrototypeOf(o).someProp`, and if that doesn't exist, it checks `Object.getPrototypeOf(Object.getPrototypeOf(o)).someProp`, and so on.
+
+## In conclusion
+
+It is essential to understand the prototypal inheritance model before writing complex code that makes use of it. Also, be aware of the length of the proptype chains in your code and break them up, if necessary, to avoid possible performance problems. Further, the native prototypes should **never** be extended unless it is for the sake of compatibility with newer JavaScript features.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain) - [[Next page]]()
