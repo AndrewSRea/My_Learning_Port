@@ -95,4 +95,77 @@ Note that we've only specified `this` inside `call()` -- no other parameters are
 
 All is good so far, but we have a problem. We have defined a new constructor, and it has a `prototype` property which, by default, just contains an object with a reference to the constructor function itself. It does not contain the methods of the `Person` constructor's `prototype` property. To see this, enter `Object.getOwnPropertyNames(Teacher.prototype)` into either the text input field (as seen in the program [running live](https://mdn.github.io/learning-area/javascript/oojs/advanced/oojs-class-inheritance-start.html)) or your JavaScript console. Then enter it again, replacing `Teacher` with `Person`. Nor does the new constructor *inherit* those methods. To see this, compare the outputs of `Person.prototype.greeting` and `Teacher.prototype.greeting`. We need to get `Teacher()` to inherit the methods defined on `Person()`'s prototype. So how do we do that?
 
-1. 
+1. Add the following line below your previous addition:
+```
+Teacher.prototype = Object.create(Person.prototype);
+```
+Here our friend [`create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) comes to the rescue again. In this case, we are using it to create a new object and make it the value of `Teacher.prototype`. The new object has `Person.prototype` as its prototype and will therefore inherit, if and when needed, all the methods available on `Person.prototype`.
+
+2. We need to do one more thing before we move on. After adding the last line, `Teacher.prototype`'s `constructor` property is now equal to `Person()`, because we just set `Teacher.prototype` to reference an object that inherits its properties from `Person.prototype`! Try saving your code, loading the page in a browser, and entering `Teacher.prototype.constructor` into the console to verify.
+
+3. This can become a problem, so we need to set this right. You can do so by going back to your source code and adding the following line at the bottom:
+```
+Object.defineProperty(Teacher.prototype, 'constructor', {
+    value: Teacher.
+    enumerable: false,   // so that it does not appear in 'for in' loop
+    writable: true
+});
+```
+
+4. Now if you save and refresh, entering `Teacher.prototype.constructor` should return `Teacher()`, as desired, plus we are now inheriting from `Person()`!
+
+## Giving `Teacher()` a new `greeting()` function
+
+To finish off our code, we need to define a new `greeting()` function on the `Teacher()` constructor.
+
+The easiest way to do this is to define it on `Teacher()`'s prototype -- add the following at the bottom of your code:
+```
+Teacher.prototype.greeting = function() {
+    let prefix;
+
+    if (this.gender === 'male' || this.gender === 'Male' || this gender === 'm' || this.gender === 'M') {
+        prefix = 'Mr.';
+    } else if (this.gender === 'female' || this.gender === 'Female' || this gender === 'f' || this.gender === 'F') {
+        prefix = 'Ms.';
+    } else {
+        prefix = 'Mx.';
+    }
+
+    alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+};
+```
+This alerts the teacher's greeting, which also uses an appropriate name prefix for their gender, worked out using a conditional statement.
+
+## Trying the example out
+
+Now that you've entered all the code, try creating an object instance from `Teacher()` by putting the following at the bottom of your JavaScript (or something similar of your choosing):
+```
+let teacher1 = new Teacher('Dave', 'Griffiths`, 31, 'male', ['football', 'cookery'], 'mathematics');
+```
+Now save and refresh, and try accessing the properties and methods of your new `teacher1` object. For example:
+```
+teacher1.name.first;
+teacher1.interests[0];
+teacher1.bio();
+teacher1.subject;
+teacher1.greeting();
+teacher1.farewell();
+```
+These should all work just fine. The queries on lines 1, 2, 3, and 6 access members inherited from the generic `Person()` constructor (class). The query on line 4 accesses a member that is available only on the more specialized `Teacher()` constructor (class). The query on line 5 would have accessed a member inherited from `Person()`, except for the fact that `Teacher()` has its own member with the same name, so the query accesses that member.
+
+The technique we covered here is not the only way to create inheriting classes in JavaScript, but it works OK, and it gives you a good idea about how to implement inheritance in JavaScript.
+
+A common way is to use a JavaScript library -- most of the popular options have an easy set of functionality available for doing inheritance more easily and quickly. [CoffeeScript](https://coffeescript.org/#classes), for example, provides `class`, `extends`, etc.
+
+## A further exercise
+
+In our [OOP theory section](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), we also included a `Student` class as a concept, which inherits all the features of `Person`, and also has a different `greeting()` method from `Person` that is much more informal than the `Teacher`'s greeting. Have a look at what the student's greeting looks like in that section, and try implementing your own `Student()` constructor that inherits all the features of `Person()`, and implements the different `greeting()` function.
+
+(See my implemented finished version of the code [here](), and see it running live [here]().)
+
+## Object member summary
+
+To summarize, you've got four types of property/method to worry about:
+
+1. Those defined inside a constructor function that are given to object instances. These are fairly easy to spot -- in your own custom code, they are the members defined inside a constructor using the `this.x = x` type lines; in built-in browser code, they are the members only available to object instances (usually created by calling a constructor using the `new` keyword, e.g. `let myInstance = new myConstructor()`).
+2. Those defined...
