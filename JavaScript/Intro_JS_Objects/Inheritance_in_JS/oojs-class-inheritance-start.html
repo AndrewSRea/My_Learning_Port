@@ -96,5 +96,54 @@
             this.subject = subject;
         }
 
+        Teacher.prototype = Object.create(Person.prototype);
+
+        Object.defineProperty(Teacher.prototype, 'constructor', {
+            value: Teacher,
+            enumerable: false,
+            writable: true
+        });
+
+        Teacher.prototype.greeting = function() {
+            let prefix;
+
+            if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+                prefix = 'Mr.';
+            } else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+                prefix = 'Ms.';
+            } else {
+                prefix = 'Mx.';
+            }
+
+            alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+        };
+
+        let teacher1 = new Teacher('Edith', 'Crabapple', 58, 'female', ['knitting', 'playing pinochle'], 'geometry');
+
+        /* *** My added Student class. The alert string wasn't perfect because I was trying to add more than 
+               I was capable of. Perhaps when I achieve more expertise. ***
+        */
+
+        function Student(first, last, age, gender, interests /* classes */) {
+            Person.call(this, first, last, age, gender, interests);
+
+            // this.classes = classes;
+        }
+
+        Student.prototype = Object.create(Person.prototype);
+
+        Object.defineProperty(Student.prototype, 'constructor', {
+            value: Student,
+            enumerable: false,
+            writable: true
+        });
+
+        Student.prototype.greeting = function() {
+            // alert('Yo! I\'m ' + this.name.first + '. I\'m into ' + this.interests + '. My classes are ' + this.classes + '.');
+
+            alert('Yo! I\'m ' + this.name.first + '.');
+        };
+
+        let student1 = new Student('Miguel', 'Hermosa', 16, 'male', ['skateboarding', 'playing arcade games'] /*, ['English', 'Mechanics']*/);
     </script>
 </html>
