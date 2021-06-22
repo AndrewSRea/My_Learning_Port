@@ -161,7 +161,7 @@ A common way is to use a JavaScript library -- most of the popular options have 
 
 In our [OOP theory section](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), we also included a `Student` class as a concept, which inherits all the features of `Person`, and also has a different `greeting()` method from `Person` that is much more informal than the `Teacher`'s greeting. Have a look at what the student's greeting looks like in that section, and try implementing your own `Student()` constructor that inherits all the features of `Person()`, and implements the different `greeting()` function.
 
-(See my implemented finished version of the code [here](), and see it running live [here]().)
+(See my implemented finished version of the code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS/oojs-class-inheritance-start.html), and see it running live [here]().)
 
 ## Object member summary
 
@@ -173,3 +173,130 @@ To summarize, you've got four types of property/method to worry about:
 4. Those available on an object instance, which can either be an object created when a constructor is instantiated like we saw above (so, for example, `let teacher1 = new Teacher( 'Chris' );` and then `teacher1.name`), or an object literal (`let teacher1 = { name : 'Chris' }` and then `teacher1.name`).
 
 If you are not sure which is which, don't worry about it just yet -- you are still learning, and familiarity will come with practice.
+
+## ECMAScript 2015 Classes
+
+ECMAScript 2015 introduces [class syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) to JavaScript as a way to write reusable classes using easier, cleaner syntax, which is more similar to classes in C++ or Java. In this section, we'll convert the Person and Teacher examples from prototypal inheritance to classes, to show you how it's done.
+
+<hr>
+
+**Note**: This modern way of writing classes is supported in all modern browsers, but it is still worth knowing about the underlying prototypal inheritance in case you work on a project that requires supporting a browser that doesn't support this syntax (most notably Internet Explorer).
+
+<hr>
+
+Let's look at a rewritten version of the Person example, class-style:
+```
+class Person {
+    constructor(first, last, age, gender, interests) {
+        this.name = {
+            first,
+            last
+        };
+        this.age = age;
+        this.gender = gender;
+        this.interests = interests;
+    }
+
+    greeting() {
+        console.log(`Hi! I'm ${this.name.first}`);
+    };
+
+    farewell() {
+        console.log(`${this.name.first} has left the building. Bye for now!`);
+    };
+}
+```
+The [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class) statement indicates that we are creating a new class. Inside this block, we define all the features of the class:
+
+* The [`constructor()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) method defines the constructor function that represents our `Person` class. 
+* `greeting()` and `farewell()` are class methods. Any methods you want associated with the class are defined inside it, after the constructor. In this example, we've used [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) rather than string concatenation to make the code easier to read.
+
+We can now instantiate object instances using the [`new` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new), in just the same way as we did before:
+```
+let han = new Person('Han', 'Solo', 25, 'male', ['Smuggling']);
+han.greeting();
+// Hi! I'm Han
+
+let leia = new Person('Leia', 'Organa', 19, 'female', ['Government']);
+leia.farewell();
+// Leia has left the building. Bye for now!
+```
+
+<hr>
+
+**Note**: Under theb hood, your classes are being converted into Prototypal Inheritance models -- this is just syntactic sugar. But I'm sure you'll agree that it's easier to write.
+
+<hr>
+
+### Inheritance with class syntax
+
+Above we created a class to represent a person. They have a series of attributes that are common to all people; in this section, we'll create our specialized `Teacher` class, making it inherit from `Person` using modern class syntax. This is called creating a subclass, or subclassing.
+
+To create a subclass, we use the [`extends` keyword](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) to tell JavaScript the class we want to base our class on.
+```
+class Teacher extends Person {
+    constructor(subject, grade) {
+        this.subject = subject;
+        this.grade = grade;
+    }
+}
+```
+But there's a little catch.
+
+Unlike old-school constructor functions where the `new` operator does the initialization of `this` to a newly-allocated object, this isn't automatically initialized for a class defined by the `extends` keyword, i.e. the subclasses.
+
+Therefore running the above code will give an error:
+```
+Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+```
+For sub-classes, the `this` initialization to a newly allocated object is always dependent on the parent class constructor, i.e. the constructor function of the class from which you're extending.
+
+Here, we are extending the `Person` class -- the `Teacher` sub-class is an extension of the `Person` class. So, for `Teacher`, the `this` initialization is done by the `Person` constructor.
+
+To call the parent constructor, we have to use the [`super()` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super), like so:
+```
+class Teacher extends Person {
+    constructor(subject, grade) {
+        super();   // Now 'this' is initialized by calling the parent constructor.
+        this.subject = subject;
+        this.grade = grade;
+    }
+}
+```
+There is no point having a sub-class if it doesn't inherit properties from the parent class. It is good then that the `super()` operator also accepts arguments for the parent constructor.
+
+Looking back to our `Person` constructor, we can see it has the following block of code in its constructor method:
+```
+constructor(first, last, age, gender, interests) {
+    this.name = {
+        first,
+        last
+    };
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+}
+```
+Since the `super()` operator is actually the parent class constructor, passing it the necessary arguments of the `Person` class constructor will also initialize the parent class properties in our sub-class, thereby inheriting it:
+```
+class Teacher extends Person {
+    constructor(first, last, age, gender, interests, subject, grade) {
+        super(first, last, age, gender, interests);
+
+        // subject and grade are specific to Teacher
+        this.subject = subject;
+        this.grade = grade;
+    }
+}
+```
+Now when we instantiate `Teacher` object instances, we can call methods and properties defined on both `Teacher` and `Person` as we'd expect:
+```
+let snape = new Teacher('Severus', 'Snape', 58, 'male', ['Potions'], 'Dark arts', 5);
+snape.greeting();   // Hi! I'm Severus
+snape.farewell();   // Severus has left the building. Bye for now!
+snape.age;          // 58
+snape.subject;      // Dark arts
+```
+Like we did with `Teacher`, we could create other subclasses of `Person` to make them more specialized without modifying the base class.
+
+## Getters and setters
