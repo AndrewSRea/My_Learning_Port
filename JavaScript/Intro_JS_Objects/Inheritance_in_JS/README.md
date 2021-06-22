@@ -224,7 +224,7 @@ leia.farewell();
 
 <hr>
 
-**Note**: Under theb hood, your classes are being converted into Prototypal Inheritance models -- this is just syntactic sugar. But I'm sure you'll agree that it's easier to write.
+**Note**: Under the hood, your classes are being converted into Prototypal Inheritance models -- this is just syntactic sugar. But I'm sure you'll agree that it's easier to write.
 
 <hr>
 
