@@ -385,9 +385,9 @@ In the next article, we'll have a look at how to work with JavaScript Object Not
 
 ## See also
 
-* [ObjectPlayground.com]() -- A really useful interactive learning site for learning about objects.
-* [Secrets of the JavaScript Ninja](), Chapter 7 -- A good book on advanced JavaScript concepts and techniques, by John Resig, Bear Bibeault, and Josip Maras. Chapter 7 covers aspects of prototypes and inheritance really well; you can probably track down a print or online copy fairly easily.
-* [You Don't Know JS: this & Object Prototypes]() -- Part of Kyle Simpson's excellent series of JavaScript manuals, Chapter 5 in particular looks at prototypes in mcuh more detail than we do here. We've presented a simplified view in this series of articles aimed at beginners, whereas Kyle goes into great depth and provides a more complex but more accurate picture.
+* [ObjectPlayground.com](http://www.objectplayground.com/) -- A really useful interactive learning site for learning about objects.
+* [Secrets of the JavaScript Ninja](https://www.manning.com/books/secrets-of-the-javascript-ninja-second-edition), Chapter 7 -- A good book on advanced JavaScript concepts and techniques, by John Resig, Bear Bibeault, and Josip Maras. Chapter 7 covers aspects of prototypes and inheritance really well; you can probably track down a print or online copy fairly easily.
+* [You Don't Know JS: this & Object Prototypes](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/README.md) -- Part of Kyle Simpson's excellent series of JavaScript manuals, Chapter 5 in particular looks at prototypes in mcuh more detail than we do here. We've presented a simplified view in this series of articles aimed at beginners, whereas Kyle goes into great depth and provides a more complex but more accurate picture.
 
 <hr>
 
