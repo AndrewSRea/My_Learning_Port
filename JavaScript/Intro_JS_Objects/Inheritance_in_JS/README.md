@@ -300,3 +300,79 @@ snape.subject;      // Dark arts
 Like we did with `Teacher`, we could create other subclasses of `Person` to make them more specialized without modifying the base class.
 
 ## Getters and setters
+
+There may be times when we want to change the values of an attribute in the classes we create or we don't know what the final value of an attribute will be. Using the `Teacher` example, we may not know what subject the teacher will teach before we create them, or their subject may change between terms.
+
+We can handle such situations with getters and setters.
+
+Let's enhance the `Teacher` class with getters and setters. The class starts the same as it was the last time we looked at it.
+
+Getters and setters work in pairs. A getter returns the current value of the variable and its corresponding setter changes the value of the variable to the one it defines.
+
+The modified `Teacher` class looks like this:
+```
+class Teacher extends Person {
+    constructor(first, last, age, gender, interests, subject, grade) {
+        super(first, last, age, gender, interests);
+        // subject and grade are specific to Teacher
+        this._subject = subject;
+        this.grade = grade;
+    }
+
+    get subject() {
+        return this._subject;
+    }
+
+    set subject(newSubject) {
+        this._subject = newSubject;
+    }
+}
+```
+In our class above, we have a getter and setter for the `subject` property. We use `_` to create a separate value in which to store our name property. Without using this convention, we would get errors every time we called get or set. At this point:
+
+* To show the current value of the `_subject` property of the `snape` object, we can use the `snape.subject` getter method.
+* To assign a new value to the `_subject` property, we can use the `snape.subject="new value"` setter method.
+
+The example below shows the two features in action:
+```
+// Check the default value
+console.log(snape.subject)   // Returns "Dark arts"
+
+// Change the value
+snape.subject = "Balloon animals"   // Sets _subject to "Balloon animals"
+
+// Check it again and see if it matches the new value
+console.log(snape.subject)   // Returns "Balloon animals"
+```
+
+<hr>
+
+**Note**: Getters and setters can be very useful at times. For example, when you want to run some code every time a property is requested or set. For simeple cases, however, plain property access without a getter or setter will do just fine.
+
+<hr>
+
+## When would you use inheritance in JavaScript?
+
+Particularly after this last article, you might be thinking, "Woo! This is complicated." Well, you are right. Prototypes and inheritance represent some of the most complex aspects of JavaScript, but a lot of JavaScript's power and flexibility comes from its object structure and inheritance, and it is worth understanding how it works.
+
+In a way, you use inheritance all the time. Whenever you use various features of a Web API, or methods/properties defined on a built-in browser object that you call on your strings, arrays, etc., you are implicitly using inheritance.
+
+In terms of using inheritance in your own code, you probably won't use it often, especially to begin with, and in small projects. It is a waste of time to use objects and inheritance just for the sake of it when you don't need them. But as your code bases get larger, you are more likely to find a need for it. If you find yourself starting to create a number of objects that have similar features, then creating a generic object type to contain all the shared functionality and inheriting those features in more specialized object types can be convenient and useful.
+
+<hr>
+
+**Note**: Because of the way JavaScript works, with the prototype chain, etc., the sharing of functionality between objects is often called **delegation**. Specialized objects delegate functionality to a generic object type.
+
+<hr>
+
+When using inheritance, you are advised to not have too many levels of inheritance, and to keep careful track of where you define your methods and properties. It is possible to start writing code that temporarily modifies the prototypes of built-in browser objects, but you should not do this unless you have a really good reason. Too much inheritance can lead to endless confusion, and endless pain when you try to debug such code.
+
+Ultimately, objects are just another form of code reuse, like functions or loops, with their own specific roles and advantages. If you find yourself creating a bunch of related variables and functions and want to track them all together and package them neatly, an object is a good idea. Objects are also very useful when you want to pass a collection of data from one place to another. Both of these things can be achieved without use of constructors or inheritance. If you only need a single instance of an object, then you are probably better off just using an object literal, and you certainly don't need inheritance.
+
+## Alternatives for extending the prototype chain
+
+In JavaScript, there are several different ways to extend the prototype of an object aside from what we've shown above. To find out more about the other ways, visit our [Inheritance and the prototype chain](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain) article (the previous folder which I have already created if you click the same link).
+
+## Test your skills!
+
+See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Inheritance in JavaScript** article. (This skills test also incorporates knowledge learned from the previous two articles, [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), and [Object prototypes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes).)
