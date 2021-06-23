@@ -271,7 +271,7 @@ This pattern can be seen in action in Piotr Zalewa's [school plan app](https://g
 
 ## Test your skills!
 
-See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Object protptypes** article. (This skills test also incorporates knowledge learned from the previous article, [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), and the next article, [Inheritance in JavaScript]().)
+See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Object prototypes** article. (This skills test also incorporates knowledge learned from the previous article, [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), and the next article, [Inheritance in JavaScript]().)
 
 ## Summary 
 
@@ -281,7 +281,7 @@ In the next article, we'll look at how you can implement inheritance of function
 
 <hr>
 
-:exclamation: I'm going to break the **Introducing JavaScript objects** module chain here, and insert a module after this one showcasing Mozilla's more in-depth guide to [Using prototypes in JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain). I will also put this in the page links below, along with the link to the [Inheritance in JavaScript]() module.
+:exclamation: I'm going to break the **Introducing JavaScript objects** module chain here, and insert a module after this one showcasing Mozilla's more in-depth guide to [Using prototypes in JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain). I will also put this in the page links below, along with the link to the [Inheritance in JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS#inheritance-in-javascript) module.
 
 <hr>
 
