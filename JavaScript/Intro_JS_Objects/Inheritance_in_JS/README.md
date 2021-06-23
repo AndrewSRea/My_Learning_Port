@@ -376,3 +376,19 @@ In JavaScript, there are several different ways to extend the prototype of an ob
 ## Test your skills!
 
 See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Inheritance in JavaScript** article. (This skills test also incorporates knowledge learned from the previous two articles, [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), and [Object prototypes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes).)
+
+## Summary
+
+This article has covered the remainder of the core OOJS theory and syntax that we think you should know now. At this point, you should understand JavaScript object and OOP basics, prototypes and prototypal inheritance, how to create classes (constructors) and object instances, add features to classes, and create subclasses that inherit from other classes.
+
+In the next article, we'll have a look at how to work with JavaScript Object Notation (JSON), a common data exchange format written using JavaScript objects.
+
+## See also
+
+* [ObjectPlayground.com]() -- A really useful interactive learning site for learning about objects.
+* [Secrets of the JavaScript Ninja](), Chapter 7 -- A good book on advanced JavaScript concepts and techniques, by John Resig, Bear Bibeault, and Josip Maras. Chapter 7 covers aspects of prototypes and inheritance really well; you can probably track down a print or online copy fairly easily.
+* [You Don't Know JS: this & Object Prototypes]() -- Part of Kyle Simpson's excellent series of JavaScript manuals, Chapter 5 in particular looks at prototypes in mcuh more detail than we do here. We've presented a simplified view in this series of articles aimed at beginners, whereas Kyle goes into great depth and provides a more complex but more accurate picture.
+
+<hr>
+
+[[Object Prototypes module]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes) - [[Using prototypes in JavaScript module]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS#inheritance-in-javascript) - [[Next page]]()
