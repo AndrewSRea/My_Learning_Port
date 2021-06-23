@@ -253,7 +253,7 @@ We'll explore the effects of `create()` in more detail later on.
 
 ## Test your skills!
 
-See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Object-oriented JavaScript for beginners** article. (This skills test also incorporates knowledge learned from the next two articles, [Object prototypes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes), and [Inheritance in JavaScript]().)
+See the [Test your skills: Object-oriented JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test#test-your-skills-object-oriented-javascript) page for some further tests to verify my knowledge of the information provided by the **Object-oriented JavaScript for beginners** article. (This skills test also incorporates knowledge learned from the next two articles, [Object prototypes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes), and [Inheritance in JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS#inheritance-in-javascript).)
 
 ## Summary
 
