@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test Your Skills: Object-Oriented JS</title>
+        <style>
+            p {
+                color: purple;
+                margin: 0.5em 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-left: 15px;
+            }
+
+            section[class|=preview] {
+                border: 1px solid #828282;
+                width: 50%; 
+                margin: 15px 0 20px 15px;
+                padding: 10px;
+            }
+
+            .descriptive {
+                margin-left: 15px;
+                font-size: 1.1em;
+                color: black;
+            }
+
+            code {
+                color: red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h2>Object-Oriented JS Skills Test 1</h2>
+
+        <section class="preview-1">
+            
+
+
+        </section>
+
+        <p class="descriptive">Open your browser's DevTools console to see the output from the <code>calcPerimeter()</code> calls.</p>
+
+
+        <h2>Object-Oriented JS Skills Test 2</h2>
+
+        <section class="preview-2">
+           
+
+
+        </section>
+
+        <h2>Object-Oriented JS Skills Test 3</h2>
+
+        <section class="preview-3">
+            
+
+
+        </section>
+
+        <script>
+    
+            // *** Object-Oriented JS Skills Test 1 ***
+    
+            function Shape(name, sides, sideLength) {
+                this.name = name;
+                this.sides = sides;
+                this.sideLength = sideLength;
+            }
+
+            // Write your code below here
+
+            Shape.prototype.calcPerimeter = function() {
+                console.log(this.sides + this.sideLength);
+            }
+
+            let square = new Shape('square', 4, 5);
+
+            square.calcPerimeter();
+
+            let triangle = new Shape('triangle', 3, 3);
+
+            triangle.calcPerimeter();
+
+    
+            // *** Object Basics Skills Test 2 ***
+    
+            let bandInfo;
+
+            // Put your code here
+
+            const faveBand = {
+                name: ['The Strokes'],
+                nationality: ['North American'],
+                genre: ['indie rock'],
+                members: ['Julian Casablancas', 'Nikolai Fraiture', 'Albert Hammond, Jr.', 'Fabrizio Moretti', 'Nick Valensi'],
+                formed: 1998,
+                split: false,
+                albums: {
+                    name: ['Is This It', 'Room on Fire', 'First Impressions of Earth', 'Angles', 'Comedown Machine', 'The New Abnormal'],
+                    released: [2001, 2003, 2006, 2011, 2013, 2020]
+                }
+            }
+
+            bandInfo = `One of my favorite bands is ${ faveBand.name }, a ${ faveBand.nationality } ${ faveBand.genre } band which has
+                been active since ${ faveBand.formed } to this present day. Their first album, "${ faveBand.albums.name[0] }", debuted
+                back in ${ faveBand.albums.released[0] }.`;
+
+            // Don't edit the code below here
+
+            const section2 = document.querySelector('.preview-2');
+            let para3 = document.createElement('p');
+            para3.textContent = bandInfo;
+            section2.appendChild(para3);
+
+            // *** Object Basics Skills Test 3 ***
+    
+            let cat2 = {
+                name: 'Bertie',
+                breed: 'Cymric',
+                color: 'white',
+                greeting2: function() {
+                    console.log('Hello, said ' + this.name + ' the ' + this.breed + '.');
+                }
+            }
+
+            let cat3 = {
+                name: 'Morrie',
+                breed: 'Tabby',
+                color: 'orange',
+                greeting2: function() {
+                    console.log('Hello, said ' + this.name + ' the ' + this.color + ' ' + this.breed + '.');
+                }
+            }
+
+            cat2.greeting2();
+            cat3.greeting2();
+
+            /*
+                Without the knowledge of future MDN Learning articles, I would guess the only way to make this code under 
+                the "Object Basics Skills Test 3" header more DRY would be to not repeat the "greeting2()" callback. Although,
+                I don't know yet how that could be done.
+            */
+        </script>
+    </body>
+</html>
