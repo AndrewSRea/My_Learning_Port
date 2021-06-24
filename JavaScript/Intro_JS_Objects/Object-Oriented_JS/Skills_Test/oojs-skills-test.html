@@ -127,7 +127,25 @@
 
             // *** Object-Oriented JS Skills Test 3 ***
     
-            
+            class Shape3 {
+                constructor(name, sides, sideLength) {
+                    this.name = name;
+                    this.sides = sides;
+                    this.sideLength = sideLength;
+                }
+            }
+
+            class Square extends Shape3 {
+                constructor(name, sides, sideLength) {
+                    this.name = 'square';
+                    this.sides = 4;
+                }
+
+                calcArea() {
+                    console.log(this.sides + this.sideLength);
+                };
+            }
+
         </script>
     </body>
 </html>
