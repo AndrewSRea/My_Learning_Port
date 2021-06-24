@@ -1,6 +1,6 @@
 # Test your skills: Object-oriented JavaScript
 
-The aim of this skill test is to assess whether you've understood our [Object-oriented JavaScript for beginners](), [Object protoypes](), and [Inheritance in JavaScript]() articles.
+The aim of this skill test is to assess whether you've understood our [Object-oriented JavaScript for beginners](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), [Object protoypes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Prototypes#object-prototypes), and [Inheritance in JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS#inheritance-in-javascript) articles.
 
 ## OOJS 1
 
@@ -23,3 +23,17 @@ function Shape(name, sides, sideLength) {
 // Write your code below here
 
 ```
+See my finished code for this test under the **Object-Oriented JS Skills Test 1** header, under the opening `<script>` tag, in my accompanying [oojs-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test/oojs-skills-test.html) file, and see the result of this finished code [here](), under the **Object-Oriented JS Skills Test 1** header.
+
+## OOJS 2
+
+Next up, we want you to take the `Shape` class you saw in Task #1 (including the `calcPerimeter()` method) and recreate it using ES syntax instead.
+
+Test that it works by creating the `square` and `triangle` object instances as before (using `new Shape()` for both), and then calling their `calcPerimeter()` methods.
+
+Try updating the live code below to recreate the finished example:
+```
+
+
+```
+The "live code" above is blank because this code is basically recreated from the previous **OOJS 1** task above. To see my full finished code for this test, go to my accompanying [oojs-skills-test.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS/Skills_Test/oojs-skills-test.html) file and look under the **Object-Oriented JS Skills Test 2** header, under the opening `<script>` tag, and see the result of this finished code [here](), under the **Object-Oriented JS Skills Test 2** header.
