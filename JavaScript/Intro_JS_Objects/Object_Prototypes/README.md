@@ -83,7 +83,7 @@ person1.valueOf()
 
 <hr>
 
-**Note**: before ECMAScript 2015, there wasn't officially a way to access an object's `prototype` directly -- the "links" between the items in the chain are defined in an internal property, referred to as `[[prototype]]` in the specification for the JavaScript language (see [ECMAScript](https://developer.mozilla.org/en-US/docs/Glossary/ECMAScript)).
+**Note**: Before ECMAScript 2015, there wasn't officially a way to access an object's `prototype` directly -- the "links" between the items in the chain are defined in an internal property, referred to as `[[prototype]]` in the specification for the JavaScript language (see [ECMAScript](https://developer.mozilla.org/en-US/docs/Glossary/ECMAScript)).
 
 Most modern browsers, however, do offer property available called [`__proto__`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto) (that's 2 underscores either side), which contains the object's constructor's `prototype` object. For example, try `person1.__proto__` and `person1.__proto__.__proto__` to see what the chain looks like in code!
 
