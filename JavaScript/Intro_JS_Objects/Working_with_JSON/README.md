@@ -130,3 +130,26 @@ The above is perfectly valid JSON. You'd just have to access array items (in its
 
 ## Active learning: Working through a JSON example
 
+So let's work through an example to show how we could make use of some JSON formatted data on a website.
+
+### Getting started
+
+To begin with, make local copies of our [heroes.html](https://github.com/mdn/learning-area/blob/master/javascript/oojs/json/heroes.html) and [style.css](https://github.com/mdn/learning-area/blob/master/javascript/oojs/json/style.css) files. The latter contains some simple CSS to style our page, while the former contains some very simple body HTML:
+```
+<header>
+</header>
+
+<section>
+</section>
+```
+Plus, a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element to contain the JavaScript code we will be writing in this exercise. At the moment, it only contains two lines, which grab references to the [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header) and [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) elements and store them in variables:
+```
+const header = document.querySelector('header');
+const section = document.querySelector('section');
+```
+We have made our JSON data available on our GitHub, at [https://mdn.gihub.io/learning-area/javascript/oojs/json/superheroes.json](https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json).
+
+We are going to load it into our page, and use some nifty DOM manipulation to display it, like this:
+
+![Image of finished "heroes.html" file](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON/json-superheroes.png)
+
