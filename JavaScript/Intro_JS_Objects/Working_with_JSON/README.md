@@ -79,8 +79,17 @@ superHeroes['members'][1]['powers'][2]
 
 <hr>
 
+**Note**: My own observation: The above bracket notation path to find the third superpower of the second `superHeroes` member can also be written in dot notation like this:
+```
+superHeroes.members[1].powers[2]
+```
+But I'm sure as we read along below, there will probably be a good reason for using bracket notation instead.
+
+<hr>
+
 **Note**: Mozilla has made the JSON seen above available inside a variable in its [JSONTest.html](https://mdn.github.io/learning-area/javascript/oojs/json/JSONTest.html) example (see the [source code](https://github.com/mdn/learning-area/blob/master/javascript/oojs/json/JSONTest.html)). Try loading this up and then accessing data inside the variable via your browser's JavaScript console.
 
 <hr>
 
 ### Arrays as JSON
+
