@@ -69,6 +69,9 @@
 
         </section>
 
+        <p class="descriptive">Open your browser's DevTools console to see the output from the <code>calcPerimeter()</code> and
+            <code>calcArea()</code> calls.</p>
+
         <script>
     
             // *** Object-Oriented JS Skills Test 1 ***
@@ -133,18 +136,31 @@
                     this.sides = sides;
                     this.sideLength = sideLength;
                 }
+
+                calcPerimeter() {
+                    console.log(this.sides + this.sideLength);
+                };
             }
 
             class Square extends Shape3 {
                 constructor(name, sides, sideLength) {
+                    super();
                     this.name = 'square';
                     this.sides = 4;
+                    this.sideLength = sideLength;
                 }
 
                 calcArea() {
-                    console.log(this.sides + this.sideLength);
+                    console.log(this.sides ** 2);
                 };
             }
+
+            let square3 = new Square(this.name, this.sides, 4);
+
+            square3.calcPerimeter();
+            square3.calcArea();
+
+            // OMG! Pat on the back for me!!
 
         </script>
     </body>
