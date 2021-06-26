@@ -153,3 +153,45 @@ We are going to load it into our page, and use some nifty DOM manipulation to di
 
 ![Image of finished "heroes.html" file](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON/json-superheroes.png)
 
+(This image is the property of the Mozilla Developer Network.)
+
+### Obtaining the JSON
+
+To obtain the JSON, we use an API called [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) (often called **XHR**). This is a very useful JavaScript object that allows us to make network requests to retrieve resources from a server via JavaScript (e.g., images, text, JSON, even HTML snippets), meaning that we can update small sections of content without having to reload the entire page. This has led to more responsive web pages, and sounds exciting, but it is beyond the scope of this article to teach it in much more detail.
+
+1. To start with, we store the URL of the JSON we want to retrieve in a variable. Add the following at the bottom of your JavaScript code:
+```
+let requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+```
+
+2. To create a request, we need to create a new request object instance from the `XMLHttpRequest` constructor, using the `new` keyword. Add the following below your last line:
+```
+let request = new XMLHttpRequest();
+```
+
+3. Now we need to open the request using the [`open()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open) method. Add the following line:
+```
+request.open('GET', requestURL);
+```
+This takes at least two parameters -- there are other optional parameters available. We only need the two mandatory ones for this simple example:
+
+* The HTTP method to use when making the network request. In this case, [`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) is fine, as we are just retrieving some simple data. 
+* The URL to make the request to -- this is the URL of the JSON file that we stored earlier.
+
+4. Next, add the following two lines -- here we are setting the [`responseType`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType) to JSON, so that XHR knows that the server will be returning JSON, and that this should be converted behind the scenes into a JavaScript object. Then we send the request with the [`send()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send) method:
+```
+request.responseType = 'json';
+request.send();
+```
+
+5. The last bit of this section involves waiting for the response to return from the server, then dealing with it. Add the following code below your previous code:
+```
+request.onload = function() {
+    const superHeroes = request.response;
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+}
+```
+Here we are storing the response to our request (available in the [`response`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response) property) in a variable called `superHeroes`; this variable now contains the JavaScript object based on the JSON! We are then passing that object to two function calls -- the first one files the `<header>` with the correct data, while the second one creates an information card for each hero on the team, and inserts it into the `<section>`.
+
+We have wrapped the code in an event handler that runs when the load event fires on the request object (see [`onload`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequestEventTarget/onload)) -- this is because the load event fires when the response has successfully returned; doing it this way guarantees that `request.response` will definitely be available when we come to try to do something with it.
