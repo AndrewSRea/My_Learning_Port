@@ -195,3 +195,58 @@ request.onload = function() {
 Here we are storing the response to our request (available in the [`response`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response) property) in a variable called `superHeroes`; this variable now contains the JavaScript object based on the JSON! We are then passing that object to two function calls -- the first one files the `<header>` with the correct data, while the second one creates an information card for each hero on the team, and inserts it into the `<section>`.
 
 We have wrapped the code in an event handler that runs when the load event fires on the request object (see [`onload`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequestEventTarget/onload)) -- this is because the load event fires when the response has successfully returned; doing it this way guarantees that `request.response` will definitely be available when we come to try to do something with it.
+
+### Populating the header
+
+Now that we've retrieved the JSON data and converted it into a JavaScript object, let's make use of it by writing the two functions we referenced above. First of all, add the following function definition below the previous code:
+```
+function populateHeader(obj) {
+    const myH1 = document.createElement('h1');
+    myH1.textContent = obj['squadName'];
+    header.appendChild(myH1);
+
+    const myPara = document.createElement('p');
+    myPara.textContent = 'Hometown: ' + obj['homeTown'] + ' // Formed: ' + obj['formed'];
+    header.appendChild(myPara);
+}
+```
+Here we first create an [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) element with [`createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement), set its [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) to equal the `squadName` property of the object, then append it to the header using [`appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild). We then do a very similar operation with a paragraph: create it, set its text content, and append it to the header. The only difference is that its text is set to a concatenated string containing both the `homeTown` and `formed` properties of the object.
+
+### Creating the hero information cards
+
+Next, add the following function at the bottom of the code, which creates and displays the superhero cards:
+```
+function showHeroes(obj) {
+    const heroes = obj['members'];
+
+    for (let i = 0; i < heroes.length; i++) {
+        const myArticle = document.createElement('article');
+        const myH2 = document.createElement('h2');
+        const myPara1 = document.createElement('p');
+        const myPara2 = document.createElement('p');
+        const myPara3 = document.createElement('p');
+        const myList = document.createElement('ul');
+
+        myH2.textContent = heroes[i].name;
+        myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+        myPara2.textContent = 'Age: ' + heroes[i].age;
+        myPara3.textContent = 'Superpowers: ';
+
+        const superPowers = heroes[i].powers;
+        for (let j = 0; j < superPowers.length; j++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = superPowers[j];
+            myList.appendChild(listItem);
+        }
+
+        myArticle.appendChild(myH2);
+        myArticle.appendChild(myPara1);
+        myArticle.appendChild(myPara2);
+        myArticle.appendChild(myPara3);
+        myArticle.appendChild(myList);
+
+        section.appendChild(myArticle);
+    }
+}
+```
+To start with, 
