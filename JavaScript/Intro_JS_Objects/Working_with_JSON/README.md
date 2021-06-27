@@ -249,4 +249,66 @@ function showHeroes(obj) {
     }
 }
 ```
-To start with, 
+To start with, we store the `members` property of the JavaScript object in a new variable. This array contains multiple objects that contain the information for each hero.
+
+Next, we use a [for loop](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Looping_Code#the-standard-for-loop) to loop through each object in the array. For each one, we:
+
+1. Create several new elements: an `<article>`, an `<h2>`, three `<p>`s, and a `<ul>`.
+2. set the `<h2>` to contain the current hero's `name`.
+3. Fill the three paragraphs with their `secretIdentity`, `age`, and a line saying "Superpowers:" to introduce the information in the list.
+4. Store the `powers` property in another new constant called `superPowers` -- this contains an array that lists the current hero's superpowers.
+5. Use another `for` loop to loop through the current hero's superpowers -- for each one, we create an `<li>` element, put the superpower inside it, then put the `listItem` inside the `<ul>` element (`myList`) using `appendChild()`.
+6. The very last thing we do is to append the `<h2>`, `<p>`s, and `<ul>` inside the `<article>` (`myArticle`), then append the `<article>` inside the `<section>`. The order in which things are appended is important, as this is the order they will be displayed inside the HTML.
+
+## Converting between objects and text
+
+The above example was simple in terms of accessing the JavaScript object, because we set the XHR request to convert the JSON response directly into a JavaScript object using:
+```
+request.responseType = 'json';
+```
+But sometimes we aren't so lucky -- sometimes we receive a raw JSON string, and we need to convert it to an object ourselves. And when we want to send a JavaScript object across the network, we need to convert it to JSON (a string) before sending. Luckily, these two problems are so common in web development that a built-in [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) object is available in browsers, which contains the following two methods:
+
+* [`parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse): Accepts a JSON string as a parameter, and returns the corresponding JavaScript object.
+* ['stringify()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify): Accepts an object as a parameter, and returns the equivalent JSON string.
+
+You can see the first one in action in our [heroes-finished-json-parse.html](https://mdn.github.io/learning-area/javascript/oojs/json/heroes-finished-json-parse.html) example (see the [source code](https://github.com/mdn/learning-area/blob/master/javascript/oojs/json/heroes-finished-json-parse.html)) -- this does exactly the same thing as the example we built up earlier, except that we set the XHR to return the raw JSON text, then used `parse()` to convert it to an actual JavaScript object. The key snippet of code is here:
+```
+request.open('GET', requestURL);
+request.responseType = 'text';   // Now we're getting a string!
+request.send();
+
+request.onload = function() {
+    const superHeroesText = request.response;   // Get the string from the response
+    const superHeroes = JSON.parse(superHeroesText);   // Convert it to an object
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+}
+```
+As you might guess, `stringify()` works the opposite way. Try entering the following lines into your browser's JavaScript console one by one to see it in action (open this [blank HTML document]() for use in opening up the browser in order to use the DevTools JavaScript console for this example):
+```
+let myObj = { name: "Chris", age: 38 };
+myObj
+let myString = JSON.stringify(myObj);
+myString
+```
+Here we are creating a JavaScript object, then checking what it contains, then converting it to a JSON string using `stringify()` -- saving the return value in a new variable -- then checking it again.
+
+## Test your skills
+
+See the [Test your skills: JSON]() page for some further tests to verify my knowledge of the information provided by the **Working with JSON** article.
+
+## Summary
+
+In this article, we've given you a simple guide to using JSON in your programs, including how to create and parse JSON, and how to access data locked inside it. In the next article, we'll have some practice at building some JavaScript objects.
+
+## See also
+
+* [JSON reference page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)
+* [XMLHttpRequest object reference page](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+* [Using XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest)
+* [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+* [Official JSON web site with link to ECMA standard](https://www.json.org/json-en.html)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS#inheritance-in-javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON) - [[Next page]]()
