@@ -161,7 +161,7 @@ function displayCatInfo(catString) {
 
         if(i < (cats.length - 1)) {
             motherInfo += `${ cats[i].name }, `;            // Well, this conditional is written differently than previous text
-        } else {                                            // text string conditionals I've seen before, in order to make a more
+        } else {                                            // string conditionals I've seen before, in order to make a more
             motherInfo += `and ${ cats[i].name }.`;         // semantically correct text string.
         }
     }
