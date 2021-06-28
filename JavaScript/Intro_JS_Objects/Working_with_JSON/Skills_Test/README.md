@@ -48,3 +48,67 @@ function displayCatInfo(catString) {
 section.appendChild(para1);
 section.appendChild(para2);
 ```
+Due to this disclaimer:
+
+<hr>
+
+**Warning**: To answer this question, you'll need to write your code into the live code window. The example won't work locally, or in an environment like CodePen or JSFiddle, because of something called *cross-origin security*. This basically means that you can't request a file from one origin using code on a different origin. In the live code editor, both the JavaScript code and the requested JSON file are on the same origin (the code sits on a GitHub repo, and is embedded there in an [`<iframe>`]()). If you put your code on CodePen, for example, it would fail because the JSON it is requesting is not on the same origin. You can get around these restrictions using [CORS](), but this is beyond the scope of what we are teaching here.
+
+<hr>
+
+...I will put my solution to the **JSON 1** task right below here. But as soon as I can figure out how to put the JSON, the JavaScript code, and the solution into some files within this **Skills_Test** folder, I will. (I assume I can just create my own `.json` file within this folder and access the JSON information from there.)
+
+### My solution
+
+```
+const section = document.querySelector('section');
+
+let para1 = document.createElement('p');
+let para2 = document.createElement('p');
+
+let motherInfo = 'The mother cats are called ';
+let kittenInfo;
+
+fetch('sample.json')
+.then(response => response.text())
+.then(text => displayCatInfo(text))
+
+function displayCatInfo(catString) {
+    let total = 0;
+    let male = 0;
+
+    // Add your code here
+
+    for (let i = 0; i < catString.length; i++) {
+        for (let j = 0; j < catString[i].kittens[j].length; j++) {
+            if (catString.kittens[j].gender === 'm') {
+                total ++;
+                male ++;
+            } else {
+                total ++;
+            }
+        }
+
+        if (i === catString.length - 1) {
+            motherInfo += ' and ' + catString[i].name + '.';
+        } else {
+            motherInfo += catString[i].name + ', ';
+        }
+    }
+
+    kittenInfo = `There are ${ total } kittens. ${ male } male kittens, and ${ total - male } female kittens.`;
+
+    // Don't edit the code below here!
+
+    para1.textContent = motherInfo;
+    para2.textContent = kittenInfo;
+}
+
+section.appendChild(para1);
+section.appendChild(para2);
+```
+If you copy and paste the code for my solution (under the `// Add your code here` header), and paste it in the "live code window" on Mozilla's [Test your skills: JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Test_your_skills:_JSON) page, you'll find that my solution does not work, and you just receive some blank output.
+
+I will put Mozilla's solution to the **JSON 1** task below here, and do my best to try to explain what is happening within the code solution.
+
+### Mozilla's solution
