@@ -295,7 +295,7 @@ Here we are creating a JavaScript object, then checking what it contains, then c
 
 ## Test your skills
 
-See the [Test your skills: JSON]() page for some further tests to verify my knowledge of the information provided by the **Working with JSON** article.
+See the [Test your skills: JSON](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON/Skills_Test#test-your-skills-json) page for some further tests to verify my knowledge of the information provided by the **Working with JSON** article.
 
 ## Summary
 
