@@ -52,7 +52,7 @@ Due to this disclaimer:
 
 <hr>
 
-**Warning**: To answer this question, you'll need to write your code into the live code window. The example won't work locally, or in an environment like CodePen or JSFiddle, because of something called *cross-origin security*. This basically means that you can't request a file from one origin using code on a different origin. In the live code editor, both the JavaScript code and the requested JSON file are on the same origin (the code sits on a GitHub repo, and is embedded there in an [`<iframe>`]()). If you put your code on CodePen, for example, it would fail because the JSON it is requesting is not on the same origin. You can get around these restrictions using [CORS](), but this is beyond the scope of what we are teaching here.
+**Warning**: To answer this question, you'll need to write your code into the live code window. The example won't work locally, or in an environment like CodePen or JSFiddle, because of something called *cross-origin security*. This basically means that you can't request a file from one origin using code on a different origin. In the live code editor, both the JavaScript code and the requested JSON file are on the same origin (the code sits on a GitHub repo, and is embedded there in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)). If you put your code on CodePen, for example, it would fail because the JSON it is requesting is not on the same origin. You can get around these restrictions using [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), but this is beyond the scope of what we are teaching here.
 
 <hr>
 
@@ -78,6 +78,9 @@ function displayCatInfo(catString) {
     let male = 0;
 
     // Add your code here
+
+    const catStringText = request.response;
+    catString = JSON.parse(catStringText);
 
     for (let i = 0; i < catString.length; i++) {
         for (let j = 0; j < catString[i].kittens[j].length; j++) {
@@ -112,3 +115,68 @@ If you copy and paste the code for my solution (under the `// Add your code here
 I will put Mozilla's solution to the **JSON 1** task below here, and do my best to try to explain what is happening within the code solution.
 
 ### Mozilla's solution
+
+```
+let section = document.querySelector('.preview');
+let para1 = document.createElement('p');
+let para2 = document.createElement('p');
+
+let motherInfo = 'The mother cats are called ';
+let kittenInfo;
+
+fetch('sample.json')
+.then(response => response.text())
+.then(text => displayCatInfo(text))
+
+function displayCatInfo(catString) {
+    let total = 0;
+    let male = 0;
+
+    // Add your code here
+
+    /* 
+        I really whittled down the code block example from the "Converting between objects and text" section of the "Working with
+        JSON" article: request.onload = function() {
+                       const superHeroesText = request.response; // get the string from the response
+                       const superHeroes = JSON.parse(superHeroesText); // convert it to an object
+                       populateHeader(superHeroes);
+                       showHeroes(superHeroes);
+        
+        ...since most of this was done in the code above: fetch('sample.json')
+                                                          .then(response => response.text())
+                                                          .then(text => displayCatInfo(text))
+
+        But it seems I did too much if you look at my code under the "My solution" header above.
+    */
+
+    let cats = JSON.parse(catString);
+
+    for(let i = 0; i < cats.length; i++) {
+        for(let j = 0; j < cats[i].kittens.length; j++) {   // Unfortunately I wrote the array.length as `cats[i].kittens[j].length`
+            total++;                                        // The `total` incrementor should have been outside this `if` conditional
+            if(cats[i].kittens[j].gender === 'm') {         // but I wrote the conditional correctly.
+                male++;
+            }
+        }
+
+        if(i < (cats.length - 1)) {
+            motherInfo += `${ cats[i].name }, `;            // Well, this conditional is written differently than previous text
+        } else {                                            // text string conditionals I've seen before, in order to make a more
+            motherInfo += `and ${ cats[i].name }.`;         // semantically correct text string.
+        }
+    }
+
+    // But I did write this text string correctly -- subtracting the `male`s from the `total` for the amount of `female` kittens.
+
+    kittenInfo  = `There are ${ total } kittens in total, ${ male } males and ${ total - male } females.`;
+
+    // Don't edit the code below here!
+
+    para1.textContent = motherInfo;
+    para2.textContent = kittenInfo;
+}
+```
+
+<hr>
+
+[[Back to Working with JSON]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON#working-with-json)
