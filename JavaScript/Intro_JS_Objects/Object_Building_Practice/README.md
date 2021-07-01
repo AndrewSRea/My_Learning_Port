@@ -197,3 +197,32 @@ All programs that animate things generally involve an animation loop, which serv
 loop();
 ```
 That's it for basics -- try saving and refreshing to test your bouncing balls out!
+
+## Adding collision detection
+
+Now for a bit of fun, let's add some collision detection to our program, so our balls know when they have hit another ball.
+
+1. First, add the following method definition below where you defined the `update()` method (i.e., the `Ball.prototype.update` block).
+```
+Ball.prototype.collisionDetect = function() {
+    for (let j = 0; j < balls.length; j++) {
+        if (!(this === balls[j])) {
+            const dx = this.x - balls[j].x;
+            const dy = this.y - balls[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < this.size + balls[j].size) {
+                balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
+            }
+        }
+    }
+}
+```
+This method is a little complex, so don't worry if you don't understand exactly how it works for mow. An explanation follows:
+
+* For each ball, we need to check every other ball to see if it has collided with the current ball. To do this, we start another `for` loop to loop through all the balls in the `balls[]` array.
+* Immediately inside the `for` loop, we use an `if` statement to check whether the current ball being looped through is the same ball as the one we are currently checking. We don't want to check whether a ball has collided with itself! To do this, we check whether the current ball (i.e., the ball whose `collisionDetect()` method is being invoked) is the same as the loop ball (i.e., the ball that is being referred to by the current iteration of the `for` loop in the `collisionDetect()` method). We then use `!` to negate the check, so that the code inside the `if` statement only runs if they are **not** the same.
+* We then use a common algorithm to check the collision of two circles. We are basically checking whether any of the two circle's areas overlap. This is explained further in [2D collision detection](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
+* If a collision is detected, the code inside the inner `if` statement is run. In this case, we only set the `color` property of both the circles to a new random color. We could have done something far more complex, like get the balls to bounce off each other realistically, but that would have been far more complex to implement. For such physics simulations, developers tend to use a games or physics library such as [PhysicsJS](https://wellcaffeinated.net/PhysicsJS/), [matter.js](https://brm.io/matter-js/), [Phaser](https://phaser.io/), etc.
+
+2. 
