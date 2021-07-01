@@ -225,4 +225,34 @@ This method is a little complex, so don't worry if you don't understand exactly 
 * We then use a common algorithm to check the collision of two circles. We are basically checking whether any of the two circle's areas overlap. This is explained further in [2D collision detection](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection).
 * If a collision is detected, the code inside the inner `if` statement is run. In this case, we only set the `color` property of both the circles to a new random color. We could have done something far more complex, like get the balls to bounce off each other realistically, but that would have been far more complex to implement. For such physics simulations, developers tend to use a games or physics library such as [PhysicsJS](https://wellcaffeinated.net/PhysicsJS/), [matter.js](https://brm.io/matter-js/), [Phaser](https://phaser.io/), etc.
 
-2. 
+2. You also need to call this method in each frame of the animation. Add the following below the `balls[i].update();` line:
+```
+balls[i].collisionDetect();
+```
+
+3. Save and refresh the demo again, and you'll see your balls change color when they collide!
+
+<hr>
+
+See my finished version of the code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Building_Practice/main.js), and see the example running live [here]().
+
+<hr>
+
+## Summary
+
+We hope you had fun writing your own real world random bouncing balls example, using various object and object-oriented techniques from throughout the module! This should have given you some useful practice in using objects, and good real world context.
+
+That's it for object articles -- all that remains now is for you to test your skills in the object assessment in the next article.
+
+## See also
+
+* [Canvas tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) -- a beginner's guide to using 2D canvas.
+* [requestAnimationFrame()](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+* [2D collision detection](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
+* [3D collision detection](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_collision_detection)
+* [2D breakout game using pure JavaScript](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript) -- a great beginner's tutorial showing how to build a 2D game.
+* [2D breakout game using Phaser](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_breakout_game_Phaser) -- explains the basics of building a 2D game using a JavaScript game library.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON#working-with-json) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Building_Practice#object-building-practice) - [[Next page]]()
