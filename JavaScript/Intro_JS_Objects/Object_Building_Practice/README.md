@@ -67,3 +67,20 @@ Here we include some parameters that define the properties each ball needs in or
 This handles the properties, but what about the methods? We want to gvet our balls to actually do something in our program.
 
 ### Drawing the ball
+
+First, add the following `draw()` method to the `Ball()`'s `prototype`:
+```
+Ball.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fill();
+}
+```
+Using this function, we can tell the ball to draw itself onto the screen, by calling a series of members of the 2D canvas context we defined earlier (`ctx`). The context is like the paper, and now we want to command our pen to draw something on it:
+
+* First, we use [`beginPath()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath) to state that we want to draw a shape on the paper.
+* Next, we use [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) to define what color we want the shape to be -- we set it to our ball's `color` property.
+* Next, we use the [`arc()`]() method to trace an arc  shape on the paper. Its parameters are:
+    - The `x` and `y` position of the arc's center -- we are specifying the ball's `x` and `y` properties.
+    - 
