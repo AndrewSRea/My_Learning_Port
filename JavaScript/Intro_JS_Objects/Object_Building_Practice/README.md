@@ -81,6 +81,30 @@ Using this function, we can tell the ball to draw itself onto the screen, by cal
 
 * First, we use [`beginPath()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath) to state that we want to draw a shape on the paper.
 * Next, we use [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) to define what color we want the shape to be -- we set it to our ball's `color` property.
-* Next, we use the [`arc()`]() method to trace an arc  shape on the paper. Its parameters are:
+* Next, we use the [`arc()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc) method to trace an arc  shape on the paper. Its parameters are:
     - The `x` and `y` position of the arc's center -- we are specifying the ball's `x` and `y` properties.
-    - 
+    - The radius of the arc -- in this case, the ball's `size` property.
+    - The last two parameters specify the start and end number of degrees around the circle that the arc is drawn between. Here we specify 0 degrees, and `2 * PI`, which is the equivalent of 360 degrees in radians (annoyingly, you have to specify this in radians). That gives us a complete circle. If you had specified only `1 * PI`, you'd get a semi-circle (180 degrees).
+* Last of all, we use the [`fill()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill) method, which basically states "finish drawing the path we started with `beginPath()`, and fill the area it takes up with the color we specified earlier in `fillStyle`."
+
+You can start testing your object out already.
+
+1. Save the code so far, and load the HTML file in a browser.
+2. Open the browser's JavaScript console, and then refresh the page so that the canvas size changes to the smaller visible viewport that remains when the console opens.
+3. Type in the following to create a new ball instance:
+```
+let testBall = new Ball(50, 100, 4, 4, 'blue', 10);
+```
+
+4. Try calling its members:
+```
+testBall.x
+testBall.size
+testBall.color
+testBall.draw()
+```
+
+5. When you enter the last line, you should see the ball draw itself somewhere on the canvas.
+
+### Updating the ball's data
+
