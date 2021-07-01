@@ -108,3 +108,42 @@ testBall.draw()
 
 ### Updating the ball's data
 
+We can draw the ball in position, but to actually move the ball, we need an update function of some kind. Add the following code at the bottom of your JavaScript file, to add an `update()` method to the `Ball()`'s `prototype`:
+```
+Ball.prototype.update = function() {
+    if ((this.x + this.size) >= width) {
+        this.velX = -(this.velX);
+    }
+
+    if ((this.x - this.size) <= 0) {
+        this.velX = -(this.velX);
+    }
+
+    if ((this.y + this.size) >= height) {
+        this.velY = -(this.velY);
+    }
+
+    if ((this.y - this.size) <= 0) {
+        this.velY = -(this.velY);
+    }
+
+    this.x += this.velX;
+    this.y += this.velY;
+}
+```
+The first four parts of the function check whether the ball has reached the edge of the canvas. If it has, we reverse the polarity of the relevant velocity to make the ball travel in the opposite direction. So, for example, if the ball was traveling upwards (positive `velY`), then the vertical velocity is changed so that it starts to travel downwards instead (negative `velY`).
+
+In the four cases, we are checking to see:
+
+* if the `x` coordinate is greater than the width of the canvas (the ball is going off the right edge).
+* if the `x` coordinate is smaller than 0 (the ball is going off the left edge).
+* if the `y` coordinate is greater than the height of the canvas (the ball is going off the bottom edge).
+* if the `y` coordinate is smaller than 0 (the ball is going off the top edge).
+
+In each ase, we include the `size` of the ball in the calculation because the `x`/`y` coordinates are in the center of the ball, but we want the edge of the ball to bounce off the perimeter -- we don't want the ball to go halfway off the screen before it starts to bounce back.
+
+The last two lines add the `valX` value to the `x` coordinate, and the `velY` value to the `y` coordinate -- the ball is in effect moved each time this method is called.
+
+This will do for now; let's get on with some animation!
+
+## Animating the ball
