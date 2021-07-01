@@ -147,3 +147,53 @@ The last two lines add the `valX` value to the `x` coordinate, and the `velY` va
 This will do for now; let's get on with some animation!
 
 ## Animating the ball
+
+Now let's make this fun. We are going to start adding balls to the canvas, and animating them.
+
+1. First, we need to create somewhere to store all our balls and then populate it. The following will do this job -- add it to the bottom of your code now:
+```
+let balls = [];
+
+while (balls.length < 25) {
+    let size = random(10,20);
+    let ball = new Ball(
+        // ball position always drawn at least one ball width
+        // away from the edge of the canvas, to avoid drawing errors
+        random(0 + size,width - size),
+        random(0 + size,height - size),
+        random(-7,7),
+        random(-7,7),
+        'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+        size
+    );
+
+    balls.push(ball);
+}
+```
+The `while` loop creates a new instance of our `Ball()` using random values generated with our `random()` function, then `push()`es it onto the end of our balls array, but only while the number of balls in the array is less than 25. So when we have 25 balls on screen, no more balls appear. You can try varying the number in `balls.length < 25` to get more or fewer balls on screen. Depnding on how much processing power your computer/browser has, specifying several thousand balls might slow down the animation rather a lot!
+
+2. Add the following to the bottom of your code now:
+```
+function loop() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    ctx.fillRect(0, 0, width, height);
+
+    for (let i = 0; i < balls.length; i++) {
+        balls[i].draw();
+        balls[i].update();
+    }
+
+    requestAnimationFrame(loop);
+}
+```
+All programs that animate things generally involve an animation loop, which serves to update the information in the program and then render the resulting view on each frame of the animation; this is the basis for most games and other such programs. Our `loop()` function does the following:
+
+* Sets the canvas fill color to semi-transparent black, then draws a rectangle of the color across the whole width and height of the canvas, using `fillRect()` (the four parameters provide a start coordinate, and a width and height for the rectangle drawn). This serves to cover up the previous frame's drawing before the next one is drawn. If you don't do this, you'll just see long snakes worming their way around canvas instead of balls moving! The color of the fill is set to semi-transparent, `rgba(0,0,0,0.25)`, to allow the previous few frames to shine through slightly, producing the little trails behind the balls as they move. If you changed 0.25 to 1, you won't see them ay all anymore. Try varying this number to see the effect it has.
+* Loops through all the balls in the `balls` array, and runs each ball's `draw()` and `update()` function to draw each one on the screen, then do the necessary updates to position and velocity in time for the next frame.
+* Runs the function again using the `requestAnimationFrame()` method -- when this method is repeatedly run and passed the same function name, it runs that function a set number of times per second to create a smooth animation. This is generally done recursively -- which means that the function is calling itself every time it runs, so it runs over and over again.
+
+3. Last but not least, add the following line to the bottom of your code -- we need to call the function once to get the animation started.
+```
+loop();
+```
+That's it for basics -- try saving and refreshing to test your bouncing balls out!
