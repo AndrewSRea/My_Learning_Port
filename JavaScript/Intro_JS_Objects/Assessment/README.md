@@ -66,3 +66,29 @@ At this point, try reloading the code -- it should work just the same as it did 
 
 ### Defining `EvilCircle()`
 
+Now it's time to meet the bad guy -- the `EvilCircle()`! Our game is only going to involve one evil circle, but we are still going to define it using a constructor that inherits from `Shape()` to give you some practice. You might want to add another circle to the app later on that can be controlled by another player, or have several computer-controlled evil circles. You're probably not going to take over the world with a single evil circle, but it will do for this assessment.
+
+The `EvilCircle()` constructor should inherit `x`, `y`, `velX`, `velY`, and `exists` from `Shape()`, but `velX` and `velY` should always equal 20.
+
+You should do something like `Shape.call(this, x, y, 20, 20, exists);`
+
+It should also define its own properties, as follows:
+
+* `color` -- `white`
+* `size` -- `10`
+
+Again, remember to define your inherited properties as parameters in the constructor, and set the `prototype` and `constructor` properties correctly.
+
+### Defining `EvilCircle()`'s methods
+
+`EvilCircle()` should have four methods, as described below.
+
+#### `draw()`
+
+This method has the same purpose as `Ball()`'s `draw()` method: It draws the object instance on the canvas. It will work in a very similar way, so you can start by copying the `Ball.prototype.draw` definition. You should then make the following changes:
+
+* We want the evil circle to not be filled in, but rather have an outer line (stroke). You can achieve this by updating [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) and [`fill()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill) to [`strokeStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle) and [`stroke()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeStyle).
+* We also want to make the stroke a bit thicker, so you can see the evil circle a bit more easily. This can be achieved by setting a value for [`lineWidth`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineWidth) somewhere after the [`beginPath()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath) call (3 will do).
+
+#### `checkBounds()`
+
