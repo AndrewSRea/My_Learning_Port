@@ -107,3 +107,20 @@ class Shape extends Ball {
         this.exists = exists;
     }
 }
+
+function EvilCircle(x, y, velX, velY, exists) {
+    Shape.call(this, x, y, velX, velY, exists);
+
+    this.velX = 20;
+    this.velY = 20;
+    this.color = 'white';
+    this.size = 10;
+}
+
+EvilCircle.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 3;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.stroke();
+}
