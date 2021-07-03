@@ -52,7 +52,7 @@ Ball.prototype.update = function() {
 
 Ball.prototype.collisionDetect = function() {
     for (let j = 0; j < balls.length; j++) {
-        if (!(this === balls[j])) {
+        if (!(this === balls[j]) && balls[j].exists) {
             const dx = this.x - balls[j].x;
             const dy = this.y - balls[j].y;
             const distance = Math.sqrt(dx * dx + dy * dy);
@@ -68,6 +68,7 @@ let balls = [];
 
 while (balls.length < 25) {
     let size = random(10,20);
+    let exists = true;
     let ball = new Ball(
         
         // ball position always drawn at least one ball width away from the edge of the canvas, to avoid drawing errors
@@ -77,7 +78,8 @@ while (balls.length < 25) {
         random(-7,7),
         random(-7,7),
         'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
-        size
+        size,
+        exists
     );
 
     balls.push(ball);
@@ -97,3 +99,11 @@ function loop() {
 }
 
 loop();
+
+class Shape extends Ball {
+    constructor(x, y, velX, velY, exists) {
+        super(x, y, velX, velY, color, size);
+
+        this.exists = exists;
+    }
+}
