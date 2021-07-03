@@ -131,3 +131,8 @@ This method will act in a very similar way to `Ball()`'s `collisionDetect()` met
 * In the outer `if` statement, you no longer need to check whether the current ball in the iteration is the same as the ball that is doing the checking -- because it is no longer a ball, it is the evil circle! Instead, you need to do a test to see if the ball being checked exists (with which property could you do this with?). If it doesn't exist, it has already been eaten by the evil circle, so there is no need to check it again.
 * In the inner `if` statement, you no longer want to make the objects change color when a collision is detected -- instead, you want to set any balls that collide with the evil circle to not exist any more (again, how do you think you'd do that?).
 
+### Bringing the evil circle into the program
+
+Now we've defined the evil circle, we need to actually make it appear in our scene. To do this, you need to make some changes to the `loop()` function.
+
+* First of all, create a new evil circle object instance (specifying the necessary parameters), then call its `setControls()` method. You only need to do these two things once, not on every iteration of the loop.
