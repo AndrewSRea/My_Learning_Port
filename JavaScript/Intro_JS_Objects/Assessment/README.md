@@ -26,3 +26,43 @@ The following screenshot gives you an idea of what the finished program should l
 ![Image of bouncing balls inside a browser window](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Adding_bouncing_balls_features/bouncing-evil-circle.png)
 
 To give you more of an idea, have a look at the [finished example](https://mdn.github.io/learning-area/javascript/oojs/assessment/). (No peeking at the source code!)
+
+## Steps to complete 
+
+The following sections describe what you need to do.
+
+### Creating our new objects
+
+First of all, change your existing `Ball()` constructor so that it becomes a `Shape()` constructor and add a new `Ball()` constructor:
+
+1. The `Shape()` constructor should define the `x`, `y`, `velX`, and `velY` properties in the same way as the `Ball()` constructor did originally, but not the `color` and `size` properties.
+2. It should also define a new property called `exists`, which is used to track whether the balls exist in the program (have not been eaten by the evil circle). This should be a Boolean (`true`/`false`).
+3. The `Ball()` constructor should inherit the `x`, `y`, `velX`, `velY`, and `exists` properties from the `Shape()` constructor.
+4. It should also define a `color` and `size` property, like the original `Ball()` constructor did.
+5. Remember to set the `Ball()` constructor's `prototype` and `constructor` appropriately.
+6. The `Ball` prototype's `collisionDetect()` method needs a small update. If the code were kept as-is, the `EvilCircle` would start eating the bouncing balls by setting the `exists` property to `false`. And that would reduce the number of balls involved in collision detection. A ball needs to be considered for collision detection only if the `exists` property is `true`. So, replace the existing `collisionDetect()` code with the following code:
+```
+Ball.prototype.collisionDetect = function() {
+    for (let j = 0; j < balls.length; j++) {
+        if (!(this === balls[j]) && balls[j].exists) {
+            const dx = this.x - balls[j].x;
+            const dy = this.y - balls[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < this.size + balls[j].size) {
+                balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
+            }
+        }
+    }
+}
+```
+As discussed above, the only addition is to check if the ball exists -- by using `balls[j].exists` in the `if` conditional.
+
+The ball `draw()` method and `update()` method definitions should be able to stay exactly the same as they were before.
+
+You also need to add a new parameter to the `new Ball() ( ... )` constructor call -- the `exists` parameter should be the 5th parameter, and should be given a value of `true`.
+
+At this point, try reloading the code -- it should work just the same as it did before, with our redesigned objects.
+
+### Defining `EvilCircle()`
+
