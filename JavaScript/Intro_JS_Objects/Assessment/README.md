@@ -92,3 +92,42 @@ This method has the same purpose as `Ball()`'s `draw()` method: It draws the obj
 
 #### `checkBounds()`
 
+This method will do the same thing as the first part of `Ball()`'s `update()` function -- look to see whether the evil circle is going to go off the edge of the screen, and stop it from doing so. Again, you can mostly just copy the `Ball.prototype.update` definition, but there are a few changes you should make:
+
+* Get rid of the last two lines -- we don't want to automatically update the evil circle's position on every frame, because we will be moving it in some other way, as you'll see below.
+* Inside the `if()` statements, if the tests return true, we don't want to update `velX`/`velY`; we want to instead change the value of `x`/`y` so the evil circle is bounced back onto the screen slightly. Adding or subtracting (as appropriate) the evil circle's `size` property would make sense.
+
+#### `setControls()`
+
+This method will add an `onkeydown` event listener to the `window` object so that when certain keyboard keys are pressed, we can move the evil circle around. The following code block should be put inside the method definition:
+```
+let _this = this;
+window.onkeydown = function(e) {
+    if (e.key === 'a') {
+        _this.x -= _this.velX;
+    } else if (e.key === 'd') {
+        _this.x += _this.velX;
+    } else if (e.key === 'w') {
+        _this.y -= _this.velY;
+    } else if (e.key === 's') {
+        _this.y += _this.velY;
+    }
+}
+```
+So when a key is pressed, the event object's [`key`]() property is consulted to see which key is pressed. If it is one of the four specified keys, then the evil circle will move left/right/up/down.
+
+For a bonus point, can you tell us why we've had to set `let _this = this;` in the position it is in? It is something to do with function scope.
+
+<hr>
+
+The only reason I can think of for setting the `_this` variable to equal `this` is because `this` was previously defined in the `Shape.call()` when we inherited the properties from `Shape` to create the `EvilCircle` and we don't want `this` here to refer to the `Shape` object, we want it to refer to the `EvilCircle` and these key commands within this particular code function.
+
+<hr>
+
+#### `collisionDetect()`
+
+This method will act in a very similar way to `Ball()`'s `collisionDetect()` method, so you can use a copy of that as the basis of this new method. But there are a couple of differences:
+
+* In the outer `if` statement, you no longer need to check whether the current ball in the iteration is the same as the ball that is doing the checking -- because it is no longer a ball, it is the evil circle! Instead, you need to do a test to see if the ball being checked exists (with which property could you do this with?). If it doesn't exist, it has already been eaten by the evil circle, so there is no need to check it again.
+* In the inner `if` statement, you no longer want to make the objects change color when a collision is detected -- instead, you want to set any balls that collide with the evil circle to not exist any more (again, how do you think you'd do that?).
+
