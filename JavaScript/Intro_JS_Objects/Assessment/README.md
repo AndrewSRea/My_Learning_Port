@@ -167,4 +167,8 @@ See my finished code for this Assessment [here](https://github.com/AndrewSRea/My
 
 <hr>
 
+I made so many mistakes with this Assessment that I may have to create another an alternate README in a subfolder just so I can review my code and the errors I made. See the review of my code in this subfolder [here]().
+
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Building_Practice#object-building-practice) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Assessment#adding-features-to-our-bouncing-balls-demo) - [[Next module: Asynchronous JavaScript]]()
