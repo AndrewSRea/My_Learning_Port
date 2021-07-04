@@ -13,14 +13,35 @@ function random(min, max) {
     return num;
 }
 
-function Ball(x, y, velX, velY, color, size) {
+function Shape(x, y, velX, velY, exists) {
     this.x = x;
     this.y = y;
     this.velX = velX;
     this.velY = velY;
+    this.exists = exists;
+}
+
+function Ball(x, y, velX, velY, exists, color, size) {
+    Shape.call(this, x, y, velX, velY, exists);
+
     this.color = color;
     this.size = size;
 }
+
+Ball.prototype = Object.create(Shape.prototype);
+
+Ball.prototype.constructor = Ball;
+
+/*
+    Well, this wasn't taught in the "Inheritance in JavaScript" article -- to define an Object's constructor as the line of code
+    just above. It was outlined as the block of code just below.
+*/
+
+// Object.defineProperty(Ball.prototype, 'constructor', {
+//     value: Ball,
+//     enumerable: false,
+//     writable: true
+// });
 
 Ball.prototype.draw = function() {
     ctx.beginPath();
@@ -52,7 +73,7 @@ Ball.prototype.update = function() {
 
 Ball.prototype.collisionDetect = function() {
     for (let j = 0; j < balls.length; j++) {
-        if (!(this === balls[j])) {
+        if (!(this === balls[j]) && balls[j].exists) {
             const dx = this.x - balls[j].x;
             const dy = this.y - balls[j].y;
             const distance = Math.sqrt(dx * dx + dy * dy);
@@ -68,6 +89,7 @@ let balls = [];
 
 while (balls.length < 25) {
     let size = random(10,20);
+    let exists = true;
     let ball = new Ball(
         
         // ball position always drawn at least one ball width away from the edge of the canvas, to avoid drawing errors
@@ -76,8 +98,9 @@ while (balls.length < 25) {
         random(0 + size,height - size),
         random(-7,7),
         random(-7,7),
+        exists,
         'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
-        size
+        size,
     );
 
     balls.push(ball);
