@@ -136,3 +136,35 @@ This method will act in a very similar way to `Ball()`'s `collisionDetect()` met
 Now we've defined the evil circle, we need to actually make it appear in our scene. To do this, you need to make some changes to the `loop()` function.
 
 * First of all, create a new evil circle object instance (specifying the necessary parameters), then call its `setControls()` method. You only need to do these two things once, not on every iteration of the loop.
+* At the point where you loop through every ball and call the `draw()`, `update()`, and `collisionDetect()` functions for each one, make it so that these functions are only called if the current ball exists.
+* Call the evil ball instance's `draw()`, `checkBounds()`, and `collisionDetect()` methods on every iteration of the loop.
+
+### Implementing the score counter
+
+To implement the score counter, follow the following steps:
+
+1. In your HTML file, add a [`<p>`]() element just below the [`<h1>`]() element containing the text "Ball count: ".
+2. In your CSS file, add the following rule at the bottom:
+```
+p {
+    position: absolute;
+    margin: 0;
+    top: 35px;
+    right: 5px;
+    color: #aaa;
+}
+```
+
+3. In your JavaScript, make the following updates:
+    - Create a variable that stores a reference to the paragraph.
+    - Keep a count of the number of balls on screen in some way.
+    - Increment the count and display the updated number of balls each time a ball is added to the scene.
+    - Decrement the count and display the updated number of balls each time the evil circle eats a ball (cause it not to exist).
+
+<hr>
+
+See my finished code for this Assessment [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Assessment/main.js), and see the finished product [here]().
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Building_Practice#object-building-practice) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Assessment#adding-features-to-our-bouncing-balls-demo) - [[Next module: Asynchronous JavaScript]]()
