@@ -120,3 +120,88 @@ function loop() {
 }
 
 loop();
+
+function EvilCircle(x, y, exists) {
+    Shape.call(this, x, y, 20, 20, exists);
+
+    this.color = 'white';
+    this.size = 10;
+}
+
+/* 
+    This was a tricky one that I just couldn't get to work, as I would take certain parameters out of the `EvilCircle` constructor
+    and try to define them within the function, or I would take out certain definitions within the function but then the parameters
+    would be unrecognized. And I knew that the `color` and `size` properties needed to be defined within the function but I thought
+    they also needed to be parameters in the `EvilCircle` constructor. 
+    To tell the truth, I don't completely understand how this block of code works.
+    Does the `Shape.call()` call the original `Shape` constructor above as we set the `velX` and `velY` properties to 20?
+    But then also, how does the `EvilCircle` constructor recognize the 'color' and 'size' parameters?
+*/
+
+// function EvilCircle(x, y, velX, velY, exists, color, size) {
+//     Shape.call(this, x, y, 20, 20, exists);
+
+//     this.velX = velX;
+//     this.velY = velY;
+//     this.color = 'white';
+//     this.size = size;
+// }
+
+EvilCircle.prototype = Object.create(Shape.prototype);
+
+EvilCircle.prototype.constructor = EvilCircle;
+
+EvilCircle.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 3;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+
+EvilCircle.prototype.checkBounds = function() {
+    if ((this.x + this.size) >= width) {
+        this.x = -(this.size);
+    }
+
+    if ((this.x - this.size) <= 0) {
+        this.x = -(this.size);
+    }
+
+    if ((this.y + this.size) >= height) {
+        this.y = -(this.size);
+    }
+
+    if ((this.y - this.size) <= 0) {
+        this.y = -(this.size);
+    }
+}
+
+EvilCircle.prototype.setControls = function() {
+    let _this = this;
+    window.onkeydown = function(e) {
+        if (e.key === 'a') {
+            _this.x -= _this.velX;
+        } else if (e.key === 'd') {
+            _this.x += _this.velX;
+        } else if (e.key === 'w') {
+            _this.y -= _this.velY;
+        } else if (e.key === 's') {
+            _this.y += _this.velY;
+        }
+    }
+}
+
+EvilCircle.prototype.collisionDetect = function() {
+    for (let j = 0; j < balls.length; j++) {
+        if (balls[j].exists) {
+            const dx = this.x - balls[j].x;
+            const dy = this.y - balls[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < this.size + balls[j].size) {
+                balls[j].exists = false;
+            }
+        }
+    }
+}
