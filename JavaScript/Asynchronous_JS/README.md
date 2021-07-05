@@ -30,4 +30,4 @@ To finish this module off, we'll consider the different coding techniques and fe
 
 ## See also
 
-* [Asynchronous Programming]() from the fantastic [Eloquent JavaScript]() online book by Marijn Haverbeke.
+* [Asynchronous Programming](https://eloquentjavascript.net/11_async.html) from the fantastic [Eloquent JavaScript](https://eloquentjavascript.net/) online book by Marijn Haverbeke.
