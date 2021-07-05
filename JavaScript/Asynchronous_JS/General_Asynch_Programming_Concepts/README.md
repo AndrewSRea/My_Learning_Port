@@ -16,7 +16,7 @@ Asynchronous techniques are very useful, particularly in web programming. When a
 
 Let's look at a couple of examples that show what we mean by blocking.
 
-In our [simple-sync.html]() example ([see it running live]()), we add a click event listener to a button so that when clicked, it runs a time-consuming operation (calculates 10 million dates, then logs the final ones to the console) and then adds a paragraph to the DOM:
+In our [simple-sync.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync.html) example ([see it running live]()), we add a click event listener to a button so that when clicked, it runs a time-consuming operation (calculates 10 million dates, then logs the final ones to the console) and then adds a paragraph to the DOM:
 ```
 const btn = document.querySelector('button');
 btn.addEventListener('click', ()  => {
@@ -40,3 +40,37 @@ When running the example, open your JavaScript console, then click the button --
 **Note**: The previous example is very unrealistic. You would never calculate 10 million dates on a real web app! It does, however, serve to give you the basic idea.
 
 <hr>
+
+In our second example, [simple-sync-ui-blocking.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync-ui-blocking.html) ([see it live]()), we simulate something slightly more realistic that you might come across on a real page. We block user interactivity with the rendering of the UI. In this example, we have two buttons:
+
+* A "Fill canvas" button that when clicked fills the available [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) with 1 million blue circles.
+* A "Click me for alert" button that when clicked shows an alert message.
+
+```
+function expensiveOperation() {
+    for (let i = 0; i < 10000000; i++) {
+        ctx.fillStyle = 'rgba(0,0,255, 0.2)';
+        ctx.beginPath();
+        ctx.arc(random(0, canvas.width), random(0, canvas.height), 10, degToRad(0), degToRad(360), false);
+        ctx.fill();
+    }
+}
+
+fillBtn.addEventListener('click', expensiveOperation);
+
+alertBtn.addEventListener('click', () => 
+    alert('You clicked me!');
+);
+```
+If you click the first button and then quickly click the second one, you'll see that the alert does not appear until the circles have finished being rendered. The first operation blocks the second one until it has finished running.
+
+<hr>
+
+**Note**: OK, in our case, it is ugly and we are faking the blocking effect, but this is a common problem that developers of real apps fight to mitigate all the time.
+
+<hr>
+
+Why is this? The answer is because JavaScript, generally speaking, is **single-threaded**. At this point, we need to introduce the concept of **threads**.
+
+## Threads
+
