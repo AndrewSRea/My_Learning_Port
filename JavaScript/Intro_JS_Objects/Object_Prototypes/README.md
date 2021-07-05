@@ -128,9 +128,9 @@ let myString = 'This is my string.`;
 
 <hr>
 
-**Note**: It is worth reading our more in-depth guide to "[Using prototypes in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#using_prototypes_in_javascript)", once you've made sense of this section and wish to know more. This section is intenionally simplified to make these concepts to make these concepts a little easier to understand when you first meet them.
+**Note**: It is worth reading our more in-depth guide to "[Using prototypes in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#using_prototypes_in_javascript)", once you've made sense of this section and wish to know more. This section is intentionally simplified to make these concepts to make these concepts a little easier to understand when you first meet them.
 
-(I will add a subfolder named **Using_Prototypes** to the overall **Intro_JS_Objects** folder. Follow this [link to that subfolder](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain), or click the "[Next page]" link at the bottom of this article.)
+(I will add a subfolder named **Using_Prototypes** to the overall **Intro_JS_Objects** folder. Follow this [link to that subfolder](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Using_Prototypes#inheritance-and-the-prototype-chain), or click the [Next page] link at the bottom of this article.)
 
 <hr>
 
