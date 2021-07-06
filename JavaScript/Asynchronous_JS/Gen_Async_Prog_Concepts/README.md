@@ -16,7 +16,7 @@ Asynchronous techniques are very useful, particularly in web programming. When a
 
 Let's look at a couple of examples that show what we mean by blocking.
 
-In our [simple-sync.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync.html) example ([see it running live]()), we add a click event listener to a button so that when clicked, it runs a time-consuming operation (calculates 10 million dates, then logs the final ones to the console) and then adds a paragraph to the DOM:
+In our [simple-sync.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync.html) example ([see it running live]()), we add a click event listener to a button so that when clicked, it runs a time-consuming operation (calculates 10 million dates, then logs the final ones to the console) and then adds a paragraph to the DOM:
 ```
 const btn = document.querySelector('button');
 btn.addEventListener('click', ()  => {
@@ -41,7 +41,7 @@ When running the example, open your JavaScript console, then click the button --
 
 <hr>
 
-In our second example, [simple-sync-ui-blocking.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync-ui-blocking.html) ([see it live]()), we simulate something slightly more realistic that you might come across on a real page. We block user interactivity with the rendering of the UI. In this example, we have two buttons:
+In our second example, [simple-sync-ui-blocking.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-ui-blocking.html) ([see it live]()), we simulate something slightly more realistic that you might come across on a real page. We block user interactivity with the rendering of the UI. In this example, we have two buttons:
 
 * A "Fill canvas" button that when clicked fills the available [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) with 1 million blue circles.
 * A "Click me for alert" button that when clicked shows an alert message.
@@ -97,7 +97,7 @@ After some time, JavaScript gained some tools to help with such problems. [Web w
   Main thread: Task A --> Task C
 Worker thread: Expensive task B
 ```
-With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync-worker.html) ([see it running live]()), again with your browser's JavaScript console open. This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
+With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html) ([see it running live]()), again with your browser's JavaScript console open. This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
 
 ## Asynchronous code
 
@@ -114,7 +114,7 @@ Worker thread: Task C ----------->   |        |
 ```
 In this case, let's say Task D makes use of the results of both Task B and Task C. If we can guarantee that these results will both be available at the same time, then we might be OK, but this is unlikely. If Task D tries to run when one of its inputs is not yet available, it will throw an error.
 
-To fix such problems, browsers allow us to run certain operations asynchronously. Features like [Promises]() allow you to set an operation running (e.g. the fetching of an image from the server), and then wait until the result has returned before running another operation:
+To fix such problems, browsers allow us to run certain operations asynchronously. Features like [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) allow you to set an operation running (e.g. the fetching of an image from the server), and then wait until the result has returned before running another operation:
 ```
 Main thread: Task A                   Task B
     Promise:      |__async operation__|
