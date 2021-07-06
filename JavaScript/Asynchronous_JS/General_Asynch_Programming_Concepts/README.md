@@ -74,3 +74,27 @@ Why is this? The answer is because JavaScript, generally speaking, is **single-t
 
 ## Threads
 
+A **thread** is basically a single process that a program can use to complete tasks. Each thread can only do a single task at once:
+```
+Task A --> Task B --> Task C
+```
+Each task will be run sequentially; a task has to complete before the next one can be started.
+
+As we said earlier, many computers now have multiple cores, so can do multiple things at once. Programming languages that can support multiple threads can use multiple cores to complete multiple tasks simultaneously:
+```
+Thread 1: Task A --> Task B
+Thread 2: Task C --> Task D
+```
+
+### JavaScript is single-threaded
+
+JavaScript is traditionally single-threaded. Even with multiple cores, you could only get it to run tasks on a single thread, called the **main thread**. Our example from above is run like this:
+```
+Main thread: Render circle to canvas --> Display alert()
+```
+After some time, JavaScript gained some tools to help with such problems. [Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) allow you to send some of the JavaScript processing off to a separate thread, called a worker so that you can run multiple JavaScript chunks simultaneously. You'd generally use a worker to run expensive processes off the main thread so that user interaction is not blocked.
+```
+  Main thread: Task A --> Task C
+Worker thread: Expensive task B
+```
+With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync-worker.html) ([see it running live]()), again with your browser's JavaScript console open. This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
