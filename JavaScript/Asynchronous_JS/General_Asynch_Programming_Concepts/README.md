@@ -98,3 +98,35 @@ After some time, JavaScript gained some tools to help with such problems. [Web w
 Worker thread: Expensive task B
 ```
 With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/simple-sync-worker.html) ([see it running live]()), again with your browser's JavaScript console open. This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
+
+## Asynchronous code
+
+Web workers are pretty useful, but they do have their limitations. A major one is they are not able to access the [DOM](https://developer.mozilla.org/en-US/docs/Glossary/DOM) -- you can't get a worker to directly do anything to update the UI. We couldn't render our 1 million blue circles inside our worker; it can basically just do the number crunching.
+
+The second problem is that although code run in a worker is not blocking, it is still basically synchronous. This becomes a problem when a function relies on the results of multiple previous processes to function. Consider the following thread diagrams:
+```
+Main thread: Task A --> Task B
+```
+In this case, let's say Task A is doing something like fetching an image form the server and Task B then does something to the image like applying a filter to it. If you start Task A running and then immediately try to run Task B, you'll get an error, because the image won't be available yet. 
+```
+  Main thread: Task A --> Task B --> | Task D |
+Worker thread: Task C ----------->   |        |
+```
+In this case, let's say Task D makes use of the results of both Task B and Task C. If we can guarantee that these results will both be available at the same time, then we might be OK, but this is unlikely. If Task D tries to run when one of its inputs is not yet available, it will throw an error.
+
+To fix such problems, browsers allow us to run certain operations asynchronously. Features like [Promises]() allow you to set an operation running (e.g. the fetching of an image from the server), and then wait until the result has returned before running another operation:
+```
+Main thread: Task A                   Task B
+    Promise:      |__async operation__|
+```
+Since the operation is happening somewhere else, the main thread is not blocked while the async operation is being processed.
+
+We'll start to look at how we can write asynchronous code in the next article. Exciting stuff, huh? Keep reading!
+
+## Conclusion
+
+Modern software design increasingly revolves around using asynchronous programming, to allow programs to do more than one thing at a time. As you use newer and more powerful APIs, you'll find more cases where the only way to do things is asynchronously. It used to be hard to write asynchronous code. It still takes getting used to, but it's gotten a lot easier. In the rest of this module, we'll explore further why asynchronous code matters and how to design code that avoids some of the problems described above.
+
+<hr>
+
+[[Back to the Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS#asynchronous-javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/General_Asynch_Programming_Concepts) - [[Next page]]()
