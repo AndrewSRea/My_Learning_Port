@@ -35,3 +35,20 @@ So in the example above, after you've clicked the button, the paragraph won't ap
 **Note**: It is important to remember that [`alert()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert), while being very useful for demonstrating a synchronous blocking operation, is terrible for use in real world applications.
 
 <hr>
+
+## Asynchronous JavaScript
+
+For reasons illustrated earlier (e.g., related to blocking), many Web API features now use asynchronous code to run, especially those that access or fetch some kind of resource from an external device, such as fetching a file from the network, accessing a database and returning data from it, accessing a video stream from a web cam, or broadcasting the display to a VR headset.
+
+Why is this difficult to get to work using synchronous code? Let's look at a quick example. When you fetch an image from a server, you can't return the result immediately. That means that the following (pseudocode) wouldn't work:
+```
+let response = fetch('myImage.png');   // fetch is asynchronous
+let blob = response.blob();   
+// display your image blob in the UI somehow
+```
+That's because you don't know how long the image will take to download, so when you come to run the second line, it will throw an error (possibly intermittently, possibly every time) because the `response` is not yet available. Instead, you need your code to wait until the `response` is returned before it tries to do anything else to it.
+
+There are two main types of asynchronous code styles you'll come across in JavaScript code, old-style callbacks and newer promise-style code. In the below sections, we'll review each of these in turn.
+
+## Async callbacks
+
