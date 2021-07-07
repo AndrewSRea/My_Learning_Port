@@ -195,3 +195,24 @@ button.addEventListener('click', () => {
 
 console.log("all done");
 ```
+This is very similar in behavior -- the first and third `console.log()` messages will be shown immediately, but the second one is blocked from running until someone clicks the mouse button. The previous example works in the same way except that in that case, the second message is blocked on the promise chain fetching a resource, then displaying it on the screen rather than a click.
+
+In a less trivial code example, this kind of setup could cause a problem -- you can't include an async code block that returns a result, which you then rely on later in a sync code block. You just can't guarantee that the async function will return before the browser has processed the sync block.
+
+To see this in action, try taking a local copy of [our example](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/introducing/async-sync.html), and changing the fourth `console.log()` call to the following:
+```
+console.log('All done! ' + image.src + 'displayed.');
+```
+You should now get an error in your console instead of the third message:
+```
+TypeError: image is undefined; can't access its "src" property
+```
+This is because at the time the browser tries to run the third `console.log()` statement, the `fetch()` block has not finished running so the `image` variable has not been given a value.
+
+<hr>
+
+**Note**: For security reasons, you can't `fetch()` files from your local filesystem (or run other such operations locally); to run the above example locally, you'll have to run the example through a [local webserver](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
+
+(I will set up a subfolder within this folder named [Setup_Local_Server]() with a README with information about how to set up your own local testing server.)
+
+<hr>
