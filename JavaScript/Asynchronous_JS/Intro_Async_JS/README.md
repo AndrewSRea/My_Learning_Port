@@ -142,3 +142,56 @@ This concept can take practice to get used to; it feels a little like [Schrödin
 ### The event queue
 
 Async operations like promises are put into an **event queue**, which runs after the main thread has finished processing so they they *do not block* subsequent JavaScript code from running. The queued operations will complete as soon as possible, then return their results to the JavaScript environment.
+
+### Promises versus callbacks
+
+Promises have some similarities to old-style callbacks. They are essentially a returned object to which you attach callback functions, rather than having to pass callbacks into a function.
+
+However, promises are specifically made for handling async operations, and have many advantages over old-style callbacks:
+
+* You can chain multiple async operations together using multiple `.then()` operations, passing the result of one into the next one as an input. This is much harder to do with callbacks, which often ends up with a messy "pyramid of doom" (also known as [callback hell](http://callbackhell.com/)).
+* Promise callbacks are always called in the strict order they are placed in the event queue.
+* Error handling is much better -- all errors are handled by a single `.catch()` block at the end of the block, rather than being individually handled in each level of the "pyramid".
+* Promises avoid inversion of control, unlike old-style callbacks, which lose full control of how the function will be executed when passing a callback to a third-party library.
+
+## The nature of asynchronous code
+
+Let's explore an example that further illustrates the nature of async code, showing what can happen when we are not fully aware of code execution order and the problems of trying to treat asynchronous code like synchronous code. The following example is fairly similar to what we've seen before ([see it live](), and [the source]()). One difference is that we've included a number of [`console.log()`]() statements to illustrate an order that you might think the code would execute in.
+```
+console.log('Starting');
+let image;
+
+fetch('coffee.jpg).then((response) => {
+    console.log('It worked :)')
+    return response.blob();
+}).then((myBlob) => {
+    let objectURL = URL.createObjectURL(myBlob);
+    image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+}).catch((error) => {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+});
+
+console.log('All done!');
+```
+The browser will begin executing the code, see the first `console.log()` statement (`Starting`) and execute it, and then create an `image` variable.
+
+It will then move to the next line and begin executing the `fetch()` block but, because `fetch()` executes asynchronously without blocking, code execution continues after the promise-related code, thereby reaching the final `console.log()` statement (`All done!`) and outputting it to the console.
+
+Only once the `fetch()` block has completely finished running and delivering its result through the `.then()` blocks will we finally see the second `console.log()` message (`It worked :)`) appear. So the messages have appeared in a different order to what you might expect:
+
+* `Starting`
+* `All done!`
+* `It worked :)`
+
+If this confuses you, then consider the following smaller example:
+```
+console.log("registering click handler");
+
+button.addEventListener('click', () => {
+    console.log("get click");
+});
+
+console.log("all done");
+```
