@@ -68,7 +68,7 @@ The first parameter is the type of event to be listened for, and the second para
 
 When we pass a callback function as an argument to another function, we are only passing the function's reference as an argument, i.e. the callback function is **not** executed immediately. It is "called back" (hence the name) asynchronously somewhere inside the containing function's body. The containing function is responsible for executing the callback function when the time comes.
 
-You can write your own function containing a callback easily enough. Let's look at another example that loads a resource via the [`XMLHttpRequest` API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ([run it live](), and [see the source]()):
+You can write your own function containing a callback easily enough. Let's look at another example that loads a resource via the [`XMLHttpRequest` API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ([run it live](), and [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/xhr-async-callback.html)):
 ```
 function loadAsset(url, type, callback) {
     let xhr = new XMLHttpRequest();
@@ -91,4 +91,16 @@ function displayImage(blob) {
 }
 
 loadAsset('coffee.jpg', 'blob', displayImage);
+```
+Here we create a `displayImage()` function that represents a blob passed to it as an object URL, then creates an image to display the URL in, appending it to the document's `<body>`. However, we then create a `loadAsset()` function that takes a callback as a parameter, along with a URL to fetch and a content type. It uses `XMLHttpRequest` (often abbreviated to "XHR") to fetch the resource at the given URL, then pass the response to the callback to do something with. In this case, the callback is waiting on the XHR call to finish downloading the resource (using the [`onload`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequestEventTarget/onload) event handler) before it passes it to the callback.
+
+Callbacks are versatile -- not only do they allow you to control the order in which functions are run and what data is passed between them, they also allow you to pass data to different functions depending on circumstance. So you could have different actions to run on the response downloaded, such as `processJSON()`, `displayText()`, etc.
+
+Note that not all callbacks are async -- some run synchronously. An example is when we use [`Array.prototype.forEach()`]() to loop through the items in an array ([see it live](), and [the source]()):
+```
+const gods = ['Apollo', 'Artemis', 'Ares', 'Zeus'];
+
+gods.forEach(function(eachName, index) {
+    console.log(index + '. ' + eachName);
+});
 ```
