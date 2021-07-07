@@ -52,3 +52,43 @@ There are two main types of asynchronous code styles you'll come across in JavaS
 
 ## Async callbacks
 
+Async callbacks are functions that are specified as arguments when calling a function which will start executing code in the background. When the background code finishes running, it calls the callback function to let you know the work is done, or let you know that something of interest has happened. Using callbacks is slightly old-fashioned now, but you'll still see them in use in a number of older-but-still-commonly-used APIs.
+
+An example of of an async callback is the second parameter of the [`addEventListener()`]() method (as we saw in action above):
+```
+btn.addEventListener('click', => {
+    alert('You clicked me!');
+
+    let pElem = document.createElement('p');
+    pElem.textContent = 'This is a newly-added paragraph.';
+    document.body.appendChild(pElem);
+});
+```
+The first parameter is the type of event to be listened for, and the second parameter is a callback function that is invoked when the event is fired.
+
+When we pass a callback function as an argument to another function, we are only passing the function's reference as an argument, i.e. the callback function is **not** executed immediately. It is "called back" (hence the name) asynchronously somewhere inside the containing function's body. The containing function is responsible for executing the callback function when the time comes.
+
+You can write your own function containing a callback easily enough. Let's look at another example that loads a resource via the [`XMLHttpRequest` API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ([run it live](), and [see the source]()):
+```
+function loadAsset(url, type, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = type;
+
+    xhr.onload = function() {
+        callback(xhr.response);
+    };
+
+    xhr.send();
+}
+
+function displayImage(blob) {
+    let objectURL = URL.createObjectURL(blob);
+
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+}
+
+loadAsset('coffee.jpg', 'blob', displayImage);
+```
