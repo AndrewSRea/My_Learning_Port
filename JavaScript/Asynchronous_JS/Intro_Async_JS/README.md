@@ -32,6 +32,6 @@ So in the example above, after you've clicked the button, the paragraph won't ap
 
 <hr>
 
-**Note**: It is important to remember that [`alert()`](), while being very useful for demonstrating a synchronous blocking operation, is terrible for use in real world applications.
+**Note**: It is important to remember that [`alert()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert), while being very useful for demonstrating a synchronous blocking operation, is terrible for use in real world applications.
 
 <hr>
