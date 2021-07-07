@@ -4,7 +4,7 @@ In this article, we briefly recap the problems associated with synchronous JavaS
 
 ## Synchronous JavaScript
 
-To allow us to understand what **[aynschronous](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous)** JavaScript is, we ought to start off by making sure we understand what **[synchronous](https://developer.mozilla.org/en-US/docs/Glossary/Synchronous)** JavaScript is. This section recaps some of the information we saw in the previous article.
+To allow us to understand what **[asynchronous](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous)** JavaScript is, we ought to start off by making sure we understand what **[synchronous](https://developer.mozilla.org/en-US/docs/Glossary/Synchronous)** JavaScript is. This section recaps some of the information we saw in the previous article.
 
 A lot of the functionality we have looked at in previous learning area modules is synchronous -- you run some code, and the result is returned as soon as the browser can do so. Let's look at a simple example ([see it live here](), and [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/basic-function.html)):
 ```
