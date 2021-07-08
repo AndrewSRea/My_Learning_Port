@@ -10,14 +10,14 @@ These functions are:
 
 **[`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)**
 
-    Execute a specified block of code once after a specified time has elapsed.
+Execute a specified block of code once after a specified time has elapsed.
 
 **[`setnterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)**
 
-    Execute a specified block of code repeatedly with a fixed time delay between each call.
+Execute a specified block of code repeatedly with a fixed time delay between each call.
 
 **[`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)**
 
-    The modern version of `setInterval()`. Executes a specified block of code before the browser next repaints the display, allowing an animation to be run at a suitable framerate regardless of the environment it is being run in.
+The modern version of `setInterval()`. Executes a specified block of code before the browser next repaints the display, allowing an animation to be run at a suitable framerate regardless of the environment it is being run in.
 
 The asynchronous code set up by these functions runs on the main thread (after their specified timer has elapsed).
