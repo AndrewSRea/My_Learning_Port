@@ -213,6 +213,24 @@ This is because at the time the browser tries to run the third `console.log()` s
 
 **Note**: For security reasons, you can't `fetch()` files from your local filesystem (or run other such operations locally); to run the above example locally, you'll have to run the example through a [local webserver](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
 
-(I will set up a subfolder within this folder named [Setup_Local_Server]() with a README with information about how to set up your own local testing server.)
+(I will set up a subfolder within this folder named [Setup_Local_Server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server) with a README with information about how to set up your own local testing server.)
 
 <hr>
+
+## Active learning: make it all async!
+
+To fix the problematic `fetch()` example and make the three `console.log()` statements appear in the desired order, you could make the third `console.log()` statement run async as well. This can be done by moving it inside another `.then()` block chained onto the end of the second one, or by moving it inside the second `then()` block. Try fixing this now.
+
+## Conclusion
+
+In its most basic form, JavaScript is a synchronous, blocking, single-threaded language, in which only one operation can be in progress at a time. But web browsers define functions and APIs that allow us to register functions that should not be executed synchronously, and should instead be invoked asynchronously when some kind of event occurs (the passage of time, the user's interaction with the mouse, or the arrival of data over the network, for example). This means that you can let your code do several things at the same time without stopping or blocking your main thread.
+
+Whether we want to run code synchronously or asynchronously will depend on what we're trying to do.
+
+There are times when we want things to load and happen right away. For example, when applying some user-defined styles to a webpage, you'll want the styles to be applied as soon as possible.
+
+If we're running an operation that takes time, however, like querying a database and using the results to populate templates, it is better to push this off the main thread and complete the task asynchronously. Over time, you'll learn when it makes more sense to choose an asynchronous technique over a synchronous one.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts#general-asynchronous-programming-concepts) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS#introducing-asynchronous-javascript) - [[Next page]]()
