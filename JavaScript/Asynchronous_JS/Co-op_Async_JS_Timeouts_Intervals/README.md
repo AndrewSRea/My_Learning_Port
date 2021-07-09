@@ -36,7 +36,7 @@ As a consequence, code like `setTimeout(fn, 0)` will execute as soon as the stac
 
 <hr>
 
-In the following example, the browser will wait two seconds before executing the anonymous function, then will display the alert message ([see it running live](), and [see the source code]()):
+In the following example, the browser will wait two seconds before executing the anonymous function, then will display the alert message ([see it running live](), and [see the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/simple-settimeout.html)):
 ```
 let myGreeting = setTimeout(() => {
     alert('Hello, Mr. Universe!');
@@ -56,3 +56,32 @@ function sayHi() {
 
 let myGreeting = setTimeout(sayHi, 2000);
 ```
+That can be useful if you have a function that needs to be called both from a timeout and in response to an event, for example. But it can also just help keep your code tidy, especially if the timeout callback is more than a few lines of code.
+
+`setTimeout()` returns an identifier value that can be used to refer to the timeout later, such as when you want to stop it. See [Clearing timeouts]() (below) to learn how to do that.
+
+### Passing parameters to a setTimeout() function
+
+Any parameters that you want to pass to the function being run inside the `setTimeout()` must be passed to it as additional parameters at the end of the list.
+
+For example, you could refactor the previous function so that it will say hi to whatever person's name is passed to it:
+```
+function sayHi(who) {
+    alert(`Hello ${who}!`);
+}
+```
+Now you can pass the name of the person into the `setTimeout()` call as a third parameter:
+```
+let myGreeting = setTimeout(sayHi, 2000, 'Mr. Universe');
+```
+
+### Clearing timeouts
+
+Finally, if a timeout has been created, you can cancel it before the specified time has elapsed by calling [`clearTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout), passing it the identifier of the `setTimeout()` call as a parameter. So to cancel our above timeout, you'd do this:
+```
+clearTimeout(myGreeting);
+```
+
+<hr>
+
+**Note**: See [greeter-app.html]() for a slightly more involved demo that allows you to set the name of the person to say hello to in a form, and cancel the greeting using a separate button ([see the source code also]()).
