@@ -137,3 +137,61 @@ Here's a few hints for you:
 * You'll want to include a leading zero on your display values if the amount is less than `10`, so it looks more like a traditional clock/watch.
 * To pause the stopwatch, you'll want to clear the interval. To reset it, you'll want to set the counter back to `0`, clear the interval, and then immediately update the display.
 * You probably ought to disable the start button after pressing it once, and enable it again after you've stopped/reset it. Otherwise multiple presses of the start button will apply multiple `setInterval()`s to the clock, leading to wrong behavior.
+
+## Things to keep in mind about setTimeout() and setInterval()
+
+There are a few things to keep in mind when working with `setTimeout()` and `setInterval()`. Let's review these now.
+
+### Recursive timeouts
+
+There is another way to use `setTimeout()`: you can call it recursively to run the same code repeatedly, instead of using `setInterval()`.
+
+The below example uses a recursive `setTimeout()` to run the passed function every `100` milliseconds:
+```
+let i = 1;
+
+setTimeout(function run() {
+    console.log(i);
+    i++;
+    setTimeout(run, 100);
+}, 100);
+```
+Compare the above example to the following one -- this uses `setInterval()` to accomplish the same effect:
+```
+let i = 1;
+
+setInterval(function run() {
+    console.log(i);
+    i++;
+}, 100);
+```
+
+### How do recursive `setTimeout()` and `setInterval()` differ?
+
+The difference between the two versions of the above code is a subtle one.
+
+* Recursive `setTimeout()` guarantees the given delay between the code execution completion and the next call. The delay for the next execution will start counting only after the code has finished running, therefore *excluding* the time taken to run the code. In this example, the `100` milliseconds will be the delay between the `run` code finishing, and the next `run` call.
+* The example using `setInterval()` does things somewhat differently. The interval you chose *includes* the time taken to execute the code you want to run in. Let's say that the code takes `40` milliseconds to run -- the interval then ends up being only `60` milliseconds.
+* When using `setTimeout()` recursively, each iteration can calculate a different delay before running the next iteration. In other words, the value of the second parameter can specify a different time in milliseconds to wait before running the code again.
+
+When your code has the potential to take longer to run than the time interval you've assigned, it's better to use recursive `setTimeout()` -- this will keep the time interval constant between executions regardless of how long the code takes to execute, and you won't get errors.
+
+### Immediate timeouts
+
+Using `0` as the value for `setTimeout()` schedules the execution of the specified callback function as soon as possible but only after the main code thread has been run.
+
+For instance, the code below ([see it live](https://mdn.github.io/learning-area/javascript/asynchronous/loops-and-intervals/zero-settimeout.html)) outputs an alert containing `"Hello"`, then an alert containing `"World"` as soon as you click OK on the first alert.
+```
+setTimeout(function() {
+    alert('World');
+}, 0);
+
+alert('Hello');
+```
+This can be useful in cases where you want to set a block of code to run as soon as all of the main thread has finished running -- put it on the async event loop, so it will run straight afterwards.
+
+### Clearing with clearTimeout() or clearInterval()
+
+`clearTimeout()` and `clearInterval()` both use the same list of entries to clear from. Interestingly enough, this means that you can use either method to clear a `setTimeout()` or `setInterval()`.
+
+For consistency, you should use `clearTimeout()` to clear `setTimeout()` entries and `clearInterval()` to clear `setInterval()` entries. This will help to avoid confusion.
