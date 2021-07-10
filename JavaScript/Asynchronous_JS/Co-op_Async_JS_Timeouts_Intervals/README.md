@@ -103,3 +103,28 @@ function displayTime() {
 const createClock = setInterval(displayTime, 1000);
 ```
 Just like `setTimeout()`, `setInterval()` returns an identifying value you can use later when you need to clear the interval.
+
+### Clearing intervals
+
+`setInterval()` keeps running a task forever, unless you do something about it. You'll probably want a way to stop such tasks, otherwise you may end up getting errors when the browser can't complete any further versions of the task, or if the animation being handled by the task has finished. You can do this the same way you stop timeouts -- by passing the identifier returned by the `setInterval()` call to the [`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval) function:
+```
+const myInterval = setInterval(myFunction, 2000);
+
+clearInterval(myInterval);
+```
+
+### Active learning: Creating your own stopwatch!
+
+With this said, we've got a challenge for you. Take a copy of our [setInterval-clock.html]() example, and modify it to create your own simple stopwatch.
+
+You need to display a time as before, but in this example, you need:
+
+* A "Start" button to start the stopwatch running.
+* A "Stop" button to pause/stop it.
+* A "Reset button to reset the time back to `0`.
+* The time display to show the number of second elapsed, rather than the actual time.
+
+Here's a few hinnts for you:
+
+* You can structure and style the button markup however you like; just make sure you use semantic HTML, with hooks to allow you to grab the button references using JavaScript.
+* You probably want to create a variable
