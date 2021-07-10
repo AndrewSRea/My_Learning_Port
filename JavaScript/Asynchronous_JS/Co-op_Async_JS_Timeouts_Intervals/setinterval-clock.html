@@ -30,7 +30,7 @@
         </style>
     </head>
     <body>
-        <p class="clock"></p>
+        <p class="watch"></p>
         <div>
             <button class="start">Start</button>
             <button class="stop">Stop</button>
@@ -38,9 +38,12 @@
         </div>
 
         <script>
+            const startBtn = document.querySelector('.start');
+            const stopBtn = document.querySelector('.stop');
+            const resetBtn = document.querySelector('.reset');
             let stopwatchTime = 0;
 
-            start.addEventListener('click', function() {
+            startBtn.addEventListener('click', function() {
                 stopwatchTime = Date.now();
                 Date.now() - stopwatchTime;
                 document.getElementById('start').disabled = 'true';
@@ -49,7 +52,7 @@
             function displayTime() {
                 let date = new Date();
                 let time = date.toLocaleTimeString();
-                document.querySelector('.clock').textContent = time;
+                document.querySelector('.watch').textContent = time;
             }
 
             displayTime();
