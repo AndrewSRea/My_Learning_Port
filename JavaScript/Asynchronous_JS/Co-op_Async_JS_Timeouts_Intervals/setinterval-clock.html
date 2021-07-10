@@ -3,14 +3,39 @@
     <head>
         <meta charset="utf-8">
         <title>Simple setInterval clock</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
         <style>
             p {
-                font-family: sans-serif;
+                font-family: 'Play', sans-serif;
+                font-size: 40px;
+                width: 25%;
+                height: 100px;
+                background-color: black;
+                color: white;
+                margin: 20px 0 20px 20px;
+                padding: 35px 0 0 0;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            div {
+                width: 25%;
+                margin: 0 0 0 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
             }
         </style>
     </head>
     <body>
         <p class="clock"></p>
+        <div>
+            <button class="startTime">Start</button>
+            <button class="stopTime">Stop</button>
+            <button class="resetTime">Reset</button>
+        </div>
 
         <script>
             function displayTime() {
