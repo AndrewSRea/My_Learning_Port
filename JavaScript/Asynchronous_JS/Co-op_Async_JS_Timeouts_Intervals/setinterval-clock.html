@@ -32,12 +32,20 @@
     <body>
         <p class="clock"></p>
         <div>
-            <button class="startTime">Start</button>
-            <button class="stopTime">Stop</button>
-            <button class="resetTime">Reset</button>
+            <button class="start">Start</button>
+            <button class="stop">Stop</button>
+            <button class="reset">Reset</button>
         </div>
 
         <script>
+            let stopwatchTime = 0;
+
+            start.addEventListener('click', function() {
+                stopwatchTime = Date.now();
+                Date.now() - stopwatchTime;
+                document.getElementById('start').disabled = 'true';
+            })
+            
             function displayTime() {
                 let date = new Date();
                 let time = date.toLocaleTimeString();
