@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>cancelAnimationFrame() Example</title>
+        <style>
+            html {
+                background-color: white;
+                height: 100%;
+            }
+
+            body {
+                height: inherit;
+                background-color: red;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            div {
+                display: inline-block;
+                font-size: 10rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div>↻</div>
+
+        <script>
+            const spinner = document.querySelector('div');
+            let rotateCount = 0;
+            let startTime = null;
+            let rAF;
+
+            function draw(timestamp) {
+                if (!startTime) {
+                    startTime = timestamp;
+                }
+
+                rotateCount = (timestamp - startTime) / 3;
+
+                rotateCount %= 360;
+
+                spinner.style.transform = `rotate(${rotateCount}deg)`;
+
+                rAF = requestAnimationFrame(draw);
+            }
+
+            draw();
+
+        </script>
+    </body>
+</html>
