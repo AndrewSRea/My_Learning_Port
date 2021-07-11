@@ -223,9 +223,9 @@ The idea is to define a function in which your animation is updated (e.g. your s
 
 <hr>
 
-**Note**: If you want to perform some kind of simple constant DOM animation, [CSS Animations]() are probably faster. They are calculated directly by the browser's internal code, rather than JavaScript.
+**Note**: If you want to perform some kind of simple constant DOM animation, [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) are probably faster. They are calculated directly by the browser's internal code, rather than JavaScript.
 
-If, however, you are doing something more complex and involving objects that are not directly accessible inside the DOM (such as [2D Canvas API]() or [WebGL]() objects), `requestAnimationFrame()` is the better option in most cases.
+If, however, you are doing something more complex and involving objects that are not directly accessible inside the DOM (such as [2D Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) or [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) objects), `requestAnimationFrame()` is the better option in most cases.
 
 <hr>
 
@@ -294,3 +294,87 @@ So, unless you need to support older versions of IE, there is little reason to n
 ### A simple example
 
 Enough with the theory! Let's build your own personal `requestAnimationFrame()` example. You're going to create a simple "spinner animation" -- the kind you might see displayed in an app when it is busy connecting to the server, etc.
+
+<hr>
+
+**Note**: In a real world example, you should probably use CSS animations to run this kind of simple animation. However, this kind of example is very useful to demonstrate `requestAnimationFrame()` usage, and you'd be more likely to use this kind of technique when doing something more complex, such as updating the display of a game on each frame.
+
+<hr>
+
+1. Grab a basic HTML template ([such as this one](https://github.com/mdn/learning-area/blob/master/html/introduction-to-html/getting-started/index.html)).
+
+2. Put an empty [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) element inside the [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body), then add a ↻ character inside it. This circular arrow character will act as our spinner for this example.
+
+3. Apply the following CSS to the HTML template (in whatever way you prefer). This sets a red background on the page, sets the `<body>` height to `100%` of the [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) height, and centers the `<div>` inside the `<body>`, horizontally and vertically.
+```
+html {
+    background-color: white;
+    height: 100%;
+}
+
+body {
+    height: inherit;
+    background-color: red;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div {
+    display: inline-block;
+    font-size: 10rem;
+}
+```
+
+4. Insert a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element just above the closing `</body>` tag.
+
+5. Insert the following JavaScript inside your `<script>` element. Here you're storing a reference to the `<div>` inside a constant, setting a `rotateCount` variable to `0`, setting an uninitialized variable that will later be used to contain a reference to the `requestAnimationFrame()`.
+```
+const spinner = document.querySelector('div');
+let rotateCount = 0;
+let startTime = null;
+let rAF;
+```
+
+6. Below the previous code, insert a `draw()` function that will be used to contain our animation code, which includes the `timestamp` parameter:
+```
+function draw(timestamp) {
+
+}
+```
+
+7. Inside `draw()`, add the following lines. They will define the start time if it is not defined already (this will only happen on the first loop iteration), and set the `rotateCount` to a value to rotate the spinner by (the current timestamp, take the starting timestamp, divided by three so it doesn't go too fast):
+```
+if (!startTime) {
+    startTime = timestamp;
+}
+
+rotateCount = (timestamp - startTime) / 3;
+```
+
+8. Below the previous line inside `draw()`, add the following block -- this ensures that the value of `rotateCount` is between `0` and `359`, by setting the value to its modulo of `360` (i.e. the remainder left over when the value is divided by `360`) -- so the circle animation can continue uninterrupted, at a sensible, low value. Note that this isn't strictly necessary, but it is easier to work with value of `0` - `359` degrees than values like `"128000 degrees"`.
+```
+rotateCount %= 360;
+```
+
+9. Next, below the previous block, add the following line to actually rotate the spinner:
+```
+spinner.style.transform = `rotate(${rotateCount}deg)`;
+```
+
+10. At the very bottom inside the `draw()` function, insert the following line. This is key to the whole operation -- you are setting the variable defined earlier to an active `requestAnimation()` call, which takes the `draw()` function as its parameter. This starts the animation off, constantly running the `draw()` function at a rate as near 60 FPS as possible.
+```
+rAF = requestAnimationFrame(draw);
+```
+
+11. Below the `draw()` function definition, add a call to the `draw()` function to start the animation.
+```
+draw();
+```
+
+<hr>
+
+**Note**: You can find the finished example running live [here](). (And you can see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/requestAnimationFrame-example.html).)
+
+<hr>
