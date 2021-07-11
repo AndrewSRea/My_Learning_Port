@@ -195,3 +195,102 @@ This can be useful in cases where you want to set a block of code to run as soon
 `clearTimeout()` and `clearInterval()` both use the same list of entries to clear from. Interestingly enough, this means that you can use either method to clear a `setTimeout()` or `setInterval()`.
 
 For consistency, you should use `clearTimeout()` to clear `setTimeout()` entries and `clearInterval()` to clear `setInterval()` entries. This will help to avoid confusion.
+
+## requestAnimationFrame()
+
+[`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a specialized enqueueing function created for running animations efficiently in the browser. It runs a specified block of code before the browser next repaints the display, allowing the execution to be paired with the device's display frame rate.
+
+It was created in response to perceived problems with previous async functions like `setInterval()`, which, for example, doesn't run at a frame rate optimized for the device, dropping frames in some cases. They also lacked some optimization suited for animations, like stopping the execution if the tab isn't active or the animation is scrolled off the page, among other things.
+
+([Read more about this on CanvasJS](http://creativejs.com/resources/requestanimationframe/index.html).)
+
+<hr>
+
+**Note**: You can find examples of using `requestAnimationFrame()` elsewhere in the course -- see, for example, [Drawing graphics](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics#drawing-graphics), and [Object building practice](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object_Building_Practice#object-building-practice).
+
+<hr>
+
+The method takes as an argument a callback to be invoked before the repaint. This is the general pattern you'll see it used in:
+```
+function draw() {
+    // Drawing code goes here
+    requestAnimationFrame(draw);
+}
+
+draw();
+```
+The idea is to define a function in which your animation is updated (e.g. your sprites are moved, score is updated, data is refreshed, or whatever). Then, you call it to start the process off. At the end of the function block, you call `requestAnimationFrame()` with the function reference passed as the parameter, and this instructs the browser to call the function again on the next display repaint. This is then run continuously, as the code is calling `requestAnimationFrame()` recursively.
+
+<hr>
+
+**Note**: If you want to perform some kind of simple constant DOM animation, [CSS Animations]() are probably faster. They are calculated directly by the browser's internal code, rather than JavaScript.
+
+If, however, you are doing something more complex and involving objects that are not directly accessible inside the DOM (such as [2D Canvas API]() or [WebGL]() objects), `requestAnimationFrame()` is the better option in most cases.
+
+<hr>
+
+### How fast does your animation run?
+
+The smoothness of your animation is directly dependent on your animation's frame rate and it is measured in frames per second (FPS). The higher this number is, the smoother your animation will look, to a point.
+
+Since most screens have a refresh rate of 60Hz, the fastest frame rate you can aim for is 60 frames per second (FPS) when working with web browsers. However, more frames means more processing, which can often cause stuttering and skipping -- also known as *dropping frames*, or *jank*.
+
+If you have a monitor with a 60Hz refresh rate and you want to achieve 60 FPS, you have about 16.7 milliseconds (`1000 / 60`) to execute your animation code to render each frame. This is a reminder that you'll need to be mindful of the amount of code that you try to run during each pass through the animation loop.
+
+`requestAnimationFrame()` always tries to get as close to this magic 60 FPS value as possible. Sometimes, it isn't possible -- if you have a really complex animation and you are running it on a slow computer, your frame rate will be less. In all cases, `requestAnimationFrame()` will always do the best it can with what it has available.
+
+### How does requestAnimationFrame() differ from setInterval() and setTimeout()?
+
+Let's talk a little bit more about how the `requestAnimationFrame()` method differs from the other methods used earlier. Looking at our code from above:
+```
+function draw() {
+    // Drawing code goes here
+    requestAnimationFrame(draw);
+}
+
+draw();
+```
+Let's now see how to do the same thing using `setInterval()`:
+```
+function draw() {
+    // Drawing code goes here
+}
+
+setInterval(draw, 17);
+```
+As we covered earlier, you don't specify a time interval for `requestAnimationFrame()`. It just runs it as quickly and smoothly as possible in the current conditions. The browser also doesn't waste time running it if the animation is offscreen for some reason, etc.
+
+`setInterval()`, on the other hand, *requires* an interval to be specified. We arrived at our final value of 17 via the formula *1000 milliseconds / 60Hz*, and then rounded it up. Rounding up is a good idea; if you rounded down, the browser might try to run the animation faster than 60 FPS, and it wouldn't make any difference to the animation's smoothness anyway. As we said before, 60Hz is the standard refresh rate.
+
+### Including a timestamp
+
+The actual callback passed to the `requestAnimationFrame()` function can be given a parameter, too: a *timestamp* value that represents the time since the `requestAnimationFrame()` started running.
+
+This is useful as it allows you to run things at specific times and at a constant pace, regardless of how fast or slow your device might be. The general pattern you'd use looks somthing like this:
+```
+let startTime = null;
+
+function draw(timestamp) {
+    if (!startTime) {
+        startTime = timestamp;
+    }
+
+    currentTime = timestamp - startTime;
+
+    // Do something based on current time
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+```
+
+### Browser support
+
+`requestAnimationFrame()` is supported in more recent browsers than `setInterval()`/`setTimeout()`. Interestingly, it is available in Internet Explorer 10 and above.
+
+So, unless you need to support older versions of IE, there is little reason to not use `requestAnimationFrame()`.
+
+### A simple example
+
+Enough with the theory! Let's build your own personal `requestAnimationFrame()` example. You're going to create a simple "spinner animation" -- the kind you might see displayed in an app when it is busy connecting to the server, etc.
