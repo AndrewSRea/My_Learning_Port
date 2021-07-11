@@ -378,3 +378,25 @@ draw();
 **Note**: You can find the finished example running live [here](). (And you can see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/requestAnimationFrame-example.html).)
 
 <hr>
+
+### Clearing a requestAnimationFrame() call
+
+Clearing a `requestAnimationFrame()` call can be done by calling the corresponding `cancelAnimationFrame()` method. (Note that the function name starts with "cancel", not "clear" as with the "set..." methods.)
+
+Just pas it the value returned by the `requestAnimationFrame()` call to cancel, which you stored in the variable `rAF`:
+```
+cancelAnimationFrame(rAF);
+```
+
+### Active learning: Starting and stopping our spinner
+
+In this exercise, we'd like you to test out the `cancelAnimationFrame()` method by taking our previous example and updating it, adding an event listener to start and stop the spinner when the mouse is clicked anywhere on the page.
+
+Some hints:
+
+* A `click` event handler can be added to most elements, including the document `<body>`. It makes more sense to put it on the `<body>` element if you want to maximize the clickable area -- the event bubbles up to its child elements.
+* You'll want to add a tracking variable to check whether the spinner is spinning or not, clearing the animation frame if it is, and calling it again if it isn't.
+
+<hr>
+
+**Note**: You can find the finished example running live [here](). (And you can see the finished source code [here]().)
