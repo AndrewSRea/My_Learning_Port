@@ -33,6 +33,8 @@
             let startTime = null;
             let rAF;
 
+            let spinning = false;
+
             function draw(timestamp) {
                 if (!startTime) {
                     startTime = timestamp;
@@ -47,7 +49,15 @@
                 rAF = requestAnimationFrame(draw);
             }
 
-            draw();
+            document.body.addEventListener('click', function() {   // Error: missing 'document.'
+                if (spinning /* = true */) {                       // Error: conditional 'true' did not need to be here
+                    cancelAnimationFrame(rAF);
+                    spinning = false;
+                } else {
+                    draw();
+                    spinning = true;
+                }
+            });
 
         </script>
     </body>
