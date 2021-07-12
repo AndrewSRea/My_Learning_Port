@@ -448,3 +448,60 @@ Let's work through this:
 1. First of all, download the [starter file for the app](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/loops-and-intervals/reaction-game-starter.html). This contains the finished HTML structure and CSS styling, giving us a game board that shows the two players' information (as seen through the "live example" link above), but with the spinner and results paragraph displayed on top of one another. You just have to write the JavaScript code.
 
 2. Inside the empty [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on your page, start by adding the following lines of code that define some constants and variables you'll need in the rest of your code:
+```
+const spinner = document.querySelector('.spinner p');
+const spinnerContainer = document.querySelector('.spinner');
+let rotateCount = 0;
+let startTime = null;
+let rAF;
+const btn = document.querySelector('button');
+const result = document.querySelector('.result');
+```
+
+3. In order, these are:
+    1. A reference to the spinner, so you can animate it.
+    2. A reference to the [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) that contains the spinner, used for showing and hiding it.
+    3. A rotate count. This determines how much you want to show the spinner rotated on each frame of the animation.
+    4. A null start time. This will be populated with a start time when the spinner starts spinning. 
+    5. An uninitialized variable to later store the [`requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) call that animates the spinner.
+    6. A reference to the Start button.
+    7. A reference to the results paragraph.
+
+4. Next, below the previous lines of code, add the following function. It takes two numbers and returns a random number between the two. You'll need this to generate a random timeout interval later on.
+```
+function random(min,max) {
+    var num = Math.floor(Math.random()*(max-min)) + min;
+    return num;
+}
+```
+
+5. Next, add the `draw()` function, which animates the spinner. This is very similar to the version from the simple spinner example earlier:
+```
+function draw(timestamp) {
+    if(!startTime) {
+        startTime = timestamp;
+    }
+
+    rotateCount = (timestamp - startTime) / 3;
+
+    rotateCount %= 360;
+
+    spinner.style.transform = 'rotate(' + rotateCount + 'deg)';
+    rAF = requestAnimationFrame(draw);
+}
+```
+
+6. Now it is time to set up the initial state of the app when the page first loads. Add the following two lines, which hide the results paragraph and spinner container using `display: none;`.
+```
+result.style.display = 'none';
+spinnerContainer.style.display = 'none';
+```
+
+7. Next, define a `reset()` function, which sets the app back to the original state required to start the game again after it has been played. Add the following at the bottom of your code:
+```
+function reset() {
+    btn.style.display = 'block';
+    result.textContent = '';
+    result.style.display = 'none';
+}
+```
