@@ -399,4 +399,52 @@ Some hints:
 
 <hr>
 
-**Note**: You can find the finished example running live [here](). (And you can see the finished source code [here]().)
+**Note**: You can find the finished example running live [here](). (And you can see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/cancelAnimationFrame-example.html).)
+
+<hr>
+
+### Throttling a requestAnimationFrame() animation
+
+One limitation of `requestAnimationFrame()` is that you can't choose your frame rate. This isn't a problem most of the time, as generally you want your animation to run as smoothly as possible. But what about when you want to create an old school, 8-bit-style animation?
+
+This was a problem, for example, in the Monkey Island-inspired walking animation from our [Drawing Graphics](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics#drawing-graphics) article (see the graphic [here](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#throttling_a_requestanimationframe_animation)).
+
+In this example, you have to animate both the position of the character on the screen, and the sprite being shown. There are only 6 frames in the sprite's animation. If you showed a different sprite frame for every frame displayed on the screen by `requestAnimationFrame()`, Guybrush would move his limbs too fast and the animation would look ridiculous. This example, therefore, throttles the rate at which the sprite cycles its frames using the following code:
+```
+if (posX % 13 === 0) {
+    if (sprite === 5) {
+        sprite = 0;
+    } else {
+        sprite++;
+    }
+}
+```
+So the code cycles the sprite once every 13 animation frames.
+
+...Actually, it's about every 6.5 frames, as we update `posX` (character's position on the screen) by two each frame:
+```
+if (posX > width/2) {
+    newStartPos = -(width/2 + 102);
+    posX = math.ceil(newStartPos / 13) * 13;
+    console.log(posX);
+} else {
+    posX += 2;
+}
+```
+This is the code that calculates how to update the position in each animation frame.
+
+The method you use to throttle your animation will depend on your particular code. For instance, in the earlier spinner example, you could make it appear to move slower by only increasing `rotateCount` by one on each frame, instead of two.
+
+## Active learning: a reaction game
+
+For the final section of this article, you'll create a 2-player reaction game. The game will have two players, one of whom controls the game using the <kbd>A</kbd> key, and the other with the <kbd>L</kbd> key.
+
+When the *Start* button is pressed, a spinner like the one we saw earlier is displayed for a random amount of time between 5 and 10 seconds. After that time, a message will appear saying `"PLAYERS GO!!"` -- once this happens, the first player to press their control button will win the game.
+
+(See a live example of this [here](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#active_learning_a_reaction_game).)
+
+Let's work through this:
+
+1. First of all, download the [starter file for the app](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/loops-and-intervals/reaction-game-starter.html). This contains the finished HTML structure and CSS styling, giving us a game board that shows the two players' information (as seen through the "live example" link above), but with the spinner and results paragraph displayed on top of one another. You just have to write the JavaScript code.
+
+2. Inside the empty [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element on your page, start by adding the following lines of code that define some constants and variables you'll need in the rest of your code:
