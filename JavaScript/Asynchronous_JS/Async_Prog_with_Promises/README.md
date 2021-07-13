@@ -43,3 +43,84 @@ The important thing here is that the `getUserMedia()` call returns almost immedi
 (I might add the information from the **Signaling and video calling** article in a subfolder when I start creating folders for the [Client-side web APIs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs#client-side-web-apis) JavaScript folder.)
 
 <hr>
+
+## The trouble with callbacks
+
+To fully understand why promises are a good thing, it helps to think back to old-style callbacks and to appreciate why they are problematic.
+
+Let's talk about ordering pizza as an analogy. There are certain steps that you have to take for your order to be successful, which doesn't really make sense to try to execute out of order, or in order but before each previous step has quite finished:
+
+1. You choose what toppings you want. This can take a while if you are indecisive, and may fail if you just can't make up your mind, or decide to get a curry instead.
+2. You then place your order. This can take a while to return a pizza and may fail if the restaurant does not have the required ingredients to cook it.
+3. You then collect your pizza and eat. This might fail if, say, you forgot your wallet so can't pay for the pizza!
+
+With old-style [callbacks](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS#introducing-asynchronous-javascript), a pseudo-code representation of the above functionality might look something like this:
+```
+chooseToppings(function(toppings) {
+    placeOrder(toppings, function(order) {
+        collectOrder(order, function(pizza) {
+            eatPizza(pizza);
+        }, failureCallback);
+    }, failureCallback);
+}, failureCallback);
+```
+This is messy and hard to read (often referred to as "[callback hell](http://callbackhell.com/)"), requires the `failureCallback()` to be called multiple times (once for each nested function), with other issues besides.
+
+### Improvements with promises
+
+Promises make situations like the above much easier to write, parse, and run. If we represented the above pseudo-code using asynchronous promises instead, we'd end up with something like this:
+```
+chooseToppings()
+.then(function(toppings) {
+    return placeOrder(toppings);
+})
+.then(function(order) {
+    return collectOrder(order);
+})
+.then(function(pizza) {
+    eatPizza(pizza);
+})
+.catch(failureCallback);
+```
+This is much better -- it is easier to see what is going on, we only need a single `.catch()` block to handle all the errors, it doesn't block the main thread (so we can keep playing video games while we wait for the pizza to be ready to collect), and each operation is guaranteed to wiat for previous operations to complete before running. We're able to chain multiple asynchronous actions to occur one after another this way because each `.then()` block returns a new promise that resolves when the `.then()` block is done running. Clever, right?
+
+Using arrow function, you can simplify the code even further:
+```
+chooseToppings()
+.then(toppings =>
+    placeOrder(toppings)
+)
+.then(order =>
+    collectOrder(order)
+)
+.then(pizza =>
+    eatPizza(pizza)
+)
+.catch(failureCallback);
+```
+Or even this:
+```
+chooseToppings()
+.then(toppings => placeOrder(toppings))
+.then(order => collectOrder(order))
+.then(pizza => eatPizza(pizza))
+.catch(failureCallback);
+```
+This works because with arrow functions `() => x` is valid shorthand for `() => { return x; }`.
+
+You could even do this, since the functions just pass their arguments directly, so there isn't any need for that extra layer of functions:
+```
+chooseToppings().then(placeOrder).then(collectOrder).then(eatPizza).catch(failureCallback);
+```
+This is not quite as easy to read, however, and this syntax might not be usable if your blocks are more complex than what we've shown here.
+
+<hr>
+
+**Note**: You can make further improvements with `async`/`await` syntax, which we'll dig into in the next article.
+
+<hr>
+
+At their most basic, promises are similar to event listeners, but with a few differences:
+
+* A promise can only succeed or fail once. It cannot succeed or fail twice and it cannot switch from success to failure or vice versa once the operation has completed.
+* If a promise has succeeded or failed and you later add a success/failure callback, the correct callback will be called, even though the event took place earlier.
