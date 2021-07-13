@@ -124,3 +124,25 @@ At their most basic, promises are similar to event listeners, but with a few dif
 
 * A promise can only succeed or fail once. It cannot succeed or fail twice and it cannot switch from success to failure or vice versa once the operation has completed.
 * If a promise has succeeded or failed and you later add a success/failure callback, the correct callback will be called, even though the event took place earlier.
+
+## Explaining basic promise syntax: A real example
+
+Promises are important to understand because most modern Web APIs use them for functions that perform potentially lengthy tasks. To use modern web technologies, you'll need to use promises. Later on in the chapter, we'll look at how to write your own promise, but for now we'll look at some simple examples that you'll encounter in Web APIs.
+
+In the first example, we'll use the [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) method to fetch an image from the web, the [`Response.blob()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/blob) method to transform the fetch response's raw body contents into a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) object, and then display that blob inside an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element. This is very similar to the example we looked at in the [first article of the series](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS#asynchronous-javascript), but we'll do it a bit differently as we get you building your own promise-based code.
+
+<hr>
+
+**Note**: The following example will not work if you just run it directly from the file (i.e. via a `file://` URL). You need to run it through a [local testing server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server), or use an online solution such as [Glitch](https://glitch.com) or [GitHub pages](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Using_Github_pages).
+
+<hr>
+
+1. First of all, download our [simple HTML template](https://github.com/mdn/learning-area/blob/master/html/introduction-to-html/getting-started/index.html) and the [sample image file](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/coffee.jpg) that we'll fetch.
+
+2. Add a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element at the bottom of the HTML [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body).
+
+3. Inside your `<script>` element, add the following line:
+```
+let promise = fetch('coffee.jpg');
+```
+This calls the `fetch()` method, passing it the URL of the image to fetch from the network as a parameter. This can also take an options object as an optional second paramter, but we are just using the simplest version for now. We are storing the promise object returned by `fetch()` inside a variable called `promise`. As we said before, this object represents an intermediate state that is initially neither success nor failure -- the official term for a promise in this state is **pending**.
