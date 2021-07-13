@@ -505,3 +505,81 @@ function reset() {
     result.style.display = 'none';
 }
 ```
+
+8. Okay, enough preparation! It's time to make the game playable! Add the following block to your code. The `start()` function calls `draw()` to start the spinner spinning and display it in the UI, hides the *Start* button so you can't mess up the game by starting it multiple times concurrently, and runs a `setTimeout()` call that runs a `setEndgame()` function after a random interval between 5 and 10 seconds has passed. The following block also adds an event listener to your button to run the `start()` function when it is clicked.
+```
+btn.addEventListener('click', start);
+
+function start() {
+    draw();
+    spinnerContainer.style.display = 'block';
+    btn.style.display = 'none';
+    setTimeout(setEndgame, random(5000, 10000));
+}
+```
+
+<hr>
+
+**Note**: You'll see this example is calling `setTimeout()` without storing the return value. (So, not `let myTimeout = setTimeout(functionName, interval)`.)
+
+This works just fine, as long as you don't need to clear your interval/timeout at any point. If you do, you'll need to save the returned identifier!
+
+<hr>
+
+The net result of the previous code is that when the *Start* button is pressed, the spinner is shown and the players are made to wait a random amount of time before they are asked to press their button. This last part is handled by the `setEndgame()` function, which you'll define next.
+
+9. Add the following function to your code next:
+```
+function setEndgame() {
+    cancelAnimationFrame(rAF);
+    spinnerContainer.style.display = 'none';
+    result.style.display = 'block';
+    result.textContent = 'PLAYERS GO!!';
+
+    document.addEventListener('keydown', keyHandler);
+
+    function keyHandler(e) {
+        let isOver = false;
+        console.log(e.key);
+
+        if (e.key === "a") {
+            result.textContent = 'Player 1 won!!';
+            isOver = true;
+        } else if (e.key === "l") {
+            result.textContent = 'Player 2 won!!';
+            isOver = true;
+        }
+
+        if (isOver) {
+            document.removeEventListener('keydown', keyHandler);
+            setTimeout(reset, 5000);
+        }
+    };
+}
+```
+
+10. Stepping through this:
+    1. First, cancel the spinner animation with [`cancelAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame) (it is always good to clean up unneeded processes), and hide the spinner container.
+    2. Next, display the results paragraph and set its text content to "PLAYERS GO!!" to signal to the players that they can now press their button to win.
+    3. Attach a [`keydown`](https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event) event listener to the document. When any button is pressed down, the `keyHandler()` function is run.
+    4. Inside `keyHandler()`, the code includes the event object as a parameter (represented by `e`) -- its [`key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) property contains the key that was just pressed, and you can use this to respond to specific key presses with specific actions.
+    5. Set the variable `isOver` to false, so we can track whether the correct keys were pressed for play 1 or 2 to win. We don't want the game ending when a wrong key was pressed.
+    6. Log `e.key` to the console, which is a useful way of finding out the `key` value of different keys you are pressing.
+    7. When `e.key` is "a", display a message to say that PLayer 1 won, and when `e.key` is "l", display a message to say Player 2 won. (**Note**: This will only work with lowercase a and l -- if an uppercase A or L is submitted (the key plus <kbd>Shift</kbd>), it is counted as a different key!) If one of these keys was pressed, set `isOver` to `true`.
+    8. Only if `isOver` is `true`, remove the `keydown` event listener using [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) so that once the winning press has happened, no more keyboard input is possible to mess up the final game result. You also use `setTimeout()` to call `reset()` after 5 seconds -- as explained earlier, this function resets the game back to its original state so that a new game can be started.
+
+That's it -- you're all done!
+
+<hr>
+
+See the live version of the finished code [here](), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/reaction-game-starter.html).
+
+<hr>
+
+## Conclusion
+
+So that's it -- all the essentials of async loops and intervals covered in one article. You'll find these methods useful in a lot of situations, but take care not to overuse them! Because they still run on the main thread, heavy and intensive callbacks (especially those that manipulate the DOM) can really slow down a page if you're not careful.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS#introducing-asynchronous-javascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#cooperative-asynchronous-javascript-timeouts-and-intervals) - [[Next page]]()
