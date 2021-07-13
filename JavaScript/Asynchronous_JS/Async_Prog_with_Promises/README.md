@@ -146,3 +146,58 @@ In the first example, we'll use the [`fetch()`](https://developer.mozilla.org/en
 let promise = fetch('coffee.jpg');
 ```
 This calls the `fetch()` method, passing it the URL of the image to fetch from the network as a parameter. This can also take an options object as an optional second paramter, but we are just using the simplest version for now. We are storing the promise object returned by `fetch()` inside a variable called `promise`. As we said before, this object represents an intermediate state that is initially neither success nor failure -- the official term for a promise in this state is **pending**.
+
+4. To respond to the successful completion of the operation whenever that occurs (in this case, when a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) is returned), we invoke the [`.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) method of the promise object. The callback inside the `.then()` block runs only when the promise call completes successfully and returns the `Response` object -- in promise-speak, when it has been **fulfilled**. It is passed the returned `Response` object as a parameter.
+
+<hr>
+
+**Note**: The way that a `.then()` block works is similar to when you add an event listener to an object using `addEventListener()`. It doesn't run until an event occurs (when the promise fulfills). The most notable difference is that a `.then()` will only run once for each time it is used, whereas an event listener could be invoked multiple times.
+
+<hr>
+
+We immediately run the `blob()` method on this response to ensure that the response body is fully downloaded, and when it is available, transform it into a `Blob` object that we can do something with. The result of this is returned like so:
+```
+response => response.blob()
+```
+...which is shorthand for:
+```
+function(response) {
+    return response.blob();
+}
+```
+Unfortunately, we need to do slightly more than this. Fetch promises do not fall on 404 or 500 errors -- only on something catastrophic like a network failure. Instead, they succeed, but with the [`response.ok`](https://developer.mozilla.org/en-US/docs/Web/API/Response/ok) property set to `false`. To produce an error on a 404, for example, we need to check the value of `response.ok`, and if `false`, throw an error, only returning the blob if it is `true`. This can be done like so -- add the following lines below your first line of JavaScript:
+```
+let promise2 = promise.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${reponse.status}`);
+    } else {
+        return response.blob();
+    }
+});
+```
+
+5. Each call to `.then()` creates a new promise. This is very useful; because the `blob()` method also returns a promise, we can handle the `Blob` object it returns on fulfillment by invoking the `.then()` method of the second promise. Because we want to do something a bit more complex to the blob than just run a single method on it and return the result, we'll need to wrap the function body in curly braces this time (otherwise, it'll throw an error).
+
+Add the following to the end of your code:
+```
+let promise3 = promise2.then(myBlob => {
+
+})
+```
+
+6. Now let's fill in the body of the `.then()` callback. Add the following lines inside the curly braces:
+```
+let objectURL = URL.createObjectURL(myBlob);
+let image = document.createElement('img');
+image.src = objectURL;
+document.body.appendChild(image);
+```
+Here we are returning the [`URL.createObjectURL()`]() method, passing it as a parameter the `Blob` returned when the second promise fulfills. This will return a URL pointing to the object. Then we create an [`<img>`]() element, set its `src` attribute to equal the object URL and append it to the DOM, so the image will display on the page!
+
+If you save the HTML file you've just created and load it in your browser, you'll see that the image is displayed in the page as expected. Good work!
+
+<hr>
+
+**Note**: You will probably notice that these examples are somewhat contrived. You could just do away with the whole `fetch()` and `blob()` chain, and just create an `<img>` element and set its `src` attribute value to the URL of the image file, `coffee.jpg`. We did, however, pick this example because it demonstrates promises in a nice simple fashion, rather than for its real-world appropriateness.
+
+<hr>
