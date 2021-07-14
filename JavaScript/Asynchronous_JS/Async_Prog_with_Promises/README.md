@@ -319,3 +319,57 @@ This looks a bit complex, so let's run through it step by step:
     - Second, we have added the `return` keyword before the `fetch()` call. The effect this has is to run the entire chain and then run the final result (i.e. the promise returned by `blob()` or `text()`) as the return value of the function we've just defined. In effect, the `return` statements pass the results back up the chain to the top.
 4. At the end of the block, we chain on a `.catch()` call, to handle any error cases that may occur with any promises passed in the array to `.all()`. If any of the promises reject, the `.catch()` block will let you know which one had a problem. The `.all()` block (see below) will still fulfill, but it won't display the resources that had problems. Remember that, once you handle the promise with a `.catch()` block, the resulting promise is considered resolved but with a value of `undefined`; that's why in this case, the `.all()` block will always get fulfilled. If you wanted the `.all()` to reject, you'd have to chain the `.catch()` block on to the end of the `.all()` instead.
 
+The code inside the function body is async and promise-based, therefore in effect, the entire function acts like a promise -- convenient.
+
+4. Next, we call our function three times to begin the process of fetching and decoding the images and text and store each of the returned promises in a variable. Add the following below your previous code:
+```
+let coffee = fetchAndDecode('coffee.jpg', 'blob');
+let tea = fetchAndDecode('tea.jpg', 'blob');
+let description = fetchAndDecode('description.txt', 'text');
+```
+
+5. Next, we will define a `Promise.all()` block to run some code only when all three of the promises stored above have successfully fulfilled. To begin with, add a block with an empty callback function inside the `.then()` call, like so:
+```
+Promise.all([coffee, tea, description]).then(values => {
+
+});
+```
+You can see that it takes an array containing the promises as a parameter. The `.then()` callback function will only run when all three promises resolve: when that happens, it will be passed an array containing the results from the individual promises (i.e. the decoded response bodies), kind of like [coffee-results, tea-results, description-results].
+
+6. Finally, add the following inside the callback. Here we use some fairly simple sync code to store the results in separate variables (creating object URLs from the blobs), then display the images and text on the page.
+```
+console.log(values);
+// Store each value returned from the previous in separate variables; create object URLs from the blobs
+let objectURL1 = URL.createObjectURL(values[0]);
+let objectURL2 = URL.createObjectURL(values[1]);
+let descText = values[2];
+
+// Display the images in <img> elements
+let image1 = document.createElement('img');
+let image2 = document.createElement('img');
+image1.src = objectURL1;
+image2.src = objectURL2;
+document.body.appendChild(image1);
+document.body.appendChild(image2);
+
+// Display the text in a paragraph
+let para = document.createElement('p');
+para.textContent = descText;
+document.body.appendChild(para);
+```
+
+7. Save and refresh and you should see your UI components all loaded, albeit in a not particularly attractive way!
+
+The code we provided here for displaying the items is fairly rudimentary but works as an explainer for now.
+
+<hr>
+
+**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here]().
+
+<hr>
+
+**Note**: If you were improving this code, you might want to loop through a list of items to display, fetching and decoding each one, and then loop through the results inside `Promise.all()`, running a different function to display each one depending on what the type of code was. This would make it work for any number of items, not just three.
+
+Also, you could determine what the type of file is being fetched without needing an explicit `type` property. You could, for example, check the [`Content-Type`]() HTTP header of the response in each case using [`response.headers.get("content-type")`](), and then react accordingly.
+
+<hr>
