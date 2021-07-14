@@ -252,10 +252,29 @@ Bear in mind that the value returned by a fulfilled promise becomes the paramter
 
 ## Promise terminology recap
 
-There was a lot to cover in the above section, so let's go back over it quickly to give you a **[short guide that you can bookmark]()** and use to refresh your memory in the future. You should also go over the above section again a few more times to make sure these concepts stick.
+There was a lot to cover in the above section, so let's go back over it quickly to give you a **[short guide that you can bookmark](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#promise-terminology-recap)** and use to refresh your memory in the future. You should also go over the above section again a few more times to make sure these concepts stick.
 
 1. When a promise is created, it is neither in a success or failure state. It is said to be **pending**.
 2. When a promise returns, it is said to be **resolved**.
     1. A successfully resolved promise is said to be **fulfilled**. It returns a value, which can be accessed by chaining a `.then()` block onto the end of the promise chain. The callback function inside the `.then()` block will contain the promise's return value.
     2. An unsuccessful resolved promise is said to be **rejected**. It returns a **reason**, an error message stating why the promise was rejected. This reason can be accessed by chaining a `.catch()` block onto the end of the promise chain.
 
+## Running code in response to multiple promises fulfilling
+
+The above example showed us some of the real basics of using promises. Now let's look at some more advanced features. For a start, chaining processes to occur one after the other is all fine, but what if you want to run some code only after a whole bunch of promises have *all* fulfilled?
+
+You can do this with the ingenously named [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) static method. This takes an array of promises as an input parameter and returns a new `Promise` object that will fulfill only if and when *all* promises in the array fulfill. It looks something like this:
+```
+Promise.all([a, b, c]).then(value => {
+    ...
+});
+```
+If they all fulfill, the chained `.then()` block's callback function will be passed an array containing all those results as a parameter. If any of the promises passed to `Promise.all()` reject, the whole block will reject.
+
+This can be very useful. Imagine that we're fetching information to dynamically populate a UI feature on our page with content. In many cases, it makes sense to receive all the data and only then show the complete content, rather than displaying partial information.
+
+Let's build another example to show this in action.
+
+1. Download a fresh copy of our [page template](https://github.com/mdn/learning-area/blob/master/html/introduction-to-html/getting-started/index.html), and again put a `<script>` element just before the closing `</body>` tag.
+
+2. 
