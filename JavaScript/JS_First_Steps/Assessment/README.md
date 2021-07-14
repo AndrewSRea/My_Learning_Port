@@ -76,7 +76,7 @@ document.querySelector('html').style.backgroundColor = 'red';
 * [`Math.round()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round) is a built-in JavaScript method that rounds the result of a calculation to the nearest whole number.
 * There are three instances of strings that need to be replaced. You may repeat the `replace()` method multiple times, or you can use regular expressions. For instance, `let text = 'I am the biggest lover, I love my love'; text.replace(/love/g,'like');` will replace all instances of 'love' to 'like'. Remember, Strings are immutable!
 
-See the finished JavaScript code of this Assessment [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Assessment/main.js), and the product produced by this code [here](https://andrewsrea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps?Assessment/index.html).
+See the finished JavaScript code of this Assessment [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Assessment/main.js), and the product produced by this code [here](https://andrewsrea.github.io/My_Learning_Port/blob/main/JavaScript/JS_First_Steps?Assessment/index.html).
 
 ## Assessment or further help
 
@@ -87,7 +87,7 @@ If you would like your work assessed, or are stuck and want to ask for help:
     - A descriptive title such as "Assessment wanted for Silly story generator".
     - Details of what you have already tried, and what you would like the Mozilla assessors to do, e.g. if you are stuck and need help, or want an assessment.
     - A link to the example you want assessed or need help with, in an online shareable editor (as mentioned in step 1 above). This is a good practice to get into--it's very hard to help someone with a coding problem if you can't see their code.
-    - A link to the actual task or assessment page, so the Mozilla assesors can find the question you want help with.
+    - A link to the actual task or assessment page, so the Mozilla assessors can find the question you want help with.
 
 <hr>
 
