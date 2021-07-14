@@ -401,7 +401,7 @@ myPromise
     runFinalCode();
 });
 ```
-For a real world example, take a look at the [promise-finally.html demo](https://andrewsrea.github.io/My_Learning_Port/JavaScript/ASynchronous_JS/Async_Prog_with_Promises/promise-finally.html) (see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/promise-finally.html) also). This works the same as the `Promise.all()` demo we looked at in the above section, except that in the `fetchAndDecode()` function we chain a `finally()` call on to the end of the chain:
+For a real world example, take a look at the [promise-finally.html demo](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/promise-finally.html) (see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/promise-finally.html) also). This works the same as the `Promise.all()` demo we looked at in the above section, except that in the `fetchAndDecode()` function we chain a `finally()` call on to the end of the chain:
 ```
 function fetchAndDecode(url, type) {
     return fetch(url).then(response => {
