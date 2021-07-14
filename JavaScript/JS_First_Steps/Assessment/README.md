@@ -76,7 +76,7 @@ document.querySelector('html').style.backgroundColor = 'red';
 * [`Math.round()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round) is a built-in JavaScript method that rounds the result of a calculation to the nearest whole number.
 * There are three instances of strings that need to be replaced. You may repeat the `replace()` method multiple times, or you can use regular expressions. For instance, `let text = 'I am the biggest lover, I love my love'; text.replace(/love/g,'like');` will replace all instances of 'love' to 'like'. Remember, Strings are immutable!
 
-See the finished JavaScript code of this Assessment [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Assessment/main.js), and the product produced by this code [here](https://andrewsrea.github.io/My_Learning_Port/blob/main/JavaScript/JS_First_Steps?Assessment/index.html).
+See the finished JavaScript code of this Assessment [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Assessment/main.js), and the product produced by this code [here](https://andrewsrea.github.io/My_Learning_Port/blob/main/JavaScript/JS_First_Steps/Assessment/index.html).
 
 ## Assessment or further help
 
