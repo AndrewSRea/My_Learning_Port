@@ -53,7 +53,7 @@ The accordion uses [collapse](https://github.com/AndrewSRea/My_Learning_Port/tre
     </div>
 </div>
 ```
-(See the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file.)
+(See the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html).)
 
 ### Flush
 
