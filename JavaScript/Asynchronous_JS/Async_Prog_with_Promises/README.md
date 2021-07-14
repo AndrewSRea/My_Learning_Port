@@ -464,4 +464,40 @@ timeoutPromise.then(alert);
 ```
 Try [running this live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/custom-promise.html) to see the result (also see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/custom-promise.html)).
 
-The above example is not very flexible
+The above example is not very flexible -- the promise can only ever fulfill with a single string, and it doesn't have any kind of [`reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) condition specified (admittedly, `setTimeout()`) doesn't really have a fail condition, so it doesn't matter for this simple example.
+
+<hr>
+
+**Note**: Why `resolve()`, and not `fulfill()`? The answer we'll give you, for now, is *it's complicated*.
+
+<hr>
+
+### Rejecting a custom promise
+
+We can create a promise that rejects using the [`reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) method -- just like `resolve()`, this takes a single value, but in this case, it is the reason to reject with, i.e., the error that will be passed into the `.catch()` block.
+
+Let's extend the previous example to have some `reject()` conditions as well as allowing different messages to be passed upon success.
+
+Take a copy of the [previous example](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/custom-promise.html), and replace the existing `timeoutPromise()` definition with this:
+```
+function timeoutPromise(message, interval) {
+    return new Promise((resolve, reject) => {
+        if (message === '' || typeof message !== 'string') {
+            reject('Message is empty or not a string');
+        } else if (interval < 0 || typeof interval !== 'number') {
+            reject('Interval is negative or not a number');
+        } else {
+            setTimeout(() => {
+                resolve(message);
+            }, interval);
+        }
+    });
+};
+```
+Here we are passing two arguments into a custom function -- a message to do something with, and the time interval to pass before doing the thing. Inside the function, we then return a new `Promise` object -- invoking the function will return the promise we want to use.
+
+Inside the Promise constructor, we do several checks inside `if ... else` structures:
+
+1. First of all, we check to see if the message is appropriate for being alerted. If it is an empty string or not a string at all, we reject the promise with a suitable error message.
+2. Next, we check to see if the interval is an appropriate interval value. If it is negative or not a number, we reject the promise with a suitable error message.
+3. Finally, if the parameters both look OK, we resolve the promise with the specified message after the specified interval has passed using `setTimeout()`.
