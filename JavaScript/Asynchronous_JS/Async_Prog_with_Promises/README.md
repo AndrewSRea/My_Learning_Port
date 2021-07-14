@@ -21,13 +21,13 @@ The code that the video chat application would use might look something like thi
 function handleCallButton(evt) {
     setStatusMessage("Calling...");
     navigator.mediaDevices.getUserMedia({video: true, audio: true})
-        .then(chatStream => {
-            selfViewElem.srcObject = chatStream;
-            chatStream.getTracks().forEach(track => myPeerConnection.addTrack(track, chatStream));
-            setStatusMessage("Connected");
-        }).catch(err => {
-            setStatusMessage("Failed to connect");
-        });
+    .then(chatStream => {
+        selfViewElem.srcObject = chatStream;
+        chatStream.getTracks().forEach(track => myPeerConnection.addTrack(track, chatStream));
+        setStatusMessage("Connected");
+    }).catch(err => {
+        setStatusMessage("Failed to connect");
+    });
 }
 ```
 This function starts by using a function called `setStatusMessage()` to update a status display with the message "Calling...", indicating that a call is being attempted. It then calls `getUserMedia()`, asking for a stream that has both video and audio tracks, then once that's been obtained, sets up a video element to show the stream coming from the camera as a "self view", then takes each of the stream's tracks and adds them to the [WebRTC]() [`RTCPeerConnection`]() representing a connection to another user. After that, the status display is updated to say "Connected".
@@ -373,3 +373,95 @@ The code we provided here for displaying the items is fairly rudimentary but wor
 Also, you could determine what the type of file is being fetched without needing an explicit `type` property. You could, for example, check the [`Content-Type`]() HTTP header of the response in each case using [`response.headers.get("content-type")`](), and then react accordingly.
 
 <hr>
+
+## Running some final code after a promise fulfills/rejects
+
+There will be cases where you want to run a final block of code after a promise completes, regardless of whether it fulfilled or rejected. Previously you'd have to include the same code in both the `.then()` and `.catch()` callbacks. For example:
+```
+myPromise
+.then(reponse => {
+    doSomething(response);
+    runFinalCode();
+})
+.catch(e => {
+    returnError(e);
+    runFinalCode();
+});
+```
+In more recent modern browsers, the [`.finally()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally) method is available, which can be chained onto the end of your regular promise chain allowing you to cut down on code repetition and do things more elegantly. The above code can now be written as follows:
+```
+myPromise
+.then(response => {
+    doSomething(response);
+})
+.catch(e => {
+    returnError(e);
+})
+.finally(() => {
+    runFinalCode();
+});
+```
+For a real world example, take a look at the [promise-finally.html demo](https://andrewsrea.github.io/My_Learning_Port/JavaScript/ASynchronous_JS/Async_Prog_with_Promises/promise-finally.html) (see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/promise-finally.html) also). This works the same as the `Promise.all()` demo we looked at in the above section, except that in the `fetchAndDecode()` function we chain a `finally()` call on to the end of the chain:
+```
+function fetchAndDecode(url, type) {
+    return fetch(url).then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        } else {
+            if(type === 'blob') {
+                return response.blob();
+            } else if(type === 'text') {
+                return response.text();
+            }
+        }
+    })
+    .catch(e => {
+        console.log(`There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+    })
+    .finally(() => {
+        console.log(`fetch attempt for "${url}" finished.`);
+    });
+}
+```
+This logs a simple message to the console to tell us when each fetch attempt has finished.
+
+<hr>
+
+**Note**: `then()`/`catch()`/`finally()` is the async equivalent to `try`/`catch`/`finally` in sync code.
+
+<hr>
+
+## Building your own custom promises
+
+The good news is that, in a way, you've already built your own promises. When you've chained multiple promises together with `.then()` blocks, or otherwise combined them to create custom functionality, you are already making your own custom async promise-based functions. Take our `fetchAndDecode()` function from the previous examples, for example.
+
+Combining different promise-based APIs together to create custom functionality is by far the most common way you'll do custom things with promises, and shows the flexibility and power of basing most modern APIs around the same principle. There is another way, however.
+
+### Using the Promise() constructor
+
+It is possible to build your own promises using the [`Promise()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) constructor. The main situation in which you'll want to do this is when you've got code based on an old-school asynchronous API that is not promise-based, which you want to promisify. This comes in handy when you need to use existing, older project code, libraries, or frameworks along with modern promise-based code.
+
+Let's have a look at a simple example to get you started -- here we wrap a [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) call with a promise -- this runs a function after two seconds that resolves the promise (using the passed [`resolve()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve) call) with a string of "Success!".
+```
+let timeoutPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Success!');
+    }, 2000);
+});
+```
+`resolve()` and `reject()` are functions that you call to fulfill or reject the newly-created promise. In this case, the promise fulfills with a string of "Success!".
+
+So when you call this promise, you can chain a `.then()` block onto the end of it and it will be passed a string of "Success!". In the below code, we alert that message:
+```
+timeoutPromise
+.then((message) => {
+    alert(message);
+})
+```
+...or even just:
+```
+timeoutPromise.then(alert);
+```
+Try [running this live]() to see the result (also see the [source code]()).
+
+The above example is not very flexible
