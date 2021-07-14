@@ -8,7 +8,22 @@
         <p>This is my page</p>
 
         <script>
-            
+            function fetchAndDecode(url, type) {
+                return fetch(url).then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    } else {
+                        if(type === 'blob') {
+                            return response.blob();
+                        } else if(type === 'text') {
+                            return response.text();
+                        }
+                    }
+                })
+                .catch(e => {
+                    console.log(`There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+                });
+            }
         </script>
     </body>
 </html>
