@@ -216,7 +216,7 @@ This doesn't do much more than it would if you just didn't bother including the 
 
 <hr>
 
-**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/index.html).
+**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/basic-promises-example.html).
 
 <hr>
 
@@ -277,4 +277,45 @@ Let's build another example to show this in action.
 
 1. Download a fresh copy of our [page template](https://github.com/mdn/learning-area/blob/master/html/introduction-to-html/getting-started/index.html), and again put a `<script>` element just before the closing `</body>` tag.
 
-2. 
+2. Download our source files ([coffee.jpg](), [tea.jpg](), and [description.txt]()), or feel free to substitute your own.
+
+3. In our script, we'll first define a function that returns the promises we want to send to `Promise.all()`. This would be easy if we wanted to run the `Promise.all()` block in response to three `fetch()` operations completing. We could do something like:
+```
+let a = fetch(url1);
+let b = fetch(url2);
+let c = fetch(url3);
+
+Promise.all([a, b, c]).then(values => {
+    ...
+});
+```
+When the promise is fulfilled, the `values` passed into the fulfillment handler would contain three `Response` objects, one for each of the `fetch()` operations that have completed.
+
+However, we don't want to do this. Our code doesn't care when the `fetch()` operations are done. Instead, what we want is the loaded data. That means we want to run the `Promise.all()` block when we get back usable blobs representing the images, and a usable text string. We can write a function that does this: add the following inside your `<script>` element:
+```
+function fetchAndDecode(url, type) {
+    return fetch(url).then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        } else {
+            if(type === 'blob') {
+                return response.blob();
+            } else if(type === 'text') {
+                return response.text();
+            }
+        }
+    })
+    .catch(e => {
+        console.log(`There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+    });
+}
+```
+This looks a bit complex, so let's run through it step by step:
+
+1. First of all, we define the function, passing it a URL and a string representing the type of resource it is fetching.
+2. Inside the function body, we have a similar structure to what we saw in the first example -- we call the `fetch()` function to fetch the resource at the specified URL, then chain it onto another promise that returns the decoded (or "read") response body. This was always the `blob()` method in the previous example.
+3. However, two things are different here:
+    - First of all, the second promise we return is different depending on what the `type` value is. Inside the `.then()` callback function, we include a simple `if ... else if` statement to return a different promise depending on what type of file we need to decode (in this case, we've got a choice of `blob` or `text`, but it would be easy to extend this to deal with other types as well).
+    - Second, we have added the `return` keyword before the `fetch()` call. The effect this has is to run the entire chain and then run the final result (i.e. the promise returned by `blob()` or `text()`) as the return value of the function we've just defined. In effect, the `return` statements pass the results back up the chain to the top.
+4. At the end of the block, we chain on a `.catch()` call, to handle any error cases that may occur with any promises passed in the array to `.all()`. If any of the promises reject, the `.catch()` block will let you know which one had a problem. The `.all()` block (see below) will still fulfill, but it won't display the resources that had problems. Remember that, once you handle the promise with a `.catch()` block, the resulting promise is considered resolved but with a value of `undefined`; that's why in this case, the `.all()` block will always get fulfilled. If you wanted the `.all()` to reject, you'd have to chain the `.catch()` block on to the end of the `.all()` instead.
+
