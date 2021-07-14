@@ -462,6 +462,6 @@ timeoutPromise
 ```
 timeoutPromise.then(alert);
 ```
-Try [running this live]() to see the result (also see the [source code]()).
+Try [running this live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/custom-promise.html) to see the result (also see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/custom-promise.html)).
 
 The above example is not very flexible
