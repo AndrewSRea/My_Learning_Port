@@ -192,7 +192,7 @@ let image = document.createElement('img');
 image.src = objectURL;
 document.body.appendChild(image);
 ```
-Here we are returning the [`URL.createObjectURL()`]() method, passing it as a parameter the `Blob` returned when the second promise fulfills. This will return a URL pointing to the object. Then we create an [`<img>`]() element, set its `src` attribute to equal the object URL and append it to the DOM, so the image will display on the page!
+Here we are returning the [`URL.createObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) method, passing it as a parameter the `Blob` returned when the second promise fulfills. This will return a URL pointing to the object. Then we create an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, set its `src` attribute to equal the object URL and append it to the DOM, so the image will display on the page!
 
 If you save the HTML file you've just created and load it in your browser, you'll see that the image is displayed in the page as expected. Good work!
 
@@ -204,7 +204,7 @@ If you save the HTML file you've just created and load it in your browser, you'l
 
 ### Responding to failure
 
-Something is missing -- currently, there is nothing to explicitly handle errors if one of the promises fails (**rejects**, in promise-speak). We can add error handling by running the [`.catch()`]() method off the previous promise. Add this now:
+Something is missing -- currently, there is nothing to explicitly handle errors if one of the promises fails (**rejects**, in promise-speak). We can add error handling by running the [`.catch()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) method off the previous promise. Add this now:
 ```
 let errorCase = promise.catch(e => {
     console.log('There has been a problem with your fetch operation: ' + e.message);
@@ -216,6 +216,46 @@ This doesn't do much more than it would if you just didn't bother including the 
 
 <hr>
 
-**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here]().
+**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/index.html).
 
 <hr>
+
+### Chaining the blocks together
+
+This is a very longhand way of writing this out; we've deliberately done this to help you understand what is going on clearly. As shown earlier on in this article, you can chain together `.then()` blocks (and also `.catch()` blocks). The above code could also be written like this (see also [simple-fetch-chained.html](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/simple-fetch-chained.html) on Mozilla's GitHub):
+```
+fetch('coffee.jpg')
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    } else {
+        return response.blob();
+    }
+})
+.then(myBlob => {
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+})
+.catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+Bear in mind that the value returned by a fulfilled promise becomes the paramter passed to the next `.then()` block's callback function.
+
+<hr>
+
+**Note**: `.then()`/`.catch()` blocks in promises are basically the async equivalent of a [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) block in sync code. Bear in mind that synchronous `try...catch` won't work in async code.
+
+<hr>
+
+## Promise terminology recap
+
+There was a lot to cover in the above section, so let's go back over it quickly to give you a **[short guide that you can bookmark]()** and use to refresh your memory in the future. You should also go over the above section again a few more times to make sure these concepts stick.
+
+1. When a promise is created, it is neither in a success or failure state. It is said to be **pending**.
+2. When a promise returns, it is said to be **resolved**.
+    1. A successfully resolved promise is said to be **fulfilled**. It returns a value, which can be accessed by chaining a `.then()` block onto the end of the promise chain. The callback function inside the `.then()` block will contain the promise's return value.
+    2. An unsuccessful resolved promise is said to be **rejected**. It returns a **reason**, an error message stating why the promise was rejected. This reason can be accessed by chaining a `.catch()` block onto the end of the promise chain.
+
