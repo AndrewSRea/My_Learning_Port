@@ -201,3 +201,21 @@ If you save the HTML file you've just created and load it in your browser, you'l
 **Note**: You will probably notice that these examples are somewhat contrived. You could just do away with the whole `fetch()` and `blob()` chain, and just create an `<img>` element and set its `src` attribute value to the URL of the image file, `coffee.jpg`. We did, however, pick this example because it demonstrates promises in a nice simple fashion, rather than for its real-world appropriateness.
 
 <hr>
+
+### Responding to failure
+
+Something is missing -- currently, there is nothing to explicitly handle errors if one of the promises fails (**rejects**, in promise-speak). We can add error handling by running the [`.catch()`]() method off the previous promise. Add this now:
+```
+let errorCase = promise.catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+To see this in action, try misspelling the URL to the image and reloading the page. The error will be reported in the console of your browser's developer tools.
+
+This doesn't do much more than it would if you just didn't bother including the `.catch()` block at all, but think about it -- this allows us to control error handling exactly how we want. In a real app, your `.catch()` block could retry fetching the image, or show a default image, or prompt the user to provide a different image URL, or whatever.
+
+<hr>
+
+**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here]().
+
+<hr>
