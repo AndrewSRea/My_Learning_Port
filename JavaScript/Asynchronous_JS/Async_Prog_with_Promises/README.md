@@ -30,7 +30,7 @@ function handleCallButton(evt) {
     });
 }
 ```
-This function starts by using a function called `setStatusMessage()` to update a status display with the message "Calling...", indicating that a call is being attempted. It then calls `getUserMedia()`, asking for a stream that has both video and audio tracks, then once that's been obtained, sets up a video element to show the stream coming from the camera as a "self view", then takes each of the stream's tracks and adds them to the [WebRTC]() [`RTCPeerConnection`]() representing a connection to another user. After that, the status display is updated to say "Connected".
+This function starts by using a function called `setStatusMessage()` to update a status display with the message "Calling...", indicating that a call is being attempted. It then calls `getUserMedia()`, asking for a stream that has both video and audio tracks, then once that's been obtained, sets up a video element to show the stream coming from the camera as a "self view", then takes each of the stream's tracks and adds them to the [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) [`RTCPeerConnection`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) representing a connection to another user. After that, the status display is updated to say "Connected".
 
 If `getUserMedia()` fails, the `catch` block runs. This uses `setStatusMessage()` to update the status box to indicate that an error occurred.
 
@@ -38,7 +38,7 @@ The important thing here is that the `getUserMedia()` call returns almost immedi
 
 <hr>
 
-**Note**: You can learn more about this somewhat advanced topic, if you're interested, in the article [Signaling and video calling](). Code similar to this, but much more complete, is used in that example.
+**Note**: You can learn more about this somewhat advanced topic, if you're interested, in the article [Signaling and video calling](). Code similar to this, but much more complete, is used in that example. <!-- refer to the "Client-side_Web_APIs" folder -->
 
 (I might add the information from the **Signaling and video calling** article in a subfolder when I start creating folders for the [Client-side web APIs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs#client-side-web-apis) JavaScript folder.)
 
@@ -216,7 +216,7 @@ This doesn't do much more than it would if you just didn't bother including the 
 
 <hr>
 
-**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/basic-promises-example.html).
+**Note**: You can see the live version of this finished code running [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/basic-promises-example.html), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/basic-promises-example.html).
 
 <hr>
 
@@ -277,7 +277,7 @@ Let's build another example to show this in action.
 
 1. Download a fresh copy of our [page template](https://github.com/mdn/learning-area/blob/master/html/introduction-to-html/getting-started/index.html), and again put a `<script>` element just before the closing `</body>` tag.
 
-2. Download our source files ([coffee.jpg](), [tea.jpg](), and [description.txt]()), or feel free to substitute your own.
+2. Download our source files ([coffee.jpg](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/coffee.jpg), [tea.jpg](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/tea.jpg), and [description.txt](https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/description.txt)), or feel free to substitute your own.
 
 3. In our script, we'll first define a function that returns the promises we want to send to `Promise.all()`. This would be easy if we wanted to run the `Promise.all()` block in response to three `fetch()` operations completing. We could do something like:
 ```
@@ -516,4 +516,12 @@ When you save and run the code as is, after one second you'll get the message al
 
 <hr>
 
-**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here]().
+**Note**: You can see the live version of this finished code running [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/reject-custom-promise.html), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/reject-custom-promise.html).
+
+<hr>
+
+### A more real-world example
+
+The above example was kept deliberately simple to make the concepts easy to understand, but it is not really very async. The asynchronous nature is basically faked using `setTimeout()`, although it does still show that promises are useful for creating acustom function with a sensible flow of operations, good error handling, etc.
+
+One example we'd like to invite you to study, which does show a useful async application of the `Promise()` constructor, is [Jake Archibald's idb library](https://github.com/jakearchibald/idb/). This takes the [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), which is an old-style callback-based API for storing and retrieving data on the client-side, allows you to use it with promises. In the code, you'll see the same kind of techniques we discussed above being used there. The following block converts the basic request model used by many IndexedDB methods to use promises ([see this code, for example](https://github.com/jakearchibald/idb/blob/01082ad696eef05e9c913f55a17cda7b3016b12c/build/esm/wrap-idb-value.js#L30)).
