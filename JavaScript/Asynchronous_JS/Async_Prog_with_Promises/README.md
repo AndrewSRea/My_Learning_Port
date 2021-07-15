@@ -364,13 +364,13 @@ The code we provided here for displaying the items is fairly rudimentary but wor
 
 <hr>
 
-**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here]().
+**Note**: You can see the live version of this finished code running [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html), and see the finished source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html).
 
 <hr>
 
 **Note**: If you were improving this code, you might want to loop through a list of items to display, fetching and decoding each one, and then loop through the results inside `Promise.all()`, running a different function to display each one depending on what the type of code was. This would make it work for any number of items, not just three.
 
-Also, you could determine what the type of file is being fetched without needing an explicit `type` property. You could, for example, check the [`Content-Type`]() HTTP header of the response in each case using [`response.headers.get("content-type")`](), and then react accordingly.
+Also, you could determine what the type of file is being fetched without needing an explicit `type` property. You could, for example, check the [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) HTTP header of the response in each case using [`response.headers.get("content-type")`](https://developer.mozilla.org/en-US/docs/Web/API/Headers/get), and then react accordingly.
 
 <hr>
 
@@ -501,3 +501,19 @@ Inside the Promise constructor, we do several checks inside `if ... else` struct
 1. First of all, we check to see if the message is appropriate for being alerted. If it is an empty string or not a string at all, we reject the promise with a suitable error message.
 2. Next, we check to see if the interval is an appropriate interval value. If it is negative or not a number, we reject the promise with a suitable error message.
 3. Finally, if the parameters both look OK, we resolve the promise with the specified message after the specified interval has passed using `setTimeout()`.
+
+Since the `timeoutPromise()` function returns a `Promise`, we can chain `.then()`, `.catch()`, etc., onto it to make use of its functionality. Let's use it now -- replace the previous `timeoutPromise` usage with this one:
+```
+timeoutPromise('Hello there!', 1000)
+.then(message => {
+    alert(message);
+})
+.catch(e => {
+    console.log('Error: ' + e);
+});
+```
+When you save and run the code as is, after one second you'll get the message alerted. Now try setting the message to an empty string or the interval to a negative number, for example, and you'll be able to see the promise reject with the appropriate error messages! You could also try doing something else with the resolved message rather than just alerting it.
+
+<hr>
+
+**Note**: You can see the live version of this finished code running [here](), and see the finished source code [here]().
