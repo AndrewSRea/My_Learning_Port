@@ -19,6 +19,14 @@
                     }
                 });
             };
+
+            timeoutPromise('Hello there!', 1000)
+            .then(message => {
+                alert(message);
+            })
+            .catch(e => {
+                console.log('Error: ' + e);
+            });
         </script>
     </body>
 </html>
