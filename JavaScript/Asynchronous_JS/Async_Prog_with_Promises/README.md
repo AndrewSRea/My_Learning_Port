@@ -525,3 +525,23 @@ When you save and run the code as is, after one second you'll get the message al
 The above example was kept deliberately simple to make the concepts easy to understand, but it is not really very async. The asynchronous nature is basically faked using `setTimeout()`, although it does still show that promises are useful for creating acustom function with a sensible flow of operations, good error handling, etc.
 
 One example we'd like to invite you to study, which does show a useful async application of the `Promise()` constructor, is [Jake Archibald's idb library](https://github.com/jakearchibald/idb/). This takes the [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), which is an old-style callback-based API for storing and retrieving data on the client-side, allows you to use it with promises. In the code, you'll see the same kind of techniques we discussed above being used there. The following block converts the basic request model used by many IndexedDB methods to use promises ([see this code, for example](https://github.com/jakearchibald/idb/blob/01082ad696eef05e9c913f55a17cda7b3016b12c/build/esm/wrap-idb-value.js#L30)).
+
+## Conclusion
+
+Promises are a good way to build asynchronous applications when we don't know the return value of a function or how long it will take to return. They make it easier to express and reason about sequences of asynchronous operations without deeply nested callbacks, and they support a style of error handling that is similar to the synchronous `try...catch` statement.
+
+Promises work in the latest versions of all modern browsers; the only place where promise support will be a problem is in Opera Mini and IE11 and earlier versions.
+
+We didn't touch on all promise features in this article, just the most interesting and useful ones. As you start to learn more about promises, you'll come across further features and techniques.
+
+Most modern Web APIs are promise-based, so you'll need to understand promises to get the most out of them. Among those APIs are [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API), [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API), [Media Capture and Streams](https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API), and many more. Promises will be more and more important as time goes on, so learning to use and understand them is an important step in learning modern JavaScript.
+
+## See also
+
+* [`Promise()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+* [We have a problem with promises](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html) by Nolan Lawson
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#cooperative-asynchronous-javascript-timeouts-and-intervals) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#graceful-asynchronous-programming-with-promises) - [[Next page]]()
