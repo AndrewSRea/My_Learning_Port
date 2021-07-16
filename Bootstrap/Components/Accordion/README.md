@@ -53,7 +53,7 @@ The accordion uses [collapse](https://github.com/AndrewSRea/My_Learning_Port/tre
     </div>
 </div>
 ```
-(See the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html), under the header **Accordion Component Example 01**.)
+(See the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html#accordion-01).)
 
 ### Flush
 
@@ -98,7 +98,7 @@ Add `.accordion-flush` to remove the default `background-color`, some borders, a
     </div>
 </div>
 ```
-(And see this code example in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html), under the header **Accordion Component Example 02**.)
+(And see this code example in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html#accordion-02).)
 
 ### Always open
 
@@ -143,7 +143,7 @@ Omit the `data-bs-parent` attribute on each `.accordion-collapse` to make accord
     </div>
 </div>
 ```
-(And again, see the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html), under the header **Accordion Component Example 03**.)
+(And again, see the code example above in my accompanying [accordion-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Accordion/accordion-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Accordion/accordion-examples.html#accordion-03).)
 
 ## Accessiblity
 
