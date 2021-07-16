@@ -31,7 +31,7 @@ Alerts are available for any length of text, as well as an optional close button
     A simple dark alert - check it out!
 </div>
 ```
-(See the code example above in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file.)
+(See the code example above in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Alerts/alert-examples.html), under the header **Alert Component Example 01**.)
 
 <hr>
 
@@ -70,7 +70,7 @@ Use the `.alert-link` utility class to quickly provide matching colored links wi
     A simple dark alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
 </div>
 ```
-(This code example can also be seen in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file.)
+(This code example can also be seen in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Alerts/alert-examples.html), under the header **Alert Component Example 02**.)
 
 ### Additional content
 
@@ -83,7 +83,7 @@ Alerts can also contain additional HTML elements like headings, paragraphs, and 
     <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
 </div>
 ```
-(And again, this code example above in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file.)
+(And again, this code example above in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Alerts/alert-examples.html), under the header **Alert Component Example 03**.)
 
 ### Icons
 
@@ -98,7 +98,7 @@ Similarly, you can use [flexbox utilities](https://github.com/AndrewSRea/My_Lear
     </div>
 </div>
 ```
-(And this code example above in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file.)
+(And this code example above in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Alerts/alert-examples.html), under the header **Alert Component Example 04**.)
 
 Need more than one icon for your alerts? Consider using more Bootstrap Icons and making a local SVG sprite like so to easily reference the same icons repeatedly.
 ```
@@ -139,7 +139,7 @@ Need more than one icon for your alerts? Consider using more Bootstrap Icons and
     </div>
 </div>
 ```
-(And this code example can also be seen in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file.)
+(And this code example can also be seen in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/Alerts/alert-examples.html) file, and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Alerts/alert-examples.html), under the header **Alert Component Example 05**.)
 
 ### Dismissing
 
@@ -150,7 +150,7 @@ Using the alert JavaScript plugin, it's possible to dismiss any alert inline. He
 * On the close button, add the `data-bs-dismiss="alert"` attribute, which triggers the JavaScript functionality. Be sure to use the `<button>` element with it for proper behavior across all devices.
 * To animate alerts when dismissing them, be sure to add the `.fade` and `.show` classes.
 
-You can see this in action with a live demo (in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/alert-examples.html) file).
+You can see this in action with a live demo (in my accompanying [alert-examples.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Components/alert-examples.html) file). And see it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Components/Alerts/alert-examples.html), under the header **Alert Component Example 06**.
 ```
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Holy guacamole!</strong> You should check in on some of those fields below.
