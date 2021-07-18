@@ -127,4 +127,4 @@ myFetch().then((blob) => {
     document.body.appendChild(image);
 }).catch(e => console.log(e));
 ```
-See this example running live [here](), and see the source code [here]().
+See this example running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await.html).
