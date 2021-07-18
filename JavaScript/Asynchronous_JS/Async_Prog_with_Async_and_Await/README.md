@@ -68,3 +68,63 @@ Of course, the above example is not very useful, although it does serve to illus
 ## Rewriting promise code with async/await
 
 Let's look back at a simple fetch example that we saw in the previous article:
+```
+fetch('coffee.jpg')
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.blob();
+})
+.then(myBlob => {
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+})
+.catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+By now, you should have a reasonable understanding of promises and how they work, but let's convert this to use async/await to see how much simpler it makes things:
+```
+async function myFetch() {
+    let response = await fetch('coffee.jpg');
+
+    if (!reponse.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    let myBlob = await response.blob();
+
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+}
+
+myFetch()
+.catch(e => {
+    console.log('There has been a problem with your fetch opeation: ' + e.message);
+});
+```
+It makes code much simpler and easier to understand -- no more `.then()` blocks everywhere!
+
+Since an `async` keyword turns a function into a promise, you could refactor your code to use a hybrid approach of promises and await, bringing the second half of the function out into a new block to make it more flexible:
+```
+async function myFetch() {
+    let response = await fetch('coffee.jpg');
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.blob();
+}
+
+myFetch().then((blob) => {
+    let objectURL = URL.createObjectURL(blob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+}).catch(e => console.log(e));
+```
+See this example running live [here](), and see the source code [here]().
