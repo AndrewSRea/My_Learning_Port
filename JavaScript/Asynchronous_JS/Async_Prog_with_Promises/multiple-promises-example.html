@@ -2,13 +2,16 @@
 <html lang="en-US">
     <head>
         <meta charset="utf-8">
-        <title>My test page</title>
+        <title>fetch() promise.all() example</title>
     </head>
     <body>
 
         <script>
+            // Define function to fetch a file and return it in usable form
             function fetchAndDecode(url, type) {
+                // Returning the top level promise, so the result of the entire chain is returned out of the function
                 return fetch(url).then(response => {
+                    // Depending on what tyoe of file is being fetched, use the relevant function to decode its contents
                     if(!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     } else {
@@ -24,10 +27,12 @@
                 });
             }
 
+            // Call the fetchAndDecode() method to fetch the images and the text, and store their promises in variables
             let coffee = fetchAndDecode('coffee.jpg', 'blob');
             let tea = fetchAndDecode('tea.jpg', 'blob');
             let description = fetchAndDecode('description.txt', 'text');
 
+            // Use Promise.all() to run code only when all three function calls have resolved
             Promise.all([coffee, tea, description]).then(values => {
                 console.log(values);
 
