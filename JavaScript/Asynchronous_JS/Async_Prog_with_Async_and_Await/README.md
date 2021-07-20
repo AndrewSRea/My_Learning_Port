@@ -263,3 +263,79 @@ By using `await` here, we are able to get all the results of the three promises 
 For error handling, we've included a `.catch()` block on our `displayContent()` call; this will handle errors occurring in both function.
 
 <hr>
+
+**Note**: It is possible to use a sync [`finally`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch#the_finally_clause) block within an async function, in place of a [`.finally()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally) async block, to show a final report on how the operation went -- you can see this in action in a [live example](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/promise-finally-async-await.html) (also, see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/promise-finally-async-await.html)).
+
+<hr>
+
+## Handling async/await slowdown
+
+Async/await makes your code look synchronous and in a way, it makes it behave more synchronously. The `await` keyword blocks execution of all the code that follows it until the promise fulfills, exactly as it would with a synchronous operation. It does allow other tasks to continue to run in the meantime, but the awaited code is blocked. For example:
+```
+async function makeResult(items) {
+    let newArr = [];
+    for (let i = 0; i < items.length; i++) {
+        newArr.push('word_' + i);
+    }
+    return newArr;
+}
+
+async function getResult() {
+    let result = await makeResult(items);   // Blocked on this line
+    useThatResult(result);                  // Will not be executed before makeResult() is done
+}
+```
+As a result, your code could be slowed down by a significant number of awaited promises happening straight after one another. Each `await` will wait for the previous one to finish, whereas actually what you might want is for the promises to begin processing simultaneously, like they would do if we weren't using async/await.
+
+Let's look at two examples -- [slow-async-await.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/slow-async-await.html) (see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/slow-async-await.html)) and [fast-async-await.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/fast-async-await.html) (see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/fast-async-await.html)). Both of them start off with a custom promise function that fakes an async process with a [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) call:
+```
+function timeoutPromise(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            resolve("done");
+        }, interval);
+    });
+};
+```
+Then each one includes a `timeTest()` async function that awaits three `timeoutPromise()` calls:
+```
+async function timeTest() {
+    ...
+}
+```
+Each one ends by recording a start time, seeing how long the `timeTest()` promise takes to fulfill, then recording an end time and reporting how long the operation took in total:
+```
+let startTime = Date.now();
+timeTest().then(() => {
+    let finishTime = Date.now();
+    let timeTaken = finishTime - startTime;
+    alert("Time taken in milliseconds: " + timeTaken);
+})
+```
+It is the `timeTest()` function that differs in each case.
+
+In the "slow-async-await.html" example, `timeTest()` looks like this:
+```
+async function timeTest() {
+    await timeoutPromise(3000);
+    await timeoutPromise(3000);
+    await timeoutPromise(3000);
+}
+```
+Here we await all three `timeoutPromise()` calls directly, making each one alert after 3 seconds. Each subsequent one is forced to wait until the last one is finished -- if you run the first example, you'll see the alert box reporting a total run time of around 9 seconds.
+
+In the "fast-async-await.html" example, `timeTest()` looks like this:
+```
+async function timeTest() {
+    const timeoutPromise1 = timeoutPromise(3000);
+    const timeoutPromise2 = timeoutPromise(3000);
+    const timeoutPromise3 = timeoutPromise(3000);
+
+    await timeoutPromise1;
+    await timeoutPromise2;
+    await timeoutPromise3;
+}
+```
+Here we store the three `Promise` objects in variables, which has the effect of setting off their associated processes all running simultaneously.
+
+Next, we await their results -- because the promises all started processing at essentially the same time, the promises will all fulfill at the same time; when you run the second example, you'll see the alert box reporting a total run time of just over 3 seconds!
