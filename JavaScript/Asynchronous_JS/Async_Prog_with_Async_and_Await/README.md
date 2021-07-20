@@ -128,3 +128,75 @@ myFetch().then((blob) => {
 }).catch(e => console.log(e));
 ```
 See this example running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await.html).
+
+### But how does it work?
+
+You'll note that we've wrapped the code inside a function, and we've included the `async` keyword before the `function` keyword. This is necessary -- you have to create an async function to define the block of code in which you'll run your async code; as we said earlier, `await` only works inside of async functions.
+
+Inside the `myFetch()` function definition, you can see that the code closely resembles the previous promise version, but there are some differences. Instead of needing to chain a `.then()` block on to the end of each promise-based method, you just need to add an `await` keyword before the method call, and then assign the result to a variable. The `await` keyword causes the JavaScript runtimeto pause your codeon this line, not allowing further code to execute in the meantime until the async function call has returned its result -- very useful if subsequent code relies on that result!
+
+Once that's complete, you code continues to execute starting on the next line. For example:
+```
+let response = await fetch('coffee.jpg');
+```
+The response returned by the fulfilled `fetch()` promise is assigned to the `response` variable when that response becomes available, and the parser pauses on this line until that occurs. Once the response is available, the parser moves to the next line, which creates a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) out of it. This line also invokes an async promise-based method, so we use `await` here as well. When the result of operation returns, we return it out of the `myFetch()` function.
+
+This means that when we call the `myFetch()` function, it returns a promise, so we can chain a `.then()` onto the end of it inside which we handle displaying the blob onscreen.
+
+You are probably already thinking "this is really cool!", and you are right -- fewer `.then()` blocks to wrap around code, and it mostly just looks like synchronous code, so it is really intuitive.
+
+### Adding error handling
+
+And if you want to add error handling, you've got a couple of options.
+
+You can use a synchronous code [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) structure with `async`/`await`. This example expands on the first version of the code we showed above:
+```
+async function myFetch() {
+    try {
+        let response = await fetch('coffee.jpg');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        let myBlob = await response.blob();
+        let objectURL = URL.createObjectURL(myBlob);
+        let image = document.createElement('img');
+        image.src = objectURL;
+        document.body.appendChild(image);
+
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+myFetch();
+```
+The `catch() {}` block is passed an error object, which we've called `e`; we can now log that to the console, and it will give us a detailed error message showing where in the code the error was thrown.
+
+If you wanted to use the second (refactored) version of the code that we showed above, you would be better off just continuing the hybrid approach and chaining a `.catch()` block onto the end of the `.then()` call, like this:
+```
+async function myFetch() {
+    let response = await fetch('coffee.jpg');
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.blob();
+
+}
+
+myFetch().then((blob) {
+    let objectURL = URL.createObjectURL(blob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+})
+.catch((e) =>
+    console.log(e);
+);
+```
+This is because the `.catch()` block will catch errors occurring in both the async function call and the promise chain. If you used the `try`/`catch` block here, you might still get unhandled errors in the `myFetch()` function when it's called.
+
+You can find both of these examples through the links below:
+
+* [simple-fetch-async-await-try-catch.html]() (And the source code [here]().)
+* [simple-fetch-async-await-promise-catch.html]() (And the source code [here]().)
