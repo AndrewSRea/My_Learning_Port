@@ -198,5 +198,5 @@ This is because the `.catch()` block will catch errors occurring in both the asy
 
 You can find both of these examples through the links below:
 
-* [simple-fetch-async-await-try-catch.html]() (And the source code [here]().)
-* [simple-fetch-async-await-promise-catch.html]() (And the source code [here]().)
+* [simple-fetch-async-await-try-catch.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-try-catch.html) (And the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-try-catch.html).)
+* [simple-fetch-async-await-promise-catch.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-promise-catch.html) (And the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-promise-catch.html).)
