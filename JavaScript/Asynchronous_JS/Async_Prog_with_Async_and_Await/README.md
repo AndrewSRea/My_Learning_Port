@@ -200,3 +200,66 @@ You can find both of these examples through the links below:
 
 * [simple-fetch-async-await-try-catch.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-try-catch.html) (And the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-try-catch.html).)
 * [simple-fetch-async-await-promise-catch.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-promise-catch.html) (And the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/simple-fetch-async-await-promise-catch.html).)
+
+## Awaiting a Promise.all()
+
+async/await is built on top of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), so it's compatible with all the features offered by promises. This includes [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) -- you can quite happily await a `Promise.all()` call to get all the results returned into a variable in a way that looks like simple synchronous code. Again, let's return to [an example we saw in our previous article](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html). Keep it open in a separate tab so you can compare and contrast with the new version shown below.
+
+Converting this to async/await (see [live demo]() and [source code]()), this now looks like so:
+```
+async function fetchAndDecode(url, type) {
+    let response = await fetch(url);
+
+    let content;
+
+    if (!reponse.ok) {
+        throw new Error(`HTTP error! Status: ${reponse.status}`);
+    } else {
+        if(type === 'blob') {
+            content = await response.blob();
+        } else if(type === 'text') {
+            content = await response.text();
+        }
+    }
+
+    return content;
+
+}
+
+async function displayContent() {
+    let coffee = fetchAndDecode('coffee.jpg', 'blob');
+    let tea = fetchAndDecode('tea.jpg', 'blob');
+    let description = fecthAndDecode('description.txt', 'text');
+
+    let values = await Promise.all([coffee, tea, description]);
+
+    let objectURL1 = URL.createObjectURL(values[0]);
+    let objectURL2 = URL.createObjectURL(values[1]);
+    let descText = values[2];
+
+    let image1 = document.createElement('img');
+    let image2 = document.createElement('img');
+    image1.src = objectURL1;
+    image2.src = objectURL2;
+    document.body.appendChild(image1);
+    document.body.appendChild(image2);
+
+    let para = document.createElement('p');
+    para.textContent = descText;
+    document.body.appendChild(para);
+}
+
+displayContent()
+.catch((e) =>
+    console.log(e)
+);
+```
+You'll see that the `fetchAndDecode()` function has been converted easily into an async function with just a few changes. See the `Promise.all()` line:
+```
+let values = await Promise.all([coffee, tea, description]);
+```
+By using `await` here, we are able to get all the results of the three promises returned into the `values` array, when they are all available, in a way that looks very much like sync code. We've had to wrap all the code in a new async function, `displayContent()`, and we've not reduced the code by a lot of lines, but being able to move the bulk of the code out of the `.then()` block provides a nice, useful simplification, leaving us with a much more readable program.
+
+For error handling, we've included a `.catch()` block on our `displayContent()` call; this will handle errors occurring in both function.
+
+<hr>
