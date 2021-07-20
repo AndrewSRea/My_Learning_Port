@@ -205,7 +205,7 @@ You can find both of these examples through the links below:
 
 async/await is built on top of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), so it's compatible with all the features offered by promises. This includes [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) -- you can quite happily await a `Promise.all()` call to get all the results returned into a variable in a way that looks like simple synchronous code. Again, let's return to [an example we saw in our previous article](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html). Keep it open in a separate tab so you can compare and contrast with the new version shown below.
 
-Converting this to async/await (see [live demo]() and [source code]()), this now looks like so:
+Converting this to async/await (see [live demo](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/promise-all-async-await.html) and [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/promise-all-async-await.html)), this now looks like so:
 ```
 async function fetchAndDecode(url, type) {
     let response = await fetch(url);
