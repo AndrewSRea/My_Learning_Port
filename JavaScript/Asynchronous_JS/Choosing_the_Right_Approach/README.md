@@ -196,3 +196,140 @@ draw();
 ### Code example
 
 The following code fetches an image from the server and displays it inside an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element; [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-fetch-chained.html), and also see [the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-fetch-chained.html):
+```
+fecth('coffee.jpg')
+.then(response => response.blob())
+.then(myBlob => {
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.apenndChild(image);
+})
+.catch(e => {
+    console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+
+### Pitfalls
+
+Promise chains can be complex and hard to parse. If you nest a number of promises, you can end up with similar troubles to callback hell. For example:
+```
+remotedb.allDocs({
+    include_docs: true,
+    attachments: true
+}).then(function(result) {
+    let docs = result.rows;
+    docs.forEach(function(element) {
+        localdb.put(element.doc).then(function(response) {
+            alert("Pulled doc with id " + element.doc._id + " and added to local db.");
+        }).catch(function(err) {
+            if (err.name == 'conflict') {
+                localdb.get(element.doc._id).then(function(resp) {
+                    localdb.remove(resp._id, resp._rev).then(function(resp) {
+// et cetera...
+```
+It is better to use the chaining power of promises to go with a flatter, easier to parse structure:
+```
+remotedb.allDocs(...).then(function(resultOfAllDocs) {
+    return localdb.put(...);
+}).then(function(resultOfPut) {
+    return localdb.get(...);
+}).then(function(resultOfGet) {
+    return localdb.put(...);
+}).catch(function(err) {
+    console.log(err);
+});
+```
+...or even:
+```
+remotedb.allDocs(...)
+.then(resultOfAllDocs => {
+    return localdb.put(...);
+})
+.then(resultOfPut => {
+    return localdb.get(...);
+})
+.then(resultOfGet => {
+    return localdb.put(...);
+})
+.catch(err => console.log(err));
+```
+That covers a lot of the basics. For a much more complete treatment, see the excellent [We have a problem with promises](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html), by Nolan Lawson.
+
+### The [Browser compatibility](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach#browser_compatibility_5) of Promises
+
+### Further information
+
+* [Graceful asynchronous programming with Promises](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#graceful-asynchronous-programming-with-promises)
+* [Using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+* [Promise reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+## Promise.all()
+
+A JavaScript feature that allows you to wait for multiple promises to complete before then running a further operation based on the results of all the other promises.
+
+**Useful for...**
+
+| Single delayed operation | Repeating operation | Multiple sequential operations | Multiple simultaneous operations |
+| --- | --- | --- | --- |
+| No | No | No | Yes |
+
+### Code example
+
+The following example fetches several resources from the server, and uses `Promise.all()` to wait for all of them to be available before then displaying all of them -- [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html), and see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html):
+```
+function fetchAndDecode(url, type) {
+    // Returning the top level promise, so the result of the entire chain is returned out of the function
+    return fetch(url).then(response => {
+        // Depending on what type of file is being fetched, use the relevant function to decode its contents
+        if(type === 'blob') {
+            return response.blob();
+        } else if(type === 'text') {
+            return response.text();
+        }
+    })
+    .catch(e => {
+        console.log(`There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+    });
+}
+
+// Call the fetchAndDecode() method to fetch the images and the text, and store their promises in variables
+let coffee = fetchAndDecode('coffee.jpg', 'blob');
+let tea = fetchAndDecode('tea.jpg', 'blob');
+let description = fetchAndDecode('description.txt', 'text');
+
+// Use Promise.all() to run code only when all three function calls have resolved
+Promise.all([coffee, tea, description]).then(values => {
+    console.log(values);
+    // Store each value returned from the promises in separate variables; create object URLs from the blobs
+    let objectURL1 = URL.createObjectURL(values[0]);
+    let objectURL2 = URL.createObjectURL(values[1]);
+    let descText = values[2];
+
+    // Display the images in <img> elements
+    let image1 = document.createElement('img');
+    let image2 = document.createElement('img');
+    image1.src = objectURL1;
+    image2.src = objectURL2;
+    document.body.appendChild(image1);
+    document.body.appendChild(image2);
+
+    // Display the text in a paragraph
+    let para = document.createElement('p');
+    para.textContent = descText;
+    document.body.appendChild(para);
+});
+```
+
+### Pitfalls
+
+* If a `Promise.all()` rejects, then one or more of the promises you are feeding into it inside the array parameter must be rejecting, or might not be returning promises at all. You need to check each one to see what they returned.
+
+### The [Browser compatibility](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach#browser_compatibility_6) of Promise.all()
+
+### Further information
+
+* [Running code in response to multiple promises fulfilling](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#running-code-in-response-to-multiple-promises-fulfilling)
+* [Promise.all() reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+## Async/await
