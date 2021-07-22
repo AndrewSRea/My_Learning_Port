@@ -195,4 +195,4 @@ draw();
 
 ### Code example
 
-The following code fetches an image from the server and displays it inside an [`<img>`]() element; [see it live](), and also see [the source code]():
+The following code fetches an image from the server and displays it inside an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element; [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-fetch-chained.html), and also see [the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-fetch-chained.html):
