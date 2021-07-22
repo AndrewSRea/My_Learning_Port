@@ -339,3 +339,162 @@ async function timeTest() {
 Here we store the three `Promise` objects in variables, which has the effect of setting off their associated processes all running simultaneously.
 
 Next, we await their results -- because the promises all started processing at essentially the same time, the promises will all fulfill at the same time; when you run the second example, you'll see the alert box reporting a total run time of just over 3 seconds!
+
+### Handling errors
+
+There is an issue with the above pattern, however -- it could lead to unhandled errors.
+
+Let's update the previous examples, this time adding a rejected promise and a `catch` statement in the end:
+```
+function timeoutPromiseResolve(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            resolve("successful");
+        }, interval);
+    });
+};
+
+function timeoutPromiseReject(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            reject("error");
+        }, interval);
+    });
+};
+
+async function timeTest() {
+    await timeoutPromiseResolve(5000);
+    await timeoutPromiseReject(2000);
+    await timeoutPromiseResolve(3000);
+}
+
+let startTime = Date.now();
+timeTest().then(() => {
+}).catch(e => {
+    console.log(e);
+    let finishTime = Date.now();
+    let timeTaken = finishTime - startTime;
+    alert("Time taken in milliseconds: " + timeTaken);
+})
+```
+In the above example, the error is handled properly, and the alert appears after approximately 7 seconds.
+
+Now onto the second pattern:
+```
+function timeoutPromiseResolve(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            resolve("successful");
+        }, interval);
+    });
+};
+
+function timeoutPromiseReject(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            reject("error");
+        }, interval);
+    });
+};
+
+async function timeTest() {
+    const timeoutPromiseResolve1 = timeoutPromiseResolve(5000);
+    const timeoutPromiseReject2 = timeoutPromiseReject(2000);
+    const timeoutPromiseResolve3 = timeoutPromiseResolve(3000);
+}
+
+let startTime = Date.now();
+timeTest().then(() => {
+}).catch(e => {
+    console.log(e);
+    let finishTime = Date.now();
+    let timeTaken = finishTime - startTime;
+    alert("Time taken in milliseconds: " + timeTaken);
+})
+```
+In this example, we have an unhandled error in the console (after 2 seconds), and the alert appeafrs after approximately 5 seconds.
+
+To start the promises in parallel and catch the error properly, we could use `Promise.all()`, as discussed earlier:
+```
+function timeoutPromiseResolve(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            resolve("successful");
+        }, interval);
+    });
+};
+
+function timeoutPromiseReject(interval) {
+    return new Promise((resolve, reject) => {
+        setTimeout(function() {
+            reject("error");
+        }, interval);
+    });
+};
+
+async function timeTest() {
+    const timeoutPromiseResolve1 = timeoutPromiseResolve(5000);
+    const timeoutPromiseReject2 = timeoutPromiseReject(2000);
+    const timeoutPromiseResolve3 = timeoutPromiseResolve(3000);
+
+    const results = await Promise.all([timeoutPromiseResolve1, timeoutPromiseReject2, timeoutPromiseResolve3]);
+    return results;
+}
+
+let startTime = Date.now();
+timeTest().then(() => {
+}).catch(e => {
+    console.log(e);
+    let finishTime = Date.now();
+    let timeTaken = finishTime - startTime;
+    alert("Time taken in milliseconds: " + timeTaken);
+})
+```
+In this example, the error is handled properly after around 2 seconds and we also see the alert after around 2 seconds.
+
+The `Promise.all()` rejects when any of the input promises are rejected. If you want all the promises to settle and then use some of their fulfilled values, even when some of them are rejected, you could use [`Promise.allSettled()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled) instead.
+
+## Async/await class methods
+
+As a final note before we move on, you can even add `async` in front of class/object methods to make them return promises, and `await` promises inside them. Take a look at the [ES class code we saw in our object-oriented JavaScript article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Inheritance_in_JS#ecmascript-2015-classes), and then look at our modified version with an `async` method:
+```
+class Person {
+    constructor(first, last, age, gender, interests) {
+        this.name = {
+            first,
+            last
+        };
+        this.age = age;
+        this.gender = gender;
+        this.interests = interests;
+    }
+
+    async greeting() {
+        return await Promise.resolve(`Hi! I'm ${this.name.first}`);
+    };
+
+    farewell() {
+        console.log(`${this.name.first} has left the building. Bye for now!`);
+    };
+}
+
+let han = new Person('Han', 'Solo', 25, 'male', ['Smuggling']);
+```
+The first class method could now be used for something like this:
+```
+han.greeting().then(console.log);
+```
+
+## Browser support
+
+One consideration when deciding whether to use async/await is support for older browsers. They are available in modern versions of most browsers, the same as promises; the main support problems come with Internet Explorer and Opera Mini.
+
+If you want to use async/await but are concerned about older browser support, you could consider using the [BabelJS](https://babeljs.io/) library -- this allows you to write your applications using the latest JavaScript and let Babel figure out what changes, if any, are needed for your user's browsers. On encountering a browser that does not support async/await, Babel's polyfill can automatically provide fallbacks that work in older browsers.
+
+## Conclusion
+
+And there you have it -- async/await provide a nice, simplified way to write async code that is simpler to read and maintain. Even with browser support being more limited than other async code mechanisms at the time of writing, it is well worth learning and considering for use, both for now and in the future.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#graceful-asynchronous-programming-with-promises) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await) - [[Next page]]()
