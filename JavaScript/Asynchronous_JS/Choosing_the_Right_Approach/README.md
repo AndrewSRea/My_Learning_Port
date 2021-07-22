@@ -133,3 +133,66 @@ const createClock = setInterval(displayTime, 1000);
 
 * [Cooperative asynchronous JavaScript: Timeouts and intervals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#cooperative-asynchronous-javascript-timeouts-and-intervals), in particular [setInterval()](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#setinterval)
 * [setInterval() reference](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
+
+## requestAnimationFrame()
+
+[`requestAnimationFrame()`]() is a method that allows you to run a function repeatedly, and efficiently, at the best framerate available given the current browser/system. You should, if at all possible, use this instead of `setInterval()`/recursive `setTimeout()`, unless you need a specific framerate.
+
+**Useful for...**
+
+| Single delayed operation | Repeating operation | Multiple sequential operations | Multiple simultaneous operations |
+| --- | --- | --- | --- |
+| No | Yes | No (unless it is the same one) | No |
+
+### Code example
+
+A simple animated spinner; you can find this [example live here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/requestAnimationFrame-example.html) (and see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/requestAnimationFrame-example.html) also):
+```
+const spinner = document.querySelector('div');
+let rotateCount = 0;
+let startTime = null;
+let rAF;
+
+function draw(timestamp) {
+    if(!startTime) {
+        startTime = timestamp;
+    }
+
+    rotateCount = (timestamp - startTime) / 3;
+
+    if(rotateCount > 359) {
+        rotateCount %= 360;
+    }
+
+    spinner.style.transform = 'rotate(' + rotateCount + 'deg)';
+
+    rAF = requestAnimationFrame(draw);
+}
+
+draw();
+```
+
+### Pitfalls
+
+* You can't choose a specific framerate with `requestAnimationFrame()`. If you need to run your animation at a slower framerate, you'll need to use `setInterval()` or recursive `setTimeout()`.
+
+### The [Browser compatibility](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach#browser_compatibility_4) of requestAnimationFrame()
+
+### Further information
+
+* [Cooperative asynchronous JavaScript: Timeouts and intervals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#cooperative-asynchronous-javascript-timeouts-and-intervals), in particular [requestAnimationFrame()](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#requestanimationframe)
+* [requestAnimationFrame() reference](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+
+## Promises
+
+[Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) are a JavaScript feature that allows you to run asynchronous operations and wait until it is definitely complete before running another operation based on its result. Promises are the backbone of modern asynchronous JavaScript.
+
+**Useful for...**
+
+| Single delayed operation | Repeating operation | Multiple sequential operations | Multiple simultaneous operations |
+| --- | --- | --- | --- |
+| No | No | Yes | See [`Promise.all()`]() below |
+
+### Code example
+
+The following code fetches an image from the server and displays it inside an [`<img>`]() element; [see it live](), and also see [the source code]():
