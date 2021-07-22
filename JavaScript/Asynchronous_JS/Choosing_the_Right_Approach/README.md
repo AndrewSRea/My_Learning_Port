@@ -67,7 +67,7 @@ Really good general support, although the exact support for callbacks in APIs de
 
 ### Code example
 
-Here the browser will wait two seconds before executing the anonymous function, then will display the alert message ([see it running live](), and [see the source code]()):
+Here the browser will wait two seconds before executing the anonymous function, then will display the alert message ([see it running live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/simple-settimeout.html), and [see the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/simple-settimeout.html)):
 ```
 let myGreeting = setTimeout(function() {
     alert('Hello, Mr. Universe!');
@@ -100,3 +100,36 @@ When your code has the potential to take longer to run than the time interval yo
 * [Cooperative asynchronous JavaScript: Timeouts and intervals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#cooperative-asynchronous-javascript-timeouts-and-intervals), in particular [setTimeout()](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#settimeout)
 * [setTimeout() reference](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
 
+## setInterval()
+
+[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) is a method that allows you to run a function repeatedly with a set interval of time between each execution. Not as efficient as [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), but allows you to choose a running rate/frame rate.
+
+**Useful for...**
+
+| Single delayed operation | Repeating operation | Multiple sequential operations | Multiple simultaneous operations |
+| --- | --- | --- | --- |
+| No | Yes | Yes (unless they are the same) | No |
+
+### Code example
+
+The following function creates a new [`Date()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object, extracts a time string out of it using [`toLocaleTimeString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString), and then displays it in the UI. We then run it once per second using `setInterval()`, creating the effect of a digital clock that updates once per second ([see this live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/setinterval-clock.html), and also [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/setinterval-clock.html)):
+```
+function displayTime() {
+    let date = new Date();
+    let time = date.toLocaleTimeString();
+    document.getElementById('demo').textContent = time;
+}
+
+const createClock = setInterval(displayTime, 1000);
+```
+
+### Pitfalls
+
+* The frame rate isn't optimized for the system the animation is running on, and can be somewhat inefficient. Unless you need to choose a specific (slower) framerate, it is generally better to use `requestAnimationFrame()`.
+
+### The [Browser compatibility](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach#browser_compatibility_3) of setInterval()
+
+### Further information
+
+* [Cooperative asynchronous JavaScript: Timeouts and intervals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#cooperative-asynchronous-javascript-timeouts-and-intervals), in particular [setInterval()](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals#setinterval)
+* [setInterval() reference](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
