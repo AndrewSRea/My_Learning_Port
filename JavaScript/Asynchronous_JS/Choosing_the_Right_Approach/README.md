@@ -191,7 +191,7 @@ draw();
 
 | Single delayed operation | Repeating operation | Multiple sequential operations | Multiple simultaneous operations |
 | --- | --- | --- | --- |
-| No | No | Yes | See [`Promise.all()`]() below |
+| No | No | Yes | See [`Promise.all()`](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach#promiseall) below |
 
 ### Code example
 
@@ -333,3 +333,32 @@ Promise.all([coffee, tea, description]).then(values => {
 * [Promise.all() reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
 
 ## Async/await
+
+Syntactic sugar built on top of promises that allows you to run asynchronous operations using syntax that's more like writing synchronous callback code.
+
+**Useful for...**
+
+| Single delayed operation | Repeating operation | Multiple sequential operations | Multiple simultaneous operations |
+| --- | --- | --- | --- |
+| No | No | Yes | Yes (in combination with `Promise.all()`) |
+
+### Code example
+
+The following example is a refactor of the simple promise example we saw earlier that fetches and displays an image, written using async/await ([see it live](), and see the [source code]()):
+```
+async function myFetch() {
+    let response = await fetch('coffee.jpg');
+    let myBlob = await response.blob();
+
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+}
+
+myFetch();
+```
+
+### Pitfalls
+
+* You can't use the `await` operator
