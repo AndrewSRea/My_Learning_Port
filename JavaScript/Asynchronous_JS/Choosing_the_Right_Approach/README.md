@@ -344,7 +344,7 @@ Syntactic sugar built on top of promises that allows you to run asynchronous ope
 
 ### Code example
 
-The following example is a refactor of the simple promise example we saw earlier that fetches and displays an image, written using async/await ([see it live](), and see the [source code]()):
+The following example is a refactor of the simple promise example we saw earlier that fetches and displays an image, written using async/await ([see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-refactored-fetch.html), and see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-refactored-fetch.html)):
 ```
 async function myFetch() {
     let response = await fetch('coffee.jpg');
@@ -361,4 +361,17 @@ myFetch();
 
 ### Pitfalls
 
-* You can't use the `await` operator
+* You can't use the `await` operator inside a non-`async` function, or in the top level context of your code. This can sometimes result in an extra function wrapper needing to be created, which can be slightly frustrating in some circumstances. But it is worth it most of the time.
+* Browser support for async/await is not as good as that for promises. If you want to use async/await but are concerned about older browser support, you could consider using the [Babel JS](https://babeljs.io/) library -- this allows you to write your applications using the latest JavaScript and let Babel figure out what changes, if any, are needed for your user's browsers.
+
+### The [Browser compatibility](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach#browser_compatibility_7) for async/await
+
+### Further information
+
+* [Making asynchronous programming easier with async and await](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await)
+* [Async function reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+* [Await operator reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach#choosing-the-right-approach) - [[Next module: Client-side web APIs]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs#client-side-web-apis)
