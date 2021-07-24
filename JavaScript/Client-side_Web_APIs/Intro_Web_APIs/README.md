@@ -82,3 +82,19 @@ Third-party APIs come in a large variety; some of the more popular ones that you
 **Note**: You can find information on a lot more 3rd party APIs at the [Programmable Web API directory](https://www.programmableweb.com/category/all/apis).
 
 <hr>
+
+## How do APIs work?
+
+Different JavaScript APIs work in slightly different ways, but generally they have common features and similar themes to how they work.
+
+### They are based on objects
+
+Your code interacts with APIs using one or more [JavaScript objects](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects), which serve as containers for the data the API uses (contained in object properties), and the functionality the API makes available (contained in object methods).
+
+Let's return to the example of the Web Audio API -- this is a fairly complex API, which consists of a number of objects. The most obvious ones are:
+
+* [`AudioContext`](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext), which represents an [audio graph](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Basic_concepts_behind_Web_Audio_API#audio_graphs) that can be used to manipulate audio playing inside the browser, and has a number of methods and properties available to manipulate that audio.
+
+* [`MediaElementAudioSourceNode`](https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode), which represents an [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) element containing sound you want to play and manipulate inside the audio context.
+
+* [`AudioDestinationNode`](https://developer.mozilla.org/en-US/docs/Web/API/AudioDestinationNode), which represents the destination of the audio, i.e. the device on your computer that will actually output it -- usually your speakers or headphones.
