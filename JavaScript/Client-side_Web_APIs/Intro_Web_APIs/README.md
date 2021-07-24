@@ -184,12 +184,12 @@ const para = document.querySelector('p');   // reference an existing <p> element
 em.textContent = 'Hello there!';            // give "em" some text content
 para.appendChild(em);                       // embed "em" inside "para"
 ```
-The [Canvas API]() also relies on getting a context object to use to manipulate things, although in this case, it's a graphical context rather than an audio context. Its context object is created by getting a reference to the [`<canvas>`]() element you want to draw on, and then calling its [`HTMLCanvasElement.getContext()`]() method:
+The [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) also relies on getting a context object to use to manipulate things, although in this case, it's a graphical context rather than an audio context. Its context object is created by getting a reference to the [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element you want to draw on, and then calling its [`HTMLCanvasElement.getContext()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) method:
 ```
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 ```
-Anything that we want to do to the canvas is then achieved by calling properties and methods of the context object (which is an instance of [`CanvasRendingContext2D`]()). For example:
+Anything that we want to do to the canvas is then achieved by calling properties and methods of the context object (which is an instance of [`CanvasRendingContext2D`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)). For example:
 ```
 Ball.prototype.draw = function() {
     ctx.beginPath();
