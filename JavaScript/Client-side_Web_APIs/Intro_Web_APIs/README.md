@@ -201,6 +201,6 @@ Ball.prototype.draw = function() {
 
 <hr>
 
-**Note**: You can see this code in action in the [bouncing balls demo](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Assessment/index.html) (see it [running live](https://andrewsrea/github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Intro_JS_Objects/Assessment/index.html) also).
+**Note**: You can see this code in action in the [bouncing balls demo](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Assessment/index.html) (see it [running live](https://andrewsrea/github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Assessment/index.html) also).
 
 <hr>
