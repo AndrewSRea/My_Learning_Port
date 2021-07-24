@@ -98,3 +98,109 @@ Let's return to the example of the Web Audio API -- this is a fairly complex API
 * [`MediaElementAudioSourceNode`](https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode), which represents an [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) element containing sound you want to play and manipulate inside the audio context.
 
 * [`AudioDestinationNode`](https://developer.mozilla.org/en-US/docs/Web/API/AudioDestinationNode), which represents the destination of the audio, i.e. the device on your computer that will actually output it -- usually your speakers or headphones.
+
+So how do these objects interact? If you look at Mozilla's [simple web audio example](https://github.com/mdn/learning-area/blob/master/javascript/apis/introduction/web-audio/index.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/introduction/web-audio/)), you'll first see the following HTML:
+```
+<audio src="outfoxing.mp3"></audio>
+
+<button class="paused">Play</button>
+<br>
+<input type="range" min="0" max="1" step="0.01" value="1" class="volume">
+```
+We, first of all, include an `<audio>` element with which we embed an MP3 into the page. We don't include any default browser controls. Next, we include a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) that we'll use to play and stop the music, and an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element of type range, which we'll use to adjust the volume of the track while it's playing.
+
+Next, let's look at the JavaScript for this example.
+
+We start by creating an `AudioContext` instance inside which to manipulate our track:
+```
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
+```
+Next, we create constants that store references to our `<audio>`, `<button>`, and `<input>` elements, and use the [`AudioContext.createMediaElementSource()`](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createMediaElementSource) method to create a `MediaElementAudioSourceNode` representing the source of our audio -- the `<audio>` element will be played from:
+```
+const audioElement = document.querySelector('audio');
+const playBtn = document.querySelector('button');
+const volumeSlider = document.querySelector('.volume');
+
+const audioSource = audioCtx.createMediaElementSource(audioElement);
+```
+Next up, we include a couple of event handlers that serve to toggle between play and pause when the button is pressed and reset the display back to the beginning when the song has finished playing:
+```
+// play/pause audio
+playBtn.addEventListener('click', function() {
+    // check if context is in suspended state (autoplay policy)
+    if (adioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+
+    // if track is stopped, play it
+    if (this.getAttribute('class') === 'paused') {
+        audioElement.play();
+        this.setAttribute('class', 'playing');
+        this.textContent = 'Pause';
+    // if track is playing, stop it
+    } else if (this.getAttribute('class') === 'playing) {
+        audioElement.pause();
+        this.setAttribute('class', 'paused');
+        this.textContent = 'Play';
+    }
+});
+
+// if track ends
+audioElement.addEventListener('ended', function() {
+    playBtn.setAttribute('class', 'paused');
+    playBtn.textContent = 'Play';
+});
+```
+
+<hr>
+
+**Note**: You may notice that the `play()` and `pause()` methods being used to play and pause the track are not part of the Web Audio API; they are part of the [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API, which is different but closely-related.
+
+<hr>
+
+Next, we create a [`GainNode`](https://developer.mozilla.org/en-US/docs/Web/API/GainNode) object using the [`AudioContext.createGain()`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createGain) method, which can be used to adjust the volume of audio fed through it, and create another event handler that changes the value of the audio graph's gain (volume) whenever the slider value is changed:
+```
+const gainNode = audioCtx.createGain();
+
+volumeSl;ider.addEventListener('input', function() {
+    gainNode.gain.value = this.value;
+});
+```
+The final thing to do to get this to work is to connect the different nodes in the audio graph up, which is done using the [`AudioNode.connect()`](https://developer.mozilla.org/en-US/docs/Web/API/AudioNode/connect) method available on every node type:
+```
+audioSource.connect(gainNode).connect(audioCtx.destination);
+```
+The audio starts in the source, which is then connected to the gain node so the audio's volume can be adjusted. The gain node is then connected to the destination node so the sound can be played on your computer (the [`AudioContext.destination`](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/destination) property represents whatever is the default [`AudioDestinationNode`](https://developer.mozilla.org/en-US/docs/Web/API/AudioDestinationNode) available on your computer's hardware, e.g. your speakers).
+
+### They have recognizable entry points
+
+When using an API, you should make sure you know where the entry point is for the API. In the Web Audio API, this is pretty simple -- it is the [`AudioContext`](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext) object, which needs to be used to do any audio manipulation whatsoever.
+
+The Document Object Model (DOM) API also has a simple entry point -- its features tend to be found hanging off the [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object, or an instance of an HTML element that you want to affect in some way, for example:
+```
+const em = document.createElement('em');    // create a new <em> element
+const para = document.querySelector('p');   // reference an existing <p> element
+em.textContent = 'Hello there!';            // give "em" some text content
+para.appendChild(em);                       // embed "em" inside "para"
+```
+The [Canvas API]() also relies on getting a context object to use to manipulate things, although in this case, it's a graphical context rather than an audio context. Its context object is created by getting a reference to the [`<canvas>`]() element you want to draw on, and then calling its [`HTMLCanvasElement.getContext()`]() method:
+```
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+```
+Anything that we want to do to the canvas is then achieved by calling properties and methods of the context object (which is an instance of [`CanvasRendingContext2D`]()). For example:
+```
+Ball.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fill();
+};
+```
+
+<hr>
+
+**Note**: You can see this code in action in the [bouncing balls demo](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Building_Practice/index.html) (see it [running live](https://andrewsrea/github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Object_Building_Practice/index.html) also).
+
+<hr>
