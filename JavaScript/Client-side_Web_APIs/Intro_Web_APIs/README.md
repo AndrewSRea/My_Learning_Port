@@ -232,7 +232,19 @@ request.onload = function() {
 
 <hr>
 
-**Note**: You can see this code in action [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Working_with_JSON/heroes.html), and [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Working_with_JSON/heroes.html) also.
+**Note**: You can see this code for this example [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Working_with_JSON/heroes.html), and [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Working_with_JSON/heroes.html) also.
 
 <hr>
+
+The first five lines specify the location of the resource we want to fetch, create a new instance of a request object using the `XMLHttpRequest()` constructor, open an HTTP `GET` request to retrieve the specified resource, specify that the response should be sent in JSON format, then send the request.
+
+The `onload` handler function then specifies what we do with the response. We know the response will be successfully returned and available after the load event has fired (unless an error occurred), so we save the response containing the returned JSON in the `superheroes` variable, then pass it to two different functions for further processing.
+
+### They have additional security mechanisms where appropriate
+
+WebAPI features are subject to the same security considerations as JavaScript and other web technologies (for example, [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)), but they sometimes have additional security mechanisms in place. For example, some of the more modern WebAPIs will only work on pages served over HTTPS due to them transmitting potentially sensitive data (examples include [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) and [Push](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)).
+
+In addition, some WebAPIs request permission to be enabled from the user once calls to them are made in your code. As an example, the [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API) asks for permission using a pop-up dialog box:
+
+![Image of a Notifications API pop-up dialog box](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction/notification-permission.png)
 
