@@ -204,3 +204,35 @@ Ball.prototype.draw = function() {
 **Note**: You can see this code in action in the [bouncing balls demo](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Assessment/index.html) (see it [running live](https://andrewsrea/github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Assessment/index.html) also).
 
 <hr>
+
+### They use events to handle changes in state
+
+We already discussed earlier on in the course in our [Introduction to events](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#introduction-to-events) article, which looks in detail at what client-side web events are and how they are used in your code. If you are not already familiar with how client-side web API events work, you should go and read this article first before continuing.
+
+Some web APIs contain no events, but most contain at least a few. The handler properties that allow us to run functions when events fire are generally listed in our reference material in separate "Event handlers" sections.
+
+We already saw a number of event handlers in use in our Web Audio API example above.
+
+To provide another example, instances of the [`XMLHttpRequest`]() object (each one represents an HTTP request to the server to retrieve a new resource of some kind) has a number of events available on them. For example, the `load` event is fired when a response has been successfully returned containing the requested resource, and it is now available.
+
+The following code provides a simple example of how this would be used:
+```
+let requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+let request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+
+request.onload = function() {
+    const superHeroes = request.response;
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+}
+```
+
+<hr>
+
+**Note**: You can see this code in action [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Working_with_JSON/heroes.html), and [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Working_with_JSON/heroes.html) also.
+
+<hr>
+
