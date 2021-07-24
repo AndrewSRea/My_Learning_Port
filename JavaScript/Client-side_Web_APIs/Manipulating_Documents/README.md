@@ -6,11 +6,11 @@ When writing web pages and apps, one of the most common things you'll want to do
 
 Web browsers are very complicated pieces of software with a lot of moving parts, many of which can't be controlled or manipulated by a web developer using JavaScript. You might think that such limitations are a bad thing, but browsers are locked down for good reasons, mostly centering around security. Imagine if a web site could get access to your stored passwords or sensitive information, and log into websites as if it were you?
 
-Despite the limitations, Web APIs still give us access to a lot of functionality that enable us to do a great many things with web pages. There are a few really obvious bits you'll reference regularly in your code--consider the following diagram, which represents the main parts of a browser directly involved in viewing web pages:
+Despite the limitations, Web APIs still give us access to a lot of functionality that enable us to do a great many things with web pages. There are a few really obvious bits you'll reference regularly in your code -- consider the following diagram, which represents the main parts of a browser directly involved in viewing web pages:
 
 ![Image of a browser web page](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents/document-window-navigator.png)
 
-* The window is the browser tab that a web page is loaded into; this is represented in JavaScript by the [`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object. Using methods available on this object, you can do things like return the window's size (see [`Window.innerWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth) and [`Window.innerHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight)), manipulate the document loaded into that window, store data specific to that document on the client-side (for example, using a local database or other stoarge mechanism), attach an [event handler](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#a-series-of-fortunate-events) to the current window, and more.
+* The window is the browser tab that a web page is loaded into; this is represented in JavaScript by the [`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object. Using methods available on this object, you can do things like return the window's size (see [`Window.innerWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth) and [`Window.innerHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight)), manipulate the document loaded into that window, store data specific to that document on the client-side (for example, using a local database or other storage mechanism), attach an [event handler](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Intro_to_Events#a-series-of-fortunate-events) to the current window, and more.
 * The navigator represents the state and identity of the browser (i.e. the user-agent) as it exists on the web. In JavaScript, this is represented by the [`Navigator`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) object. You can use this object to retrieve things like the user's preferred language, a media stream from the user's webcam, etc.
 * The document (represented by the DOM in browsers) is the actual page loaded into the window, and is represented in JavaScript by the [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object. You can use this object to return and manipulate information on the HTML and CSS that comprises the document. For example, get a reference to an element in the DOM, change its text content, apply new styles to it, create elements and add them to the current element as children, or even delete it altogether.
 
@@ -18,9 +18,9 @@ In this article, we'll focus mainly on manipulating the document, but we'll show
 
 ## The document object model
 
-The document currently loaded in each one of your browser tabs is represented by a document object model. This is a "tree structure" representation created by the browser that enables the HTML structure to be easily accessed by programming languages--for example, the browser itself uses it to apply styling and other information to the correct elements as it renders a page, and developers like you can manipulate the DOM with JavaScript after the page has been rendered.
+The document currently loaded in each one of your browser tabs is represented by a document object model. This is a "tree structure" representation created by the browser that enables the HTML structure to be easily accessed by programming languages -- for example, the browser itself uses it to apply styling and other information to the correct elements as it renders a page, and developers like you can manipulate the DOM with JavaScript after the page has been rendered.
 
-We have create a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). Try opening this up in your browser--it is a very simple page containing a [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element inside which you can find an image, and a paragraph with a link inside. The HTML source code looks like this:
+We have created a simple example page at [dom-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/dom-example.html) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/document-manipulation/dom-example.html)). Try opening this up in your browser -- it is a very simple page containing a [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element inside which you can find an image, and a paragraph with a link inside. The HTML source code looks like this:
 ```
 <!DOCTYPE html>
 <html>
@@ -46,7 +46,7 @@ The DOM on the other hand looks like this:
 
 <hr>
 
-You can see here that each element and bit of text in the document has its own entry in the tree--each one is called a **node**. You will also encounter various terms used to describe the type of node, and their position in the tree in relation to one another:
+You can see here that each element and bit of text in the document has its own entry in the tree -- each one is called a **node**. You will also encounter various terms used to describe the type of node, and their position in the tree in relation to one another:
 
 * **Element node**: An element, as it exists in the DOM.
 * **Root node**: The top node in the tree, which in the case of HTML is always the `HTML` node (other markup vocabularies like SVG and custom XML will have different root elements).
@@ -90,7 +90,7 @@ These two work better in older browsers than the modern methods like `querySelec
 
 The above has given you a little taste of what you can do, but let's go further and look at how we can create new elements.
 
-1. Going back to the current example (my accompanying [dom-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html)), let's start by grabbing a refernce to our [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element--add the following code at the bottom of your existing script (do the same with the other lines, too):
+1. Going back to the current example (my accompanying [dom-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html)), let's start by grabbing a reference to our [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element -- add the following code at the bottom of your existing script (do the same with the other lines, too):
 ```
 const sect = document.querySelector('section');
 ```
@@ -113,7 +113,7 @@ const linkPara = document.querySelector('p');
 linkPara.appendChild(text);
 ```
 
-That's most of you need for adding nodes to the DOM--you'll make a lot of use of these methods when building dynamic interfaces (we'll look at some examples later).
+That's most of what you need for adding nodes to the DOM -- you'll make a lot of use of these methods when building dynamic interfaces (we'll look at some examples later).
 
 ### Moving and removing elements
 
@@ -123,7 +123,7 @@ If we wanted to move the paragraph with the link inside it to the bottom of the 
 ```
 sect.appendChild(linkPara);
 ```
-This moves the paragraph down to the bottom of the section. You might have thought it would make a second copy of it, but this is not the case--`linkPara` is a reference to the one and only copy of that paragraph. If you wanted to make a copy and add that as well, you'd need to use [`Node.cloneNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode) instead.
+This moves the paragraph down to the bottom of the section. You might have thought it would make a second copy of it, but this is not the case -- `linkPara` is a reference to the one and only copy of that paragraph. If you wanted to make a copy and add that as well, you'd need to use [`Node.cloneNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode) instead.
 
 Removing a node is pretty simple as well, at least when you have a reference to the node to be removed and its parent. In our current case, we just use [`Node.removeChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild), like this:
 ```
@@ -143,7 +143,7 @@ Have a go at adding the above lines to your code.
 
 It is possible to manipulate CSS styles via JavaScript in a variety of ways.
 
-To start with, you can get a list of all the stylesheets attached to a document using [`Document.stylesheets`](https://developer.mozilla.org/en-US/docs/Web/API/Document/styleSheets), which returns an array-like object with [`CSSStyleSheet`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet) objects. You can then add/remove styles as wished. However, we're not going to expand on those features because they are a somewhat archaic and difficult way to manipulate style. There are much easier ways.
+To start with, you can get a list of all the stylesheets attached to a document using [`Document.stylesheets`](https://developer.mozilla.org/en-US/docs/Web/API/Document/styleSheets), which returns an array-like object with [`CSSStyleSheet`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet) objects. You can then add/remove styles as wished. However, we're not going to expand on those features because they are a somewhat archaic and a difficult way to manipulate style. There are much easier ways.
 
 The first way is to add inline styles directly onto elements you want to dynamically style. This is done with the [`HTMLElement.style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, which contains inline styling information for each element in the document. You can set properties of this object to directly update element styles.
 
@@ -185,29 +185,29 @@ There is another common way to dynamically manipulate styles on your document, w
 ```
 para.setAttribute('class', 'highlight');
 ```
-4. Refresh your page, and you'll see no change--the CSS is still applied to the paragraph, but this time by giving it a class that is selected by our CSS rule, not as inline CSS styles.
+4. Refresh your page, and you'll see no change -- the CSS is still applied to the paragraph, but this time by giving it a class that is selected by our CSS rule, not as inline CSS styles.
 
 Which method you choose is up to you; both have their advantages and disadvantages. The first method takes less setup and is good for simple uses, whereas the second method is more purist (no mixing CSS and JavaScript, no inline styles, which are seen as a bad practice). As you start building larger and more involved apps, you will probably start using the second method more, but it is really up to you.
 
-At this point, we haven't really done anything useful! There is no point using JavaScript to create static content--you might as well just write it into your HTML and not use JavaScript. It is more complex than HTML, and creating your content with JavaScript also has other issues attached to it (such as not being readable by search engines).
+At this point, we haven't really done anything useful! There is no point using JavaScript to create static content -- you might as well just write it into your HTML and not use JavaScript. It is more complex than HTML, and creating your content with JavaScript also has other issues attached to it (such as not being readable by search engines).
 
 In the next couple of sections, we will look at a couple of more practical uses of DOM APIs.
 
 <hr>
 
-**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html), and see it running live [here](). <!-- GitHub page -->
+**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html), and see it running live [here](https://andrewsrea/github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html).
 
 <hr>
 
 ## Active learning: Getting useful information from the Window object
 
-So far we've only really looked at using [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) and [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) features to manipulate documents, but there is no reason why you can't get data from other sources and use it in your UI. You just have to make sure your data is in the right format; JavaScript makes it easier than many other languages, being weakly typed--for example, numbers will convert to strings automatically when you want to print them to the screen.
+So far we've only really looked at using [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) and [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) features to manipulate documents, but there is no reason why you can't get data from other sources and use it in your UI. You just have to make sure your data is in the right format; JavaScript makes it easier than many other languages, being weakly typed -- for example, numbers will convert to strings automatically when you want to print them to the screen.
 
-In this example, we will solve a common problem--making sure your application is as big as the window it is viewed in, whatever size it is. This is often useful in situations like games, where you want to use as much of the screen area as possible to play the game in.
+In this example, we will solve a common problem -- making sure your application is as big as the window it is viewed in, whatever size it is. This is often useful in situations like games, where you want to use as much of the screen area as possible to play the game in.
 
-To start with, make a local copy of our [window-resize-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/window-resize-example.html) and [bgtile.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/bgtile.png) demo files. Open it and have a look--you'll see that we've got a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) element covering a small part of the screen, which has got a background tile applied to it. We'll use that to represent our app UI area.
+To start with, make a local copy of our [window-resize-example.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/window-resize-example.html) and [bgtile.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/bgtile.png) demo files. Open it and have a look -- you'll see that we've got a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) element covering a small part of the screen, which has got a background tile applied to it. We'll use that to represent our app UI area.
 
-1. First of all, let's grab a reference to the `<div>`, and then grab the width and height of the viewport (the inner window, where your document is displayed) and store them in variables--these two values are handily contained in the [`Window.innerWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth) and [`Window.innerHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight) properties. Add the following lines inside the existing [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element:
+1. First of all, let's grab a reference to the `<div>`, and then grab the width and height of the viewport (the inner window, where your document is displayed) and store them in variables -- these two values are handily contained in the [`Window.innerWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth) and [`Window.innerHeight`](https://developer.mozilla.org/en-US/docs/Web/API/Window/innerHeight) properties. Add the following lines inside the existing [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element:
 ```
 const div = document.querySelector('div');
 let winWidth = window.innerWidth;
@@ -218,8 +218,8 @@ let winHeight = window.innerHeight;
 div.style.width = winWidth + 'px';
 div.style.height = winHeight + 'px';
 ```
-3. Save and try refreshing your browser--you should now see the `<div>` become as big as your viewport, whatever size of screen you are using. If you now try resizing your window to make it bigger, you'll see that the `<div>` stays the same size--we are only setting it once.
-4. How about we use an event so that the `<div>` resizes as we resize the window? The [`Window`]() object has an event available on it called resize, which is fired every time the window is resized--let's access that via the [`Window.onresize`]() event handler and rerun our sizing code each time it changes. Add the following to the bottom of your code:
+3. Save and try refreshing your browser -- you should now see the `<div>` become as big as your viewport, whatever size of screen you are using. If you now try resizing your window to make it bigger, you'll see that the `<div>` stays the same size -- we are only setting it once.
+4. How about we use an event so that the `<div>` resizes as we resize the window? The [`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object has an event available on it called resize, which is fired every time the window is resized -- let's access that via the [`Window.onresize`](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize) event handler and rerun our sizing code each time it changes. Add the following to the bottom of your code:
 ```
 window.onresize = function() {
     winWidth = window.innerWidth;
@@ -231,16 +231,16 @@ window.onresize = function() {
 
 <hr>
 
-**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/window-resize-example.html), and see it running live [here](). <!-- GitHub page -->
+**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/window-resize-example.html), and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Manipulating_Documents/window-resize-example.html).
 
 <hr>
 
 ## Active learning: A dynamic shopping list
 
-To round off the article, we'd like to set you a little challenge--we want to make a simple shopping list example that allows you to dynamically add items to the list using a form input and button. When you add an item to the input and press the button:
+To round off the article, we'd like to set you a little challenge -- we want to make a simple shopping list example that allows you to dynamically add items to the list using a form input and button. When you add an item to the input and press the button:
 
 * The item should appear in the list.
-* Each item should be given a button that can be pressed to delte that item off the list.
+* Each item should be given a button that can be pressed to delete that item off the list.
 * The input should be emptied and focused ready for you to enter another item.
 
 To complete the exercise, follow the steps below, and make sure that the list behaves as described above.
@@ -248,16 +248,16 @@ To complete the exercise, follow the steps below, and make sure that the list be
 1. To start with, download a copy of our [shopping-list.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/document-manipulation/shopping-list.html) starting file and make a copy of it somewhere. You'll see that it has some minimal CSS, a list with a label, input, and button, and an empty list and `<script>` element. You'll be making all your additions inside the script.
 2. Create three variables that hold references to the list ([`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul)), [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), and [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) elements.
 3. Create a [function](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code) that will run in response to the button being clicked.
-4. Inside the function body, start off by storing the current [value]() of the input element in a variable.
+4. Inside the function body, start off by storing the current [value](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#properties) of the input element in a variable.
 5. Next, empty the input element by setting its value to an empty string -- `''`.
-6. Create three new elements--a list item ([`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li)), [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span), and [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button), and store them in variables. 
+6. Create three new elements -- a list item ([`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li)), [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span), and [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button), and store them in variables. 
 7. Append the span and the button as children of the list item.
 8. Set the text content of the span to the input element value you saved earlier, and the text content of the button to 'Delete'.
 9. Append the list item as a child of the list.
 10. Attach an event handler to the delete button so that when clicked, it will delete the entire list item it is inside.
 11. Finally, use the [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus) method to focus the input element ready for entering the next shopping list item.
 
-(See the finished product from the steps above [here](), and see the code [along with my commented notes about the code] [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/shopping-list.html).)
+(See the finished product from the steps above [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Manipulating_Documents/shopping-list.html), and see the code [along with my commented notes about the code] [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/shopping-list.html).)
 
 ## Summary
 
@@ -276,4 +276,4 @@ There are lots more features you can use to manipulate your documents. Check out
 
 <hr>
 
-[[Previous page]]() - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents#manipulating-documents) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Intro_Web_APIs#introduction-to-web-apis) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents#manipulating-documents) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Fetching_Data#fetching-data-from-the-server)
