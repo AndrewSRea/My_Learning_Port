@@ -209,6 +209,8 @@ TypeError: image is undefined; can't access its "src" property
 ```
 This is because at the time the browser tries to run the third `console.log()` statement, the `fetch()` block has not finished running so the `image` variable has not been given a value.
 
+See the source code of this example [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/alt-async-sync.html), and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/alt-async-sync.html).
+
 <hr>
 
 **Note**: For security reasons, you can't `fetch()` files from your local filesystem (or run other such operations locally); to run the above example locally, you'll have to run the example through a [local webserver](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
@@ -220,6 +222,8 @@ This is because at the time the browser tries to run the third `console.log()` s
 ## Active learning: make it all async!
 
 To fix the problematic `fetch()` example and make the three `console.log()` statements appear in the desired order, you could make the third `console.log()` statement run async as well. This can be done by moving it inside another `.then()` block chained onto the end of the second one, or by moving it inside the second `then()` block. Try fixing this now.
+
+See the source code for this solution [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/all-async.html), and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/all-async.html).
 
 ## Conclusion
 
