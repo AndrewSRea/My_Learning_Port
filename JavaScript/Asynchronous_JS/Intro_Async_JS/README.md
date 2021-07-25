@@ -6,7 +6,7 @@ In this article, we briefly recap the problems associated with synchronous JavaS
 
 To allow us to understand what **[asynchronous](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous)** JavaScript is, we ought to start off by making sure we understand what **[synchronous](https://developer.mozilla.org/en-US/docs/Glossary/Synchronous)** JavaScript is. This section recaps some of the information we saw in the previous article.
 
-A lot of the functionality we have looked at in previous learning area modules is synchronous -- you run some code, and the result is returned as soon as the browser can do so. Let's look at a simple example ([see it live here](), and [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/basic-function.html)):
+A lot of the functionality we have looked at in previous learning area modules is synchronous -- you run some code, and the result is returned as soon as the browser can do so. Let's look at a simple example ([see it live here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/basic-function.html), and [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/basic-function.html)):
 ```
 const btn = document.querySelector('button');
 btn.addEventListener('click', () => {
@@ -28,7 +28,7 @@ In this block, the lines are executed one after the other:
 
 While each operation is being processed, nothing else can happen -- rendering is paused. This is because, as we said in the **[previous article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts#general-asynchronous-programming-concepts)**, [JavaScript is single-threaded](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts#javascript-is-single-threaded). Only one thing can happen at a time, on a single main thread, and everything else is blocked until an operation completes.
 
-So in the example above, after you've clicked the button, the paragraph won't appear until after the OK button is pressed in the alert box. [You can try it for yourself]().
+So in the example above, after you've clicked the button, the paragraph won't appear until after the OK button is pressed in the alert box. [You can try it for yourself](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/basic-function.html).
 
 <hr>
 
@@ -54,7 +54,7 @@ There are two main types of asynchronous code styles you'll come across in JavaS
 
 Async callbacks are functions that are specified as arguments when calling a function which will start executing code in the background. When the background code finishes running, it calls the callback function to let you know the work is done, or let you know that something of interest has happened. Using callbacks is slightly old-fashioned now, but you'll still see them in use in a number of older-but-still-commonly-used APIs.
 
-An example of of an async callback is the second parameter of the [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method (as we saw in action above):
+An example of an async callback is the second parameter of the [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method (as we saw in action above):
 ```
 btn.addEventListener('click', => {
     alert('You clicked me!');
@@ -68,7 +68,7 @@ The first parameter is the type of event to be listened for, and the second para
 
 When we pass a callback function as an argument to another function, we are only passing the function's reference as an argument, i.e. the callback function is **not** executed immediately. It is "called back" (hence the name) asynchronously somewhere inside the containing function's body. The containing function is responsible for executing the callback function when the time comes.
 
-You can write your own function containing a callback easily enough. Let's look at another example that loads a resource via the [`XMLHttpRequest` API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ([run it live](), and [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/xhr-async-callback.html)):
+You can write your own function containing a callback easily enough. Let's look at another example that loads a resource via the [`XMLHttpRequest` API](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) ([run it live](https://andrewsrea.github.io/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/xhr-async-callback.html), and [see the source](https://github.com/AndrewSRea/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/xhr-async-callback.html)):
 ```
 function loadAsset(url, type, callback) {
     let xhr = new XMLHttpRequest();
@@ -96,7 +96,7 @@ Here we create a `displayImage()` function that represents a blob passed to it a
 
 Callbacks are versatile -- not only do they allow you to control the order in which functions are run and what data is passed between them, they also allow you to pass data to different functions depending on circumstance. So you could have different actions to run on the response downloaded, such as `processJSON()`, `displayText()`, etc.
 
-Note that not all callbacks are async -- some run synchronously. An example is when we use [`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) to loop through the items in an array ([see it live]() [after opening the program in a browser, open the browser's developer tools to see the effect of the program], and [the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/foreach.html)):
+Note that not all callbacks are async -- some run synchronously. An example is when we use [`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) to loop through the items in an array ([see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/foreach.html) [after opening the program in a browser, open the browser's developer tools to see the effect of the program], and [the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/foreach.html)):
 ```
 const gods = ['Apollo', 'Artemis', 'Ares', 'Zeus'];
 
@@ -122,7 +122,7 @@ fetch('products.json').then(function(response) {
 
 <hr>
 
-**Note**: You can find the finished version [here](), and also [see it running live]()).
+**Note**: You can find the finished version [here](https://github.com/mdn/learning-area/blob/master/javascript/apis/fetching-data/can-store/can-script.js), and also [see it running live](https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/)).
 
 <hr>
 
@@ -131,7 +131,7 @@ Here we see `fetch()` taking a single parameter -- the URL of a resource you wan
 This concept can take practice to get used to; it feels a little like [Schrödinger's cat](https://en.wikipedia.org/wiki/Schr%C3%B6dinger's_cat) in action. Neither of the possible outcomes have happened yet, so the fetch operation is currently waiting on the result of the browser trying to complete the operation at some point in the future. We've then got three further code blocks chained onto the end of the `fetch()`:
 
 * Two [`then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) blocks. Both contain a callback function that will run if the previous operation is successful, and each callback receives as input the result of the previous successful operation, so you can go forward and do something else to it. Each `.then()` block returns another promise, meaning that you can chain multiple `.then()` blocks onto each other, so multiple asynchronous operations can be made to run in order, one after another.
-* The [`catch()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) block at the end runs if any of the `.then()` blocks fail -- in a similar way to synchronous [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) blocks, an error object is made available inside the `catch()`, which can be used to report the kind of error that has occurred. Note, however, that synchronous `try...catch` won't work with promises, although it will work with [async/await](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await),as you'll learn later on.
+* The [`catch()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) block at the end runs if any of the `.then()` blocks fail -- in a similar way to synchronous [`try...catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) blocks, an error object is made available inside the `catch()`, which can be used to report the kind of error that has occurred. Note, however, that synchronous `try...catch` won't work with promises, although it will work with [async/await](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await), as you'll learn later on.
 
 <hr>
 
@@ -141,7 +141,7 @@ This concept can take practice to get used to; it feels a little like [Schrödin
 
 ### The event queue
 
-Async operations like promises are put into an **event queue**, which runs after the main thread has finished processing so they they *do not block* subsequent JavaScript code from running. The queued operations will complete as soon as possible, then return their results to the JavaScript environment.
+Async operations like promises are put into an **event queue**, which runs after the main thread has finished processing so they *do not block* subsequent JavaScript code from running. The queued operations will complete as soon as possible, then return their results to the JavaScript environment.
 
 ### Promises versus callbacks
 
@@ -156,7 +156,7 @@ However, promises are specifically made for handling async operations, and have 
 
 ## The nature of asynchronous code
 
-Let's explore an example that further illustrates the nature of async code, showing what can happen when we are not fully aware of code execution order and the problems of trying to treat asynchronous code like synchronous code. The following example is fairly similar to what we've seen before ([see it live](), and [the source]()). One difference is that we've included a number of [`console.log()`]() statements to illustrate an order that you might think the code would execute in.
+Let's explore an example that further illustrates the nature of async code, showing what can happen when we are not fully aware of code execution order and the problems of trying to treat asynchronous code like synchronous code. The following example is fairly similar to what we've seen before ([see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Intro_Async_JS/async-sync.html), and [the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Intro_Async_JS/async-sync.html)). One difference is that we've included a number of [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/console/log) statements to illustrate an order that you might think the code would execute in.
 ```
 console.log('Starting');
 let image;
