@@ -97,11 +97,7 @@ After some time, JavaScript gained some tools to help with such problems. [Web w
   Main thread: Task A --> Task C
 Worker thread: Expensive task B
 ```
-With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html) ([see it running live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html)), again with your browser's JavaScript console open. 
-
-(**Unfortunately, this code example probably will not work on your local browser as it needs a server for it to run.** See the section on [How do you set up a local testing server?](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server) for more detail.)
-
-This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
+With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html) ([see it running live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html)), again with your browser's JavaScript console open. This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
 
 ## Asynchronous code
 
