@@ -4,11 +4,11 @@ In this article, we'll run through a number of important concepts relating to as
 
 ## Asynchronous?
 
-Normally, a given program's code runs straight along, with only one thing happening at once. If a function relies on the result of another function, it has to wait for the other function to finish and return, and until that happens, the entire program is essentially stopped from the persepctive of the user.
+Normally, a given program's code runs straight along, with only one thing happening at once. If a function relies on the result of another function, it has to wait for the other function to finish and return, and until that happens, the entire program is essentially stopped from the perspective of the user.
 
 Mac users, for example, sometimes experience this as the spinning rainbow-colored cursor (or "beachball", as it is often called). This cursor is how the operating system says "the current program you're using has had to stop and wait for something to finish up, and it's taking so long that I was worried you'd wonder what was going on."
 
-This is a frustrating experience and isn't a good use of computer processing power -- especially in an era in which computers have have multiple processor cores available. There's no sense sitting there waiting for something when you could let the other task chug along on another processor core and let you know when it's done. This lets you get other work done in the meantime, which is the basis of **asynchronous programming**. It is up to the programming environment you are using (web browsers, in the case of web development) to provide you with APIs that allow you to run such tasks asynchronously.
+This is a frustrating experience and isn't a good use of computer processing power -- especially in an era in which computers have multiple processor cores available. There's no sense sitting there waiting for something when you could let the other task chug along on another processor core and let you know when it's done. This lets you get other work done in the meantime, which is the basis of **asynchronous programming**. It is up to the programming environment you are using (web browsers, in the case of web development) to provide you with APIs that allow you to run such tasks asynchronously.
 
 ## Blocking code
 
@@ -16,7 +16,7 @@ Asynchronous techniques are very useful, particularly in web programming. When a
 
 Let's look at a couple of examples that show what we mean by blocking.
 
-In our [simple-sync.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync.html) example ([see it running live]()), we add a click event listener to a button so that when clicked, it runs a time-consuming operation (calculates 10 million dates, then logs the final ones to the console) and then adds a paragraph to the DOM:
+In our [simple-sync.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync.html) example ([see it running live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync.html)), we add a click event listener to a button so that when clicked, it runs a time-consuming operation (calculates 10 million dates, then logs the final ones to the console) and then adds a paragraph to the DOM:
 ```
 const btn = document.querySelector('button');
 btn.addEventListener('click', ()  => {
@@ -41,7 +41,7 @@ When running the example, open your JavaScript console, then click the button --
 
 <hr>
 
-In our second example, [simple-sync-ui-blocking.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-ui-blocking.html) ([see it live]()), we simulate something slightly more realistic that you might come across on a real page. We block user interactivity with the rendering of the UI. In this example, we have two buttons:
+In our second example, [simple-sync-ui-blocking.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-ui-blocking.html) ([see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-ui-blocking.html)), we simulate something slightly more realistic that you might come across on a real page. We block user interactivity with the rendering of the UI. In this example, we have two buttons:
 
 * A "Fill canvas" button that when clicked fills the available [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) with 1 million blue circles.
 * A "Click me for alert" button that when clicked shows an alert message.
@@ -97,7 +97,11 @@ After some time, JavaScript gained some tools to help with such problems. [Web w
   Main thread: Task A --> Task C
 Worker thread: Expensive task B
 ```
-With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html) ([see it running live]()), again with your browser's JavaScript console open. This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
+With this in mind, have a look at [simple-sync-worker.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html) ([see it running live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/simple-sync-worker.html)), again with your browser's JavaScript console open. 
+
+**(Unfortunately, this code example probably will not work on your local browser as it needs a server for it to run.)**
+
+This is a rewrite of our previous example that calculates the 10 million dates, but this time we're using a worker for the calculation. You can see the worker's code here: [worker.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Gen_Async_Prog_Concepts/worker.js). Now when you click the button, the browser is able to display the paragraph before the dates have finished calculating. Once the worker has finished calculating, it logs the final date to the console. The first operation no longer blocks the second.
 
 ## Asynchronous code
 
@@ -107,10 +111,10 @@ The second problem is that although code run in a worker is not blocking, it is 
 ```
 Main thread: Task A --> Task B
 ```
-In this case, let's say Task A is doing something like fetching an image form the server and Task B then does something to the image like applying a filter to it. If you start Task A running and then immediately try to run Task B, you'll get an error, because the image won't be available yet. 
+In this case, let's say Task A is doing something like fetching an image from the server and Task B then does something to the image like applying a filter to it. If you start Task A running and then immediately try to run Task B, you'll get an error, because the image won't be available yet. 
 ```
   Main thread: Task A --> Task B --> | Task D |
-Worker thread: Task C ----------->   |        |
+Worker thread: Task C -------------> |        |
 ```
 In this case, let's say Task D makes use of the results of both Task B and Task C. If we can guarantee that these results will both be available at the same time, then we might be OK, but this is unlikely. If Task D tries to run when one of its inputs is not yet available, it will throw an error.
 
