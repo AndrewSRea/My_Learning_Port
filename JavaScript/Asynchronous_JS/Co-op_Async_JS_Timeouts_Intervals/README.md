@@ -130,7 +130,7 @@ Here's a few hints for you:
 
 * You can structure and style the button markup however you like; just make sure you use semantic HTML, with hooks to allow you to grab the button references using JavaScript.
 * You probably want to create a variable that starts at `0`, then increments by one every second using a constant loop.
-* It is easier to create this example without using a `Date()` object, like we've done in our version, but less accurate -- you can't guarantee that the callback will fire after exactly `1000`ms. A more accurate way would be to run `startTime = Data.now()` to get a timestamp of exactly when the user clicked the start button, and then do `Date.now() - startTime` to get the number of milliseconds after the start button was clicked.
+* It is easier to create this example without using a `Date()` object, like we've done in our version, but less accurate -- you can't guarantee that the callback will fire after exactly `1000`ms. A more accurate way would be to run `startTime = Date.now()` to get a timestamp of exactly when the user clicked the start button, and then do `Date.now() - startTime` to get the number of milliseconds after the start button was clicked.
 * You also want to calculate the number of hours, minutes, and seconds as separate values, and then show them together in a string after each loop iteration. From the second counter, you can work out each of these.
 * How would you calculate them? Have a think about it:
     - The number of seconds in an hour is `3600`.
