@@ -41,14 +41,36 @@
             const startBtn = document.querySelector('.start');
             const stopBtn = document.querySelector('.stop');
             const resetBtn = document.querySelector('.reset');
-            let stopwatchTime = 0;
+            let startTime = 0;
 
             startBtn.addEventListener('click', function() {
-                stopwatchTime = Date.now();
-                Date.now() - stopwatchTime;
+                startTime = Date.now();
+                Date.now() - startTime;
                 document.getElementById('start').disabled = 'true';
             })
+
+            /*
+                * Calculate the number of hours, minutes, and seconds as separate values (let hours = ; let minutes =; etc.),
+                  and then show them together in a string after each loop iteration. From the second counter, you can work out
+                  each of these. (String: hours + ':' + minutes + ':' + seconds;)
+                * How would you calculate them? 
+                  - Number of seconds in an hour is 3600.
+                  - Number of minutes will be the amount of seconds left over when all of the hours have been removed, divided
+                    by 60.
+                  - Number of seconds will be the amount of seconds left over when all of the minutes have been removed.
+
+                    [60000 milliseconds = 60 seconds = 1 minute.]
+                * You'll want to include a leading zero on your display values if the amount is less than 10, so it looks like
+                  a traditional clock/watch.
+                * To pause the stopwatch, you'll want to clear the interval. To reset it, you'll want to set the counter back to
+                  0, clear the interval, and then immediately update the display.
+                * You probably ought to disable to start button after pressing it once, and enable it again after you've stopped/
+                  reset it. Otherwise multiple presses of the start button will apply multiple `setInterval()`s to the clock,
+                  leading to wrong behavior.
+            */
             
+            /* JS code provided by the Mozilla example */ 
+
             function displayTime() {
                 let date = new Date();
                 let time = date.toLocaleTimeString();
