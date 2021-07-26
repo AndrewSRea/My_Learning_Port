@@ -38,51 +38,68 @@
         </div>
 
         <script>
+            /*
+                I fear this "Active learning" exercise is a bit more complex than I would be able to comprehend on my own.
+                But to be fair to myself, Mozilla's instructions are a bit vague: 
+                https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#clearing_intervals
+
+                (The comments I put in below are for my own benefit so I know which line is performing which action.)
+            */
+
+            // Define a counter variable for the number of seconds and set it to zero.
+            let secondCount = 0;
+            // Define a global to store the interval when it is active.
+            let stopWatch;
+            // Store a reference to the display paragraph in a variable.
+            const displayPara = document.querySelector('.watch');
+
+            // Function to calculate the current hours, minutes, and seconds, and display the count.
+            function displayCount()  {
+                // Calculate current hours, minutes, and seconds.
+                let hours = Math.floor(secondCount/3600);
+                let minutes = Math.floor((secondCount % 3600)/60);
+                let seconds = Math.floor(secondCount % 60);
+
+                // Display a leading zero if the values are less than ten.
+                let displayHours = (hours < 10) ? '0' + hours : hours;
+                let displayMinutes = (minutes < 10) ? '0' + minutes : minutes;
+                let displaySeconds = (seconds < 10) ? '0' + seconds : seconds;
+
+                // Write the current stopwatch display time into the display paragraph.
+                displayPara.textContent = displayHours + ':' + displayMinutes + ':' + displaySeconds;
+
+                // Increment the second counter by one.
+                secondCount++;
+            }
+
+            // Store references to the buttons in constants.
             const startBtn = document.querySelector('.start');
             const stopBtn = document.querySelector('.stop');
             const resetBtn = document.querySelector('.reset');
-            let startTime = 0;
 
-            startBtn.addEventListener('click', function() {
-                startTime = Date.now();
-                Date.now() - startTime;
-                document.getElementById('start').disabled = 'true';
-            })
+            // When the start button is pressed, start running displayCount() once per second using setInterval().
+            // *** This is completely different from the instructions given by Mozilla. ***
+            startBtn.addEventListener('click', () => {
+                stopWatch = setInterval(displayCount, 1000);
+                startBtn.disabled = true;
+            });
 
-            stopBtn.addEventListener('click', function() {
-                
-            }
+            // When the stop button is pressed, clear the interval to stop the count.
+            stopBtn.addEventListener('click', () => {
+                clearInterval(stopWatch);
+                startBtn.disabled = false;
+            });
 
-            /*
-                * Calculate the number of hours, minutes, and seconds as separate values (let hours = ; let minutes =; etc.),
-                  and then show them together in a string after each loop iteration. From the second counter, you can work out
-                  each of these. (String: hours + ':' + minutes + ':' + seconds;)
-                * How would you calculate them? 
-                  - Number of seconds in an hour is 3600.
-                  - Number of minutes will be the amount of seconds left over when all of the hours have been removed, divided
-                    by 60.
-                  - Number of seconds will be the amount of seconds left over when all of the minutes have been removed.
+            // When the reset button is pressed, set the counter back to zero, then immediately update the display.
+            resetBtn.addEventListener('click', () => {
+                clearInterval(stopWatch);
+                startBtn.disabled = false;
+                secondCount = 0;
+                displayCount();
+            });
 
-                    [60000 milliseconds = 60 seconds = 1 minute.]
-                * You'll want to include a leading zero on your display values if the amount is less than 10, so it looks like
-                  a traditional clock/watch.
-                * To pause the stopwatch, you'll want to clear the interval. To reset it, you'll want to set the counter back to
-                  0, clear the interval, and then immediately update the display.
-                * You probably ought to disable to start button after pressing it once, and enable it again after you've stopped/
-                  reset it. Otherwise multiple presses of the start button will apply multiple `setInterval()`s to the clock,
-                  leading to wrong behavior.
-            */
-            
-            /* JS code provided by the Mozilla example */ 
-
-            function displayTime() {
-                let date = new Date();
-                let time = date.toLocaleTimeString();
-                document.querySelector('.watch').textContent = time;
-            }
-
-            displayTime();
-            const createClock = setInterval(displayTime, 1000);
+            // Run displayCount() once as soon as the page loads so the clock is displayed.
+            displayCount();
         </script>
     </body>
 </html>
