@@ -10,7 +10,7 @@ These functions are:
 
 **[`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)** - Execute a specified block of code once after a specified time has elapsed.
 
-**[`setnterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)** - Execute a specified block of code repeatedly with a fixed time delay between each call.
+**[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)** - Execute a specified block of code repeatedly with a fixed time delay between each call.
 
 **[`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)** - The modern version of `setInterval()`. Executes a specified block of code before the browser next repaints the display, allowing an animation to be run at a suitable framerate regardless of the environment it is being run in.
 
@@ -42,7 +42,7 @@ let myGreeting = setTimeout(() => {
     alert('Hello, Mr. Universe!');
 }, 2000);
 ```
-The functions you specify don't have to be anonymous. You can give your function a name, and even define it seomwhere else and pass a function reference to the `setTimeout()`. The following two versions of the code snippet are equivalent to the first one:
+The functions you specify don't have to be anonymous. You can give your function a name, and even define it somewhere else and pass a function reference to the `setTimeout()`. The following two versions of the code snippet are equivalent to the first one:
 ```
 // With a named function
 let myGreeting = setTimeout(function sayHi() {
@@ -86,11 +86,13 @@ clearTimeout(myGreeting);
 
 **Note**: See [greeter-app.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/greeter-app.html) for a slightly more involved demo that allows you to set the name of the person to say hello to in a form, and cancel the greeting using a separate button ([see the source code also](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/greeter-app.html)).
 
+<hr>
+
 ## setInterval()
 
 `setTimeout()` works perfectly when you need to run code once after a set period of time. But what happens when you need to run the code over and over again -- for example, in the case of an animation?
 
-This is where [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) comes in. This works in a very similar way to `setTimeout()`, except that the function you pass as the first parameter is executed repeatedly at no less than the number of milliseconds given by the second paramter apart, rather than once. You can also pass any paramters required by the function being executed as subsequent parameters of the `setInterval()` call.
+This is where [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) comes in. This works in a very similar way to `setTimeout()`, except that the function you pass as the first parameter is executed repeatedly at no less than the number of milliseconds given by the second parameter apart, rather than once. You can also pass any parameters required by the function being executed as subsequent parameters of the `setInterval()` call.
 
 Let's look at an example. The following function creates a new [`Date()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object, extracts a time string out of it using [`toLocaleTimeString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString), and then displays it in the UI. It then runs the function once per second using `setInterval()`, creating the effect of a digital clock that updates once per second ([see this live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/prev-setinterval-clock.html), and also [see the source](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/prev-setinterval-clock.html)):
 ```
@@ -121,7 +123,7 @@ You need to display a time as before, but in this example, you need:
 
 * A "Start" button to start the stopwatch running.
 * A "Stop" button to pause/stop it.
-* A "Reset button to reset the time back to `0`.
+* A "Reset" button to reset the time back to `0`.
 * The time display to show the number of seconds elapsed, rather than the actual time.
 
 Here's a few hints for you:
