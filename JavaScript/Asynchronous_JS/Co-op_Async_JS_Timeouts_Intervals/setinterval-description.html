@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple setInterval clock</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+        <style>
+            p {
+                font-family: 'Play', sans-serif;
+                font-size: 40px;
+                width: 25%;
+                height: 100px;
+                background-color: black;
+                color: white;
+                margin: 20px 0 20px 20px;
+                padding: 35px 0 0 0;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            div {
+                width: 25%;
+                margin: 0 0 0 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="watch"></p>
+        <div>
+            <button class="start">Start</button>
+            <button class="stop">Stop</button>
+            <button class="reset">Reset</button>
+        </div>
+
+        <script>
+            /*
+                Due to this code example being a bit too complex for me to figure out the solution, I will add comments
+                describing what is happening in each line, or block, of code.
+            */
+
+            // Define a counter variable for the number of seconds and set it to zero. (This was part of the instruction in the
+            // "Cooperative asynchronous JavaScript: Timeouts and intervals" module, under the header, "Active learning: Creating
+            // your own stopwatch!": "You probably want to create a variable that starts at 0, ...")
+            let secondCount = 0;
+
+            // Define a global to store the interval when it is active. (This step was not provided in the instructions for creating
+            // a `setInterval()` stopwatch.)
+            let stopWatch;
+
+            // Store a reference to the display paragraph in a variable.
+            const displayPara = document.querySelector('.watch');
+
+            // Function to calculate the current hours, minutes, and seconds, and display the count.
+            function displayCount()  {
+                // Calculate current hours, minutes, and seconds.
+
+                // For this `hours` calculation, as long as `secondCount` is less than 3600 (which equals 1 hour), `hours` will always
+                // be 0. When `secondCount` is greater than 3600, `hours` will be 1 (hour). Greater than 7200 will be 2 hours, etc.
+                let hours = Math.floor(secondCount/3600);
+
+                // For this `minutes` calculation, when the `secondCount` hits 60 (which equals 1 minute), the calculation will return
+                // 1 to the `minutes` variable. 120 for 2 minutes, etc. (I have to admit I still don't fully understand the `modulo`
+                // expression. I know the `modulo` is the remainder of the number after division has been performed. But I don't
+                // understand how to use the remainder number in further calculations.)
+                let minutes = Math.floor((secondCount % 3600)/60);
+
+                // For the `seconds` calculation, when the `secondCount` runs over each multiple of 60, it adds another second into 
+                // the `seconds` variable, i.e. 61 = 1 second; 88 = 28 seconds; 145 = 25 seconds (120 being a multiple of 60 so 145
+                // is 25 < 120, therefore 25 seconds).
+                let seconds = Math.floor(secondCount % 60);
+
+                // Display a leading zero if the values are less than ten.
+
+                // These are ternary operator conditionals. I'll use the first line, `displayHours`, to describe what is happening:
+                // Basically it is saying "If the number in `hours` is less than 10, then add a text string of `0` in front of the
+                // `hours` number. If not, then just display the `hours` number." Because if the `hours` number is 13, or 45, etc.,
+                // then a `0` does not need to be displayed in front of it. (03, or 09, etc.)
+                let displayHours = (hours < 10) ? '0' + hours : hours;
+                let displayMinutes = (minutes < 10) ? '0' + minutes : minutes;
+                let displaySeconds = (seconds < 10) ? '0' + seconds : seconds;
+
+                // Write the current stopwatch display time into the display paragraph.
+                displayPara.textContent = displayHours + ':' + displayMinutes + ':' + displaySeconds;
+
+                // Increment the second counter by one.
+                secondCount++;
+            }
+
+            // Store references to the buttons in constants.
+            const startBtn = document.querySelector('.start');
+            const stopBtn = document.querySelector('.stop');
+            const resetBtn = document.querySelector('.reset');
+
+            // When the start button is pressed, start running displayCount() once per second using setInterval().
+            // *** This is completely different from the instructions given by Mozilla. ***
+            startBtn.addEventListener('click', () => {
+                stopWatch = setInterval(displayCount, 1000);
+                startBtn.disabled = true;
+            });
+
+            // When the stop button is pressed, clear the interval to stop the count.
+            stopBtn.addEventListener('click', () => {
+                clearInterval(stopWatch);
+                startBtn.disabled = false;
+            });
+
+            // When the reset button is pressed, set the counter back to zero, then immediately update the display.
+            resetBtn.addEventListener('click', () => {
+                clearInterval(stopWatch);
+                startBtn.disabled = false;
+                secondCount = 0;
+                displayCount();
+            });
+
+            // Run displayCount() once as soon as the page loads so the clock is displayed.
+            displayCount();
+        </script>
+    </body>
+</html>
