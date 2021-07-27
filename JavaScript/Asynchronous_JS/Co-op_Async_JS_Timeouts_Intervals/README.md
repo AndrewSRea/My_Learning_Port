@@ -140,6 +140,12 @@ Here's a few hints for you:
 * To pause the stopwatch, you'll want to clear the interval. To reset it, you'll want to set the counter back to `0`, clear the interval, and then immediately update the display.
 * You probably ought to disable the start button after pressing it once, and enable it again after you've stopped/reset it. Otherwise multiple presses of the start button will apply multiple `setInterval()`s to the clock, leading to wrong behavior.
 
+<hr>
+
+Since the instruction hints above for creating a stopwatch were a bit vague, and this **Active learning** exercise was a bit complex for me, I am going to create a duplicate file of the `setinterval-clock.html` file in which I will add comments describing what is happening in the code. [See this duplicate code example here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Co-op_Async_JS_Timeouts_Intervals/setinterval-description.html).
+
+<hr>
+
 ## Things to keep in mind about setTimeout() and setInterval()
 
 There are a few things to keep in mind when working with `setTimeout()` and `setInterval()`. Let's review these now.
