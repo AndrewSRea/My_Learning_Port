@@ -234,7 +234,7 @@ balls[i].collisionDetect();
 
 <hr>
 
-See my finished version of the code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Building_Practice/main.js), and see the example running live [here]().
+See my finished version of the code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Building_Practice/main.js), and see the example running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Object_Building_Practice/index.html).
 
 <hr>
 
