@@ -8,7 +8,7 @@ We looked at [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 Essentially, a Promise is an object that represents an intermediate state of an operation -- in effect, a *promise* that a result of some kind will be returned at some point in the future. There is no guarantee of exactly when the operation will complete and the result will be returned, but there *is* a guarantee that when the result is available, or the promise fails, the code you provide will be executed in order to do something else with a successful result, or to gracefully handle a failure case.
 
-Generally, you are les interested in the amount of time an async operation will take to return its result (unless, of course, it takes *far* too long!), and more interested in being able to respond to it being returned, whenever that is. And, of course, it's nice that it doesn't block the rest of the code execution.
+Generally, you are less interested in the amount of time an async operation will take to return its result (unless, of course, it takes *far* too long!), and more interested in being able to respond to it being returned, whenever that is. And, of course, it's nice that it doesn't block the rest of the code execution.
 
 One of the most common engagements you'll have with promises is with web APIs that return a promise. Let's consider a hypothetical video chat application. The application has a window with a list of the user's friends, and clicking on a button next to a user starts a video call to that user.
 
@@ -82,7 +82,7 @@ chooseToppings()
 })
 .catch(failureCallback);
 ```
-This is much better -- it is easier to see what is going on, we only need a single `.catch()` block to handle all the errors, it doesn't block the main thread (so we can keep playing video games while we wait for the pizza to be ready to collect), and each operation is guaranteed to wiat for previous operations to complete before running. We're able to chain multiple asynchronous actions to occur one after another this way because each `.then()` block returns a new promise that resolves when the `.then()` block is done running. Clever, right?
+This is much better -- it is easier to see what is going on, we only need a single `.catch()` block to handle all the errors, it doesn't block the main thread (so we can keep playing video games while we wait for the pizza to be ready to collect), and each operation is guaranteed to wait for previous operations to complete before running. We're able to chain multiple asynchronous actions to occur one after another this way because each `.then()` block returns a new promise that resolves when the `.then()` block is done running. Clever, right?
 
 Using arrow function, you can simplify the code even further:
 ```
@@ -195,6 +195,8 @@ document.body.appendChild(image);
 Here we are returning the [`URL.createObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) method, passing it as a parameter the `Blob` returned when the second promise fulfills. This will return a URL pointing to the object. Then we create an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, set its `src` attribute to equal the object URL and append it to the DOM, so the image will display on the page!
 
 If you save the HTML file you've just created and load it in your browser, you'll see that the image is displayed in the page as expected. Good work!
+
+(See the result of this finished code [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/basic-promises-example.html), and the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/basic-promises-example.html).)
 
 <hr>
 
