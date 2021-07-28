@@ -323,14 +323,14 @@ This looks a bit complex, so let's run through it step by step:
 
 The code inside the function body is async and promise-based, therefore in effect, the entire function acts like a promise -- convenient.
 
-4. Next, we call our function three times to begin the process of fetching and decoding the images and text and store each of the returned promises in a variable. Add the following below your previous code:
+5. Next, we call our function three times to begin the process of fetching and decoding the images and text, and store each of the returned promises in a variable. Add the following below your previous code:
 ```
 let coffee = fetchAndDecode('coffee.jpg', 'blob');
 let tea = fetchAndDecode('tea.jpg', 'blob');
 let description = fetchAndDecode('description.txt', 'text');
 ```
 
-5. Next, we will define a `Promise.all()` block to run some code only when all three of the promises stored above have successfully fulfilled. To begin with, add a block with an empty callback function inside the `.then()` call, like so:
+6. Next, we will define a `Promise.all()` block to run some code only when all three of the promises stored above have successfully fulfilled. To begin with, add a block with an empty callback function inside the `.then()` call, like so:
 ```
 Promise.all([coffee, tea, description]).then(values => {
 
@@ -338,10 +338,10 @@ Promise.all([coffee, tea, description]).then(values => {
 ```
 You can see that it takes an array containing the promises as a parameter. The `.then()` callback function will only run when all three promises resolve: when that happens, it will be passed an array containing the results from the individual promises (i.e. the decoded response bodies), kind of like [coffee-results, tea-results, description-results].
 
-6. Finally, add the following inside the callback. Here we use some fairly simple sync code to store the results in separate variables (creating object URLs from the blobs), then display the images and text on the page.
+7. Finally, add the following inside the callback. Here we use some fairly simple sync code to store the results in separate variables (creating object URLs from the blobs), then display the images and text on the page.
 ```
 console.log(values);
-// Store each value returned from the previous in separate variables; create object URLs from the blobs
+// Store each value returned from the promises in separate variables; create object URLs from the blobs
 let objectURL1 = URL.createObjectURL(values[0]);
 let objectURL2 = URL.createObjectURL(values[1]);
 let descText = values[2];
@@ -360,7 +360,7 @@ para.textContent = descText;
 document.body.appendChild(para);
 ```
 
-7. Save and refresh and you should see your UI components all loaded, albeit in a not particularly attractive way!
+8. Save and refresh and you should see your UI components all loaded, albeit in a not particularly attractive way!
 
 The code we provided here for displaying the items is fairly rudimentary but works as an explainer for now.
 
@@ -466,7 +466,7 @@ timeoutPromise.then(alert);
 ```
 Try [running this live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/custom-promise.html) to see the result (also see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/custom-promise.html)).
 
-The above example is not very flexible -- the promise can only ever fulfill with a single string, and it doesn't have any kind of [`reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) condition specified (admittedly, `setTimeout()`) doesn't really have a fail condition, so it doesn't matter for this simple example.
+The above example is not very flexible -- the promise can only ever fulfill with a single string, and it doesn't have any kind of [`reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) condition specified (admittedly, `setTimeout()`doesn't really have a fail condition, so it doesn't matter for this simple example).
 
 <hr>
 
@@ -476,7 +476,7 @@ The above example is not very flexible -- the promise can only ever fulfill with
 
 ### Rejecting a custom promise
 
-We can create a promise that rejects using the [`reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) method -- just like `resolve()`, this takes a single value, but in this case, it is the reason to reject with, i.e., the error that will be passed into the `.catch()` block.
+We can create a promise that rejects using the [`reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject) method -- just like `resolve()`, this takes a single value, but in this case, it is the reason to reject with, i.e. the error that will be passed into the `.catch()` block.
 
 Let's extend the previous example to have some `reject()` conditions as well as allowing different messages to be passed upon success.
 
@@ -524,9 +524,9 @@ When you save and run the code as is, after one second you'll get the message al
 
 ### A more real-world example
 
-The above example was kept deliberately simple to make the concepts easy to understand, but it is not really very async. The asynchronous nature is basically faked using `setTimeout()`, although it does still show that promises are useful for creating acustom function with a sensible flow of operations, good error handling, etc.
+The above example was kept deliberately simple to make the concepts easy to understand, but it is not really very async. The asynchronous nature is basically faked using `setTimeout()`, although it does still show that promises are useful for creating a custom function with a sensible flow of operations, good error handling, etc.
 
-One example we'd like to invite you to study, which does show a useful async application of the `Promise()` constructor, is [Jake Archibald's idb library](https://github.com/jakearchibald/idb/). This takes the [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), which is an old-style callback-based API for storing and retrieving data on the client-side, allows you to use it with promises. In the code, you'll see the same kind of techniques we discussed above being used there. The following block converts the basic request model used by many IndexedDB methods to use promises ([see this code, for example](https://github.com/jakearchibald/idb/blob/01082ad696eef05e9c913f55a17cda7b3016b12c/build/esm/wrap-idb-value.js#L30)).
+One example we'd like to invite you to study, which does show a useful async application of the `Promise()` constructor, is [Jake Archibald's idb library](https://github.com/jakearchibald/idb/). This takes the [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), which is an old-style callback-based API for storing and retrieving data on the client-side, and allows you to use it with promises. In the code, you'll see the same kind of techniques we discussed above being used there. The following block converts the basic request model used by many IndexedDB methods to use promises ([see this code, for example](https://github.com/jakearchibald/idb/blob/01082ad696eef05e9c913f55a17cda7b3016b12c/build/esm/wrap-idb-value.js#L30)).
 
 ## Conclusion
 
