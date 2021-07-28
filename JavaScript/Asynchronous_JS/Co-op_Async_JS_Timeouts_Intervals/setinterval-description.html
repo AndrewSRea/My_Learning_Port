@@ -80,11 +80,16 @@
                 // Basically it is saying "If the number in `hours` is less than 10, then add a text string of `0` in front of the
                 // `hours` number. If not, then just display the `hours` number." Because if the `hours` number is 13, or 45, etc.,
                 // then a `0` does not need to be displayed in front of it. (03, or 09, etc.)
+                // Store this number in the `displayHours` variable.
                 let displayHours = (hours < 10) ? '0' + hours : hours;
                 let displayMinutes = (minutes < 10) ? '0' + minutes : minutes;
                 let displaySeconds = (seconds < 10) ? '0' + seconds : seconds;
 
                 // Write the current stopwatch display time into the display paragraph.
+
+                // Here `displayPara` is the HTML paragraph <p> above with the class of `.watch`. Each number represented by the
+                // variables `displayHours`, `displayMinutes`, and `displaySeconds` is concatenated in a string with a colon `:`
+                // between them, and put into the `displayPara` (the paragraph <p> with the `.watch` class).
                 displayPara.textContent = displayHours + ':' + displayMinutes + ':' + displaySeconds;
 
                 // Increment the second counter by one.
@@ -96,20 +101,27 @@
             const stopBtn = document.querySelector('.stop');
             const resetBtn = document.querySelector('.reset');
 
-            // When the start button is pressed, start running displayCount() once per second using setInterval().
-            // *** This is completely different from the instructions given by Mozilla. ***
+            // When the start button is pressed, start running displayCount() once per second using setInterval() -- and disable
+            // the start button so it cannot be pressed so as not to create problems in the program.
+            
+            // I actually understood how to `addEventListener`s to each of the button's but instructions from Mozilla were
+            // confusing: "...run `startTime = Date.now() to get a timestamp of exactly when the user clicked the start button, 
+            // and then do `Date.now() - startTime` to get the number of milliseconds after the start button was clicked."
+            // (Which Mozilla's developers didn't even use.)
             startBtn.addEventListener('click', () => {
                 stopWatch = setInterval(displayCount, 1000);
                 startBtn.disabled = true;
             });
 
-            // When the stop button is pressed, clear the interval to stop the count.
+            // When the stop button is pressed, clear the interval to stop the count -- and reenable the start button so it can
+            // be pressed again by the user.
             stopBtn.addEventListener('click', () => {
                 clearInterval(stopWatch);
                 startBtn.disabled = false;
             });
 
-            // When the reset button is pressed, set the counter back to zero, then immediately update the display.
+            // When the reset button is pressed, set the counter back to zero, then immediately update the display -- and also,
+            // reenable the start button so it can be pressed again by the user.
             resetBtn.addEventListener('click', () => {
                 clearInterval(stopWatch);
                 startBtn.disabled = false;
