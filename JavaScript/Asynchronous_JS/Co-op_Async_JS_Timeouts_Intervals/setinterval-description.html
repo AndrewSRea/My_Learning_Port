@@ -88,7 +88,7 @@
                 // Write the current stopwatch display time into the display paragraph.
 
                 // Here `displayPara` is the HTML paragraph <p> above with the class of `.watch`. Each number represented by the
-                // variables `displayHours`, `displayMinutes`, and `displaySeconds` is concatenated in a string with a colon `:`
+                // variables `displayHours`, `displayMinutes`, and `displaySeconds` are concatenated in a string with a colon `:`
                 // between them, and put into the `displayPara` (the paragraph <p> with the `.watch` class).
                 displayPara.textContent = displayHours + ':' + displayMinutes + ':' + displaySeconds;
 
@@ -104,8 +104,8 @@
             // When the start button is pressed, start running displayCount() once per second using setInterval() -- and disable
             // the start button so it cannot be pressed so as not to create problems in the program.
             
-            // I actually understood how to `addEventListener`s to each of the button's but instructions from Mozilla were
-            // confusing: "...run `startTime = Date.now() to get a timestamp of exactly when the user clicked the start button, 
+            // I actually understood how to `addEventListener`s to each of the <button>s but instructions from Mozilla were
+            // confusing: "...run `startTime = Date.now()` to get a timestamp of exactly when the user clicked the start button, 
             // and then do `Date.now() - startTime` to get the number of milliseconds after the start button was clicked."
             // (Which Mozilla's developers didn't even use.)
             startBtn.addEventListener('click', () => {
