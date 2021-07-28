@@ -210,7 +210,7 @@ For consistency, you should use `clearTimeout()` to clear `setTimeout()` entries
 
 It was created in response to perceived problems with previous async functions like `setInterval()`, which, for example, doesn't run at a frame rate optimized for the device, dropping frames in some cases. They also lacked some optimization suited for animations, like stopping the execution if the tab isn't active or the animation is scrolled off the page, among other things.
 
-([Read more about this on CanvasJS](http://creativejs.com/resources/requestanimationframe/index.html).)
+([Read more about this on CreativeJS](http://creativejs.com/resources/requestanimationframe/index.html).)
 
 <hr>
 
@@ -361,7 +361,7 @@ if (!startTime) {
 rotateCount = (timestamp - startTime) / 3;
 ```
 
-8. Below the previous line inside `draw()`, add the following block -- this ensures that the value of `rotateCount` is between `0` and `359`, by setting the value to its modulo of `360` (i.e. the remainder left over when the value is divided by `360`) -- so the circle animation can continue uninterrupted, at a sensible, low value. Note that this isn't strictly necessary, but it is easier to work with value of `0` - `359` degrees than values like `"128000 degrees"`.
+8. Below the previous line inside `draw()`, add the following block -- this ensures that the value of `rotateCount` is between `0` and `359`, by setting the value to its modulo of `360` (i.e. the remainder left over when the value is divided by `360`) -- so the circle animation can continue uninterrupted, at a sensible, low value. Note that this isn't strictly necessary, but it is easier to work with values of `0` - `359` degrees than values like `"128000 degrees"`.
 ```
 rotateCount %= 360;
 ```
@@ -391,7 +391,7 @@ draw();
 
 Clearing a `requestAnimationFrame()` call can be done by calling the corresponding `cancelAnimationFrame()` method. (Note that the function name starts with "cancel", not "clear" as with the "set..." methods.)
 
-Just pas it the value returned by the `requestAnimationFrame()` call to cancel, which you stored in the variable `rAF`:
+Just pass it the value returned by the `requestAnimationFrame()` call to cancel, which you stored in the variable `rAF`:
 ```
 cancelAnimationFrame(rAF);
 ```
@@ -471,7 +471,7 @@ const result = document.querySelector('.result');
     2. A reference to the [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) that contains the spinner, used for showing and hiding it.
     3. A rotate count. This determines how much you want to show the spinner rotated on each frame of the animation.
     4. A null start time. This will be populated with a start time when the spinner starts spinning. 
-    5. An uninitialized variable to later store the [`requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) call that animates the spinner.
+    5. An uninitialized variable to later store the [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) call that animates the spinner.
     6. A reference to the Start button.
     7. A reference to the results paragraph.
 
@@ -573,7 +573,7 @@ function setEndgame() {
     4. Inside `keyHandler()`, the code includes the event object as a parameter (represented by `e`) -- its [`key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) property contains the key that was just pressed, and you can use this to respond to specific key presses with specific actions.
     5. Set the variable `isOver` to false, so we can track whether the correct keys were pressed for play 1 or 2 to win. We don't want the game ending when a wrong key was pressed.
     6. Log `e.key` to the console, which is a useful way of finding out the `key` value of different keys you are pressing.
-    7. When `e.key` is "a", display a message to say that PLayer 1 won, and when `e.key` is "l", display a message to say Player 2 won. (**Note**: This will only work with lowercase a and l -- if an uppercase A or L is submitted (the key plus <kbd>Shift</kbd>), it is counted as a different key!) If one of these keys was pressed, set `isOver` to `true`.
+    7. When `e.key` is "a", display a message to say that Player 1 won, and when `e.key` is "l", display a message to say Player 2 won. (**Note**: This will only work with lowercase a and l -- if an uppercase A or L is submitted (the key plus <kbd>Shift</kbd>), it is counted as a different key!) If one of these keys was pressed, set `isOver` to `true`.
     8. Only if `isOver` is `true`, remove the `keydown` event listener using [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) so that once the winning press has happened, no more keyboard input is possible to mess up the final game result. You also use `setTimeout()` to call `reset()` after 5 seconds -- as explained earlier, this function resets the game back to its original state so that a new game can be started.
 
 That's it -- you're all done!
