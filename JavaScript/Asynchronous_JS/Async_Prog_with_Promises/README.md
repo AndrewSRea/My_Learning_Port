@@ -145,7 +145,7 @@ In the first example, we'll use the [`fetch()`](https://developer.mozilla.org/en
 ```
 let promise = fetch('coffee.jpg');
 ```
-This calls the `fetch()` method, passing it the URL of the image to fetch from the network as a parameter. This can also take an options object as an optional second paramter, but we are just using the simplest version for now. We are storing the promise object returned by `fetch()` inside a variable called `promise`. As we said before, this object represents an intermediate state that is initially neither success nor failure -- the official term for a promise in this state is **pending**.
+This calls the `fetch()` method, passing it the URL of the image to fetch from the network as a parameter. This can also take an options object as an optional second parameter, but we are just using the simplest version for now. We are storing the promise object returned by `fetch()` inside a variable called `promise`. As we said before, this object represents an intermediate state that is initially neither success nor failure -- the official term for a promise in this state is **pending**.
 
 4. To respond to the successful completion of the operation whenever that occurs (in this case, when a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) is returned), we invoke the [`.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) method of the promise object. The callback inside the `.then()` block runs only when the promise call completes successfully and returns the `Response` object -- in promise-speak, when it has been **fulfilled**. It is passed the returned `Response` object as a parameter.
 
@@ -244,7 +244,7 @@ fetch('coffee.jpg')
     console.log('There has been a problem with your fetch operation: ' + e.message);
 });
 ```
-Bear in mind that the value returned by a fulfilled promise becomes the paramter passed to the next `.then()` block's callback function.
+Bear in mind that the value returned by a fulfilled promise becomes the parameter passed to the next `.then()` block's callback function.
 
 <hr>
 
