@@ -113,4 +113,103 @@ import { name, draw, reportArea, reportPerimeter } from './modules/square.js';
 ```
 You use the [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) statement, followed by a comma-separated list of the features you want to import wrapped in curly braces, followed by the keyword `from`, followed by the path to the module file -- a path relative to the site root, which for our `basic-modules` example would be `/js-examples/modules/basic-modules`.
 
-However, we've written the path a bit differently -- we are using the dot (`.`) syngtax to mean "the current location", followed
+However, we've written the path a bit differently -- we are using the dot (`.`) syngtax to mean "the current location", followed by the path beyond that to the file we are trying to find. This is much better than writing out the entire relative path each time, as it is shorter, and it makes the URL portable -- the example will still work if you move it to a different location in the site hierarchy.
+
+So, for example:
+```
+/js-examples/modules/basic-modules/modules/square.js
+```
+...becomes:
+```
+./modules/square.js
+```
+You can see such lines in action in [`main.js`](https://github.com/mdn/js-examples/blob/master/modules/basic-modules/main.js).
+
+<hr>
+
+**Note**: In some module systems, you can omit the file extension and the leading `/`, `./`, or `../` (e.g. `'modules/square'`). This doesn't work in native JavaScript modules.
+
+<hr>
+
+Once you've imported the features into your script, you can use them just like they were defined inside the same file. The following is found in `main.js`, below the import lines:
+```
+let myCanvas = create('myCanvas', document.body, 480, 320);
+let reportList = createReportList(myCanvas.id);
+
+let square1 = draw(myCanvas.ctx, 50, 50, 100, 'blue');
+reportArea(square1.length, reportList);
+reportPerimeter(square1.length, reportList);
+```
+
+<hr>
+
+**Note**: Although imported features are available in the file, they are read only views of the feature that was exported. You cannot change the variable that was imported, but you can still modify properties similar to `const`. Additionally, these features are imported as live bindings, meaning that they can change in value even if you cannot modify the binding unlike `const`.
+
+<hr>
+
+## Applying the module to your HTML
+
+Now we just need to apply the `main.js` module to our HTML page. This is very similar to how we apply a regular script to a page, with a few notable differences.
+
+First of all, you need to include `type="module"` in the [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element, to declare this script as a module. To import the `main.js` script, we use this:
+```
+<script type="module" src="main.js"></script>
+```
+You can also embed the module's script directly into the HTML file by placing the JavaScript code within the body of the `<script>` element:
+```
+<script type="module">
+    /* JavaScript module code here */
+</script>
+```
+The script into which you import the module features basically acts as the top-level module. If you omit it, Firefox, for example, gives you an error of "SyntaxError: import declarations may only appear at top level of a module".
+
+You can only use `import` and `export` statements inside modules, not regular scripts.
+
+## Other differences between modules and standard scripts
+
+* You need to pay attention to local testing -- if you try to load the HTML file locally (i.e. with a `file://` URL), you'll run into CORS errors due to JavaScript module security requirements. You need to do your [testing through a server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server).
+* Also, note that you might get different behavior from sections of script defined inside modules as opposed to in standard scripts. This is because modules use [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) automatically.
+* There is no need to use the `defer` attribute (see [`<script>` attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributes)) when loading a module script; modules are deferred automatically.
+* Modules are only executed once, even if they have been referenced in multiple `<script>` tags.
+* Last but not least, let's make this clear -- module features are imported into the scope of a single script -- they aren't available in the global scope. Therefore, you will only be able to access imported features in the script they are imported into, and you won't be able to access them from the JavaScript console, for example. You'll still get syntax errors shown in the DevTools, but you'll not be able to use some of the debugging techniques you might have expected to use.
+
+## Default exports versus named exports
+
+The functionality we've exported so far has been comprised of **named exports** -- each item (be it a function, `const`, etc.) has been referred to by its name upon export, and that name has been used to refer to it on import as well.
+
+There is also a type of export called the **default export** -- this is designed to make it easy to have a default function provided by a module, and also helps JavaScript modules to interoperate with existing CommonJS and AMD module systems (as explained nicely in [ES6 In Depth: Modules](https://hacks.mozilla.org/2015/08/es6-in-depth-modules/) by Jason Orendorff; search for "Default exports").
+
+Let's look at an example as we explain how it works. In our basic-modules `square.js`, you can find a function called `randomSquare()` that creates a square with a random color, size, and position. We want to export this as our default, so at the bottom of the file, we write this:
+```
+export default randomSquare;
+```
+Note the lack of curly braces.
+
+We could instead prepend `export default` onto the function and define it as an anonymous function, like this:
+```
+export default function(ctx) {
+    ...
+}
+```
+Over in our `main.js` file, we import the default function using this line:
+```
+import randomSquare from './modules/square.js';
+```
+Again, note the lack of curly braces. This is because there is only one defualt export allowed per module, and we know that `randomSquare` is it. The above line is basically shorthand for:
+```
+import {default as randomSquare} from './modules/square.js';
+```
+
+<hr>
+
+**Note**: The `as` syntax for renaming exported items is explained below in the [Renaming imports and exports]() section.
+
+<hr>
+
+## Avoiding naming conflicts
+
+So far, our canvas shape drawing modules seem to be working OK. But what happens if we try to add a module that deals with drawing another shape, like a circle or triangle? These shapes would probably have associated functions like `draw()`, `reportArea()`, etc., too; if we tried to import different functions of the same name into the same top-level module file, we'd end up with conflicts and errors.
+
+Fortunately, there are a number of ways to get around this. We'll look at these in the following sections.
+
+## Renaming imports and exports
