@@ -386,10 +386,104 @@ import { Square, Circle, Triangle } from './modules/shapes.js';
 
 A recent addition to JavaScript modules functionality is dynamic module loading. This allows you to dynamically load modules only when they are needed, rather than having to laod everything up front. This has some obvious performance advantages; let's read on and see how it works.
 
-This new functionality allows you to call [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) as a function, passing it the path to the module as a parameter. It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which fulfills with a module object (see [Creating a module object]()) giving you access to that object's exports, e.g.:
+This new functionality allows you to call [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) as a function, passing it the path to the module as a parameter. It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which fulfills with a module object (see [Creating a module object](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#creating-a-module-object)) giving you access to that object's exports, e.g.:
 ```
 import('./modules/myModule.js')
     .then((module) => {
         // Do something with the module.
     });
 ```
+Let's look at an example. In the [dynamic-module-imports](https://github.com/mdn/js-examples/tree/master/modules/dynamic-module-imports) directory, we've got another example based on our classes example. This time, however, we are not drawing anything on the canvas when the example loads. Instead, we include three buttons -- "Circle", "Square", and "Triangle" -- that, when pressed, dunamically load the required module and then use it to draw the associated shape.
+
+In this example, we've only made changes to our [`index.html`](https://github.com/mdn/js-examples/blob/master/modules/dynamic-module-imports/index.html) and [`main.js`](https://github.com/mdn/js-examples/blob/master/modules/dynamic-module-imports/main.js) files -- the module exports remain the same as before.
+
+Over in `main.js`, we've grabbed a reference to each button using a [`Document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) call. For example:
+```
+let squareBtn = document.querySelector('.square');
+```
+We then attach an event listener to each button so that when pressed, the relevant module is dynamically loaded and used to draw the shape:
+```
+squareBtn.addEventListener('click', () => {
+    import('./modules/square.js').then((Module) => {
+        let square1 = new Module.Square(myCanvas.ctx, myCanvas.listId, 50, 50, 100, 'blue');
+        square1.draw();
+        square1.reportArea();
+        square1.reportPerimeter();
+    })
+});
+```
+Note that, because the promise fulfillment returns a module object, the class is then made a subfeature of the object, hence we now need to access the constructor with `Module.` prepended to it, e.g. `Module.Square( ... )`.
+
+### Top level await
+
+Top level await is a feature available within modules. This means the `await` keyword can be used. It allows modules to act as big [asynchronous functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS#introducing-asynchronous-javascript), meaning code can be evaluated before use in parent modules, but without blocking sibling modules from loading.
+
+Let's take a look at an example. You can find all the files and code described in this section within the [`top-level-await`](https://github.com/mdn/js-examples/tree/master/modules/top-level-await) directory, which extends from the previous examples.
+
+Firstly, we'll declare our color palette in a separate [`colors.json`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/data/colors.json) file:
+```
+{
+    "yellow": "#F4D03F",
+    "green": "#52BE80",
+    "blue": "#5499C7",
+    "red": "#CD6155",
+    "orange": "#F39C12"
+}
+```
+Then we'll create a module called [`getColor.js`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/modules/getColors.js), which uses a fetch request to load the [`colors.json`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/data/colors.json) file and return the data as an object.
+```
+// fetch request
+const colors = fetch('../data/colors.json')
+    .then(reponse => response.json());
+
+export default await colors;
+```
+Notice the last export line here.
+
+We're using the keyword `await` before specifying the constant `colors` to export. This means any other modules which include this one will wait until `colors` has been downloaded and parsed before using it.
+
+Let's include this module in our [`main.js`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/main.js) file:
+```
+import colors from './modules/getColors.js';
+import { Canvas } from './modules/canvas.js';
+
+let circleBtn = document.querySelector('.circle');
+
+...
+```
+We'll use `colors` instead of the previously used strings when calling our shape functions:
+```
+...
+
+let square1 = new Module.Square(myCanvas.ctx, myCanvas.listId, 50, 50, 100, colors.blue);
+
+...
+
+let circle1 = new Module.Circle(myCanvas.ctx, myCanvas.listId, 75, 200, 100, colors.green);
+
+...
+
+let triangle1 = new Module.Triangle(myCanvas.ctx, myCanvas.listId, 100, 75, 190, colors.yellow);
+
+...
+```
+This is useful because the code within [`main.js`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/main.js) won't execute until the code in [`getColors.js`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/modules/getColors.js) has run. However, it won't block other modules being loaded. For instance, our [`canvas.js`](https://github.com/mdn/js-examples/blob/master/modules/top-level-await/modules/canvas.js) module will continue to load while `colors` is being fetched.
+
+## Troubleshooting
+
+Here are a few tips that may help you if you are having trouble getting your modules to work. Feel free to add to the list if you discover more!
+
+* We mentioned this before, but to reiterate: `.js` files need to be loaded with a MIME-type of `text/javascript` (or another JavaScript-compatible MIME-type, but `text/javascript` is recommended), otherwise you'll get a strict MIME type checking error like "The server responded with a non-JavaScript MIME type".
+* If you try to load the HTML file locally (i.e. with a `file://` URL), you'll run into CORS errors due to JavaScript module security requirements. You need to do your testing [through a server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server). GitHub Pages is ideal as it also serves `.js` files with the correct MIME type.
+* Because `.mjs` is a non-standard file extension, some operating systems might not recognize it, or try to replace it with something else. For example, we found that macOS was silently adding on `.js` to the end of `.mjs` files and then automatically hiding the file extension. So all of our files were actually coming out as `x.mjs.js`. Once we turned off automatically hiding file extensions, and trained it to accept `.mjs`, it was OK.
+
+## See also
+
+* [Using JavaScript modules on the web](https://v8.dev/features/modules#mjs), by Addy Osmani and Mathias Bynens
+* [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/), Hacks blog post by Lin Clark
+* [ES6 in Depth: Modules](https://hacks.mozilla.org/2015/08/es6-in-depth-modules/), Hacks blog post by Jason Orendorff
+* Axel Rauschmayer's book [Exploring JS: Modules](https://exploringjs.com/es6/ch_modules.html)
+
+<hr>
+
+[[Back to Making asynchronous programming easier with async and await]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await)
