@@ -235,4 +235,47 @@ export { function1, function2 };
 import { function1 as newFunctionName,
          function2 as anotherNewFunctionName } from './modules/module.js';
 ```
-Let's look at a real example. In our [renaming](https://github.com/mdn/js-examples/tree/master/modules/renaming) directory, you'll see the same module system
+Let's look at a real example. In our [renaming](https://github.com/mdn/js-examples/tree/master/modules/renaming) directory, you'll see the same module system as in the previous example, except that we've added `circle.js` and `triangle.js` modules to draw and report on circles and triangles.
+
+Inside each of these modules, we've got features with the same names being exported, and therefore each has the same `export` statement at the bottom:
+```
+export { name, draw, reportArea, reportPerimeter };
+```
+When importing these into `main.js`, if we tried to use...
+```
+import { name, draw, reportArea, reportPerimeter } from './modules/square.js';
+import { name, draw, reportArea, reportPerimeter } from './modules/circle.js';
+import { name. draw, reportArea, reportPerimeter } from './modules/triangle.js';
+```
+...the browser would throw an error such as "SyntaxError: redeclaration of import name". (Firefox)
+
+Instead, we need to rename the imports so that they are unique:
+```
+import { name as squareName,
+         draw as drawSquare,
+         reportArea as reportSquareArea,
+         reportPerimeter as reportSquarePerimeter } from './modules/square.js';
+
+import { name as circleName,
+         draw as drawCircle,
+         reportArea as reportCircleArea,
+         reportPerimeter as reportCirclePerimeter } from './modules/circle.js';
+
+import { name as triangleName,
+         draw as drawTriangle,
+         reportArea as reportTriangleArea,
+         reportPerimeter as reportTrianglePerimeter } from './modules/triangle.js';
+```
+Note that you could solve the problem in the module files instead, e.g.:
+```
+// in square.js
+export { name as squareName,
+         draw as drawSquare,
+         reportArea as reportSquareArea,
+         reportPerimeter as reportSquarePerimeter };
+```
+```
+// in main.js
+import { squareName, drawSquare, reportSquareArea, reportSquarePerimeter } from './modules/square.js';
+```
+And it would work just the same. What style you use is up to you, however it arguably makes more sense to leave your module code alone, and make the changes in the imports. This especially makes sense when you are importing from third party modules that you don't have any control over.
