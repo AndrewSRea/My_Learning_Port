@@ -202,7 +202,7 @@ import {default as randomSquare} from './modules/square.js';
 
 <hr>
 
-**Note**: The `as` syntax for renaming exported items is explained below in the [Renaming imports and exports]() section.
+**Note**: The `as` syntax for renaming exported items is explained below in the [Renaming imports and exports](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#renaming-imports-and-exports) section.
 
 <hr>
 
@@ -213,3 +213,26 @@ So far, our canvas shape drawing modules seem to be working OK. But what happens
 Fortunately, there are a number of ways to get around this. We'll look at these in the following sections.
 
 ## Renaming imports and exports
+
+Inside your `import` and `export` statements' curly braces, you can use the keyword `as` along with a new feature name, to change the identifying name you will use for a feature inside the top-level module.
+
+So, for example, both of the following would do the same job, albeit in a slightly different way:
+```
+// inside module.js
+export {
+    function1 as newFunctionName, 
+    function2 as anotherNewFunctionName
+};
+
+// inside main.js
+import { newFunctionName, anotherNewFunctionName } from './modules/module.js';
+```
+```
+// inside module.js
+export { function1, function2 };
+
+// inside main.js
+import { function1 as newFunctionName,
+         function2 as anotherNewFunctionName } from './modules/module.js';
+```
+Let's look at a real example. In our [renaming](https://github.com/mdn/js-examples/tree/master/modules/renaming) directory, you'll see the same module system
