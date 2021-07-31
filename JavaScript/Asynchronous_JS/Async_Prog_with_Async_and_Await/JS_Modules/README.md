@@ -279,3 +279,117 @@ export { name as squareName,
 import { squareName, drawSquare, reportSquareArea, reportSquarePerimeter } from './modules/square.js';
 ```
 And it would work just the same. What style you use is up to you, however it arguably makes more sense to leave your module code alone, and make the changes in the imports. This especially makes sense when you are importing from third party modules that you don't have any control over.
+
+## Creating a module object
+
+The above method works OK, but it's a little messy and longwinded. An even better solution is to import each module's features inside a module object. The following syntax form does that:
+```
+import * as Module from './modules/module.js';
+```
+This grabs all the exports available inside `module.js`, and makes them available as members of an object `Module`, effectively giving it its own namespace. So, for example:
+```
+Module.function1()
+Module.function2()
+etc.
+```
+Again, let's look at a real example. If you go to our [module-objects](https://github.com/mdn/js-examples/tree/master/modules/module-objects) directory, you'll see the same example again, but rewritten to take advantage of this new syntax. In the modules, the exports are all in the following simple form:
+```
+export { name, draw, reportArea, reportPerimeter };
+```
+The imports on the other hand look like this:
+```
+import * as Canvas from './modules/canvas.js';
+
+import * as Square from './modules/square.js';
+import * as Circle from './modules/circle.js';
+import * as Triangle from './modules/triangle.js';
+```
+So you can now write the code just the same as before (as long as you include the object names where needed), and the imports are much neater.
+
+## Modules and classes
+
+As we hinted at earlier, you can export and import classes; this is another option for avoiding conflicts in your code, and is especially useful if you've already got your module code written in an object-oriented style.
+
+You can see an example of your shape drawing module rewritten with ES classes in our [classes](https://github.com/mdn/js-examples/tree/master/modules/classes) directory. As an example, the [`square.js`](https://github.com/mdn/js-examples/blob/master/modules/classes/modules/square.js) file now contains all its functionality in a single class:
+```
+class Square {
+    constructor(ctx, listId, length, x, y, color) {
+        ...
+    }
+
+    draw() {
+        ...
+    }
+
+    ...
+}
+```
+...which we then export:
+```
+export { Square } from './modules/square.js';
+```
+And then use the clas to draw our square:
+```
+let square1 = new Square(myCanvas.ctx, myCanvas.listId, 50, 50, 100, 'blue');
+square1.draw();
+square1.reportArea();
+square1.reportPerimeter();
+```
+
+## Aggregating modules
+
+There will be times where you'll want to aggregate modules together. You might have multiple levels of dependencies, where you want to simplify things, combining several submodules into one parent module. This is possible using export syntax of the following forms in the parent module:
+```
+export * from 'x.js'
+export { name } from 'x.js'
+```
+For an example, see our [module-aggregation](https://github.com/mdn/js-examples/tree/master/modules/module-aggregation) directory. In this example (based on our earlier classes example), we've got an extra module called `shapes.js`, which aggregates all the functionality from `circle.js`, `square.js`, and `triangle.js` together. We've also moved our submodules inside a subdirectory inside the `modules` directory called `shapes`. So the module structure in this example is:
+```
+modules/
+    canvas.js
+    shapes.js
+    shapes/
+        circle.js
+        square.js
+        triangle.js
+```
+In each of the submodules, the export is of the same form, e.g.:
+```
+export { Square };
+```
+Next up comes the aggregation part. Inside [`shapes.js`](https://github.com/mdn/js-examples/blob/master/modules/module-aggregation/modules/shapes.js), we include the following lines:
+```
+export { Square } from './shapes/square.js';
+export { Triangle } from './shapes/triangle.js';
+export { Circle } from './shapes/circle.js';
+```
+These grab the exports from the individual submodules and effectively make them available from the `shapes.js` module.
+
+<hr>
+
+**Note**: The exports referenced in `shapes.js` basically get redirected through the file and don't really exist there, so you won't be able to write any useful related code inside the same file.
+
+<hr>
+
+So now in the `main.js` file, we can get access to all three module classes by replacing...
+```
+import { Square } from './modules/square.js';
+import { Circle } from './modules/circle.js';
+import { Triangle } from './modules/triangle.js';
+```
+...with the following line:
+```
+import { Square, Circle, Triangle } from './modules/shapes.js';
+```
+
+## Dynamic module loading
+
+A recent addition to JavaScript modules functionality is dynamic module loading. This allows you to dynamically load modules only when they are needed, rather than having to laod everything up front. This has some obvious performance advantages; let's read on and see how it works.
+
+This new functionality allows you to call [`import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) as a function, passing it the path to the module as a parameter. It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which fulfills with a module object (see [Creating a module object]()) giving you access to that object's exports, e.g.:
+```
+import('./modules/myModule.js')
+    .then((module) => {
+        // Do something with the module.
+    });
+```
