@@ -136,7 +136,7 @@ const createClock = setInterval(displayTime, 1000);
 
 ## requestAnimationFrame()
 
-[`requestAnimationFrame()`]() is a method that allows you to run a function repeatedly, and efficiently, at the best framerate available given the current browser/system. You should, if at all possible, use this instead of `setInterval()`/recursive `setTimeout()`, unless you need a specific framerate.
+[`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a method that allows you to run a function repeatedly, and efficiently, at the best framerate available given the current browser/system. You should, if at all possible, use this instead of `setInterval()`/recursive `setTimeout()`, unless you need a specific framerate.
 
 **Useful for...**
 
@@ -197,13 +197,13 @@ draw();
 
 The following code fetches an image from the server and displays it inside an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element; [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-fetch-chained.html), and also see [the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach/simple-fetch-chained.html):
 ```
-fecth('coffee.jpg')
+fetch('coffee.jpg')
 .then(response => response.blob())
 .then(myBlob => {
     let objectURL = URL.createObjectURL(myBlob);
     let image = document.createElement('img');
     image.src = objectURL;
-    document.body.apenndChild(image);
+    document.body.appendChild(image);
 })
 .catch(e => {
     console.log('There has been a problem with your fetch operation: ' + e.message);
@@ -266,7 +266,7 @@ That covers a lot of the basics. For a much more complete treatment, see the exc
 
 ## Promise.all()
 
-A JavaScript feature that allows you to wait for multiple promises to complete before then running a further operation based on the results of all the other promises.
+A JavaScript feature that allows you to wait for multiple promises to complete before running a further operation based on the results of all the other promises.
 
 **Useful for...**
 
@@ -276,7 +276,7 @@ A JavaScript feature that allows you to wait for multiple promises to complete b
 
 ### Code example
 
-The following example fetches several resources from the server, and uses `Promise.all()` to wait for all of them to be available before then displaying all of them -- [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html), and see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html):
+The following example fetches several resources from the server, and uses `Promise.all()` to wait for all of them to be available before displaying all of them -- [see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html), and see the [source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises/multiple-promises-example.html):
 ```
 function fetchAndDecode(url, type) {
     // Returning the top level promise, so the result of the entire chain is returned out of the function
