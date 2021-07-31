@@ -45,11 +45,17 @@ hello().then(console.log)
 ```
 ...like we saw in the last article.
 
-So the `async` keyword is added to function to tell them to return a promise rather than directly returning the value.
+So the `async` keyword is added to functions to tell them to return a promise rather than directly returning the value.
 
 ### The await keyword
 
 The advantage of an async function only becomes apparent when you combine it with the [await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) keyword. `await` only works inside async functions within regular JavaScript code. However, it can be used on its own with [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+
+<hr>
+
+I am going to create a subfolder within my **Async_Prog_with_Async_and_Await** folder for the **JavaScript modules** link above. Follow it [here](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#javascript-modules).
+
+<hr>
 
 `await` can be put in front of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value.
 
@@ -105,7 +111,7 @@ async function myFetch() {
 
 myFetch()
 .catch(e => {
-    console.log('There has been a problem with your fetch opeation: ' + e.message);
+    console.log('There has been a problem with your fetch operation: ' + e.message);
 });
 ```
 It makes code much simpler and easier to understand -- no more `.then()` blocks everywhere!
@@ -133,9 +139,9 @@ See this example running live [here](https://andrewsrea.github.io/My_Learning_Po
 
 You'll note that we've wrapped the code inside a function, and we've included the `async` keyword before the `function` keyword. This is necessary -- you have to create an async function to define the block of code in which you'll run your async code; as we said earlier, `await` only works inside of async functions.
 
-Inside the `myFetch()` function definition, you can see that the code closely resembles the previous promise version, but there are some differences. Instead of needing to chain a `.then()` block on to the end of each promise-based method, you just need to add an `await` keyword before the method call, and then assign the result to a variable. The `await` keyword causes the JavaScript runtimeto pause your codeon this line, not allowing further code to execute in the meantime until the async function call has returned its result -- very useful if subsequent code relies on that result!
+Inside the `myFetch()` function definition, you can see that the code closely resembles the previous promise version, but there are some differences. Instead of needing to chain a `.then()` block on to the end of each promise-based method, you just need to add an `await` keyword before the method call, and then assign the result to a variable. The `await` keyword causes the JavaScript runtime to pause your code on this line, not allowing further code to execute in the meantime until the async function call has returned its result -- very useful if subsequent code relies on that result!
 
-Once that's complete, you code continues to execute starting on the next line. For example:
+Once that's complete, your code continues to execute starting on the next line. For example:
 ```
 let response = await fetch('coffee.jpg');
 ```
@@ -412,7 +418,7 @@ timeTest().then(() => {
     alert("Time taken in milliseconds: " + timeTaken);
 })
 ```
-In this example, we have an unhandled error in the console (after 2 seconds), and the alert appeafrs after approximately 5 seconds.
+In this example, we have an unhandled error in the console (after 2 seconds), and the alert appears after approximately 5 seconds.
 
 To start the promises in parallel and catch the error properly, we could use `Promise.all()`, as discussed earlier:
 ```
@@ -497,4 +503,4 @@ And there you have it -- async/await provide a nice, simplified way to write asy
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#graceful-asynchronous-programming-with-promises) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Promises#graceful-asynchronous-programming-with-promises) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await#making-asynchronous-programming-easier-with-async-and-await) - [[Subfolder: JavaScript modules]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#javascript-modules) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Choosing_the_Right_Approach#choosing-the-right-approach)
