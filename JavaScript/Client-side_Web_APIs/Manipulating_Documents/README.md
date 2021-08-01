@@ -82,7 +82,7 @@ Note that, as with many things in JavaScript, there are many ways to select an e
 There are older methods available for grabbing element references, such as:
 
 * [`Document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById), which selects an element with a given `id` attribute value, e.g. `<p id="myId">My paragraph</p>`. The ID is passed to the function as a parameter, i.e. `const elementRef = document.getElementById('myId')`.
-* [`Document.getElementsByTagName`](), which returns an array-like object containing all the elements on the page of a given type. For example, `<p>`s, `<a>`s, etc. The element type is passed to the function as a parameter, i.e. `const elementRefArray = document.getElementsByTagName('p')`.
+* [`Document.getElementsByTagName`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByTagName), which returns an array-like object containing all the elements on the page of a given type. For example, `<p>`s, `<a>`s, etc. The element type is passed to the function as a parameter, i.e. `const elementRefArray = document.getElementsByTagName('p')`.
 
 These two work better in older browsers than the modern methods like `querySelector()`, but are not as convenient. Have a look and see what others you can find!
 
@@ -195,7 +195,7 @@ In the next couple of sections, we will look at a couple of more practical uses 
 
 <hr>
 
-**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html), and see it running live [here](https://andrewsrea/github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html).
+**Note**: You can find the finished version of the code above [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html), and see it running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Manipulating_Documents/dom-example.html).
 
 <hr>
 
