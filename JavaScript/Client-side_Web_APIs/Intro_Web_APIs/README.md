@@ -29,9 +29,9 @@ So above, we talked about what client-side JavaScript APIs are, and how they rel
 
 * JavaScript -- A high-level scripting language built into browser that allows you to implement functionality on web pages/apps. Note that JavaScript is also available in other programming environments, such as [Node](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#expressnode-introduction).
 
-* Browser APIs -- Constructs built into the browser that sits on top of the JavaScript language and allows you to implement functionality in more easily.
+* Browser APIs -- Constructs built into the browser that sit on top of the JavaScript language and allow you to implement functionality more easily.
 
-* Third-party APIs -- Constructs built into third-party platforms (e.g. Twitter, Facebook) that allow you to use some of those platform's functionality in your own web pages (for example, display your latest tweets on your web page).
+* Third-party APIs -- Constructs built into third-party platforms (e.g. Twitter, Facebook) that allow you to use some of those platforms' functionality in your own web pages (for example, display your latest tweets on your web page).
 
 * JavaScript libraries -- Usually one or more JavaScript files containing [custom functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#functions----reusable-blocks-of-code) that you can attach to your web page to speed up or enable writing common functionality. Examples include jQuery, Mootools, and React.
 
@@ -107,7 +107,7 @@ So how do these objects interact? If you look at Mozilla's [simple web audio exa
 <br>
 <input type="range" min="0" max="1" step="0.01" value="1" class="volume">
 ```
-We, first of all, include an `<audio>` element with which we embed an MP3 into the page. We don't include any default browser controls. Next, we include a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) that we'll use to play and stop the music, and an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element of type range, which we'll use to adjust the volume of the track while it's playing.
+We, first of all, include an `<audio>` element with which we embed an MP3 into the page. We don't include any default browser controls. Next, we include a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) that we'll use to play and stop the music, and an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element of type "range", which we'll use to adjust the volume of the track while it's playing.
 
 Next, let's look at the JavaScript for this example.
 
@@ -163,7 +163,7 @@ Next, we create a [`GainNode`](https://developer.mozilla.org/en-US/docs/Web/API/
 ```
 const gainNode = audioCtx.createGain();
 
-volumeSl;ider.addEventListener('input', function() {
+volumeSlider.addEventListener('input', function() {
     gainNode.gain.value = this.value;
 });
 ```
@@ -189,7 +189,7 @@ The [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) al
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 ```
-Anything that we want to do to the canvas is then achieved by calling properties and methods of the context object (which is an instance of [`CanvasRendingContext2D`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)). For example:
+Anything that we want to do to the canvas is then achieved by calling properties and methods of the context object (which is an instance of [`CanvasRenderingContext2D`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)). For example:
 ```
 Ball.prototype.draw = function() {
     ctx.beginPath();
@@ -213,7 +213,7 @@ Some web APIs contain no events, but most contain at least a few. The handler pr
 
 We already saw a number of event handlers in use in our Web Audio API example above.
 
-To provide another example, instances of the [`XMLHttpRequest`]() object (each one represents an HTTP request to the server to retrieve a new resource of some kind) has a number of events available on them. For example, the `load` event is fired when a response has been successfully returned containing the requested resource, and it is now available.
+To provide another example, instances of the [`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) object (each one represents an HTTP request to the server to retrieve a new resource of some kind) has a number of events available on them. For example, the `load` event is fired when a response has been successfully returned containing the requested resource, and it is now available.
 
 The following code provides a simple example of how this would be used:
 ```
