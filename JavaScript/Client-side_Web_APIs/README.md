@@ -4,7 +4,7 @@ When writing client-side JavaScript for web sites or applications, you will quic
 
 ## Guides
 
-**[Introduction to web APIs]()**
+**[Introduction to web APIs](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Intro_Web_APIs#introduction-to-web-apis)**
 
 First up, we'll start by looking at APIs from a high level -- what are they, how do they work, how do you use them in your code, and how are they structured? We'll also take a look at what the different main classes of APIs are, and what kind of uses they have.
 
@@ -12,7 +12,7 @@ First up, we'll start by looking at APIs from a high level -- what are they, how
 
 When writing web pages and apps, one of the most common things you'll want to do is manipulate web documents in some way. This is usually done by using the Document Object Model (DOM), a set of APIs for controlling HTML and styling information that makes heavy use of the [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object. In this article, we'll look at how to use the DOM in detail, along with some other interesting APIs that can alter your environment in interesting ways.
 
-**[Fetching data from the server]()**
+**[Fetching data from the server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Fetching_Data#fetching-data-from-the-server)**
 
 Another very common task in modern websites and applications is retrieving individual data items from the server to update sections of a webpage without having to load an entirely new page. This seemingly small detail has had a huge impact on the performance and behavior of sites. In this article, we'll explain the concept, and look at technologies that make it possible, such as [`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) and the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
