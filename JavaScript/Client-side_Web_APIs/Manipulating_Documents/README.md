@@ -272,7 +272,7 @@ There are lots more features you can use to manipulate your documents. Check out
 * [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node)
 * [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement), [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement), [`HTMLImageElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement), etc.
 
-(See Mozilla's [Web API index](https://developer.mozilla.org/en-US/docs/Web/API) for the full list of Web APIs document on MDN!)
+(See Mozilla's [Web API index](https://developer.mozilla.org/en-US/docs/Web/API) for the full list of Web APIs documented on MDN!)
 
 <hr>
 
