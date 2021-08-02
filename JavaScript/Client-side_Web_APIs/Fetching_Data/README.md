@@ -206,9 +206,47 @@ It is also worth noting that you can directly chain multiple promise blocks (`.t
 
 The following block does the same thing as our original example, but is written in a different style:
 ```
-fetch(url).then(function(reponse) {
+fetch(url).then(function(response) {
     return response.text()
 }).then(function(text) {
     poemDisplay.textContent = text;
 });
 ```
+Many developers like this style better, as it is flatter and arguably easier to read for longer promise chains -- each subsequent promise comes after the previous one, rather than being inside the previous one (which can get unwieldy). The only other difference is that we've had to include a [`return`](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Function_Return_Values#function-return-values) statement in front of `reponse.text()`, to get it to pass its result on to the next link in the chain.
+
+### Which mechanism should you use?
+
+This really depends on what project you are working on. XHR has been around for a long time now and has very good cross-browser support. Fetch and Promises, on the other hand, are a more recent addition to the web platform, although they're supported well across the browser landscape, with the exception of Internet Explorer.
+
+If you need to support older browsers, then an XHR solution might be preferable. If, however, you are working on a more progressive project and aren't as worried about older browsers, then Fetch could be a good choice.
+
+You should really learn both -- Fetch will become more popular as Internet Explorer declines in usage (IE is no longer being developed, in favor of Microsoft's new Edge browser), but you might need XHR for a while yet.
+
+## A more complex example
+
+To round off the article, we'll look at a slightly more complex example that shows some more interesting uses of Fetch. We have created a sample site called The Can Store -- it's a fictional supermarket that only sells canned goods. You can find this [example live on GitHub](https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/), and [see the source code](https://github.com/mdn/learning-area/tree/master/javascript/apis/fetching-data/can-store).
+
+![Image of a web application using the Fetch API](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data/can-store.png)
+
+By default, the site displays all the products, but you can use the form controls in the left hand column to filter them by category, or search term, or both.
+
+There is quite a lot of complex code that deals with filtering the products by category and search terms, manipulating strings so the data displays correctly in the UI, etc. We won't discuss all of it in the article, but you can find extensive comments in the code (see [can-script.js](https://github.com/mdn/learning-area/blob/master/javascript/apis/fetching-data/can-store/can-script.js)).
+
+We will, however, explain the Fetch code.
+
+The first block that uses Fetch can be found at the start of the JavaScript:
+```
+fetch('products.json').then(function(response) {
+    return response.json();
+}).then(function(json) {
+    let products = json;
+    initialize(products);
+}).catch(function(err) {
+    console.log('Fetch problem: ' + err.message);
+});
+```
+The `fetch()` function returns a promise. If this completes successfully, the function inside the first `.then()` block contains the `response` returned from the network.
+
+Inside this function, we run [`json()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/json) on the response, not [`text()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/text), as we want to return our response as structured JSON data, not plain text.
+
+Next, we chain another `.then()` onto the end of our first one, the success function that contains the `json` returned from the `reponse.json()` promise. We set this to be the value of the `products` variable, then run `initialize(products)`, which starts the process of displaying all the products in the user interface.
