@@ -105,3 +105,110 @@ request.send();
 updateDisplay('Verse 1');
 verseChoose.value = 'Verse 1';
 ```
+
+See the result of this finished code [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Fetching_Data/ajax-start.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Fetching_Data/ajax-start.html).
+
+### Serving your example from a server
+
+Modern browsers will not run XHR requests if you just run the example from a local file. This is because of security restrictions (for more on web security, read [Website security]()). <!-- link to "Server-Side_Web_Prog / Website_Security" -->
+
+To get around this, we need to test the example by running it through a local web server. To find out how to do this, read [How do you set up a local testing server?](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server)
+
+### Fetch
+
+The Fetch API is basically a modern replacement for XHR; it was introduced in browsers recently to make asynchronous HTTP requests easier to do in JavaScript, both for developers and other APIs that build on top of Fetch.
+
+Let's convert the last example to use Fetch instead.
+
+1. Make a copy of your previous finished example directory. (I will name this new file [fetch-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Fetching_Data/fetch-example.html).)
+
+2. Inside the `updateDisplay()` function, find the XHR code:
+```
+let request = new XMLHttpRequest();
+request.open('GET', url);
+request.reponseType = 'text';
+
+request.onload = function() {
+    poemDisplay.textContent = request.response;
+};
+
+request.send();
+```
+
+3. Replace all the XHR code with this:
+```
+fetch(url).then(function(response) {
+    response.text().then(function(text) {
+        poemDisplay.textContent = text;
+    });
+});
+```
+
+4. Load the example in your browser (running it through a web server) and it should work just the same as the XHR version, provided you are running a modern browser.
+
+### So what is going on in the Fetch code?
+
+First of all, we invoke the [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) method, passing it the URL of the resource we want to fetch. This is the modern equivalent of [`request.open()`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open) in XHR, plus you don't need any equivalent to `.send()`.
+
+After that, you can see the [`.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) method chained onto the end of `fetch()` -- this method is a part of [`Promises`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), a modern JavaScript feature for performing asynchronous operations. `fetch()` returns a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which resolves to the response sent back from the server -- we use `.then()` to run some follow-up code after the promise resolves, which is the function we've defined inside it. This is the equivalent of the `onload` event handler in the XHR version.
+
+This function is automatically given the response from the server as a parameter when the `fetch()` promise resolves. Inside the function, we grab the response and run its [`text()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/text) method, which basically returns the response as raw text. This is the equivalent of `request.responseType = 'text'` in the XHR version.
+
+You'll see that `text()` also returns a promise, so we chain another `.then()` onto it, inside of which we define a function to receive the raw text that the `text()` promise resolves to.
+
+Inside the inner promise's function, we do much the same as we did in the XHR version -- set the [`<pre>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre) element's text content to the text value.
+
+### Aside on promises
+
+Promises are a bit confusing the first time you meet them, but don't worry too much about this for now. You'll get used to them after a while, especially as you learn more about modern JavaScript APIs -- most of the newer ones are heavily based on promises.
+
+Let's look at the promise structure from above again to see if we can make some more sense of it:
+```
+fetch(url).then(function(response) {
+    response.text().then(function(text) {
+        poemDisplay.textContent = text;
+    });
+});
+```
+The first line is saying "fetch the resource located at URL" (`fetch(url)`) and "then run the specified function when the promise resolves" (`.then(function() { ... })`). "Resolve" means "finish performing the specified operation at some point in the future". The specified operation, in this case, is to fetch a resource from a specified URL (using an HTTP request), and return the response for us to do something with.
+
+Effectively, the function passed into `then()` is a chunk of code that won't run immediately. Instead, it will run at some point in the future when the response has been returned. Note that you could also choose to store your promise in a variable and chain [`.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) onto that instead. The code below would do the same thing:
+```
+let myFetch = fetch(url);
+
+myFetch.then(function(response) {
+    response.text().then(function(text) {
+        poemDisplay.textContent = text;
+    });
+});
+```
+Because the `fetch()` method returns a promise that resolves to the HTTP response, any function you define inside a `.then()` chained onto the end of it will automatically be given the response as a parameter. You can call the parameter anything you like -- the below example would still work:
+```
+fetch(url).then(function(dogBiscuits) {
+    dogBiscuits.text().then(function(text) {
+        poemDisplay.textContent = text;
+    });
+});
+```
+But it makes more sense to call the parameter something that describes its contents.
+
+Now let's focus just on the function:
+```
+function(response) {
+    response.text().then(function(text) {
+        poemDisplay.textContent = text;
+    });
+}
+```
+The response object has a method [`text()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/text) that takes the raw data contained in the response body and turns it into plain text -- the format we want it in. It also returns a promise (which resolves to the resulting text string), so here we use another [`.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then), inside of which we define another function that dictates what we want to do with that text string. We are just setting the [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property of our poem's [`<pre>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre) element to equal the text string, so this works out pretty simple.
+
+It is also worth noting that you can directly chain multiple promise blocks (`.then()` blocks, but there are other types, too) onto the end of one another, passing the result of each block to the next block as you travel down the chain. This makes promises very powerful.
+
+The following block does the same thing as our original example, but is written in a different style:
+```
+fetch(url).then(function(reponse) {
+    return response.text()
+}).then(function(text) {
+    poemDisplay.textContent = text;
+});
+```
