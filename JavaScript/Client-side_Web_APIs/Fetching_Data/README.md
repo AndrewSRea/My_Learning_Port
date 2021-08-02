@@ -250,3 +250,27 @@ The `fetch()` function returns a promise. If this completes successfully, the fu
 Inside this function, we run [`json()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/json) on the response, not [`text()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/text), as we want to return our response as structured JSON data, not plain text.
 
 Next, we chain another `.then()` onto the end of our first one, the success function that contains the `json` returned from the `reponse.json()` promise. We set this to be the value of the `products` variable, then run `initialize(products)`, which starts the process of displaying all the products in the user interface.
+
+To handle errors, we chain a `.catch()` block onto the end of the chain. This runs if the promise fails for some reason. Inside it, we include a function that is passed as a parameter, an `error` object. This `error` object can be used to report the nature of the error that has occurred, in this case we do it with a simple `console.log()`.
+
+However, a complete website would handle this error more gracefully by displaying a message on the user's screen and perhaps offering options to remedy the situation, but we don't need anything more than a simple `console.log()`.
+
+You can test the fail case yourself:
+
+1. Make a local copy of the example files (download and unpack [the can-store ZIP file](https://github.com/mdn/learning-area/blob/master/javascript/apis/fetching-data/can-store/can-store.zip?raw=true)).
+2. Run the code through a web server (as described above, in [Serving your example from a server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Fetching_Data#serving-your-example-from-a-server)).
+3. Modify the path to the file being fetched, to something like 'produc.json' (make sure it is misspelled).
+4. Now load the index file in your browser (via `localhost:8000`) and look in your browser developer console. You'll see a message similar to "Network request for produc.json failed with response 404: File not found".
+
+The second Fetch block can be found inside the `fetchBlob()` function:
+```
+fetch(url).then(function(response) {
+    return response.blob();
+}).then(function(blob) {
+    // Convert the blob to an object URL - this is basically a temporary internal URL
+    // that points to an object stored inside the browser
+    let objectURL = URL.createObjectURL(blob);
+    // invoke showProduct
+    showProduct(objectURL, product);
+});
+```
