@@ -274,3 +274,41 @@ fetch(url).then(function(response) {
     showProduct(objectURL, product);
 });
 ```
+This works in much the same way as the previous one, except that instead of using [`json()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/json), we use [`blob()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/blob). In this case, we want to return our response as an image file, and the data format we use for that is [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) (the term is an abbreviation of "Binary Large Object" and can basically be used to represent large file-like objects, such as images or video files).
+
+Once we've successfully received our blob, we create an object URL out of it using [`createObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL). This returns a temporary internal URL that points to an object referenced inside the browser. These are not very readable, but you can see what one looks like by opening up the Can Store app, Ctrl-/Right clicking on an image, and selecting the "View image" option (which might vary slightly depending on what browser you are using). The object URL will be visible inside the address bar, and should be something like this:
+```
+blob:http://localhost:7800/9b75250e-5279-e249-884f-d03eb1fd84f4
+```
+
+### Challenge: An XHR version of the Can Store
+
+We'd like you to try converting the Fetch version of the app to use XHR as a useful bit of practice. Take a [copy of the ZIP file](https://github.com/mdn/learning-area/blob/master/javascript/apis/fetching-data/can-store/can-store.zip?raw=true), and try modifying the JavaScript as appropriate.
+
+Some helpful hints:
+
+* You might find the [`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) reference material useful.
+* You will basically need to use the same pattern as you saw earlier in the [XHR-basic.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/fetching-data/xhr-basic.html) example. (My local [ajax-start.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Fetching_Data/ajax-start.html) file.)
+* You will, however, need to add the error handling we showed you in the Fetch version of the Can Store:
+    - The response is found in `request.response` after the `load` event has fired, not in a promise `then()`.
+    - About the best equivalent to Fetch's `response.ok` in XHR is to check whether [`request.status`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/status) is equal to 200, or if [`request.readyState`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState) is equal to 4.
+    - The properties for getting the status and status message are the same, but they are found on the `request` (XHR) object, not the `response` object.
+
+## Summary
+
+This article shows how to start working with both XHR and Fetch to fetch data from the server.
+
+## See also
+
+There are, however, a lot of different subjects discussed in this article, which has only really scratched the surface. For a lot more detail on these subjects, try the following articles:
+
+* [Ajax -- Getting started](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
+* [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Working with JSON data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON#working-with-json)
+* [An overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+* [Server-side website programming](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Server-Side_Website_Programming#server-side-website-programming)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Manipulating_Documents#manipulating-documents) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Fetching_Data#fetching-data-from-the-server) - [[Next page]]()
