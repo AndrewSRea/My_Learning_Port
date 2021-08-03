@@ -72,6 +72,64 @@ Requiring a key enables the API provider to hold users of the API accountable fo
 
 ## Extending the Mapquest example
 
+Let's add some functionality to the Mapquest example to show how to use some other features of the API.
+
+1. To start this section, make yourself a copy of the [mapquest starter file](https://github.com/mdn/learning-area/blob/master/javascript/apis/third-party-apis/mapquest/starter-file.html), in a new directory. If you've already [cloned the examples repository](https://developer.mozilla.org/en-US/docs/Learn#getting_our_code_examples), you'll already have a copy of this file, which you can find in the *javascript/apis/third-party-apis/mapquest* directory.
+
+2. Next, you need to go to the [Mapquest developer site](https://developer.mapquest.com/), create an account, and then create a developer key to use with your example. (At the time of writing, it was called a "consumer key" on the site, and the key creation process also asked for an optional "callback URL". You don't need to fill in a URL here: just leave it blank.)
+
+3. Open up your starting file, and replace the API key placeholder with your key.
+
+### Changing the type of map
+
+There are a number of different types of map that can be shown with the Mapquest API. To do this, find the following line:
+```
+layers: L.mapquest.tileLayer('map');
+```
+Try changing `'map'` to `'hybrid'` to show a hybrid-style map. Try some other values, too. The [`tileLayer` reference page](https://developer.mapquest.com/documentation/mapquest-js/v1.3/l-mapquest-tile-layer/) shows the different available options, plus a lot more information.
+
+### Adding different controls
+
+The map has a number of different controls available; by default, it just shows a zoom control. You can expand the controls available using the `map.addControl()` method; add this to your code, inside the `window.onload` handler:
+```
+map.addControl(L.mapquest.control());
+```
+The [`mapquest.control()` method](https://developer.mapquest.com/documentation/mapquest-js/v1.3/l-mapquest-control/) just creates a simple full-featured control set, and it is placed in the top-right hand corner by default. You can adjust the position by specifying an options object as a parameter for the control containing a `position` property, the value of which is a string specifying a position for the control. Try this, for example:
+```
+map.addControl(L.mapquest.control({ position: 'bottomright' }));
+```
+There are other types of control available, for example [`mapquest.searchControl()`](https://developer.mapquest.com/documentation/mapquest-js/v1.3/l-mapquest-search-control/) and [`mapquest.satelliteControl()`](https://developer.mapquest.com/documentation/mapquest-js/v1.3/l-mapquest-satellite-control/), and some are quite complex and powerful. Have a play around and see what you can come up with.
+
+## Adding a custom marker
+
+Adding a marker (icon) at a certain point on the map is easy -- you just use the [`L.marker()`](https://developer.mapquest.com/documentation/mapquest-js/v1.3/l-mapquest-icons/) method (which seems to be documented in the related [Leaflet.js docs](https://leafletjs.com/reference-1.7.1.html)). Add the following code to your example, again inside `window.onload`:
+```
+L.marker([53.480759, -2.242631], {
+    icon: L.mapquest.icons.marker({
+        primaryColor: '#22407F',
+        secondaryColor: '#3B5998',
+        shadow: true,
+        size: 'md',
+        symbol: 'A'
+    })
+})
+.bindPopup('This is Manchester!')
+.addTo(map);
+```
+As you can see, this at its simplest takes two parameters, an array containing the coordinates at which to display the marker (I have changed the coordinates of my map to show the city of Madrid), and an options object containing an `icon` property that defines the icon to display at that point.
+
+The icon is defined using a [`mapquest.icons.marker()`](https://developer.mapquest.com/documentation/mapquest-js/v1.3/l-mapquest-icons/) method, which as you can see contains information such as color and size of marker.
+
+Onto the end of the first method call, we chain `.bindPopup('This is Manchester!')`, which defines content to display when the marker is clicked.
+
+Finally, we chain `.addTo(map)` to the end of the chain to actually add the marker to the map.
+
+Have a play with the other options shown in the documentation and see what you can come up with! Mapquest provides some pretty advanced functionality, such as directions, searching, etc.
+
+## What about Google Maps?
+
+Google Maps is arguably the most popular 
+
 
 
 ## A RESTful API - NYTimes
