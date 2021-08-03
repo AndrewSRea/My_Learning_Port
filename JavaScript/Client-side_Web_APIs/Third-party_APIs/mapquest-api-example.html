@@ -17,14 +17,42 @@
             var L;
 
             window.onload = function() {
-                L.mapquest.key = 'YOUR-API-KEY-HERE';
+                L.mapquest.key = 'I3jOlpAL2Y4ko55cg7nksjqj1qjtDLcc';
 
                 // 'map' refers to a <div> element with the ID map
                 var map = L.mapquest.map('map', {
-                    center: [53.480759, -2.242631],
+                    center: [40.4168, -3.7038],
                     layers: L.mapquest.tileLayer('map'),
                     zoom: 12
                 });
+
+                map.addControl(L.mapquest.trafficControl({
+                    className: '',
+                    colors: {
+                        low: '#1ca747',
+                        medium: '#feeb41',
+                        high: '#df0021',
+                        closed: '#0c0000'
+                    },
+                    construction: true,
+                    flow: true,
+                    incidents: true,
+                    position: 'bottomright',
+                    markets: true,
+                    title: 'Traffic'
+                }));
+
+                L.marker([40.4168, -3.7038], {
+                    icon: L.mapquest.icons.marker({
+                        primaryColor: '#22407F',
+                        secondaryColor: '#3B5998',
+                        shadow: true,
+                        size: 'md',
+                        symbol: 'A'
+                    })
+                })
+                .bindPopup('This is Madrid!')
+                .addTo(map);
             }
         </script>
     </head>
