@@ -44,9 +44,33 @@ This is all information the Mapquest API needs to plot a simple map. The server 
 
 <hr>
 
-Some APIs handle access to their functionality slightly differently, requiring the developer to make an HTTP request to a specific URL pattern to retrieve data. These are called [RESTful APIs -- we'll show an example later on]().
+Some APIs handle access to their functionality slightly differently, requiring the developer to make an HTTP request to a specific URL pattern to retrieve data. These are called [RESTful APIs -- we'll show an example later on](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Third-party_APIs#a-restful-api---nytimes).
 
 <hr>
+
+### They usually require API keys
+
+Security for browser APIs tends to be handled by permission prompts, as [discussed in our first article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Intro_Web_APIs#they-have-additional-security-mechanisms-where-appropriate). The purpose of these is so that the user knows what is going on in the websites they visit and is less likely to fall victim to someone using an API in a malicious way.
+
+Third party APIs have a slightly different permissions system -- they tend to use developer keys to allow developers access to the API functionality, which is more to protect the API vendor than the user.
+
+You'll find a line similar to the following in the Mapquest API example:
+```
+L.mapquest.key = 'YOUR-API-KEY-HERE';
+```
+This line specifies an API or developer key to use in your application -- the developer of the application must apply to get a key, and then include it in their code to be allowed access to the API's functionality. In our example, we've just provided a placeholder.
+
+<hr>
+
+**Note**: When creating your own examples, you'll use your own API key in place of any placeholder.
+
+<hr>
+
+Other APIs may require that you include the key in a slightly different way, but the pattern is relatively similar for most of them. 
+
+Requiring a key enables the API provider to hold users of the API accountable for their actions. When the developer has registered for a key, they are then known to the API provider, and action can be taken if they start to do anything malicious with the API (such as tracking people's location or trying to spam the API with loads of requests to stop it working, for example). The easiest action would be to just revoke their API privileges.
+
+## Extending the Mapquest example
 
 
 
