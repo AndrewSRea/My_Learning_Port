@@ -341,4 +341,4 @@ The first function is simple -- we increment the `pageNumber` variable, then run
 
 The second function works nearly exactly the same way in reverse, but we also have to take the extra step of checking that `pageNumber` is not already zero before decrementing it -- if the fetch request runs with a minus `page` URL parameter, it could cause errors. If the `pageNumber` is already 0, we [`return`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) out of the function, to avoid wasting processing power. (If we are already at the first page, we don't need to load the same results again.)
 
-See the finished results of this NYTimes API example [here](), and see the source code [here]().
+See the finished results of this NYTimes API example [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Third-party_APIs/NYTimes_API/nytimes-start.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Third-party_APIs/NYTimes_API/nytimes-start.html).
