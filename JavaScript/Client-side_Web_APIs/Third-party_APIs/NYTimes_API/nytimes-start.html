@@ -83,20 +83,6 @@
         nextBtn.addEventListener('click', nextPage);
         previousBtn.addEventListener('click', previousPage);
 
-        function nextPage(e) {
-            pageNumber++;
-            fetchResults(e);
-        };
-
-        function previousPage(e) {
-            if(pageNumber > 0) {
-                pageNumber--;
-            } else {
-                return;
-            }
-            fetchResults(e);
-        };
-
         function submitSearch(e) {
             pageNumber = 0;
             fetchResults(e);
@@ -107,7 +93,7 @@
             e.preventDefault();
 
             // Assemble the full URL
-            url = baseURL + '?api-key=' + key + '&page=' + pageNumber + '&q=' + searchTerm.value + '&fq=document_type:("article)';
+            url = baseURL + '?api-key=' + key + '&page=' + pageNumber + '&q=' + searchTerm.value + '&fq=document_type:("article")';
 
             if(startDate.value !== '') {
                 url += '&begin_date=' + startDate.value;
@@ -161,7 +147,7 @@
                     para2.textContent = 'Keywords: ';
                     for(let j = 0; j < current.keywords.length; j++) {
                         const span = document.createElement('span');
-                        span.textContent += current.keywords[j].value + ' ';
+                        span.textContent = current.keywords[j].value + ' ';
                         para2.appendChild(span);
                     }
 
@@ -181,7 +167,21 @@
                     section.appendChild(article);
                 }
             }
-        }
+        };
+
+        function nextPage(e) {
+            pageNumber++;
+            fetchResults(e);
+        };
+
+        function previousPage(e) {
+            if(pageNumber > 0) {
+                pageNumber--;
+            } else {
+                return;
+            }
+            fetchResults(e);
+        };
 
         </script>
 
