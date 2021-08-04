@@ -134,3 +134,66 @@ Google Maps is arguably the most popular maps API, so why didn't we use it for o
 * We wanted to show that there are other alternatives available.
 
 ## A RESTful API - NYTimes
+
+Now let's look at another API example -- the [New York Times API](https://developer.nytimes.com/). This API allows you to retrieve New York Times news story information and display it on your site. This type of API is known as a **RESTful API** -- instead of getting data using the features of a JavaScript library like we did with Mapquest, we get data by making HTTP requests to specific URLs, with data-like search terms and other properties encoded in the URL (often as URL parameters). This is a common pattern you'll encounter with APIs.
+
+## An approach for using third-party APIs
+
+Below we'll take you through an exercise to show you how to use the NYTimes API, which also provides a more general set of steps to follow that you can use as an approach for working with new APIs.
+
+### Find the documentation
+
+When you want to use a third-party API, it is essential to find out where the documentation is, so you can find out what features the API has, how you use them, etc. The New York Times API documentation is at [https://developer.nytimes.com/](https://developer.nytimes.com/).
+
+### Get a developer key
+
+Most APIs require you to use some kind of developer key, for reasons of security and accountability. To sign up for an NYTimes API key, follow the instructions at [https://developer.nytimes.com/get-started](https://developer.nytimes.com/get-started).
+
+1. Let's request a key for the Article Search API -- create a new app, selecting this as the API you want to use (fill in a name and description, toggle the switch under the "Article Search API" to the "on" position, and then click "Create").
+
+2. Get the API key from the resulting page.
+
+3. Now, to start the example off, make copies of [nytimes_start.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/third-party-apis/nytimes/nytimes_start.html) and [nytimes.css](https://github.com/mdn/learning-area/blob/master/javascript/apis/third-party-apis/nytimes/nytimes.css) in a new directory on your computer. If you've already [cloned the example repository](https://developer.mozilla.org/en-US/docs/Learn#getting_our_code_examples), you'll already have a copy of these files, which you can find in the *javascript/apis/third-party-apis/nytimes* directory. Initially the `<script>` element contains a number of variables needed for the setup of the example; below we'll fill in the required functionality.
+
+The app will end up allowing you to type in a search term and optional start and end dates, which it will then use to query the Article Search API and display the search results.
+
+### Connect the API to your app
+
+First, you'll need to make a connection between the PI and your app. In the case of this API, you need to include the API key as a [get](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) parameter every time you request data from the service at the correct URL.
+
+1. Find the following line:
+```
+let key = ' ... ';
+```
+Replace the existing API key with the actual API key you got in the previous section.
+
+2. Add the following line to your JavaScript, below the "`// Event listeners to control the functionality`" comment. This runs a function called `submitSearch()` when the form is submitted (the button is pressed).
+```
+searchForm.addEventListener('submit', submitSearch);
+```
+
+3. Now add the `submitSearch()` and `fetchResults()` function definitions, below the previous line:
+```
+function submitSearch(e) {
+    pageNumber = 0;
+    fetchResults(e);
+}
+
+function fetchResults(e) {
+    // Use preventDefault() to stop the form submitting
+    e.preventDefault();
+
+    // Assemble the full URL
+    url = baseURL + '?api-key=' + key + '&page=' + pageNumber + '&q=' + searchTerm.value + '&fq=document_type:("article")';
+
+    if(startDate.value !== '') {
+        url += '&begin_date=' + startDate.value;
+    };
+
+    if(endDate.value !== '') {
+        url += '&end_date=' + endDate.value;
+    };
+
+}
+```
+`submitSearch()` sets the page number back to 0 to begin with, then calls `fetchResults()`. This first calls [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) on the event object, 
