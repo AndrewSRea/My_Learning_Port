@@ -221,3 +221,80 @@ https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=YOUR-API-KEY-HE
 
 <hr>
 
+### Requesting data from the API
+
+Now we've constructed our URL, let's make a request to it. We'll do this using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+
+Add the following code block inside the `fetchResults()` function, just above the closing curly brace:
+```
+// Use fetch() to make the request to the API
+fetch(url).then(function(result) {
+    return result.json();
+}).then(function(json) {
+    displayResults(json);
+});
+```
+Here we run the request by passing our `url` variable to [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch), convert the response body to JSON using the [`json()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/json) function, then pass the resulting JSON to the `displayResults()` function so the data can be displayed in our UI.
+
+### Displaying the data
+
+OK, let's look at how we'll display the data. Add the following function below your `fetchResults()` function:
+```
+function displayResults(json) {
+    while (section.firstChild) {
+        section.removeChild(section.firstChild);
+    }
+
+    const articles = json.response.docs;
+
+    if(articles.length === 10) {
+        nav.style.display = 'block';
+    } else {
+        nav.style.display = 'none';
+    }
+
+    if(articles.length === 0) {
+        const para = document.createElement('p');
+        para.textContent = 'No results returned.';
+        section.appendChild(para);
+    } else {
+        for(var i = 0; i < articles.length; i++) {
+            const article = document.createElement('article');
+            const heading = document.createElement('h2');
+            const link = document.createElement('a');
+            const img = document.createElement('img');
+            const para1 = document.createElement('p');
+            const para2 = document.createElement('p');
+            const clearfix = document.createElement('div');
+
+            let current = articles[i];
+            console.log(current);
+
+            link.href = current.web_url;
+            link.textContent = current.headline.main;
+            para1.textContent = current.snippet;
+            para2.textContent = 'Keywords: ';
+            for(let j = 0; j < current.keywords.length; j++) {
+                const span = document.createElement('span');
+                span.textContent += current.keywords[j].value + ' ';
+                para2.appendChild(span);
+            }
+
+            if(current.multimedia.length > 0) {
+                img.src = 'http://www.nytimes.com/' + current.multimedia[0].url;
+                img.alt = current.headline.main;
+            }
+
+            clearfix.setAttribute('class', 'clearfix');
+
+            article.appendChild(heading);
+            heading.appendChild(link);
+            article.appendChild(img);
+            article.appendChild(para1);
+            article.appendChild(para2);
+            article.appendChild(clearfix);
+            section.appendChild(article);
+        }
+    }
+}
+```
