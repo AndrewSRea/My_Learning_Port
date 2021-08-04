@@ -204,7 +204,7 @@ function fetchResults(e) {
 * The search term, which has to be specified in the `q` URL parameter (the value is taken from the value of the `searchTerm` text [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)).
 * The document type to return results for, as specified in an expression passed in via the `fq` URL parameter. In this case, we want to return articles.
 
-Next, we use a couple of [if]() statements to check whether the `startDate` and `endDate` `<input>`s have had values filled in on them. If they do, we append their values to the URL, specified in `begin_date` and `end_date` URL parameters respectively.
+Next, we use a couple of [if](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statements to check whether the `startDate` and `endDate` `<input>`s have had values filled in on them. If they do, we append their values to the URL, specified in `begin_date` and `end_date` URL parameters respectively.
 
 So, a complete URL would end up looking something like this:
 ```
@@ -298,3 +298,47 @@ function displayResults(json) {
     }
 }
 ```
+There's a lot of code here; let's explain it step-by-step:
+
+* The [`while`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) loop is a common pattern used to delete all of the contents of a DOM element, in this case, the [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) element. We keep checking to see if the `<section>` has a first child, and if it does, we remove the first child. The loop ends when `<section>` no longer has any children.
+* Next, we set the `articles` variable to equal `json.response.docs` -- this is the array holding all the objects that represent the articles returned by the search. This is done purely to make the following code a bit simpler.
+* The first [`if()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) block checks to see if 10 articles are returned (the API returns up to 10 articles at a time). If so, we display the [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) that contains the *Previous 10/Next 10* pagination buttons. If less than 10 articles are returned, they will all fit on one page, so we don't need to show the pagination buttons. We will wire up the pagination functionality in the next section.
+* The next `if()` block checks to see if no articles are returned. If so, we don't try to display any -- we create a [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) containing the text "No results returned." and insert it into the `<section>`.
+* If some articles are returned, we, first of all, create all the elements that we want to use to display each news story, insert the right contents into each one, and then insert them into the DOM at the appropriate places. To work out which properties in the article objects contained the right data to show, we consulted the Article Search API reference (see [NYTimes APIs](https://developer.nytimes.com/apis)). Most of these operations are fairly obvious, but a few are worth calling out:
+    - We used a [for loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) (`for(var j = 0; j < current.keywords.length; j++) { ... }`) to loop through all the keywords associated with each article, and insert each one inside its own [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span), inside a `<p>`. This was done to make it easy to style each one.
+    - We used an `if()` block (`if(current.multimedia.length > 0) { ... }`) to check whether each article has any images associated with it (some stories don't). We display the first image only if it exists (otherwise an error would be thrown).
+    - We gave our `<div>` element a class of "clearfix", so we can easily apply clearing to it.
+
+### Wiring up the pagination buttons
+
+To make the pagination buttons work, we will increment (or decrement) the value of the `pageNumber` variable, and then re-rerun the fetch request with the new value included in the page URL parameter. This works because the NYTimes API only returns 10 results at a time -- if more than 10 results are available, it will return the first 10 (0-9) if the `page` URL parameter is set to 0 (or not included at all -- 0 is the default value), the next 10 (10-19) if it is set to 1, and so on.
+
+This allows us to write a simplistic pagination function easily.
+
+1. Below the existing [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) call, add these two new ones, which cause the `nextPage()` and `previousPage()` functions to be invoked when the relevant buttons are clicked:
+```
+nextBtn.addEventListener('click', nextPage);
+previousBtn.addEventListener('click', previousPage);
+```
+
+2. Below your previous addition, let's define the two functions -- add this code now:
+```
+function nextPage(e) {
+    pageNumber++;
+    fetchResults(e);
+};
+
+function previousPage(e) {
+    if(pageNumber > 0) {
+        pageNumber--;
+    } else {
+        return;
+    }
+    fetchResults(e);
+};
+```
+The first function is simple -- we increment the `pageNumber` variable, then run the `fetchResults()` function again to display the next page's results.
+
+The second function works nearly exactly the same way in reverse, but we also have to take the extra step of checking that `pageNumber` is not already zero before decrementing it -- if the fetch request runs with a minus `page` URL parameter, it could cause errors. If the `pageNumber` is already 0, we [`return`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) out of the function, to avoid wasting processing power. (If we are already at the first page, we don't need to load the same results again.)
+
+See the finished results of this NYTimes API example [here](), and see the source code [here]().
