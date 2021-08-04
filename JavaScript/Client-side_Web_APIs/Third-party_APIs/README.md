@@ -196,4 +196,28 @@ function fetchResults(e) {
 
 }
 ```
-`submitSearch()` sets the page number back to 0 to begin with, then calls `fetchResults()`. This first calls [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) on the event object, 
+`submitSearch()` sets the page number back to 0 to begin with, then calls `fetchResults()`. This first calls [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) on the event object, to stop the form actually submitting (which would break the example). Next, we use some string manipulation to assemble the full URL that we will make the request to. We start off by assembling the parts we deem as mandatory for this demo:
+
+* The base URL (taken from the `baseURL` variable).
+* The API key, which has to be specified in the `api-key` URL parameter (the value is taken from the `key` variable).
+* The page number, which has to be specified in the `page` URL parameter (the value is taken from the `pageNumber` variable).
+* The search term, which has to be specified in the `q` URL parameter (the value is taken from the value of the `searchTerm` text [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)).
+* The document type to return results for, as specified in an expression passed in via the `fq` URL parameter. In this case, we want to return articles.
+
+Next, we use a couple of [if]() statements to check whether the `startDate` and `endDate` `<input>`s have had values filled in on them. If they do, we append their values to the URL, specified in `begin_date` and `end_date` URL parameters respectively.
+
+So, a complete URL would end up looking something like this:
+```
+https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=YOUR-API-KEY-HERE&page=0&q=cats&fq=document_type:("article")&begin_date=20170301&end_date=20170312
+```
+
+<hr>
+
+**Note**: You can find more details of what URL parameters can be included at the [NYTimes developer docs](https://developer.nytimes.com/).
+
+<hr>
+
+**Note**: The example has rudimentary form data validation -- the search term field has to be filled in before the form can be submitted (achieved using the `required` attribute), and the date fields have `pattern` attributes specified, which means they won't submit unless their values consist of 8 numbers (`pattern="[0-9]{8}`). See [Form data validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) for more details on how these work.
+
+<hr>
+
