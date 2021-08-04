@@ -342,3 +342,30 @@ The first function is simple -- we increment the `pageNumber` variable, then run
 The second function works nearly exactly the same way in reverse, but we also have to take the extra step of checking that `pageNumber` is not already zero before decrementing it -- if the fetch request runs with a minus `page` URL parameter, it could cause errors. If the `pageNumber` is already 0, we [`return`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) out of the function, to avoid wasting processing power. (If we are already at the first page, we don't need to load the same results again.)
 
 See the finished results of this NYTimes API example [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Third-party_APIs/NYTimes_API/nytimes-start.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Third-party_APIs/NYTimes_API/nytimes-start.html).
+
+## YouTube example
+
+We also built another example for you to study and learn from -- see our [YouTube video search example](https://mdn.github.io/learning-area/javascript/apis/third-party-apis/youtube/). This uses two related APIs:
+
+* The [YouTube Data API](https://developers.google.com/youtube/v3/docs/) to search for YouTube videos and return results.
+* The [YouTube IFrame Player API](https://developers.google.com/youtube/iframe_api_reference) to display the returned video examples inside IFrame video players so you can watch them.
+
+This example is interesting because it shows two related third-party APIs being used together to build an app. The first one is a RESTful API, while the second one works more like Mapquest (with API-specific methods, etc.). It is worth noting, however, that both of the APIs require a JavaScript library to be applied to the page. The RESTful API has functions available to handle making the HTTP requests and returning the results.
+
+We are not going to say too much more about this example in the article -- [the source code](https://github.com/mdn/learning-area/tree/master/javascript/apis/third-party-apis/youtube) has detailed comments inserted inside it to explain how it works.
+
+To get it running, you'll need to:
+
+* Read the [YouTube Data API Overview](https://developers.google.com/youtube/v3/getting-started) documentation.
+* Make sure you visit the [Enabled APIs page](https://console.developers.google.com/apis/enabled), and in the list of APIs, make sure the status is ON for the YouTube Data API v3.
+* Get an API key from [Google Cloud](https://cloud.google.com/).
+* Find the string `ENTER-API-KEY-HERE` in the source code, and replace it with your API key.
+* [Run the example through a web server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server). It won't work if you just run it directly in the browser (i.e. via a `file://` URL).
+
+## Summary
+
+This article has given you a useful introduction to using third-party APIs to add functionality to your websites.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Fetching_Data#fetching-data-from-the-server) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Third-party_APIs#third-party-apis) - [[Next page]]()
