@@ -99,7 +99,71 @@
             if(endDate.value !== '') {
                 url += '&end_date=' + endDate.value;
             };
-            
+
+            // Use fetch() to make the request to the API
+            fetch(url).then(function(result) {
+                return result.json();
+            }).then(function(json) {
+                displayResults(json);
+            });
+        }
+
+        function displayResults(json) {
+            while (section.firstChild) {
+                section.removeChild(section.firstChild);
+            }
+
+            const articles = json.response.docs;
+
+            if(articles.length === 10) {
+                nav.style.display = 'block';
+            } else {
+                nav.style.display = 'none';
+            }
+
+            if(articles.length === 0) {
+                const para = document.createElement('p');
+                para.textContent = 'No results returned.';
+                section.appendChild(para);
+            } else {
+                for(var i = 0; i < articles.length; i++) {
+                    const article = document.createElement('article');
+                    const heading = document.createElement('h2');
+                    const link = document.createElement('a');
+                    const img = document.createElement('img');
+                    const para1 = document.createElement('p');
+                    const para2 = document.createElement('p');
+                    const clearfix = document.createElement('div');
+
+                    let current = articles[i];
+                    console.log(current);
+
+                    link.href = current.web_url;
+                    link.textContent = current.headline.main;
+                    para1.textContent = current.snippet;
+                    para2.textContent = 'Keywords: ';
+                    for(let j = 0; j < current.keywords.length; j++) {
+                        const span = document.createElement('span');
+                        span.textContent += current.keywords[j].value + ' ';
+                        para2.appendChild(span);
+                    }
+
+                    if(current.multimedia.length > 0) {
+                        img.src = 'http://www.nytimes.com/' + current.multimedia[0].url;
+                        img.alt = current.headline.main;
+                    }
+
+                    clearfix.setAttribute('class', 'clearfix');
+
+                    article.appendChild(heading);
+                    heading.appendChild(link);
+                    article.appendChild(img);
+                    article.appendChild(para1);
+                    article.appendChild(para2);
+                    article.appendChild(clearfix);
+                    section.appendChild(article);
+                }
+            }
         }
 
         </script>
