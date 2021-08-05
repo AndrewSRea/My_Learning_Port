@@ -105,11 +105,11 @@ ctx.fillRect(0, 0, width, height);
 ```
 Here we are setting a fill color using the canvas' [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) property (this takes [color values](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#colors) just like CSS properties do), then drawing a rectangle that covers the entire area of the canvas with the [`fillRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect) method. (The first two parameters are the coordinates of the rectangle's top left hand corner; the last two are the width and height you want the rectangle drawn at -- we told you those `width` and `height` variables would be useful!)
 
-OK, our template is done and it's time to move on. (See the finished product [here](), and the source code [here]().)
+OK, our template is done and it's time to move on. (See the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-start.html), and the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-start.html).)
 
 ## 2D canvas basics
 
-As we said above, all drawing operations are done by manipulating a [`CanvasRenderingContext2D`]() object (in our case, `ctx`). Many operations need to be given coordinates to pinpoint exactly where to draw something -- the top left of the canvas is point (0, 0), the horizontal (x) axis runs from left to right, and the vertical (y) axis runs from top to bottom.
+As we said above, all drawing operations are done by manipulating a [`CanvasRenderingContext2D`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D) object (in our case, `ctx`). Many operations need to be given coordinates to pinpoint exactly where to draw something -- the top left of the canvas is point (0, 0), the horizontal (x) axis runs from left to right, and the vertical (y) axis runs from top to bottom.
 
 ![Image of the x and y canvas graph](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics/canvas_default_grid.png)
 
@@ -119,7 +119,7 @@ Drawing shapes tends to be done using the rectangle shape primitive, or by traci
 
 Let's start with some simple rectangles.
 
-1. First of all, take a copy of your newly coded canvas template (or make a local copy of [1_canvas_template.html]() if you didn't follow the above steps).
+1. First of all, take a copy of your newly coded canvas template (or make a local copy of [1_canvas_template.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/1_canvas_template.html) if you didn't follow the above steps).
 
 2. Next, add the following lines to the bottom of your JavaScript:
 ```
