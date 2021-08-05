@@ -97,3 +97,24 @@ const ctx = canvas.getContext('2d');
 <hr>
 
 So that's it -- our canvas is now primed and ready for drawing on! The `ctx` variable now contains a [`CanvasRenderingContext2D`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) object, and all drawing operations on the canvas will involve manipulating this object.
+
+Let's do one last thing before we move on. We'll color the canvas background black to give you a first taste of the canvas API. Add the following lines at the bottom of your JavaScript:
+```
+ctx.fillStyle = 'rgb(0, 0, 0)';
+ctx.fillRect(0, 0, width, height);
+```
+Here we are setting a fill color using the canvas' [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) property (this takes [color values](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#colors) just like CSS properties do), then drawing a rectangle that covers the entire area of the canvas with the [`fillRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect) method. (The first two parameters are the coordinates of the rectangle's top left hand corner; the last two are the width and height you want the rectangle drawn at -- we told you those `width` and `height` variables would be useful!)
+
+OK, our template is done and it's time to move on. (See the finished product [here](), and the source code [here]().)
+
+## 2D canvas basics
+
+As we said above, all drawing operations are done by manipulating a [`CanvasRenderingContext2D`]() object (in our case, `ctx`). Many operations need to be given coordinates to pinpoint exactly where to draw something -- the top left of the canvas is point (0, 0), the horizontal (x) axis runs from left to right, and the vertical (y) axis runs from top to bottom.
+
+![Image of the x and y canvas graph](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics/canvas_default_grid.png)
+
+Drawing shapes tends to be done using the rectangle shape primitive, or by tracing a line along a certain path and then filling in the shape. Below we'll show you how to do both.
+
+### Simple rectangles
+
+Let's start 
