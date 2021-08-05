@@ -141,3 +141,81 @@ ctx.fillStyle = 'rgba(255, 0, 255, 0.75)';
 ctx.fillRect(25, 100, 175, 50);
 ```
 5. Now try drawing some more rectangles of your own; have fun!
+
+<hr>
+
+See the finished code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-1.html), and the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-1.html).
+
+<hr>
+
+### Drawing paths
+
+If you want to draw anything more complex than a rectangle, you need to draw a path. Basically, this involves writing code to specify exactly what path the pen should move along on your canvas to trace the shape you want to draw. Canvas includes functions for drawing straight lines, circles, Bézier curves, and more.
+
+Let's start the section off by making a fresh copy of our canvas template ([1_canvas_template.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/1_canvas_template.html)), in which to draw the new example.
+
+We'll be using some common methods and properties across all of the below sections:
+
+* [`beginPath()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath) -- start drawing a path at the point where the pen currently is on the canvas. On a new canvas, the pen starts out at (0, 0).
+* [`moveTo()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/moveTo) -- move the pen to a different point on the canvas, without recording or tracing the line; the pen "jumps" to the new position.
+* [`fill()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill) -- draw a filled shape by filling in the path you've traced so far.
+* [`stroke()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/stroke) -- draw an outline shape by drawing a stroke along the path you've drawn so far.
+* You can also use features like `lineWidth` and `fillStyle`/`strokeStyle` with paths as well as rectangles.
+
+A typical, simple path-drawing operation would look something like so:
+```
+ctx.fillStyle = 'rgb(255, 0, 0)';
+ctx.beginPath();
+ctx.moveTo(50, 50);
+// draw your path
+ctx.fill();
+```
+
+### Drawing lines
+
+Let's draw an equilateral triangle on the canvas.
+
+1. First of all, add the following helper function to the bottom of your code. This converts degree values to radians, which is useful because whenever you need to provide an angle value in JavaScript, it will nearly always be in radians, but humans usually think in degrees.
+```
+function degToRad(degrees) {
+    return degrees * Math.PI / 180;
+};
+```
+
+2. Next, start off your path by adding the following below your previous addition; here we set a color for our triangle, start drawing a path, and then move the pen to (50, 50) without drawing anything. That's where we'll start drawing our triangle.
+```
+ctx.fillStyle = 'rgb(255, 0, 0)';
+ctx.beginPath();
+ctx.moveTo(50, 50);
+```
+
+3. Now, add the following lines at the bottom of your script:
+```
+ctx.lineTo(150, 50);
+let triHeight = 50 * Math.tan(degToRad(60));
+ctx.lineTo(100, 50+triHeight);
+ctx.lineTo(50, 50);
+ctx.fill();
+```
+Let's run though this in order:
+
+First, we draw a line across to (150, 50) -- our path now goes 100 pixels to the right along the x axis.
+
+Second, we work out the height of our equilateral triangle, using a bit of simple trigonometry. Basically, we are drawing the triangle pointing downwards. The angles in an equilateral triangle are always 60 degrees; to work out the height, we can split it down the middle into two right-angled triangles, which will each have angles of 90 degrees, 60 degrees, and 30 degrees. In terms of the sides:
+
+* The longest side in called the **hypotenuse**.
+* The side next to the 60 degree angle is called the **adjacent** -- which we know is 50 pixels, as it is half of the line we just drew.
+* The side opposite the 60 degree angle is called the **opposite**, which is the height of the triangle we want to calculate.
+
+![Image of the different sides and names of the sides of a triangle](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics/trigonometry.png)
+
+One of the basic trigonometric formulae states that the length of the adjacent multipled by the tangent of the angle is equal to the opposite, hence we come up with `50 * Math.tan(degToRad(60))`. We use our `degToRad()` function to convert 60 degrees to radians, as [`Math.tan()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan) expects an input value in radians.
+
+4. With the height calculated, we draw another line to `(100, 50 + triHeight)`. The X coordinate is simple; it must be halfway between the previous two X values we set. The Y value, on the other hand, must be 50 plus the triangle height, as we know the top of the triangle is 50 pixels from the top of the canvas.
+
+5. The next line draws a line back to the starting point of the triangle.
+
+6. last of all, we run `ctx.fill()` to end the path and fill in the shape.
+
+### Drawing circles
+
