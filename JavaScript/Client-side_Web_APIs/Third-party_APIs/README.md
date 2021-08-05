@@ -128,7 +128,7 @@ Have a play with the other options shown in the documentation and see what you c
 
 ## What about Google Maps?
 
-Google Maps is arguably the most popular maps API, so why didn't we use it for our maps example? We did [create an example](https://github.com/mdn/learning-area/blob/master/javascript/apis/third-party-apis/google-maps/finished-maps-example.html) to show how to use it but in the end, we went with Mapqeust for a couple of reasons:
+Google Maps is arguably the most popular maps API, so why didn't we use it for our maps example? We did [create an example](https://github.com/mdn/learning-area/blob/master/javascript/apis/third-party-apis/google-maps/finished-maps-example.html) to show how to use it but in the end, we went with Mapquest for a couple of reasons:
 
 * It is much easier to get started with. For Google APIs in general, you need to create a Google account and log into the [Google Cloud Platform Console](https://console.cloud.google.com/home/dashboard?project=beginner-dev-299600) to create API keys, etc., and the process is fairly complex. For the [Google Maps API](https://cloud.google.com/maps-platform/) in particular, you need to provide a credit card for billing purposes (although basic usage is free), which we didn't think was acceptable for a basic tutorial.
 * We wanted to show that there are other alternatives available.
