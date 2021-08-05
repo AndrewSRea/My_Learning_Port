@@ -117,4 +117,27 @@ Drawing shapes tends to be done using the rectangle shape primitive, or by traci
 
 ### Simple rectangles
 
-Let's start 
+Let's start with some simple rectangles.
+
+1. First of all, take a copy of your newly coded canvas template (or make a local copy of [1_canvas_template.html]() if you didn't follow the above steps).
+
+2. Next, add the following lines to the bottom of your JavaScript:
+```
+ctx.fillStyle = 'rgb(255, 0, 0)';
+ctx.fillRect(50, 50, 100, 150);
+```
+If you save and refresh, you should see a red rectangle has appeared on your canvas. Its top left corner is 50 pixels aweay from the top and left of the canvas edge (as defined by the first two parameters), and it is 100 pixels wide and 150 pixels tall (as defined by the third and fourth parameters).
+
+3. Let's add another rectangle into the mix -- a green one this time. Add the following at the bottom of your JavaScript:
+```
+ctx.fillStyle = 'rgb(0, 255, 0)';
+ctx.fillRect(75, 75, 100, 100);
+```
+Save and refresh, and you'll see your new rectangle. This raises an important point: graphics operations like drawing rectangles and so forth, are performed in the order in which they occur. Think of it like painting a wall, where each coat of paint overlaps and may even hide what's underneath. You can't do anything to change this, so you have to think carefully about the order in which you draw the graphics.
+
+4. Note that you can draw semi-transparent graphics by specifying a semi-transparent color -- for example, by using `rgba()`. The `a` value defines what's called the "alpha channel", or the amount of transparency the color has. The higher its value, the more it will obscure whatever's behind it. Add the following to your code:
+```
+ctx.fillStyle = 'rgba(255, 0, 255, 0.75)';
+ctx.fillRect(25, 100, 175, 50);
+```
+5. Now try drawing some more rectangles of your own; have fun!
