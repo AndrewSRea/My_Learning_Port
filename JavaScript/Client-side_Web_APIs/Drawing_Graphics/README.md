@@ -289,4 +289,46 @@ ctx.fillRect('Canvas text', 50, 150);
 ```
 Here we draw two lines of text, one outline and the other stroke. The final example should look like so:
 
-(See the finished product [here](), and see the source code [here]().)
+(See the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-3.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-3.html).)
+
+Have a play and see what you can come up with! You can find more information on the options available for canvas text at [Drawing text](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_text).
+
+### Drawing images onto canvas
+
+It is possible to render external images onto your canvas. These can be simple images, frames from videos, or the content of other canvases. For the moment, we'll just look at the case of using some simple images on our canvas.
+
+1. As before, make another fresh copy of our canvas template ([1_canvas_template.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/1_canvas_template.html)) in which to draw the new example. In this case, you'll also need to save a copy of our sample image -- [firefox.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/firefox.png) -- in the same directory.
+
+Images are drawn onto canvas using the [`drawImage()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage) method. The simplest version takes three parameters -- a reference to the image you want to render, and the X and Y coordinates of the image's top left corner.
+
+2. Let's start by getting an image source to embed in our canvas. Add the following lines to the bottom of your JavaScript:
+```
+let image = new Image();
+image.src = 'firefox.png'
+```
+Here we create a new [`HTMLImageElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) object using the [`Image()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image) constructor. The returned object is the same type as that which is returned when you grab a reference to an existing [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element. We then set its [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) attribute to equal our Firefox logo image. At this point, the browser starts loading the image.
+
+3. We could now try to embed the image using `drawImage()`, but we need to make sure the image file has been loaded first, otherwise the code will fail. We can achieve this using the `onload` event handler, which will only be invoked when the image has finished loading. Add the following block below the previous one:
+```
+image.onload = function() {
+    ctx.drawImage(image, 50, 50);
+}
+```
+If you load your example in the browser now, you should see the image embedded in the canvas.
+
+4. But there's more! What if we want to display only a part of the image, or to resize it? We can do both with the more complex version of `drawImage()`. Update your `ctx.drawImage()` line like so:
+```
+ctx.drawImage(image, 20, 20, 185, 175, 50, 50, 185, 175);
+```
+
+* The first parameter is the image reference, as before.
+* Parameters 2 and 3 define the coordinates of the top left corner of the area you want to cut out of the loaded image, relative to the top-left corner of the image itself. Nothing to the left of the first parameter or above the second will be drawn.
+* Parameters 4 and 5 define the width and height of the area we want to cut out from the original image we loaded.
+* Parameters 6 and 7 define the coordinates at which you want to draw the top-left corner of the cut-out portion of the image, relative to the top-left corner of the canvas.
+* Parameters 8 and 9 define the width and height to draw the cut-out area of the image. In this case, we have specified the same dimensions as the original slice, but you could resize it by specifying different values.
+
+The final example should look like so:
+
+(See the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-4.html), and the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-4.html).)
+
+## Loops and animations
