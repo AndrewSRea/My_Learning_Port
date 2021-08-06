@@ -26,6 +26,17 @@
             ctx.fillStyle = 'rgb(0,0,0)';
             ctx.fillRect(0,0,width,height);
 
+            ctx.translate(width/2, height/2);
+
+            let image = new Image();
+            image.src = 'walk-right.png';
+            image.onload = draw;
+
+            function draw() {
+                ctx.fillRect(-(width/2), -(height/2), width, height);
+                ctx.drawImage(image, (sprite*102), 0, 102, 148, 0+posX, -74, 102, 148);
+            };
+
         </script>
     </body>
 </html>
