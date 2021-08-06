@@ -403,3 +403,101 @@ At this point, we'd like to encourage you to play with the example and make it y
 * Draw rectangles or arcs instead of triangles, or even embed images.
 * Play with the `length` and `moveOffset` values.
 * Introduce some random numbers using that `rand()` function we included above but didn't use.
+
+### Animations
+
+The loop example we built above was fun, but really you need a constant loop that keeps going and going for any serious canvas applications (such as games and real time visualizations). If you think of your canvas as being like a movie, you really want the display to update on each frame to show the updated view, with an ideal refresh rate of 60 frames per second so that movement appears nice and smooth to the human eye.
+
+There are a few JavaScript functions that will allow you to run functions repeatedly, several times a second, the best one for our purposes here being [`window.requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). It takes one parameter -- the name of the function you want to run for each frame. The next time the browser is ready to update the screen, your function will get called. If that function draws the new update to your animation, then calls `requestAnimationFrame()` again just before the end of the function, the animation loop will continue to run. The loop ends when you stop calling `requestAnimationFrame()` or if you call [`window.cancelAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame) after calling `requestAnimationFrame()` but before the frame is called.
+
+<hr>
+
+**Note**: It's good practice to call `cancelAnimationFrame()` from your main code when you're done using the animation, to ensure that no updates are still waiting to be run.
+
+<hr>
+
+The browser works out complex details such as making the animation run at a consistent speed, and not wasting resources animating things that can't be seen.
+
+To see how it works, let's quickly look again at our Bouncing Balls example ([see it live](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Intro_JS_Objects/Object_Building_Practice/index.html), and also see [the source code](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Intro_JS_Objects/Object_Building_Practice/index.html)). The code for the loop that keeps everything moving looks like this:
+```
+function loop() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    ctx fillRect(0, 0, width, height);
+
+    for(let i = 0; i < balls.length; i++) {
+        balls[i].draw();
+        balls[i].update();
+        balls[i].collisionDetect();
+    }
+
+    requestAnimationFrame(loop);
+}
+
+loop();
+```
+We run the `loop()` function nonce at the bottom of the code to start the cycle, drawing the first animation frame; the `loop()` function then takes charge of calling `requestAnimationFrame(loop)` to run the next frame of animation, again and again.
+
+Note that on each frame, we are completely clearing the canvas and redrawing everything. For every ball present, we draw it, update its position, and check to see if it is colliding with any other balls. Once you've drawn a graphic to a canvas, there's no way to manipulate that graphic individually like you can with DOM elements. You can't move each ball around on the canvas because once it's drawn, it's part of the canvas, and is not an individual accessible element or object. Instead you have to erase and redraw, either by erasing the entire frame and redrawing everything, or by having code that knows exactly what parts need to be erased and only erases and redraws the minimum area of the canvas necessary.
+
+Optimizing animation of graphics is an entire specialty of programming, with lots of clever techniques available. Those are beyond what we need for our example, though!
+
+In general, the process of doing a canvas animation involves the following steps:
+
+1. Clear the canvas contents (e.g. with [`fillRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect) or [`clearRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect)).
+2. Save state (if necessary) using [`save()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save) -- this is needed when you want to save settings you've updated on the canvas before continuing, which is useful for more advanced applications.
+3. Draw the graphics you are animating.
+4. Restore the settings you saved in step 2, using [`restore()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore).
+5. Call `requestAnimationFrame()` to schedule drawing of the next frame of the animation.
+
+<hr>
+
+**Note**: We won't cover `save()` and `restore()` here, but they are explained nicely in our [Transformations](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations) tutorial (and the ones that follow it).
+
+<hr>
+
+### A simple character animation
+
+Now let's create our own simple animation -- we'll get a character from a certain rather awesome retro computer game to walk across the screen.
+
+1. Make another fresh copy of our canvas template ([1_canvas_template.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/1_canvas_template.html)) and open it in your code editor. Make a copy of [walk-right.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/loops_animation/walk-right.png) in the same directory.
+
+2. At the bottom of the JavaScript, add the following line to once again make the coordinate origin sit in the middle of the canvas:
+```
+ctx.translate(width/2, height/2);
+```
+
+3. Now let's create a new [`HTMLImageElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) object, set its [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) to the image we want to load, and add an `onload` event handler that will cause the `draw()` function  to fire when the image is loaded:
+```
+let image = new Image();
+image.src = 'walk-right.png';
+image.onload = draw;
+```
+
+4. Now we'll add some variables to keep track of the position the sprite is to be drawn on the screen, and the sprite number we want to display.
+```
+let sprite = 0;
+let posX = 0;
+```
+Let's explain the spritesheet image (which we have respectfully borrowed from Mike Thomas' [Create a sprite sheet walk cycle using CSS animation](https://atomicrobotdesign.com/blog/htmlcss/create-a-sprite-sheet-walk-cycle-using-using-css-animation/)). The image looks like this:
+
+![Image of the spritesheet used for our character animation](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics/walk-right.png)
+
+It contains six sprites that make up the whole walking sequence -- each one is 102 pixels wide and 148 pixels high. To display each sprite cleanly, we will have to use `drawImage()` to chop out a single sprite image from the spritesheet and display only that part, like we did above with the Firefox logo. The X coordinate of the slice will have to be a multiple of 102, and the Y coordinate will always be 0. The slice size will always be 102 by 148 pixels.
+
+5. Now let's insert an empty `draw()` function at the bottom of the code, ready for filling up with some code:
+```
+function draw() {
+
+};
+```
+
+6. The rest of the code in this section goes inside `draw()`. First, add the following line, which clears the canvas to prepare for drawing each frame. Notice that we have to specify the top-left corner of the rectangle as `-(width/2)`, `-(height/2)` because we specified the origin position as `width/2, height/2` earlier on.
+```
+ctx.fillRect(-(width/2), -(height/2), width, height);
+```
+
+7. Next, we'll draw our image using `drawImage()` -- the 9-parameter version. Add the following:
+```
+ctx.drawImage(image, (sprite*102), 0, 102, 148, 0+posX, -74, 102, 148);
+```
+As you can see:
