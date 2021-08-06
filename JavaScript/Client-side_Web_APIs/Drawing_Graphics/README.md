@@ -203,7 +203,7 @@ First, we draw a line across to (150, 50) -- our path now goes 100 pixels to the
 
 Second, we work out the height of our equilateral triangle, using a bit of simple trigonometry. Basically, we are drawing the triangle pointing downwards. The angles in an equilateral triangle are always 60 degrees; to work out the height, we can split it down the middle into two right-angled triangles, which will each have angles of 90 degrees, 60 degrees, and 30 degrees. In terms of the sides:
 
-* The longest side in called the **hypotenuse**.
+* The longest side is called the **hypotenuse**.
 * The side next to the 60 degree angle is called the **adjacent** -- which we know is 50 pixels, as it is half of the line we just drew.
 * The side opposite the 60 degree angle is called the **opposite**, which is the height of the triangle we want to calculate.
 
@@ -215,7 +215,40 @@ One of the basic trigonometric formulae states that the length of the adjacent m
 
 5. The next line draws a line back to the starting point of the triangle.
 
-6. last of all, we run `ctx.fill()` to end the path and fill in the shape.
+6. Last of all, we run `ctx.fill()` to end the path and fill in the shape.
 
 ### Drawing circles
 
+Now let's look at how to draw a circle in canvas. This is accomplished using the [`arc()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc) method, which draws all or part of a circle at a specified point.
+
+1. Let's add an arc to our canvas -- add the following to the bottom of your code:
+```
+ctx.fillStyle = 'rgb(0, 0, 255)';
+ctx.beginPath();
+ctx.arc(150, 106, 50, degToRad(0), degToRad(360), false);
+ctx.fill();
+```
+`arc()` takes six parameters. The first two specify the position of the arc's center (X and Y, respectively). The third is the circle's radius, the fourth and fifth are the start and end angles at which to draw the circle (so specifying 0 and 360 degrees gives us a full circle), and the sixth parameter defines whether the circle should be drawn counterclockwise (anticlockwise) or clockwise (`false` is clockwise).
+
+<hr>
+
+**Note**: 0 degrees is horizontally to the right.
+
+<hr>
+
+2. Let's try adding another arc:
+```
+ctx.fillStyle = 'yellow';
+ctx.beginPath();
+ctx.arc(200, 106, 50, degToRad(-45), degToRad(45), true);
+ctx.lineTo(200, 106);
+ctx.fill();
+```
+The pattern here is very similar, but with two differences:
+
+* We have set the last parameter of `arc()` to `true`, meaning that the arc is drawn counterclockwise, which means that even though the arc is specified as starting at -45 degrees and ending at 45 degrees, we draw the arc around the 270 degrees, not inside this portion. If you were to change `true` to `false` and then re-run the code, only the 90 degree slice of the circle would be drawn.
+* Before calling `fill()`, we draw a line to the center of the circle. This means that we get the rather nice Pac-Man-style cutout chopped off between the start and end point of the arc. This illustrates another important point of the canvas -- if you try to fill an incomplete path (i.e. one that is not closed), the browser fills in a straight line between the start and end point and then fills it in.
+
+That's it for now; your final example should look like this:
+
+(See the image of the finished drawn triangle and circles [here, above the "Text" header](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics#text).)
