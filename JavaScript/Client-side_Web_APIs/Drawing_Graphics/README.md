@@ -332,3 +332,74 @@ The final example should look like so:
 (See the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-4.html), and the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-4.html).)
 
 ## Loops and animations
+
+We have so far covered some very basic uses of 2D canvas, but really you won't experience the full power of canvas unless you update or animate it in some way. After all, canvas does provide scriptable images! If you aren't going to change anything, then you might as well just use static images and save yourself all the work.
+
+### Creating a loop
+
+Playing with loops in canvas is rather fun -- you can run canvas commands inside a [`for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) (or other type of) loop just like any other JavaScript code.
+
+Let's build a simple example.
+
+1. Make another fresh copy of our canvas template ([1_canvas_template.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/1_canvas_template.html)) and open it in your code editor.
+
+2. Add the following line to the bottom of your JavaScript. This contains a new method, [`translate()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate), which moves the origin point of the canvas:
+```
+ctx.translate(width/2, height/2);
+```
+This causes the coordinate origin (0, 0) to be moved to the center of the canvas, rather than being at the top left corner. This is very useful in many situations, like this one, where we want our design to be drawn relative to the center of the canvas.
+
+3. Now add the following code to the bottom of the JavaScript:
+```
+function degToRad(degrees) {
+    return degrees * Math.PI / 180;
+};
+
+function rand(min, max) {
+    return Math.floor(Math.random() * (max-min+1)) + (min);
+}
+
+let length = 250;
+let moveOffset = 20;
+
+for(var i = 0; i < length; i++) {
+
+}
+```
+Here we are implementing the same `degToRad()` function we saw in the triangle example above, a `rand()` function that returns a random number between given lower and upper bounds, `length` and `moveOffset` variables (which we'll find out more about later), and an empty `for` loop.
+
+4. The idea here is that we'll draw something on the canvas inside the `for` loop, and iterate on it each time so we can create something interesting. Add the following code inside your `for` loop:
+```
+ctx.fillStyle = 'rgba(' + (255-length) + ', 0, ' + (255-length) + ', 0.9)';
+ctx.beginPath();
+ctx.moveTo(moveOffset, moveOffset);
+ctx.lineTo(moveOffset+length, moveOffset);
+let triHeight = length/2 * Math.tan(degToRad(60));
+ctx.lineTo(moveOffset+(length/2), moveOffset+triHeight);
+ctx.lineTo(moveOffset, moveOffset);
+ctx.fill();
+
+length--;
+moveOffset += 0.7;
+ctx.rotate(degToRad(5));
+```
+So on each iteration, we:
+
+* Set the `fillStyle` to be a shade of slightly transparent purple, which changes each time based on the value of `length`. As you'll see later, the length gets smaller each time the loop runs, so the effect here is that the color gets brighter with each successive triangle drawn.
+* Begin the path.
+* Move the pen to a coordinate of `(moveOffset, moveOffset)`. This variable defines how far we want to move each time we draw a new triangle.
+* Draw a line to a coordinate of `(moveOffset+length, moveOffset)`. This draws a line of length `length` parallel to the X axis.
+* Calculate the triangle's height, as before.
+* Draw a line to the downward-pointing corner of the triangle, then draw a line back to the start of the triangle.
+* Call `fill()` to fill in the triangle.
+* Update the variables that describe the sequence of triangles, so we can be ready to draw the next one. We decrease the `length` value by 1, so the triangles get smaller each time; increase `moveOffset` by a small amount so each successive triangle is slightly further away, and use another new function, [`rotate()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate), which allows us to rotate the entire canvas! We rotate it by 5 degrees before drawing the next triangle.
+
+That's it! The final example should look like so:
+
+(See the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-5.html), and the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-5.html).)
+
+At this point, we'd like to encourage you to play with the example and make it your own! For example:
+
+* Draw rectangles or arcs instead of triangles, or even embed images.
+* Play with the `length` and `moveOffset` values.
+* Introduce some random numbers using that `rand()` function we included above but didn't use.
