@@ -252,3 +252,41 @@ The pattern here is very similar, but with two differences:
 That's it for now; your final example should look like this:
 
 (See the image of the finished drawn triangle and circles [here, above the "Text" header](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics#text).)
+
+<hr>
+
+See the finished code for the drawn triangle and circles [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-2.html), and see the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-2.html).
+
+<hr>
+
+**Note**: To find out more about advanced path drawing features such as Bézier curves, check out our [Drawing shapes with canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes) tutorial.
+
+<hr>
+
+### Text
+
+Canvas also has features for drawing text. Let's explore these briefly. Start by making another fresh copy of our canvas template ([1_canvas_template.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/getting-started/1_canvas_template.html)) in which to draw the new example.
+
+Text is drawn using two methods:
+
+* [`fillText()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText) -- draws filled text.
+* [`strokeText()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeText) -- draws outline (stroke) text.
+
+Both of these take three properties in their basic usage: the text string to draw and the X and Y coordinates of the point to start drawing the text at. This works out as the **bottom left** corner of the **text box** (literally, the box surrounding the text you draw), which might confuse you as other drawing operations tend to start from the top left corner -- bear this in mind.
+
+There are also a number of properties to help control text rendering such as [`font`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font), which lets you specify font family, size, etc. It takes as its value the same syntax as the CSS [`font`](https://developer.mozilla.org/en-US/docs/Web/CSS/font) property.
+
+Try adding the following block to the bottom of your JavaScript:
+```
+ctx.strokeStyle = 'white';
+ctx.lineWidth = 1;
+ctx.font = '36px arial';
+ctx.strokeText('Canvas text', 50, 50);
+
+ctx.fillStyle = 'red';
+ctx.font = '48px georgia';
+ctx.fillRect('Canvas text', 50, 150);
+```
+Here we draw two lines of text, one outline and the other stroke. The final example should look like so:
+
+(See the finished product [here](), and see the source code [here]().)
