@@ -501,3 +501,34 @@ ctx.fillRect(-(width/2), -(height/2), width, height);
 ctx.drawImage(image, (sprite*102), 0, 102, 148, 0+posX, -74, 102, 148);
 ```
 As you can see:
+
+* We specify `image` as the image to embed.
+* Parameters 2 and 3 specify the top-left corner of the slice to cut out of the source image, with the X value as `sprite` multiplied by 102 (where `sprite` is the sprite number between 0 and 5) and the Y value always 0.
+* Parameters 4 and 5 specify the size of the slice to cut out -- 102 pixels by 148 pixels.
+* Parameters 6 and 7 specify the top-left corner of the box into which to draw the slice on the canvas -- the X position is 0 + `posX`, meaning that we can alter the drawing position by altering the `posX` value.
+* Parameters 8 and 9 specify the size of the image on the canvas. We just want to keep its original size, so we specify 102 and 148 as the width and height.
+
+8. Now we'll alter the `sprite` value after each draw -- well, after some of them anyway. Add the following block to the bottom of the `draw()` function:
+```
+if (posX % 13 === 0) {
+    if (sprite === 5) {
+        sprite = 0;
+    } else {
+        sprite++;
+    }
+}
+```
+We are wrapping the whole block in `if (posX % 13 === 0) { ... }`. We use the modulo (`%`) operator (also known as the [remainder operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder)) to check whether the `posX` value can be exactly divided by 13 with no remainder. If so, we move on to the next sprite by incrementing `sprite` (wrapping to 0 after we're done with sprite #5). This effectively means that we are only updating the sprite on every 13th frame, or roughly about 5 frames a second (`requestAnimationFrame()` calls us at up to 60 frames per second, if possible). We are deliberately slowing down the frame rate because we only have six sprites to work with, and if we display one every 60th of a second, our character will move way too fast!
+
+Inside the outer block, we use an [`if ... else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to check whether the `sprite` value is at 5 (the last sprite, given that the sprite numbers run from 0 to 5). If we are showing the last sprite already, we reset `sprite` back to 0; if not, we just increment it by 1.
+
+9. Next, we need to work out how to change the `posX` value on each frame -- add the following code block just below your last one:
+```
+if(posX > width/2) {
+    newStartPos = -((width/2) + 102);
+    posX = Math.ceil(newStartPos);
+    console.log(posX);
+} else {
+    posX += 2;
+}
+```
