@@ -536,10 +536,63 @@ We are using another `if ... else` statement to see if the value of `posX` has b
 
 If our character hasn't walked off the edge of the screen, we increment `posX` by 2. This will make him move a little bit to the right the next time we draw him.
 
-10. Finally, we need to make the animation loop by calling [`requestAnimationFrame()`]() at the bottom of the `draw()` function:
+10. Finally, we need to make the animation loop by calling [`requestAnimationFrame()`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) at the bottom of the `draw()` function:
 ```
 window.requestAnimationFrame(draw);
 ```
 That's it! The final example should look like so:
 
-(See the finished product [here](), and the source code [here]().)
+(See the finished product [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-6.html), and the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-template-6.html).)
+
+### A simple drawing application
+
+As a final animation example, we'd like to show you a very simple drawing application, to illustrate how the animation loop can be combined with user input (like mouse movement, in this case). We won't get you to walk through and build this one; we'll just explore the most interesting parts of the code.
+
+The example can be found on GitHub as [8_canvas_drawing_app.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/loops_animation/8_canvas_drawing_app.html). (I will add it to my **Drawing_Graphics** folder as [canvas-drawing-app.html](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/canvas-drawing-app.html) so you can see it running live.)
+
+Let's look at the most interesting parts. First of all, we keep track of the mouse's X and Y coordinates and whether it is being clicked or not with three variables: `curX`, `curY`, and `pressed`. When the mouse moves, we fire a function set as the `onmousemove` event handler, which captures the current X and Y values. We also use `onmousedown` and `onmouseup` event handlers to changes the value of `pressed` to `true` when the mouse button is pressed, and back to `false` again when it is released.
+```
+let curX;
+let curY;
+let pressed = false;
+
+document.onmousemove = function(e) {
+    curX = (window.Event) ? e.pageX : e.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+    curY = (window.Event) ? e.pageY : e.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+}
+
+canvas.onmousedown = function() {
+    pressed = true;
+};
+
+canvas.onmouseup = function() {
+    pressed = false;
+}
+```
+When the "Clear canvas" button is pressed, we run a simple function that clears the whole canvas back to black, the same way we've seen before:
+```
+clearBtn.onclick = function() {
+    ctx.fillStyle = 'rgb(0, 0, 0)';
+    ctx.fillRect(0, 0, width, height);
+}
+```
+The drawing loop is pretty simple this time around -- if pressed is `true`, we draw a circle with a fill style equal to the value in the color picker, and a radius equal to the value set in the range input. We have to draw the circle 85 pixels above where we measured it from, because the vertical measurement is taken from the top of the viewport, but we are drawing the circle relative to the top of the canvas, which starts below the 85 pixel-high toolbar. If we drew it with just `curY` as the y coordinate, it would appear 85 pixels lower than the mouse position.
+```
+function draw() {
+    if(pressed) {
+        ctx.fillStyle = colorPicker.value;
+        ctx.beginPath();
+        ctx.arc(curX, curY-85, sizePicker.value, degToRad(0), degToRad(360), false);
+        ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+```
+
+<hr>
+
+**Note**: The [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) `range` and `color` types are supported fairly well across browsers, with the exception of Internet Explorer versions less than 10; also, Safari doesn't yet support `color`. If your browser doesn't support these inputs, they will fall back to simple text fields and you'll just have to enter valid color/number values yourself.
+```
