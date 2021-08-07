@@ -532,3 +532,14 @@ if(posX > width/2) {
     posX += 2;
 }
 ```
+We are using another `if ... else` statement to see if the value of `posX` has become greater than `width/2`, which means our character has walked off the right edge of the screen. If so, we calculate a position that would put the character just to the left of the left side of the screen.
+
+If our character hasn't walked off the edge of the screen, we increment `posX` by 2. This will make him move a little bit to the right the next time we draw him.
+
+10. Finally, we need to make the animation loop by calling [`requestAnimationFrame()`]() at the bottom of the `draw()` function:
+```
+window.requestAnimationFrame(draw);
+```
+That's it! The final example should look like so:
+
+(See the finished product [here](), and the source code [here]().)
