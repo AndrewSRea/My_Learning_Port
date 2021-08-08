@@ -597,3 +597,21 @@ draw();
 **Note**: The [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) `range` and `color` types are supported fairly well across browsers, with the exception of Internet Explorer versions less than 10; also, Safari doesn't yet support `color`. If your browser doesn't support these inputs, they will fall back to simple text fields and you'll just have to enter valid color/number values yourself.
 
 <hr>
+
+## WebGL
+
+It's now time to leave 2D behind, and take a quick look at 3D canvas. 3D canvas content is specified using the [WebGL API](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API), which is a completely separate API from the 2D canvas API, even though they both render onto [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) elements.
+
+WebGL is based on [OpenGL](https://developer.mozilla.org/en-US/docs/Glossary/OpenGL) (Open Graphics Library), and allows you to communicate directly with the computer's [GPU](https://developer.mozilla.org/en-US/docs/Glossary/GPU). As such, writing raw WebGL is closer to low level languages such as C++ than regular JavaScript; it is quite complex but incredibly powerful.
+
+### Using a library
+
+Because of its complexity, most people write 3D graphics code using a third party JavaScript library such as [Three.js](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js), [PlayCanvas](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_PlayCanvas), or [Babylon.js](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Babylon.js). Most of these work in a similar way, providing functionality to create primitive and custom shapes, position viewing cameras and lighting, covering surfaces with textures, and more. They handle the WebGL for you, letting you work on a higher level.
+
+Yes, using one of these means learning another new API (a third party one, in this case), but they are a lot simpler than coding raw WebGL.
+
+### Recreating our cube
+
+Let's look at a simple example of how to create something with a WebGL library. We'll choose [Three.js](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js), as it is one of the most popular ones. In this tutorial, we'll create the 3D spinning cube we saw earlier.
+
+1. To start with, make a local copy of [index.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/threejs-cube/index.html) in a new folder, then save a copy of [metal003.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/threejs-cube/metal003.png) in the same folder.
