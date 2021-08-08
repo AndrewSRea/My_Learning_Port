@@ -701,3 +701,31 @@ This is fairly intuitive; on each frame, we rotate our cube slightly on its X an
 Let's have another quick look at what the finished product should look like:
 
 (I don't notice any asynchronous JS code in the [main.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/WebGL_Graphic/main.js) file but this program needs a [local testing server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server) for it to work. But it works just fine [here in the GitHub Page hosting it](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Drawing_Graphics/WebGL_Graphic/index.html). And see my finished [source code here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/WebGL_Graphic/main.js).)
+
+<hr>
+
+**Note**: In our GitHub repo, you can also find another interesting 3D cube example -- [Three.js Video Cube](https://github.com/mdn/learning-area/tree/master/javascript/apis/drawing-graphics/threejs-video-cube) ([see it live also](https://mdn.github.io/learning-area/javascript/apis/drawing-graphics/threejs-video-cube/)). This uses [`getUserMedia()`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) to take a video stream from a computer web cam and project it onto the side of the cube as a texture!
+
+<hr>
+
+## Summary
+
+At this point, you should have a useful idea of the basics of graphics programming using Canvas and WebGL and what you can do with these APIs, as well as a good idea of where to go for further information. Have fun!
+
+## See also 
+
+Here we have covered only the real basics of canvas -- there is so much more to learn! The below articles will take you further.
+
+* [Canvas tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial) -- A very detailed tutorial series explaining what you should know about 2D canvas in much more detail than was covered here. Essential reading.
+* [WebGL tutorial](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial) -- A series that teaches the basics of raw WebGL programming.
+* [Building up a basic demo with Three.js](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js) -- basic Three.js tutorial. We also have equivalent guides for [PlayCanvas](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_PlayCanvas) or [Babylon.js](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Babylon.js).
+* [Game development](https://developer.mozilla.org/en-US/docs/Games) -- the landing page for web games development on MDN. There are some really useful tutorials and techniques available here related to 2D and 3D canvas -- see the Techniques and Tutorials menu options.
+
+## Examples
+
+* [Violent theramin](https://github.com/mdn/violent-theremin) -- Uses the Web Audio API to generate sound, and canvas to generate a pretty visualization to go along with it.
+* [Voice change-o-matic](https://github.com/mdn/voice-change-o-matic) -- Uses a canvas to visualize real-time audio data from the Web Audio API.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Third-party_APIs#third-party-apis) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics#drawing-graphics) - [[Next page]]()
