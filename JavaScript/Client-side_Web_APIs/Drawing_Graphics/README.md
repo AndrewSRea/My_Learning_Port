@@ -647,3 +647,57 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 ```
 The first line creates a new renderer, the second line sets the size at which the renderer will draw the camera's view, and the third line appends the [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element created by the renderer to the document's [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body). Now anything the renderer draws will be displayed in our window.
+
+7. Next, we want to create the cube we'll display on the canvas. Add the following chunk of code at the bottom of your JavaScript:
+```
+let cube;
+
+let loader = new THREE.TextureLoader();
+
+loader.load('metal003.png', function(texture) {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(2, 2);
+
+    let geometery = new THREE.BoxGeometry(2.4, 2.4, 2.4);
+    let material = new THREE.MeshLambertMaterial( { map: texture, shading: THREE.FlatShading } );
+    cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    draw();
+});
+```
+There's a bit more to take in here, so let's go through it in stages:
+
+* We first create a `cube` global variable so we can access our cube from anywhere in the code.
+* Next, we create a new [`TextureLoader`](https://threejs.org/docs/index.html#api/en/loaders/TextureLoader) object, then call `load()` on it. `load()` takes two parameters in this case (although it can take more): the texture we want to load (our PNG), and a function that will run when the texture has loaded.
+* Inside this function, we use properties of the [`texture`](https://threejs.org/docs/index.html#api/en/textures/Texture) object to specify that we want a 2 x 2 repeat of the image wrapped around all sides of the cube. Next, we create a new [`BoxGeometry`](https://threejs.org/docs/index.html#api/en/geometries/BoxGeometry) object and a new [`MeshLambertMaterial`](https://threejs.org/docs/index.html#api/en/materials/MeshLambertMaterial) object, and bring them together in a [`Mesh`](https://threejs.org/docs/index.html#api/en/objects/Mesh) to create our cube. An object typically requires a geometry (what shape it is) and a material (what its surface looks like).
+* Last of all, we add our cube to the scene, then call our `draw()` function to start off the animation.
+
+8. Before we get to defining `draw()`, we'll add a couple of lights to the scene, to liven things up a bit; add the following blocks next:
+```
+let light = new THREE.AmmbientLight('rgb(255, 255, 255)'); // soft white light
+scene.add(light);
+
+let spotLight = new THREE.SpotLight('rgb(255, 255, 255)');
+spotLight.position.set( 100, 1000, 1000 );
+spotLight.castShadow = true;
+scene.add(spotLight);
+```
+An [`AmbientLight`](https://threejs.org/docs/index.html#api/en/lights/AmbientLight) object is a kind of soft light that lightens the whole scene a bit, like the sun when you are outside. The [`SpotLight`](https://threejs.org/docs/index.html#api/en/lights/SpotLight) object, on the other hand, is a directional beam of light, more like a flashlight/torch (or a spotlight, in fact).
+
+9. Last of all, let's add our `draw()` function to the bottom of the code:
+```
+function draw() {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(draw);
+}
+```
+This is fairly intuitive; on each frame, we rotate our cube slightly on its X and Y axes, then render the scene as viewed by our camera, then finally call `requestAnimationFrame()` to schedule drawing our next frame.
+
+Let's have another quick look at what the finished product should look like:
+
+(I don't notice any asynchronous JS code in the [main.js](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/WebGL_Graphic/main.js) file but this program needs a [local testing server](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Intro_Async_JS/Setup_Local_Server#how-do-you-set-up-a-local-testing-server) for it to work. But it works just fine [here in the GitHub Page hosting it](). And see my finished [source code here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics/WebGL_Graphic/main.js).)
