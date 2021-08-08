@@ -615,3 +615,35 @@ Yes, using one of these means learning another new API (a third party one, in th
 Let's look at a simple example of how to create something with a WebGL library. We'll choose [Three.js](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js), as it is one of the most popular ones. In this tutorial, we'll create the 3D spinning cube we saw earlier.
 
 1. To start with, make a local copy of [index.html](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/threejs-cube/index.html) in a new folder, then save a copy of [metal003.png](https://github.com/mdn/learning-area/blob/master/javascript/apis/drawing-graphics/threejs-cube/metal003.png) in the same folder.
+
+2. Next, create a new file called `main.js`, again in the same folder as before.
+
+3. If you open `index.html` in your code editor, you'll see that it has two [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) elements -- the first one attaching `three.min.js` to the page, and the second one attaching our `main.js` file to the page. You need to [download the three.min.js library](https://raw.githubusercontent.com/mrdoob/three.js/dev/build/three.min.js) and save it in the same directory as before.
+
+4. Now we've got `three.min.js` attached to our page, we can start to write JavaScript that makes use of it into `main.js`. Let's start by creating a new scene -- add the following into your main.js file:
+```
+const scene = new THREE.Scene();
+```
+The [`Scene()`](https://threejs.org/docs/index.html#api/en/scenes/Scene) constructor creates a new scene, which represents the whole 3D world we are trying to display.
+
+5. Next, we need a **camera** so we can see the scene. In 3D imagery terms, the camera represents a viewer's position in the world. To create a camera, add the following lines next:
+```
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
+```
+The [`PerspectiveCamera()`](https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera) constructor takes four arguments:
+
+* The field of view: How wide the area in front of the camera is that should be visible onscreen, in degrees.
+* The aspect ratio: Usually, this is the ratio of the scene's width divided by the scene's height. Using another value will distort the scene (which might be what you want, but usually isn't).
+* The near plane: How close to the camera objects can be before we stop rendering them to the screen. Think about how when you move your fingertip closer and closer to the space between your eyes, eventually you can't see it anymore.
+* The far plane: How far away things are from the camera before they are no longer rendered.
+
+We also set the camera's position to be 5 distance units out of the Z axis, which, like in CSS, is out of the screen towards you, the viewer.
+
+6. The third vital ingredient is a renderer. This is an object that renders a given scene, as viewed through a given camera. We'll create one for now using the [`WebGLRenderer()`](https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer) constructor, but we'll not use it till later. Add the following lines next:
+```
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+```
+The first line creates a new renderer, the second line sets the size at which the renderer will draw the camera's view, and the third line appends the [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element created by the renderer to the document's [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body). Now anything the renderer draws will be displayed in our window.
