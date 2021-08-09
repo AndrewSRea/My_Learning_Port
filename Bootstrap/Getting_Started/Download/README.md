@@ -15,7 +15,7 @@ This doesn't include documentation, source files, or any optional JavaScript dep
 
 ## Source files
 
-Compile Bootstrap with your own asset pipeline by downloading Bootstrap's source Sass, JavaScript, and documenation files. This option requires some additional tooling:
+Compile Bootstrap with your own asset pipeline by downloading Bootstrap's source Sass, JavaScript, and documentation files. This option requires some additional tooling:
 
 * [Sass compiler](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Build_Tools#sass) for compiling Sass source files into CSS files
 * [Autoprefixer](https://github.com/postcss/autoprefixer) for CSS vendor prefixing
