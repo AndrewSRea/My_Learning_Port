@@ -48,7 +48,7 @@ Curious which components explicitly require Bootstrap's JavaScript and Popper? S
 * [Collapse](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) for toggling visibility of content
 * [Dropdowns](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Dropdowns#dropdowns) for displaying and positioning (also requires Popper)
 * [Modals](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Modal#modal) for displaying, positioning, and scroll behavior
-* [Navbar](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#navbar) for extending Bootstraps [Collapse](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) plugin to implement responsive behavior
+* [Navbar](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Navbar#navbar) for extending Bootstrap's [Collapse](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Collapse#collapse) plugin to implement responsive behavior
 * [Toasts](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Toasts#toasts) for displaying and dismissing
 * [Tooltips](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Tooltips#tooltips) and [popovers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Popovers#popovers) for displaying and positioning (also requires Popper)
 * [Scrollspy](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Scrollspy#scrollspy) for scroll behavior and navigation updates
@@ -121,7 +121,7 @@ On the rare occasion you need to override it, use something like the following:
     box-sizing: content-box;
 }
 ```
-With the above snippet, nested elements--including generated content via `::before` and `::after`--will all inherit the specified `box-sizing` for that `.selector-for-some-widget`.
+With the above snippet, nested elements -- including generated content via `::before` and `::after` -- will all inherit the specified `box-sizing` for that `.selector-for-some-widget`.
 
 Learn more about [box model and sizing at CSS Tricks](https://css-tricks.com/box-sizing/).
 
