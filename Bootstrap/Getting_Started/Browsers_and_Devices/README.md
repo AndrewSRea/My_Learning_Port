@@ -8,7 +8,7 @@ Bootstrap supports the **latest, stable releases** of all major browsers and pla
 
 Alternative browsers which use the latest version of WebKit, Blink, or Gecko, whether directly or via the platform's web view API, are not explicitly supported. However, Bootstrap should (in most cases) display and function correctly in these browsers as well. More specific support information is provided below.
 
-You can find Bootstrap's supported range of browsers and their versions [in its `.browserslistrc file`](https://github.com/twbs/bootstrap/blob/v5.0.0-beta3/.browserslistrc):
+You can find Bootstrap's supported range of browsers and their versions [in its `.browserslistrc` file](https://github.com/twbs/bootstrap/blob/v5.0.0-beta3/.browserslistrc):
 ```
 # https://github.com/browserslist/browserslist#readme
 
@@ -70,7 +70,7 @@ Page zooming inevitably presents rendering artifacts in some components, both in
 
 ## Validators
 
-In order to provide the best possible experience to old and buggy browsers, Bootstrap uses [CSS browser hacks](http://browserhacks.com/) in several places to target special CSS to certain browser versions in order to work around bugs in the browsers themselves. These hacks understandably cause CSS validators to complain that they are invalid. In a couple places, Bootstrap also uses bleeding-edge CSS feeatures that aren't fully standardized, but these are used purely for progressive enhancement.
+In order to provide the best possible experience to old and buggy browsers, Bootstrap uses [CSS browser hacks](http://browserhacks.com/) in several places to target special CSS to certain browser versions in order to work around bugs in the browsers themselves. These hacks understandably cause CSS validators to complain that they are invalid. In a couple places, Bootstrap also uses bleeding-edge CSS features that aren't fully standardized, but these are used purely for progressive enhancement.
 
 These validation warnings don't matter in practice since the non-hacky portion of Bootstrap's CSS does fully validate and the hacky portions don't interfere with the proper functioning of the non-hacky portion, hence why Bootstrap deliberately ignores these particular warnings.
 
