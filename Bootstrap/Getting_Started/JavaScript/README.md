@@ -4,7 +4,7 @@ Bring Bootstrap to life with its optional JavaScript plugins. Learn about each p
 
 ## Individual or compiled
 
-Plugins caan be included individually (using Bootstrap's individual `js/dist/*.js`), or all at once using `bootstrap.js` or the minified `bootstrap.min.js` (don't include both).
+Plugins can be included individually (using Bootstrap's individual `js/dist/*.js`), or all at once using `bootstrap.js` or the minified `bootstrap.min.js` (don't include both).
 
 If you use a bundler (Webpack, Rollup...), you can use `/js/dist/*.js` files which are UMD ready.
 
@@ -30,7 +30,7 @@ Due to browser limitations, some of our plugins, namely Dropdown, Tooltip and Po
 
 ## Dependencies
 
-Some plugins aand CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs.
+Some plugins and CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs.
 
 Our dropdowns, popovers and tooltips also depend on [Popper](https://popper.js.org/).
 
@@ -52,7 +52,7 @@ Currently to query DOM elements, Bootstrap uses the native methods `querySelecto
 
 ## Events
 
-Bootstrap provides custom events for most plugins' unique actions. Generally, these come in an infinitive and past participle form--where the infinitive (ex. `show`) is triggered at the start of an event, and its past participle form (ex. `shown`) is triggered on the completion of an action.
+Bootstrap provides custom events for most plugins' unique actions. Generally, these come in an infinitive and past participle form -- where the infinitive (ex. `show`) is triggered at the start of an event, and its past participle form (ex. `shown`) is triggered on the completion of an action.
 
 All infinitive events provide [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) functionality. This provides the ability to stop the execution of an action before it starts. Returning false from an event handler will also automatically call `preventDefault()`.
 ```
@@ -91,7 +91,7 @@ If you'd like to get a particular plugin instance, each plugin exposes a `getIns
 
 ### CSS selectors in constructors
 
-You can also use a CSS selector as the first argument instead of a DOM elemeent to initialize the plugin. Currently the element for the plugin is found by the `querySelector` method since Bootstrap's plugins support a single element only.
+You can also use a CSS selector as the first argument instead of a DOM element to initialize the plugin. Currently the element for the plugin is found by the `querySelector` method since Bootstrap's plugins support a single element only.
 ```
 var modal = new bootstrap.Modal('#myModal');
 var dropdown = new bootstrap.Dropdown('[data-bs-toggle="dropdown"]');
@@ -135,7 +135,7 @@ bootstrap.Modal.Default.keyboard = false;
 Sometimes it is necessary to use Bootstrap plugins with other UI frameworks. In these circumstances, namespace collisions can occasionally occur. If this happens, you may call `.noConflict` on the plugin you wish to revert the value of.
 ```
 var bootstrapButton = $.fn.button.noConflict();   // return $.fn.button to previously assigned value
-rapBtn = bootstrapButton;   // give $().bootstrapBtn the Bootstrap functionality
+$.fn.bootstrapBtn = bootstrapButton;   // give $().bootstrapBtn the Bootstrap functionality
 ```
 
 ## Version numbers
