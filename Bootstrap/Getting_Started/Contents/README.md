@@ -63,21 +63,21 @@ Bootstrap includes a handful of options for including some or all of our compile
 | CSS files | Layout | Content | Components | Utilities |
 | --- | :---:| :---: | :---: | :---: |
 | `bootstrap.css` | Included | Included | Included | Included |
-| `bootstrap.rtl.css` |   |   |   |   |
-| `bootstrap.min.css` |   |   |   |   |
-| `bootstrap.rtl.min.css` |   |   |   |   |
+| `bootstrap.rtl.css` | " | " | " | " |
+| `bootstrap.min.css` | " | " | " | " |
+| `bootstrap.rtl.min.css` | " | " | " | " |
 | `bootstrap-grid.css` | [Only grid system](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system) | -- | -- | [Only flex utilities](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/Flex#flex) |
-| `bootstrap-grid.rtl.css` |   |   |   |   |
-| `bootstrap-grid.min.css` |   |   |   |   |
-| `bootstrap-grid.rtl.min.css` |   |   |   |   |
+| `bootstrap-grid.rtl.css` | " | -- | -- | " |
+| `bootstrap-grid.min.css` | " | -- | -- | " |
+| `bootstrap-grid.rtl.min.css` | " | -- | -- | " |
 | `bootstrap-utilities.css` | -- | -- | -- | Included |
-| `bootstrap-utilities.rtl.css` |   |   |   |   |
-| `bootstrap-utilities.min.css` |   |   |   |   |
-| `bootstrap-utilities.rtl.min.css` |   |   |   |   |
+| `bootstrap-utilities.rtl.css` | -- | -- | -- | " |
+| `bootstrap-utilities.min.css` | -- | -- | -- | " |
+| `bootstrap-utilities.rtl.min.css` | -- | -- | -- | " |
 | `bootstrap-reboot.css` | -- | [Only Reboot](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Reboot#reboot) | -- | -- |
-| `bootstrap-reboot.rtl.css` |   |   |   |   |
-| `bootstrap-reboot.min.css` |   |   |   |   |
-| `bootstrap-reboot.rtl.min.css` |   |   |   |   |
+| `bootstrap-reboot.rtl.css` | -- | " | --  | -- |
+| `bootstrap-reboot.min.css` | -- | " | -- | -- |
+| `bootstrap-reboot.rtl.min.css` | -- | " | -- | -- |
 
 ## JS files
 
@@ -86,9 +86,9 @@ Similarly, Bootstrap has options for including some or all of its compiled JavaS
 | JS files | Popper |
 | --- | :---: |
 | `bootstrap.bundle.js` | Included |
-| `bootstrap.bundle.min.js` |   |
+| `bootstrap.bundle.min.js` | " |
 | `bootstrap.js` | -- |
-| `bootstrap.min.js` |   |
+| `bootstrap.min.js` | -- |
 
 ## Bootstrap source code
 
