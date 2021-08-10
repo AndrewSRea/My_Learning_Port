@@ -70,7 +70,7 @@ Get started with one of our several [RTL examples](https://getbootstrap.com/docs
 Bootstrap's approach to building RTL support into Bootstrap comes with two important decisions that impact how Bootstrap writes and uses its CSS:
 
 1. **First, Bootstrap decided to build it with the [RTLCSS](https://rtlcss.com/) project.** This gives us some powerful features for managing changes and overrides when moving from LTR to RTL. It also allows us to build two versions of Bootstrap from one codebase.
-2. **Second, Bootstrap has renamed a handful of directional classes to adopt a logical properties approach.** Most of you have already interacted with logical properties thanks to Bootstrap's flex utilities--they replace direction properties like `left` and `right` in favor of `start` and `end`. That makes the class names and values appropriate for LTR and RTL without any overhead.
+2. **Second, Bootstrap has renamed a handful of directional classes to adopt a logical properties approach.** Most of you have already interacted with logical properties thanks to Bootstrap's flex utilities -- they replace direction properties like `left` and `right` in favor of `start` and `end`. That makes the class names and values appropriate for LTR and RTL without any overhead.
 
 For example, instead of `.ml-3` for `margin-left`, use `.ms-3`.
 
@@ -159,13 +159,13 @@ While this approach is understandable, please pay attention to the following:
 
 1. When switching `.ltr` and `.rtl`, make sure you add `dir` and `lang` attributes accordingly.
 2. Loading both files can be a real performance bottleneck: consider some [optimization](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Optimize#optimize), and maybe try to [load one of those files asynchronously](https://www.filamentgroup.com/lab/load-css-simpler/).
-3. Nesting styles this way will prevent Bootstrap's `form-validation-state()` mixin from working as intended, thus require you tweak it a bit yourself. [See #31223](https://github.com/twbs/bootstrap/issues/31223).
+3. Nesting styles this way will prevent Bootstrap's `form-validation-state()` mixin from working as intended, thus requiring you tweak it a bit yourself. [See #31223](https://github.com/twbs/bootstrap/issues/31223).
 
 <hr>
 
 ## The breadcrumb case
 
-The [breadcrumb separator](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Breadcrumb#breadcrumb) is the only case requiring its own brand new variable--namely `$breadcrumb-divider-flipped`--defaulting to `$breadcrumb-divider`.
+The [breadcrumb separator](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Components/Breadcrumb#breadcrumb) is the only case requiring its own brand new variable -- namely `$breadcrumb-divider-flipped` -- defaulting to `$breadcrumb-divider`.
 
 ## Additional resources
 
