@@ -262,6 +262,32 @@ $border-width: 0;
 }
 ```
 
+## Mixins
+
+Our `scss/mixins/` directory has a ton of mixins that power parts of Bootstrap and can also be used across your own project.
+
+### Color schemes
+
+A shorthand mixin for the `prefers-color-scheme` media query is available with support for `light`, `dark`, and custom color schemes.
+```
+@mixin color-scheme($name) {
+    @media (prefers-color-scheme: #{$name}) {
+        @content;
+    }
+}
+```
+```
+.custom-element {
+    @include color-scheme(dark) {
+        // Insert dark mode styles here
+    }
+
+    @include color-scheme(custom-named-scheme) {
+        // Insert custom color scheme styles here
+    }
+}
+```
+
 <hr>
 
 [[Back to Table of contents]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize#customize) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Options#options)
