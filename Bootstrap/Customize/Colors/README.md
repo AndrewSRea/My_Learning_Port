@@ -106,7 +106,7 @@ Here's how you can use these in your Sass:
 
 ## Generating utilities
 
-Bootstrap doesn't include `color` and `background-color` utilities for every color variable, but you can generate these yourself with our [utility API]() and our extended Sass maps added in v5.1.0.
+Bootstrap doesn't include `color` and `background-color` utilities for every color variable, but you can generate these yourself with our [utility API](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Utilities/API#utility-api) and our extended Sass maps added in v5.1.0.
 
 1. To start, make sure you've imported our functions, variables, mixins, and utilities.
 2. Use our `map-merge-multiple()` function to quickly merge multiple Sass maps together in a new map.
