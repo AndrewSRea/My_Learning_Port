@@ -112,7 +112,7 @@ If you are using a [Lighthouse](https://developers.google.com/web/tools/lighthou
 
 You can improve FCP by deferring non-critical JavaScript or CSS. What does that mean? Simply, JavaScript or stylesheets that don't need to be present on the first paint of your page should be marked with `async` or `defer` attributes.
 
-This ensures that the less important resources are loaded later and not blocking the first paint. On the other hand, critical resources ccan be included as inline scripts or styles.
+This ensures that the less important resources are loaded later and not blocking the first paint. On the other hand, critical resources can be included as inline scripts or styles.
 
 If you want to learn more about this, there are already a lot of great articles about it:
 
