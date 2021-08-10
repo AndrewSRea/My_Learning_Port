@@ -18,7 +18,7 @@ There are multiple ways to customize Bootstrap. Your best path can depend on you
 Bootstrap's two preferred methods are:
 
 1. Using Bootstrap [via package manager](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#package-managers) so you can use and extend its source files.
-2. Using Bootstrap's compiled distribution fles or [jsDelivr](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#cdn-via-jsdelivr) so you can add onto or override Bootstrap's styles.
+2. Using Bootstrap's compiled distribution files or [jsDelivr](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started/Download#cdn-via-jsdelivr) so you can add onto or override Bootstrap's styles.
 
 While the Bootstrap devs cannot go into details here on how to use every package manager, they can give some guidance on [using Bootstrap with your own Sass compiler](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass).
 
@@ -41,4 +41,4 @@ Based on [community conversation](https://github.com/twbs/bootstrap/issues/25394
 
 <hr>
 
-[[Previous module: Getting started]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started#getting-started) - [[Next module: Layout]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#layout)
+[[Next page: Sass]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Sass#sass) - [[Previous module: Getting started]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Getting_Started#getting-started) - [[Next module: Layout]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout#layout)
