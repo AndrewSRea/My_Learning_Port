@@ -33,7 +33,7 @@ Bootstrap uses a subset of all colors to create a smaller color pallete for gene
     </div>
 </div>
 ```
-See the code above in action in my accompanying [bootstrap-colors.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Customize/Colors/bootstrap-colors.html) file.
+See the code above in action in my accompanying [bootstrap-colors.html](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Customize/Colors/bootstrap-colors.html) file. (See the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Customize/Colors/bootstrap-colors.html).)
 
 All these colors are available as a Sass map, `$theme-colors`.
 ```
@@ -54,13 +54,13 @@ Check out [Bootstrap's Sass maps and loops docs](https://github.com/AndrewSRea/M
 
 All Bootstrap colors are available as Sass variables and a Sass map in `scss/_variables.scss` file. To avoid increased file sizes, Bootstrap doesn't create text or background color classes for each of these variables. Instead, Bootstrap chooses a subset of these colors for a [theme palette](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Customize/Colors#theme-colors).
 
-Be sure to monitor contrast ratios as you customize colors. As shown in my accompanying [bootstrap-colors.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Customize/Colors/bootstrap-colors.html) file, Bootstrap has added three contrast ratios to each of the main colors--one for the swatch's current colors, one for against white, and one for against black.
+Be sure to monitor contrast ratios as you customize colors. As shown in my accompanying [bootstrap-colors.html](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Customize/Colors/bootstrap-colors.html) file, Bootstrap has added three contrast ratios to each of the main colors -- one for the swatch's current colors, one for against white, and one for against black.
 
 ### Notes on Sass
 
 Sass cannot programmatically generate variables, so Bootstrap manually created variables for every tint and shade itself. Bootstrap specifies the midpoint value (e.g., `$blue-500`) and uses custom color functions to tint (lighten) or shade (darken) its colors via Sass's `mix()` color function.
 
-Using `mix()` is not the same as `lighten()` and `darken()`--the former blends the specified color with white or black, while the latter only adjusts the lightness value of each color. The result is a much more complete suite of colors, as [shown in this CodePen demo](https://codepen.io/emdeoh/pen/zYOQOPB).
+Using `mix()` is not the same as `lighten()` and `darken()` -- the former blends the specified color with white or black, while the latter only adjusts the lightness value of each color. The result is a much more complete suite of colors, as [shown in this CodePen demo](https://codepen.io/emdeoh/pen/zYOQOPB).
 
 Bootstrap's `tint-color()` and `shade-color()` functions use `mix()` alongside its `$theme-color-interval` variable, which specifies a stepped percentage value for each mixed color Bootstrap produces. See the `scss/_functions.scss` and `scss/_variables.scss` files for the full source code.
 
@@ -80,7 +80,7 @@ $colors: (
     "purple":    $purple,
     "pink":      $pink,
     "red":       $red,
-    "orange":    $orange
+    "orange":    $orange,
     "yellow":    $yellow,
     "green":     $green,
     "teal":      $teal,
