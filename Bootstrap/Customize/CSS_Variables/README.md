@@ -2,13 +2,13 @@
 
 Use Bootstrap's CSS custom properties for fast and forward-looking design and development.
 
-Bootstrap includes around two dozen [CSS custom properties (variables)](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) in its compiled CSS, with dozens more on the way for improved customization on a per-component basis. These provide easy access to commonly used values like Bootstrap's theme colors, breakpoints, and primary font stacks when working in your browser's inspector, a code sandbox, or generral prototyping.
+Bootstrap includes around two dozen [CSS custom properties (variables)](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) in its compiled CSS, with dozens more on the way for improved customization on a per-component basis. These provide easy access to commonly used values like Bootstrap's theme colors, breakpoints, and primary font stacks when working in your browser's inspector, a code sandbox, or general prototyping.
 
 **All of Bootstrap's custom properties are prefixed with bs-** to avoid conflicts with third party CSS.
 
 ## Root variables
 
-Here are the variables Bootstrap includes (note that the `:root` is required) that ccan be accessed anywhere Bootstrap's CSS is loaded. They're located in Bootstrap's `_root.scss` file and included in its compiled `dist` files.
+Here are the variables Bootstrap includes (note that the `:root` is required) that can be accessed anywhere Bootstrap's CSS is loaded. They're located in Bootstrap's `_root.scss` file and included in its compiled `dist` files.
 ```
 :root {
     --bs-blue: #0d6efd;
@@ -40,11 +40,11 @@ Here are the variables Bootstrap includes (note that the `:root` is required) th
 
 ## Component variables
 
-Bootstrap is also beginning to make use of custom properties as local variables for various components. This way Bootstrap can reduce its compiled CSS, ensure styles aren't inherited in placces like nested tables, and allow some basic restyling and extending of Bootstrap components after Sass compilation.
+Bootstrap is also beginning to make use of custom properties as local variables for various components. This way Bootstrap can reduce its compiled CSS, ensure styles aren't inherited in places like nested tables, and allow some basic restyling and extending of Bootstrap components after Sass compilation.
 
 Have a look at Bootstrap's table documentation for some [insight into how it's using CSS variables](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Content/Tables#how-do-the-variants-and-accented-tables-work).
 
-Bootstrap is also using CSS variables across its grids--primarily for gutters--with more component usage coming in the future.
+Bootstrap is also using CSS variables across its grids -- primarily for gutters -- with more component usage coming in the future.
 
 ## Examples
 
@@ -57,6 +57,10 @@ a {
     color: var(--bs-blue);
 }
 ```
+
+## Grid breakpoints
+
+While Bootstrap includes its grid breakpoints as CSS variables (except for `xs`), be aware that **CSS variables do not work in media queries**. This is by design in the CSS spec for variables, but may change in coming years with support for `env()` variables. Check out [this Stack Overflow answer](https://stackoverflow.com/questions/40722882/css-native-variables-not-working-in-media-queries/47212942#47212942) for some helpful links. In the mean time, you can use these variables in other CSS situations, as well as in your JavaScript.
 
 <hr>
 
