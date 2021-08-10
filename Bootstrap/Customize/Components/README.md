@@ -48,7 +48,7 @@ Here are two examples of how Bootstrap loops over the `$theme-colors` map to gen
 
 ## Responsive
 
-These Sass loops aren't limited to color maps, either. You can also generate responsive variations of your components. Take for example Bootstrap's responsive alignment of the dropdowns where Bootstrap mixes an `@each` loop for the `$grid-breakpoints` Sass map with a media query include.
+These Sass loops aren't limited to color maps, either. You can also generate responsive variations of your components. Take, for example, Bootstrap's responsive alignment of the dropdowns where Bootstrap mixes an `@each` loop for the `$grid-breakpoints` Sass map with a media query include.
 ```
 // We deliberately hardcode the `bs-` prefix because we check
 // this custom property in JS to determine Popper's positioning
