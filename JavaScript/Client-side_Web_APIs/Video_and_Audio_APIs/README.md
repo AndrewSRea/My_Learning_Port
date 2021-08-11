@@ -212,3 +212,103 @@ Here we use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 On the second click, the button will be toggled back again -- the "play" icon will be shown again, and the video will be paused with [`HTMLMediaElement.pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause).
 
 ### Stopping the video
+
+1. Next, let's add functionality to handle stopping the video. Add the following [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) lines below the previous one you added:
+```
+stop.addEventListener('click', stopMedia);
+media.addEventListener('ended', stopMedia);
+```
+The [`click`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event) event is obvious -- we want to stop the video by running our `stopMedia()` function when the stop button is clicked. We do, however, also want to stop the video when it finishes playing -- this is marked by the [`ended`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event) event firing, so we also set up a listener to run the function on that event firing, too.
+
+2. Next, let's define `stopMedia()` -- add the following function below `playPauseMedia()`:
+```
+function stopMedia() {
+    media.pause();
+    media.currentTime = 0;
+    play.setAttribute('data-icon', 'P');
+}
+```
+There is no `stop()` method on the HTMLMediaElement API -- the equivalent is to `pause()` the video, and set its [`currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime) property to 0. Setting `currentTime` to a value (in seconds) immediately jumps the media to that position.
+
+All there is left to do after that is to set the displayed icon to the "play" icon. Regardless of whether the video was paused or playing when the stop button is pressed, you want it to be ready to play afterwards.
+
+### Seeking back and forth
+
+There are many ways that you can implement rewind and fast forward functionality; here we are showing you a relatively complex way of doing it, which doesn't break when the different buttons are pressed in an unexpected order.
+
+1. First of all, add the following two [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) lines below the previous ones:
+```
+rwd.addEventListener('click', mediaBackward);
+fwd.addEventListener('click', mediaForward);
+```
+
+2. Now on to the event handler functions -- add the following code below your previous functions to define `mediaBackward()` and `mediaForward()`:
+```
+let intervalFwd;
+let intervalRwd;
+
+function mediaBackward() {
+    clearInterval(intervalFwd);
+    fwd.classList.remove('active');
+
+    if(rwd.classList.contains('active')) {
+        rwd.classList.remove('active');
+        clearInterval(intervalRwd);
+        media.play();
+    } else {
+        rwd.classList.add('active');
+        media.pause();
+        intervalRwd = setInterval(windBackward, 200);
+    }
+}
+
+function mediaForward() {
+    clearInterval(intervalRwd);
+    rwd.classList.remove('active');
+
+    if(fwd.classList.contains('active')) {
+        fwd.classList.remove('active');
+        clearInterval(intervalFwd);
+        media.play();
+    } else {
+        fwd.classList.add('active');
+        media.pause();
+        intervalFwd = setInterval(windForward, 200);
+    }
+}
+```
+You'll notice first we initialize two variables -- `intervalFwd` and `intervalRwd` -- you'll find out what they are for later on.
+
+Let's step through `mediaBackward()` (the functionality for `mediaForward()` is exactly the same, but in reverse):
+
+1. We clear any classes and intervals that are set on the fast forward functionality -- we do this because if we press the `rwd` button after pressing the `fwd` button, we want to cancel any fast forward functionality and replace it with the rewind functionality. If we tried to do both at once, the player would break.
+2. We use an `if` statement to check whether the `active` class has been set on the `rwd` button, indicating that it has already been pressed. The [`classList`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) is a rather handy property that exists on every element -- it contains a list of all the classes set on the element, as well as methods for adding/removing classes, etc. We use the `classList.contains()` method to check whether the list contains the `active` class. This returns a Boolean `true`/`false` result.
+3. If `active` has been set on the `rwd` button, we remove it using `classList.remove()`, clear the interval that has been set when the button was first pressed (see below for more explanation), and use [`HTMLMediaElement.play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) to cancel the rewind and start the video playing normally.
+4. If it hasn't yet been set, we add the `active` class to the `rwd` button using `classList.add()`, pause the video using [`HTMLMediaElement.pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause), then set the `intervalRwd` variable to equal a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) call. When invoked, `setInterval()` creates an active interval, meaning that it runs the function given as the first parameter every x milliseconds, where x is the value of the 2nd parameter. So here we are running the `windBackward()` function every 200 milliseconds -- we'll use this function to wind the video backwards constantly. To stop a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) running, you have to call [`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval), giving it the identifying name of the interval to clear, which in this case is the variable name `intervalRwd` (see the `clearInterval()` call earlier on in the function).
+
+3. Finally, we need to define the `windBackward()` and `windForward()` functions invoked in the `setInterval()` calls. Add the following below your two previous functions:
+```
+function windBackward() {
+    if(media.currentTime <= 3) {
+        rwd.classList.remove('active');
+        clearInterval(intervalRwd);
+        stopMedia();
+    } else {
+        media.currentTime -= 3;
+    }
+}
+
+function windForward() {
+    if(media.currentTime >= media.duration - 3) {
+        fwd.classList.remove('active');
+        clearInterval(intervalFwd);
+        stopMedia();
+    } else {
+        media.currentTime += 3;
+    }
+}
+```
+Again, we'll just run through the first one of these functions as they work almost identically, but in reverse to one another. In `windBackward()`, we do the following -- bear in mind that when the interval is active, this function is being run once every 200 milliseconds.
+
+1. We start off with an `if` statement that checks to see whether the current time is less than 3 seconds, i.e. if rewinding by another three seconds would take it back past the start of the video. This would cause strange behavior so if this is the case, we stop the video playing by calling `stopMedia()`, remove the `active` class from the rewind button, and clear the `intervalRwd` interval to stop the rewind functionality. If we didn't do this last step, the video would just keep rewinding forever.
+2. 
