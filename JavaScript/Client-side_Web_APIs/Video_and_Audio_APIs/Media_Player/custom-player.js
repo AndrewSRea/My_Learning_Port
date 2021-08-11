@@ -34,3 +34,23 @@ function stopMedia() {
     media.currentTime = 0;
     play.setAttribute('data-icon', 'P');
 }
+
+function windBackward() {
+    if(media.currentTime <= 3) {
+        rwd.classList.remove('active');
+        clearInterval(intervalRwd);
+        stopMedia();
+    } else {
+        media.currentTime -= 3;
+    }
+}
+
+function windForward() {
+    if(media.currentTime >= media.duration - 3) {
+        fwd.classList.remove('active');
+        clearInterval(intervalFwd);
+        stopMedia();
+    } else {
+        media.currentTime += 3;
+    }
+}
