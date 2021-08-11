@@ -62,3 +62,61 @@ Open the HTML index file. You'll see a number of features; the HTML is dominated
 
 ### Exploring the CSS
 
+Now open the CSS file and have a look inside. The CSS for this example is not too complicated, but we'll highlight the most interesting bits here. First of all, notice the `.controls` styling:
+```
+.controls {
+    visibility: hidden;
+    opacity: 0.5;
+    width: 400px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -200px;
+    background-color: black;
+    box-shadow: 3px 3px 5px black;
+    transition: 1s all;
+    display: flex;
+}
+
+.player:hover .controls, player:focus .controls {
+    opacity: 1;
+}
+```
+
+* We start off with the [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility) of the custom controls set to hidden. In our JavaScript later on, we will set the controls to `visible`, and remove the `controls` attribute from the `<video>` element. This is so that, if the JavaScript doesn't load for some reason, users can still use the video with the native controls.
+* We give the controls an [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity) of 0.5 by default, so that they are less distracting when you are trying to watch the video. Only when you are hovering/focusing over the player do the controls appear at full opacity.
+* We lay out the buttons inside the control bar using Flexbox ([`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display): flex), to make things easier.
+
+Next, let's look at our button icons:
+```
+@font-face {
+    font-family: 'HeydingsControlsRegular';
+    src: url('fonts/heydings_controls_webfont.eot');
+    src: url('fonts/heydings_controls_webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/heydings_controls_webfont.woff') format('woff'),
+         url('fonts/heydings_controls_webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+button:before {
+    font-family: HeydingsControlsRegular;
+    font-size: 20px;
+    position: relative;
+    content: attr(data-icon);
+    color: #aaa;
+    text-shadow: 1px 1px 0px black;
+}
+```
+First of all, at the top of the CSS we use a [`@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) block to import a custom web font. This is an icon font -- all the characters of the alphabet equate to common icons you might want to use in an application.
+
+Next, we use generated content to display an icon on each button:
+
+* We use the [`::before`](https://developer.mozilla.org/en-US/docs/Web/CSS/::before) selector to display the content before each [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) element.
+* We use the [`content`](https://developer.mozilla.org/en-US/docs/Web/CSS/content) property to set the content to be displayed in each case to be equal to the contents of the [`data-icon`](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) attribute. In the case of our play button, `data-icon` contains a capital "P".
+* We apply the custom web font to our buttons using [`font-family`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family). In this font, "P" is actually a "play" icon, so therefore the play button has a "play" icon displayed on it.
+
+Icon fonts are very cool for many reasons -- cutting down on HTTP requests because you don't need to download those icons as image files, great scalability, and the fact that you can use text properties to style them -- like [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/color) and [`text-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow).
+
+Last but not least, let's look at the CSS for the timer:
