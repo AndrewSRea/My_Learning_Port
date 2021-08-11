@@ -311,4 +311,6 @@ function windForward() {
 Again, we'll just run through the first one of these functions as they work almost identically, but in reverse to one another. In `windBackward()`, we do the following -- bear in mind that when the interval is active, this function is being run once every 200 milliseconds.
 
 1. We start off with an `if` statement that checks to see whether the current time is less than 3 seconds, i.e. if rewinding by another three seconds would take it back past the start of the video. This would cause strange behavior so if this is the case, we stop the video playing by calling `stopMedia()`, remove the `active` class from the rewind button, and clear the `intervalRwd` interval to stop the rewind functionality. If we didn't do this last step, the video would just keep rewinding forever.
-2. 
+2. If the current time is not within 3 seconds of the start of the video, we remove three seconds from the current time by executing `media.currentTime -= 3`. So in effect, we are rewinding the video by 3 seconds, once every 200 milliseconds.
+
+### Updating the elapsed time
