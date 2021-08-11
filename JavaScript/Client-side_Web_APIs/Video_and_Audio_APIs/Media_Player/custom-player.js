@@ -14,6 +14,10 @@ media.removeAttribute('controls');
 controls.style.visibility = 'visible';
 
 play.addEventListener('click', playPauseMedia);
+stop.addEventListener('click', stopMedia);
+media.addEventListener('ended', stopMedia);
+rwd.addEventListener('click', mediaBackward);
+fwd.addEventListener('click', mediaForward);
 
 function playPauseMedia() {
     if(media.paused) {
@@ -23,4 +27,10 @@ function playPauseMedia() {
         play.setAttribute('data-icon', 'P');
         media.pause();
     }
+}
+
+function stopMedia() {
+    media.pause();
+    media.currentTime = 0;
+    play.setAttribute('data-icon', 'P');
 }
