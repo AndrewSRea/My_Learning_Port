@@ -120,3 +120,95 @@ Next, we use generated content to display an icon on each button:
 Icon fonts are very cool for many reasons -- cutting down on HTTP requests because you don't need to download those icons as image files, great scalability, and the fact that you can use text properties to style them -- like [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/color) and [`text-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow).
 
 Last but not least, let's look at the CSS for the timer:
+```
+.timer {
+    line-height: 38px;
+    font-size: 10px;
+    font-family: monospace;
+    text-shadow: 1px 1px 0px black;
+    color: white;
+    flex: 5;
+    position: relative;
+}
+
+.timer div {
+    position: absolute;
+    background-color: rgba(255,255,255,0.2);
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 38px;
+    z-index: 2;
+}
+
+.timer span {
+    position: absolute;
+    z-index: 3;
+    left: 19px;
+}
+```
+
+* We set the outer `.timer` `<div>` to have flex: 5, so it takes up most of the width of the controls bar. We also give it [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position)`:relative`, so that we can position elements inside it conveniently according to its boundaries, and not the boundaries of the [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body) element.
+* The inner `<div>` is absolutely positioned to sit directly on top of the outer `<div>`. It is also given an initial width of 0, so you can't see it at all. As the video plays, the width will be increased via JavaScript as the video elapses.
+* The `<span>` is also absolutely positioned to sit near the left hand side of the timer bar.
+* We also give our inner `<div>` and `<span>` the right amount of [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index) so that the timer will be displayed on top, and the inner `<div>` below that. This way, we make sure we can see all the information -- one box is not obscuring another.
+
+### Implementing the JavaScript
+
+We've got a fairly complete HTML and CSS interface already; now we just need to wire up all the buttons to get the controls working.
+
+1. Create a new JavaScript file in the same directory as your index.html file. Call it `custom-player.js`.
+
+2. At the top of this file, insert the following code:
+```
+const media = document.querySelector('video');
+const controls = document.querySelector('.controls');
+
+const play = document.querySelector('.play');
+const stop = document.querySelector('.stop');
+const rwd = document,querySelector('.rwd');
+const fwd = document.querySelector('.fwd');
+
+const timerWrapper = doucment.querySelector('.timer');
+const timer = document.querySelector('.timer span');
+const timerBar = document.querySelector('.timer div');
+```
+Here we are creating constants to hold references to all the objects we want to manipulate. We have three groups:
+
+* The `<video>` element, and the controls bar.
+* The play/pause, stop, rewind, and fast forward buttons.
+* The outer timer wrapper `<div>`, the digital timer readout `<span>`, and the inner `<div>` that gets wider as the time elapses.
+
+3. Next, insert the following at the bottom of your code:
+```
+media.removeAttribute('controls');
+controls.style.visibility = 'visible';
+```
+These two lines remove the default browser controls from the video, and make the custom controls visible.
+
+### Playing and pausing the video
+
+Let's implement probably the most important control -- the play/pause button.
+
+1. First of all, add the following to the bottom of your code, so that the `playPauseMedia()` function is invoked when the play button is clicked:
+```
+play.addEventListener('click', playPauseMedia);
+```
+
+2. Now to define `playPauseMedia()` -- add the following, again at the bottom of your code:
+```
+function playPauseMedia() {
+    if(media.paused) {
+        play.setAttribute('data-icon', 'u');
+        media.play();
+    } else {
+        play.setAttribute('data-icon', 'P');
+        media.pause();
+    }
+}
+```
+Here we use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to check whether the video is paused. The [`HTMLMediaElement.paused`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/paused) property returns true if the media is paused, which is any time the video is not playing, including when it is set at 0 duration after it first loads. If it is paused, we set the `data-icon` attribute value on the play button to "u", which is a "paused" icon, and invoke the [`HTMLMediaElement.play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) method to play the media.
+
+On the second click, the button will be toggled back again -- the "play" icon will be shown again, and the video will be paused with [`HTMLMediaElement.pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause).
+
+### Stopping the video
