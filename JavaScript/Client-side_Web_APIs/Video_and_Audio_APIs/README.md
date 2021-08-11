@@ -12,4 +12,4 @@ The [`<video>`]() and [`<audio>`]() elements allow us to embed video and audio i
     <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
 </video>
 ```
-This creates a video player inside the browser. See it live [here]().
+This creates a video player inside the browser. See it live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Video_and_Audio_APIs/simple-video.html).
