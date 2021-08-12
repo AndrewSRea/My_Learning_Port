@@ -21,6 +21,11 @@ fwd.addEventListener('click', mediaForward);
 media.addEventListener('timeupdate', setTime);
 
 function playPauseMedia() {
+    rwd.classList.remove('active');
+    fwd.classList.remove('active');
+    clearInterval(intervalRwd);
+    clearInterval(intervalFwd);
+    
     if(media.paused) {
         play.setAttribute('data-icon', 'u');
         media.play();
@@ -34,6 +39,10 @@ function stopMedia() {
     media.pause();
     media.currentTime = 0;
     play.setAttribute('data-icon', 'P');
+    rwd.classList.remove('active');
+    fwd.classList.remove('active');
+    clearInterval(intervalRwd);
+    clearInterval(intervalFwd);
 }
 
 function windBackward() {
