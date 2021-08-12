@@ -314,3 +314,48 @@ Again, we'll just run through the first one of these functions as they work almo
 2. If the current time is not within 3 seconds of the start of the video, we remove three seconds from the current time by executing `media.currentTime -= 3`. So in effect, we are rewinding the video by 3 seconds, once every 200 milliseconds.
 
 ### Updating the elapsed time
+
+The very last piece of our media player to implement is the time elapsed displays. To do this, we'll run a function to update the time displays every time the [`timeupdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event) event is fired on the `<video>` element. The frequency with which this event fires depends on your browser, CPU power, etc. ([See this stackoverflow post](https://stackoverflow.com/questions/9678177/how-often-does-the-timeupdate-event-fire-for-an-html5-video).)
+
+Add the following `addEventListener()` line just below the others:
+```
+media.addEventListener('timeupdate', setTime);
+```
+Now to define the `setTime()` function. Add the following at the bottom of your file:
+```
+function setTime() {
+    let minutes = Math.floor(media.currentTime / 60);
+    let seconds = Math.floor(media.currentTime - minutes * 60);
+    let minuteValue;
+    let secondValue;
+
+    if (minutes < 10) {
+        minuteValue = '0' + minutes;
+    } else {
+        minuteValue = minutes;
+    }
+
+    if (seconds < 10) {
+        secondValue = '0' + seconds;
+    } else {
+        secondValue = seconds;
+    }
+
+    let mediaTime = minuteValue + ':' + secondValue;
+    timer.textContent = mediaTime;
+
+    let barLength = timerWrapper.clientWidth * (media.currentTime/media.duration);
+    timerBar.style.width = barLength + 'px';
+}
+```
+This is a fairly long function, so let's go through it step by step:
+
+1. First of all, we work out the number of minutes and seconds in the [`HTMLMediaElement.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime) value.
+2. Then we initialize two more variables -- `minuteValue` and `secondValue`.
+3. The two `if` statements work out whether the number of minutes and seconds are less than 10. If so, they add a leading zero to the values, in the same way that a digital clock display works.
+4. The actual time value to display is set as `minuteValue` plus a colon character plus `secondValue`.
+5. The [`Node.textContent`]() value of the timer is set to the time value, so it displays in the UI.
+6. The length we should set the inner `<div>` to is worked out by first working out the width of the outer `<div>` (any element's [`clientWidth`]() property will contain its length), and then multiplying it by the [`HTMLMediaElement.currentTime`]() divided by the total [`HTMLMediaElement.duration`]() of the media.
+7. We set the width of the inner `<div>` to equal the calculated bar length, plus "px", so it will be set to that number of pixels.
+
+### Fixing play and pause
