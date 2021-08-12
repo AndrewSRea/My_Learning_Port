@@ -354,8 +354,57 @@ This is a fairly long function, so let's go through it step by step:
 2. Then we initialize two more variables -- `minuteValue` and `secondValue`.
 3. The two `if` statements work out whether the number of minutes and seconds are less than 10. If so, they add a leading zero to the values, in the same way that a digital clock display works.
 4. The actual time value to display is set as `minuteValue` plus a colon character plus `secondValue`.
-5. The [`Node.textContent`]() value of the timer is set to the time value, so it displays in the UI.
-6. The length we should set the inner `<div>` to is worked out by first working out the width of the outer `<div>` (any element's [`clientWidth`]() property will contain its length), and then multiplying it by the [`HTMLMediaElement.currentTime`]() divided by the total [`HTMLMediaElement.duration`]() of the media.
+5. The [`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) value of the timer is set to the time value, so it displays in the UI.
+6. The length we should set the inner `<div>` to is worked out by first working out the width of the outer `<div>` (any element's [`clientWidth`](https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth) property will contain its length), and then multiplying it by the [`HTMLMediaElement.currentTime`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime) divided by the total [`HTMLMediaElement.duration`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration) of the media.
 7. We set the width of the inner `<div>` to equal the calculated bar length, plus "px", so it will be set to that number of pixels.
 
 ### Fixing play and pause
+
+There is one problem left to fix. If the play/pause or stop buttons are pressed while the rewind or fast forward functionality is active, they just won't work. How can we fix it so that they cancel the `rwd`/`fwd` button functionality and play/stop the video as you'd expect? This is fairly easy to fix.
+
+First of all, add the following lines inside the `stopMedia()` function -- anywhere will do:
+```
+rwd.clearList.remove('active');
+fwd.classList.remove('active');
+clearInterval(intervalRwd);
+clearInterval(intervalFwd);
+```
+Now add the same lines again, at the very start of the `playPauseMedia()` function (just before the start of the `if` statement).
+
+At this point, you could delete the equivalent lines from the `windBackward()` and `windForward()` functions, as that functionality has been implemented in the `stopMedia()` function instead.
+
+<hr>
+
+**Note**: You could also further improve the efficiency of the code by creating a separate function that runs these lines, then calling that anywhere it is needed, rather than repeating the lines multiple times in the code. But we'll leave that one up to you.
+
+<hr>
+
+## Summary
+
+And you've been taught enough in this article. The [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API makes a wealth of functionality available for creating simple video and audio players, and that's only the tip of the iceberg. See the [See also]() section below for links to more complex and interesting functionality.
+
+Here are some suggestions for ways you could enhance the existing example we've built up:
+
+1. The time display currently breaks if the video is an hour long or more (well, it won't display hours; just minutes and seconds). Can you figure out how to change the example to make it display hours?
+
+2. Because `<audio>` elements have the same [`HTMLMediaElement`]() functionality available to them, you could easily get this player to work for an `<audio>` element, too. Try doing so.
+
+3. Can you work out a way to turn the timer's inner `<div>` element into a true seek bar/scrobbler -- i.e., when you click somewhere on the bar, it jumps to that relative position in the video playback? As a hint, you can find out the X and Y values of the element's left/right and top/bottom sides via the [`getBoundingClientRect()`]() method, and you can find the coordinates of a mouse click via the event object of the click event, called on the [`Document`]() object. For example:
+```
+document.onclick = function(e) {
+    console.log(e.x) + ',' + console.log(e.y);
+}
+```
+
+## See also
+
+* [`HTMLMediaElement`]()
+* [Video and audio content]() -- simple guide to `<video>` nd `<audio>` HTML.
+* [Audio and video delivery]() -- detailed guide to delivering media inside the browser, with many tips, tricks, and links to further more advanced tutorials.
+* [Audio and video manipulation]() -- detailed guide to manipulating audio and video, e.g. with [Canvas API](), [Web Audio API](), and more.
+* [`<video>`]() and [`<audio>`]() reference pages.
+* [Guide to media types and formats on the web]()
+
+<hr>
+
+[[Previous page]]() - [[Top]]() - [[Next page]]()
