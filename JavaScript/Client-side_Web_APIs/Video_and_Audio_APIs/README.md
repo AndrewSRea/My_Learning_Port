@@ -381,15 +381,15 @@ At this point, you could delete the equivalent lines from the `windBackward()` a
 
 ## Summary
 
-And you've been taught enough in this article. The [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API makes a wealth of functionality available for creating simple video and audio players, and that's only the tip of the iceberg. See the [See also]() section below for links to more complex and interesting functionality.
+And you've been taught enough in this article. The [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API makes a wealth of functionality available for creating simple video and audio players, and that's only the tip of the iceberg. See the [See also](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Video_and_Audio_APIs#see-also) section below for links to more complex and interesting functionality.
 
 Here are some suggestions for ways you could enhance the existing example we've built up:
 
 1. The time display currently breaks if the video is an hour long or more (well, it won't display hours; just minutes and seconds). Can you figure out how to change the example to make it display hours?
 
-2. Because `<audio>` elements have the same [`HTMLMediaElement`]() functionality available to them, you could easily get this player to work for an `<audio>` element, too. Try doing so.
+2. Because `<audio>` elements have the same [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) functionality available to them, you could easily get this player to work for an `<audio>` element, too. Try doing so.
 
-3. Can you work out a way to turn the timer's inner `<div>` element into a true seek bar/scrobbler -- i.e., when you click somewhere on the bar, it jumps to that relative position in the video playback? As a hint, you can find out the X and Y values of the element's left/right and top/bottom sides via the [`getBoundingClientRect()`]() method, and you can find the coordinates of a mouse click via the event object of the click event, called on the [`Document`]() object. For example:
+3. Can you work out a way to turn the timer's inner `<div>` element into a true seek bar/scrobbler -- i.e., when you click somewhere on the bar, it jumps to that relative position in the video playback? As a hint, you can find out the X and Y values of the element's left/right and top/bottom sides via the [`getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) method, and you can find the coordinates of a mouse click via the event object of the click event, called on the [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/Document) object. For example:
 ```
 document.onclick = function(e) {
     console.log(e.x) + ',' + console.log(e.y);
@@ -398,13 +398,13 @@ document.onclick = function(e) {
 
 ## See also
 
-* [`HTMLMediaElement`]()
-* [Video and audio content]() -- simple guide to `<video>` nd `<audio>` HTML.
-* [Audio and video delivery]() -- detailed guide to delivering media inside the browser, with many tips, tricks, and links to further more advanced tutorials.
-* [Audio and video manipulation]() -- detailed guide to manipulating audio and video, e.g. with [Canvas API](), [Web Audio API](), and more.
-* [`<video>`]() and [`<audio>`]() reference pages.
-* [Guide to media types and formats on the web]()
+* [`HTMLMediaElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
+* [Video and audio content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content) -- simple guide to `<video>` and `<audio>` HTML.
+* [Audio and video delivery](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery) -- detailed guide to delivering media inside the browser, with many tips, tricks, and links to further more advanced tutorials.
+* [Audio and video manipulation](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_manipulation) -- detailed guide to manipulating audio and video, e.g. with [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API), [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API), and more.
+* [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) reference pages.
+* [Guide to media types and formats on the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats)
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Drawing_Graphics#drawing-graphics) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Video_and_Audio_APIs) - [[Next page]]()
