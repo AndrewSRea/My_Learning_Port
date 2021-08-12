@@ -16,7 +16,7 @@ The table below illustrates how each container's `max-width` compares to the ori
 
 |   | Extra small | Small | Medium | Large | X-Large | XX-Large |
 | --- | --- | --- | --- | --- | --- | --- |
-|   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥ 1400px |
+|   | <576px | ≥576px | ≥768px | ≥992px | ≥1200px | ≥1400px |
 | `.container` | 100% | 540px | 720px | 960px | 1140px | 1320px |
 | `.container-sm` | 100% | 540px | 720px | 960px | 1140px | 1320px |
 | `.container-md` | 100% | 100% | 720px | 960px | 1140px | 1320px |
@@ -25,7 +25,7 @@ The table below illustrates how each container's `max-width` compares to the ori
 | `.container-xxl` | 100% | 100% | 100% | 100% | 100% | 1320px |
 | `.container-fluid` | 100% | 100% | 100% | 100% | 100% | 100% |
 
-See an example of a responsive container in my accompanying [container-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-example.html) file.
+See an example of a responsive container in my accompanying [container-example.html](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Layout/Containers/container-example.html) file. (And see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-example.html).)
 
 ## Default container
 
@@ -38,7 +38,7 @@ Bootstrap's default `.container` class is a responsive, fixed-width container, m
 
 ## Responsive containers
 
-Responsive containers allow you to specify a class that is 100% wide until the specified breakpoint is reached, after which we apply `max-width`s for each of the higher breakpoints. For example, `.container-sm` is 100% wide to start until the `sm` breakpoint is reached, where it will scale up with `md `, `lg`, `xl`, and `xxl`. 
+Responsive containers allow you to specify a class that is 100% wide until the specified breakpoint is reached, after which we apply `max-width`s for each of the higher breakpoints. For example, `.container-sm` is 100% wide to start until the `sm` breakpoint is reached, where it will scale up with `md`, `lg`, `xl`, and `xxl`. 
 ```
 <div class="container-sm">100% wide until small breakpoint</div>
 <div class="container-md">100% wide until medium breakpoint</div>
@@ -46,7 +46,7 @@ Responsive containers allow you to specify a class that is 100% wide until the s
 <div class="container-xl">100% wide until extra large breakpoint</div>
 <div class="container-xxl">100% wide until extra extra large breakpoint</div>
 ```
-See an example of the code above in my accompanying [responsive-containers.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/responsive-containers.html) file.
+See an example of the code above in my accompanying [responsive-containers.html](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Layout/Containers/responsive-containers.html) file. (See the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/responsive-containers.html).)
 
 ## Fluid containers
 
@@ -56,7 +56,7 @@ Use `.container-fluid` for a full width container, spanning the entire width of 
     ...
 </div>
 ```
-See an example of this code in my accompanying [container-fluid-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-fluid-example.html) file.
+See an example of this code in my accompanying [container-fluid-example.html](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Layout/Containers/container-fluid-example.html) file. (See the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Containers/container-fluid-example.html).)
 
 ## Sass
 
@@ -89,5 +89,7 @@ In addition to customizing the Sass, you can also create your own containers wit
 }
 ```
 For more information and examples on how to modify Bootstrap's Sass maps and variables, please refer to [the Sass section of the Grid documentation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#sass) below.
+
+<hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Breakpoints#breakpoints) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Containers#containers) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap/Layout/Grid#grid-system)
