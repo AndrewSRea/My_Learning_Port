@@ -25,7 +25,7 @@ Bootstrap includes six default breakpoints, sometimes referred to as *grid tiers
 
 Each breakpoint was chosen to comfortably hold containers whose widths are multiples of 12. Breakpoints are also representative of a subset of common device sizes and viewport dimensions--they don't specifically target every use case or device. Instead, the ranges provide a strong and consistent foundation to build on for nearly any device.
 
-These breakpoints are customizable via [Sass](https://sass-lang.com/)--you'll find them in a Sass map in Bootstrap's `_variables.scss` stylesheet. (Perhaps I will have to create a Sass folder within this Bootstrap folder.)
+These breakpoints are customizable via [Sass](https://sass-lang.com/) -- you'll find them in a Sass map in Bootstrap's `_variables.scss` stylesheet. (Perhaps I will have to create a Sass folder within this Bootstrap folder.)
 ```
 $grid-breakpoints: (
     xs: 0,
@@ -45,7 +45,7 @@ Since Bootstrap is developed to be mobile first, it uses a handful of [media que
 
 ### Min-width
 
-Bootstrap primarly uses the following media query ranges--or breakpoints--in its source Sass files for its layout, grid system, and components.
+Bootstrap primarly uses the following media query ranges -- or breakpoints -- in its source Sass files for its layout, grid system, and components.
 ```
 // Source mixins
 
@@ -170,6 +170,8 @@ Which results in:
 ## A code example using Bootstrap breakpoints
 
 I am going to create an HTML document named [breakpoints-example.html](https://github.com/AndrewSRea/My_Learning_Port/blob/main/Bootstrap/Layout/Breakpoints/breakpoints-example.html) which incorporates Bootstrap's breakpoint components into three rows of columns. When `breakpoints-example.html` is opened in a browser, if the browser window's width is shifted to a smaller or larger width, the columns will also change in width, and will also stack on top of each other in a smaller browser window, or sit side-by-side each other in a larger browser window.
+
+See it running live [here](https://andrewsrea.github.io/My_Learning_Port/Bootstrap/Layout/Breakpoints/breakpoints-example.html).
 
 <hr>
 
