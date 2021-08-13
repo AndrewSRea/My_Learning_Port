@@ -40,9 +40,66 @@ You'll learn more about these APIs below.
 
 Some modern browsers support the new [`Cache`](https://developer.mozilla.org/en-US/docs/Web/API/Cache) API. This API is designed for storing HTTP responses to specific requests, and is very useful for doing things like storing website assets offline so the site can subsequently be used without a network connection. Cache is usually used in combination with the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), although it doesn't have to be.
 
-Use of Cache and Service Workers is an advanced topic, and we won't be covering it in great detail in this article, although we will show a simple example in the [Offline asset storage]() section below.
+Use of Cache and Service Workers is an advanced topic, and we won't be covering it in great detail in this article, although we will show a simple example in the [Offline asset storage](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Client-side_Storage#offline-asset-storage) section below.
 
+## Storing simple data -- web storage
 
+The [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) is very easy to use -- you store simple name/value pairs of data (limited to strings, numbers, etc.) and retrieve these values when needed.
+
+### Basic syntax
+
+Let's show you how:
+
+1. First, go to our [web storage blank template](https://mdn.github.io/learning-area/javascript/apis/client-side-storage/web-storage/index.html) on GitHub (open this in a new tab).
+
+2. Open the JavaScript console of your browser's developer tools.
+
+3. All of your web storage data is contained within two object-like structures inside the browser: [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) and [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). The first one persists data for as long as the browser is open (the data is lost when the browser is closed) and the second one persists data even after the browser is closed and then opened again. We'll use the second one in this article as it is generally more useful.
+
+The [`Storage.setItem()`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem) method allows you to save a data item in storage -- it takes two parameters: the name of the item, and its value. Try typing this into your JavaScript console (change the value to your own name, if you wish):
+```
+localStorage.setItem('name','Chris');
+```
+
+4. The [`Storage.getItem()`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem) method takes one parameter -- the name of a data item you want to retrieve -- and returns the item's value. Now type these lines into your JavaScript console:
+```
+let myName = localStorage.getItem('name');
+myName;
+```
+Upon typing in the second line, you should see that the `myName` variable now contains the value of the `name` data item.
+
+5. The [`Storage.removeItem()`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem) method takes one parameter -- the name of a data item you want to remove -- and removes that item out of web storage. Type the following lines into your JavaScript console:
+```
+localStorage.removeItem('name');
+let myName = localStorage.getItem('name');
+myName;
+```
+The third line should now return `null` -- the `name` item no longer exists in the web storage.
+
+### The data persists!
+
+One key feature of web storage is that the data persists between page loads (and even when the browser is shut down, in the case of `localStorage`). Let's look at this in action.
+
+1. Open our web storage blank template again, but this time in a different browser to the one you've got this tutorial open in! This will make it easier to deal with.
+
+2. Type these lines into the browser's JavaScript console:
+```
+localStorage.setItem('name','Chris');
+let myName = localStorage.getItem('name');
+myName;
+```
+You should see the name item returned.
+
+3. Now close down the browser and open it up again.
+
+4. Enter the following lines again:
+```
+let myName = localStorage.getItem('name');
+myName;
+```
+You should see that the value is still available, even though the browser has been closed and then opened again.
+
+### Separate storage for each domain
 
 
 
