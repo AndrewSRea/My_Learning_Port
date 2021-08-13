@@ -175,7 +175,7 @@ Even though the code all works together, each `if...else` statement works comple
 If you want to test multiple conditions without writing nested `if...else` statements, [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators) can help you. When used in conditions, the first two do the following:
 
 * `&&` -- AND; allows you to chain together two or more expressions so that all of them have to individually evaluate to `true` for the whole expression to return `true`.
-* `||` -- OR; allows you to chain together two or more expressionsso that one or more of them have to individually evaluate to `true` for the whole expression to return `true`.
+* `||` -- OR; allows you to chain together two or more expressions so that one or more of them have to individually evaluate to `true` for the whole expression to return `true`.
 
 To give you an AND example, the previous example snippet can be rewritten to this:
 ```
