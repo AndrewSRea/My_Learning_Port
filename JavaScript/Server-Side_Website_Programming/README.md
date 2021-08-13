@@ -1,0 +1,3 @@
+# Server-side website programming
+
+The ***Dynamic Websites - Server-side programming*** topic is a series of modules that show how to create dynamic websites; websites that deliver customized information in response to HTTP requests. The modules provide a general introduction to server-side programming, along with specific beginner-level guides on how to use the Django (Python) and Express (Node.js/JavaScript) web frameworks to create basic applications.
