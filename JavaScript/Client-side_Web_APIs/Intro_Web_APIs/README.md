@@ -27,7 +27,7 @@ Client-side JavaScript, in particular, has many APIs available to it -- these ar
 
 So above, we talked about what client-side JavaScript APIs are, and how they relate to the JavaScript language. Let's recap this to make it clearer, and also mention where other JavaScript tools fit in:
 
-* JavaScript -- A high-level scripting language built into browser that allows you to implement functionality on web pages/apps. Note that JavaScript is also available in other programming environments, such as [Node](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#expressnode-introduction).
+* JavaScript -- A high-level scripting language built into browser that allows you to implement functionality on web pages/apps. Note that JavaScript is also available in other programming environments, such as [Node](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#expressnode-introduction).
 
 * Browser APIs -- Constructs built into the browser that sit on top of the JavaScript language and allow you to implement functionality more easily.
 
