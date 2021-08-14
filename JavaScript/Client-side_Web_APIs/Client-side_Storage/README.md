@@ -194,7 +194,7 @@ function nameDisplayCheck() {
 document.body.onload = nameDisplayCheck;
 ```
 
-Your example is finished -- well done! All that remains now is to save your code and test your HTML page in a browser. You can see the finished version running live [here]() (and see the source code [here]()).
+Your example is finished -- well done! All that remains now is to save your code and test your HTML page in a browser. You can see the finished version running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Client-side_Storage/personal-greeting.html) (and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Client-side_Storage/index.js)).
 
 
 
