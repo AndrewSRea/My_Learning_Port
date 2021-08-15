@@ -285,6 +285,45 @@ request.onsuccess = function() {
 ```
 The [`request.onerror`](https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/onerror) handler will run if the system comes back saying that the request failed. This allows you to respond to this problem. In our simple example, we just print a message to the JavaScript console.
 
+The [`request.onsuccess`](https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/onsuccess) handler on the other hand will run if the request returns successfully, meaning the database was successfully opened. If this is the case, an object representing the opened database becomes available in the [`request.result`](https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/result) property, allowong us to manipulate the database. We store this in the `db` variable we created earlier for later use. We also run a custom function called `displayData()`, which displays the data in the database inside the [`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul). We run it now so that the notes already in the database are displayed as soon as the page loads. You'll see this defined later on.
+
+5. Finally for this section, we'll add probably the most important event handler for setting up the database: [`request.onupgradeneeded`](https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/onupgradeneeded). This handler runs if the database has not already been set up, or if the database is opened with a bigger version number than the existing stored database (when performing an upgrade). Add the following code, below your previous handler:
+```
+// Setup the database tables if this has not already been done
+request.onupgradeneeded = function(e) {
+    // Grab a reference to the opened database
+    let db = e.traget.result;
+
+    // Create an objectStore to store our notes in (basically like a single table)
+    // including an auto-incrementing key
+    let objectStore = db.createObjectStore('notes_os', { keyPath: 'id', autoIncrement:true });
+
+    // Define what data items the objectStore will contain
+    objectStore.createIndex('title', 'title', { unique: false });
+    objectStore.createIndex('body', 'body', { unique: false });
+
+    console.log('Database setup complete');
+};
+```
+This is where we define the schema (structure) of our database; that is, the set of columns (or fields) it contains. Here we first grab a reference to the existing database from the `result` property of the event's target (`e.target.result`), which is the `request` object. This is equivalent to the line `db = request.result;` inside the `onsuccess` handler, but we need to do this separately here because the `onupgradeneeded` handler (if needed) will run before the `onsuccess` handler, meaning that the `db` value wouldn't be available if we didn't do this.
+
+We then use [`IDBDatabase.createObjectStore()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/createObjectStore) to create a new object store inside our opened database called `notes_os`. This is equivalent to a single table in a conventional database system. We've given it the name notes, and also specified an `autoIncrement` key field called `id` -- in each new record, this will automatically be given an incremented value -- the developer doesn't need to set this explicitly. Being the key, the `id` field will be used to uniquely identify records, such as when deleting or displaying a record.
+
+We also create two other indexes (fields) using the [`IDBObjectStore.createIndex()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/createIndex) method: `title` (which will contain a title for each note), and `body` (which will contain the body text of the note).
+
+So with this simple database schema set up, when we start adding records to the database, each one will be represented as an object along these lines:
+```
+{
+    title: "But milk",
+    body: "Need both cows wilk and soy.",
+    id: 8
+}
+```
+
+### Adding data to the database
+
+
+
 
 
 
