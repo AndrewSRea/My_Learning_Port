@@ -196,6 +196,97 @@ document.body.onload = nameDisplayCheck;
 
 Your example is finished -- well done! All that remains now is to save your code and test your HTML page in a browser. You can see the finished version running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Client-side_Storage/personal-greeting.html) (and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Client-side_Storage/index.js)).
 
+<hr>
+
+**Note**: There is another, slightly more complex example to explore at [Using the Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API). 
+
+<hr>
+
+**Note**: In the line `<script src="index.js" defer></script>` of the source for our finished version, the `defer` attribute specifies that the contents of the [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element will not execute until the page has finished loading.
+
+<hr>
+
+## Storing complex data -- IndexedDB
+
+The [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) (sometimes abbreviated IDB) is a complete database system available in the browser in which you can store complex related data, the types of which aren't limited to simple values like strings or numbers. You can store videos, images, and pretty much anything else in an IndexedDB instance.
+
+However, this does come at a cost: IndexedDB is much more complex to use than the Web Storage API. In this section, we'll really only scratch the surface of what it is capable of, but we will give you enough to get started.
+
+### Working through a note storage example
+
+Here we'll run through an example that allows you to store notes in your browser and view and delete them whenever you like, getting you to build it up for yourself and explaining the most fundamental parts of IDB as we go along.
+
+The app looks something like this:
+
+![Image of an app using IndexedDB](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage/idb-demo.png)
+
+Each note has a title and some body text, each individually editable. The JavaScript code we'll go through below has detailed comments to help you understand what's going on.
+
+### Getting started
+
+1. First of all, make local copies of our [`index.html`](https://github.com/mdn/learning-area/blob/master/javascript/apis/client-side-storage/indexeddb/notes/index.html), [`style.css`](https://github.com/mdn/learning-area/blob/master/javascript/apis/client-side-storage/indexeddb/notes/style.css), and [`index-start.js`](https://github.com/mdn/learning-area/blob/master/javascript/apis/client-side-storage/indexeddb/notes/index-start.js) files into a new directory on your local machine.
+
+2. Have a look at the files. You'll see that the HTML is pretty simple: a web site with a header and footer, as well as a main content area that contains a place to display notes, and a form for entering new notes into the database. The CSS provides some simple styling to make it clearer what is going on. The JavaScript file contains five declared constants containing references to the [`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul) element the notes will be displayed in, the title and body [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) elements, the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) itself, and the [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button).
+
+3. Rename your JavaScript file to `index.js`. You are now ready to start adding code to it.
+
+### Database initial set up
+
+Now let's look at what we have to do in the first place, to actually set up a database.
+
+1. Below the constant declarations, add the following lines:
+```
+// Create an instance of a db object for us to store the open database in
+let db;
+```
+Here we are declaring a variable called `db` -- this will later be used to store an object representing our database. We will use this in a few places, so we've declared it globally here to make things easier.
+
+2. Next, add the following to the bottom of your code:
+```
+window.onload = function() {
+
+};
+```
+We will write all of our subsequent code inside this `window.onload` event handler function, called when the window's [`load`](https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event) event fires, to make sure we don't try to use IndexedDB functionality before the app has completely finished loading (it could fail if we don't).
+
+3. Inside the `window.onload` handler, add the following:
+```
+// Open our database; it is created if it doesn't already exist
+// (see onupgradeneeded below)
+let request = window.indexedDB.open('notes_db', 1);
+```
+This line creates a `request` to open version `1` of a databse called `notes_db`. If this doesn't already exist, it will be created for you by subsequent code. You will see this request pattern used very often throughout IndexedDB. Database operations take time. You don't want to hang the browser while you wait for the results, so database operations are [asynchronous](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous), meaning that instead of happening immediately, they will happen at some point in the future, and you get notified when they're done.
+
+To handle this in IndexedDB, you create a request object (which can be called anything you like -- we called it `request` so it is obvious what it is for). You then use event handlers to run code when the request completes, fails, etc., which you'll see in use below.
+
+<hr>
+
+**Note**: The version number is important. If you want to upgrade your database (for example, by changing the table structure), you have to run your code again with an increased version number, different schema specified inside the `onupgradeneeded` handler (see below), etc. We won't cover upgrading databases in this simple tutorial.
+
+<hr>
+
+4. Now add the following event handlers just below your previous addition -- again inside the `window.onload` handler:
+```
+// onerror handler signifies that the database didn't open successfully
+request.onerror = function() {
+    console.log('Database failed to open');
+};
+
+// onsuccess handler signifies that the database opened successfully
+request.onsuccess = function() {
+    console.log('Database opened successfully');
+
+    // Store the opened database object in the db variable. This is used a lot below
+    db = request.result;
+
+    // Run the displayData() function to display the notes already in the IDB
+    displayData();
+};
+```
+The [`request.onerror`](https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/onerror) handler will run if the system comes back saying that the request failed. This allows you to respond to this problem. In our simple example, we just print a message to the JavaScript console.
+
+
+
 
 
 ## Offline asset storage
