@@ -363,7 +363,85 @@ function addData(e) {
 ```
 This is quite complex; breaking it down, we:
 
+* Run [`Event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) on the event object to stop the form actually submitting in the conventional manner (this would cause a page refresh and spoil the experience).
+* Create an object representing a record to enter into the database, populating it with values from the form inputs. Note that we don't have to explicitly include an `id` value -- as we explained eariler, this is auto-populated.
+* Open a `readwrite` transaction against the `notes_os` object store using the [`IDBDatabase.transaction()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/transaction) method. This transaction object allows us to access the object store so we can do something to it, e.g. add a new record.
+* Access the object store using the [`IDBTransaction.objectStore()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/objectStore) method, saving the result in the `objectStore` variable.
+* Add the new record to the database using [`IDBObjectStore.add()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/add). This creates a request object, in the same fashion as we've seen before.
+* Add a bunch of event handlers to the `request` and the `transaction` to run code at critical points in the lifecycle. Once the request has succeeded, we clear the form inputs ready for entering the next note. Once the transaction has completed, we run the `displayData()` function again to update the display of notes on the page.
 
+### Displaying the data
+
+We've referenced `displayData()` twice in our code already, so we'd probably better define it. Add this to your code, below the previous function definition:
+```
+// Define the displayData() function
+function displayData() {
+    // Here we empty the contents of the list element each time the display is updated
+    // If you didn't do this, you'd get duplicates listed each time a new note is added
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+
+    // Open our object store and then get a cursor - which iterates through all the 
+    // different data items in the store
+    let objectStore = db.transaction('notes_os').objectStore('notes_os');
+    objectStore.openCursor().onsuccess = function(e) {
+        // Get a reference to the cursor
+        let cursor = e.target.result;
+
+        // If there is still another data item to iterate through, keep running this code
+        if(cursor) {
+            // Create a list item, h3, and p to put each data item inside when displaying it
+            // structure the HTML fragment, and append it inside the list
+            const listItem = document.createElement('li');
+            const h3 = document.createElement('h3');
+            const para = document.createElement('p');
+
+            listItem.appendChild(h3);
+            listItem.appendChild(para);
+            list.appendChild(listItem);
+
+            // Put the data from the cursor inside the h3 and para
+            h3.textContent = cursor.value.title;
+            para.textContent = cursor.value.body;
+
+            // Store the ID of the data item inside an attribute on the listItem, so we know
+            // which item it corresponds to. This will be useful later when we want to delete items
+            listItem.setAttribute('data-note-id', cursor.value.id);
+
+            // Create a button and place it inside each listItem
+            const deleteBtn = document.createElement('button');
+            listItem.appendChild(deleteBtn);
+            deleteBtn.textContent = 'Delete';
+
+            // Set an event handler so that when the button is clicked, the deleteItem()
+            // function is run
+            deleteBtn.onclick = deleteItem;
+
+            // Iterate to the next item in the cursor
+            cursor.continue();
+        } else {
+            // Again, if list item is empty, display a 'No notes stored' message
+            if(!list.firstChild) {
+                const listItem = document.createElement('li');
+                listItem.textContent = 'No notes stored.';
+                list.appendChild(listItem);
+            }
+            // if there are no more cursor items to iterate through, say so
+            console.log('Notes all displayed');
+        }
+    };
+}
+```
+Again, let's break this down:
+
+* First, we empty out the [`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul) element's content, before then filling it with the updated content. If you didn't do this, you'd end up with a huge list of duplicated content being added to with each update.
+* Next, we get a reference to the `notes_os` object store using [`IDBDatabase.transaction()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/transaction) and [`IDBDatabase.objectStore()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/objectStore) like we did in `addData()`, except here we are chaining them together in one line.
+* The next step is to use [`IDBObjectStore.openCursor()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/openCursor) method to open a request for a cursor -- this is a construct that can be used to iterate over the records in an object store. We chain an `onsuccess` handler on to the end of this line to make the code more concise -- when the cursor is successfully returned, the handler is run.
+* We get a reference to the cursor itself (an [`IDBCursor`](https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor) object) using `let cursor = e.target.result`.
+* Next, we check to see if the cursor contains a record from the datastore (`if(cursor) { ... }`) -- if so, we create a DOM fragment, populate it with the data from the record, and insert it into the page (inside the `<ul>` element). We also include a delete button that, when clicked, will delete that note by running the `deleteItem()` function, which we will look at in the next section.
+* At the end of the `if` block, we use the [`IDBCursor.continue()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/continue) method to advance the cursor to the next record in the datastore, and run the content of the `if` block again. If there is another record to iterate to, this causes it to be inserted into the page, and then `continue()` is run again, and so on.
+* When there are no more records to iterate over, `cursor` will return `undefined`, and therefore the `else` block will run instead of the `if` block. This block checks whether any notes were inserted into the `<ul>` -- if not, it inserts a message to say no note was stored.
 
 
 
