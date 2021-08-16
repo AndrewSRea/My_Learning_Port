@@ -314,7 +314,7 @@ We also create two other indexes (fields) using the [`IDBObjectStore.createIndex
 So with this simple database schema set up, when we start adding records to the database, each one will be represented as an object along these lines:
 ```
 {
-    title: "But milk",
+    title: "Buy milk",
     body: "Need both cows wilk and soy.",
     id: 8
 }
@@ -442,6 +442,45 @@ Again, let's break this down:
 * Next, we check to see if the cursor contains a record from the datastore (`if(cursor) { ... }`) -- if so, we create a DOM fragment, populate it with the data from the record, and insert it into the page (inside the `<ul>` element). We also include a delete button that, when clicked, will delete that note by running the `deleteItem()` function, which we will look at in the next section.
 * At the end of the `if` block, we use the [`IDBCursor.continue()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/continue) method to advance the cursor to the next record in the datastore, and run the content of the `if` block again. If there is another record to iterate to, this causes it to be inserted into the page, and then `continue()` is run again, and so on.
 * When there are no more records to iterate over, `cursor` will return `undefined`, and therefore the `else` block will run instead of the `if` block. This block checks whether any notes were inserted into the `<ul>` -- if not, it inserts a message to say no note was stored.
+
+### Deleting a note
+
+As stated above, when a note's delete button is pressed, the note is deleted. This is achieved by the `deleteItem()` function, which looks like so:
+```
+// Define the deleteItem() function
+function deleteItem(e) {
+    // Retrieve the name of the task we want to delete. We need
+    // to convert it to a number before trying to use it with IDB; IDB key
+    // values are type-sensitive.
+    let noteId = Number(e.target.parentNode.getAttribute('data-note-id'));
+
+    // Open a database transaction and delete the task, finding it using the id we retrieved above
+    let transaction = db.transaction(['notes_os'], 'readwrite');
+    let objectStore = transaction.objectStore('notes_os');
+    let request = objectStore.deleteBtn(noteId);
+
+    // Report that the data item has been deleted
+    transaction.oncomplete = function() {
+        // Delete the parent of the button
+        // which is the list item, so it is no longer displayed
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+        console.log('Note' + noteId + ' deleted.');
+
+        // Again, if list item is empty, display a 'No notes stored' message
+        if(!list.firstChild) {
+            let listItem = document.createElement('li');
+            listItem.textContent = 'No notes stored.';
+            list.appendChild(listItem);
+        }
+    };
+}
+```
+
+* The first part of this could use some explaining -- we retrieve the ID of the record to be deleted using `Number(e.target.parentNode.getAttribute('data-note-id'))` -- recall that the ID of the record was saved in a `data-note-id` attribute on the `<li>` when it was first displayed. We do, however, need to pass the attribute through the global built-in [`Number()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) object, as it is of datatype "string", and therefore wouldn't be recognized by the database, which expects a number.
+* We then get a reference to the object store using the same pattern we've seen previously, and use the [`IDBObjectStore.delete()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/delete) method to delete the record from the database, passing it the ID.
+* When the database transaction is complete, we delete the note's `<li>` from the DOM, and again do the check to see if the `<ul>` is now empty, inserting a note as appropriate.
+
+So that's it! Your example should now work.
 
 
 
