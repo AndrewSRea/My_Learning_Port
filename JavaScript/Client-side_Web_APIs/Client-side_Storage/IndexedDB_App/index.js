@@ -54,7 +54,7 @@ window.onload = function() {
         e.preventDefault();
 
         // grab the values entered into the form fields and store them in an object ready for being inserted into the DB
-        let newItem = { title: titleInput.nodeValue, body: bodyInput.value };
+        let newItem = { title: titleInput.value, body: bodyInput.value };
 
         // open a read/write db transaction, ready for adding the data
         let transaction = db.transaction(['notes_os'], 'readwrite');
@@ -63,7 +63,7 @@ window.onload = function() {
         let objectStore = transaction.objectStore('notes_os');
 
         // Make a request to add our newItem object to the object store
-        let request = objectStore.addData(newItem);
+        let request = objectStore.add(newItem);
         request.onsuccess = function() {
             // Clear the form, ready for adding the next entry
             titleInput.value = '';
