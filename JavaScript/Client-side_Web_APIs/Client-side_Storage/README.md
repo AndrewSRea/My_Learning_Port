@@ -480,8 +480,115 @@ function deleteItem(e) {
 * We then get a reference to the object store using the same pattern we've seen previously, and use the [`IDBObjectStore.delete()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/delete) method to delete the record from the database, passing it the ID.
 * When the database transaction is complete, we delete the note's `<li>` from the DOM, and again do the check to see if the `<ul>` is now empty, inserting a note as appropriate.
 
-So that's it! Your example should now work.
+So that's it! Your example should now work. (See it running live [here](https://andrewsrea.github.io/My_Learning_Port/JavaScript/Client-side_Web_APIs/Client-side_Storage/IndexedDB_App/index.html), and see the source code [here](https://github.com/AndrewSRea/My_Learning_Port/blob/main/JavaScript/Client-side_Web_APIs/Client-side_Storage/IndexedDB_App/index.js).)
 
+### Storing complex data via IndexedDB
 
+As we mentioned above, IndexedDB can be used to store more than just simple text strings. You can store just about anything you want, including complex objects such as video or image blobs. And it isn't much more difficult to achieve than any other type of data.
+
+To demonstrate how to do it, we've written another example called [IndexedDB video store](https://github.com/mdn/learning-area/tree/master/javascript/apis/client-side-storage/indexeddb/video-store) (see it [running live here also](https://mdn.github.io/learning-area/javascript/apis/client-side-storage/indexeddb/video-store/)). When you first run the example, it downloads all the videos from the network, stores them in an IndexedDB database, and then displays the videos in the UI inside [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements. The second time you run it, it finds the videos in the database and gets them from there instead before displaying them -- this makes subsequent loads much quicker and less bandwidth-hungry.
+
+Let's walk through the most interesting parts of the example. We won't look at it all -- a lot of it is similar to the previous example, and the code is well-commented.
+
+1. For this simple example, we've stored the names of the videos to fetch in an array of objects:
+```
+const videos = [
+    { 'name' : 'crystal' },
+    { 'name' : 'elf' },
+    { 'name' : 'frog' },
+    { 'name' : 'monster' },
+    { 'name' : 'pig' },
+    { 'name' : 'rabbit' }
+];
+```
+
+2. To start with, once the database is successfully opened, we run an `init()` function. This loops through the different video names, trying to load a record identified by each name from the `videos` database.
+
+If each video is found in the database (easily checked by seeing whether `request.result` evaluates to `true` -- if the record is not present, it will be `undefined`), its video files (stored as blobs) and the video name are passed straight to the `displayVideo()` function to place them in the UI. If not, the video name is passed to the `fetchVideoFromNetwork()` function to ... you guessed it -- fetch the video from the network.
+```
+function init() {
+    // Loop through the video names one by one
+    for(let i = 0; i < videos.length; i++) {
+        // Open transaction, get object store, and get() each video by name
+        let objectStore = db.transaction('videos_os').objectStore('video_os');
+        let request = objectStore.get(videos[i].name);
+        request.onsuccess = function() {
+            // If the result exists in the database (is not undefined)
+            if(request.result) {
+                // Grab the videos from IDB and display them using displayVideo()
+                console.log('taking videos from IDB');
+                displayVideo(request.result.mp4, request.result.webm, request.result.name);
+            } else {
+                // Fetch the videos from the network 
+                fetchVideoFromNetwork(video[i]);
+            }
+        };
+    }
+}
+```
+
+3. The following snippet is taken from inside `fetchVideoFromNetwork()` -- here we fetch MP4 and WebM versions of the video using two separate [`WindowOrWorkerGlobalScope.fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) requests. We then use the [`Response.blob()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/blob) method to extract each response's body as a blob, giving us an object representation of the videos that can be stored and displayed later on.
+
+We have a problem here though -- these two requests are both asynchronous, but we only want to try to display or store the video when both promises are fulfilled. Fortunately there is a built-in method that handles such a problem -- [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all). This takes one argument -- references to all the individual promises you want to check for fulfillment placed in an array -- and is itself promise-based.
+
+When all those promises have fulfilled, the `all()` promise fulfills with an array containing all the individual fulfillment values. Inside the `all()` block, you can see that we then call the `displayVideo()` function like we did before to display the videos in the UI, then we also call the `storeVideo()` function to store those videos inside the database.
+```
+let mp4Blob = fetch('videos/' + video.name + '.mp4').then(response =>
+    response.blob()
+);
+let webmBlob = fetch('videos/' + video.name + '.webm').then(response =>
+    response.blob()
+);
+
+// Only run the next code when both promises have fulfilled
+Promise.all([mp4Blob, webmBlob]).then(function(values) {
+    // display the video fetched from the network with displayVideo()
+    displayVideo(values[0], values[1], video.name);
+    // store it in the IDB using storeVideo()
+    storeVideo(values[0], values[1], video.name);
+});
+```
+
+4. Let's look at `storeVideo()` first. This is very similar to the pattern you saw in the previous example for adding data to the database -- we open a `readwrite` transaction and get a reference to our `videos_os` object store, create an object representing the record to add to the database, then add it using [`IDBObjectStore.add()`](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/add).
+```
+function storeVideo(mp4Blob, webmBlob, name) {
+    // Open transaction, get object store; make it a readwrite so we can write to the IDB
+    let objectStore = db.transaction(['video_os'], 'readwrite').objectStore('videos_os');
+    // Create a record to add to the IDB
+    let record = {
+        mp4 : mp4Blob,
+        webm : webmBlob,
+        name : name
+    }
+
+    // Add the record to the IDB using add()
+    let request= objectStore.add(record);
+
+    ...
+
+};
+```
+
+5. Last but not least, we have `displayVideo()`, which creates the DOM elements needed to insert the video in the UI and then appends them to the page. The most insteresting parts of this are those shown below -- to actually display our video blobs in a `<video>` element, we need to create object URLs (internal URLs that point to the video blobs stored in memory) using the [`URL.creatObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) method. Once that is done, we can set the object URLs to be the values of our [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) element's `src` attributes, and it works fine.
+```
+function displayVideo(mp4Blob, webmBlob, title) {
+    // Create object URLs out of the blobs
+    let mp4URL = URL.createObjectURL(mp4Blob);
+    let webmURL = URL.createObjectURL(webmBlob);
+
+    ...
+
+    const video = document.createElement('video');
+    video.controls = true;
+    const source1 = document.createElement('source');
+    source1.src = mp4URL;
+    source1.type = 'video/mp4';
+    const source2 = document.createElement('source');
+    source2.src = webmURL;
+    source2.type = 'video/webm';
+
+    ...
+}
+```
 
 ## Offline asset storage
