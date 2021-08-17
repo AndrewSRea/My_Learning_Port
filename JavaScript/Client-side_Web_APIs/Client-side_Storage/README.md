@@ -632,4 +632,30 @@ if('serviceWorker' in navigator) {
 
 #### Installing the service worker
 
-The next time
+The next time any page under the service worker's control is accessed (e.g. when the example is reloaded), the service worker is installed against that page, meaning that it will start controlling it. When this occurs, an `install` event is fired against the service worker; you can write code inside the service worker itself that will respond to the installation.
+
+Let's look at an example, in the [sw.js](https://github.com/mdn/learning-area/blob/master/javascript/apis/client-side-storage/cache-sw/video-store-offline/sw.js) file (the service worker). You'll see that the install listener is registered against `self`. This `self` keyword is a way to refer to the global scope of the service worker from inside the service worker file.
+
+Inside the `install` handler, we use the [`ExtendableEvent.waitUntil()`](https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent/waitUntil) method, available on the event object, to signal that the browser shouldn't complete installation of the service worker until after the promise inside it has fulfilled successfully.
+
+Here is where we see the Cache API in action. We use the [`CacheStorage.open()`](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage/open) method to open a new cache object in which responses can be stored (similar to an IndexedDB object store). This promise fulfills with a [`Cache`](https://developer.mozilla.org/en-US/docs/Web/API/Cache) object representing the `video-store` cache. We then use the [`Cache.addAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Cache/addAll) method to fetch a series of assets and add their responses to the cache.
+```
+self.addEventListener('install', function(e) {
+    e.waitUntil(
+        caches.open('video-store').then(function(cache) {
+            return cache.addAll([
+                '/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/',
+                '/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/index.html',
+                '/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/index.js',
+                '/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/style.css'
+            ]);
+        })
+    );
+});
+```
+That's it for now, installation done.
+
+#### Responding to further requests
+
+With the service worker registered and installed against our HTML page, and the relevant assets all added to our cache, we are nearly ready to go. There is only one more thing to do, write some code to respond to further network requests.
+
