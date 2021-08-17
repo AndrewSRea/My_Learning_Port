@@ -679,3 +679,26 @@ self.addEventListener('fetch', function(e) {
 And that is it for our simple service worker. There is a whole load more you can do with them -- for a lot more detail, see the [service worker cookbook](https://serviceworke.rs/). And thanks to Paul Kinlan for his article, [Adding a Service Worker and Offline into your Web App](https://developers.google.com/web/fundamentals/codelabs/offline/), which inspired this simple example.
 
 #### Testing the example offline
+
+To test our [service worker example](), you'll need to load it a couple of times to make sure it is installed. Once this is done, you can:
+
+* Try unplugging your network/turning your WiFi off.
+* Select *File* > *Work Offline* if you are using Firefox.
+* Go to the devtools, then choose *Application* > *Service Workers*, then check the *Offline* checkbox if you are using Chrome.
+
+If you refresh your example page again, you should still see it load just fihne. Everything is stored offline -- the page assets in a cache, and the videos in an IndexedDB database.
+
+## Summary
+
+That's it for now. We hope you've found our rundown of client-side storage technologies useful.
+
+## See also
+
+* [Web storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+* [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+* [Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+* [Service worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Video_and_Audio_APIs#video-and-audio-apis) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Client-side_Web_APIs/Client-side_Storage#client-side-storage) - [[Next module: Server-side Website Programming]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming#server-side-website-programming)
