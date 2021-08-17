@@ -592,3 +592,44 @@ function displayVideo(mp4Blob, webmBlob, title) {
 ```
 
 ## Offline asset storage
+
+The above example already shows how to create an app that will store large assets in an IndexedDB database, avoiding the need to download them more than once. This is already a great improvement to the user experience, but there is still one thing missing -- the main HTML, CSS, and JavaScript files still need to be downloaded each time the site is accessed, meaning that it won't work when there is no network connection.
+
+![Image showing a network connection error](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage/ff-offline.png)
+
+This is where [Service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) and the closely-related [Cache API](https://developer.mozilla.org/en-US/docs/Web/API/Cache) come in.
+
+A service worker is a JavaScript file that is registered against a particular origin (web site, or part of a web site at a certain domain) when it is accessed by a browser. When registered, it can control pages available at that origin. It does this by sitting between a loaded page and the network, and intercepting network requests aimed at that origin.
+
+When it intercepts a request, it can do anything you wish to it (see [use case ideas](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API#other_use_case_ideas)), but the classic example is saving the network responses offline and then providing those in response to a request instead of the responses from the network. In effect, it allows you to make a web site work completely offline.
+
+The Cache API is another client-side storage mechanism, with a bit of a difference -- it is designed to save HTTP responses, and so works very well with service workers.
+
+### A service worker example
+
+Let's look at an example, to give you a bit of an idea of what this might look like. We have created another version of the video store example we saw in the previous section -- this functions identically, except that it also saves the HTML, CSS, and JavaScript in the Cache API via a service worker, allowing the example to run offline!
+
+See [IndexedDB video store with service worker running live](https://mdn.github.io/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/), and also [see the source code](https://github.com/mdn/learning-area/tree/master/javascript/apis/client-side-storage/cache-sw/video-store-offline).
+
+#### Registering the service worker
+
+The first thing to note is that there's an extra bit of code placed in the main JavaScript file (see [index.js](https://github.com/mdn/learning-area/blob/master/javascript/apis/client-side-storage/cache-sw/video-store-offline/index.js)). First, we do a feature detection test to see if the `serviceWorker` member is available in the [`Navigator`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) object. If this returns true, then we know that, at least, the basics of service workers are supported. Inside here, we use the [`ServiceWorkerContainer.register()`](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register) method to register a service worker contained in the `sw.js` file against the origin it resides at, so it can control pages in the same directory as it, or subdirectories. When its promise fulfills, the service worker is deemed registered.
+```
+// Register service worker to control making site work offline
+
+if('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/sw.js')
+             .then(function() { console.log('Service Worker Registered'); });
+}
+```
+
+<hr>
+
+**Note**: The given path to the `sw.js` file is relative to the site origin, not the JavaScript file that contains the code. The service worker is at `https://mdn.github.io/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/sw.js`. The origin is `https://mdn.github.io`, and therefore the given path has to be `/learning-area/javascript/apis/client-side-storage/cache-sw/video-store-offline/sw.js`. If you wanted to host this example on your own server, you'd have to change this accordingly. This is rather confusing, but it has to work this way for security reasons.
+
+<hr>
+
+#### Installing the service worker
+
+The next time
