@@ -659,3 +659,23 @@ That's it for now, installation done.
 
 With the service worker registered and installed against our HTML page, and the relevant assets all added to our cache, we are nearly ready to go. There is only one more thing to do, write some code to respond to further network requests.
 
+This is what the second bit of code in `sw.js` does. We add another listener to the service worker global scope, which runs the handler function when the `fetch` event is raised. This happens whenever the browser makes a request for an asset in the directory the service worker is registered against.
+
+Inside the handler, we first log the URL of the requested asset. We then provide a custom response to the request, using the [`FetchEvent.respondWith()`](https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/respondWith) method.
+
+Inside this block, we use [`CacheStorage.match()`](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage/match) to check whether a matching request (i.e. matches the URL) can be found in any cache. This promise fulfills with the matching response if a match is found, or `undefined` if it isn't.
+
+If a match is found, we return it as the custom response. If not, we [fetch()]() the response from the network and return that instead.
+```
+self.addEventListener('fetch', function(e) {
+    console.log(e.request.url);
+    e.respondWith(
+        caches.match(e.request).then(function(response) {
+            return response || fetch(e.request);
+        })
+    );
+});
+```
+And that is it for our simple service worker. There is a whole load more you can do with them -- for a lot more detail, see the [service worker cookbook](https://serviceworke.rs/). And thanks to Paul Kinlan for his article, [Adding a Service Worker and Offline into your Web App](https://developers.google.com/web/fundamentals/codelabs/offline/), which inspired this simple example.
+
+#### Testing the example offline
