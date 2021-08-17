@@ -1,0 +1,3 @@
+# Server-side website programming first steps
+
+In this module, we answer a few fundamental questions about server-side programming, such as "What is it?", "How does it differ from client-side programming?", and "Why is it so useful?". We also provide an overview of some of the most popular server-side web frameworks, along with guidance on how to select the most suitable framework for creating your first project. Finally, we provide a high-level introductory article about web server security.
