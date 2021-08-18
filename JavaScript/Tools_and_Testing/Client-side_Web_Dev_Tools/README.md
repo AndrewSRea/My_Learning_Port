@@ -4,7 +4,7 @@ Client-side tooling can be intimidating, but this series of articles aims to ill
 
 ## Guides
 
-**[Client-side tooling overview]()**
+**[Client-side tooling overview](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Client-side_Tooling#client-side-tooling-overview)**
 
 In this article, we provide an overview of modern web tooling, what kinds of tools are available and where you'll meet them in the lifecycle of web app development, and how to find help with individual tools.
 
