@@ -126,3 +126,57 @@ cd ..
 **Note**: A very useful terminal shortcut is using the <kbd>tab</kbd> key to autocomplete names that you know are present, rather than having to type out the whole thing. For example, after typing the above two commands, try typing `cd D` and pressing <kbd>tab</kbd> -- it should autocomplete the directory name `Desktop` for you, provided it is present in the current directory. Bear this in mind as you move forward.
 
 <hr>
+
+If the directory you want to go to is nested deep, you need to know the path to get to it. This usually becomes easier as you get more familiar with the structure of your file system but if you are not sure of the path, you can usually figure it out with a combination of the `ls` command (see below), and by clicking around in your Explorer/Finder window to see where a directory is, relative to where you currently are.
+
+For example, if you wanted to go to a directory called `src`, located inside a directory called `project`, located on the `Desktop`, you could type these three commands to get there from your home folder:
+```
+cd Desktop
+cd project
+cd src
+```
+But this is a waste of time -- instead, you can type one command, with the different items in the path separated by forward slashes, just like you do when specifying paths to images or other assets in CSS, HTML, or JavaScript code:
+```
+cd Desktop/project/src
+```
+Note that including a leading slash on your path makes the path absolute -- for example, `/Users/your-user-name/Desktop`. Omitting the leading slash like we've done above makes the path relative to your present working directory. This is exactly the same as you would see with URLs in your web browser. A leading slash means "at the root of the web site", whereas omitting the slash means "the URL is relative to my current page".
+
+<hr>
+
+**Note**: On Windows, you use backslashes instead of forward slashes, e.g. cd Desktop\project\src` -- this may seem really odd, but if you are interested in why, [watch this YouTube clip](https://www.youtube.com/watch?v=5T3IJfBfBmI) featuring an explanation by one of Microsoft's principal engineers.
+
+### Listing directory contents
+
+Another built-in Unix command is `ls` (short for list), which lists the contents of the directory you're currently in. Note that this won't work if you're using the default Windows command prompt (`cmd`) -- the equivalent there is `dir`.
+
+Try running this now in your terminal:
+```
+ls
+```
+This gives you a list of the files and directories in your present working directory, but the information is really basic -- you only get the name of each item present, not whether it is a file or a directory, or anything else. Fortunately, a small change to the command usage can give you a lot more information.
+
+### Introducing command options
+
+Most terminal commands have options -- these are modifiers that you add onto the end of a command, which make it behave in a slightly different way. These usually consist of a space after the command name, followed by one or more letters.
+
+For example, give this a go and see what you get:
+```
+ls -l
+```
+In the case of `ls`, the `-l` (*dash ell*) option gives you a listing with one file or directory on each line, and a lot more information shown. Directories can be identified by looking for a letter "d" on the very left-hand side of the lines. Those are the ones we can `cd` into.
+
+Below is a screenshot with a "vanilla" macOS terminal at the top, and a customized terminal with some extra icons and colors to keep it looking lively -- both showing the results of running `ls -l`:
+
+![Image of two terminals showing results of the "ls -l" command](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line/mac-terminals-ls.png)
+
+<hr>
+
+**Note**: To find out exactly what options each command has available, you can look at its [man page](https://en.wikipedia.org/wiki/Man_page). This is done by typing the `man` command, followed by the name of the command you want to look up -- for example, `man ls`. This will open up the man page in the terminal's default text file viewer (for example, [`less`](https://en.wikipedia.org/wiki/Less_(Unix)) in my terminal), and you should then be able to scroll through the page using the arrow keys, or some simlar mechanism. The man page lists all the options in great detail, which may be a bit intimidating to begin with, but at least you know it's there if you need it. Once you are finished looking through the man page, you need to quit out of it using your text viewer's quit command ("q" in `less`; you may have to search on the web to find it if it isn't obvious).
+
+<hr>
+
+**Note**: To run a command with multiple options at the same time, you can usually put them all in a single string after the dash character -- for example, `ls -lah`, or `ls -ltrh`. Try looking at the `ls` man page to work out what these extra options do!
+
+<hr>
+
+Now that we've discussed two fundamental commands, have a little poke around your directory and see if you can navigate from one place to the next.
