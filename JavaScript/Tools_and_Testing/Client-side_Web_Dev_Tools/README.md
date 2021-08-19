@@ -8,7 +8,7 @@ Client-side tooling can be intimidating, but this series of articles aims to ill
 
 In this article, we provide an overview of modern web tooling, what kinds of tools are available and where you'll meet them in the lifecycle of web app development, and how to find help with individual tools.
 
-**[Command line crash course]()**
+**[Command line crash course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#command-line-crash-course)**
 
 In your development process, you'll undoubtedly be required to run some command in the terminal (or on the "command line" -- these are effectively the same thing). This article provides an introduction to the terminal, the essential commands you'll need to enter into it, how to chain commands together, and how to add your own command line interface (CLI) tools.
 
