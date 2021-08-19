@@ -69,3 +69,60 @@ However, the best option for Windows in the modern day is the Windows Subsystem 
 This can be installed directly from the Windows store for free. You can find all the documentation you need in the [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/).
 
 In terms of what option to choose on Windows, we'd strongly recommend trying to install the WSL. You could stick with the default command prompt (`cmd`), and many tools will work OK, but you'll find everything easier if you have better parity with Unix tools.
+
+#### Side note: What's the difference between a command line and a terminal?
+
+Generally you'll find these two terms used interchangeably. Technically, a terminal is software that starts and connects to a shell. A shell is your session and session environment (where things like the prompt and shortcuts might be customized). The command line is the literal line where you enter commands and the cursor blinks.
+
+### Do you *have* to use the terminal?
+
+Although there's a great wealth of tools available from the command line, if you're using tools like [Visual Studio Code](https://code.visualstudio.com/), there's also a mass of extensions that can be used as a proxy to using terminal commands without needing to use the terminal directly. However, you won't find a code editor extension for everything you want to do -- you'll have to get some experience with the terminal eventually.
+
+## Basic built-in terminal commands
+
+Enough talk -- let's start looking at some terminal commands! Out of the box, here are just a few of the things the command line can do, along with names of relevant tools in each case:
+
+* Navigate your computer's file system along with base level tasks such as create, copy, rename, and delete:
+    - Move around your directory structure: `cd`
+    - Create directories: `mkdir`
+    - Create file (and modify their metadata): `touch`
+    - Copy files: `cp`
+    - Move files: `mv`
+    - Delete files or directions: `rm`
+* Download files found at specific URLs: `curl`
+* Search for fragments of text inside larger bodies of text: `grep`
+* View a file's contents page by page: `less`, `cat`
+* Manipulate and transform streams of text (for example, changing all the instances of `<div>`s in an HTML file to `<article>`): `awk`, `tr`, `sed`
+
+<hr>
+
+**Note**: There are a number of good tutorials on the web that go much deeper into the command line on the web -- this is only a brief introduction!
+
+<hr>
+
+Let's move forward and look at using a few of these tools on the command line. Before you go any further, open your terminal program!
+
+### Navigation on the command line
+
+When you visit the command line, you will inevitably need to navigate to a particular directory to "do something". All the operating systems (assuming a default setup) will launch their terminal program in your "home" directory, and from there you're likely to want to move to a different place.
+
+The `cd` command lets you Change Directory. Technically, cd isn't a program but a built-in. This means your operating system provides it out of the box, and also that you can't accidentally delete it -- thank goodness! You don't need to worry too much about whether a command is a built-in or not, but bear in mind that built-ins appear on all Unix-based systems.
+
+To change directory, you type `cd` into your terminal, followed by the directory you want to move to. Assuming the directory is inside your home directory, you can use `cd Desktop` (see the screenshots below).
+
+![Image of the various operating system terminal screens](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line/win-terminals-cd.png)
+
+Try typing this into your system's terminal:
+```
+cd Desktop
+```
+If you want to move back up to the previous directory, you can use two dots:
+```
+cd ..
+```
+
+<hr>
+
+**Note**: A very useful terminal shortcut is using the <kbd>tab</kbd> key to autocomplete names that you know are present, rather than having to type out the whole thing. For example, after typing the above two commands, try typing `cd D` and pressing <kbd>tab</kbd> -- it should autocomplete the directory name `Desktop` for you, provided it is present in the current directory. Bear this in mind as you move forward.
+
+<hr>
