@@ -107,3 +107,37 @@ Deployment systems allow you to get your website published, are available for bo
 #### Others
 
 There are a number of other tool types available to use in the post-development stage, including [Code Climate](https://codeclimate.com/) for gathering code quality metrics, the [webhint browser extension](https://webhint.io/docs/user-guide/extensions/extension-browser/) for performing runtime analysis of cross-browser compatibility and other checks, [GitHub bots](https://probot.github.io/) for providing more powerful GitHub functionality, [Updown](https://updown.io/) for providing app uptime monitoring, and so many more!
+
+### Some thoughts about tooling types
+
+There's certainly an order in which the different tooling types apply in the development lifecycle, but rest assured that you don't *have* to have all of these in place to release a website. In fact, you don't need any of these. However, including some of these tools in your process will improve your own development experience and likely improve the overall quality of your code.
+
+It often takes some time for new developer tools to settle down in their complexity. One of the best known tools, Webpack, has a reputation for being overly complicated to work with but in the latest major release, there was a huge push to simplify common usage so the configuration required is reduced down to an absolute minimum.
+
+There's definitely no silver bullet that will guarantee success with tools but as your experience increases, you'll find workflows that work *for you* and your team and their projects. Once all the kinks in the process are flattened out, your tool chain should be something you can forget about and it *should* just work.
+
+## How to choose and get help with a particular tool
+
+Most tools tend to get written and released in isolation so although there's almost certainly help available, it's never in the same place or format. It can, therefore, be hard to find help with using a tool, or even to choose what tool to use. The knowledge about which are the best tools to use is a bit tribal, meaning that if you aren't already in the web community, it is hard to find out exactly which ones to go for! This is one reason we wrote this series or articles, to hopefully provide that first step that is hard to find otherwise.
+
+You'll probably need a combination of the following things:
+
+* Experienced teachers, mentors, fellow students, or colleagues that have some experience, have solved such problems before, and can give advice.
+* A useful specific place to search. General web searches for front-end developer tools are generally useless unless you already know the name of the tool you are searching for.
+    - If you are using the npm package manager to manage your dependencies, for example, it is a good idea to go to the [npm homepage](https://www.npmjs.com/) and search for the type of tool your are looking for. For example, try searching for "date" if you want a date formatting utility, or "formatter" if you are searching for a general code formatter. Pay attention to the popularity, quality, and maintenance scores, and how recently the package was last updated. Also, click through to the tool pages to find out how many monthly downloads a package has, and whether it has good documentation that you can use to figure out whether it does what you need it to do. Based on these criteria, the [date-fns library](https://www.npmjs.com/package/date-fns) looks like a good date formatting tool to use. You'll see this tool in action and learn more about package managers in general in Chapter 3 of this module.
+    - If you are looking for a plugin to integrate tool functionality into your code editor, look at the code editor's plugins/extensions page -- see [Atom packages](https://atom.io/packages) and [VSCode extensions](https://marketplace.visualstudio.com/VSCode), for example. Have a look at the featured extensions on the front page, and again, try searching for the kind of extension you want (or the tool name -- for example, search for "eslint" on the VSCode extensions page). When you get results, have a look at information such as how many stars or downloads the extension has, as an indicator of its quality.
+* Development-related forums to ask questions on about what tools to use -- for example, [MDN Learn Discourse](https://discourse.mozilla.org/c/mdn/learn/250), or [Stack Overflow](https://stackoverflow.com/).
+
+When you've chosen a tool to use, the first port of call should be the tool project homepage. This could be a full blown website or it might be a single README document in a code repository. The [date-fns docs](https://date-fns.org/docs/Getting-Started), for example, are pretty good, complete, and easy to follow. Some documentation, however, can be rather technical and academic and not a good fit for your learning needs.
+
+Instead, you might want to find some dedicated tutorials on getting started with particular types of tools. Great starting places are to search web sites like [CSS Tricks](https://css-tricks.com/), [Dev](https://dev.to/), [freeCodeCamp](https://www.freecodecamp.org/), and [Smashing Magazine](https://www.smashingmagazine.com/), as they're tailored to the web development industry.
+
+Again, you'll probably go through several different tools as you search for the right ones for you, trying them out to see if they make sense, are well-supported, and do what you want them to do. This is fine -- it is all good for learning, and the road will get smoother as you get more experience.
+
+## Summary
+
+That rounds off our gentle introduction to the topic of client-side web tooling, from a high level. Next up, we provide you with a crash course on the command line, which is where a lot of tooling is invoked from. We'll take a look at what the command line can do and then try installing and using our first tool.
+
+<hr>
+
+[[Back to the Understanding client-side web development tools opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools#understanding-client-side-web-development-tools) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Client-side_Tooling#client-side-tooling-overview) - [[Next page]]()
