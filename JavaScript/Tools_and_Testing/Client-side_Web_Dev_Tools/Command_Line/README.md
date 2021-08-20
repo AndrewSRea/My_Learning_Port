@@ -213,3 +213,99 @@ A great resource for getting a quick overview of specific terminal commands is [
 In the next section, let's step it up a notch (or several notches in fact) and see how we can connect tools together on the command line to really see how the terminal can be advantageous over the regular desktop user interface.
 
 ## Connecting commands together with pipes
+
+The terminal really comes into its own when you start to chain commands together using the `|` (pipe) symbol. Let's look at a very quick example of what this means.
+
+We've already looked at `ls`, which outputs the contents of the current directory:
+```
+ls
+```
+But what if we wanted to quickly count the number of files and directories inside the current directory? `ls` can't do that on its own.
+
+There is another Unix tool available called `wc`. This counts the number of words, lines, characters, or bytes of whatever is inputted into it. This can be a text file -- the below example outputs the number of lines in `myfile.txt`:
+```
+wc -l myfile.txt
+```
+But it can also count the number of lines of whatever output is **piped** into it. For example, the below command counts the number of lines outputted by the `ls` command (what it would normally print to the terminal if run on its own) and outputs that count to the terminal instead:
+```
+ls | wc -l
+```
+Since `ls` prints each file or directory on its own line, that effectively gives us a directory and file count.
+
+So what is going on here? A general philosophy of (Unix) command line tools is that they print text to the terminal (also referred to as "printing to standard output" or `STDOUT`). A good deal of commands can also read content from streamed input (known as "standard input" or `STDIN`).
+
+The pipe operator can *connect* these inputs and outputs together, allowing us to build up increasingly more complex operations to suit our needs -- the output from one command can become the input to the next command. In this case, `ls` would normally print its output to `STDOUT`, but instead `ls`'s output is being piped into `wc`, which takes that output as an input, counting the number of lines it contains, and prints that count to `STDOUT` instead.
+
+## A slightly more complex example
+
+Let's go through something a bit more complicated. We will first try to fetch the contents of MDN's "fetch" page using the `curl` command (which can be used to request content from URLs), from [https://developer.mozilla.org/en-US/docs/Web/API/fetch](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch).
+
+However, this URL is the old location of the page. If you enter it in a new browser tab, you'll (eventually) get redirected to [https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch).
+
+Therefore, if you use `curl` to request https://developer.mozilla.org/en-US/docs/Web/API/fetch, you won't get an output. Try it now:
+```
+curl https://developer.mozilla.org/en-US/docs/Web/API/fetch
+```
+We need to explicitly tell `curl` to follow redirects using the `-L` flag.
+
+Let's also look at the headers that `developer.mozilla.org` returns using `curl`'s `-I` flag, and print all the location redirects it sends to the terminal, by piping the output of `curl` into `grep` (we will ask `grep` to return all the lines that contain the word "location").
+
+Try running the following, and you'll see that, in fact, there are three redirects happening before we reach the final page:
+```
+curl https://developer.mozilla.org/docs/Web/API/fetch -L -I | grep location
+```
+Your output should look something like this (`curl` will first output some download counters and suchlike):
+```
+location: /en-US/docs/Web/API/fetch
+location: /en-US/docs/Web/API/GlobalFetch/GlobalFetch.fetch()
+location: /en-US/docs/Web/API/GlobalFetch/fetch
+location: /en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+```
+Although contrived, we could take this result a little further and transform the `location:` line contents, adding the base origin to the start of each one so that we get complete URLs printed out. For that, we'll add `awk` to the mix (which is a programming language akin to JavaScript or Ruby or Python, just a lot older!).
+
+Try running this:
+```
+curl https://developer.mozilla.org/docs/Web/API/fetch -L -I | grep location | awk '{ print "https://developer.mozilla.org" $2 }'
+```
+Your final output should look something like this:
+```
+https://developer.mozilla.org/en-US/docs/Web/API/fetch
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/GlobalFetch.fetch()
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+```
+By combining these commands, we've customized the output to show the full URLs that the Mozilla server is redirecting through when we request the `/docs/Web/API/fetch` URL.
+
+Getting to know your ystem will prove useful in years to come -- learn how these single serving tools work and how they can become part of your arsenal to solve niche problems.
+
+## Adding powerups
+
+Now we've had a look at some of the built-in commands your system comes equipped with, let's look at how we can install a third-party CLI tool and make use of it.
+
+The vast ecosystem of installable tools for front-end web development currently exists mostly inside [npm](https://www.npmjs.com/), a privately owned, package hosting service that works closely together with Node.js. This is slowly expanding -- you can expect to see more package providers as time goes on.
+
+[Installing Node.js](https://nodejs.org/en/) also installs the npm command line tool (and a supplementary npm-centric tool called npx), which offers a gateway to installing additional command line tools. Node.js and npm work the same across all systems: macOS, Windows, and Linux.
+
+Install npm on your system now, by going to the URL above and downloading and running a Node.js installer appropriate to your operating system. If prompted, make sure to include npm as part of the installation.
+
+Although we'll look at a number of different tools in the next article onwards, we'll cut our teeth on [Prettier](https://prettier.io/). Prettier is an optional code formatter that has "few options". Fewer options tends to mean simpler. Given how tooling can sometimes get out of hand in terms of complexity, "few options" can be very appealing.
+
+### Where to install our CLI tools?
+
+Before we dive into installing Prettier, there's a question to answer -- "where should we install to?"
+
+With `npm`, we have the choice of installing tools globally -- so we can access them anywhere -- or locally to the current project directory.
+
+There's pros and cons each way -- and the list of pros and cons for globally installing is far from exhaustive:
+
+| Pros of installing globally | Cons of installing globally |
+| --- | --- |
+| Accessible anywahere in your terminal | May not be compatible with your project's codebase |
+| Only install once | Other developers in your team won't have access to these tools. For example, if you are sharing the codebase over a tool like git. |
+| Uses less disk space | Related to the previous point, it makes project code harder to replicate (if you install your tools locally, they can be set up as dependencies and installed with `npm install`). |
+| Always the same version |   |
+| Feels like any other Unix command |   | 
+
+Although the *cons* list is shorter, the negative impact of global installing is potentially much larger than the benefits. However, for now we'll err on the side of simplicity and install globally to keep things simple. We'll look more at local installs and why they're good in the next article.
+
+### Installing Prettier
