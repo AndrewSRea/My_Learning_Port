@@ -300,7 +300,7 @@ There's pros and cons each way -- and the list of pros and cons for globally ins
 
 | Pros of installing globally | Cons of installing globally |
 | --- | --- |
-| Accessible anywahere in your terminal | May not be compatible with your project's codebase |
+| Accessible anywhere in your terminal | May not be compatible with your project's codebase |
 | Only install once | Other developers in your team won't have access to these tools. For example, if you are sharing the codebase over a tool like git. |
 | Uses less disk space | Related to the previous point, it makes project code harder to replicate (if you install your tools locally, they can be set up as dependencies and installed with `npm install`). |
 | Always the same version |   |
