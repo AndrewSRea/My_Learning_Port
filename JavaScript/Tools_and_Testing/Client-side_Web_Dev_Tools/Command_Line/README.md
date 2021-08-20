@@ -309,3 +309,108 @@ There's pros and cons each way -- and the list of pros and cons for globally ins
 Although the *cons* list is shorter, the negative impact of global installing is potentially much larger than the benefits. However, for now we'll err on the side of simplicity and install globally to keep things simple. We'll look more at local installs and why they're good in the next article.
 
 ### Installing Prettier
+
+For this article, we will install Prettier as a global command line utility.
+
+Prettier is an opinionated code formatting tool for front-end developers, focusing around JavaScript-based languages and adding support for HTML, CSS, SCSS, JSON, and more. Prettier can:
+
+* Save the cognitive overhead of getting the style consistent manually across all your code files; Prettier can do this for you automatically.
+* Help newcomers to web development format their code in best-practice fashion.
+* Be installed on any operating system and even as a direct part of project tooling, ensuring that colleagues and friends who work on your code use the code style you're using.
+* Be configured to run upon save, as you type, or even before publishing your code (with additional tooling that we'll see later on in the module).
+
+Once you've installed node, open up the terminal and run the following command to install Prettier:
+```
+npm install --global prettier
+```
+Once the command has finished running, the Prettier tool is now available in your terminal, at any location in your file system.
+
+Running the command without any arguments, as with many other commands, will offer up usage and help information. Try this now:
+```
+prettier
+```
+Your output should look something like this:
+```
+Usage: prettier [options] [file/glob ...]
+
+By default, output is written to stdout.
+Stdin is read if it is piped to Prettier and no files are given.
+
+...
+```
+It's always worth, at the very least, skimming over the usage information, even if it is long. It'll help you to understand better how the tool is intended to be used.
+
+### Playing with Prettier
+
+Let's have a quick play with Prettier, so you can see how it works.
+
+First of all, create a new directory somewhere on your file system that is easy to find. Maybe a directory called `prettier-test` on your `Desktop`.
+
+Now save the following code in a new file called `index.js`, inside your test directory:
+```
+const myObj = {
+a:1,b:{c:2}}
+function printMe(obj){console.log(obj.b.c)}
+printMe(myObj)
+```
+We can run Prettier against a codebase to just check if our code wants adjusting. `cd` into your directory, and try running this command:
+```
+prettier --check index.js
+```
+You should get an output along the lines of
+```
+Checking formatting...
+index.js
+Code style issues found in the above file(s). Forgot to run Prettier?
+```
+So there's some code styles that can be fixed. No problem. Adding the `--write` option to the Prettier command will fix those up, leaving us to focus on actually writing useful code.
+
+Now try running this version of the command:
+```
+prettier --write index.js
+```
+You'll get an output like this:
+```
+Checking formatting...
+index.js
+Code style issues fixed in the above file(s).
+```
+But more importantly, if you look back at your JavaScript file, you'll find it has been reformatted to something like this:
+```
+const myObj = {
+    a: 1,
+    b: { c: 2 },
+};
+function printMe(obj) {
+    console.log(obj.b.c);
+}
+printMe(myObj);
+```
+Depending on your workflow (or the workflow that you pick), you can make this an automated part of your process. Automation is really where tools excel; our personal preference is the kind of automation that "just happens" without having to configure anything.
+
+With Prettier, there's a number of ways automation can be achieved and though they're beyond the scope of this article, there's some excellent resources online to help (some of which have been linked to). You can invoke Prettier:
+
+* Before you commit your code into a git repository using [Husky](https://github.com/typicode/husky).
+* Whenever you hit "save" in your code editor, be it [VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [Atom](https://atom.io/packages/prettier-atom), or [Sublime Text](https://packagecontrol.io/packages/JsPrettier).
+* As part of continuous integration checks using tools like [GitHub Actions](https://github.com/features/actions).
+
+Our personal preference is the second one -- while using, say VS Code, Prettier kicks in and cleans up any formatting it needs to do every time we hit save. You can find a lot more information about using prettier in different ways in the [Prettier docs](https://prettier.io/docs/en/).
+
+## Other tools to play with
+
+If you want to play with a few more tools, here's a brief list of tools which are fun to try out:
+
+* [`bat`](https://github.com/sharkdp/bat) -- A "nicer" `cat` (`cat` is used to print the contents of files).
+* [`prettyping`](https://denilson.sa.nom.br/prettyping/) -- `ping` on the command line, but visualized (`ping` is a useful tool to check if a server is responding).
+* [`htop`](https://htop.dev/) -- A process viewer, useful for when something is making your CPU fan behave like a jet engine and you want to identify the offending program.
+* [`tldr`](https://tldr.sh/#installation) -- Mentioned earlier in this chapter, but available as a command line tool.
+
+Note that some of the above suggestions may need installing using npm, like we did with Prettier.
+
+## Summary
+
+That brings us to the end of our brief tour of the terminal/command line. Next up, we'll be looking in more detail at package managers, and what we can do with them.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Client-side_Tooling#client-side-tooling-overview) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#command-line-crash-course) - [[Next page]]()    
