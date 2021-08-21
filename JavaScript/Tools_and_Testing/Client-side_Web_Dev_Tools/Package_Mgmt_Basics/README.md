@@ -145,3 +145,45 @@ Next, we need to add an `index.js` file in the same directory as `index.html`. F
 
 ### Having fun with Parcel
 
+Now we'll run our newly installed Parcel tool. In your terminal, run the following command:
+```
+parcel index.html
+```
+You should see something like this printed to your terminal:
+```
+Server running at http://localhose:1234
+✨  Built in 193ms.
+```
+
+<hr>
+
+**Note**: If you have trouble with the terminal returning a "command not found" type error, try running the above command with the `npx` utility, i.e. `npx parcel index.html`.
+
+<hr>
+
+Now we're ready to benefit from the full JavaScript package ecosystem. For a start, there is now a local web server running at `http://localhost:1234`. Go there now and you'll not see anything for now, but what is cool is that when you do make changes to your app, Parcel will rebuild it and refresh the server automatically so you can instantly see the effect your update had.
+
+Now for some page content. Let's say we want to show human-readable relative dates, such as "2 hours ago", "4 days ago", and so on. The [`date-fns`]() package's `formatDistanceToNow()` method is useful for this (there's other packages that do the same thing, too).
+
+In the `index.js` file, add the following code and save it:
+```
+import { formatDistanceToNow } from 'date-fns'
+
+const date = '1996-09-13 10:00:00';
+document.body.textContent = formatDistanceToNow(new Date(date)) + ' ago';
+```
+Go back to `http://localhost:1234` and you'll see how long ago it is since the (Mozilla) author turned 18.
+
+What's particularly special about the code above is that it is using the `formatDistanceToNow()` function from the `date-fns` package, which we didn't install! Parcel has spotted that you need the module, searched for it in the `npmjs.com` package registry, and installed it locally for us, automatically. You can prove this by looking in our `package.json` file again -- you'll see that the `dependencies` field has been updated for us:
+```
+"dependencies": {
+    "date-fns": "^2.12.0",
+    "parcel-bundler": "^1.12.4"
+}
+```
+Parcel has also added the files required for someone else to pick up this project and install any dependencies that we've used. If you take a look in the directory you ran the `parcel` command in, you'll find a number of new files; the most interesting of which are:
+
+* `node_modules`: The dependency files of Parcel and date-fns.
+* `dist`: The distribution directory -- these are the automatically packaged, minified files Parcel has built for us, and the files it is serving at `localhost:1234`. These are the files you would upload to your web server when releasing the site online for public consumption.
+
+So long as we know the package name, we can use it in our code and Parcel will go off, fetch, and install (actually "copy") the package into our local directory (under `node_modules`).
