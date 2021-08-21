@@ -19,3 +19,29 @@ In addition, what happens if you find a better tool that you want to use instead
 We've met [npm](https://www.npmjs.com/) already, but stepping back from npm itself, a package manager is a system that will manage your project dependencies.
 
 The package manager will provide a method to install new dependencies (also referred to as "packages"), manage where packages are stored on your file system, and offer capabilities for you to publish your own packages.
+
+In theory, you may not need a package manager and you could manually download and store your project dependencies, but a package manager will seamlessly handle installing and uninstalling packages. If you didn't use one, you'd have to manually handle:
+
+* Finding all the correct package JavaScript files.
+* Checking them to make sure they don't have any known vulnerabilities.
+* Downloading them and putting them in the correct locations in your project.
+* Writing the code to include the package(s) in your application (this tends to be done using [JavaScript modules](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#javascript-modules), another subject that is worth reading up on and understanding [the link here leads to my own folder on the subject]).
+* Doiong the same thing for all of the packages' sub-dependencies, of which there could be tens, or hundreds.
+* Removing all the files again if you want to remove the packages.
+
+In addition, package managers handle duplicate dependencies (something that becomes important and common in front-end development).
+
+In the case of npm (and JavaScript- and Node-based package managers), you have two options for where you install your dependencies. As we touched on in the previous article, dependencies can be installed globally or locally to your project. Although there tend to be more pros for installing globally, the pros for installing locally are more important -- such as code portability and version locking.
+
+For example, if your project relied on Webpack with a certain configuration, you'd want to ensure that if you installed that project on another machine or returned to it much later on, the configuration would still work. If a different version of Webpack was installed, it may not be compatible. To mitigate this, dependencies are installed locally to a project.
+
+To see local dependencies really shine, all you need to do is try to download and run an existing project -- if it works and all the dependencies work right out of the box, then you have local dependencies to thank for the fact that the code is portable.
+
+<hr>
+
+**Note**: npm is not the only package manager available. A successful and popular alternative package manager is [Yarn](https://yarnpkg.com/). Yarn resolves the dependencies using a different algorithm that can mean a faster user experience. There are also a number of other emerging clients, such as [pnpm](https://pnpm.io/).
+
+<hr>
+
+## Package registries
+
