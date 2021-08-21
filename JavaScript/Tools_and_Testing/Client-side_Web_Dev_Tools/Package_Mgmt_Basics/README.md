@@ -26,7 +26,7 @@ In theory, you may not need a package manager and you could manually download an
 * Checking them to make sure they don't have any known vulnerabilities.
 * Downloading them and putting them in the correct locations in your project.
 * Writing the code to include the package(s) in your application (this tends to be done using [JavaScript modules](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#javascript-modules), another subject that is worth reading up on and understanding [the link here leads to my own folder on the subject]).
-* Doiong the same thing for all of the packages' sub-dependencies, of which there could be tens, or hundreds.
+* Doing the same thing for all of the packages' sub-dependencies, of which there could be tens, or hundreds.
 * Removing all the files again if you want to remove the packages.
 
 In addition, package managers handle duplicate dependencies (something that becomes important and common in front-end development).
