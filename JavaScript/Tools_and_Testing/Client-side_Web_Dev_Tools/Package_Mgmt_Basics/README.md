@@ -104,3 +104,44 @@ So this is the config file that defines your package. This is good for now, so l
 
 Run the following command to install Parcel locally:
 ```
+npm install parcel-bundler
+```
+Once that's done, we're now ready for some "modern client-side development" (which really means using build tools to make the developer experience a little easier). First of all, however, take another look at your package.json file. You'll see that npm has added a new field, `dependencies`:
+```
+"dependencies": {
+    "parcel-bundler": "^1.12.4"
+}
+```
+This is part of the npm magic -- if, in the future, you move your codebase to another location, on another machine, you can recreate the same set up by running the command `npm install`, and npm will look at the dependencies and install them for you.
+
+One disadvantage is that Parcel is only available inside our `parcel-experiment` app; you won't be able to run it in a different directory. But the advantages outweigh the disadvantages.
+
+<hr>
+
+**Personal note**: After typing the terminal command `npm install parcel-bundler`, npm downloaded a subfolder in my `Parcel_Experiment` folder named `node_modules` with over 100 subfolders, and I received a warning message in my terminal basically stating that all of these subfolders would be too large to be added through Git to my GitHub repository. So after this example is finished, I will not be adding the `node_modules` subfolder to my repository and I will have to -- *ugh!* -- delete all of these subfolders from my local **My_Learning_Port** folder.
+
+<hr>
+
+### Setting up our example app
+
+Anyway, on with the setup.
+
+Parcel expects an `index.html` and an `index.js` file to work with., but otherwise it is very unopinionated about how you structure your project. Other tools can be very different but, at least, Parcel makes it easy for our initial experiment.
+
+So now we need to add an `index.html` file to our working directory. Create `index.html` in your test directory, and give it the following contents:
+```
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title>
+    </head>
+    <body>
+        <script src="./index.js"></script>
+    </body>
+</html>
+```
+Next, we need to add an `index.js` file in the same directory as `index.html`. For now, `index.js` can be empty; it just needs to exist. Create this now.
+
+### Having fun with Parcel
+
