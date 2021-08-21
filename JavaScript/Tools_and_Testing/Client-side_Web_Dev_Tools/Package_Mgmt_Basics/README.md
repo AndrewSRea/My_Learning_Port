@@ -45,3 +45,62 @@ To see local dependencies really shine, all you need to do is try to download an
 
 ## Package registries
 
+For a package manager to work, it needs to know where to install packages from, and this comes in the form of a package registry. The registry is a central place that a package is published to and thus can be installed from. npm, as well as being a package manager, is also the name of the most commonly-used package registry for JavaScript packages. The npm registry exists at [npmjs.com](https://www.npmjs.com/).
+
+npm is not the only option. You could manage your own package registry -- products like [Microsoft Azure](https://azure.microsoft.com/en-us/) allow you to create proxies to the npm registry (so you can override or lock certain packages), [GitHub also offers a package registry service](https://github.com/features/packages), and there will likely be more options appearing as tijme goes on.
+
+What is important is that you ensure you've chosen the best registry for you. Many projects will use npm, and we'll stick to this in our examples throughout the rest of the module.
+
+## Using the package ecosystem
+
+Let's run through an example to get you started with using a package manager and registry to install a command line utility.
+
+[Parcel](https://parceljs.org/) is another tool that developers commonly use in their development process. Parcel is clever in that it can watch the contents of our code for calls to dependencies and automatically installs any dependencies it sees that our code needs. It can also automatically build our code.
+
+In our previous chapter, we installed Prettier as a global tool. Here, however, let's use npm to install Parcel as a local tool, as best practices dictate. We'll install it as part of an experimental app.
+
+### Setting up the app as an npm package
+
+First of all, create a new directory to store our experimental app in, somewhere sensible that you'll find again. We'll call it `parcel-experiment`, but you can call it whatever you like:
+```
+mkdir parcel-experiment
+cd parcel-experiment
+```
+Next, let's initialize our app as an npm package, which creates a config file -- `package.json` -- that allows us to save our configuration details in case we want to recreate this environment later on, or even publish the package to the npm registry (although this is somewhat beyond the scope of this article).
+
+Type the following command, making sure you are inside the `parcel-experiment` directory:
+```
+npm init
+```
+You will now be asked some questions; npm will then create a default `package.json` file based on the answers:
+
+* `name`: A name to identify the app. Just press <kbd>Return</kbd> to accept the default `parcel-experiment`.
+* `version`: The starting version number for the app: Again, just press <kbd>Return</kbd> to accept the default `1.0.0`.
+* `description`: A quick description of the app's purpose. Type in something really simple, like "A simple npm package to learn about using npm", then press <kbd>Return</kbd>.
+* `entry point`: This will be the top-level JavaScript file of the app. The default `index.js` is fine for now -- press <kbd>Return</kbd>.
+* `test command`, `git repository`, and `keywords`: Press <kbd>Return</kbd> to leave each of these blank for now.
+* `author`: The author of the project. Type your own name, and press <kbd>Return</kbd>.
+* `license`: The license to publish the package under: Press <kbd>Return</kbd> to accept the default for now.
+
+Press <kbd>Return</kbd> one more time to accept these settings.
+
+Go into your `parcel-experiment` directory and you should now find you've got a package.json file. Open it up and it should look something like this:
+```
+{
+    "name": "parcel-experiment",
+    "version": "1.0.0",
+    "description": "A simple npm package to learn about using npm",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Chris Mills",
+    "license": "ISC"
+}
+```
+So this is the config file that defines your package. This is good for now, so let's move on.
+
+### Installing parcel
+
+Run the following command to install Parcel locally:
+```
