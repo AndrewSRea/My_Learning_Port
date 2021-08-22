@@ -378,6 +378,11 @@ You can add all kinds of things to the `scripts` property that help you do your 
 
 This brings us to the end of our tour of package managers. Our next move is to build up a sample toolchain, putting all that we've learned so far into practice.
 
+## See also
+
+* [Introduction to npm scripts](https://www.freecodecamp.org/news/introduction-to-npm-scripts-1dbb2ae01633/)
+* [package.json reference](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)
+
 <hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#command-line-crash-course) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics) - [[Next page]]()
