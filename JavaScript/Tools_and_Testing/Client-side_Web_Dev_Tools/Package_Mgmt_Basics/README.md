@@ -187,3 +187,66 @@ Parcel has also added the files required for someone else to pick up this projec
 * `dist`: The distribution directory -- these are the automatically packaged, minified files Parcel has built for us, and the files it is serving at `localhost:1234`. These are the files you would upload to your web server when releasing the site online for public consumption.
 
 So long as we know the package name, we can use it in our code and Parcel will go off, fetch, and install (actually "copy") the package into our local directory (under `node_modules`).
+
+### Building our code for production
+
+However, this code is not ready for production. Most build tooling systems will have a "development mode" and a "production mode". The important difference is that a lot of the helpful features you will use in development are not needed in the final site, so will be stripped out for production, e.g. "hot module replacement", "live reloading", and "unprocessed and commented source code". Though far from exhaustive, these are some of the common web development features that are very helpful at the development stage, but are not very useful in production. In production, they will bloat your site.
+
+Now stop the previous Parcel command (using <kbd>Ctrl</kbd> + <kbd>C</kbd>).
+
+We can now prepare our bare bones example site for an imaginary deployment. Parcel provides an additional command to generate files that are suited to publication, making bundles (mentioned earlier) with the build option.
+
+Run the following command:
+```
+parcel build index.html
+```
+You should see an output like so:
+```
+✨  Built in 9.35s.
+
+dist/my-project.fb76efcf.js.map    648.58 KB     64ms
+dist/my-project.fb76efcf.js        195.74 KB    8.43s
+dist/index.html                        288 B    806ms
+```
+Again, the destination for our production files is the `dist` directory.
+
+### Reducing your app's file size
+
+However, as with all tools that "help" developers, there's often a trade off. In this particular case, it's the file size. The JavaScript bundle `my-project.fb76efcf.js` is a whopping 195K -- very large, given that all it does is print a line of text. Sure there's some calculation, but we definitely don't need 195K worth of JavaScript to do this!
+
+When you use development tooling, it's worth questioning whether they're doing the right thing for you. In this case, the bundle is nearly 200K because it has, in fact, included the entire `date-fns` library, not just the function we're using.
+
+If we had avoided any development tools and pointed a `<script src="">` element to a hosted version of `data-fns`, roughly the same thing would have happened -- all of the library would be downloaded when our example page is loaded in a browser.
+
+However, this is where development tooling has a chance to shine. Whilst the tooling is on our machine, we can ask the software to inspect our use of the code and only include the functions that we're actually using in production -- a process known as "Tree Shaking".
+
+This makes a lot of sense as we want to reduce file size and thus make our app load as quickly as possible. Different tooling will let you tree shake in different ways.
+
+Although the list grows by the month, there are three main offerings for tools that generate bundles from our source code: Webpack, [Rollup](https://rollupjs.org/guide/en/), and Parcel. There will be more available than this, but these are popular ones:
+
+* The Rollup tool offers tree shaking and code splitting as its core features.
+* Webpack requires some configuration (though "some" might be understating the complexity of some developers' Webpack configurations).
+* In the case of Parcel (prior to Parcel version 2), there's a special flag required -- `--experimental-scope-hoisting` -- which will tree shake while building.
+
+Let's stick with Parcel for now, given that we've already got it installed. Try running the following command:
+```
+parcel build index.html --experimental-scope-hoisting
+```
+You'll see that this makes a huge difference:
+```
+✨  Built in 7.87s.
+
+dist/my-project.86f8a5fc.js    10.34 KB    7.17s
+dist/index.html                   288 B    753ms
+```
+Now the bundle is approximately 10K. Much better.
+
+If we were to release this project to a server, we would only release the files in the `dist` folder. Parcel has automatically handled all the filename changes for us. We would recommend having a look at the source code in `dist/index.html` just so you can see what changes Parcel has performed automatically.
+
+<hr>
+
+**Note**: At the time of writing, Parcel 2 had not been released. However when it does, these commands will all still work because the authors of Parcel have had the good sense to name the tool slightly differently. To install Parcel 1.x, you have to install `parcel-bundler`, but Parcel 2.x is called `parcel`.
+
+<hr>
+
+There are a lot of tools available and the JavaScript package ecosystem is growing at an unprecedented rate, which has pros and cons. There are improvements being made all the time and the choice, for better or worse, is constantly increasing. Faced with the overwhelming choice of tooling, probably the most important lesson is to learn what the tool you select is capable of.
