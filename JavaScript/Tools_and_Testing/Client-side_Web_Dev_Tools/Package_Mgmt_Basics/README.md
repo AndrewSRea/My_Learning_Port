@@ -374,6 +374,20 @@ In addition, the npm (and yarn) commands are clever in that they will search for
 
 You can add all kinds of things to the `scripts` property that help you do your job. We certainly have, and [others have, too](https://github.com/facebook/create-react-app/blob/c5b96c2853671baa3f1f297ec3b36d7358898304/package.json#L6).
 
+<hr>
+
+**Personal note**: Running through all of the steps above, I ran into problems:
+
+* First, after running the command `npm install parcel-bundler`, the `"dependencies"` did not download into my `package.json` file.
+* Second, the `node-modules` folder which was downloaded created an error message in my terminal saying that basically the folder, and all of the subfolders within it, were too large to try to push into my GitHub repository (which I wasn't even going to try to do due to its size).
+* Then, all of the commands I tried to run in my terminal would not work, such as `parcel index.html`. (Even `npx parcel index.html` would not work.) Therefore, I could not get a server to run through my terminal (`http://localhost:1234`).
+
+I can only hypothesize the problem was trying to run all of this here within my **My_Learning_Port** folder, as it is connected to my GitHub repository. And I think this is true because when I opened a separate folder locally, outside of my **My_Learning_Port**, all of the commands described above worked in the terminal for that separate folder.
+
+I wish I could showcase that separate folder within my **My_Learing_Port** repository but it would obviously create many problems.
+
+<hr>
+
 ## Summary
 
 This brings us to the end of our tour of package managers. Our next move is to build up a sample toolchain, putting all that we've learned so far into practice.
