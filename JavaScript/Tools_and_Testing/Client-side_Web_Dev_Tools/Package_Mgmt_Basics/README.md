@@ -329,3 +329,55 @@ Although the package manager will do it's best to deduplicate (eliminate duplica
 
 ### More commands
 
+You can find out more about the individual commands for [npm](https://docs.npmjs.com/cli/v7) and [yarn](https://classic.yarnpkg.com/en/docs/cli/) online. Again, [pnpm](https://pnpm.io/cli/add) commands will have parity with npm, with a handful of additions.
+
+## Making your own commands
+
+The package managers also support creating your own commands and executing them from the command line. For instance, we could create the following command:
+```
+npm run dev
+# or yarn run dev
+```
+This would run a custom script for starting our project in "development mode". In fact, we regularly include this in all projects as the local development setup tends to run slightly differently to how it would run in production.
+
+If you tried running this in your Parcel test project from earlier, it would (likely) claim the "dev script is missing". Thi is because npm, yarn (and the like) are looking for a property called `dev` in the `scripts` property of your `package.json` file.
+
+Parcel can run a development server using the command `parcel serve filename.html`, and we'd like to use that often during our development.
+
+So let's create a custom shorthand command -- `dev` -- in our `package.json`.
+
+If you followed the tutorial from earlier, you should have a `package.json` file inside your `parcel-experiment` directory. Open it up, and its `scripts` member should look like this:
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+},
+```
+Update it so that it looks like this, and save the file:
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel serve index.html"
+},
+```
+We've added a custom `dev` command as an npm script.
+
+Now try running the following in your terminal, making sure you are inside the `parcel-experiment` directory:
+```
+npm run dev
+```
+This should start Parcel and serve up your `index.html` at the local development server, as we saw before:
+```
+Server running at http://localhost:1234
+✨  Built in 5.48s.
+```
+In addition, the npm (and yarn) commands are clever in that they will search for command line tools that are locally installed to the project before trying to find them through conventional methods (where your computer will normally store and allow software to be found). You can [learn more about the technical intricacies of the `run` command](https://docs.npmjs.com/cli/v7/commands/npm-run-script), although in most cases, your own scripts will run just fine.
+
+You can add all kinds of things to the `scripts` property that help you do your job. We certainly have, and [others have, too](https://github.com/facebook/create-react-app/blob/c5b96c2853671baa3f1f297ec3b36d7358898304/package.json#L6).
+
+## Summary
+
+This brings us to the end of our tour of package managers. Our next move is to build up a sample toolchain, putting all that we've learned so far into practice.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#command-line-crash-course) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics) - [[Next page]]()
