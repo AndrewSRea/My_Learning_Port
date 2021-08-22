@@ -250,3 +250,82 @@ If we were to release this project to a server, we would only release the files 
 <hr>
 
 There are a lot of tools available and the JavaScript package ecosystem is growing at an unprecedented rate, which has pros and cons. There are improvements being made all the time and the choice, for better or worse, is constantly increasing. Faced with the overwhelming choice of tooling, probably the most important lesson is to learn what the tool you select is capable of.
+
+## A rough guide to package manager clients
+
+This tutorial installed the Parcel package using npm but as mentioned earlier on, there are some alternatives and it's worth, at least, knowing they exist and having some vague idea of the common commands across the tools. You've already seen some in action but let's look at the others.
+
+The list will grow over time but at the time of writing, the following main package managers are available:
+
+* npm at [npmjs.org](https://www.npmjs.com/)
+* pnpm at [pnpm.js.org](https://pnpm.io/)
+* yarn at [yarnpkg.com](https://yarnpkg.com/)
+
+npm and pnpm are similar from a command line point of view -- in fact, pnpm aims to have full parity over the argument options that npm offers. It differs in that it uses a different method for downloading and storing the packages on your computer, aiming to reduce the overall disk space required.
+
+Where npm is shown in the examples below, pnpm can be swapped in and the command will work.
+
+yarn is often thought to be quicker than npm in terms of installation process (though your mileage may vary). This is very important to developers because there can be a significant amount of time wasted on waiting for dependencies to install (and copy to the computer).
+
+<hr>
+
+**Note**: The npm package manager is **not** required to install packages from the npm registry, even though they share the same name. pnpm and yarn can consume the same `package.json` format as npm, and can install any package from the npm and other package registries.
+
+<hr>
+
+Let's review the common actions you'll want to perform with package managers.
+
+### Initialize a new project
+
+```
+npm init
+yarn init
+```
+As shown above, this will prompt and walk you through a series of questions to describe your project (name, license, description, and so on), then generate a `package.json` for you that contains meta information about your project and its dependencies.
+
+### Installing dependencies
+
+```
+npm install date-fns
+yarn add date-fns
+```
+We also saw `install` in action above. This would directly add the `date-fns` package to the working directory in a sub-directory called `node_modules`, along with `date-fns`'s own dependencies.
+
+By default, this command will install the latest version of `date-fns`, but you can control this, too. You can ask for `date-fns@1`, which gives you the latest 1.x version (which is 1.30.1). Or you could try `date-fns@^2.3.0`, which means the latest version after or inculding 2.3.0 (2.8.1 at the time of writing).
+
+### Updating dependencies
+
+```
+npm update
+yarn upgrade
+```
+This will look at the currently installed dependencies and update them, if there is an update available, within the range that's specified in the package.
+
+The range is specified in the version of the dependency in your `package.json`, such as `date-fns@^2.0.1` -- in this case, the caret character `^` means all minor and patch releases after and including 2.0.1, up to but excluding 3.0.0.
+
+This is determined using a system called [semver](https://semver.org/), which might look a bit complicated from the documentation but can be simplified by considering only the summary information and that a version is represented by `MAJOR.MINOR.PATCH`, such as 2.0.1 being major version 2 with patch version 1. An excellent way to try out semver values is to use the [semver calculator](https://semver.npmjs.com/).
+
+It's important to remember that `npm update` will not upgrade the dependencies to beyond the range defined in the `package.json` -- to do this, you will need to install that version specifically.
+
+### Audit for vulnerabilities
+
+```
+npm audit
+yarn audit
+```
+This will check all of the dependency tree for your project and run the specific versions you're using against a vulnerability database and notify you if there are potential vulnerable packages in your project.
+
+A good starting point for learning about vulnerabilities is the [Snyk project](https://snyk.io/), which covers both JavaScript packages and other programming languages.
+
+### Checking on a dependency
+
+```
+npm ls date-fns
+yarn why date-fns
+```
+This command will show what version of a dependency is installed and how it came to be included in your project. It's possible that another, top level, package could have pulled in `date-fns`. It's equally possible (and not ideal) that you have multiple versions of a package in your project (this has been seen many times over with the [lodash](https://lodash.com/) package, as it's so useful).
+
+Although the package manager will do it's best to deduplicate (eliminate duplicate or redundant) packages, you may want to investigate exactly which version is installed.
+
+### More commands
+
