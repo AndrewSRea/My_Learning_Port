@@ -96,3 +96,20 @@ npm will be used to install subsequent parts of our toolchain. First of all, how
 
 ### Code revision control
 
+It's possible you've heard of "git" before. [Git](https://git-scm.com/) is currently the most popular source code revision control tool available to developers -- revision control provides many advantages, such as a way to backup your work in a remote place, and a mechanism to work in a team on the same project without fear of overwriting each other's code.
+
+It might be obvious to some, but it bears repeating: Git is not the same thing as GitHub. Git is the revision control tool, whereas [GitHub](https://github.com/) is an online store for git repositories (plus a number of useful tools for working with them). Note that, although we're using GitHub in this chapter, there are several alternatives including [GitLab](https://about.gitlab.com/) and [Bitbucket](https://www.atlassian.com/software/bitbucket), and you could even host your own git repositories.
+
+Using revision control in your projects and including it as part of the toolchain will help manage the evolution of your code. It offers a way to "commit" blocks of work as you progress, along with comments such as "X new feature implemented", or "Bug Z now fixed due to Y changes".
+
+Revision control can also allow you to *branch* out your project code, creating a separate version and try out new functionality on, without those changes affecting your original code.
+
+Finally, it can help you undo changes or revert your code back to a time "when it was working" if a mistake has been introduced somewhere and you are having trouble fixing it -- something all developers need to do once in a while!
+
+Git can be [downloaded and installed via the git-scm website](https://git-scm.com/downloads) -- download the relevant installer for your system, run it, and follow the on-screen prompts. This is all you need to do for now.
+
+You can interact with git in a number of ways, from using the command line to issue commands, to using a [git GUI app]() to issue the same commands by pushing buttons, or even from directly inside your code editor, as seen in the Visual Studio Code example below:
+
+![An image of a git menu in Visual Studio Code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Introducing_complete_toolchain/vscode-git.png)
+
+Anyway, installing git is all we need to do for now. Let's move on.
