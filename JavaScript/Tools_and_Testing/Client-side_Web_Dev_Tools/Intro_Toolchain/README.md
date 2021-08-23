@@ -45,3 +45,54 @@ However, more complicated software requirements will likely benefit from the usa
 For our sample project, we'll be using a toolchain specifically designed to aid our software development and support the technical choices made during the software design phase. We will, however, be avoiding any superfluous tooling, with the aim of keeeping complexity to a minimum.
 
 For example, we *could* have included a tool to minimize our SVG file sizes during build. However, this project has only 4 SVG images, which were [manually minified using SVGO](https://www.npmjs.com/package/svgo) before adding them to the project.
+
+## A couple of prerequisites
+
+Besides the tools we're going to install that contribute to our toolchain, we mentioned two web services in the above list of tools. Let's take this opportunity to make sure we are set up with them before we continue. You will need to create accounts with each of GitHub and Netlify if you wish to complete this tutorial.
+
+* As mentioned previously, GitHub is a source code repository service that adds community features such as issue tracking, following project releases and much more. In the next chapter, we will push to a GitHub repository, which will cause a cascade effect that (should) deploy all the software to a home on the web.
+* Netlify is a hosting service for static websites (that is, websites that entirely consist of files that do not change in real time), which lets us deploy multiple times a day and freely hosts static sites of all kinds. Netlify is what provides the "home on the web" mentioned above -- free hosting for us to deploy our test app to.
+
+Once you've signed up for [GitHub](https://github.com/) (click the *Sign Up* link on the homepage if you don't already have an account, and follow the instructions), you can use your GitHub account for authentication on [Netlify](https://www.netlify.com/) (click *Sign Up*, then choose *GitHub* from the "Sign up with one of the following" list), so technically you only need to create one new account.
+
+Later on, you'll need to connect your Netlify account to your GitHub repository to deploy this project; we'll see how to do that in the next chapter.
+
+## Three stages of tools
+
+As we talked about in [Chapter 1](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Client-side_Tooling#client-side-tooling-overview), the toolchain will be structured into the following phases:
+
+* **Safety net**: Making the software development experience stable and more efficient. We might also refer to this as our development environment.
+* **Transformation**: Tooling that allows us to use the latest features of a language (e.g. JavaScript) or another language entirely (e.g. JSX or TypeScript) in our development process, and then transforms our code so that the production version still runs on a wide variety of browsers, modern and older.
+* **Post development**: Tooling that comes into play after you are done with the body of development to ensure that your software makes it to the web and continues to run. In this case study, we'll look at adding tests to your code, and deploying your app using Netlify so it is available for all the web to see.
+
+Let's start working on these, beginning with our development environment.
+
+## Creating a development environment
+
+This part of the toolchain is sometimes seen to be delaying the actual work, and it can be very easy to fall into a "rabbit hole" of tooling where you spend a lot of time trying to get the environment "just right".
+
+But you can look at this in the same way as setting up your physical work environment. The chair needs to be comfortable, and set up in a good position to help with your posture. You need power, WiFi, and USB ports! There might be important decorations or music that help with your mental state -- these are all important to doing your best work possible, and they should also only need to be set up once, if done properly.
+
+In the same way, setting up your development environment, if done well, needs doing only once and should be reusable in many future projects. You will probably want to review this part of the toolchain semi-regularly and consider if there's any upgrades or changes you should introduce, but this shouldn't be required too often.
+
+Your toolchain will depend on your own needs, but for this example of a (possible) complete toolchain, the tools that will be installed up front will be:
+
+* Library installation tools -- for adding dependencies.
+* Code revision control.
+* Code tidying tools -- for tidying JavaScript, CSS, and HTML.
+* Code linting tools -- for linting our code.
+
+### Library installation tools
+
+We'll use npm to install our tools, whicn you first met in Chapter 2. You should have Node.js and npm installed already, but if not, [refer back to that section](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#adding-powerups).
+
+<hr>
+
+**Note**: Though it's not clear from the install process, installing npm also installs a complimentary tool called npx. We will use npx later on in this chapter to help run tools that are installed as local dependencies to the project.
+
+<hr>
+
+npm will be used to install subsequent parts of our toolchain. First of all, however, we'll install git to help with revision control.
+
+### Code revision control
+
