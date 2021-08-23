@@ -145,6 +145,8 @@ Note that including a leading slash on your path makes the path absolute -- for 
 
 **Note**: On Windows, you use backslashes instead of forward slashes, e.g. cd Desktop\project\src` -- this may seem really odd, but if you are interested in why, [watch this YouTube clip](https://www.youtube.com/watch?v=5T3IJfBfBmI) featuring an explanation by one of Microsoft's principal engineers.
 
+<hr>
+
 ### Listing directory contents
 
 Another built-in Unix command is `ls` (short for list), which lists the contents of the directory you're currently in. Note that this won't work if you're using the default Windows command prompt (`cmd`) -- the equivalent there is `dir`.
