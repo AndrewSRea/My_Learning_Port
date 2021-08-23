@@ -108,7 +108,7 @@ Finally, it can help you undo changes or revert your code back to a time "when i
 
 Git can be [downloaded and installed via the git-scm website](https://git-scm.com/downloads) -- download the relevant installer for your system, run it, and follow the on-screen prompts. This is all you need to do for now.
 
-You can interact with git in a number of ways, from using the command line to issue commands, to using a [git GUI app]() to issue the same commands by pushing buttons, or even from directly inside your code editor, as seen in the Visual Studio Code example below:
+You can interact with git in a number of ways, from using the command line to issue commands, to using a [git GUI app](https://git-scm.com/downloads/guis) to issue the same commands by pushing buttons, or even from directly inside your code editor, as seen in the Visual Studio Code example below:
 
 ![An image of a git menu in Visual Studio Code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Introducing_complete_toolchain/vscode-git.png)
 
