@@ -250,7 +250,73 @@ Now it's time to install the initial set of tools we'll be using in our dev envi
 ```
 npm install --save-dev eslint prettier babel-eslint
 ```
-There's two important things to note about the command you just ran. The first is that we're installing the 
+There's two important things to note about the command you just ran. The first is that we're installing the dependencies locally to the project -- installing tools locally is better for a specific project. Installing locally (not including the `--global` option) allows us to easily recreate this setup on other machines.
+
+The second important part of this install command is the `--save-dev` option. This tells the npm tool that these particular dependencies are only needed for development (npm, therefore, lists them in the `package.json` file under `devDependencies`, not `dependencies`). This means that if this project is installed in production mode, these dependencies will not be installed. A "typical" project can have many development dependencies which are not needed to actually run the code in production. Keeping them as separate dependencies reduces any unnecessary work when deploying to production (which we will look at in the next chapter).
+
+Before starting on the development of the actual application code, a little configuration is required for our tools to work properly. It's not a prerequisite of developing for the web, but it's useful to have the tools configured correctly if they're going to help catch errors during development -- which eslint is particularly useful for.
+
+### Configuring our tools
+
+In the root of the project (not in the `src` directory), we will add configuration files to configure some of our tools, namely Prettier and eslint. This is general practice for tool configuration -- you tend to find the config files in the project root, which more often than not contain configuration options expressed in a JSON structure (though our tools and many others also support YAML, which you can switch to if that's your preferred flavor of configuration file).
+
+1. First of all, create a file in the root of your `will-it-miss` directory called `.prettierrc.json`.
+
+2. To configure Prettier, give `.prettierrc.json` the following contents:
+```
+{
+    "singleQuote": true,
+    "trailingComma": "es5"
+}
+```
+With these settings, when Prettier formats JavaScript for you, it will use single quotes for all your quoted values, and it won't use trailing commas (a newer feature of ECMAScript that will cause errors in older browsers). You can find more about [configuring Prettier](https://prettier.io/docs/en/configuration.html) in its documentation.
+
+3. Next up, we'll configure eslint -- create another file in the root of your `will-it-miss` directory called `.eslintrc.json`, and give it the following contents:
+```
+{
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-console": 0
+    }
+}
+```
+The above eslint configuration says that we want to use the "recommended" eslint settings, that we're going to allow usage of ES6 features (such as [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) or [`Set()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set)), that we can use module [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) statements, and that using [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/console/log) is allowed.
+
+4. However, in the project's source files, we are using React JSX syntax (for your real projects, you might use React or Vue or any other framework, or no framework at all!).
+
+Putting JSX syntax in the middle of our JavaScript is going to cause eslint to complain pretty quickly with the current configuration, so we'll need to add a little more configuration to the eslint settings to get it to accept JSX features.
+
+The final coding file should look like this -- add in the parts surrounded by asterisks, and save it:
+```
+{
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "extends": *["eslint:recommended", "plugin:react/recommended"],*
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+       *"ecmaFeatures": {
+         "jsx": true
+       }*
+    },
+   *"plugins": ["react"],*
+    "rules": {
+       *"semi": "error",*
+        "no-console": 0,
+       *"react/jsx-users-vars": "error" 
+    }
+}
+```
 
 
 cd JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain
