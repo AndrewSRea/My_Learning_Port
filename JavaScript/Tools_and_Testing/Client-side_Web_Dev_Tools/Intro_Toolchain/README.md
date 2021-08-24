@@ -421,4 +421,8 @@ Instead, we've written an example project for you to use your tools on. We'd sug
 
 <hr>
 
+**Note**: Unfortunately, as with the case of my **Parcel_Experiment** project in the last module, **Package Management Basics**, the **will-it-miss** project is much too large to push into my **My_Learning_Port** GitHub repository so I am unable to provide a link to the project to showcase it.
+
+<hr>
+
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain#introducing-a-complete-toolchain) - [[Next page]]()
