@@ -161,7 +161,7 @@ Linting helps with code quality but also is a way to catch potential errors earl
 
 Web development linting tools mostly exist for JavaScript (though there are a few available for HTML and CSS). This makes sense: if an unknown HTML element or invalid CSS property is used, due to the resilient nature of these two languages, nothing is likely to break. JavaScript is a lot more fragile -- mistakenly calling a function that doesn't exist, for example, causes your JavaScript to break; linting JavaScript is, therefore, very important, especially for larger projects.
 
-The go-to tool for JavaScript linting is [eslint](). It's an extremely powerful and versatile tool but can be tricky to configure correctly and you could easily consume many hours trying to get a configuration *just right*!
+The go-to tool for JavaScript linting is [eslint](https://eslint.org/). It's an extremely powerful and versatile tool but can be tricky to configure correctly and you could easily consume many hours trying to get a configuration *just right*!
 
 Out of the box, eslint is going to complain that it can't find the configuration file if you run it. The configuration file supports multiple formats but for this project we'll use `.eslint.json` (the leading period means the file is hidden by default).
 
@@ -173,3 +173,59 @@ eslint is installed via npm, so as per discussions in Chapter 2, you have the ch
 For the sake of simplicity, in this chapter we're not going to explore all the features of eslint, but we will put a configuration in place that works for our particular project and its requirements. However, bear in mindthat if you want to refine and enforce a rule about how your code looks (or validates), it's very likely that it can be done with the right eslint configuration.
 
 A little later in this chapter, we'll provide the esline config. Once a working configuration is in palce, running the command can generate some useful information. Here is an example eslint output:
+```
+./my-project/src/index.js
+   2:8 error 'React' is defined but never used  no-unused-vars
+ 22:20 error 'body' is defined but never used   no-unused-vars
+ 96:19 error 'b' is defined but never used      no-unused-vars
+
+✖ 3 problems (3 errors, 0 warnings)
+```
+
+<hr>
+
+**Note**: We'll install eslint in the next section; don't worry about this for now.
+
+<hr>
+
+As with other tools, code editor integration support is typically good for eslint, and potentially more useful as it can give us real-time feedback when issues crop up:
+
+![Image of an eslint error message in VS Code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Introducing_complete_toolchain/eslint-error.png)
+
+## Configuring the initial project
+
+Using these tools, a new project can be set up safe in the knowledge that many "basic" issues will be caught early on.
+
+Using the command line, we can create the project, install the initial tooling, and create rudimentary confirguration files. Again, once you've repeated this process a few times, you'll get a feel for what your default setup should be. Of course, this is *just one* possible configuration.
+
+### Initial setup
+
+OK, let's get the initial project setup out of the way.
+
+1. Start off by opening your terminal and navigating to a place that you'll be able to find and get to easily. The Desktop perhaps, or your home or documents folder?
+
+2. Next, run the following commands to create a folder to keep your project in, and go inside the folder:
+```
+mkdir will-it-miss
+cd will-it-miss
+```
+
+3. Now we will create a new directory for all of our web site's development code to live in. Run the following now:
+```
+mkdir src
+```
+Code organization tends to be quite subjective from team to team. For this project, the source code will live in `src`.
+
+4. Making sure you are inside the root of the `will-it-miss` directory, enter the following command to start git's source control functionality working on the directory:
+```
+git init
+```
+This means that you'll now be able to start storing revisions to the folder's contents, saving it to a remote repository, etc. More on this later!
+
+5. Next, enter the following command to turn your directory into an npm package, with the advantages that we discussed in the previous article:
+```
+npm init --force
+```
+This will create a default `package.json` file that we can configure later on, if desired. The `--force` flag causes the command to instantly create a default `package.json` file without asking you all the usual questions about what contents you want it to have (as we saw previously). We only need the defaults for now, so this saves us a bit of time.
+
+### Getting the project code files
