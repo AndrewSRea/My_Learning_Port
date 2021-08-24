@@ -378,5 +378,50 @@ Now our software is ready to be written!
 
 ## Running the transformation
 
+To start working with our project, we'll run the Parcel server on the command line. In its default mode, it will watch for changes in your code and automatically install your dependencies. This is nice because we don't have to flit back and forth between the code and the command line.
+
+1. To start Parcel off in the background, go to your terminal and run the following command:
+```
+npx parcel src/index.html
+```
+You should see an output like this (once the dependencies have been installed):
+```
+Server running at http://localhost:1234
+✨  Built in 129ms.
+```
+Parcel also installs the dependencies that we will use in our code, including react, react-dom, react-async-hook, date-fns, and format-number. This first run will, therefore, be longer than a typical run of Parcel.
+
+<hr>
+
+**Note** If you run Parcel on this project and are faced with an error that reads `Error: ENOENT: no such file or directory`, stop the process usiong <kbd>Ctrl</kbd> + <kbd>C</kbd> and then try re-running it.
+
+<hr>
+
+The server is now running on the URL that was printed (in this case, `localhost:1234`).
+
+2. Go to this URL in your browser and you'll see the example app running!
+
+Another clever trick Parcel has up its sleeve is that any changes to your source code will now trigger an update in the browser. To try this out:
+
+1. Load up the file `src/components/App.js` in your favorite text editor.
+
+2. Search for the text "near misses", and replace it with something silly like "flying pigs".
+
+3. Save the file, then go straight back to the app running in your browser. You'll notice that the browser has automatically refreshed, and the line `"<data> there will be <number> near misses"` at the top of the page has been changed!
+
+You could also try using eslint and Prettier, too -- try deliberately removing a load of the whitespace from one of your files and try putting Prettier on it to clean it up, or introduce a syntax error into one of your JavaScript files and see what errors eslint gives you when you try to use Parcel to build it again.
+
+## Summary
+
+We've come a long way in this chapter, building up a rather nice local development environment to create an application within.
+
+At this point during web software development, you would usually be crafting your code for the software you intend to build. Since this module is all about learning the tools around web development, not web development code itself, we won't be teaching you any actual coding -- you'll find that information in the rest of MDN!
+
+Instead, we've written an example project for you to use your tools on. We'd suggest that you work through the rest of the chapter using our example code, and then you can try changing the contents of the `src` directory to your own project and publishing that on Netlify instead! And indeed, deploying to Netlify will be the end goal of the next chapter!
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain#introducing-a-complete-toolchain) - [[Next page]]()
+
 
 cd JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain
