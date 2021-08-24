@@ -317,6 +317,66 @@ The final coding file should look like this -- add in the parts surrounded by as
     }
 }
 ```
+As the configuration now uses a plugin called "React", this development dependency also need to be installed, so that the code is there to actually run that part of the linting process.
+
+5. Run the following terminal command in the root of your project folder:
+```
+npm install --save-dev eslint-plugin-react
+```
+
+There's a complete [list of eslint rules](https://eslint.org/docs/rules/) that you can tweak and configure to your heart's content and many companies and teams have published their [own eslint configurations](https://www.npmjs.com/search?q=keywords:eslintconfig), which can sometimes be useful either to get inspiration or to select one that you feel suits your own standards. A forewarning though: eslint configuration is a very deep rabbit hole!
+
+That's our dev environment setup complete at this point. Now, finally we're (very nearly) ready to code.
+
+## Build and transformation tools
+
+For this project, as mentioned above, React is going to be used, which also means that JSX will be used in the source code. The project will also use the latest JavaScript features.
+
+An immediate issue is that no browser has native support for JSX; it is an intermediate language that is meant to be compiled into languages the browser understands in the production code.
+
+If the browser tries to run the source JavaScript, it will immediately complain; the project needs a build tool to transform the source code to something the browser can consume without issue.
+
+There's a number of choices for transform tools and though WebPack is a particularly popular one, this project is going to use Parcel -- specifically because it requires a lot less configuration.
+
+Parcel works on the basis that it will try to configure your development requirements on the fly. Parcel will watch the code and run a live-reloading web server during development. This also means that Parcel will install our software dependencies automatically as they are referenced in the source code, as we [saw in Chapter 3](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#using-the-package-ecosystem).
+
+Parcel will take care of installing any transformation tooling and configuration required without us needing to intervene (in most cases).
+
+Then as a final bonus, Parcel can bundle and prepare the code for production deployment, taking care of minification and browser compatibility requirements.
+
+We, therefore, need to install the Parcel dependency in our project, too -- run the following command in your terminal:
+```
+npm install --save-dev parcel-bundler
+```
+
+### Using future features
+
+The code for our project is using some new web features including features that are so new, they aren't fully standardized yet. For example, instead of reaching for a tool like [Sass](https://sass-lang.com/), this particular project uses the W3C proposal for [CSS nesting](https://drafts.csswg.org/css-nesting/). CSS nesting allows us to nest CSS selectors and properties inside one another, thus creating more specific selector scope. Sass was one of the first preprocessors to support nesting (if not the first) but now after many years, nesting looks like it will soon be standardized, which mean that we will have it available in our browsers without needing build tools.
+
+Until then, Parcel will do the transformation between nested CSS and natively supported CSS with the help of [PostCSS](https://postcss.org/), which Parcel works with out of the box. Since we've specifically decided this project should use CSS nesting (instead of Sass), the project will need to include a PostCSS plugin.
+
+Let's use the [postcss-preset-env](https://preset-env.cssdb.org/), which lets us "use tomorrow's CSS today". To do so, follow these steps:
+
+1. Add a single file called `.postcssrc` to the root of your project directory.
+
+2. Add the following contents to the new file, which will "automagically" give us full access to the latest CSS features:
+```
+{
+    "plugins": {
+        "postcss-preset-env": {
+            "stage": 0
+        }
+    }
+}
+```
+
+That's all we need to do -- remember that Parcel installs the dependencies for us by default!
+
+Although this stage of our toolchain can be quite painful, because we've chosen a tool that purposely tries to reduce configuration and complexity, there's really nothing more we need to do during the development phase. Modules are correctly imported, nested CSS is correctly transformed to "regular CSS", and our development is unimpeded by the build process.
+
+Now our software is ready to be written!
+
+## Running the transformation
 
 
 cd JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain
