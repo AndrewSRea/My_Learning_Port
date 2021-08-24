@@ -113,3 +113,63 @@ You can interact with git in a number of ways, from using the command line to is
 ![An image of a git menu in Visual Studio Code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Introducing_complete_toolchain/vscode-git.png)
 
 Anyway, installing git is all we need to do for now. Let's move on.
+
+### Code tidying tools
+
+We'll be using Prettier, which we first met in Chapter 2, to tidy our code in this project. If you followed the directions in the [Installing Prettier](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#installing-prettier) section, then you might already have Prettier installed. If not, we'll get you to install Prettier as a global utility using the terminal right now.
+
+You can check whether you've already got it installed globally using the following command:
+```
+prettier -v
+```
+If installed, you'll get a version number returned like 2.0.2; if not, it'll return something along the lines of "command not found". If this is the case, install it using the following command:
+```
+npm install prettier -g
+```
+Now that Prettier is installed, running and tidying your code can be done on the command line on an individual file basis from anywhere on your computer. For example:
+```
+prettier --write ./src/index.html
+```
+
+<hr>
+
+**Note**: In the command above, we use Prettier with the `--write` flag. Prettier understands this to mean "if there are problems in my code format, go ahead and fix them, then save my file". This is fine for our development process, but we can also use Prettier without the flag and it will only check the file. Checking the file (and not saving it) is useful for purposes like checks that run before a release, i.e. "don't release any code that's not been properly formatted".
+
+<hr>
+
+It can be arduous to run the initial command against each file, and it would be useful to have a singlke command to do this for us (and the same will go for our linting tools).
+
+There's many different ways to solve this problem; here's just a few:
+
+* Using npm scripts to run multiple commands from the command line in one go, such as `npm run tidy-code`.
+* Using special "git hooks" to test if the code is formatted before a commit.
+* Using code editor plugins to run Prettier commands each time a file is saved.
+
+<hr>
+
+**Note**: What is a git hook? Git (not GitHub) provides a system that lets us attach pre- and post- actions to the tasks you perform with git (such as committing your code). Although git hooks can be a bit overly complicated, once they're in place they can be very powerful. If you're interested in using hooks, [Husky](https://github.com/typicode/husky) is a greatly simplified route into using hooks.
+
+<hr>
+
+For VS Code, one useful extension is the [Prettier Code Formatter by Esben Petersen](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), which lets VS Code automatically format code upon saving. This means that any file in the project we are working on gets formatted nicely, including HTML, CSS, JavaScript, JSON, markdown, and more. All the editor needs is "Format On Save" enabled.
+
+Like many tools made more recently, Prettier comes with "sensible defaults". That means that you'll be able to use Prettier without having to configure anything (if you are happy with the [defaults](https://prettier.io/docs/en/configuration.html)). This lets you get on with what's important: the creative work.
+
+### Code linting tools
+
+Linting helps with code quality but also is a way to catch potential errors earlier during development. It's a key ingredient of a good toolchain and one that many development projects will include by default.
+
+Web development linting tools mostly exist for JavaScript (though there are a few available for HTML and CSS). This makes sense: if an unknown HTML element or invalid CSS property is used, due to the resilient nature of these two languages, nothing is likely to break. JavaScript is a lot more fragile -- mistakenly calling a function that doesn't exist, for example, causes your JavaScript to break; linting JavaScript is, therefore, very important, especially for larger projects.
+
+The go-to tool for JavaScript linting is [eslint](). It's an extremely powerful and versatile tool but can be tricky to configure correctly and you could easily consume many hours trying to get a configuration *just right*!
+
+Out of the box, eslint is going to complain that it can't find the configuration file if you run it. The configuration file supports multiple formats but for this project we'll use `.eslint.json` (the leading period means the file is hidden by default).
+
+eslint is installed via npm, so as per discussions in Chapter 2, you have the choice to install this tool locally or globally. Using both is recommended:
+
+* For projects you intend to share, you should always include eslint as a local dependency so that anyone making their own copy can follow the rules you've applied to the project.
+* You should also consider having eslint installed globally so that you can quickly use it to check any file you want.
+
+For the sake of simplicity, in this chapter we're not going to explore all the features of eslint, but we will put a configuration in place that works for our particular project and its requirements. However, bear in mindthat if you want to refine and enforce a rule about how your code looks (or validates), it's very likely that it can be done with the right eslint configuration.
+
+A little later in this chapter, we'll provide the esline config. Once a working configuration is in palce, running the command can generate some useful information. Here is an example eslint output:
