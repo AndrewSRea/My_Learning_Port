@@ -229,3 +229,28 @@ npm init --force
 This will create a default `package.json` file that we can configure later on, if desired. The `--force` flag causes the command to instantly create a default `package.json` file without asking you all the usual questions about what contents you want it to have (as we saw previously). We only need the defaults for now, so this saves us a bit of time.
 
 ### Getting the project code files
+
+At this point, we'll get hold of the project's code files (HTML, CSS, JavaScript, etc.), and put them in our `src` directory. We won't teach you how they work, as that is not the point of this chapter. They are merely here to run the tools, to teach you about how they work.
+
+1. To get hold of the code files, visit [https://github.com/remy/mdn-will-it-miss](https://github.com/remy/mdn-will-it-miss) and download and unzip the contents of this repo onto your local drive somewhere. You can download the entire project as a zip file by selecting *Clone or download > Download ZIP*.
+
+2. Now copy the contents of the project's `src` directory to your currently empty `src` directory.
+
+We have our project files in place. That's all we need to do for now!
+
+<hr>
+
+**Note**: If you want to just take our existing project and set it up, ready to use, you could go into the root directory of the unzipped ZIP file downloaded, and run one single installation command to install all of the project's dependencies: `npm install`. This is possible because we installed all the tools locally, not globally, and highlights why it is such a powerful option.
+
+<hr>
+
+### Installing our tools
+
+Now it's time to install the initial set of tools we'll be using in our dev environment. Run the following from inside your project's root directory:
+```
+npm install --save-dev eslint prettier babel-eslint
+```
+There's two important things to note about the command you just ran. The first is that we're installing the 
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain
