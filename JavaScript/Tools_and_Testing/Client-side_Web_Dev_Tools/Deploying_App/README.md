@@ -270,6 +270,28 @@ In some cases, you might want to test the result of then built code (since this 
 
 Now, finally, a minute or so after pushing, Netlify will deploy the project update. But only if it passes the test that was introduced.
 
+## Summary
+
+That's it for our sample case study, and for the module! We hope you found it useful. While there is a long way to go before you can consider yourself a client-side tooling wizard, we are hoping that this module has given you that first important step towards understanding client-side tooling, and the confidence to learn more and try our new things.
+
+Let's summarize all the parts of the toolchain:
+
+* Code quality and maintenance are performed by eslint and Prettier. These tools are added as `devDependencies` to the project via `npm install --dev eslint prettier eslint-plugin-react`. (The eslint plugin is needed because this particular project uses React.)
+* There are two configuration files that the code quality tools read: `.eslintrc` and `.prettierrc`.
+* During development, we use Parcel to handle our dependencies. `parcel src/index.html` is running in the background to watch for changes and to automatically build our source.
+* Deployment is handled by pushing our changes to GitHub (on the "main" branch), which triggers a build and deployment on Netlify to publish the project. For our instance, this URL is [near-misses.netlify.com](); you will have your own unique URL.
+* We also have a simple test that blocks the building and deployment of the site if the NASA API feed isn't giving us the correct data format.
+
+For those of you wanting a challenge, consider whether you can optimize some part of this toolchain. Some questions to ask yourself:
+
+* Can [images be compressed](https://github.com/ralscha/parcel-plugin-compress) during the build step?
+* Could React be swapped out for [something smaller](https://preactjs.com/)?
+* Could you add more tests to prevent a bad build from deploying, such as [performance audits](https://web.dev/lighthouse-performance/)?
+* Could you set up a notification to let you know when a new deploy succeeded or failed?
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Intro_Toolchain#introducing-a-complete-toolchain) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Deploying_App#deploying-our-app) - [[Next module: Introduction to client-side frameworks]]()
 
 
 
