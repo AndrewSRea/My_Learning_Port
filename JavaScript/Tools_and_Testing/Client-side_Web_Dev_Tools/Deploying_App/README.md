@@ -142,3 +142,20 @@ At this point, you'll be prompted to enter a username and password before Git wi
 <hr>
 
 **Note**: If you are interested in using the SSH option, thereby avoiding the need to enter your username and password every time you push to GitHub, [this tutorial walks you through how](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
+
+<hr>
+
+This final command instructs git to push the code (aka publish) to the "remote" location that we called `github` (that's the repository hosted on github.com -- we could have called it anything we like) using the branch `main`. We've not encountered branches at all, but the "main" branch is the default place for our work and it's what git starts on. It's also the default branch that Netlify will look for, which is convenient.
+
+<hr>
+
+**Note** Until October 2020, the default branch on GitHub was `master`, which for various social reasons was switched to `main`. You should be aware that this older default branch may appear in various projects you encounter, but we'd suggest using `main` for your projects.
+
+<hr>
+
+So with our project committed in git and pushed to our GitHub repository, the next step in the toolchain is to connect GitHub to Netlify so our project can be deployed live on the web!
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Deploying_App
