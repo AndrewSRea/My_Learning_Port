@@ -155,6 +155,121 @@ This final command instructs git to push the code (aka publish) to the "remote" 
 
 So with our project committed in git and pushed to our GitHub repository, the next step in the toolchain is to connect GitHub to Netlify so our project can be deployed live on the web!
 
+## Using Netlify for deployment
+
+Deploying from GitHub to Netlify is surprisingly simple once you know the steps, particularly with "static websites" such as this project.
+
+<hr>
+
+**Note**: there are also a lot of [guides and tutorials on Netlify](https://www.netlify.com/tags/tutorial/) to help you improve your development workflow.
+
+<hr>
+
+Let's get this done:
+
+1. Go to [https://app.netlify.com/start](https://app.netlify.com/start).
+
+2. Press the GitHub button underneath the *Continuous Deployment* heading. "Continuous Deployment" means that whenever the code repository changes, Netlify will (try) to deploy the code, thus it being "continuous".
+
+3. Depending on whether you authorized Netlify before, you might need to authorize Netlify with GitHub, and choose what account you want to authorize it for (if you have multiple GitHub accounts or orgs). Choose the one you pushed your project to.
+
+4. Netlify will prompt you with a list of the GitHub repositories it can find. Select your project repository and proceed to the next step.
+
+5. Since we've connected Netlify to our GitHub account and given it access to deploy the project repository, Netlify will ask *how* to prepare the project for deployment and *what* to deploy.
+
+You should enter the command `npm run build` for the *Build command*, and specify the `dist` directory for the *Publish directory* -- this contains the code that we want to make public.
+
+6. To finish up, click *Deploy site*.
+
+7. After a short wait for the deployment to occur, you should get a URL that you can go to, to see your published site -- try it out!
+
+8. And even better, whenever we make a change and *push* the change to our remote git repository (on GitHub), this will trigger a notification to Netlify, which will then run our specified build task and then deploy the resulting `dist` directory to our published site.
+
+Try it now -- make a small change to your app, and then push it to GitHub using these commands:
+```
+git add .
+git commit -m 'simple netlify test'
+git push github main
+```
+You should see your published site update with the change -- this might take a few minutes to publish, so have a little patience.
+
+That's it for Netlify. We can optionally change the name of the Netlify project or specify to use our own domain name, which Netlify offers some [excellent documentation](https://docs.netlify.com/) on.
+
+Now for one final link in our tool chain: a test to ensure our code works.
+
+## Testing
+
+Testing itself is a vast subject, even within the realm of front-end development. We'll show you how to add an initial test to your project and how to use the test to prevent or to allow the project deployment to happen.
+
+When approaching tests, there's a good deal of ways to approach the problem:
+
+* End-to-end testing, which involves your visitor clicking a thing and some other thing happening.
+* Integration testing, which basically says "does one block of code still work when connected to another block?"
+* Unit testing, where small and specific bits of functionality are tested to see if they do what they are supposed to do.
+* [And many more types](https://en.m.wikipedia.org/wiki/Functional_testing). Also, see our [cross browser testing module](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing#cross-browser-testing) for a bunch of useful testing information.
+
+Remember also that tests are not limited to JavaScript; tests can be run against the rendered DOM, user interactions, CSS, and even how a page looks.
+
+However for this project, we're going to create a small test that will check the third-party NASA data feed and ensure it's in the correct format. If not, the test will fail and will prevent the project from going live. To do anything else would be beyond the scope of this module -- testing is a huge subject that really requires its own separate module. We are hoping that this section will, at least, make you aware of the need for testing, and will plant the seed that inspires you to go and learn more.
+
+Although the test for this project does not include a test framework, as with all things in the front-end development world, there are a slew of [framework options](https://www.npmjs.com/search?q=keywords%3Atesting).
+
+The test itself isn't what is important. What is important is how the failure or success is handled. Some deployment platforms will include a specific method for testing as part of their pipeline. Products like GitHub, GitLab, etc., all support running tests against individual commits.
+
+As this project is deploying to Netlify, and Netlify only asks about the build command, we will have to make the tests part of the build. If the test fails, the build fails, and Netlify won't deploy.
+
+Let's get started:
+
+1. Go to your `package.json` file and open it up.
+
+2. Find your `scripts` member, and update it so that it contains the following test and build commands:
+```
+"scripts": {
+    ...
+    "test": "node tests/*.js",
+    "build": "npm run test && parcel build src/index.html"
+}
+```
+
+3. Now, of course, we need to add the test to our codebase; create a new directory in your root directory called `tests`:
+```
+mkdir tests
+```
+
+4. Inside the new directory, create a test file:
+```
+cd tests
+touch nasa-feed.test.js
+```
+
+5. Open this file, and add the contents of [nasa-feed.test.js](https://raw.githubusercontent.com/remy/mdn-will-it-miss/master/tests/nasa-feed.test.js) to it.
+
+6. This test uses the axios package to fetch the data feed we want to test; to install this dependency, run the following command:
+```
+npm install --save-dev axios
+```
+We need to manually install axios because Parcel won't help us with this dependency. Our tests are outside of Parcel's view of our system -- since Parcel never sees nor runs any of the test code, we're left to install the dependency ourselves.
+
+7. Now to manually run the test, from the command line we can run:
+```
+npm run test
+```
+The result, if successful, is...nothing. This is considered a success. In general, we only want tests to be noisy if there's something wrong. The test also exited with a special signal that tells the command line that it was successful -- an exit signal of 0. If there's a failure, the test fails with an exit code of 1 -- this is a system-level value that says "something failed".
+
+The `npm run test` command will use node to run all the files that are in the tests directory that end with `.js`.
+
+In our build script, `npm run test` is called, then you see the string `&&` -- this means "if the thing on the left succeeded (exited with zero), then do this thing on the right". So this translates into: if the tests pass, then build the code.
+
+8. You'll have to upload your new code to GitHub, using similar commands to what you used before:
+```
+git add .
+git commit -m 'adding test'
+git push github main
+```
+In some cases, you might want to test the result of then built code (since this isn't quite the original code we wrote), so the test might need to be run after the build command. You'll need to consider all these individual aspects whilst you're working on your own projects.
+
+Now, finally, a minute or so after pushing, Netlify will deploy the project update. But only if it passes the test that was introduced.
+
 
 
 
