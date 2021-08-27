@@ -13,3 +13,37 @@ The advent of modern JavaScript frameworks has made it much easier to build high
 JavaScript frameworks power much of the impressive software on the modern web -- including many of the websites you likely use every day. MDN Web Docs, which you are currently reading this on, uses the React/ReactDOM framework to power its front end.
 
 ## What frameworks are out there?
+
+There are many frameworks out there, but currently the "big four" are considered to be the following:
+
+### Ember
+
+[Ember](https://emberjs.com/) was initially released in December 2011 as a continuation of work that started in the [SproutCore](https://en.wikipedia.org/wiki/SproutCore) project. It is an older framework that has less users than more modern alternatives, such as React and Vue, but still enjoys a fair amount of popularity due to its stability, community support, and some clever coding principles.
+
+[Start learning Ember]().
+
+### Angular
+
+[Angular](https://angular.io/) is an open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. It is a complete rewrite from the same team that built [Angular JS](https://angularjs.org/). Angular was officially released on the 14th of September 2016.
+
+Angular is a component-based framework which uses declarative HTML templates. At build time, transparently to developers, the framework's compiler translates the templates to optimized JavaScript instructions. Angular uses [TypeScript](https://www.typescriptlang.org/), a superset of JavaScript that we'll look at in a little more detail in the next chapter.
+
+[Start learning Angular]().
+
+### Vue
+
+Evan You first released [Vue](https://vuejs.org/) in 2014, after working on and learning from the original [AngularJS](https://angularjs.org/) project. Vue is the youngest of the big four, but has enjoyed a recent uptick in popularity.
+
+Vue, like [AngularJS](https://angularjs.org/), extends HTML with some of its own code. Apart from that, it mainly relies on modern. standard JavaScript.
+
+[Start learning Vue]().
+
+### React
+
+Facebook released [React](https://reactjs.org/) in 2013. By this point, it had already been using React to solve many of its problems internally. React itself is *not* technically a framework; it's a library for rendering UI components. React is used in combination with *other* libraries to make applications -- React and [React Native](https://reactnative.dev/) enable developers to make mobile applications; React and [ReactDOM](https://reactjs.org/docs/react-dom.html) enable them to make web applications, etc.
+
+Because React and ReactDOM are so often used together, React is colloquially understood as a JavaScript framework. As you read through this module, we will be working with that colloquial understanding.
+
+React extends JavaScript with HTML-like syntax, known as [JSX](https://reactjs.org/docs/introducing-jsx.html).
+
+[Start learning React]().
