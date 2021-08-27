@@ -27,7 +27,9 @@ Each major JavaScript framework has a different approach to updating the DOM, ha
 
 <hr>
 
-**Note**: React tutorials last tested in May 2020, with React/ReactDOM 16.13.1 and create-react-app 3.4.1. If you need to check your code against our version, you can find a finished version of the sample React app code in Mozilla's [todo-react repository](https://github.com/mdn/todo-react). For a running live version, see [https://mdn.github.io/todo-react-build](https://mdn.github.io/todo-react-build/).
+**Note**: React tutorials last tested in May 2020, with React/ReactDOM 16.13.1 and create-react-app 3.4.1. If you need to check your code against Mozilla's version, you can find a finished version of the sample React app code in Mozilla's [todo-react repository](https://github.com/mdn/todo-react). For a running live version, see [https://mdn.github.io/todo-react-build/](https://mdn.github.io/todo-react-build/).
+
+<hr>
 
 **[Getting started with React]()**
 
@@ -61,4 +63,31 @@ Our final article provides you with a list of React resources that you can use t
 
 <hr>
 
-**Note**: Ember tutorials
+**Note**: Ember tutorials last tested in May 2020, with Ember/Ember CLI version 3.18.0. If you need to check your code against Mozilla's version, you can find a finished version of the sample Ember app code in the [ember-todomvc-tutorial repository](https://github.com/NullVoxPopuli/ember-todomvc-tutorial/tree/master/steps/00-finished-todomvc/todomvc). For a running live version, see [https://nullvoxpopuli.github.io/ember-todomvc-tutorial/](https://nullvoxpopuli.github.io/ember-todomvc-tutorial/) (this also includes a few additional features not covered in the tutorial).
+
+<hr>
+
+**[Getting started with Ember]()**
+
+IN our first Ember article, we will look at how Ember works and what it's useful for, install the Ember toolchain locally, create a sample app, and then do some initial setup to get it ready for development.
+
+**[Ember app structure and componentization]()**
+
+In this article, we'll get right on with planning out the structure of our TodoMVC Ember app, adding in the HTML for it, and then breaking that HTML structure into components.
+
+**[Ember interactivity: Events, classes, and state]()**
+
+At this point, we'll start adding some interactivity to our app, providing the ability to add and display new to-do items. Along the way, we'll look at using events in Ember, creating component classes to contain JavaScript code to control interactive features, and setting up a service to keep track of the data state of our app.
+
+**[Ember interactivity: Footer functionality, conditional rendering]()**
+
+Now it's time to start tackling the footer functionality in our app. Here we'll get the to-do counter to update to show the correct number of to-dos still to complete, and correctly apply styling to completed to-dos (i.e. where the checkbox has been checked). We'll also wire up our "Clear completed" button. Along the way, we'll learn about using conditional rendering in our templates.
+
+**[Routing in Ember]()**
+
+In this article, we learn about routing or URL-based filtering as it is sometimes referred to. We'll use it to provide a unique URL for each of the three to-do views -- "All", "Active", and "Completed".
+
+**[Ember resources and troubleshooting]()**
+
+Our final Ember article provides you with a list of resources that you can use to go further in your learning, plus some useful troubleshooting and other information.
+
