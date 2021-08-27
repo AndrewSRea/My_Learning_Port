@@ -8,4 +8,8 @@ When JavaScript debuted in 1996, it added occassional interactivity and exciteme
 
 Now, JavaScript is an essential part of the web, [used on 95% of all websites](https://w3techs.com/technologies/details/cp-javascript), and the web is an essential part of modern life. Users write papers, manage their budgets, stream music, watch movies, and communicate with others over great distances instantaneously, with text, audio or video chat. The web allows us to do things that used to be possible only in native applications installed on our computers. These modern, complex, interactive websites are often referred to as **web applications**.
 
-The advent of modern JavaScript frameworks has made it much easier to build highly dynamic, interactive applications. A **framework** is a library that offers opinions about how software gets built. These opinions allow for predictability and homogeneity in an application;
+The advent of modern JavaScript frameworks has made it much easier to build highly dynamic, interactive applications. A **framework** is a library that offers opinions about how software gets built. These opinions allow for predictability and homogeneity in an application; predictability allows software to scale to an enormous size and still be maintainable; predictability and maintainability are essential for the health and longevity of software.
+
+JavaScript frameworks power much of the impressive software on the modern web -- including many of the websites you likely use every day. MDN Web Docs, which you are currently reading this on, uses the React/ReactDOM framework to power its front end.
+
+## What frameworks are out there?
