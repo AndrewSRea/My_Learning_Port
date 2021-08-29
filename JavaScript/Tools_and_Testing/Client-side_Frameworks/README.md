@@ -173,3 +173,52 @@ We will now learn how to use TypeScript in Svelte applications. First we'll lear
 
 In this final article, we will look at how to deploy your application and get it online, and also share some of the resources that you should go on to, to continue your Svelte learning journey.
 
+## Angular tutorials
+
+<hr>
+
+**Note**: Angular tutorials last tested in April 2021, with Angular CLI (NG) 11.2.5. If you need to check your code against Mozilla's version, you can find a finished version of the sample Angular app code at [angular-to-do-example](https://github.com/kapunahelewong/angular-to-do-example/tree/main/src).
+
+<hr>
+
+**[Getting started with Angular]()**
+
+In this article, we look at what Angular has to offer, install the prerequisites and set up a sample app, and look at Angular's basic architecture.
+
+**[Beginning our Angular to-do list app]()**
+
+At this point, we are ready to start creating our to-do list application using Angular. The finished application will display a list of to-do items and includes editing, deleting, and adding features. In this article, you will get to know your application structure, and work up to displaying a basic list of to-do items.
+
+**[Styling our Angular app]()**
+
+Now that we've got our basic application structure set up and started displaying something useful, let's switch gears and spend an article looking at how Angular handles styling of applications.
+
+**[Creating an item component]()**
+
+Components provide a way for you to organize your application. This article walks you through creating a component to handle the individual items in the list, and adding check, edit, and delete functionality. The Angular even model is covered here.
+
+**[Filtering our to-do items]()**
+
+Now let's move on to adding functionality to allow users to filter their to-do items, so they can view active, completed, or all items.
+
+**[Building Angular applications and further resources]()**
+
+This final Angular article covers how to build an app ready for production, and provides further resources for you to continue your learning journey.
+
+## Which frameworks did we choose?
+
+We are publishing our initial set of articles with guides focusing on five frameworks. Four of them are very popular and well-established -- React/ReactDOM, Ember, Vue, and Angular -- whereas Svelte is a comparative newcomer that shows a lot of promise and has gained a lot of recent popularity.
+
+There is a variety of reasons for this:
+
+* They are popular choices that will be around for a while -- like with any software tool, it is good to stick with actively-developed choices that are likely to not be discontinued next week, and which will be desirable additions to your skill set when looking for a job.
+
+* They have strong communities and good documentation. It is very important to be able to get help with learning a complex subject, especially when you are just starting out.
+
+* We don't have the resources to cover *all* modern frameworks. That list would be very difficult to keep up-to-date anyway, as new ones appear all the time.
+
+* As a beginner, trying to choose what to focus on out of the huge number of choices available is a very real problem. Keeping the list short is, therefore, helpful.
+
+We want to say this upfront -- we've **not** chosen the frameworks we are focusing on because we think they are the best, or because we endorse them in any way. We just think they score highly on the above criteria.
+
+Note that we were hoping to have more frameworks included upon initial publication, but we decided to release the content and then add more framwork guides later, rather than delay it longer. If your favorite framework is not represented in this content and you'd like to help change that, feel free to discuss it with us! Get in touch with us via [Matrix](https://wiki.mozilla.org/Matrix), or [Discourse](https://discourse.mozilla.org/c/mdn/236), or drop us a mail on the [mdn-admins list](mailto:mdn-admins@mozilla.org).
