@@ -132,3 +132,44 @@ We are nearly done with Vue. The last bit of functionality to lok at is focus ma
 **[Vue resources]()**
 
 Now we'll round off our study of Vue by giving you a list of resources that you can use to go further in your learning, plus some other useful tips.
+
+## Svelte tutorials
+
+<hr>
+
+**Note**: Svelte tutorials last tested in August 2020, with Svelte 3.24.1. If you need to check your code against Mozilla's version, you can find a finished version of the sample Svelte app code as it should be after each article, in Mozilla's [mdn-svelte-tutorial]() repo. For a running live version, see Mozilla's Svelte REPL at [https://svelte.dev/repl/378dd79e0dfe4486a8f10823f3813190?version=3.23.2](https://svelte.dev/repl/378dd79e0dfe4486a8f10823f3813190?version=3.23.2).
+
+<hr>
+
+**[Getting started with Svelte]()**
+
+In this article, we'll provide a quick introduction to the [Svelte framework](https://svelte.dev/). We will see how Svelte works and what sets it apart from the rest of the frameworks and tools we've seen so far. Then we will learn how to setup our development environment, create a sample app, understand the structure of the project, and see how to run it locally and build it for production.
+
+**[Starting our Svelte To-do list app]()**
+
+Now that we have a basic understanding of how things work in Svelte, we can start building our example app: a to-do list. In this article, we will first have a look at the desired functionality of our app, then we'll create a `Todos.svelte` component and put static markup and styles in place, leaving everything ready to start developing our To-Do list app features, which we'll go on to in subsequent articles.
+
+**[Dynamic behavior in Svelte: working with variables and props]()**
+
+Now that we have our markup and styles ready, we can start developing the required features for our Svelte To-Do list app. In this article, we'll be using variables and props to make our app dynamic, allowing us to add and delete to-dos, mark them as complete, and filter them by status.
+
+**[Componentizing our Svelte app]()**
+
+The central objective of this article is to look at how to break our app into manageable components and share information between them. We'll componentize our app, then add more functionality to allow users to update existing components.
+
+**[Advanced Svelte: Reactivity, lifecycle, accessibility]()**
+
+In this article, we will add the app's final features and further componentize our app. We will learn how to deal with reactivity issues related to updating objects and arrays. To avoid common pitfalls, we'll have to dig a little deeper into Svelte' reactivity system. We'll also look at solving some accessibility focus issues, and more besides.
+
+**[Working with Svelte stores]()**
+
+In this article, we will show another way to handle state management in Svelte -- [Stores](https://svelte.dev/tutorial/writable-stores). Stores are global data repositories that hold values. Components can subscribe to stores and receive notifications when their values change.
+
+**[TypeScript support in Svelte]()**
+
+We will now learn how to use TypeScript in Svelte applications. First we'll learn what TypeScript is and what benefits it can bring us. Then we'll see how to configure our project to work with TypeScript files. Finally, we will go over our app and see what modifications we have to make to fully take advantage of TypeScript features.
+
+**[Development and next steps]()**
+
+In this final article, we will look at how to deploy your application and get it online, and also share some of the resources that you should go on to, to continue your Svelte learning journey.
+
