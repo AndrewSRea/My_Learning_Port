@@ -209,3 +209,38 @@ In some cases, framework applications create accessibility barriers that do not 
 With traditional (server-side) routing, navigating the web has predictable results. The browser knows to set focus to the top of the page and assistive technologies will announce the title of the page. These things happen every time you navigate to a new page.
 
 With client-side routing, your browser is not loading new web pages, so it doesn't know that it should automatically adjust focus or announce a new page title. Framework authors have devoted immense time and labor to writing JavaScript that recreates these features, and even then, no framework has done so perfectly.
+
+The upshot is that you should consider accessibility from the very start of *every* web project, but bear in mind that abstracted codebases that use frameworks are more likely to suffer from major accessibility issues if you don't.
+
+## How to choose a framework
+
+Each of the frameworks discussed in this module take different approaches to web application development. Each is regularly improving or changing, and each has its pros and cons. Choosing the right framework is a team- and project-dependent process, and you should do your own research to uncover what suits your needs. That said, we've identified a few questions you can ask in order to research your options more effectively:
+
+1. What browsers does the framework support?
+2. What domain-specific languages does the framework utilize?
+3. Does the framework have a strong community and good docs (and other support) available?
+
+The table in this section provides a glanceable summary of the current *browser support* offered by each framework, as well as the **domain-specific languages** with which it can be used.
+
+Broadly, domain-specific languages (**DSLs**) are programming languages relevant in specific areas of software development. In the context of frameworks, DSLs are variations on JavaScript or HTML that make it easier to develop with that framework. Crucially, none of the frameworks *require* a developer to use a specific DSL, but they have almost all been designed with a specific DSL in mind. Choosing not to employ a framework's preferred DSL will mean you miss out on features that would otherwise improve your developer experience.
+
+You should seriously consider the support matrix and DSLs of a framework when making a choice for any new project. Mismatched browser support can be a barrier to your users; mismatched DSL support can be a barrier to you and your teammates.
+
+| Framework | Browser support | Preferred DSL | Supported DSLs |
+| --- | --- | --- | --- |
+| Angular | IE9+ | TypeScript | HTML-based; TypeScript |
+| React | Modern (IE9+ with Polyfills) | JSX | JSX; TypeScript |
+| Vue | IE9+ | HTML-based | HTML-based, JSX, Pug |
+| Ember | Modern (IE9+ in Ember version 2.18) | Handlebars | Handlebars, TypeScript |
+
+<hr>
+
+**Note**: DSLs we've described as "HTML-based" do not have official names. They are not really true DSLs, but they are non-standard HTML, so we believe they are worth highlighting.
+
+<hr>
+
+Citations for this table:
+
+* [React browser support: official docs](https://reactjs.org/docs/react-dom.html#browser-support)
+* [Ember browser support: Ember 3.0 release announcement](https://blog.emberjs.com/ember-3-0-released/)
+* [Ember templating language (official docs)](https://guides.emberjs.com/v3.3.0/templates/handlebars-basics/)
