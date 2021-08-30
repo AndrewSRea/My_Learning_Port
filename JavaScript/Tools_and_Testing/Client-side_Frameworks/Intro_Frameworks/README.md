@@ -153,3 +153,27 @@ It's possible to do things *similar* to this in vanilla JavaScript. [Template li
 ## Other things frameworks give us
 
 Let's look at some of the other advantages conferred upon us by frameworks. As we've alluded to before, the advantages of frameworks are achievable in vanilla JavaScript, but using a framework takes away all of the cognitive laod of having to solve these problems yourself.
+
+### Tooling
+
+Because each of the frameworks in this module have a large, active community, each framework's ecosystem provides tooling that improves the developer experience. These tools make it easy to add things like testing (to ensure that your application behaves as it should) or linting (to ensure that your code is error-free and stylistically consistent).
+
+<hr>
+
+**Note**: If you want to find out more details about web tooling concepts, read the [Client-side tooling overview](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Client-side_Tooling#client-side-tooling-overview).
+
+<hr>
+
+### Compartmentalization
+
+Most major frameworks encourage developers to abstract the different parts of their user interfaces into *components* -- maintainable, reusable chunks of code that can communicate with one another. All the code related to a given component can live in one file (or a couple of specific files), so that you as a developer know exactly where to go to make changes to that component. In a vanilla JavaScript app, you'd have to create your own set of conventions to achieve this in an efficient, scalable way. Many JavaScript developers, if left to their own devices, could end up with all the code related to one part of the UI being spread out all over a file -- or in another file altogether.
+
+### Routing
+
+The most essential feature of the web is that it allows users to navigate from one page to another -- it is, after all, a network of interlinked documents. When you follow a link on this very website, your browser communicates with a server and fetches new content to display for you. As it does so, the URL in your address bar changes. You can save this new URL and come back to the page later on, or share it with others so they can easily find the same page. Your browser remembers your navigation history and allows you to navigate back and forth, too. This is called **server-side routing**.
+
+Modern web applications typically do not fetch and render new HTML files -- they load a single HTML shell, and continually update the DOM inside it (referred to as **single page apps**, or **SPAs**) without navigating users to new addresses on the web. Each new pseudo-webpage is usually called a *view*, and by default, no routing is done.
+
+When an SPA is complex enough, and renders enough unique views, it's important to bring routing functionality into your application. People are used to being able to link to specific pages in an application, travel forward and backward in their navigation history, etc., and their experience suffers when these standard web features are broken. When routing is handled by a client application in this fashion, it is aptly called **client-side routing**.
+
+It's *possible* to make a router using the native capabilities of JavaScript and the browser, but popular, actively developed frameworks have companion libraries that make routing a more intuitive part of the development process.
