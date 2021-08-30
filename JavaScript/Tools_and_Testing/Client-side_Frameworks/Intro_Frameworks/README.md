@@ -244,3 +244,61 @@ Citations for this table:
 * [React browser support: official docs](https://reactjs.org/docs/react-dom.html#browser-support)
 * [Ember browser support: Ember 3.0 release announcement](https://blog.emberjs.com/ember-3-0-released/)
 * [Ember templating language (official docs)](https://guides.emberjs.com/v3.3.0/templates/handlebars-basics/)
+
+### Does the framework have a strong community?
+
+This is perhaps the hardest metric to measure, because community size does not correlate directly to easy-to-access numbers. You can check a project's number of GitHub stars or weekly npm downloads to get an idea of its popularity, but sometimes the best thing to do is search a few forums or talk to other developers. It is not just about the community's size, but also how welcoming and inclusive it is, and how good available documentation is.
+
+### Opinions on the web
+
+Don't just take our word on this matter -- there are discussions all over the web. The Wikimedia Foundation recently chose to use Vue for its front-end, and posted a [request for comments (RFC) on framework adoption](https://phabricator.wikimedia.org/T241180). Eric Gardner, the author of the RFC, took time to outline the needs of the Wikimedia project and why certain frameworks were good choices for the team. This RFC serves as a great example of the kind of research you should do for yourself when planning to use a front-end framework.
+
+The [State of JavaScript survey](https://stateofjs.com/) is a helpful collection of feedback from JavaScript developers. It covers many topics related to JavaScript, including data about both the use of frameworks and developer sentiment toward them. Currently, there are several years of data available, allowing you to get a sense of a framework's popularity.
+
+The Vue team has [exhaustively compared Vue to other popular frameworks](https://vuejs.org/v2/guide/comparison.html). There may be some bias in this comparison (which they note), but it's a valuable resource nonetheless.
+
+## Alternatives to client-side frameworks
+
+If you're looking for tools to expedite the web development process, and you know your project isn't going to require intensive client-side JavaScript, you could reach for one of a handful of other solutions for building the web:
+
+* A content management system
+* Server-side rendering
+* A static site generator
+
+### Content management systems
+
+**Content-management systems (CMSes)** are any tools that allow a user to create content for the web without directly writing code themselves. They're a good solution for large projects, especially projects that require input from content writers who have limited coding ability, or for programmers who want to save time. They do, however, require a significant amount of time to set up, and utilizing a CMS means that you surrender, at least, some measure of control over the final output of your website. For example: if your chosen CMS doesn't author accessible content by default, it's often difficult to improve this.
+
+Popular examples include [Wordpress](https://wordpress.com/), [Joomla](https://www.joomla.org/), and [Drupal](https://www.drupal.org/).
+
+### Server-side rendering
+
+**Server-side rendering (SSR)** is an application architecture in which it is the *server's* job to render a single-page application. This is the opposite of *client-side rendering*, which is the most common and most straightforward way to build a JavaScript application. Server-side rendering is easier on the client's device, because you're only sending a rendered HTML file to them, but it can be difficult to set up compared to a client-side-rendered application.
+
+All of the frameworks covered in this module support server-side rendering as well as client-side rendering. Check out [Next.js](https://nextjs.org/) for React, [Nuxt.js](https://nuxtjs.org/) for Vue (yes, it is confusing, and no, these projects are not related!), [FastBoot](https://github.com/ember-fastboot/ember-cli-fastboot) for Ember, and [Angular Universal](https://angular.io/guide/universal) for Angular.
+
+<hr>
+
+**Note**: Some SSR solutions are written and maintained by the community, whereas some are "official" solutions provided by the framework's maintainer.
+
+<hr>
+
+### Static site generators
+
+Static site generators are programs that dynamically generate all the webpages of a multi-page website -- including any relevant CSS or JavaScript -- so that they can be published in any number of places. The publishing host could be a GitHub pages branch, a Netlify instance, or any private server of your choosing, for example. There are a number of advantages of this approach, mostly around performance (your user's device isn't building the page with JavaScript; it's already complete) and security (static pages have fewer attack vectors). These sites can still utilize JavaScript where they need to, but they are not *dependent* upon it. Static site generators take time to learn, just like any other tool, which can be a barrier to your development process.
+
+Static sites can have as few or as many unique pages as you want. Just as frameworks empower you to quickly write client-side JavaScript application, static site generators allow you a way to quickly create HTML files you would otherwise have written individually. Like frameworks, static site generators allow developers to write components that define common pieces of your web pages, and to compose those components together to create a final page. In the context of static site generators, these components are called **templates**. Web pages built by static site generators can even be home to framework applications: if you want one specific page of your statically-generated website to boot up a React application when your user visits it, for example, you can do that.
+
+Static site genrators have been around for quite a long time, but they have seen a bit of a revival in the recent history of the web. A handful of powerful options are now available, such as [Hugo](https://gohugo.io/), [Jekyll](https://jekyllrb.com/), [Eleventy](https://www.11ty.dev/), and [Gatsby](https://www.gatsbyjs.com/).
+
+If you'd like to learn more about static site generators on the whole, check out Tatiana Mac's [Beginner's guide to Eleventy](https://tatianamac.com/posts/beginner-eleventy-tutorial-parti/). In the first article of the series, she explains what a static site generator is, and how it relates to other means of publishing web content.
+
+## Summary
+
+And that brings us to the end of our introduction to frameworks -- we've not taught you any code yet, but hopefully we've given you a useful background on why you'd use frameworks in the first place and how to go about shoosing one, and made you excited to learn more and get stuck in!
+
+Our next article goes down to a lower level, looking at the specific kinds of features frameworks tend to offer, and why they work like they do.
+
+<hr>
+
+[[Back to Understanding client-side JavaScript frameworks]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks#understanding-client-side-javascript-frameworks) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Intro_Frameworks#introduction-to-client-side-frameworks) - [[Next page]]()
