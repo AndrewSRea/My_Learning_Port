@@ -64,8 +64,72 @@ Building HTML elements and rendering them in the browser at the appropriate time
 ```
 const state = [
     {
-        id: 'todo-0;,
+        id: 'todo-0',
         name: 'Learn some frameworks!'
     }
 ]
 ```
+How do we show one of those tasks to our user? WE want to represent each task as a list item -- an HTML [`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) element inside of an unordered list element (a [`<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul)). How do we make it? That could look something like this:
+```
+function buildTodoItemEl(id, name) {
+    const item = document.createElement('li');
+    const span = document.createElement('span');
+    const textContent = document.createTextNode(name);
+
+    span.appendChild(textContent);
+
+    item.id = id;
+    item.appendChild(span);
+    item.appendChild(buildDeleteButtonEl(id));
+
+    return item;
+}
+```
+Here, we use the [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) method to make our `<li>`, and several more lines of code to create the properties and children it needs.
+
+The tenth line of this snippet references another build function: `buildDeleteButtonEl()`. It follows a similar pattern to the one we used to build a list item element:
+```
+function buildDeleteButtonEl(id) {
+    const button = document.createElement('button');
+    const textContent = document.createTextNode('Delete');
+
+    button.setAttribute('type', 'button');
+    button.appendChild(textContent);
+
+    return button;
+}
+```
+This button doesn't do anything yet, but it will later once we decide to implement our delete feature. The code that will render our items on the page might read something like this:
+```
+function renderTodoList() {
+    const frag = document.createDocumentFragment();
+    state.tasks.forEach(task => {
+        const item = buildTodoItemEl(task.id, task.name);
+        frag.appendChild(item);
+    });
+
+    while (todoListEl.firstChild) {
+        todoListEl.removeChild(todoListEl.firstChild);
+    }
+    todoListEl.appendChild(frag);
+}
+```
+We've now got well over thirty lines of code dedicated *just* to the UI -- *just* to the step of rendering something in the DOM -- and at no point do we add classes that we could use later to style our list-items!
+
+Working directly with the DOM, as in this example, requires understanding many things about how the DOM works: how to make elements; how to change their properties; how to put elements inside of each other; how to get them on the page. None of this code actually handles user interactions, or addresses adding or deleting a task. If we add those features, we have to remember to update our UI in the right time and in the right way.
+
+JavaScript frameworks were created to make this kind of work a little easier -- they exist to provide a better *developer experience*. They don't bring brand-new powers to JavaScript; they give you easier access to JavaScript's powers so you can build for today's web.
+
+If you want to see code samples from this section in action, you can check out a [working version of the app on CodePen](https://codepen.io/mxmason/pen/XWbPNmw), which also allows users to add and delete new tasks.
+
+Read more about the JavaScript used in this section:
+
+* [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+* [`document.createTextNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode)
+* [`document.createDocumentFragment()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment)
+* [`eventTarget.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+* [`node.appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+* [`node.removeChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild)
+
+## Another way to build UIs
+
