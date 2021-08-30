@@ -133,3 +133,23 @@ Read more about the JavaScript used in this section:
 
 ## Another way to build UIs
 
+Every JavaScript framework offers a way to write user interfaces more *declaratively*. That is, they allow you to write code that describes how your UI should look, and the framework makes it happen in the DOM behind the scenes.
+
+The vanilla JavaScript approach to building out new DOM elements in repetition was difficult to understand at a glance. By contrast, the following block of code illustrates the way you might use Vue to describe out list of tasks:
+```
+<ul>
+    <li v-for="task in tasks" v-bind:key="task.id">
+        <span>{{task.name}}</span>
+        <button type="button">Delete</button>
+    </li>
+</ul>
+```
+That's it. This snippet reduces approximately thirty-two lines of code down to six lines. If the curly braces and `v-` attributes here are unfamiliar to you, that's okay; you'll learn about Vue-specific syntax later on in the module. The thing to take away here is that this code looks like the UI it represents, whereas the vanilla JavaScript code does not.
+
+Thanks to Vue, we didn't have to write our own functions for building the UI; the framework will handle that for us in an optimized, efficient way. Our only role here was to describe to Vue what each item should look like. Developers who are familiar with Vue can join our project and quickly work out what is going on. Vue is not alone in this: using a framework improves team as well as individual efficiency.
+
+It's possible to do things *similar* to this in vanilla JavaScript. [Template literal strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) make it easy to write strings of HTML that represent what the final element would look like. That might be a useful idea for something as simple as our to-do list application, but it's not maintainable for large applications that manage thousands of records of data, and could render just as many unique elements in a user interface.
+
+## Other things frameworks give us
+
+Let's look at some of the other advantages conferred upon us by frameworks. As we've alluded to before, the advantages of frameworks are achievable in vanilla JavaScript, but using a framework takes away all of the cognitive laod of having to solve these problems yourself.
