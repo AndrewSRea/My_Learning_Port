@@ -88,3 +88,74 @@ As mentioned in the previous chapter, most frameworks have some kind of componen
 
 Regardless of their opinions on how components should be written, each framework's components offer a way to describe the external properties they may need, the internal state that the component should manage, and the events a user can trigger on the component's markup.
 
+The code snippets in the rest of this section will use React as an example, and are written with JSX.
+
+### Properties
+
+Properties, or **props**, are external data that a component needs in order to render. Suppose you're building a website for an online magazine, and you need to be sure that each contributing writer gets credit for their work. You might create an `AuthorCredit` component to go with each article. This component needs to display a portrait of the author and a short byline about them. In order to know what image to render, and what byline to print, `AuthorCredit` needs to accept some props.
+
+A React representation of this `AuthorCredit` component might look something like this:
+```
+function AuthorCredit(props) {
+    return (
+        <figure>
+            <img src={props.src} alt={props.alt} />
+            <figcaption>{props.byline}</figcaption>
+        </figure>
+    );
+}
+```
+`{props.src}`, `{props.alt}`, and `{props.byline}` represent where our props will be inserted into the component. To render this component, we would write code like this in the place where we want it rendered (which will probably be inside another component):
+```
+<AuthorCredit
+    src="./aasets/zelda.png"
+    alt="Portrait of Zelda Schiff"
+    byline="Zelda Schiff is editor-in-chief of the Library Times."
+/>
+```
+This will ultimately render the following [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element in the browser, with its structure as defined in the `AuthorCredit` component call:
+```
+<figure>
+    <img
+        src="assets/zelda.png"
+        alt="Portrait of Zelda Schiff"
+    >
+    <figcaption>
+        Zelda Schiff is editor-in-chief of the Library Times.
+    </figcaption>
+</figure>
+```
+
+### State
+
+We talked about the concept of **state** in the previous chapter -- a robust state-handling mechanism is key to an effective framework, and each component may have data that needs its state controlled. This state will persist in some way as long as the component is in use. Like props, state can be used to affect how a component is rendered.
+
+As an example, consider a button that counts how many times it has been clicked. This component should be responsible for tracking its own *count* state, and could be written like this:
+```
+function CounterButton() {
+    const [count] = useState(0);
+    return (
+        <button>Clicked {count} times</button>
+    );
+}
+```
+[`useState()`](https://reactjs.org/docs/hooks-reference.html#usestate) is a **[React hook](https://reactjs.org/docs/hooks-intro.html)** which, given an initial data value, will keep track of that value as it is updated. The code will be initially rendered like so in the browser:
+```
+<button>Clicked 0 times</button>
+```
+The `useState()` call keeps track of the `count` value in a robust way across the app, without you needing to write code to do that yourself.
+
+### Events 
+
+In order to be interactive, components need ways to respond to browser events, so our applications can respond to our users. Frameworks each provide their own syntax for listening to browser events, which reference the names of the equivalent native browser events.
+
+In React, listening for the [`click`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event) event requires a special property, `onClick`. Let's update our `CounterButton` code from above to allow it to count clicks:
+```
+function CounterButton() {
+    const [count, setCount] = useState(0);
+    return (
+        <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>
+    );
+}
+```
+In this version, we are using additional `useState()` functionality to create a special `setCount()` function, which we can invoke to update the value of `count`. We call this function on line 4, and set `count` to whatever its current value is, plus one.
