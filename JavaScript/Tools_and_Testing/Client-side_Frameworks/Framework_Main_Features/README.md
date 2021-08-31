@@ -159,3 +159,50 @@ function CounterButton() {
 }
 ```
 In this version, we are using additional `useState()` functionality to create a special `setCount()` function, which we can invoke to update the value of `count`. We call this function on line 4, and set `count` to whatever its current value is, plus one.
+
+## Styling components
+
+Each framework offers a way to define styles for your components -- or for the application as a whole. Although each framework's approach to defining the styles of a component is slightly different, all of them give you multiple ways to do so. With the addition of some helper modules, you can style your framework apps in [Sass](https://sass-lang.com/) or [Less](https://lesscss.org/), or transpile your CSS stylesheets with [PostCSS](https://postcss.org/).
+
+## Handling dependencies
+
+All major frameworks provide mechanisms for handling dependencies -- using components inside other components, sometimes with multiple hierarchy levels. As with other features, the exact mechanism will differ between frameworks, but the end result is the same. Components tend to import components into other components using the standard [JavaScript module syntax](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Asynchronous_JS/Async_Prog_with_Async_and_Await/JS_Modules#javascript-modules) or, at least, something similar.
+
+### Components in components
+
+One key benefit of component-based UI architecture is that components can be composed together. Just like you can write HTML tags inside each other to build a website, you can use components inside other components to build a web application. Each framework allows you to write components that utilize (and thus depend on) other components.
+
+For example, our `AuthorCredit` React component might be utilized inside an `Article` component. That means that `Article` would need to import `AuthorCredit`.
+```
+import AuthorCredit from "./components/AuthorCredit";
+```
+Once that's done, `AuthorCredit` could be used inside the `Article` component like this:
+```
+...
+
+<AuthorCredit />
+
+...
+```
+
+### Dependency injection
+
+Real-world applications can often involve component structures with multiple levels of nesting. An `AuthorCredit` component nested many levels deep might, for some reason, need data from the very root level of our application.
+
+Let's say that the magazine site we're building is structured like this:
+```
+<App>
+    <Home>
+        <Article>
+            <AuthorCredit {/* props */} />
+        </Article>
+    </Home>
+</App>
+```
+Our `App` component has data that our `AuthorCredit` component needs. We could rewrite `Home` and `Article` so that they know to pass props down, but this could get tedious if there are many, many levels between the origin and destination of our data. It's also excessive: `Home` and `Article` don't actually make use of the author's portrait or byline, but if we want to get that information into the `AuthorCredit`, we will need to change `Home` and `Article` to accommodate it.
+
+The problem of passing data through many layers of components is called prop drilling, and it's not ideal for large applications.
+
+To circumvent prop drilling, frameworks provide functionality known as dependency injection, which is a way to get certain data directly to the components that need it, without passing it through intervening levels. Each framework implements dependency injection under a different name, and in a different way, but the effect is ultimately the same.
+
+Angular calls this process [dependency injection](https://angular.io/guide/dependency-injection); Vue has [`provide()` and `inject()` component methods](https://vuejs.org/v2/api/#provide-inject); React has a [Context API](https://reactjs.org/docs/context.html); Ember shares state through [services](https://guides.emberjs.com/release/services/).
