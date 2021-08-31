@@ -206,3 +206,79 @@ The problem of passing data through many layers of components is called prop dri
 To circumvent prop drilling, frameworks provide functionality known as dependency injection, which is a way to get certain data directly to the components that need it, without passing it through intervening levels. Each framework implements dependency injection under a different name, and in a different way, but the effect is ultimately the same.
 
 Angular calls this process [dependency injection](https://angular.io/guide/dependency-injection); Vue has [`provide()` and `inject()` component methods](https://vuejs.org/v2/api/#provide-inject); React has a [Context API](https://reactjs.org/docs/context.html); Ember shares state through [services](https://guides.emberjs.com/release/services/).
+
+### Lifecycle
+
+In the context of a framework, a component's **lifecycle** is a collection of phases a component goes through from the time it is appended to the DOM and then rendered by the browser (often called *mounting*) to the time that it is removed from the DOM (often called *unmounting*). Each framework names these lifecycle phases differently, and not all give developers access to the same phases. All of the frameworks follow the same general model: they allow developers to perform certain actions when the component *mounts*, when it *renders*, when it *unmounts*, and at many phases in between these.
+
+The *render* phase is the most crucial to understand, because it is repeated the most times as your user interacts with your application. It's run every time the browser needs to render something new, whether that new information is an addition to what's in the browser, a deletion, or an edit of what's there.
+
+This [diagram of a React component's lifecycle](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) offers a general overview of the concept.
+
+## Rendering elements
+
+Just as with lifecycles, frameworks take different-but-similar approaches to how they render your applications. All of them track the current rendered version of your browser's DOM, and each makes slightly different decisions about how the DOM should change as components in your application re-render. Because frameworks make these decisions for you, you typically don't interact with the DOM yourself. This abstraction away from the DOM is more complex and more memory-intensive than updating the DOM yourself, but without it, frameworks could not allow you to program in the declarative way they're known for.
+
+The **Virtual DOM** is an approach whereby information about your browser's DOM is stored in JavaScript memory. Your application updates this copy of the DOM, then compares it to the "real" DOM -- the DOM that is acgtually rendered for your users -- in order to decide what to render. The application builds a "diff" to compare the differences between the updated virtual DOM and the currently rendered DOM, and uses that diff to apply updates to the real DOM. Both React and Vue utilize a virtual DOM model, but they do not apply the exact same logic when diffing or rendering.
+
+You can [read more about the Virtual DOM in the React docs](https://reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom).
+
+The **Incremental DOM** is similar to the virtual DOM in that it builds a DOM diff to decide what to render, but different in that it doesn't create a complete copy of the DOM in JavaScript memory. It ignores the parts of the DOM that do not need to be changed. Angular is the only framework discussed so far in this module that uses an incremental DOM.
+
+You can [read more about the Incremental DOM on the Auth0 blog](https://auth0.com/blog/incremental-dom/).
+
+The **Glimmer VM** is unique to Ember. It is not a virtual DOM nor an incremental DOM; it is a separate process through which Ember's templates are transpiled into a kind of "byte code" that is easier and faster to read than JavaScript.
+
+## Routing
+
+As [mentioned in the previous chapter, routing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Intro_Frameworks#routing) is an important part of the web experience. To avoid a broken experience in sufficiently complex apps with lots of views, each of the frameworks covered in this module provides a library (or more than one library) that helps developers implement client-side routing in their applications.
+
+## Testing
+
+All applications benefit from test coverage that ensures your software continues to behave in the way that you'd expect, and web applications are no different. Each framework's ecosystem provides tooling that facilitates the writing of tests. Testing tools are not built into the frameworks themselves, but the command-line interface tools used to generate framework apps give you access to the appropriate testing tools.
+
+Each framework has extensive tools in its ecosystem, with capabilities for unit and integration testing alike.
+
+[Testing Library](https://testing-library.com/) is a suite of testing utilities that has tools for many JavaScript environments, including React, Vue, and Angular. The Ember docs cover the [testing of Ember apps](https://guides.emberjs.com/release/testing/).
+
+Here's a quick test for our `CounterButton` written with the help of React Testing Library -- it tests a number of things, such as the button's existence, and whether the button is displaying the correct text after being clicked0, 1, and 2 times:
+```
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+
+import CounterButton from "./CounterButton";
+
+it("renders a semantic with an initial state of 0", () => {
+    const { getByRole } = render(<CounterButton />);
+    const btn = getByRole("button");
+
+    expect(btn).toBeInTheDocument();
+    expect(btn).toHaveTextContent("Clicked 0 times");
+});
+
+it("Increments the count when clicked", () => {
+    const { getByRole } = render(<CounterButton />);
+    const btn = getByRole("button");
+
+    fireEvent.click(btn);
+    expect(btn).toHaveTextContent("Clicked 1 times");
+
+    fireEvent.click(btn);
+    expect(btn).toHaveTextContent("Clicked 2 times");
+});
+```
+
+## Summary
+
+At this point you should have more of an idea about the actual languages, features, and tools you'll be using as you create applications with frameworks. I'm sure you're enthusiastic to get going and actually do some coding, and that's what you are going to do next! At this point you can choose which framework you'd like to start learning first:
+
+* [React]()
+* [Ember]()
+* [Vue]()
+* [Svelte]()
+* [Angular]()
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Intro_Frameworks#introduction-to-client-side-frameworks) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Framework_Main_Features#framework-main-features) - [[Next page]]()
