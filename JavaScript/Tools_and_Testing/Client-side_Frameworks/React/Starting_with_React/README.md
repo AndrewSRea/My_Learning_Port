@@ -74,3 +74,39 @@ In order to use create-react-app, you need to have [Node.js](https://nodejs.org/
 You may also use the Yarn package manager as an alternative, but we'll assume you are using npm in this set of tutorials. See [Package management basics](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics) for more information on npm and yarn.
 
 If you're using Windows, you need to install some software to give you parity with Unix/macOS terminal in order to use the terminal commands mentioned in this tutorial. **Gitbash** (which comes as part of the [git for Windows toolset](https://gitforwindows.org/)) or **[Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) (WSL)** are both suitable. See [Command line crash course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#command-line-crash-course) for more information on these, and on terminal commands in general.
+
+Also, bear in mind that React and ReactDOM produce apps that only work on a fairly modern set of browsers -- IE9+ by way of some polyfills. It is recommended that you use a modern browser like Firefox, Microsoft Edge, Safari, or Chrome when working through these tutorials.
+
+Also, see the following for more information:
+
+* ["What is npm" on nodejs.org](https://nodejs.org/en/knowledge/getting-started/npm/what-is-npm/)
+* ["Introducing npx" on the npm blog](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner)
+* [The create-react-app documentation](https://create-react-app.dev/)
+
+### Initializing your app
+
+create-react-app takes one argument: the name you'd like to give your app. create-react-app uses this name to make a new directory, then create the necessary files inside it. Make sure you `cd` to the place you'd like your app to live on your hard drive, then run the following in your terminal:
+```
+npx create-react-app moz-todo-react
+```
+This create a `moz-todo-react` directory, and does several things inside it:
+
+* Installs some npm packages essential to the functionality of the app.
+* Writes scripts for starting and serving the application.
+* Creates a structure of files and directories that define the basic app architecture.
+* Initializes the directory as a git repository, if you have git installed on your computer.
+
+<hr>
+
+**Note**: If you have the yarn package manager installed, create-react-app will default to using it instead of npm. If you have both package managers installed and explicitly want to use NPM, you can add the flag `--use-npm` when you run create-react-app:
+```
+npx create-react-app moz-todo-react --use-npm
+```
+
+<hr>
+
+create-react-app will display a number of messages in your terminal while it works; this is normal! This might take a few minutes, so now might be a good time to go make a cup of tea. (Yes, Mozilla, if we were all in jolly ol' England!)
+
+When the process is complete, `cd` into the `moz-todo-react` directory and run the command `npm start`. The scripts installed by create-react-app will start being served at a local server at `localhost:3000`, and open the app in a new browser tab. Your browser will display something like this:
+
+![Image of the React app's initial stage](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started/default-create-react-app.png)
