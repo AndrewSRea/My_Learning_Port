@@ -223,7 +223,7 @@ The `App` function returns a JSX expression. This expression defines what your b
 
 Some elements in the expression have attributes, which are written just like in HTML, following a pattern of `attribute="value"`. On line 3, the opening [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) tag has a `className` attribute. This is the same as the [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute in HTML, but because JSX is JavaScript, we can't use the word `class` -- it's reserved, meaning JavaScript already uses it for a specific purpose and it would cause problems here in our code. A few other HTML attributes are written differently in JSX than they are in HTML, too, for the same kind of reason. We'll cover them as we encounter them.
 
-Take a moment to change the [`<p>`]() tag on line 6 so that it reads "Hello, world!", then save your file. You'll notice that this change is immediately rendered in the development server running at `http://localhost:3000` in your browser. Now delete the [`<a>`]() and save; the "Learn React" link will be gone.
+Take a moment to change the [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) tag on line 6 so that it reads "Hello, world!", then save your file. You'll notice that this change is immediately rendered in the development server running at `http://localhost:3000` in your browser. Now delete the [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) and save; the "Learn React" link will be gone.
 
 Your `App` component should now look like this:
 ```
@@ -240,3 +240,165 @@ function App() {
     );
 }
 ```
+
+### Export statements
+
+At the very bottom of the `App.js` file, the statement `export default App` makes our `App` component available to other modules.
+
+## Interrogating the index
+
+Let's open `src/index.js`, because that's where the `App` component is being used. This file is the entry point for our app, and it initially looks like this:
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+);
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+```
+As with `App.js`, the file starts by importing all the JS modules and other assets it needs to run. `src/index.css` holds global styles that are applied to our whole app. We can also see our `App` component imported here; it is made available for import thanks to the `export` statement at the bottom of `App.js`.
+
+Line 7 calls React's `ReactDOM.render()` function with two arguments:
+
+* The component we want to render, `<App />` in this case.
+* The DOM element inside which we want the component to be rendered, in this case the element with as ID of `root`. If you look inside `public/index.html`, you'll see that this is a `<div>` element just inside the `<body>`.
+
+All of this tells React that we want to render our React application with the `App` component as the root, or first component.
+
+<hr>
+
+**Note**: In JSX, React components and HTML elements must have closing slashes. Writing just `<App>` or just `<img>` will cause an error.
+
+<hr>
+
+[Service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers) are interesting pieces of code that help application performance and allow features of your web applications to work offline, but they're not in scope for this article. You can delete line 5, as well as most of the code below it.
+
+Your final `index.js` file should look like this:
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+## Variables and props
+
+Next, we'll use a few of our JavaScript skills to get a bit more comfortable editing components and working with data in React. We'll talk about how variables are used inside JSX, and introduce props, which are a way of passing data into a component (which can then be accessed using variables).
+
+### Variables in JSX
+
+Back in `App.js`, let's focus on line 9:
+```
+<img src={logo} className="App-logo" alt="logo" />
+```
+Here, the `<img />` tag's `src` attribute value is in curly braces. This is how JSX recognizes variables. React will see `{logo}`, know you are referring to the logo import on line 2 of our app, then retrieve the logo file and render it.
+
+Let's try making a variable of our own. Before the return statement of `App`, add `const subject = 'React';`. Your `App` component should now look like this:
+```
+function App() {
+    const subject = "React";
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>
+                    Hello, world!
+                </p>
+            </header>
+        </div>
+    );
+}
+```
+Change line 8 to use our `subject` variable instead of the word "world", like this:
+```
+function App() {
+    const subject = "React";
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>
+                    Hello, {subject}!
+                </p>
+            </header>
+        </div>
+    );
+}
+```
+When you save, your browser should display "Hello, React!" instead of "Hello, world!"
+
+Variables are convenient, but the one we've just set doesn't make great use of React's features. That's where props come in.
+
+### Component props
+
+A **prop** is any data passed into a React component. React props are comparable to HTML attributes. Where HTML elements have attributes, React components have props. Props are written inside component calls, and use the same syntax as HTML attributes -- `prop="value"`. In React, dataflow is unidirectional: props can only be passed from Parent components down to Child components; and props are read-only.
+
+Let's open `index.js` and give our `<App />` call its first prop.
+
+Add a prop of `subject` to the `<App />` component call, with a value of `Clarice`. When you are done, your code should look something like this:
+```
+ReactDOM.render(<App subject="Clarice" />, document.getElementById('root'));
+```
+Back in `App.js`, let's revisit the App function itself, which reads like this (with the `return` statement shortened for brevity):
+```
+function App() {
+    const subject = "React";
+    return (
+        // return statement
+    );
+}
+```
+Change the signature of the `App` function so that it accepts `props` as a parameter, and delete the `subject` const. Just like any other function parameter, you can put `props` in a `console.log()` to print it to your browser's console. Go ahead and do that before the `return` statement, like so:
+```
+function App(props) {
+    console.log(props);
+    return (
+        // return statement
+    );
+}
+```
+Save your file and check your browser's JavaScript console. You should see something like this logged:
+```
+Object { subject: "Clarice" }
+```
+The object property `subject` corresponds to the `subject` prop we added to our `<App />` component call, and the string `Clarice` corresponds to its value. Component props in React are always collected into objects in this fashion.
+
+Now that `subject` is one of our props, let's utilize it in `App.js`. Change the `subject` constant so that, instead of defining it as the strong `React`, you are reading the value of `props.subject`. You can also delete your `console.log()` if you want.
+```
+function App(props) {
+    const subject = props.subject;
+    return (
+        // return statement
+    );
+}
+```
+When you save, the app should now greet you with "Hello, Clarice!". If you return to `index.js`, edit the value of `subject`, and save, your text will change.
+
+## Summary
+
+This brings us to the end of our initial look at React, including how to install it locally, creating a starter app, and how the basics work. In the next article, we'll start building our first proper application -- a to-do list. Before we do that, however, let's recap some of the things we've learned.
+
+In React:
+
+* Components can import modules they need and must export themselves at the bottom of their files.
+* Component functions are named with `PascalCase`.
+* You can read JSX variables by putting them between curly braces, like `{so}`.
+* Some JSX attributes are different than HTML attributes so that they don't conflict with JavaScript reserved words. For example, `class` in HTML translates to `className` in JSX. Note that multi-word attributes are camel-cased.
+* Props are written just like attributes inside component calls and are passed into components.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Framework_Main_Features#framework-main-features) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Starting_with_React#getting-started-with-react) - [[Next page]]()
