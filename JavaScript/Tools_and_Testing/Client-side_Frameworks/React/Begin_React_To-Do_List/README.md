@@ -39,3 +39,126 @@ Notes:
 * If you stopped your server to do the terminal taqsks mentioned above, you'll have to start it again using `npm start`.
 
 ## Project starter code
+
+As a starting point for this project, we're going to provide two things: An `App()` function to replace the one you have now, and some CSS to style your app.
+
+### The JSX
+
+Copy the following snippet to your clipboard, then paste it into `App.js` so that it replaces the existing `App()` function:
+```
+function App(props) {
+    return (
+        <div className="todoapp stack-large">
+            <h1>TodoMatic</h1>
+            <form>
+                <h2 className="label-wrapper">
+                    <label htmlFor="new-todo-input" className="label__lg">
+                        What needs to be done?
+                    </label>
+                </h2>
+                <input
+                    type="text"
+                    id+'new-todo-input"
+                    className="input input__lg"
+                    name="text"
+                    autoComplete="off"
+                />
+                <button type="submit" className="btn btn__primary btn__lg">
+                    Add
+                </button>
+            </form>
+            <div className="filters btn-group stack-exception">
+                <button type="button" className="btn toggle-btn" aria-pressed="true">
+                    <span className="visually-hidden">Show </span>
+                    <span>all</span>
+                    <span className="visually-hidden"> tasks</span>
+                </button>
+                <button type="button" className="btn toggle-btn" aria-pressed="false">
+                    <span className="visually-hidden">Show </span>
+                    <span>Active</span>
+                    <span className="visually-hidden"> tasks</span>
+                </button>
+                <button type="button" className="btn toggle-btn" aria-pressed="false">
+                    <span className="visually-hidden">Show </span>
+                    <span>Completed</span>
+                    <span className="visually-hidden"> tasks</span>
+                </button>
+            </div>
+            <h2 id="list-heading">
+                3 tasks remaining
+            </h2>
+            <ul
+                role="list"
+                className="todo-list stack-large stack-exception"
+                aria-labelledby="list-heading"
+            >
+                <li className="todo stack-small">
+                    <div className="c-cb">
+                        <input id="todo-0" type="checkbox" defaultChecked={true} />
+                        <label className="todo-label" htmlFor="todo-0">
+                            Eat
+                        </label>
+                    </div>
+                    <div className="btn-group">
+                        <button type="button" className="btn">
+                            Edit <span className="visually-hidden">Eat</span>
+                        </button>
+                        <button type="button" className="btn btn__danger">
+                            Delete <span className="visually-hidden">Eat</span>
+                        </button>
+                    </div>
+                </li>
+                <li className="todo stack-small">
+                    <div className="c-cb">
+                        <input id="todo-1" type="checkbox" />
+                        <label className="todo-label" htmlFor="todo-1">
+                            Sleep
+                        </label>
+                    </div>
+                    <div className="btn-group">
+                        <button type="button" className="btn">
+                            Edit <span className="visually-hidden">Sleep</span>
+                        </button>
+                        <button type="button" className="btn btn__danger">
+                            Delete <span className="visually-hidden">Sleep</span>
+                        </button>
+                    </div>
+                </li>
+                <li className="todo stack-small">
+                    <div className="c-cb">
+                        <input id="todo-2" type="checkbox" />
+                        <label className="todo-label" htmlFor="todo-2">
+                            Repeat
+                        </label>
+                    </div>
+                    <div className="btn-group">
+                        <button type="button" className="btn">
+                            Edit <span className="visually-hidden">Repeat</span>
+                        </button>
+                        <button type="button" className="btn btn__danger">
+                            Delete <span className="visually-hidden">Repeat</span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    );
+}
+```
+Now open `public/index.html` and change the [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) element's text to `TodoMatic`. This way, it will match the [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) at the top of our app.
+```
+<title>TodoMatic</title>
+```
+When your browser refreshes, you should see something like this:
+
+![Image of the To-Do React app in a browser](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning/unstyled-app.png)
+
+
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Begin_React_To-Do_List
