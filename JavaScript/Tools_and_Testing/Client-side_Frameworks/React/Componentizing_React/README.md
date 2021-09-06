@@ -225,13 +225,153 @@ Now the app looks like it did before, and our code is less repetitive.
 
 ## Unique keys
 
+Now that React is rendering our tasks out of an array, it has to keep track of which one is which in order to render them properly. React tries to do its own guesswork to keep track of things, but we can help it out by passing a `key` prop to our `<Todo />` components. `key` is a special prop that's managed by React -- you cannot use the word `key` for any other purpose.
 
+Because keys should be unique, we're going to reuse the `id` of each task object as its key. Update your `taskList` constant like so:
+```
+const taskList = props.tasks.map(task => (
+        <Todo
+            id={task.id}
+            name={task.name}
+            completed={task.completed}
+            key={task.id}
+        />
+    )
+);
+```
+**You should always pass a unique key to anything you render with iteration.** Nothing obvious will change in your browser, but if you do not use unique keys, React will log warnings to your console and your app may behave strangely!
 
+## Componentizing the rest of the app
 
+Now that we've got our most important component sorted out, we can turn the rest of our app into components. Remembering that components are either obvious pieces of UI, or reused pieces of UI, or both, we can make two more components:
 
+* `<Form />`
+* `<FilterButton />`
 
+Since we know we need both, we can batch some of the file creation work together with a terminal command. Run this command in your terminal, taking care that you're in the root directory of your app:
+```
+touch src/components/Form.js src/components/FilterButton.js
+```
 
+### The `<Form />`
 
+Open `components/Form.js` and do the following:
 
+* Import `React` at the top of the file, like we did in `Todo.js`.
+* Make yourself a new `Form()` component with the same basic structure as `Todo()`, and export that component.
+* Copy the `<form>` tags and everything between them from inside `App.js`, and paste them inside `Form()`'s `return` statement.
+* Export `Form` at the end of the file.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Componentizing_React
+Your `Form.js` file should read like this:
+```
+import React from "react";
+
+function Form(props) {
+    return (
+        <form>
+            <h2 className="label-wrapper">
+                <label htmlFor="new-todo-input" className="label__lg">
+                    What needs to be done?
+                </label>
+            </h2>
+            <input
+                type="text"
+                id="new-todo-input"
+                className="input input__lg"
+                name="text"
+                autoComplete="off"
+            />
+            <button type="submit" className="btn btn__primary btn__lg">
+                Add
+            </button>
+        </form>
+    );
+}
+
+export default Form;
+```
+
+## The `<FilterButton />`
+
+Do the same things you did to create `Form.js` inside `FilterButton.js`, but call the component `FilterButton()` and copy the HTML for the first button inside the `<div>` element with the `class` of `filters` from `App.js` into the `return` statement.
+
+The file should read ike this:
+```
+import React from "react";
+
+function FilterButton(props) {
+    return (
+        <button type="button" className="btn toggle-btn" aria-pressed="true">
+            <span className="visually-hidden">Show </span>
+            <span>all</span>
+            <span className="visually-hidden"> tasks</span>
+        </button>
+    );
+}
+
+export default FilterButton;
+```
+
+<hr>
+
+**Note**: You might notice that we are making the same mistake here as we first made for the `<Todo />` component, in that each button will be the same. That's fine! We're going to fix up this component later on, in [Back to the filter buttons]().
+
+<hr>
+
+## Importing all our components
+
+Let's make use of our new components.
+
+Add some more `import` statements to the top of `App.js` to import them.
+
+Then, update the `return` statement of `App()` so that it renders our components. When you're done, `App.js` will read like this:
+```
+import React from "react";
+import Form from "./components/Form";
+import FilterButton from "./components/FilterButton";
+import Todo from "./components/Todo";
+
+function App(props) {
+    const taskList = props.tasks.map(task => (
+            <Todo 
+                id={task.id} 
+                name={task.name} 
+                completed={task.completed}
+                key={task.id} 
+            />
+        )
+    );
+    return (
+        <div className="todoapp stack-large">
+            <h1>TodoMatic</h1>
+            <Form />
+            <div className="filters btn-group stack-exception">
+                <FilterButton />
+                <FilterButton />
+                <FilterButton />
+            </div>
+            <h2 id="list-heading">
+                3 tasks remaining
+            </h2>
+            <ul
+                role="list"
+                className="todo-list stack-large stack-exception"
+                aria-labelledby="list-heading"
+            >
+                {taskList}
+            </ul>
+        </div>
+    );
+}
+
+export default App;
+```
+With this in place, we're *almost* ready to tackle some interactivity in our React app!
+
+## Summary
+
+And that's it for this article -- we've gone into some depth on how to break up your app nicely into components, and render them efficiently. Now we'll go on to look at how we handle events in React, and start adding some interactivity.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Begin_React_To-Do_List#beginning-our-react-to-do-list) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Componentizing_React#componentizing-our-react-app) - [[Next page]]()
