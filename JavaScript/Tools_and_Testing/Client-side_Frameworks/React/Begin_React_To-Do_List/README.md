@@ -511,4 +511,4 @@ Now our to-do list app actually looks a bit more like a real app! The problem is
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Starting_with_React#getting-started-with-react) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Begin_React_To-Do_List#beginning-our-react-to-do-list) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Starting_with_React#getting-started-with-react) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Begin_React_To-Do_List#beginning-our-react-to-do-list) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Componentizing_React#componentizing-our-react-app)
