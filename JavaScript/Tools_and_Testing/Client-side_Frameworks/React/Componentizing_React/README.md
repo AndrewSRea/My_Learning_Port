@@ -143,7 +143,89 @@ If you change each `<Todo />` component's `completed` prop, your browser will ch
 
 ### Gimme some `id`, please
 
-Right now, our `<Todo />` component
+Right now, our `<Todo />` component gives every task an `id` attribute of `todo-0`. This is bad HTML because [`id` attrbiutes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) must be unique (they are used as unique identifiers for document fragments, by CSS, JavaScript, etc.). This means we should give our component an `id` prop that takes a unique value for each `Todo`.
+
+To follow the same pattern we had initially, let's give each instance of the `<Todo />` component an ID in the format of `todo-i`, where `i` gets larger by one every time:
+```
+<Todo name="Eat" completed={true} id="todo-0" />
+<Todo name="Sleep" complete={false} id="todo-1" />
+<Todo name="Repeat" complete={false} id="todo-2" />
+```
+Now go back to `Todo.js` and make use of the `id` prop. It needs to replace the value of the `id` attribute of the `<input />` element, as well as the value of its label's `htmlFor` attribute:
+```
+<div className="c-cb">
+    <input id={props.id} type="checkbox" defaultChecked={props.completed} />
+    <label className="todo-label" htmlFor={props.id}>
+        {props.name}
+    </label>
+</div>
+```
+
+## So far, so good?
+
+We're making good use of React so far, but we could do better! Our code is repetitive. The three lines that render our `<Todo />` component are almost identical, with only one difference: the value of each prop.
+
+We can clean up our code with one of JavaScript's core abilities: iteration. To use iteration, we should first rethink our tasks.
+
+## Tasks as data
+
+Each of our tasks currently contains three pieces of information: its name, whether it has been checked, and its unique ID. This data translates nicely to an object. Since we have more than one task, an array of objects would work well in representing this data.
+
+In `src/index.js`, make a new `const` beneath the final import, but above `ReactDOM.render()`:
+```
+const DATA = [
+    { id: "todo-0", name: "Eat", completed: true },
+    { id: "todo-1", name: "Sleep", completed: false },
+    { id: "todo-2", name: "Repeat", completed: false }
+];
+```
+Next, we'll pass `DATA` to `<App />` as a prop called `tasks`. The final line of `src/index.js` should read like this:
+```
+ReactDOM.render(<App tasks={DATA} />, document.getElementById("root"));
+```
+This array is now available to the App component as `props.tasks`. You can `console.log()` it to check, if you'd like.
+
+<hr>
+
+**Note**: `ALL_CAPS` constant names have no special meaning in JavaScript; they're a convention that tells other developers "this data will never change after being defined here".
+
+<hr>
+
+## Rendering with iteration
+
+To render our array of objects, we have to turn each one into a `<Todo />` component. JavaScript gives us an array method for transforming data into something else: [`Array.prototype.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
+
+Above the return statement of `App()`, make a new `const` called `taskList` and use `map()` to transform it. Let's start by turning our `tasks` array into something simple: the `name` of each task:
+```
+const taskList = props.tasks.map(task => task.name);
+```
+Let's try replacing all the children of the `<ul>` with `taskList`:
+```
+<ul
+    role="list"
+    className="todo-list stack-large stack-exception"
+    aria-labelledby="list-heading"
+>
+    {taskList}
+</ul>
+```
+This gets us some of the way towards showing all the components again, but we've got more work to do: the browser currently renders each task's name as unstructured text. We're missing our HTML structure -- the `<li>` and its checkboxes and buttons!
+
+To fix this, we need to return a `<Todo />` component from our `map()` function -- remember that JSX allows us to mix up JavaScript and markup structures! Let's try the following instead of what we have already:
+```
+const taskList = props.tasks.map(task => <Todo />);
+```
+Look again at your app; now our tasks look more like they used to, but they're missing the names of the tasks themselves. Remember that each task we map over has the `id`, `name`, and `checked` properties we want to pass into our `<Todo />` component. If we put that knowledge together, we get code like this:
+```
+const taskList = props.tasks.map(task => (
+    <Todo id={task.id} name={task.name} completed={task.completed} />
+));
+```
+Now the app looks like it did before, and our code is less repetitive.
+
+## Unique keys
+
+
 
 
 
