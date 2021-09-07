@@ -402,6 +402,7 @@ const taskList = tasks.map(task => (
         completed={task.completed}
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
+        deleteTask={deleteTask}
     />
 ));
 ```
