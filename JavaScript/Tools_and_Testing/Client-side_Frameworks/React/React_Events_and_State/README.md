@@ -340,7 +340,7 @@ const taskList = tasks.map(task => (
         completed={task.completed}
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
-    >
+    />
 ));
 ```
 Next, go over to your `Todo.js` component and add an `onChange` handler to your `<input />` element, which should use an anonymous function to call `props.toggleTaskCompleted()` with a parameter of `props.id`. The `<input />` should look like this:
@@ -358,7 +358,86 @@ Object { id: "task-0", name: "Eat", completed: true }
 ```
 The checkbox unchecks in the browser, but our console tells us that "Eat" is still completed. We will fix that next!
 
+### Synchronizing the browser with our data
 
+Let's revisit our `toggleTaskCompleted()` function in `App.js`. We want it to change the `completed` property of only the task that was toggled, and leave all the others alone. To do this, we'll `map()` over the task list and just change the one we completed.
 
+Update your `toggleTaskCompleted()`function to the following:
+```
+function toggleTaskCompleted(id) {
+    const updatedTasks = tasks.map(task => {
+        // if this task has the same ID as the edited task
+        if (id === task.id) {
+            // use object spread to make a new object
+            // whose `completed` prop has been inverted
+            return {...task, completed: !task.completed}
+        }
+        return task;
+    });
+    setTasks(updatedTasks);
+}
+```
+Here we define an `updatedTasks` constant that maps over the original `tasks` array. If the tasks's `id` property matches the `id` provided to the function, we use [object spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) to create a new object, and toggle the `checked` property of that object before returning it. If it doesn't match, we return the originla object.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Events_and_State
+Then we call `setTasks()` with this new array in order to update our state.
+
+## Deleting a task
+
+Deleting a task will follow a similar pattern to toggling its completed state: We need to define a function for updating our state, then pass that function into `<Todo />` as a prop and call it when the right event happens.
+
+### The `deleteTask` callback prop
+
+Here we'll start by writing a `deleteTask()` function in your `App` component. Like `toggleTaskCompleted()`, this function will take an `id` parameter, and we will log that `id` to the console to start with. Add the following below `toggleTaskCompleted()`:
+```
+function deleteTask(id) {
+    console.log(id);
+}
+```
+Next, add another callback prop to our array of `<Todo />` components:
+```
+const taskList = tasks.map(task => (
+    <Todo
+        id={task.id}
+        name={task.name}
+        completed={task.completed}
+        key={task.id}
+        toggleTaskCompleted={toggleTaskCompleted}
+    />
+));
+```
+In `Todo.js`, we want to call `props.deleteTask()` when the "Delete" button is pressed. `deleteTask()` needs to know the ID of the task that called it, so it can delete the correct task from the state.
+
+Update the "Delete" button inside `Todo.js`, like so:
+```
+<button
+    type="button"
+    className="btn btn__danger"
+    onClick={() => props.deleteTask(props.id)}
+>
+    Delete <span className="visually-hidden">{props.name}</span>
+</button>
+```
+Now when you click on any of the "Delete" buttons in the app, your browser console should log the ID of the related task.
+
+## Deleting tasks from state and UI
+
+Now that we know `deleteTask()` is invoked correctly, we can call our `setTasks()` hook in `deleteTask()` to actually delete that task from the app's state as well as visually in the app UI. Since `setTasks()` expects an array as an argument, we should provide it with a new array that copies the existing tasks, *excluding* the task whose ID matches the one passed into `deleteTask()`.
+
+This is a perfect opportunity to use [`Array.prototype.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter). We can test each task, and exclude a task from the new array if its `id` prop matches the `id` parameter passed into `deleteTask()`.
+
+Update the `deleteTask()` function inside your `App.js` file as follows:
+```
+function deleteTask(id) {
+    const remainingTasks = tasks.filter(task => id !== task.id);
+    setTasks(remainingTasks);
+}
+```
+Try your app out again. Now you should be able to delete a task from your app!
+
+## Summary
+
+That's enough for one article. Here we've given you the lowdown on how React deals with events and handles state, and implemented functionality to add tasks, delete tasks, and toggle tasks as completed. We are nearly there. In the next article, we'll implement functionality to edit existing tasks and filter the list of tasks between all, completed, and incomplete tasks. We'll look at conditional UI rendering along the way.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Componentizing_React#componentizing-our-react-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Events_and_State#react-interactivity-events-and-state) - [[Next page]]()
