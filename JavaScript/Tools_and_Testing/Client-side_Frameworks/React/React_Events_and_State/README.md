@@ -85,6 +85,143 @@ Clicking on the "Add" button in your browser will prove that the `addTask()` cal
 
 <hr>
 
+## State and the `useState` hook
+
+So far, we've used props to pass data through our components and this has served us just fine. Now that we're dealing with user input and data updates, however, we need something more.
+
+For one thing, props come from the parent of a component. Our `<Form />` will not be inheriting a new name for our task; our `<input />` element lives directly inside of `<Form />`, so `<Form />` will be directly responsible for creating that new name. We can't ask `<Form />` to spontaneously create its own props, but we *can* ask it to track some of its own data for us. Data such as this, which a component itself owns, is called **state**. State is another powerful tool for React because components not only *own* state, but can *update* it later. It's not possible to update the props a component receives; only to read them.
+
+React provides a variety of special functions that allow us to provide new capabilities to components, like state. These functions are called **hooks**, and the `useState` hook, as the name implies, is precisely the one we need in order to give our component some state.
+
+To use a React hook, we need to import it from the react module. In `Form.js`, change your very first line so that it reads like this:
+```
+import React, { useState } from "react";
+```
+This allows us to import the `useState()` function by itself, and utilize it anywhere in this file.
+
+`useState()` creates a piece of state for a component, and its parameter determines the *initial value* of that state. It returns two things: the state, and a function that can be used to update the state later.
+
+This is a lot to take in at once, so let's try it out. We're going to make ourselves a `name` state, and a function for updating the `name` state.
+
+Write the following above your `handleSubmit()` function, inside `Form()`:
+```
+const [name, setName] = useState('Use hooks!');
+```
+What's going on in this line of code?
+
+* We are setting the initial `name` value as "Use hooks!".
+* We are defining a function whose job is to modify `name`, called `setName()`.
+* `useState()` returns these two things, so we are using [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to capture them both in separate variables.
+
+### Reading state
+
+You can see the `name` state in action right away. Add a `value` attribute to the form's input, and set its value to `name`. Your browser will render "Use hooks!" inside the input.
+```
+<input
+    type="text"
+    id="new-todo-input"
+    className="input input__lg"
+    name="text"
+    autoComplete="off"
+    value={name}
+/>
+```
+Change "Use hooks!" to an empty string once you're done; this is what we want for our initial state.
+```
+const [name, setName] = useState('');
+```
+
+### Reading user input
+
+Before we can change the value of `name`, we need to capture a user's input as they type. For this, we can listen to the `onChange` event. Let's write a `handleChange()` function, and listen for it on the `<input />` tag.
+```
+// near the top of the `Form` component
+function handleChange(e) {
+    console.log("Typing!");
+}
+
+// Down in the return statement
+<input
+    type="text"
+    id="new-todo-input"
+    className="input input__lg"
+    name="text"
+    autoComplete="off"
+    value={name}
+    onChange={handleChange}
+/>
+```
+Currently, your input's value will not change as you type, but your browser will log the word "Typing!" to the JavaScript console, so we know our event listener is attached to the input. In order to change the input's value, we have to use our `handleChange()` function to update our `name` state.
+
+To read the contentsof the input field as they change, you can access the input's `value` property. We can do this inside `handleChange()` by reading `e.target.value`. `e.target` represents the element that fired the `change` event -- that's our input. So, `value` is the text inside it.
+
+You can `console.log()` this value to see it in your browser's console.
+```
+function handleChange(e) {
+    console.log(e.target.value);
+}
+```
+
+### Update state
+
+Logging isn't enough -- we want to actually store the updated state of the name as the input value changes! Change the `console.log()` to `setName()`, as shown below:
+```
+function handleChange(e) {
+    setName(e.target.value);
+}
+```
+Now we need to change our `handleSubmit()` function so that it calls `props.addTask` with `name` as an argument -- remember our callback prop? This will serve to send the task back to the `App` component, so we can add it to our list of tasks at some later date. As a matter of good practice, you should clear the input after your form submits, so we'll call `setName()` again with an empty string to do so:
+```
+function handleSubmit(e) {
+    e.preventDefault();
+    props.addTask(name);
+    setName("");
+}
+```
+At last, you can type something into the input field in your browser and click *Add* -- whatever you typed will appear in an alert dialog.
+
+Your `Form.js` file should now read like this:
+```
+import React, { useState } from "react";
+
+function Form(props) {
+    const [name, setName] = useState('');
+
+    function handleChange(e) {
+        setName(e.target.value);
+    }
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+        props.addTask(name);
+        setName("");
+    }
+    return (
+        <form onSubmit={handleSubmit}>
+            <h2 className="label-wrapper">
+                <label htmlFor="new-todo-input" className="label__lg">
+                    What needs to be done?
+                </label>
+            </h2>
+            <input
+                type="text"
+                id="new-todo-input"
+                className="input input__lg"
+                name="text"
+                autoComplete="off"
+                value={name}
+                onChange={handleChange}
+            />
+            <button type="submit" className="btn btn__primary btn__lg">
+                Add
+            </button>
+        </form>
+    );
+}
+
+export default Form;
+```
+
 
 
 
