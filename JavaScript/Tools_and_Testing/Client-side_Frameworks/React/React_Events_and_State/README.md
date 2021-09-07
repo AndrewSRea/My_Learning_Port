@@ -297,6 +297,67 @@ const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
 ```
 Save everything, and try your app again -- now you can add tasks without getting that warning about duplicate IDs.
 
+## Detour: counting tasks
+
+Now that we can add new tasks, you may notice a problem: our heading reads 3 tasks remaining, no matter how many tasks we have! We can fix this by counting the length of `taskList` and changing the text of our heading accordingly.
+
+Add this inside your `App()` definition, before the `return` statement:
+```
+const headingText = `${taskList.length} tasks remaining`;
+```
+Hrm. This is almost right, except that if our list ever contains a single task, the heading will still use the word "tasks". We can make this a variable, too. Update the code you just added as follows:
+```
+const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
+const headingText = `${taskList.length} ${tasksNoun} remaining`;
+```
+Now you can replace the list heading's text content with the `headingText` variable. Update your `<h2>` like so:
+```
+<h2 id="list-heading">{headingText}</h2>
+```
+
+## Completing a task
+
+You might notice that, when you click on a checkbox, it checks and unchecks appropriately. As a feature of HTML, the browser knows how to remember which checkbox inputs are checked or unchecked without our help. This feature hides a problem, however: toggling a checkbox doesn't change the state in our React application. This means that the browser and our app are now out-of-sync. We have to write our own code to put the browser back in sync with our app.
+
+### Proving the bug
+
+Before we fix the problem, let's observe it happening.
+
+We'll start by writing a `toggleTaskCompleted()` function in our `App()` component. This function will have an `id` parameter, but we're not going to use it yet. For now, we'll log the first task in the array to the console -- we're going to inspect what happens when we check or uncheck it in our browser.
+
+Add this just above your `taskList` constant declaration:
+```
+function toggleTaskCompleted(id) {
+    console.log(tasks[0]);
+}
+```
+Next, we'll add `toggleTaskCompleted` to the props of each `<Todo />` component rendered inside our `taskList`; update it like so:
+```
+const taskList = tasks.map(task => (
+    <Todo
+        id={task.id}
+        name={task.name}
+        completed={task.completed}
+        key={task.id}
+        toggleTaskCompleted={toggleTaskCompleted}
+    >
+));
+```
+Next, go over to your `Todo.js` component and add an `onChange` handler to your `<input />` element, which should use an anonymous function to call `props.toggleTaskCompleted()` with a parameter of `props.id`. The `<input />` should look like this:
+```
+<input
+    id={props.id}
+    type="checkbox"
+    defaultChecked={props.completed}
+    onChange={() => props.toggleTaskCompleted(props.id)}
+/>
+```
+Save everything and return to your browser and notice that our first task, "Eat", is checked. Open your JavaScript console, then click on the checkbox next to "Eat". It unchecks, as we expect. Your JavaScript console, however, will log something like this:
+```
+Object { id: "task-0", name: "Eat", completed: true }
+```
+The checkbox unchecks in the browser, but our console tells us that "Eat" is still completed. We will fix that next!
+
 
 
 
