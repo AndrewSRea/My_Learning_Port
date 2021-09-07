@@ -374,4 +374,4 @@ And that's it for this article -- we've gone into some depth on how to break up 
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Begin_React_To-Do_List#beginning-our-react-to-do-list) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Componentizing_React#componentizing-our-react-app) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Begin_React_To-Do_List#beginning-our-react-to-do-list) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Componentizing_React#componentizing-our-react-app) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Events_and_State#react-interactivity-events-and-state)
