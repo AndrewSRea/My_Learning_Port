@@ -314,7 +314,7 @@ export default FilterButton;
 
 <hr>
 
-**Note**: You might notice that we are making the same mistake here as we first made for the `<Todo />` component, in that each button will be the same. That's fine! We're going to fix up this component later on, in [Back to the filter buttons]().
+**Note**: You might notice that we are making the same mistake here as we first made for the `<Todo />` component, in that each button will be the same. That's fine! We're going to fix up this component later on, in [Back to the filter buttons](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Edit_Filter_Render#back-to-the-filter-buttons).
 
 <hr>
 
