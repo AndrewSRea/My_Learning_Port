@@ -217,7 +217,7 @@ The values of `FILTER_MAP` are functions that we will use to filter the `tasks` 
 * The `Active` filter shows tasks whose `completed` prop is `false`.
 * The `Completed` filter shows tasks whose `completed` prop is `true`.
 
-Beneath our previous addition, add the following -- here we are using the [`Object.keys()`]() method to collect an array of `FILTER_NAMES`:
+Beneath our previous addition, add the following -- here we are using the [`Object.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) method to collect an array of `FILTER_NAMES`:
 ```
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 ```
@@ -227,6 +227,72 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 **Note**: We are defining these constants outside our `App()` function because if they were defined inside it, they would be recalculated every time the `<App />` component re-renders, and we don't want that. This information will never change no matter what our application does.
 
 <hr>
+
+### Rendering the filters
+
+Now that we have the `FILTER_NAMES` array, we can use it to render all three of our filters. Inside the `App()` function, we can create a constant called `filterList`, which we will use to map over our array of names and return a `<FilterButton />` component. Remember, we need keys here, too.
+
+Add the following underneath your `taskList` constant declaration:
+```
+const filterList = FILTER_NAMES.map(name => (
+    <FilterButton key={name} name={name}/>
+));
+```
+Now we'll replace the three repeated `<FilterButton />`s in `App.js` with this `filterList`. Replace the following:
+```
+<FilterButton />
+<FilterButton />
+<FilterButton />
+```
+With this:
+```
+{filterList}
+```
+This won't work yet. We'e got a bit more work to do first.
+
+### Interactive filters
+
+To make our filter buttons interactive, we should consider what props they need to utilize.
+
+* We know that the `<FilterButton />` should report whether it is currently pressed, and it should be pressed if its name matches the current value of our filter state.
+* We know that the `<FilterButton />` needs a callback to set the active filter. We can make direct use of our `setFilter` hook.
+
+Update your `filterList` constant as follows:
+```
+const filterList = FILTER_NAMES.map(name => (
+    <FilterButton
+        key={name}
+        name={name}
+        isPressed={name === filter}
+        setFilter={setFilter}
+    />
+));
+```
+In the same way as we did earlier with our `<Todo />` component, we now have to update `FilterButton.js` to utilize the props we have given it. Do each of the following, and remember to use curly braces to read these variables!
+
+* Replace `all` with `{props.name}`.
+* Set the value of `aria-pressed` to `{props.isPressed}`.
+* Add an `onClick` handler that calls `props.setFilter()` with the filter's name.
+
+With all of that done, your `FilterButton()` function should read like this:
+```
+function FilterButton(props) {
+    return (
+        <button
+            type="button"
+            className="btn toggle-btn"
+            aria-pressed={props.isPressed}
+            onClick={() => props.setFilter(props.name)}
+        >
+            <span className="visually-hidden">Show </span>
+            <span>{props.name}</span>
+            <span className="visually-hidden"> tasks</span>
+    );
+}
+```
+Visit your browser again. You should see that the different buttons have been given their respective names. When you press a filter button, you should see its text take on a new outline -- this tells you it has been selected. And if you look at your DevTool's Page Inspector while clicking the buttons, you'll see the `aria-pressed` attribute values change accordingly.
+
+However, our buttons still don't actually filter the to-dos in the UI! Let's finish this off.
 
 
 
