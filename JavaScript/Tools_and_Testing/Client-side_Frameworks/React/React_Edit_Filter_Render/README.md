@@ -101,3 +101,22 @@ const viewTemplate = (
 );
 ```
 We've got the two different template structures -- "edit" and "view" -- defined inside two separate constants. This means that the `return` statement of `<Todo />` is now repetitious -- it also contains a definition of the "view" template. We can clean this up by using **conditional rendering** to determine which template the component returns, and is therefore rendered in the UI.
+
+## Conditional rendering
+
+In JSX, we can use a condition to change what is rendered by the browser. To write a condition in JSX, we can use a [ternary operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+
+In the case of our `<Todo />` component, our condition is "Is this task being edited?" Change the `return` statement inside `Todo()` so that it reads like so:
+```
+return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>
+```
+Your browser should render all your tasks just like before. To see the editing template, you will have to change the default `isEditing` state from `false` to `true` in your code for now; we will look at making the edit button toggle this in the next section!
+
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Edit_Filter_Render
