@@ -180,6 +180,54 @@ Bind this function to the form's `submit` event by adding the following `onSubmi
 ```
 You should now be able to edit a task in your browser!
 
+## Back to the filter buttons
+
+Now that our main features are complete, we can think about our filter buttons. Currently, they repeat the "All" label, and they have no functionality! We will be reapplying some skills we used in our `<Todo />` component to:
+
+* Create a hook for storing the active filter.
+* Render an array of `<FilterButton />` elements that allow users to change the active filter between all, completed, and incomplete.
+
+### Adding a filter hook
+
+Add a new hook to your `App()` function that reads and sets a filter. We want the default filter to be `All` because all of our tasks should be shown initially:
+```
+const [filter, setFilter] = useState('All');
+```
+
+### Defining our filters
+
+Our goal right now is two-fold:
+
+* Each filter should have a unique name.
+* Each filter should have a unique behavior.
+
+A JavaScript object would be a great way to relate names to behaviors: each key is the name of a filter; each property is the behavior with that name.
+
+At the top of `App.js`, beneath our imports but above our `App()` function, let's add an object called `FILTER_MAP`:
+```
+const FILTER_APP ={
+    All: () => true,
+    Active: task => !task.completed,
+    Completed: task => task.completed
+};
+```
+The values of `FILTER_MAP` are functions that we will use to filter the `tasks` data array:
+
+* The `All` filter shows all tasks, so we return `true` for all tasks.
+* The `Active` filter shows tasks whose `completed` prop is `false`.
+* The `Completed` filter shows tasks whose `completed` prop is `true`.
+
+Beneath our previous addition, add the following -- here we are using the [`Object.keys()`]() method to collect an array of `FILTER_NAMES`:
+```
+const FILTER_NAMES = Object.keys(FILTER_MAP);
+```
+
+<hr>
+
+**Note**: We are defining these constants outside our `App()` function because if they were defined inside it, they would be recalculated every time the `<App />` component re-renders, and we don't want that. This information will never change no matter what our application does.
+
+<hr>
+
 
 
 
