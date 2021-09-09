@@ -112,6 +112,74 @@ return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>
 ```
 Your browser should render all your tasks just like before. To see the editing template, you will have to change the default `isEditing` state from `false` to `true` in your code for now; we will look at making the edit button toggle this in the next section!
 
+## Toggling the `<Todo />` templates
+
+At long last, we are ready to make our final core feature interactive. To start with, we want to call `setEditing()` with a value of `true` when a user presses the "Edit" button in our `viewTemplate`, so that we can switch templates.
+
+Update the "Edit" button in the `viewTemplate` like so:
+```
+<button type="button" className="btn" onClick={() => setEditing(true)}>
+    Edit <span className="visually-hidden">{props.name}</span>
+</button>
+```
+Now we'll add the same `onClick` handler to the "Cancel" button in the `editingTemplate`, but this time we'll set `isEditing` to `false` so that it switches us back to the view template.
+
+Update the "Cancel" button in the `editingTemplate` like so:
+```
+<button
+    type="button"
+    className="btn todo-cancel"
+    onClick={() => setEditing(false)}
+>
+    Cancel
+    <span className="visually-hidden">renaming {props.name}</span>
+</button>
+```
+With this code in place, you should be able to press the "Edit" and "Cancel" buttons in your to-do items to toggle between templates.
+
+The next step is to actually make the editing functionality work.
+
+## Editing from the UI
+
+Much of what we're about to do will mirror the work we did in `Form.js`: as the user types in our new input field, we need to track the text they enter; once they submit the form, we need to use a callback prop to update our state with the new name of the task.
+
+We'll start by making a new hook for storing and setting the new name. Still in `Todo.js`, put the following underneath the existing hook:
+```
+const [newName, setNewName] = useState('');
+```
+Next, create a `handleChange()` function that will set the new name; put this underneath the hooks but before the templates:
+```
+function handleChange(e) {
+    setNewName(e.target.value);
+}
+```
+Now we'll update our `editingTemplate`'s `<input />` field, setting a `value` attribute of `newName`, and binding our `handleChange()` function to its `onChange` event. Update it as follows:
+```
+<input
+    id={props.id}
+    className="todo-text"
+    type="text"
+    value={newName}
+    onChange={handleChange}
+/>
+```
+Finally, we need to create a function to handle the edit form's `onSubmit` event; add the following just below the previous function you added:
+```
+function handleSubmit(e) {
+    e.preventDefault();
+    props.editTask(props.id, newName);
+    setNewName("");
+    setEditing(false);
+}
+```
+Remember that our `editTask()` callback prop needs the ID of the task we're editing as well as its new name.
+
+Bind this function to the form's `submit` event by adding the following `onSubmit` handler to the `editingTemplate`'s `<form>`:
+```
+<form className="stack-small" onSubmit={handleSubmit}>
+```
+You should now be able to edit a task in your browser!
+
 
 
 
