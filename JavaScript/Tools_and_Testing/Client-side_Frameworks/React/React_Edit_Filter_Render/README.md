@@ -294,11 +294,34 @@ Visit your browser again. You should see that the different buttons have been gi
 
 However, our buttons still don't actually filter the to-dos in the UI! Let's finish this off.
 
+### Filtering tasks in the UI
 
+Right now, our `taskList` constant in `App()` maps over the tasks state and returns a new `<Todo />` component for all of them. This is not what we want! A task should only render if it is included in the results of applying the selected filter. Before we map over the tasks state, we should filter it (with [`Array.prototype.filter()]()) to eliminate objects we don't want to render.
 
+Update your `taskList` like so:
+```
+const taskList = tasks
+.filter(FILTER_MAP[filter])
+.map(task => (
+    <Todo
+        id={task.id}
+        name={task.name}
+        completed={task.completed}
+        key={task.id}
+        toggleTaskCompleted={toggleTaskCompleted}
+        deleteTask={deleteTask}
+        editTask={editTask}
+    />
+));
+```
+In order to decide which callback function to use in `Array.prototype.filter()`, we access the value in `FILTER_MAP` that corresponds to the key of our filter state. When filter is `All`, for example, `FILTER_MAP[filter]` will evaluate to `() => true`.
 
+Choosing a filter in your browser will now remove the tasks that do not meet its criteria. The count in the heading above the list will also change to reflect the list!
 
+## Summary
 
+So that's it -- our app is now functionally complete. However, now that we've implemented all of our features, we can make a few improvements to ensure that a wider range of users can use our app. Our next article rounds things off for our React tutorials by looking at including focus management in React, which can improve usability and reduce confusion for both keyboard-only and screenreader users.
 
+<hr>
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Edit_Filter_Render
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Events_and_State#react-interactivity-events-and-state) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Edit_Filter_Render#react-interactivity-editing-filtering-conditional-rendering) - [[Next page]]()
