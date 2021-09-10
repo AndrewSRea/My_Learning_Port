@@ -89,7 +89,39 @@ side effect (3)                     Todo.js:98
 ```
 That's it for our experimentation for now. Delete `console.log("main render")` now, and let's move on to implementing our focus management.
 
+### Focusing on our editing field
 
+Now that we know our `useEffect()` hook works, we can manage focus with it. As a reminder, we want to focus on the editing field when we switch to the editing template.
+
+Update your existing `useEffect()` hook so that it reads like this:
+```
+useEffect(() => {
+    if (isEditing) {
+        editFieldRef.current.focus();
+    }
+}, [isEditing]);
+```
+These changes make it so that, if `isEditing` is true, React reads the current value of the `editFieldRef` and moves browser focus to it. We also pass an array into `useEffect()` as a second argument. This array is a list of values `useEffect()` should depend on. With these values included, `useEffect()` will only run when one of those values changes. We only want to change focus when the value of `isEditing` changes.
+
+Try it now, and you'll see that when you click an "Edit" button, focus moves to the corresponding edit `<input>`!
+
+### Moving focus back to the edit button
+
+At first glance, getting React to move focus back to our "Edit" button when the edit is saved or cancelled appears deceptively easy. Surely we could add a condition to our `useEffect` to focus on the edit button if `isEditing` is `false`? Let's try it now -- update your `useEffect()` call like so:
+```
+useEffect(() => {
+    if (isEditing) {
+        editFieldRef.current.focus();
+    } else {
+        editButtonRef.current.focus();
+    }
+}, [isEditing]);
+```
+This kind of mostly works. Head back to your browser and you'll see that your focus moves between Edit `<input>` and "Edit" button as you start and end an edit. However, you may have noticed a new problem -- the "Edit" button in the final `<Todo />` component is focused immediately on page load, before we even interact with the app!
+
+Our `useEffect()` hook is behaving exactly as we designed it: it runs as soon as the component renders, sees that `isEditing` is `false`, and focuses the "Edit" button. Because there are three instances of `<Todo />`, we see focus on the last "Edit" button.
+
+We need to refactor our approach so that focus changes only when `isEditing` changes from one value to another.
 
 
 
