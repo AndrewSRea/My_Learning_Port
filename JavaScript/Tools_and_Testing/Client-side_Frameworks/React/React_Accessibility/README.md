@@ -201,7 +201,62 @@ Let's add the `tabindex` attribute -- written as `tabIndex` in JSX -- to the hea
 
 <hr>
 
+### Getting previous state
 
+We want to focus on the element associated with our ref (via the `ref` attribute) only when our user deletes a task from their list. That's going to require the `usePrevious()` hook we already used earlier on. Add it to the top of your `App.js` file, just below the imports:
+```
+function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+        ref.curent = value;
+    });
+    return ref.current;
+}
+```
+Now add the following, above the `return` statement inside the `App()` function:
+```
+const prevTaskLength = usePrevious(tasks.length);
+```
+Here we are invoking `usePrevious()` to track the length of the tasks state.
 
+<hr>
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Accessibility
+**Note**: Since we're now utilizing `usePrevious()` in two files, a good efficiency refactor would be to move the `usePrevious()` function into its own file, export it from that file, and import it where you need it. Try doing this as an exercise once you've got to the end.
+
+<hr>
+
+### Using `useEffect()` to control our heading focus
+
+Now that we've stored how many tasks we previously had, we can set up a `useEffect()` hook to run when our number of tasks changes, which will focus the heading if the number of tasks we have now is less than when it previously was -- i.e., we deleted a task!
+
+Add the following into the body of your `App()` function, just below your previous additions:
+```
+useEffect(() => {
+    if (tasks.length - prevTaskLength === -1) {
+        listHeadingRef.current.focus();
+    }
+}, [tasks.length, prevTaskLength]);
+```
+We only try to focus on our list heading if we have fewer tasks now than we did before. The dependencies passed into this hook ensure it will only try to rerun when either of those values (the number of current tasks, or the number of previous tasks) changes.
+
+Now when you delete a task in your browser, you will see our dotted focus outline appear around the heading above the list.
+
+## Finished!
+
+You've just finished building a React app from the group up! Congratulations! The skills you've learned here will be a great foundation to build on as you continue working with React.
+
+Most of the time, you can be an effective contributor to a React project even if all you do is think carefully about components and their state and props. Remember to always write the best HTML you can.
+
+`useRef()` and `useEffect()` are somewhat advanced features, and you should be proud or yourself for using them! Look out for opportunities to practice them more, because doing so will allow you to create inclusive experiences for users. Remember: our app would have been inaccessible to keyboard users without them!
+
+<hr>
+
+**Note**: If you need to check your code against our version, you can find a finished version of the sample React app code in Mozilla's [todo-react repository](https://github.com/mdn/todo-react). For a running live version, see [https://mdn.github.io/todo-react-build/](https://mdn.github.io/todo-react-build/).
+
+<hr>
+
+In the very last article, we'll present you with a list of React resources that you can use to go further in your learning.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Edit_Filter_Render#react-interactivity-editing-filtering-conditional-rendering) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Accessibility#accessibility-in-react) - [[Next page]]()
