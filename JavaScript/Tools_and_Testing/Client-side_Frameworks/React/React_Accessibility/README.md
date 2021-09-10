@@ -123,6 +123,84 @@ Our `useEffect()` hook is behaving exactly as we designed it: it runs as soon as
 
 We need to refactor our approach so that focus changes only when `isEditing` changes from one value to another.
 
+## More robust focus management
+
+In order to meet our refined criteria, we need to know not just the value of `isEditing`, but also *when that value has changed*. In order to do that, we need to be able to read the previous value of the `isEditing` constant. Using pseudocode, our logic should be something like this:
+```
+if (wasNotEditingBefore && isEditingNow) {
+    focusOnEditField();
+}
+if (wasEditingBefore && isNotEditingNow) {
+    focusOnEditButton();
+}
+```
+The React team had discussed [ways to get a component's previous state](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state), and has provided an example custom hook we can use for the job.
+
+Paste the following code near the top of `Todo.js`, above your `Todo()` function.
+```
+function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;
+}
+```
+Now we'll define a `wasEditing` constant beneath the hooks at the top of `Todo()`. We want this constant to track the previous value of `isEditing`, so we call `usePrevious` with `isEditing` as an argument:
+```
+const wasEditing = usePrevious(isEditing);
+```
+With this constant, we can update our `useEffect()` hook to implement the pseudocode we discussed before -- update it as follows:
+```
+useEffect(() => {
+    if (!wasEditing && isEditing) {
+        editFieldRef.current.focus();
+    }
+    if (wasEditing && !isEditing) {
+        editButtonRef.current.focus();
+    }
+}, [wasEditing, isEditing]);
+```
+Note that the logic of `useEffect()` now depends on `wasEditing`, so we provide it in the array of dependencies.
+
+Again, try using the "Edit" and "Cancel" buttons to toggle between the templates of your `<Todo />` component; you'll see the browser focus indicator move appropriately, without the problem we discussed at the start of this section.
+
+## Focusing when the user deletes a task
+
+There's one last keyboard experience gap: when a user deletes a task from the list, the focus vanishes. We're going to follow a pattern similar to our previous changes: we'll make a new ref, and utilize our `usePrevious()` hook, so that we can focus on the list heading whenever a user deletes a task.
+
+### Why the list heading?
+
+Sometimes, the place we want to send our focus to is obvious: when we toggled our `<Todo />` templates, we had an origin point to "go back" to -- the "Edit" button. In this case, however, since we're completely removing elements from the DOM, we have no place to go back to. The next best thing is an intuitive location somewhere nearby. The list heading is our best choice because it's close to the list item the user will delete, and focusing on it will tell the user how many tasks are left.
+
+### Creating our ref
+
+Import the `useRef()` and `useEffect()` hooks into `App.js` -- you'll need them both below:
+```
+import React, { useState, useRef, useEffect } from "react";
+```
+Then declare a new ref inside the `App()` function. Just above the `return` statement is a good place:
+```
+const listHeadingRef = useRef(null);
+```
+
+### Prepare the heading
+
+Heading elements like our `<h2>` are not usually focusable. This isn't problem -- we can make any element programmatically focusable by adding the attribute [`tabindex="-1"](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) to it. This means *only focusable with JavaScript*. You can't press <kbd>Tab</kbd> to focus on an element with a tabindex of `-1` the same way you could do with a [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) or [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element (this can be done using `tabindex="0"`, but that's not really appropriate in this case).
+
+Let's add the `tabindex` attribute -- written as `tabIndex` in JSX -- to the heading above our list of tasks, along with our `headingRef`:
+```
+<h2 id="list-heading" tabIndex="-1" ref={listheadingRef}>
+    {headingText}
+</h2>
+```
+
+<hr>
+
+**Note**: The `tabindex` attribute is great for accessibility edge-cases, but you should take **great care** to not overuse it. Only apply a `tabindex` to an element when you're absolutely sure that making it focusable will benefit your user in some way. In most cases, you should be utilizing elements that can naturally take focus, such as buttons, anchors, and inputs. Irresponsible usage of `tabindex` could have a profoundly negative impact on keyboard and screen-reader users!
+
+<hr>
+
 
 
 
