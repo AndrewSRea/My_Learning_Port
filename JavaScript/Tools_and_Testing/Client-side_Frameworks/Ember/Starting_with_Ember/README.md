@@ -40,3 +40,22 @@ EmberJS is one of the most opinionated front-end frameworks out there. But what 
 As you work through this series of tutorials, you'll notice Ember's opinions -- such as strict naming conventions of component files.
 
 ## How does Ember relate to vanilla JavaScript?
+
+Ember is built on JavaScript technologies and is a thin layer on top of traditional [object-oriented programming](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Object-Oriented_JS#object-oriented-javascript-for-beginners), while still allowing developers to utilize [functional programming techniques](https://opensource.com/article/17/6/functional-javascript).
+
+Ember makes use of two main syntaxes:
+
+* JavaScript (or optionally, [TypeScript](https://www.typescriptlang.org/)).
+* Ember's own templating language, which is loosely based on [Handlebars](https://handlebarsjs.com/guide/).
+
+The templating language is used to make build and runtime optimizations that otherwise wouldn't be possible. Most importantly, it is a superset of HTML -- meaning that anyone who knows HTML can make meaningful contributions to any Ember project with minimal fear of breaking code. Designers and other non-developers can contribute to page templates without any knowledge of JavaScript, and interactivity can be added later.
+
+This language also enables lighter asset payloads due to *compiling* the templates into a "byte code" that can be parsed faster than JavaScript. The **Glimmer VM** enables extremely fast DOM change tracking without the need to manage and diff a cached virtual representation (which is a common approach to mitigating the slow I/O of DOM changes).
+
+For more information on the technical aspects of The Glimmer VM, the GitHub repository has some [documentation](https://github.com/glimmerjs/glimmer-vm/tree/master/guides) -- specifically, [References](https://github.com/glimmerjs/glimmer-vm/blob/master/guides/04-references.md) and [Validators](https://github.com/glimmerjs/glimmer-vm/blob/master/guides/05-validators.md) may be of interest.
+
+Everything else in Ember is *just* JavaScript. In particular, JavaScript classes. This is where most of the "framework" parts come into play, as there are [superclasses](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)#Subclasses_and_superclasses), where each type of *thing* has a different purpose and different expected location within your project.
+
+Here is a demonstration of the impact Ember has on the JavaScript that is in typical projects: [Gavin demonstrates how < 20% of the JS written is specific to Ember](https://twitter.com/gavinjoyce/status/1174726713101705216).
+
+![Image of the similarity between JavaScript and Ember](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Ember_getting_started/20percent-js-specific-ember.png)
