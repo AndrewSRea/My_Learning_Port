@@ -55,3 +55,22 @@ Although this tutorial doesn't mention them, it is possible to build React compo
 * [Read about JavaScript classes at MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 ## Testing
+
+`create-react-app` provides some tools for testing your application out of the box -- you may have deleted the relevant files earlier in the tutorial. The documentation for `create-react-app` [covers some basics for testing](https://create-react-app.dev/docs/running-tests/).
+
+## Routing
+
+While routing is traditionally handled by a server and not an application on the user's computer, it is possible to configure a web application to read and update the browser's location, and render certain user interfaces. This is called client-side routing. It's possible to create many unique routes for your application (such as `/home`, `/dashboard`, or `login/`).
+
+The React community has produced two major libraries for client-side routing: [React Router](https://reactrouter.com/) and [Reach Router](https://reach.tech/router/).
+
+* React Router is well-suited to applications with complex routing needs, and it meets some edge cases better than Reach Router. Reach Router is a lerger library, however.
+* Reach Router is well-suited to simpler applications, and automatically manages focus as the user navigates from page to page.
+
+Focus management is essential in client-side routing -- without it, keyboard users can be trapped in focus limbo, and screen-reader users may have no idea that they have moved to a new page. Because Reach Router is better for accessibility, it's a good place to start.
+
+There's one caveat, however: these projects will be [merging in the near future](https://reacttraining.com/blog/reach-react-router-future/). When the merge happens, React Router will be the surviving project (with the addition of the focus management features of Reach).
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Accessibility#accessibility-in-react) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/React_Resources#react-resources) - [[Next module: Ember]]()
