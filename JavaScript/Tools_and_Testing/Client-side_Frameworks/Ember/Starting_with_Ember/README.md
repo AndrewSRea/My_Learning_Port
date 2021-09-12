@@ -59,3 +59,56 @@ Everything else in Ember is *just* JavaScript. In particular, JavaScript classes
 Here is a demonstration of the impact Ember has on the JavaScript that is in typical projects: [Gavin demonstrates how < 20% of the JS written is specific to Ember](https://twitter.com/gavinjoyce/status/1174726713101705216).
 
 ![Image of the similarity between JavaScript and Ember](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Ember_getting_started/20percent-js-specific-ember.png)
+
+## Getting started
+
+The rest of the Ember material you'll find here consists of a multi-part tutorial, in which we'll make a version of the classic [TodoMVC sample app](https://todomvc.com/), teaching you how to use the essentials of the Ember framework along the way. TodoMVC is a basic to-do tracking app implemented in many different technologies.
+
+[Here is the completed Ember version](https://nullvoxpopuli.github.io/ember-todomvc-tutorial/), for reference.
+
+### A note on TodoMVC and accessibility
+
+The TodoMVC project has a few issues in terms of adhering to accessible/default web practices. There are a couple of GitHub issues open about this on the TodoMVC family of projects:
+
+* [Add keyboard access to demos](https://github.com/tastejs/todomvc/issues/1017)
+* [Re-enable Outline on focusable elements](https://github.com/tastejs/todomvc-app-css/issues/35)
+
+Ember has a strong commitment to being accessible by default and there is an [entire section of the Ember Guides on accessibility](https://guides.emberjs.com/release/accessibility/) on what it means for website/app design.
+
+That said, because this tutorial is a focus on the JavaScript side of making a small web application, TodoMVC's value comes from providing pre-made CSS and recommended HTML structure, which eliminates small differences between implementations, allowing for easier comparison. Later on in the tutorial, we'll focus on adding code to our application to fix some of TodoMVC's biggest faults.
+
+## Installing the Ember tooling
+
+Ember uses a command-line interface (CLI) tool for building and scaffolding parts of your application.
+
+1. You'll need node and npm installed before you can install ember-cli. [Go here to find out how to install node and npm](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#adding-powerups), if you haven't already got them.
+
+2. Now type the following into your terminal to install ember-cli:
+```
+npm install -g ember-cli
+```
+This tool provides the `ember` program in your terminal, which is used to create, build, develop, test, and scaffold your application (run `ember --help for a full list of commands and their options).
+
+3. To create a brand new application, type the following in your terminal. This creates a new directory inside the current directory you are in called "todomvc", containing the scaffolding for a new Ember app. Make sure you navigate to somewhere appropriate in the terminal before you run it. (Good suggestions are your "desktop" or "documents" directories, so that it is easy to find):
+```
+ember new todomvc
+```
+Or, on Windows:
+```
+npx ember-cli new todomvc
+```
+This generates a production-ready application development environment that includes the following features by default:
+
+* Development server with live reload.
+* Plugin-architecture that allows for third-party packages to richly enhance your application.
+* The latest JavaScript via Babel and Webpack integration.
+* Automated testing environment that runs your tests in the browser, allowing you to *test like a user*.
+* Transpilation, and minification, of both CSS and JavaScript for production builds.
+* Conventions for minimizing the differences between applications (allowing easier mental context switching).
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember
