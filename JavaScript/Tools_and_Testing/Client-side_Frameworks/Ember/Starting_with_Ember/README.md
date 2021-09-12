@@ -106,6 +106,51 @@ This generates a production-ready application development environment that inclu
 * Transpilation, and minification, of both CSS and JavaScript for production builds.
 * Conventions for minimizing the differences between applications (allowing easier mental context switching).
 
+## Getting ready to build our Ember project
+
+You'll need a code editor before continuing to interact with your brand new project. If you don't have one configured already, [The Ember Atlas](https://www.notion.so/Editors-Tooling-5da96f0b2baf4ce1bf3fd58e3b60c7f6) has some guides on how to set up various editors.
+
+### Installing the shared assets for TodoMVC projects
+
+Installing shared assets, as we're about to do, isn't normally a required step for new projects, but it allows us to use existing shared CSS so we don't need to try to guess at what CSS is needed to create the TodoMVC styles.
+
+1. First, enter into your `todomvc` directory in the terminal; for example, by using `cd todomvc` in macOS/Linux.
+
+2. Now run the following command to place the common todomvc CSS inside your app:
+```
+npm install --save-dev todomvc-app-css todomvc-common
+```
+
+3. Next, find the [ember-cli-build.js](https://github.com/ember-cli/ember-cli/blob/master/blueprints/app/files/ember-cli-build.js) file inside the `todomvc` directory (it's right there inside the `root`) and open it in your chosen code editor. ember-cli-build.js is responsible for configuring details about how your project is built -- including bundling all your files together, asset minification, and creating sourcemaps -- with reasonable defaults, so you don't typically need to worry about this file.
+
+We will, however, add lines to the ember-cli-build.js file to import our shared CSS files, so that they become part of our build without having to explicitly [@import](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) them into the `app.css` file. (This would require URL rewrites at build time and therefore be less efficient and more complicated to set up.)
+
+4. In `ember-cli-build.js`, find the following code:
+```
+let app = new EmberApp(defaults, {
+    // Add options here
+});
+```
+
+5. Add the following lines underneath it before saving the file:
+```
+app.import('node_modules/todomvc-common/base.css');
+app.import('node_modules/todomvc-app-css/index.css');
+```
+For more information on what `ember-cli-build.js` does, and for other ways in which you can customize your build/pipeline, the Ember Guides have a page on [Addons and Dependencies](https://guides.emberjs.com/release/addons-and-dependencies/).
+
+6. Finally, find `app.css`, located at `app/styles/app.css`, and paste in the following:
+```
+:focus,
+.view label:focus,
+.todo-list li .toggle:focus + label,
+.toggle-all:focus + label {
+    /* !important needed because todomvc styles deliberately disable the outline */
+    outline #d86f95 solid !important;
+}
+```
+This CSS overrides some of the styles provided by the `todomvc-app-css` npm package, therefore allowing keyboard focus to be visible. This goes some way towards fixing one of the major accessibility disadvantages of the default TodoMVC app.
+
 
 
 
