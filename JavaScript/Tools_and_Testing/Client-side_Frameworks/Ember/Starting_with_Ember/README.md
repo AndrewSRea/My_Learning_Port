@@ -185,4 +185,4 @@ So far, so good. We've got to the point where we can start to build up our sampl
 
 <hr>
 
-[[Previous module: React]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Starting_with_React#getting-started-with-react) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Next page]]()
+[[Previous module: React]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Starting_with_React#getting-started-with-react) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization)
