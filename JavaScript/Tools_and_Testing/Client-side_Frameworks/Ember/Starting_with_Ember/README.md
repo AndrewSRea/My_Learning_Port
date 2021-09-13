@@ -151,9 +151,38 @@ For more information on what `ember-cli-build.js` does, and for other ways in wh
 ```
 This CSS overrides some of the styles provided by the `todomvc-app-css` npm package, therefore allowing keyboard focus to be visible. This goes some way towards fixing one of the major accessibility disadvantages of the default TodoMVC app.
 
+### Starting the development server
 
+You may start the app in *development* mode by typing the following command in your terminal, while inside the `todomvc` directory:
+```
+ember server
+```
+This should give you an output similar to the following:
+```
+Build successful (190ms) - Serving on http://localhost:4200/
 
+Slowest Nodes (totalTime >= 5%)          | Total (avg)
+-----------------------------------------+-----------
+BroccoliMergeTrees (17)                  | 35ms (2 ms)
+Package /assets/vendor.js (1)            | 13ms
+Concat: Vendor Styles/assets/vend... (1) | 12ms
+```
+The development server launches at `http://localhost:4200`, which you can visit in your browser to check out what your work looks like so far.
 
+If everything is working correctly, you should see a page like this:
 
+![Image of a browser window hosting an Ember app](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Ember_getting_started/ember-start-page.png)
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember
+<hr>
+
+**Note**: On Windows systems without [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10), you will experience slower build-times overall compared to macOS, Linux, and Windows *with* WSL.
+
+<hr>
+
+## Summary
+
+So far, so good. We've got to the point where we can start to build up our sample TodoMVC app in Ember. In the next article, we'll look at building up the markup structure of our app, as a group of logical components.
+
+<hr>
+
+[[Previous module: React]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/React/Starting_with_React#getting-started-with-react) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Next page]]()
