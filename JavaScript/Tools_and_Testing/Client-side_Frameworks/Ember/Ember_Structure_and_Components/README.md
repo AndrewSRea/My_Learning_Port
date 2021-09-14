@@ -180,12 +180,95 @@ You'll now see the following inside your `todomvc/app/components` directory:
 
 ![Image of the todomvc files and folder in a code editor](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Ember_structure_componentization/todos-components-directory.png)
 
+Now that we have all of our component structure files, we can cut and paste the HTML for each component out of the `application.hbs` file and into each of those components, and then rewrite the `application.hbs` to reflect our new abstractions.
 
+1. The `header.hbs` file should be updated to contain the following:
+```
+<input
+    class="new-todo"
+    aria-label="What needs to be done?"
+    placeholder="What needs to be done?"
+    autofocus
+>
+```
 
+2. `todo-list.hbs` should be updated to contain this chunk of code:
+```
+<section class="main">
+    <input id="mark-all-complete" class="toggle-all" type="checkbox">
+    <label for="mark-all-complete">Mark all as complete</label>
 
+    <ul class="todo-list">
+        <Todo />
+        <Todo />
+    </ul>
+</section>
+```
 
+<hr>
 
+**Note**: The only non-HTML in this new `todo-list.hbs` is the `<Todo />` component invocation. In Ember, a component invocation is similar to declaring an HTML element, but the first letter starts with a capital letter, and the names are written in upper camel case, as you'll see with `<TodoList />` later on. The contents of the `todo.hbs` file below will replace `<Todo />` in the rendered page as our application loads.
 
+<hr>
 
+3. Add the following into the `todo.hbs` file:
+```
+<li>
+    <div class="view">
+        <input
+            aria-label="Toggle the completion of this todo"
+            class="toggle"
+            type="checkbox"
+        >
+        <label>Buy Movie Tickets</label>
+        <button
+            type="button"
+            class="destroy"
+            title="Remove this todo"
+        ></button>
+    </div>
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components
+    <input autofocus class="edit" value="Todo Text">
+</li>
+```
+
+4. `footer.hbs` should be updated to contain the following:
+```
+<footer class="footer">
+    <span class="todo-count">
+        <strong>0</strong> todos left
+    </span>
+
+    <ul class="filters">
+        <li>
+            <a href="#">All</a>
+            <a href="#">Active</a>
+            <a href="#">Completed</a>
+        </li>
+    </ul>
+
+    <button type="button" class="clear-completed">
+        Clear Completed
+    </button>
+</footer>
+```
+
+5. Finally, the contents of `application.hbs` should be updated so that they call the appropriate components, like so:
+```
+<section class="todoapp">
+    <h1>todos</h1>
+
+    <Header />
+    <TodoList />
+    <Footer />
+
+</section>
+```
+
+6. With these changes made, run `npm start` in your terminal again, then head over to `http://localhost:4200` to ensure that the todo app still looks as it did before the refactor.
+
+Notice how the todo items both say "Buy Movie Tickets" -- this is because the same component is being invoked twice, and the todo text is hardcoded into it. We'll look at showing different todo items in the next article!
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization) - [[Next page]]()
