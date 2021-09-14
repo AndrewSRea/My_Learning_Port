@@ -70,6 +70,92 @@ The `@action` decorator is the only Ember-specific code here (aside from extendi
 
 <hr>
 
+Coming back to our browser tab with the app running, we can type whatever we want, and when we hit <kbd>Enter</kbd>, we'll be greeted with an alert message telling us exactly what we typed.
+
+With the interactivity of the header input out of the way, we need a place to store todos so that other components can access them.
+
+## Storing Todos with a service
+
+Ember has built-in application-level **state** management that we can use to manage the storage of our todos and allow each of our components to access data from that application-level state. Ember calls these constructs [Services](https://guides.emberjs.com/release/services/), and they live for the entire lifetime of the page (a page refresh will clear them; persisting the data for longer is beyond the scope of this tutorial).
+
+Run this terminal command to generate a service for us to store our todo-list data in:
+```
+ember generate service todo-data
+```
+This should give you a terminal output like so:
+```
+installing service
+    create app/services/todo-data.js
+installing service-test
+    create tests/unit/services/todo-data-test.js
+```
+This creates a `todo-data.js` file inside the `todomvc/app/services` directory to contain our service, which initially contains an import statement and an empty class:
+```
+import Service from '@ember/service';
+
+export default class TodoDataService extends Service {
+
+}
+```
+First of all, we want to define *what a todo is*. We know that we want to track both the text of a todo, and whether or not it is completed.
+
+Add the following `import` statement below the existing one:
+```
+import { tracked } from '@glimmer/tracking';
+```
+Now add the following class below the previous line you added:
+```
+class Todo {
+    @tracked text = '';
+    @tracked isCompleted = false;
+
+    constructor(text) {
+        this.text = text;
+    }
+}
+```
+This class represents a todo -- it contains a `@tracked` `text` property containing the text of the todo, and a `@tracked` `isCompleted` property that specifies whether the todo has been completed or not. When instantiated, a `Todo` object will have an initial `text` value equal to the text given to it when created (see below), and an `isCompleted` value of `false`. The only Ember-specific part of this class is the `@tracked` decorator -- this hooks in to the reactivity system and allows Ember to update what you're seeing in your app automatically if the trcked properties change. [More information on `tracked` can be found here](https://api.emberjs.com/ember/3.15/functions/@glimmer%2Ftracking/tracked).
+
+Now it's time to add to the body of the service.
+
+First, add another `import` statement below the previous one, to make actions available inside the service:
+```
+import { action } from '@ember/object';
+```
+Update the existing `export default class TodoDataService extends Service { ... }` block as follows:
+```
+export default class TodoDataService extends Service {
+    @tracked todos = [];
+
+    @action
+    add(text) {
+        let newTodo = new Todo(text);
+
+        this.todos = [...this.todos, newTodo];
+    }
+}
+```
+Here, the `todos` property on the service will maintain our list of todos contained inside an array, and we'll mark it with `@tracked` because when the value of `todos` is updated, we want the UI to update as well.
+
+And just like before, the `add()` function that will be called from the template gets annotated with the `@action` decorator to bind it to the class instance. This function's contents are fairly easy to understand -- when the function is invoked, a new `Todo` object instance is created with a text value of `text`, and the `todos` property value is updated to all of the current items inside the array (accessed conveniently using [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)), *plus* the new todo.
+
+## Using the service from our header component
+
+Now that we've defined a way to add todos, we can interact with this service from the `header.js` input component to actually start adding them.
+
+First of all, the service needs to be injected into the template via the `@inject` decorator, which we'll rename to `@service` for semantic clarity. To do this, add the following `import` line to `header.js`, beneath the two existing `import` lines:
+```
+import { inject as service } from '@ember/service';
+```
+With this import in place, we can now make the `todo-data` service available inside the `HeaderComponent` class via the `todos` object, using the `@service` decorator. Add the following line just below the opening `export...` line:
+```
+@service('todo-data') todos;
+```
+Now the placeholder `alert(text);` line can be replaced with a call to our new `add()` function. Replace it with the following:
+```
+this.todos.add(text);
+```
+If we try this out in the todo app in our browser (`npm start, go to `localhost:4200`), it will look like nothing happens after hitting the <kbd>Enter</kbd> key (although the fact that the app builds without any errors is a good sign). Using the [Ember Inpector](https://guides.emberjs.com/release/ember-inspector/installation/), however, we can see that our todo was added. (See the gif of the "Ember Inspector" being used on this app [here](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Ember_interactivity_events_state#displaying_our_todos) [just above the "Displaying our todos" header].)
 
 
 
