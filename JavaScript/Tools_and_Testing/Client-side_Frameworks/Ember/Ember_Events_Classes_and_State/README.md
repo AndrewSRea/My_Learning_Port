@@ -157,11 +157,66 @@ this.todos.add(text);
 ```
 If we try this out in the todo app in our browser (`npm start, go to `localhost:4200`), it will look like nothing happens after hitting the <kbd>Enter</kbd> key (although the fact that the app builds without any errors is a good sign). Using the [Ember Inpector](https://guides.emberjs.com/release/ember-inspector/installation/), however, we can see that our todo was added. (See the gif of the "Ember Inspector" being used on this app [here](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Ember_interactivity_events_state#displaying_our_todos) [just above the "Displaying our todos" header].)
 
+## Displaying our todos
 
+Now that we know that we can create todos, there needs to be a way to swap out our static "Buy Movie Tickets" todos with the todos we're actually creating. In the `TodoList` complnent, we'll want to get the todos out of the service, and render a `Todo` component for each todo.
 
+In order to retrieve the todos from the service, our `TodoList` component first needs a backing component class to contain this functionality. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the development server, and enter the following terminal command:
+```
+ember generate component-class todo-list
+```
+This generates the new component class `todomvc/app/components/todo-list.js`.
 
+Populate this file with the following code, which exposes the `todo-data` service, via the `todos` property, to our template. This makes it accessible via `this.todos` inside both the class and the template:
+```
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 
+export default class TodoListComponent extends Component {
+    @service('todo-data') todos;
+}
+```
+One issue here is that our service is called `todos`, but the list of todos is also called `todos`, so currently we would access the data using `this.todos.todos`. This is not intuitive, so we'll add a [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) to the `todos` service called `all`, which will represent all todos.
 
+To do this, go back to your `todo-data.js` file and add the following below the `@tracked todos = []; line:
+```
+get all() {
+    return this.todos;
+}
+```
+Now we can access the data using `this.todos.all`, which is much more intuitive. To put this in action, go to your `todo-list.hbs` component, and replace the static component calls:
+```
+<Todo />
+<Todo />
+```
+With a dynamic `#each` block (which is basically syntactic sugar over the top of JavaScript's [`forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)) that creates a `<Todo/>` component for each todo available in the list of todos returned by the service's `all()` getter:
+```
+{{#each this.todos.all as |todo}}
+    <Todo @todo={{todo}} />
+{{/each}}
+```
+Another way to look at this:
 
+* `this` -- the rendering context/component instance.
+* `todos` -- a property on `this`, which we defined in the `todo-list.js` component using `@service('todo-data') todos;`. This is a reference to the `todo-data` service, allowing us to interact with the service instance directly.
+* `all` -- a getter on the `todo-data` service that returns all the todos.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Events_Classes_and_State
+Try starting the server again and navigating to our app, and you'll find that it works! Well, sort of. Whenever you enter a new Todo item, a new list item appears below the text input, but unfortunately it always says "Buy Movie Tickets".
+
+This is because the text label inside each list item is hardcoded to that text, as seen in `todo.hbs`:
+```
+<label>Buy Movie Tickets</label>
+```
+Update this line to use the Argument `@todo` -- which represents the Todo that we passed in to this component when it was invoked in `todo-list.hbs`, in the line `<Todo @todo={{todo}} />`:
+```
+<label>{{@todo.tewxt}}</label>
+```
+OK, try it again. You should find that now the text submitted in the `<input>` is properly reflected in the UI!
+
+## Summary
+
+OK, so that's great progress for now. We can now add todo items to our app, and the state of the data is tracked using our service. Next, we'll move on to getting our footer functionality working, including the todo counter, and look at conditional rendering, including correctly styling todos when they've been checked. We'll also wire up our "Clear completed" button.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Events_Classes_and_State#ember-interactivity-events-classes-and-state) - [[Next page]]()
