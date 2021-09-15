@@ -219,4 +219,4 @@ OK, so that's great progress for now. We can now add todo items to our app, and 
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Events_Classes_and_State#ember-interactivity-events-classes-and-state) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Events_Classes_and_State#ember-interactivity-events-classes-and-state) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Footer_Function_Conditional_Rendering#ember-interactivity-footer-functionality-conditional-rendering)
