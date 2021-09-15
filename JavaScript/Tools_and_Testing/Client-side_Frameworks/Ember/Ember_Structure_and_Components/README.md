@@ -271,4 +271,4 @@ Notice how the todo items both say "Buy Movie Tickets" -- this is because the sa
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Structure_and_Components#ember-app-structure-and-componentization) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Events_Classes_and_State#ember-interactivity-events-classes-and-state)
