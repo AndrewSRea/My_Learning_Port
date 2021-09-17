@@ -217,4 +217,4 @@ To see our finished Ember implementation, check out the finished app folder in t
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Footer_Function_Conditional_Rendering#ember-interactivity-footer-functionality-conditional-rendering) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Routing_in_Ember#routing-in-ember) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Footer_Function_Conditional_Rendering#ember-interactivity-footer-functionality-conditional-rendering) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Routing_in_Ember#routing-in-ember) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Resources_Troubleshooting#ember-resources-and-troubleshooting)
