@@ -178,3 +178,43 @@ In this file, change...
 Note that, in each of the route model hooks, we are returning an object with a getter instead of a static object, or more just the static list of todos (for example, `this.todos.completed`). The reason for this is that we want the template to have a dynamic reference to the todo list, and if we returned the list directly, the data would never recompute, which would result in the navigations appearing to fail and/or not actually filter. By having a getter defined in the return object from the model data, the todos are reevaluated so that our changes to the todo list are represented in the rendered list.
 
 ## Getting the footer links working
+
+So our route functionality is now all in place, but we can't access them from our app. Let's get the footer links active so that clicking on them goes to the desrired routes.
+
+Go back to `todomvc/app/components/footer.hbs` and find the following bit of markup:
+```
+<a href="#">All</a>
+<a href="#">Active</a>
+<a href="#">Completed</a>
+```
+Update it to...
+```
+<LinkTo @route='index'>All</LinkTo>
+<LinkTo @route='active'>Active</LinkTo>
+<LinkTo @route='completed'>Completed</LinkTo>
+```
+`<LinkTo>` is a built-in Ember component that handles all the state changes when navigating routes, as well as setting an "active" class on any link that matches the URL, in case there is a desire to style it differently from inactive links.
+
+## Updating the todos display inside TodoList
+
+One small final thing that we need to fix is that previously, inside `todomvc/app/components/todo-list.hbs`, we are accessing the todo-data service directly and looping over all todos, as shown here:
+```
+{{#each this.todos.all as |todo| }}
+```
+Since we now want to have our TodoList component show a filtered list, we'll want to pass an argument to the TodoList compoment representing the "current list of todos", as shown here:
+```
+{{#each @todos as |todo| }}
+```
+And that's it for this tutorial! Your app should now fully working links in the footer that displays the "Index"/default, "Active", and "Completed" routes.
+
+## Summary
+
+Congratuations! You've finished this tutorial!
+
+There is a lot more to be implemented before what we've covered here has parity with the original [TodoMVC app](https://todomvc.com/), such as editing, deleting, and persisting todos across page reloads.
+
+To see our finished Ember implementation, check out the finished app folder in the repository for [the code of this tutorial](https://github.com/NullVoxPopuli/ember-todomvc-tutorial/tree/master/steps/00-finished-todomvc/todomvc), or see the [live deployed version](https://nullvoxpopuli.github.io/ember-todomvc-tutorial/) here. Study the code to learn more about Ember, and also check out the next article, which provides links to more resources and some troubleshooting advice.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Footer_Function_Conditional_Rendering#ember-interactivity-footer-functionality-conditional-rendering) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Routing_in_Ember#routing-in-ember) - [[Next page]]()
