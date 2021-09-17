@@ -107,3 +107,36 @@ With `ember-box`:
 {{/let}}
 ```
 Note that none of these solutions are particularly common among members of the community, and as a whole, people are still trying to figure out an ergonomic and simple API for setting data in a template-only context, without backing JS.
+
+### What is the purpose of Controllers?
+
+[Controllers](https://guides.emberjs.com/release/routing/controllers/) are [Singletons](https://en.wikipedia.org/wiki/Singleton_pattern), which may help manage the rendering context of the active route. On the surface, they function much the same as the backing JavaScript of a Component. Controllers are (as of January 2020), the only way to manage URL Query Params.
+
+Ideally, controllers should be fairly light in their responsibilities, delegating to Components and Services where possible.
+
+### What is the purpose of Routes?
+
+A [Route](https://guides.emberjs.com/release/routing/defining-your-routes/) represents part of the URL when a user navigates from place to place in the app. A Route has only a couple responsibilities:
+
+* Load the *minimally required data* to render the route (or view-sub-tree).
+* Gate access to the route and redirect if needed.
+* Handle loading and error states from the minimally required data.
+
+A Route only has 3 lifecycle hooks, all of which are optional:
+
+* `beforeModel` -- gate access to the route.
+* `model` -- where data is loaded.
+* `afterModel` -- verify access.
+
+Last, a Route has the ability to handle common events resulting from configuring the `model`:
+
+* `loading` -- what to do when the `model` hook is loading.
+* `error` -- what to do when an error is thrown from `model`.
+
+Both `loading` and `error` can render default templates as well as customized templates defined elsewhere in the application, unifying loading/error states.
+
+More information on [everything a Route can do is found in the API documentation](https://api.emberjs.com/ember/release/classes/Route/).
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Routing_in_Ember#routing-in-ember) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Resources_Troubleshooting#ember-resources-and-troubleshooting) - [[Next module: Vue]]()
