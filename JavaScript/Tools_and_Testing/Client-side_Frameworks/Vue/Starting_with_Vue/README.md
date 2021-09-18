@@ -102,6 +102,70 @@ If everything went successfully, the CLI should have created a series of files a
 
 <hr>
 
+## .vue files (single file components)
+
+Like in many front-end frameworks, components are a central part of building apps in Vue. These components let you break a large application into discrete building blocks that can be created and managed separately, and transfer data between each other as required. These small blocks can help you reason about and test your code.
+
+While some frameworks encourage you to separate your template, logic, and styling code into separate files, Vue takes the opposite approach. Using [Single File Components](https://vuejs.org/v2/guide/single-file-components.html), Vue lets you group your templates, corresponding script, and CSS all together in a single file ending in `.vue`. These files are processed by a JS build tool (such as Webpack), which means you can take advantage of build-time tooling in your project. This allows you to use tools like Babel, TypeScript, SCSS, and more to create more sophisticated components.
+
+As a bonus, projects created with the Vue CLI are configured to use `.vue` files with Webpack out of the box. In fact, if you look inside the `src` folder in the project we created with the CLI, you'll see your first `.vue` file: `App.vue`.
+
+Let's explore this now.
+
+### App.vue
+
+Open your `App.vue` file -- you'll see that it has three parts: `<template>`, `<script>`, and `<style>`, which contain the component's template, scripting, and styling information. All Single File Components share this same basic structure.
+
+`<template>` contains all the markup structure and display logic of your component. Your template can contain any valid HTML, as well as some Vue-specific syntax that we'll cover later.
+
+<hr>
+
+**Note**: By setting the `lang` attribute on the `<template>` tag, you can use Pug template syntax instead of standard HTML -- `<template lang="pug">`. We'll stick to standard HTML through this tutorial, but it is worth knowing that this is possible.
+
+<hr>
+
+**Personal note**: Mozilla did not provide a link describing what "Pug template syntax" is, so here is a [link to the source](https://pugjs.org/api/getting-started.html), and a link to [using "pug" as an attribute in a <template> tag](https://pugjs.org/language/attributes.html).
+
+<hr>
+
+`<script>` contains all of the non-display logic of your component. Most importantly, your `<script>` tag needs to have a default exported JS object. This object is where you locally register components, define component inputs (props), handle local state, define methods, and more. Your build step will process this object and transform it (with your template) into a Vue component with a `render()` function.
+
+In the case of `App.vue`, our default export sets the name of the component to `App` and registers the `HelloWorld` component by adding it into the `components` property. When you register a component in this way, you're registering it locally. Locally registered components can only be used inside the components that register them, so you need to import and register them in every component file that uses them. This can be useful for bundle splitting/tree shaking since not every page in your app necessarily needs every component.
+```
+import HelloWorld from './components/HelloWorld.vue';
+
+export default {
+    name: 'App';
+    components: {
+        // You can register components locally here.
+        HelloWorld
+    }
+};
+```
+
+<hr>
+
+**Note**: If you want to use [TypeScript](https://www.typescriptlang.org/) syntax, you need to set the `lang` attribute on the `<script>` tag to signify to the compiler that you're using TypeScript -- `<script lang="ts">`.
+
+<hr>
+
+**Personal note**: Again, Mozilla did not provide a link providing information on how to use [the TypeScript "lang" attribute in a <script> tag](https://v3.vuejs.org/guide/typescript-support.html#project-creation) so here it is.
+
+<hr>
+
+`<style>` is where you write your CSS for the component. If you add a `scoped` attribute -- `<style scoped>` -- Vue will scope the styles to the contents of your SFC. This works similar to CSS-in-JS solutions, but allows you to just write plain CSS.
+
+<hr>
+
+**Note**: If you select a CSS pre-processor when creating the project via the CLI, you can add a `lang` attribute to the `<style>` tag so that the contents can be processed by Webpack at build time. For example, `<style lang="scss">` will allow you to use SCSS syntax in your styling information.
+
+<hr>
+
+**Personal note**: Again, due to Mozilla's omission, here is the [link for using the `scss` `lang` attribute in a `<style>` tag](https://vue-loader.vuejs.org/guide/pre-processors.html#sass).
+
+<hr>
+
+
 
 
 
