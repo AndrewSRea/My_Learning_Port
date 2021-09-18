@@ -36,3 +36,40 @@ However, this approach has some limitations. To build more complex apps, you'll 
 <hr>
 
 **Note**: If you don't have the above installed, find out [more about installing npm and Node.js](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#adding-powerups) here.
+
+<hr>
+
+To install the CLI, run the following command in your terminal:
+```
+npm install --global @vue/cli
+```
+Or if you'd prefer to use yarn:
+```
+yarn global add @vue/cli
+```
+Once installed, to initialize a new project, you can then open a terminal in the directory you want to create the project in, and run `vue create <project-name>`. The CLI will then give you a list of project configurations you can use. There are a few preset ones, and you can make your own. These options let you configure things like TypeScript, linting, vue-router, testing, and more.
+
+We'll look at using this below.
+
+## Initializing a new project
+
+To explore various features of Vue, we will be building up a sample todo list app. We'll begin by using the Vue CLI to create a new app framework to build our app into. Follow the steps below:
+
+1. In terminal, `cd` to where you'd like to create your sample app, then run `vue create moz-todo-vue`.
+2. Use the arrow keys and <kbd>Enter</kbd> to select the "Manually select features" option.
+3. The first menu you'll be presented with allows you to choose which features you want to include in your project. Make sure that "Babel" and "Linter/Formatter" are selected. If they are not, use the arrow keys and the space bar to toggle them on. Once they are selected, press <kbd>Enter</kbd> to proceed.
+4. Next, you'll select a config for the linter/formatter. Navigate to "Eslint with error prevention only" and hit <kbd>Enter</kbd> again. This will help us catch common errors, but not be overly opinionated.
+5. Next, you are asked to configure what kind of automated linting we want. Select "Lint on save". This will check for errors when we save a file inside the project. Hit <kbd>Enter</kbd> to continue.
+6. Now, you will select how we want your config files to be managed. "In dedicated config files" will put your config settings for things like ESLint into their own dedicated files. The other option, "In package.json", will put all of your config settings into the app's `package.json` file. Select "In dedicated config files" and push <kbd>Enter</kbd>.
+7. Finally, you are asked if you want to save this as a preset for future options. This is entirely up to you. If you like these settings over the existing presets and want to use them again, type <kbd>y</kbd>, otherwise type <kbd>n</kbd>.
+
+The CLI will now begin scaffolding out your project, and installing all of your dependencies.
+
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Starting_with_Vue
