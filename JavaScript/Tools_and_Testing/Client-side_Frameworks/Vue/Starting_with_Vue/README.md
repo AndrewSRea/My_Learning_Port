@@ -161,16 +161,73 @@ export default {
 
 <hr>
 
-**Personal note**: Again, due to Mozilla's omission, here is the [link for using the `scss` `lang` attribute in a `<style>` tag](https://vue-loader.vuejs.org/guide/pre-processors.html#sass).
+**Personal note**: Again, due to Mozilla's omission, here is the [link for using the `"scss"` `lang` attribute in a `<style>` tag](https://vue-loader.vuejs.org/guide/pre-processors.html#sass).
 
 <hr>
 
+## Running the app locally
 
+The Vue CLI comes with a built-in development server. This allows you to run your app locally so you can test it easily without needing to configure a server yourself. The CLI adds a `serve` command to the project's `package.json` file as an npm script, so you can easily run it.
 
+In your terminal, try running `npm run serve` (or `yarn serve`, if you prefer yarn). Your terminal should output something like the following:
+```
+INFO  Starting development server...
+98% after emitting CopyPlugin
 
+ DONE  Compiled successfully in 18121ms
 
+  App running at:
+  - Local:   <https://localhost:8080/>
+  - Network: <http://192.168.1.9:8080/>
 
+  Note that the development build in not optimized.
+  To create a production build, run npm run build.
+```
+If you navigate to the "local" address in a new browser tab (this should be something like `http://localhost:8080` as stated above, but may vary based on your setup), you should see your app. Right now, it should contain a welcome message, a link to the Vue documentation, links to the plugins you added when you initialized the app with your CLI, and some other useful links to the Vue community and ecosystem.
 
+## Making a couple of changes
 
+Let's make our first change to the app -- we'll delete the Vue logo. Open the `App.vue` file, and delete the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element from the template section:
+```
+<img alt="Vue logo" src="./assets/logo.png">
+```
+If your server is still running, you should see the logo removed from the rendered site almost instantly. Let's also remove the `HelloWorld` component from our template.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Starting_with_Vue
+First of all, delete this line:
+```
+<HelloWorld msg="Welcometo Your Vue.js App"/>
+```
+If you save your `App.vue` file now, the rendered app will throw an error because we've registered the component but are not using it. We also need to remove the lines from inside the `<script>` element that import and register the component:
+
+Delete these lines now:
+```
+import HelloWorld from './components/HelloWorld.vue';
+```
+```
+components: {
+    HelloWorld
+}
+```
+Your rendered app should no longer show an error, just a blank page, as we currently have no visible content inside `<template>`.
+
+Let's add a new `<h1>` inside `<div id="app">`. Since we're going to be creating a todo list app below, let's set our header text to "To-Do List". Add it like so:
+```
+<template>
+    <div id="app">
+        <h1>To-Do List</h1>
+    </div>
+</template>
+```
+`App.vue` will now show our heading, as you'd expect.
+
+## Summary
+
+Let's leave this here for now. We've learned about some of the ideas behind Vue, created some scaffolding for our example app to live inside, inspected it, and made a few preliminary changes.
+
+With a basic introduction out of the way, we'll now go further and build up our sample app, a basic Todo list application that allows us to store a list of items, check them off when done, and filter the list by all, complete, and incomplete todos.
+
+In the next article, we'll build our first custom component, and look at some important concepts such as passing props into it and saving its data state.
+
+<hr>
+
+[[Previous module: Ember]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Starting_with_Ember#getting-started-with-ember) - [[Previous page of Ember module]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Ember/Ember_Resources_Troubleshooting#ember-resources-and-troubleshooting) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Starting_with_Vue#getting-started-with-vue) - [[Next page]]()
