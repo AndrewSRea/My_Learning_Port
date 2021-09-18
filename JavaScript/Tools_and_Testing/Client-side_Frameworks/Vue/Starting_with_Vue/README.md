@@ -65,6 +65,43 @@ To explore various features of Vue, we will be building up a sample todo list ap
 
 The CLI will now begin scaffolding out your project, and installing all of your dependencies.
 
+If you've never run the Vue CLI before, you'll get one more question -- you'll be asked to choose a package manager. You can use the arrow keys to select which one you prefer. The Vue CLI will default to this package manager from now on. If you need to use a different package manager after this, you can pass in a flag, `--packageManager=<package-manager>`, when you run `vue create`. So if you wanted to create the `moz-todo-vue` project with npm and you'd previously chosen yarn, you'd run `vue create moz-todo-vue --packageManager=npm`.
+
+<hr>
+
+**Note**: We've not gone over all of the options here, but you can [find more information on the CLI](https://cli.vuejs.org/) in the Vue docs.
+
+<hr>
+
+## Project structure
+
+If everything went successfully, the CLI should have created a series of files and directories for your project. The most significant ones are as follows:
+
+* `.eslint.js`: This is a config file for [eslint](https://eslint.org/). You can use this to manage your linting rules.
+* `babel.config.js`: This is the config file for [Babel](https://babeljs.io/), which transforms modern JavaScript features being used in development code into older syntax that is more cross-browser compatible in production code. You can register additional babel plugins in this file.
+* `.browserlistrc`: This is a config for [Browserslist](https://github.com/browserslist/browserslist). You can use this to control which browsers your tooling optimizes for.
+* `public`: This directory contains static assets that are published, but not processed by [Webpack](https://webpack.js.org/) during build (with one exception; `index.html` gets some processing).
+    - `favicon.ico`: This is the favicon for your app. Currently, it's the Vue logo.
+    - `index.html`: This is the template for your app. Your Vue app is run from this HTML page, and you can use lodash template syntax to interpolate values into it.
+
+    <hr>
+
+    **Note**: This is not the template for managing the layout of your application -- this template is for managing static HTML that sits outside of your Vue app. Editing this file typically only occurs in advanced use cases.
+
+    <hr>
+
+* `src`: This directory contains the core of your Vue app.
+    - `main.js`: This is the entry point to your application. Currently, this file initializes your Vue application and signifies which HTML element in the `index.html` file your app should be attached to. This file is often where you register global components or additional Vue libraries.
+    - `App.vue`: This is the top-level component in your Vue app. See below for more explanation of Vue components.
+    - `components`: This directory is where you keep your components. Currently, it just has one example component.
+    - `assets`: This directory is for storing static assets like CSS and images. Because these files are in the source directory, they can be processed by Webpack. This means you can use pre-processors like [Sass/CSS](https://sass-lang.com/) or [Stylus](https://stylus-lang.com/).
+
+<hr>
+
+**Note**: Depending on the options you select when creating a new project, there might be other directories present (for example, if you choose a router, you will also have a `views` directory).
+
+<hr>
+
 
 
 
