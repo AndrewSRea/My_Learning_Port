@@ -81,6 +81,88 @@ Your `App.vue` `<template>` contents should now look something like this:
 ```
 If you check your rendered app again, you should now see your rendered `ToDoItem`, consisting of a checkbox and a label.
 
+## Making components dynamic with props
+
+Our `ToDoItem` component is still not very useful because we can only really include this once on a page (IDs need to be unique), and we have no way to set the label text. Nothing about this is dynamic.
+
+What we need is some component state. This can be achieved by adding props to our component. You can think of props as being similar to inputs in a function. The value of a prop gives components an initial state that affects their display.
+
+### Registering props
+
+In Vue, there are two ways to register props:
+
+* The first way is to just list props out as an array of strings. Each entry in the array corresponds to the name of a prop.
+* The second way is to define props as an object, with each key corresponding to the prop name. Listing props as an object allows you to specify default values, mark props as required, perform basic object typing (specifically around JavaScript primitive types), and perform simple prop validation.
+
+<hr>
+
+**Note**: Prop validation only happens in development mode, so you can't strictly rely on it in production. Additionally, prop validation functions are invoked before the component instance is created, so they do not have access to the component state (or other props).
+
+<hr>
+
+For this component, we'll use the object registration method.
+
+1. Go back to your `ToDoItem.vue` file.
+2. Add a `props` property inside the `export default {}` object, which contains an empty object.
+3. Inside this object, add two properties with the keys `label` and `done`.
+4. The `label` key's value should be an object with 2 properties (or **props**, as they are called in the context of being available to the components).
+    - The first is a `required` property, which will have a value of `true`. This will tell Vue that we expect every instance of this component to have a label field. Vue will warn us if a `ToDoItem` component does not have a label field.
+    - The second property we'll add is a `type` property. Set the value for this property as the JavaScript `String` type (note the capital "S"). This tells Vue that we expect the value of this property to be a string.
+5. Now on to the `done` prop.
+    - First, add a `default` field, with a value of `false`. This means that when no `done` prop is passed to a `ToDoitem` component, the `done` prop will have a value of false (bear in mind that this is not required -- we only need `default` on non-required props).
+    - Next, add a `type` field with a value of `Boolean`. This tells Vue we expect the value prop to be a JavaScript Boolean type.
+
+Your component object should now look like this:
+```
+<script>
+    export default {
+        props: {
+            label: { required: true, type: String },
+            done: { default: false, type: Boolean }
+        }
+    };
+</script>
+```
+
+### Using registered props
+
+With these props defined inside the component object, we can now use these variable values inside our template. Let's start by adding the `label` prop to the component template.
+
+In your `<template>`, replace the contents of the `<label>` element with `{{label}}`.
+
+`{{}}` is a special template syntax in Vue, which lets us print the result of JavaScript expressions defined in our class, inside our template, including values and methods. It's important to know that content inside `{{}}` is displayed as text and not HTML. In this case, we're printing the value of the `label` prop.
+
+Your component's template section should now look like this:
+```
+<template>
+    <div>
+        <input type="checkbox" id="todo-item" checked="false" />
+        <label for="todo-item">{{label}}</label>
+    </div>
+</template>
+```
+Go back to your browser and you'll see the todo item rendered as before, but without a label (oh, no!). Go to your browser's DevTools and you'll see a warning along these lines in the console:
+```
+[Vue warn]: Missing required prop: "label"
+
+found in
+
+---> <ToDoItem> at src/components/ToDoItem.vue
+       <App> at src/App.vue
+         <Root>
+```
+This is because we marked the `label` as a required prop, but we never gave the component that prop -- we've defined where inside the template we want it used, but we haven't passed it into the component when calling it. Let's fix that.
+
+Inside your `App.vue` file, add a `label` prop to the `<to-do-item></to-do-item>` component, just like a regular HTML attribute:
+```
+<to-do-item label="My ToDo Item"></to-do-item>
+```
+Now you'll see the label in your app, and the warning won't be spat out in the console again.
+
+So that's props in a nutshell. Next, we'll move on to how Vue persists data state.
+
+
+
 
 
 
