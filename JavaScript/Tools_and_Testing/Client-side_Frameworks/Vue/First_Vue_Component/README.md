@@ -1,4 +1,4 @@
-# Creasting our first Vue component
+# Creating our first Vue component
 
 Now it's time to dive deeper into Vue, and create our own custom component -- we'll start by creating a component to represent each item in the todo list. Along the way, we'll learn about a few important concepts such as calling components inside other components, passing data to them via props, and saving data state.
 
@@ -240,14 +240,54 @@ Great! We now have a working checkbox where we can set the state programmaticall
 
 We can use the [lodash](https://www.npmjs.com/package/lodash) package's `uniqueid()` method to help keep the index unique. This package exports a function that takes in a string and appends a unique integer to the end of the prefix. This will be sufficient for keeping component `id`s unique.
 
+Let's add the package to our project with npm; stop your server and enter the following command into your terminal:
+```
+npm install --save lodash.uniqueid
+```
 
+<hr>
 
+**Note**: If you prefer yarn, you could instead use `yarn add lodash.uniqueid`.
 
+<hr>
 
+We can now import this package into our `ToDoItem` component. Add the following line at the top of `ToDoItem.vue`s `<script>` element:
+```
+import uniqueId from 'lodash.uniqueid';
+```
+Next, add an `id` field to our data property, so the component object ends up looking like so (`uniqueId()` return a specified prefix -- `todo` -- with a unique string appended to it):
+```
+import uniqueId from 'lodash.uniqueid';
 
+export default {
+    props: {
+        label: { required: true, type: String },
+        done: { default: false, type: Boolean }
+    },
+    data() {
+        return {
+            isDone: this.done,
+            id: uniqueId('todo-')
+        };
+    }
+};
+```
+Next, bind the `id` to both our checkbox's `id` attribute and the label's `for` attribute, updating the existing `id` and `for` attribute as shown:
+```
+<template>
+    <div>
+        <input type="checkbox" :id="id" :checked="isDone" />
+        <label :for="id">{{label}}</label>
+    </div>
+</template>
+```
 
+## Summary
 
+And that will do for this article. At this point, we have a nicely-working `ToDoItem` component that can be passed a label to display, will store its checked state, and will be rendered with a unique `id` each time it is called. You can check if the unique `id`s afre working by temporarily adding more `<to-do-item></to-do-item>` calls into `App.vue`, and then clicking their rendered output with your browser's DevTools.
 
+Now we're ready to add multiple `ToDoItem` components to our App. In our next article, we'll look at adding a set of todo item data to our `App.vue` component, which we'll then loop through and display inside `ToDoItem` components using the `v-for` directive.
 
+<hr>
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/First_Vue_Component
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Starting_with_Vue#getting-started-with-vue) - [[Top]]() - [[Next page]]()
