@@ -161,6 +161,86 @@ Now you'll see the label in your app, and the warning won't be spat out in the c
 
 So that's props in a nutshell. Next, we'll move on to how Vue persists data state.
 
+## Vue's data object
+
+If you change the value of the `label` prop passed into the `<to-do-item></to-do-item>` call in your App component, you should see it update. This is great. We have a checkbox, with an updatable label. However, we're currently not doing anything with the "done" prop -- we can check the checkboxes in the UI, but nowhere in the app are we recording whether a todo item is actually done.
+
+To achieve this, we want to bind the component's `done` prop to the `checked` attribute on the [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element, so that it can serve as a record of whether the checkbox is checked or not. However, it's important that props serve as one-way data binding -- a component should never alter the value of its own props. There are a lot of reasons for this. In part, components editing props can make debugging a challenge. If a value is passed to multiple children, it could be hard to track where the changes to that value were coming from. In addition, changing props can cause components to re-render. So mutating props in a component would trigger the component to re-render, which may in turn trigger the mutation again.
+
+To work around this, we can manage the `done` state using Vue's `data` property. The `data` property is where you can manage local state in a component, it lives inside the component object alongside the `props` property and has the following structure:
+```
+data() {
+    return {
+        key: value
+    }
+}
+```
+You'll note that the `data` property is a function. This is to keep the data values for each instance of a component at runtime -- the function is invoked separately for each component instance. If you declared data as just an object, all instances of that component would share the same values. This is a side-effect of the way Vue registers components and something you do not want.
+
+You use `this` to access a component's props and other properties from inside data, as you may expect. We'll see an example of this shortly.
+
+<hr>
+
+**Note**: Because of the way that `this` works in arrow functions (binding to the parent's context), you wouldn't be able to access any of the necessary attributes from inside `data` if you used an arrow function. So don't use an arrow function for the `data` property.
+
+<hr>
+
+So let's add a `data` property to our `ToDoitem` component. This will return an object containing a single property that we'll call `isDone`, whose value is `this.done`.
+
+Update the component object like so:
+```
+export default {
+    props: {
+        label: { required: true, type: String },
+        done: { default: false, type: Boolean }
+    },
+    data() {
+        return {
+            isDOne: this.done
+        };
+    }
+};
+```
+Vue does a little magic here -- it binds all of your props directly to the component instance, so we don't have to call `this.props.done`. It also binds other attributes (`data`, which you've already seen, and others like `methods`, `computed`, etc.) directly to the instance. This is, in part, to make them available to your template. The downside to this is that you need to keep the keys unique across these attributes. This is why we called our `data` attribute `isDone` instead of `done`.
+
+So now we need to attach the `isDone` property to our component. In a similar fashion to how Vue uses `{{}}` expressions to display JavaScript expressions inside templates, Vue has a special syntax to bind JavaScript expressions to HTML elements and components: **`v-bind`**. The `v-bind` expression looks like this:
+```
+v-bind:attribute="expression"
+```
+In other words, you prefix whatever attribute/prop you want to bind with `v-bind:`. In most cases, you can use a shorthand for the `v-bind` property, which is to just prefix the attribute/prop with a colon. So `:attribute="expression"` works the same as `v-bind:attribute="expression"`.
+
+So in the case of the checkbox in our `ToDoItem` component, we can use `v-bind` to map the `isDone` property to the `checked` attribute on the `<input>` element. Both of the following are equivalent:
+```
+<input type="checkbox" id="todo-item" v-bind:checked="isDone" />
+
+<input type="checkbox" id="todo-item" :checked="isDone" />
+```
+You're free to use whichever pattern you would like. It's best to keep it consistent, though. because the shorthand syntax is more commonly used, this tutorial will stick to that pattern.
+
+So let's do this. Update your `<input>` element now to replace `checked="false"` with `:checked="isDone"`.
+
+Test out your component by passing `:done="true"` to the `ToDoItem` call in `App.vue`. Note that you need to use the `v-bind` syntax, because otherwise `true` is passed as a string. The displayed checkbox should be checked.
+```
+<template>
+    <div id="app">
+        <h1>My To-Do List</h1>
+        <ul>
+            <li>
+                <to-do-item label="My ToDo Item" :done="true"></to-do-item>
+            </li>
+        </ul>
+    </div>
+</template>
+```
+Try changing `true` to `false` and back again, reloading your app in between to see how the state changes.
+
+## Giving Todos a unique id
+
+Great! We now have a working checkbox where we can set the state programmatically. However, we can currently only add one `ToDoList` component to the page because the `id` is hardcoded. This would result in errors with assistive technology since the `id` is needed to correctly map labels to their checkboxes. To fix this, we can programmatically set the `id` in the component data.
+
+We can use the [lodash](https://www.npmjs.com/package/lodash) package's `uniqueid()` method to help keep the index unique. This package exports a function that takes in a string and appends a unique integer to the end of the prefix. This will be sufficient for keeping component `id`s unique.
+
+
 
 
 
