@@ -112,7 +112,67 @@ In this case, we need to use the `.prevent` handler to stop the browser's defaul
 ```
 <form @submit.prevent="onSubmit">
 ```
-If you try submitting the form now, you'll notice that the page doesn't reload. If you open the console, you can see the results of the [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/console/log) we added inside our `onSubmit()` model.
+If you try submitting the form now, you'll notice that the page doesn't reload. If you open the console, you can see the results of the [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/console/log) we added inside our `onSubmit()` method.
+
+## Binding data to inputs with `v-model`
+
+Next up, we need a way to get the value from the form's `<input>` so we can add the new to-do item to our `ToDoItems` data list.
+
+The first thing we need is a `data` property in our form to track the value of the to-do.
+
+1. Add a `data()` method to our `ToDoForm` component object that returns a `label` field. We can set the initial value of the `label` to an empty string.
+
+Your component object should look something like this:
+```
+export default {
+    methods: {
+        onSubmit() {
+            console.log('form submitted');
+        }
+    },
+    data() {
+        return {
+            label: '';
+        };
+    }
+};
+```
+
+2. We now need some way to attach the value of the `new-todo-input` `<input>` field to the `label` field. Vue has a special directive for this: [`v-model`](). `v-model` binds to the data property you set on it and keeps it in sync with the `<input>`. `v-model` works across all the various input types, including checkboxes, radios, and select inputs. To use `v-model`, you add an attribute with the structure `v-model="variable"` to the `<input>`.
+
+So in our case, we would add it to our `new-todo-input` field as seen below. Do this now:
+```
+<input
+    type="text"
+    id="new-todo-input"
+    name="new-todo"
+    autocomplete="off"
+    v-model="label"
+/>
+```
+
+<hr>
+
+**Note**: You can also sync data with `<input>` values through a combination of events and `v-bind` attributes. In fact, this is what `v-model` does behind the scenes. However, the exact event and attribute combination varies depending on input types and will take more code than just using the `v-model` shortcut.
+
+<hr>
+
+3. Let's test out our use of `v-model` by loggin the value of the data submitted in our `onSubmit()` method. In components, data attributes are accessed using the `this` keyword. So we access our `label` field using `this.label`.
+
+Update your `onSubmit()` method to look like this:
+```
+methods: {
+    onSubmit() {
+        console.log('Label value: ', this.label);
+    }
+},
+```
+
+4. Now go back to your running app, add some text to the `<input>` field, and click the "Add" button. You should see the value you entered logged to your console. For example:
+```
+Label value: My value
+```
+
 
 
 
