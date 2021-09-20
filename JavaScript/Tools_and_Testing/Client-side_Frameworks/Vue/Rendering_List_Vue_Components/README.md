@@ -79,12 +79,61 @@ export default {
 ```
 When you make this change, every JavaScript expression between the `<li>` tags will have access to the `item` value in addition to the other component attributes. This means we can pass the fields of our item objects to our `ToDoItem` component -- just remember to use the `v-bind` syntax. This is really useful, as we want our todo items to display their `label` properties as their label, not a static label of "My Todo Item". In addition, we want their checked status to reflect their `done` properties, not always be set to `done="false"`.
 
+4. Update the `label="My ToDo Item"` attribute to `:label="item.label"`, and the `:done="false"` attribute to `:done="item.done"`, as seen in context below:
+```
+<ul>
+    <li v-for="item in ToDoItems" :key="item.id">
+        <to-do-item :label="item.label" :done="item.done"></to-do-item>
+    </li>
+</ul>
+```
+Now when you look at your running app, it'll show the todo items with their proper names, and if you inspect the source code you'll see that the inputs all have unique `id`s, taken from the object in the `App` component.
 
+## Chance for a slight refactor
 
+There's one little bit of refactoring we can do here. Instead of genrating the `id` for the checkboxes inside your `ToDoItem` component, we can turn the `id` into a prop. While this isn't strictly necessary, it makes it easier for us to manage since we already need to create a unique `id` for each todo item anyway.
 
+1. Add a new prop to your `ToDoItem` component -- `id`.
+2. Make it required, and make its type a `String`.
+3. To prevent name collisions, remove the `id` field from your `data` attribute.
+4. You are no longer using `uniqueId`, so you need to remove the `import uniqueId from 'lodash.uniqueid';` line, otherwise your app will throw an error.
 
+The `<script>` contents in your `ToDoItem` component should now look something like this:
+```
+export default {
+    props: {
+        label: {required: true, type: String},
+        done: {default: false, type: Boolean},
+        id: {required: true, type: String}
+    },
+    data() {
+        return {
+            isDone: this.done,
+        }
+    },
+}
+```
+Now, over in your `App.vue` component, pass `item.id` as a prop to the `ToDoitem` component. Your `App.vue` template should now look like this:
+```
+<template>
+    <div id="app">
+        <h1>My To-Do List</h1>
+        <ul>
+            <li v-for="item in ToDoItems" :key="item.id">
+                <to-do-item :label="item.label" :done="item.done" :id="item.id"></to-do-item>
+            </li>
+        </ul>
+    </div>
+</template>
+```
+When you look at your rendered site, it should look the same, but our refactor now means that our `id` is being taken from the data inside `App.vue` and passed into `ToDoItem` as a prop, just like everything else, so things are now more logical and consistent.
 
+## Summary
 
+And that brings us to the end of another article. We now have sample data in place, and a loop that takes each bit of data and renders it inside a `ToDoItem` in our app.
 
+What we really need next is the ability to allow our users to enter their own todo items into the app, and for that we'll need a text `<input>`, and event to fire when the data is submitted, a method to fire upon submission to add the data and re-render the list, and a model to control the data. We'll get to these in the next article.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Rendering_List_Vue_Components
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/First_Vue_Component#creating-our-first-vue-component) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Rendering_List_Vue_Components#rendering-a-list-of-vue-components) - [[Next page]]()
