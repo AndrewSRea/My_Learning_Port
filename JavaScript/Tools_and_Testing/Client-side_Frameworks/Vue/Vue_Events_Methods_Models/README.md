@@ -69,6 +69,51 @@ Now when you view view your running site, you should see the new form displayed.
 
 If you fill it out and click the "Add" button, the page will post the form back to the server, but this isn't really what we want. What we actually want to do is run a method on the [`submit` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event) that will add the new todo to the `ToDoItem` data list defined inside `App`. To do that, we'll need to add a method to the component instance.
 
+## Creating a method and binding it to an event with `v-on`
+
+To make a method available to the `ToDoForm` component, we need to add it to the component object, and this is done inside a `methods` property to our component, which goes in the same place as `data()`, `props`, etc. The `methods` property holds any methods we might need to call in our component. When referenced, methods are fully run, so it's not a good idea to use them to display information inside the template. For displaying data that comes from calculations, you should use a `computed` property, which we'll cover later.
+
+1. In this component, we need to add an `onSubmit()` method to a `methods` property inside the `ToDoForm` component object. We'll use this to handle the submit action.
+
+Add this like so:
+```
+export default {
+    methods: {
+        onSubmit() {
+            console.log('form submitted');
+        }
+    }
+}
+```
+
+2. Next, we need to bind the method to our `<form>` element's `submit` event handler. Much like how Vue uses the [`v-bind`](https://vuejs.org/v2/api/#v-bind) syntax for binding attributes, Vue has a special directive for event handling: [`v-on`](https://vuejs.org/v2/api/#v-on). The `v-on` directive works via the `v-on:event="method"` syntax. And much like `v-bind`, there's also a shorthand syntax: `@event="method"`.
+
+We'll use the shorthand syntax here for consistency. Add the `submit` handler to your `<form>` element like so:
+```
+<form @submit="onSubmit">
+```
+
+3. When you run this, the app still posts the data to the server, causing a refresh. Since we're doing all of our processing on the client, there's no server to handle the postback. We also lose all local state on page refresh. To prevent the browser from posting to the server, we need to stop the even't default action while bubbling up through the page ([`Event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault), in vanilla JavaScript). Vue has a special syntax called **event modifiers** that can handle this for us right in our template.
+
+Modifiers are appended to the end of an event with a dot like so: `@event.modifier`. Here is a list of event modifiers:
+
+* `.stop`: Stops the event from propagating. Equivalent to [`Event.stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation) in regular JavaScript events.
+* `.prevent`: Prevents the event's default behavior. Equivalent to [`Event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault).
+* `.self`: Triggers the handler only if the event was dispatched from this exact element.
+* `{.key}`: Triggers the event handler only via the specified key. [MDN has a list of valid key values](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values); multi-word keys just need to be converted to kebab-case (e.g. `page-down`).
+* `.native`: Listens for a native event on the root (outermost wrapping) element on your component.
+* `.once`: Listens for the event until it's been triggered once, and then no more.
+* `.left`: Only trigger the handler via the left mouse button event.
+* `.right`: Only triggers the handler via the right mouse button event.
+* `.middle`: Only triggers the handler via the middle mouse button event.
+* `.passive`: Equivalent to using the `{ passive: true }` parameter when creating an event listener in vanilla JavaScript using [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+
+In this case, we need to use the `.prevent` handler to stop the browser's default submit action. Add `.prevent` to the `@submit` handler template like so:
+```
+<form @submit.prevent="onSubmit">
+```
+If you try submitting the form now, you'll notice that the page doesn't reload. If you open the console, you can see the results of the [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/console/log) we added inside our `onSubmit()` model.
+
 
 
 
