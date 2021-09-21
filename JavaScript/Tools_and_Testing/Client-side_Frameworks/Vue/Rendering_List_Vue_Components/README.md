@@ -136,4 +136,4 @@ What we really need next is the ability to allow our users to enter their own to
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/First_Vue_Component#creating-our-first-vue-component) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Rendering_List_Vue_Components#rendering-a-list-of-vue-components) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/First_Vue_Component#creating-our-first-vue-component) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Rendering_List_Vue_Components#rendering-a-list-of-vue-components) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Events_Methods_Models#adding-a-new-todo-form-vue-events-methods-and-models)
