@@ -138,7 +138,7 @@ export default {
 };
 ```
 
-2. We now need some way to attach the value of the `new-todo-input` `<input>` field to the `label` field. Vue has a special directive for this: [`v-model`](). `v-model` binds to the data property you set on it and keeps it in sync with the `<input>`. `v-model` works across all the various input types, including checkboxes, radios, and select inputs. To use `v-model`, you add an attribute with the structure `v-model="variable"` to the `<input>`.
+2. We now need some way to attach the value of the `new-todo-input` `<input>` field to the `label` field. Vue has a special directive for this: [`v-model`](https://vuejs.org/v2/api/#v-model). `v-model` binds to the data property you set on it and keeps it in sync with the `<input>`. `v-model` works across all the various input types, including checkboxes, radios, and select inputs. To use `v-model`, you add an attribute with the structure `v-model="variable"` to the `<input>`.
 
 So in our case, we would add it to our `new-todo-input` field as seen below. Do this now:
 ```
@@ -173,6 +173,15 @@ methods: {
 Label value: My value
 ```
 
+## Changing `v-model` behavior with modifiers
+
+In a similar fashion  to event modifiers, we can also add modifiers to change the behavior of `v-model`. In our case, there are two worth considering. The first, `.trim`, will remove whitespace from before or after the input. We can add the modifier to our `v-model` statement like so: `v-model.trim="label"`.
+
+The second modifier we should consider is called `.lazy`. This modifier changes when `v-model` syncs the value for text inputs. As mentioned earlier, `v-model` syncing works by updating the variable using events. For text inputs, this sync happens using the [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event). Often this means that Vue is syncing the data after every keystroke. The `.lazy` modifier causes `v-model` to use the [`change` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) instead. This means that Vue will only sync data when the input loses focus or the form is submitted. For our purposes, this is much more reasonable since we only need the final data.
+
+To use both the `.lazy` and the `.trim` modifier together, we can chain them, e.g. `v-model.lazy.trim="label"`.
+
+Update your `v-model` attribute to chain `lazy` and `trim` as shown above, and then test your app again. Try, for example, submitting a value with whitespace at each end.
 
 
 
