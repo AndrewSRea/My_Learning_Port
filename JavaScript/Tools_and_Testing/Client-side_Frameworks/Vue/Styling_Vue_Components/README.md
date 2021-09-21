@@ -235,6 +235,50 @@ Update your `App.vue` file's `<style>` element so it looks like so:
 ```
 If you check the app, you'll see that our todo list is now in a card, and we have some better formatting of our to-do items. Now we can go through and begin editing our components to use some of these styles.
 
+### Adding CSS classes in Vue
+
+We should apply the button CSS classes to the `<button>` in our `ToDoForm` component. Since Vue templates are valid HTML, this is done in the same way to how you might do it in plain HTML -- by adding a `class=""` attribute to the element.
+
+Add `class="btn btn__primary btn__lg"` to your form's `<button>` element:
+```
+<button type="submit" class="btn btn__primary btn__lg">
+    Add
+</button>
+```
+While we're here, there's one more semantic and styling change we can make. Since our form denotes a specific section of our page, it could benefit from an `<h2>` element. The label, however, already denotes the purpose of the form. To avoid repeating ourselves, let's wrap our label in an `<h2>`. There are a few other global CSS styles which we can add as well. We'll also add the `input__lg` class to our `<input>` element.
+
+Update your `ToDoForm` template so that it looks like this:
+```
+<template>
+    <form @submit.prevent="onSubmit">
+        <h2 class="label-wrapper">
+            <label for="new-todo-input" class="label__lg">
+                What needs to be done?
+            </label>
+        </h2>
+        <input
+            type="text"
+            id="new-todo-input"
+            name="new-todo"
+            autocomplete="off"
+            v-model.lazy.trim="label"
+            class="input__lg"
+        />
+        <button type="submit" class="btn btn__primary btn__lg">
+            Add
+        </button>
+    </form>
+</template>
+```
+Let's also add the `stack-large` class to the `<ul>` tag in our `App.vue` file. This will help improve the spacing of our to-do items a bit.
+
+Update it as follows:
+```
+<ul aria-labelledby="list-summary" class="stack-large">
+```
+
+
+
 
 
 
