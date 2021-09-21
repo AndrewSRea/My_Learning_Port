@@ -112,7 +112,128 @@ After:
 
 ![Image of the moz-todo-vue app with added CSS stylings](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Vue_styling/todo-app-reset-styles.png)
 
-Noticeable changes include the removal of the liat bullets, background color changes, and changes to the base button and input styles.
+Noticeable changes include the removal of the list bullets, background color changes, and changes to the base button and input styles.
+
+## Adding global styles to Single File Components
+
+Now that we've reset our CSS to be uniform across browsers, we need to customize the styles a bit more. There are some styles that we want to apply across components in our app. While adding these files directly to the `reset.css` stylesheet would work, we'll instead add them to the `<style>` tags in `App.vue` to demonstrate how this can be used.
+
+There are already some styles present in the file. Let's remove those and replace them with the styles below. These styles do a few things -- adding some styling to buttons and inputs, and customizing the `#app` element and its children.
+
+Update your `App.vue` file's `<style>` element so it looks like so:
+```
+<style>
+/* Global styles */
+.btn {
+    padding: 0.8rem 1rem 0.7rem;
+    border: 0.2rem solid #4d4d4d;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.btn__danger {
+    color: #fff;
+    background-color: #ca3c3c;
+    border-color: #bd2130;
+}
+.btn__filter {
+    border-color: lightgrey;
+}
+.btn__danger:focus {
+    outline-color: #c82333;
+}
+.btn__primary {
+    color: #fff;
+    background-color: #000;
+}
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+.btn-group > * {
+    flex: 1 1 auto;
+}
+.btn-group > * + * {
+    margin-left: 0.8rem;
+}
+.label-wrapper {
+    margin: 0;
+    flex: 0 0 100%;
+    text-align: center;
+}
+[class*="__lg"] {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.9rem;
+}
+[class*="__lg"]:not(:last-child) {
+    margin-bottom: 1rem;
+}
+@media screen and (min-width: 620px) {
+    [class*="__lg"] {
+        font-size: 2.4rem;
+    }
+}
+.visually-hidden {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+[class*="stack"] > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.stack-small > * + * {
+    margin-top: 1.25rem;
+}
+.stack-large > * + * {
+    margin-top: 2.5rem;
+}
+@media screen and (min-width: 550px) {
+    .stack-small > * + * {
+        margin-top: 1.4rem;
+    }
+    .stack-large > * + * {
+        margin-top: 2.8rem;
+    }
+}
+/* End global styles */
+#app {
+    background: #fff;
+    margin: 2rem 0 4rem 0;
+    padding: 1rem;
+    padding-top: 0;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+}
+@media screen and (min-width: 550px) {
+    #app {
+        padding: 4rem;
+    }
+}
+#app > * {
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+#app > form {
+    max-width: 100%;
+}
+#app h1 {
+    display: block;
+    min-width: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+</style>
+```
+If you check the app, you'll see that our todo list is now in a card, and we have some better formatting of our to-do items. Now we can go through and begin editing our components to use some of these styles.
 
 
 
