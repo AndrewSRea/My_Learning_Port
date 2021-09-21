@@ -249,13 +249,53 @@ methods: {
 
 If you test your form again, you'll see whatever text you enter logged in your console upon submission. Vue automatically passes the arguments after the event name in `this.$emit()` to your event handler.
 
+## Adding the new todo into our data
 
+Now that we have the data from `ToDoForm` available in `App.vue`, we need to add an item representing it to the `ToDoitems` array. This can be done by pushing a new to-do item object to the array containing our new data.
 
+1. Update your `addToDo()` method like so:
+```
+addToDo(toDoLabel) {
+    this.ToDoItems.push({id: uniqueId('todo-'), label: toDoLabel, done: false});
+}
+```
 
+2. Try testing your form again, and you should see new to-do items get appended to the end of the list.
 
+3. Let's make a further improvement before we move on. If you submit the form while the input is empty, todo items with no text still get added to the list. To fix that, we can prevent the `to-do-added` event from firing when the `name` is empty. Since `name` is already being trimmed by the `.trim` directive, we only need to test for the empty string.
 
+Go back to your `ToDoForm` component, and update the `onSubmit()` method like so. If the label value is empty, let's not emit the `todo-added` event.
+```
+onSubmit() {
+    if(this.label === '') {
+        return;
+    }
+    this.$emit('todo-added', this.label);
+}
+```
 
+4. Try your form again. Now you will not be able to add empty items to the to-do list.
 
+## Using `v-model` to update an input value
 
+There's one more thing to fix in our `ToDoForm` component -- after submitting, the `<input>` still contains the old value. But this is easy to fix -- because we're using `v-model` to bind the data to the `<input>` in `ToDoForm`, if we set the name parameter to equal an empty string, the input will update as well.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Events_Methods_Models
+Update your `ToDoForm` component's `onSubmit()` method to this:
+```
+onSubmit() {
+    if(this.label === '') {
+        return;
+    }
+    this.$emit('todo-added', this.label);
+    this.label = '';
+}
+```
+Now when you click the "Add" button, the "new-todo-input" will clear itself.
+
+## Summary
+
+Excellent! We can now add todo items to our form! Our app is now starting to feel interactive, but one issue is we've completely ignored its look and feel up to now. In the next article, we'll concentrate on fixing this, looking at the different ways Vue provides style to components.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Rendering_List_Vue_Components#rendering-a-list-of-vue-components) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Events_Methods_Models#adding-a-new-todo-form-vue-events-methods-and-models) - [[Next page]]()
