@@ -183,6 +183,72 @@ To use both the `.lazy` and the `.trim` modifier together, we can chain them, e.
 
 Update your `v-model` attribute to chain `lazy` and `trim` as shown above, and then test your app again. Try, for example, submitting a value with whitespace at each end.
 
+## Passing data to parents with custom events
+
+We now are very close to being able to add new to-do items to our list. The next thing we need to be able to do is pass the newly-created to-do item to our `App` component. To do that, we can have our `ToDoForm` emit a custom event that passes the data, and have `App` listen for it. This works very similarly to native events on HTML elements: a child component can emit an event which can be listened to via `v-on`.
+
+In the `onSubmit` event of our `ToDoForm`, let's add a `todo-added` event. Custom events are emitted like this: `this.$emit("event-name")`. It's important to know that event handlers are case sensitive and cannot include spaces. Vue templates cannot listen for events named with capital letters
+
+1. Replace the `console.log()` in the `onSubmit()` method with the following:
+```
+this.$emit("todo-added");
+```
+
+2. Next, got back to `App.vue` and add a `methods` property to your component object containing an `addToDo()` method, as shown below. For now, this method can just log `To-do added` to the console.
+```
+export default {
+    name: 'app',
+    components: {
+        ToDoItem,
+        ToDoForm
+    },
+    data() {
+        return {
+            ToDoItems: [
+                { id: uniqueId('todo-'), label: 'Learn Vue', done: false },
+                { id: uniqueId('todo-'), label: 'Create a Vue project with the CLI', done: true },
+                { id: uniqueId('todo-'), label: 'Have fun', done: true },
+                { id: uniqueId('todo-'), label: 'Create a to-do list', done: false }
+            ]
+        };
+    },
+    methods: {
+        addToDo() {
+            console.log('To-do added');
+        }
+    }
+};
+```
+
+3. Next, add an event listener for the `todo-added` event to the `<to-do-form></to-do-form>`, which calls the `addToDo()` method when the event fires. Using the `@` shorthand, the listener would look like this: `@todo-added="addToDo"`:
+```
+<to-do-form @todo-added="addToDo"></to-do-form>
+```
+
+4. When you submit your `ToDoForm`, you should see the console log from the `addToDo()` method. This is good, but we're still not passing any data back into the `App.vue` component. We can do that by passing additional arguments to the `this.$emit()` function back in the `ToDoForm` component.
+
+In this case, when we fire the event, we want to pass the `label` data along with it. This is done by including the data you want to pass as another parameter in the `$emit()` method: `this.$emit("todo-added", this.label)`. This is similar to how native JavaScript events include data, except custom Vue events include no event object by default. This means that the emitted event will directly match whatever object you submit. So in our case, our event object will just be a string.
+
+Update your `onSubmit()` method like so:
+```
+onSubmit() {
+    this.$emit('todo-added', this.label)
+}
+```
+
+5. To actually pick up this data inside `App.vue`, we need to add a parameter to our `addToDo()` method that includes the `label` of the new to-do item.
+
+Go back to `App.vue` and update this now:
+```
+methods: {
+    addToDo(toDoLabel) {
+        console.log('To-do added: ', toDoLabel);
+    }
+}
+```
+
+If you test your form again, you'll see whatever text you enter logged in your console upon submission. Vue automatically passes the arguments after the event name in `this.$emit()` to your event handler.
+
 
 
 
