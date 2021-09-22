@@ -237,15 +237,97 @@ Update the `<to-do-item></to-do-item>` call inside the `App.vue` template to loo
 ```
 And there you have it -- you should now be able to edit and delete items from the list!
 
+## Fixing a small bug with isDone status
 
+This is great so far, but we've actually introduced a bug by adding in the edit functionality. Try doing this:
 
+1. Check (or uncheck) one of the todo checkboxes.
+2. Press the "Edit" button for that todo item.
+3. Cancel the edit by pressing the "Cancel" button.
 
+Note the state of the checkbox after you cancel -- not only has the app forgotten the state of the checkbox, but the done status of that todo item is now out of whack. If you try checking (or unchecking) it again, the completed count will change in the opposite way to what you'd expect. This is because the `isDone` inside `data` is only given the value `this.done` on component load.
 
+Fixing this is fortunately quite easy -- we can do this by converting our `isDone` data item into a [computed property](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Computed_Properties#using-vue-computed-properties) -- another advantage of computed properties is that they preserve [reactivity](https://vuejs.org/v2/guide/reactivity.html), meaning (among other things) that their state is saved when the template changes like ours is now doing.
 
+So, let's implement the fix:
 
+1. Remove the following line from inside our `data()` property:
+```
+isDone: this.done,
+```
 
+2. Add the following block below the `data() {}` block:
+```
+computed: {
+    isDone() {
+        return this.done;
+    }
+},
+```
 
+Now when you save and reload, you'll find that the problem is solved -- the checkbox state is now preserved when you switch between todo item templates.
 
+## Understanding the tangle of events
 
+One of the most potentially confusing parts is the tangle of standard and custom events we've used to trigger all the interactivity in our app. To understand this better, it is a good idea to write out a flow chart, description, or diagram of what events are emitted where, where they are being listened for, and what happens as a result of them firing.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Conditional_Rendering
+For example:
+
+**App.vue**
+
+`<to-do-form>` listens for:
+
+* `todo-added` event emitted by the `onSubmit()` method inside the `ToDoForm` component when the form is submitted.
+    - **Result**: `updateDoneStatus()` method invoked to update done status of associated todo item.
+
+* `item-deleted` event emitted by the `deleteToDo()` method inside the `ToDoItem` component when the "Delete" button is pressed.
+    - **Result**: `deleteToDo()` method invoked to delete associated todo item.
+
+* `item-edited` event emitted by the `itemEdited()` method inside the `ToDoItem` component when the `item-edited` event emitted by the `onSubmit()` method inside the `ToDoItemEditForm` has been successfully listened for. Yes, this is a chain of two different `item-edit` events!
+    - **Result**: `editToDo()` method invoked to update label of associated todo item.
+
+**ToDoForm.vue**
+
+`<form>` listens for `submit` event.
+
+**Result**: `onSubmit()` method is invoked, which checks that the new label is not empty, then emits the `todo-added` event (which is then listened for inside `App.vue` - see above), and finally clears the new label `<input>`.
+
+**ToDoItem.vue**
+
+`checkbox` `<input>` listens for `change` event.
+
+**Result**: `checkbox-changed` event emitted when the checkbox is checked/unchecked (which is then listened for inside `App.vue` - see above).
+
+"Edit" `<button>` listens for `click` event.
+
+**Result**: `toggleToItemEditForm()` method is invoked, which toggles `this.isEditing` to `true`, which in turn displays the todo item's edit form on re-render.
+
+"Delete" `<button>` listens for `click` event.
+
+**Result**: `deleteToDo()` method is invoked, which emits the `item-deleted` event (which is then listened for inside `App.vue` - see above).
+
+`<to-do-item-edit-form>` listens for:
+
+* `item-edited` event emitted by the `onSubmit()` method inside the `ToDoItemEditForm` component when the form is successfully submitted.
+    - **Result**: `itemEdited()` method is invoked, which emits the `item-edited` event (which is then listened for inside `App.vue` - see above), and sets `this.isEditing` back to `false`, so that the edit form is no longer shown on re-render.
+
+* `edit-cancelled` event emitted by the `onCancel()` method inside the `ToDoItemEditForm` component when the "Cancel" button is clicked.
+    - **Result**: `editCancelled()` method is invoked, which sets `this.isEditing` back to `false`, so that the edit form is no longer shown on re-render.
+
+**ToDoItemEditForm.vue**
+
+`<form>` listens for `submit` event.
+
+**Result**: `onSubmit()` method is invoked, which checks to see if the new label value is not blank, and not the same as the old one, and if so, emits the `item-edited` event (which is then listened for inside `ToDoItem.vue` - see above).
+
+"Cancel" `<button>` listens for `click` event.
+
+**Result**: `onCancel()` method is invoked, which emits the `edit-cancelled` event (which is then listened for inside `ToDoItem.vue` - see above).
+
+## Summary
+
+This article has been fairly intense, and we covered a lot here. We've now got edit and delete functionality in our app, which is fairly exciting. We are nearing the end of our Vue series now. The last bit of functionality to look at is focus management, or put another way, how we can improve our app's keyboard accessibility.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Computed_Properties#using-vue-computed-properties) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Conditional_Rendering#vue-conditional-rendering-editing-existing-todos) - [[Next page]]()
