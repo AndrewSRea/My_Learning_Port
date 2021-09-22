@@ -180,6 +180,63 @@ Now, if you go to your app and click a todo item's "Edit" button, you should see
 
 However, there's currently no way to go back. To fix that, we need to add some more event handlers to our component.
 
+## Getting back out of edit mode
+
+First, we need to add an `itemEdited()` method to our `ToDoItem` component's `methods`. This method should take the new item label as an argument, emit an `itemEdited` event to the parent component, and set `isEditing` to `false`.
+
+Add it now, below your existing methods:
+```
+itemEdited(newLabel) {
+    this.$emit('item-edited', newLabel);
+    this.isEditing = false;
+}
+```
+Next, we'll need an `editCancelled()` method. This method will take no arguments and just serve to set `isEditing` back to `false`. Add this method below the previous one:
+```
+editCancelled() {
+    this.isEditing = false;
+}
+```
+Last for this section, we'll add event handlers for the events emitted by the `ToDOItemEditForm` component, and attach the appropriate methods to each event.
+
+Update your `<to-do-item-edit-form></to-do-item-edit-form>` call to look like so:
+```
+<to-do-item-edit-form v-else :id="id" :label="label"
+                      @item-edited="itemEdited"
+                      @edit-cancelled="editCancelled">
+</to-do-item-edit-form>
+```
+
+## Updating and deleting todo items
+
+Now we can toggle between the edit form and the checkbox. However, we haven't actually handled updating the `ToDoItems` array back in `App.vue`. To fix that, we need to listen for the `item-edited` event, and update the list accordingly. We'll also want to handle the delete event so that we can delete todo items.
+
+Add the following new methods to your `App.vue`'s component object, below the existing methods inside the `methods` property:
+```
+deleteToDo(toDoId) {
+    const itemIndex = this.ToDoItems.findIndex(item => item.id === toDoId);
+    this.ToDoItems.splice(itemIndex, 1);
+},
+editToDo(toDoId, newLabel) {
+    const toDoToEdit = this.ToDoItems.find(item => item.id === toDoId);
+    toDoToEdit.label = newLabel;
+}
+```
+Next, we'll add the event listeners for the `item-deleted` and `item-edited` events:
+
+* For `item-deleted`, you'll need to pass the `item.id` to the method.
+* For `item-edited`, you'll need to pass the `item.id` and the special `$event` variable. This is a special Vue variable used to pass event data to methods. When using native HTML events (like `click`), this will pass the native event object to your method.
+
+Update the `<to-do-item></to-do-item>` call inside the `App.vue` template to look like this:
+```
+<to-do-item :label="item.label" :done="item.done" :id="item.id"
+            @checkbox-changed="updateDoneStatus(item.id)"
+            @item-deleted="deleteToDo(item.id)"
+            @item-edited="editToDo(item.id, $event)">
+</to-do-item>
+```
+And there you have it -- you should now be able to edit and delete items from the list!
+
 
 
 
