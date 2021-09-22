@@ -148,6 +148,37 @@ methods: {
 }
 ```
 
+## Conditionally displaying components via `v:if` and `v:else`
+
+Now we have an `isEditing` flag that we can use to signify that the item is being edited (or not). If `isEditing` is true, we want to use that flag to display our `ToDoItemEditForm` instead of the checkbox. To do that, we'll use another Vue directive: [`v-if`](https://vuejs.org/v2/api/#v-if).
+
+The `v-if` directive will only render a block if the vaue passed to it is truthy. This is similar to how an `if` statement works in JavaScript. `v-if` also has corresponding [`v-else-if`](https://vuejs.org/v2/api/#v-else-if) and [`v-else`](https://vuejs.org/v2/api/#v-else) directives to provide the equivalent of JavaScript `else if` and `else` logic inside Vue templates.
+
+It's important to note that `v-else` and `v-else-if` blocks need to be the first sibling of a `v-if`/`v-else-if` block, otherwise Vue will not recognize them. You can also attach `v-if` to a `<template>` tag if you need to conditionally render an entire template.
+
+Lastly, you can use a `v-if` + `v-else` at the root of your component to display only one block or another, since Vue will only render one of these blocks at a time. We'll do this in our app, as it will allow us to replace the code that displays our to-do item with the edit form.
+
+First of all, add `v-if="!isEditing"` to the root `<div>` in your `ToDoItem` component.
+```
+<div class="stack-small" v-if="!isEditing">
+```
+Next, below that `<div>`'s closing tag, add the following line:
+```
+<to-do-item-edit-form v-else :id="id" :label="label"></to-do-item-edit-form>
+```
+We also need to import and register the `ToDoItemEditForm` component, so we can use it inside this template. Add this line at the top of your `<script>` element:
+```
+import ToDoItemEditForm from "./ToDoItemEditForm";
+```
+And add a `components` property above the `props` property inside the component object:
+```
+components: {
+    ToDoItemEditForm
+},
+```
+Now, if you go to your app and click a todo item's "Edit" button, you should see the checkbox replaced with the edit form.
+
+However, there's currently no way to go back. To fix that, we need to add some more event handlers to our component.
 
 
 
