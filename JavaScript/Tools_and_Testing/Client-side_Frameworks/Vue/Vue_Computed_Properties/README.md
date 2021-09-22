@@ -1,6 +1,6 @@
 # Using Vue computed properties
 
-In this article, we';; add a counter that displays the number of completed todo items, using a feature of Vue called computed properties. These work similarly to methods, but only rerun when one of their dependencies changes.
+In this article, we'll add a counter that displays the number of completed todo items, using a feature of Vue called computed properties. These work similarly to methods, but only rerun when one of their dependencies changes.
 
 ## Using computed properties
 
@@ -38,10 +38,38 @@ Add the described `<h2>` and update the `<ul>` inside your App's template as fol
 ```
 You should now see the list summary in your app, and the total number of items update as you add more todo items! However, if you try checking and unchecking some items, you'll reveal a bug. Currently, we're not actually tracking the "done" data in any fashion, so the number of completed items does not change.
 
+## Tracking changes to "done"
 
+We can use events to capture the checkbox update and manage our list accordingly.
 
+Since we're not relying on a button to trigger the change, we can attach a `@change` event handler to each checkbox instead of using `v-model`.
 
+Update the `<input>` element in `ToDoItem.vue` to look like this:
+```
+<input type="checkbox" class="checkbox" :id="id" :checked="isDone"
+       @change="$emit('checkbox-changed')" />
+```
+Since all we need to do is emit that the checkbox was checked, we can include the `$emit()` inline.
 
+In `App.vue`, add a new method called `updateDoneStatus()` below your `addToDo()` method. This method should take one parameter: the todo item *id*. We want to find the item with the matching `id` and update its `done` status to be the opposite of its current status:
+```
+updateDoneStatus(toDoId) {
+    const toDoToUpdate = this.ToDoItems.find(item => item.id === toDoId);
+    toDoToUpdate.done = !toDoToUpdate.done;
+}
+```
+We want to run this method whenever a `ToDoItem` emits a `checkbox-changed` event, and pass in its `item.id` as the parameter. Update your `<to-do-item></to-do-item>` call as follows:
+```
+<to-do-item :label="item.label" :done="item.done" :id="item.id"
+            @checkbox-changed="updateDoneStatus(item.id)">
+</to-do-item>
+```
+Now if you check a `ToDoItem`, you should see the summary update appropriately!
 
+## Summary
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Computed_Properties
+In this article, we've used a computed property to add a nice little feature to our app. We do, however, have bigger fish to fry -- in the next article, we will look at conditional rendering, and how we can use it to show an edit form when we want to edit existing todo items.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Styling_Vue_Components#styling-vue-components-with-css) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Vue/Vue_Computed_Properties#using-vue-computed-properties) - [[Next page]]()
