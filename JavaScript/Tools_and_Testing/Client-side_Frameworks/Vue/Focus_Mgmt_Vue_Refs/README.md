@@ -58,8 +58,8 @@ focusOnEditButton() {
 ```
 Next, add a call to `this.focusOnEditButton()` at the end of the `itemEdited()` and `editCancelled()` methods:
 ```
-itemEdited(newItemName) {
-    this.$emit("item-edited", newItemName);
+itemEdited(newLabel) {
+    this.$emit("item-edited", newLabel);
     this.isEditing = false;
     this.focusOnEditButton();
 },
@@ -87,6 +87,51 @@ focusOnEditButton() {
 ```
 Now when you activate the "Edit" button and then cancel or save your changes via the keyboard, focus should be returned to the "Edit" button. Success!
 
+## Vue lifecycle methods
+
+Next, we need to move focus to the edit form's `<input>` element when the "Edit" button is clicked. However, because our edit form is in a different component to our "Edit" button, we can't just set focus inside the "Edit" button's click event handler. Instead, we can use the fact that we remove and remount our `ToDoItemEditForm` component whenever the "Edit" button is clicked to handle this.
+
+So how does this work? Well, Vue components undergo a series of events, known as a **lifecycle**. This lifecycle spans from all the way before elements are *created* and added to the VDOM (*mounted*), until they are removed from the VDOM (*destroyed*).
+
+Vue lets you run methods at various stages of this lifecycle using **lifecycle methods**. This can be useful for things like data fetching, where you may need to get your data before your component renders, or after a property changes. The list of lifecycle methods are below, in the order that they fire.
+
+1. `beforeCreate()` -- Runs before the instance of your component is created. Data and events are not yet available.
+2. `created()` -- Runs after your component is initialized but before the component is added to the VDOM. This is often where data fetching occurs.
+3. `beforeMount()` -- Runs after your template is compiled, but before your component is rendered to the actual DOM.
+4. `mounted()` -- Runs after your component is mounted to the DOM. Can access `refs` here.
+5. `beforeUpdate()` -- Runs whenever data in your component changes, but before the changes are rendered to the DOM.
+6. `updated()` -- Runs whenever data in your component has changed and after the changes are rendered to the DOM.
+7. `beforeDestroy()` -- Runs before a component is removed from the DOM.
+8. `destroyed()` -- Runs after a component has been removed from the DOM.
+9. `activated()` -- Only used in components wrapped in a special `keep-alive` tag. Runs after the component is activated.
+10. `deactivated()` -- Only used in components wrapped in a special `keep-alive` tag. Runs after the component is deactivated.
+
+<hr>
+
+**Note**: The Vue Docs provide a [nice diagram for visualizing when these hooks happen](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram). This article from the [Digital Ocean Community Blog dives into the lifecycle methods more deeply](https://www.digitalocean.com/community/tutorials/vuejs-component-lifecycle).
+
+<hr>
+
+Now that we've gone over the lifecycle methods, let's use one to trigger focus when our `ToDoItemEditForm` component is mounted.
+
+In `ToDoItemEditForm.vue`, attach `ref="labelinput"` to the `<input>` element, like so:
+```
+<input :id="id" ref="labelInput" type="text" autocomplete="off" v-model.lazy.trim="newName" />
+```
+Next, add a `mounted()` property just inside your component object -- **note that this should not be put inside the `methods` property, but rather at the same hierarchy level as `props`, `data()`, and `methods`**. Lifecycle methods are special methods that sit on their own, not alongside the user-defined methods. This should take no inputs. Note that you cannot use an arrow function here since we need access to `this` to access our `labelInput` ref.
+```
+mounted() {
+
+}
+```
+Inside your `mounted()` method, assign your `labelInput` ref to a variable, and then call the `focus()` function of the ref. You don't have to use `$nextTick` here because the component has already been added to the DOM when `mounted()` is called.
+```
+mounted() {
+    const labelInputRef = this.$refs.labelInput;
+    labelInputRef.focus();
+}
+```
+Now when you activate the "Edit" button with your keyboard, focus should immediately be moved to the edit `<input>`.
 
 
 
