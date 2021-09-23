@@ -45,7 +45,47 @@ toggleToItemEditForm() {
 ```
 If you activate the "Edit" button at this point, you should see an HTML `<button>` element referenced in your console.
 
+## Vue's `$nextTick` method
 
+We want to set focus on the "Edit" button when a user saves or cancels their edit. To do that, we need to handle focus in the `ToDoItem` component's `itemEdited()` and `editCancelled()` methods.
+
+For convenience, create a new method which takes no arguments called `focusOnEditButton()`. Inside it, assign your `ref` to a variable, and then call the `focus()` method on the ref.
+```
+focusOnEditButton() {
+    const editButtonRef = this.$refs.editButton;
+    editButtonRef.focus();
+}
+```
+Next, add a call to `this.focusOnEditButton()` at the end of the `itemEdited()` and `editCancelled()` methods:
+```
+itemEdited(newItemName) {
+    this.$emit("item-edited", newItemName);
+    this.isEditing = false;
+    this.focusOnEditButton();
+},
+editCancelled() {
+    this.isEditing = false;
+    this.focusOnEditButton();
+},
+```
+Try editing and then saving/cancelling a to-do item via your keyboard. You'll notice that focus isn't being set, so we wrill have a problem to solve. If you open your console, you'll see an error raised along the lines of *"can't access property "focus", editButtonRef is undefined"*. This seens weird. Your button ref was defined when you activated the "Edit" button, but now it's not. What is going on?
+
+Well, remember when we change `isEditing` to `true`, we no longer render the section of the component featuring the "Edit" button. This means there's no element to bind the ref to, so it becomes `undefined`.
+
+You might be thinking, "Hey, don't we set `isEditing="false"` before we try to access the `ref`, so therefore shouldn't the `v-if` now be displaying the button?" This is where the virtual DOM comes into play. Because Vue is trying to optimize and batch changes, it won't immediately update the DOM when we set `isEditing` to `false`. So when we call `focusOnEdit()`, the "Edit" button has not been rendered yet.
+
+Instead, we need to wait until after Vue undergoes the next DOM update cycle. To do that, Vue components have a special method called `$nextTick()`. This method accepts a callback function, which then executes after the DOM updates.
+
+Since the `focusOnEditButton()` method needs to be invoked after the DOM has updated, we can wrap the existing function body inside a `$nextTick()` call.
+```
+focusOnEditButton() {
+    this.$nextTick(() => {
+        const editButtonRef = this.$refs.editButton;
+        editButtonRef.focus();
+    });
+}
+```
+Now when you activate the "Edit" button and then cancel or save your changes via the keyboard, focus should be returned to the "Edit" button. Success!
 
 
 
