@@ -1,0 +1,3 @@
+# Getting started with Svelte
+
+In this article, we'll provide a quick introduction to the [Svelte framework](). We will see how Svelte works and what sets it apart from the rest of the frameworks and tools we've seen so far. Then we will learn how to setup our development environment, create a sample app, understand the structure of the project, and see how to run it locally and build it for production.
