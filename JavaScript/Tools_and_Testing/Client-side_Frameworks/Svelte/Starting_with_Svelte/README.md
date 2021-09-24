@@ -39,4 +39,76 @@ Being a compiler, Svelte can extend HTML, CSS, and JavaScript, generating optima
 * It extends HTML by allowing JavaScript expressions in markup and providing directives to use conditions and loops, in a fashion similar to Handlebars.
 * It extends CSS by adding a scoping mechanism, allowing each component to define their own styles without the risk of clashing with other component's styles.
 
-The compiler only intervenes in very specific situations and only in the context of Svelte components. Extensions to the JavaScript language are minimal and carefully picked in order to not break JavaScript syntax nor alienate developers. In fact, you will mostly working with vanilla JavaScript.
+The compiler only intervenes in very specific situations and only in the context of Svelte components. Extensions to the JavaScript language are minimal and carefully picked in order to not break JavaScript syntax nor alienate developers. In fact, you will be mostly working with vanilla JavaScript.
+
+## First steps with Svelte
+
+Being a compiler, you can't just add a `<script src="svelte.js">` tag to your page and import it into your app. You'll have to set up your development environment in order to let the compiler do its job.
+
+### Requirements
+
+In order to work with Svelte, you need to have [Node.js](https://nodejs.org/en/) installed. It's recommended that you use the long-term support (LTS) version. Node includes npm (the node package manager), and npx (the node package runner). Note that you can also use the Yarn package manager in place of npm, but we'll assume you are using npm in this set of tutorials. See [Package management basics](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics) for more information on npm and yarn.
+
+If you're using Windows, you will need to install some software to give you parity with Unix/macOS terminal in order to use the terminal commands mentioned in this tutorial. Gitbash (which comes as part of the [git for Windows toolset](https://gitforwindows.org/)) or [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about) are both suitable. [Cmder](https://cmder.net/) is another very good and complete alternative. See [Command line crash course](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Command_Line#command-line-crash-course) for more information on these, and on terminal commands in general.
+
+Also, see the following for more information:
+
+* ["What is npm"](https://nodejs.org/en/knowledge/getting-started/npm/what-is-npm/) on nodejs.org
+* ["Introducing npx"](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner) on the npm blog
+* ["The easiest way to get started with Svelte"](https://svelte.dev/blog/the-easiest-way-to-get-started) on the svelte blog
+
+### Creating your first Svelte app
+
+The easiest way to create a starter app template is to just download the starter template application. You can do that by visiting [sveltejs/template](https://github.com/sveltejs/template) on GitHub or you can avoid having to download and unzip it and just use [degit](https://github.com/Rich-Harris/degit).
+
+To create your starter app template, run the following terminal commands:
+```
+npx degit sveltejs/template moz-todo-svelte
+cd moz-todo-svelte
+npm install
+npm run dev
+```
+
+<hr>
+
+**Note**: degit doesn't do any kind of magic -- it just lets you download and unzip the latest version of a git repo's contents. This is much quicker than using `git clone` because it will not download all the history of the repo, or create a complete local clone.
+
+<hr>
+
+After running `npm run dev`, Svelte will compile and build your application. It will start a local server at `localhost:5000`. Svelte will watch for file updates, and automatically recompile and refresh the app for you when changes are made to the source files. Your browser will display something like this:
+
+![Image of the moz-todo-svelte app open in a browser](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_getting_started/01-svelte-starter-app.png)
+
+### Application structure
+
+The starter template comes with the following structure:
+```
+moz-todo-svelte
+├── README.md
+├── package.json
+├── package-lock.json
+├── rollup.config.js
+├── .gitignore
+├── node_modules
+├── public
+│   ├── favicon.png
+│   ├── index.html
+│   ├── global.css
+│   └── build
+│       ├── bundle.css
+│       ├── bundle.js
+│       └── bundle.js.map
+├── scripts
+│   └── setupTypeScript.js
+└── src
+    ├── App.svelte
+    └── main.js
+```
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Starting_with_Svelte
