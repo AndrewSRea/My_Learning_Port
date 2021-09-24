@@ -39,4 +39,4 @@ Being a compiler, Svelte can extend HTML, CSS, and JavaScript, generating optima
 * It extends HTML by allowing JavaScript expressions in markup and providing directives to use conditions and loops, in a fashion similar to Handlebars.
 * It extends CSS by adding a scoping mechanism, allowing each component to define their own styles without the risk of clashing with other component's styles.
 
-The compiler only intervenes in very specific situations and only in the context of Svelte components. Extensions to the JavaScript language are minimal and carefully picked in order to not break JavaScript syntax nor alienate developers. In fact, you will mostly working with vaniall JavaScript.
+The compiler only intervenes in very specific situations and only in the context of Svelte components. Extensions to the JavaScript language are minimal and carefully picked in order to not break JavaScript syntax nor alienate developers. In fact, you will mostly working with vanilla JavaScript.
