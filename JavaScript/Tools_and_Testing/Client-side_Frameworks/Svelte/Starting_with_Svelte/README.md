@@ -333,6 +333,48 @@ The minified version of `bundle.js` weighs a little more than 3KB, which include
 
 This is a much smaller footprint than compiled bundles from other frameworks. Take into account that, in the case of code bundles, it's not just the size of the files you have to download that matter. This is executable code that needs to be parsed, executed, and kept in memory. So this really makes a difference, especially in low-powered devices or CPU-intensive applications.
 
+## Following this tutorial
+
+In this tutorial series, you will be building a complete web application. We'll learn all the basics about Svelte and also quite a few advanced topics.
+
+You can just read the content to get a good understanding of Svelte features, but you'll get the most out of this tutorial if you follow along coding the app with us as you go. To make it easier for you to follow each article, we provide a GitHub repository with a folder containing the source for the app as it is at the start of each tutorial.
+
+Svelte also provides an online [repl](https://svelte.dev/repl/2c06d586d890466e8dc7da6fb111efb7?version=3.43.0), which is a playground for live-coding Svelte apps on the web without having to install anything on your machine. We provide a repl for each article so you can start coding along right away. Let's talk a bit more about how to use these tools.
+
+### Using Git
+
+The most popular version control system is Git, along with GitHub, a site that provides hosting for your repositories and several tools for working with them.
+
+We'll be using GitHub so that you can easily download the source code for each article. You will also be able to get the code as it should be after completing the article, just in case you get lost.
+
+After [installing Git](https://git-scm.com/downloads), to clone your repository you should execute:
+```
+git clone https://github.com/opensas/mdn-svelte-tutorial.git
+```
+Then at the beginning of each article, you can just `cd` into the corresponding folder and start the app in dev mode to see what its current state should be, like this:
+```
+cd 02-starting-our-todo-app
+npm install
+npm run dev
+```
+If you want to learn more about Git and GitHub, we've compiled a list of links to useful guides -- see [Git and Github](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub#git-and-github).
+
+<hr>
+
+**Note**: If you just want to download the files without cloning the git repo, you can use the degit tool like this: `npx degit opensas/mdn-svelte-tutorial`. You can also download a specific folder with `npx degit opensas/mdn-svelte-tutorial/01-getting-started`. degit won't create a local git repo, it will just download the files of the specified folder.
+
+### Using the Svelte REPL
+
+A REPL ([read-eval-print loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)) is an interactive environment that allows you to enter commands and immediately see the results -- many programming languages provide a REPL.
+
+Svelte's REPL is much more than that. It's an online tool that allows you to create complete apps, save them online, and share with others.
+
+It's the easiest way to start playing with Svelte from any machine, without having to install anything. It is also widely used by the Svelte community. If you want to share an idea, ask for help, or report an issue, it's always extremely useful to create a REPL instance demonstrating the issue.
+
+Let's have a quick look at the Svelte REPL and how you'd use it.
+
+To start a REPL, open your browser and navigate to [https://svelte.dev/repl]().
+
 
 
 
