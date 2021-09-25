@@ -109,7 +109,7 @@ The contents are as follows:
 * `package.json` and `package-lock.json`: Contains information about the project that Node.js/npm uses to keep it organized. You don't need to understand this file at all to complete this tutorial. However, if you'd like to learn more about it, you can read [What is the file `package.json`?](https://nodejs.org/en/knowledge/getting-started/npm/what-is-the-file-package-json/) on NodeJS.org; we also talk about it in our [Package management basics tutorial](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Web_Dev_Tools/Package_Mgmt_Basics#package-management-basics).
 * `node_modules`: This is where node saves the project dependencies. These dependencies won't be sent to production, they are just used for development purposes.
 * `.gitignore`: Tells git which files or folder to ignore from the project -- useful if you decide to include your app in a git repo.
-* `rollup.config.js`: Svelte uses [rollup.js]() as a module bundler. This configuration file tells rollup how to compile and build your app. If you prefer [webpack](), you can create your starter project with `npx degit sveltejs/template-webpack svelte-app` instead.
+* `rollup.config.js`: Svelte uses [rollup.js](https://rollupjs.org/guide/en/) as a module bundler. This configuration file tells rollup how to compile and build your app. If you prefer [webpack](https://webpack.js.org/), you can create your starter project with `npx degit sveltejs/template-webpack svelte-app` instead.
 * `scripts`: Contains setup scripts as required. Currently should only contain `setupTypeScript.js`.
     - `setTypeScript.js`: This script that sets up TypeScript support in Svelte. We'll talk about this more in the last article.
 * `src`: This directory is where the source code for your application lives -- where you'll be creating the code for your app.
@@ -123,6 +123,122 @@ The contents are as follows:
         - `bundle.css`: The CSS file that Svelte generated from the styles defined for each component.
 
 ## Having a look at our first Svelte component
+
+Components are the building blocks of Svelte applications. They are written into `.svelte` files using a superset of HTML.
+
+All three sections -- `<script>`, `<style>`s, and markup -- are optional, and can appear in any order you like.
+```
+<script>
+    // logic goes here
+</script>
+
+<style>
+    /* styles go here */
+</style>
+
+<!-- markup (zero or more HTML elements) goes here -->
+```
+
+<hr>
+
+**Note**: For more information on the component format, have a look at the [Svelte documentation](https://svelte.dev/docs#Component_format).
+
+<hr>
+
+With this in mind, let's have a look at the `src/App.svelte` file that came with the starter template. You should see something like the following:
+```
+<script>
+    export let name;
+</script>
+
+<main>
+    <h1>Hello {name}!</h1>
+    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+</main>
+
+<style>
+    main {
+        text-align: center;
+        padding: 1em;
+        max-width: 240px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        color: #ff3e00;
+        text-transform: uppercase;
+        font-size: 4em;
+        font-weight: 100;
+    }
+
+    @media (min-width: 640px) {
+        main {
+            min-width: none;
+        }
+    }
+</style>
+```
+
+### The `<script>` section
+
+The `<script>` block contains JavaScript that runs when a component instance is created. Variables declared (or imported) at the top level are "visible" from the component's markup. Top-level variables are the way Svelte handles the component state, and they are reactive by default. We will explain in detail what this means later on.
+```
+<script>
+    export let name;
+</script>
+```
+Svelte uses the [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) keyword to mark a variable declaration as a property (or prop), which means it becomes accessible to consumers of the component (e.g. other components). This is one example of Svelte extending JavaScript syntax to make it more useful, while keeping it familiar.
+
+### The markup section
+
+In the markup section, you can insert any HTML you like, and in addition, you can insert valid JavaScript expressions inside single curly brackets (`{}`). In this case, we are embedding the value of the `name` prop right after the `Hello` text.
+```
+<main>
+    <h1>Hello {name}!</h1>
+    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+</main>
+```
+Svelte also supports tags like `{#if...}`, `{#each...}`, and `{#await...}` -- these examples allow you to conditionally render a portion of the markup, iterate through a list of elements, and work with async values, respectively.
+
+### The `<style>` section
+
+If you have experience working with CSS, the following snippet should make sense:
+```
+<style>
+    main {
+        text-align: center;
+        padding: 1em;
+        max-width: 240px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        color: #ff3e00;
+        text-transform: uppercase;
+        font-size: 4em;
+        font-weight: 100;
+    }
+
+    @media (min-width: 640px) {
+        main {
+            min-width: none;
+        }
+    }
+</style>
+```
+We are applying a style to our [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) element. What will happen to other components with `<h1>` elements in them?
+
+In Svelte, CSS inside a component's `<style>` block will be scoped only to that component. This works by adding a class to selected elements, which is based on a hash of the component styles.
+
+You can see this in action by opening `localhost:5000` in a new browser tab, right/<kbd>Ctrl</kbd>-clicking on the *HELLO WORLD!* label, and choosing *Inspect*:
+
+![Image of a DevTools Inspect Element open on the moz-todo-svelte app](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_getting_started/02-svelte-component-scoped-styles.png)
+
+When compiling the app, Svelte changes our `h1` styles definition to `h1.svelte-1tky8bj`, and then modifies every `<h1>` element in our component to `<h1 class="svelte-1tky8bj">` so that it picks up the styles as required.
+
+<hr>
+
+**Note**: You can override this behavior and apply styles to a selector globally using the `:global(...)` modifier. (See the [Svelte `<style>` docs](https://svelte.dev/docs#style) for more information.)
 
 
 
