@@ -240,6 +240,99 @@ When compiling the app, Svelte changes our `h1` styles definition to `h1.svelte-
 
 **Note**: You can override this behavior and apply styles to a selector globally using the `:global(...)` modifier. (See the [Svelte `<style>` docs](https://svelte.dev/docs#style) for more information.)
 
+## Making a couple of changes
+
+Now that we have a general idea of how it all fits together, we can start making a few changes. At this point, you can try updating your `App.svelte` component -- for example, change the `<h1>` element on line 6 of `App.svelte` so that it reads like this:
+```
+<h1>Hello {name} from MDN!</h1>
+```
+Just save your changes and the app running at `localhost:5000` will be automatically updated.
+
+### A first look at Svelte reactivity
+
+In the context of a UI framework, reactivity means that the framework can automatically update the DOM when the state of any component is changed.
+
+In Svelte, reactivity is triggered by assigning a new value to any top-level variable in a component. For example, we could include a `toggleName()` function in our `App` component, and a button to run it.
+
+Try updating your `<script>` and markup sections like so:
+```
+<script>
+    export let name;
+
+    function toggleName() {
+        if (name === 'world') {
+            name = 'svelte';
+        } else {
+            name = 'world';
+        }
+    }
+</script>
+
+<main>
+    <h1>Hello {name}!</h1>
+    <button on:click={toggleName}>Toggle name</button>
+    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+</main>
+```
+Whenever the button is clicked, Svelte executes the `toggleName()` function which, in turn, updates the value of the `name` variable.
+
+As you can see, the `<h1>` label is automatically updated. Behind the scenes, Svelte created the JavaScript code to update the DOM whenever the value of the name variable changes, without using any virtual DOM or other complex reconciliation mechanism.
+
+Note the use of `:` in `on:click`. That's Svelte syntax for listening to DOM events.
+
+## Inspecting `main.js`: the entry point of our app
+
+Let's open `src/main.js`, which is where the `App` component is being imported and used. This file is the entry point for our app, and it initially looks like this:
+```
+import App from './App.svelte';
+
+const app = new App({
+    target: document.body,
+    props: {
+        name: 'world'
+    }
+});
+
+export default app;
+```
+`main.js` starts by importing the Svelte component that we are going to use. Then, in line 3, it instantiates it, passing an option object with the following properties:
+
+* `target`: The DOM element inside which we want the component to be rendered -- in this case, the `<body>` element.
+* `props`: The values to assign to each prop of the `App` component.
+
+## A look under the hood
+
+How does Svelte manage to make all these files work together nicely?
+
+The Svelte compiler processes the `<style>` section of every component and compiles them into the `public/build/bundle.css` file.
+
+It also compiles the markup and `<script>` section of every component and stores the result in `public/build/bundle.js`. It also adds the code in `src/main.js` to reference the features of each component.
+
+Finally, the file `public/index.html` includes the generated `bundle.css` and `bundle.js` files:
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+
+    <title>Svelte app</title>
+
+    <link rel='icon' type='image/png' href='/favicon.png>
+    <link rel='stylesheet' href='/global.css'>
+    <link rel='stylesheet' href='/build/bundle.css'>
+
+    <script defer src='/build/bundle.js'></script>
+</head>
+
+<body>
+</body>
+</html>
+```
+The minified version of `bundle.js` weighs a little more than 3KB, which includes the "Svelte runtime" (just 300 lines of JavaScript code) and the `App.svelte` compiled component. As you can see, `bundle.js` is the only JavaScript file referenced by `index.html`. There are no other libraries loaded into the web page.
+
+This is a much smaller footprint than compiled bundles from other frameworks. Take into account that, in the case of code bundles, it's not just the size of the files you have to download that matter. This is executable code that needs to be parsed, executed, and kept in memory. So this really makes a difference, especially in low-powered devices or CPU-intensive applications.
+
 
 
 
