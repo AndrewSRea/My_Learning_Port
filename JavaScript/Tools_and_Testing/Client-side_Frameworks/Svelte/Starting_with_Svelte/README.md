@@ -417,7 +417,7 @@ Remember to run `npm install && npm run dev` to start your app in development mo
 
 ### REPL
 
-To code along with us using the REPL, start at [https://svelte.dev/repl/fc68b4f059d34b9c84fa042d1cce586c?version=3.23.2](https://svelte.dev/repl/fc68b4f059d34b9c84fa042d1cce586c?version=3.23.2)
+To code along with us using the REPL, start at [https://svelte.dev/repl/fc68b4f059d34b9c84fa042d1cce586c?version=3.23.2](https://svelte.dev/repl/fc68b4f059d34b9c84fa042d1cce586c?version=3.23.2).
 
 ## Summary
 
