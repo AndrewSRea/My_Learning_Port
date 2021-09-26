@@ -253,6 +253,47 @@ The `aria-labelledby` attribute tells assistive technologies that we're treating
 
 This seems like a good time to talk about how Svelte deals with accessibility; let's do that now.
 
+## Svelte accessibility support
+
+Svelte has a special emphasis on accessibility. The intention is to encourage developers to write more acessible code "by default". Being a compiler, Svelte can statically analyze our HTML templates to provide accessibility warnings when components are being compiled.
+
+Accessibility (shortened to a11y) isn't always easy to get right, but Svelte will help by warning you if you write inaccessible markup.
+
+For example, if we add an `<img>` element to our `todos.svelte` component without its corresponding `alt` prop:
+```
+<h1>Svelte To-Do List</h1>
+
+<img height="32" width="88" src="https://www.w3.org/WAI/wcag2A">
+```
+The compiler will issue the following warning:
+```
+(!) Plugin svelte: A11y: <img> element should have an alt attribute
+src/components/Todos.svelte
+1: <h1>Svelte To-Do List</h1>
+2:
+3: <img height="32" width="88" src="https://www.w3.org/WAI/wcag2A">
+   ^
+
+created public/build/bundle.js in 220ms
+
+[2020-07-15 04:07:43] waiting for changes...
+```
+Moreover, our editor can display this warning even before calling the compiler:
+
+![Image of an accessibility warning in a code editor](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_Todo_list_beginning/04-svelte-accessibility-support.png)
+
+You can tell Svelte to ignore this warning for the next block of markup with a [comment](https://svelte.dev/docs#Comments) beginning with `svelte-ignore`, like this:
+```
+<!-- svelte-ignore a11y-missing-attribute -->
+<img height="32" width="88" src="https://www.w3.org/WAI/wcag2A">
+```
+
+<hr>
+
+**Note**: With VSCode, you can automatically add this ignore comment by clicking on the *Quick fix...* link or presing <kbd>Ctrl</kbd> + <kbd>.</kbd>.
+
+<hr>
+
 
 
 
