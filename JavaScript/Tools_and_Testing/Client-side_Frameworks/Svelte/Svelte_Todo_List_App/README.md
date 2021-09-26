@@ -243,7 +243,15 @@ Here, `aria-pressed` tells assistive technology (like screen readers) that the b
 
 The class `visually-hidden` has no effect yet because we have not included any CSS. Once we have put our styles in place, though, any element with this class will be hidden from sighted users; they are there to provide more information about what the button does for screenreader users that do not have the extra visual context to help them.
 
+Further down, you can find the following `<ul>` element:
+```
+<ul role="list" className="todo-list stack-large" aria-labelledby="list-heading">
+```
+The `role` attribute helps assistive technology explain what kind of semantic value an element has -- or what its purpose is. A `<ul>` is treated like a list by default, but the styles we're about to add will break that functionality. This role will restore the "list" meaning to the `<ul>` element. If you want to learn more about why this is necessary, you can [check out Scott O'Hara's article, "Fixing Lists"](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html).
 
+The `aria-labelledby` attribute tells assistive technologies that we're treating our `<h2>` with an `id` of `list-heading` as the label that describes the purpose of the list beneath it. Making this association gives the list a more informative context, which could help screenreader users better understand the purpose of it.
+
+This seems like a good time to talk about how Svelte deals with accessibility; let's do that now.
 
 
 
