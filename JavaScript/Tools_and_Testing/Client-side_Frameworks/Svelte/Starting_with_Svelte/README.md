@@ -341,6 +341,12 @@ You can just read the content to get a good understanding of Svelte features, bu
 
 Svelte also provides an online repl ([see below](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Starting_with_Svelte#using-the-svelte-repl)), which is a playground for live-coding Svelte apps on the web without having to install anything on your machine. We provide a repl for each article so you can start coding along right away. Let's talk a bit more about how to use these tools.
 
+<hr>
+
+**Personal note**: It is not necessary to clone the Mozilla repository with Git in your terminal, or to follow along in a Svelte REPL, as instructed below. As long as you have followed all of the instructions above and created the `moz-todo-svelte` app in your own code editor, you should be able to follow all of the further instructions for creating this app in the succeeding articles to come.
+
+<hr>
+
 ### Using Git
 
 The most popular version control system is Git, along with GitHub, a site that provides hosting for your repositories and several tools for working with them.
