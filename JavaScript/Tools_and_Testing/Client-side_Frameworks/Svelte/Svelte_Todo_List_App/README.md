@@ -294,6 +294,39 @@ You can tell Svelte to ignore this warning for the next block of markup with a [
 
 <hr>
 
+If you want to globally disable this warning, you can add the `onwarn` handler to your `rollup.config.js` file inside the configuration for the `Svelte` plugin, like this:
+```
+plugins: [
+    svelte({
+        dev: !production,
+        css: css => {
+            css.write('public/bui.d/bundle.css');
+        },
+        // Warnings are normally passed straight to Rollup. You can
+        // optionally handle them here. For example, to squelch
+        // warnings with a particular code.
+        onwarn: (warning, handler) => {
+            // e.g. I don't care about screen readers -> please DON'T DO THIS!!!
+            if (warning.code === 'a11y-missing-attribute') return;
+
+            // let Rollup handle all other warnings normally
+            handler(warning);
+        }
+    }),
+
+    ...
+]
+```
+By design, these warnings are implemented in the compiler itself, and not as a plug-in that you may choose to add to your project. The idea is to check for a11y issues in your markup by default and let you opt-out of specific warnings.
+
+<hr>
+
+**Note**: You should only disable these warnings if you have good reasons to do so -- for example, while building a quick prototype. It's important to be a good web citizen and make your pages accessible to the broadest possible userbase.
+
+<hr>
+
+The accessibility rules checked by Svelte are taken from [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#supported-rules), a plugin for eslint that provides static checks for many accesibility rules on JSX elements. Svelte aims to implement all of them in its compiler, and most of them have already been ported to Svelte. On GitHub, you can see [which accessibility checks are still missing](https://github.com/sveltejs/svelte/issues/820). You can check the meaning of each rule by clicking on its link.
+
 
 
 
