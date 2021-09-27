@@ -629,9 +629,30 @@ body {
 With our markup styled, everything now looks better.
 
 
+## The code so far
 
+### Git 
 
+To see the state of the code as it should be at the end of this article, access your copy of our repo like this:
+```
+cd mdn-svelte-tutorial/03-adding-dynamic-behavior
+```
+Or directly download the folder's content:
+```
+npx degit opensas/mdn-svelte-tutorial/03-adding-dynamic-behavior
+```
+Remember to run `npm install && npm run dev` to start your app in development mode.
 
+### REPL
 
+To see the current state of the code in a REPL, visit:
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Todo_List_App
+[https://svelte.dev/repl/c862d964d48d473ca63ab91709a0a5a0?version=3.23.2](https://svelte.dev/repl/c862d964d48d473ca63ab91709a0a5a0?version=3.23.2)
+
+## Summary
+
+With our markup and styling in place, our Todo list app is starting to take shape, and we have everything ready so that we can start to focus on the features we have to implement.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Starting_with_Svelte#getting-started-with-svelte) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Todo_List_App) - [[Next page]]()
