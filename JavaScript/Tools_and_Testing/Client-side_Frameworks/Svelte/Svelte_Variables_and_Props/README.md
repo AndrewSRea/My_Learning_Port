@@ -385,9 +385,47 @@ After analyzing our code, Svelte detects that our `filterTodos()` function depen
 
 <hr>
 
+## The code so far
 
+### Git
 
+To see the state of the code as it should be at the end of this article, access your copy of our repo like this:
+```
+cd mdn-svelte-tutorial/04-componentizing-our-app
+```
+Or directly download the folder's content:
+```
+npx degit opensas/mdn-svelte-tutorial/04-componentizing-our-app
+```
+Remember to run `npm install && npm run dev` to start your app in development mode.
 
+### REPL
 
+To see the current state of the code in a REPL, visit:
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props
+[https://svelte.dev/repl/99b9eb228b404a2f8c8959b22c0a40d3?version=3.23.2](https://svelte.dev/repl/99b9eb228b404a2f8c8959b22c0a40d3?version=3.23.2)
+
+## Summary
+
+That will do for now! In this article, we already implemented most of our desired functionality. Our app can display, add, and delete todos, toggle their completed status, show how many of them are completed and apply filters.
+
+To recap, we covered the following topics:
+
+* Creating and using components.
+* Turning static markup into a live template.
+* Embedding JavaScript expressions in our markup.
+* Iterating over lists using the `{#each}` directive.
+* Passing information between components with props.
+* Listening to DOM events.
+* Declaring reactive statements.
+* Basic debugging with `console.log()` and reactive statements.
+* Binding HTML properties with the `bind:property` directive.
+* Triggering reactivity with assignments.
+* Using reactive expressions to filter data.
+* Explicitly defining our reactive dependencies.
+
+In the next article, we will add further functionality, which will allow users to edit todos.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Todo_List_App#starting-our-svelte-todo-list-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props#dynamic-behavior-in-svelte-working-with-variables-and-props) - [[Next page]]()
