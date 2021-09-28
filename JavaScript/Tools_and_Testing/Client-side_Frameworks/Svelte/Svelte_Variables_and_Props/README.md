@@ -286,6 +286,79 @@ function addTodo() {
 }
 ```
 
+## Giving each todo a unique ID
+
+If you try to add new todos in your app now, you'll be able to add a new todo and have it appear in the UI! Once. If you try it a second time, it won't work, and you'll get a console message saying, "Error: cannot have duplicate keys in a keyed each". We need unique IDs for our todos!
+
+1. Let's declare a `newTodoId` variable calculated from the number of todos plus 1, and make it reactive. Add the following snippet to the `<script>` section:
+```
+let newTodoId;
+    $: {
+        if (totalTodos === 0) {
+            newTodoId = 1;
+        } else {
+            newTodoId = Math.max(...todos.map(t => t.id)) + 1;
+        }
+    }
+```
+
+<hr>
+
+**Note**: As you can see, reactive statements are not limited to one-liners. The following would work, too, but it is a little less readable:
+
+`$: newTodoId = totalTodos ? Math.max(...todos.map(t => t.id)) + 1 : 1`
+
+<hr>
+
+2. How does Svelte achieve this? The compiler parses the whole reactive statement, and detects that it depends on the `totalTodos` variable and the `todos` array. So whenever either of them is modified, this code is reevaluated, updating `newTodoId` accordingly.
+
+Let's use this in our `addTodo()` function -- update it like so:
+```
+function addTodos() {
+    todos = [...todos, { id: newTodoId, name: newTodoName, completed: false }];
+    newTodoName = '';
+}
+```
+
+## Filtering todos by status
+
+Flinally for this article, let's implement the ability to filter our todos by status. We'll create a variable to hold the current filter, and a helper function that will return the filtered todos.
+
+1. At the bottom of our `<script>` section, add the following:
+```
+let filter = 'all';
+    const filterTodos = (filter, todos) ->
+        filter === 'active' ? todos.filter(t => !t.completed) :
+        filter === 'completed' ? todos.filter(t => t.completed) :
+        todos;
+```
+We use the `filter` variable to control the cative filter: *all*, *active*, or *completed*. Just assigning one of these values to the filter variable will activate the filter and update the list of todos. Let's see how to achieve this.
+
+The `filterTodos()` function will receive the current filter and the list of todos, and return a new array of todos filtered accordingly.
+
+2. Let's update the filter button markup to make it dynamic and update the current filter when the user presses one of the filter buttons. Update it like this:
+```
+<div class="filters btn-group stack-exception">
+    <button class="btn toggle-btn" class:btn__primary={filter === 'all'} aria-pressed={filter === 'all'} on:click={() => filter = 'all'} >
+        <span class="visually-hidden">Show</span>
+        <span>All</span>
+        <span class="visually-hidden">tasks</span>
+    </button>
+    <button class="btn toggle-btn" class:btn__primary={filter === 'active'} aria-pressed={filter === 'active'} on:click{() => filter = 'active'} >
+        <span class="visually-hidden">Show</span>
+        <span>Active</span>
+        <span class="visually-hidden">tasks</span>
+    </button>
+    <button class="btn toggle-btn" class:btn__primary={filter === 'completed'} aria-pressed={filter === 'completed} on:click{() => filter = 'completed'} >
+        <span class="visually-hidden">Show</span>
+        <span>Completed</span>
+        <span class="visually-hidden">tasks</span>
+    </button>
+</div>
+```
+There are a couple of things going on in this markup.
+
+We will show the current filter by applying the `btn__primary` class to the active filter button. To conditionally apply style classes to an element
 
 
 
