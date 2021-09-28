@@ -113,6 +113,40 @@ Notice how we are using curly braces to embed JavaScript expressions in HTML att
 
 We've turned our static markup into a dynamic template ready to display the tasks from our component's state. Great! We are getting there.
 
+## Working with props
+
+With a hardcoded list of todos, our `Todos` component is not very useful. To turn our component into a general purpose To-Do editor, we should allow the parent of this component to pass in the list of todos to edit. This would allow us to save them to a web service or local storage and later retrieve them for update. So let's turn the array into a `prop`.
+
+1. In `Todos.svelte`, replace the existing `let todos = ...` block with `export let todos = []`.
+```
+export let todos = [];
+```
+This may feel a little weird at first. That's not how `export` normally works in JavaScript modules! This is how Svelte "extends" JavaScript by taking valid syntax and giving it a new purpose. In this case, Svelte is using the `export` keyword to mark a variable declaration as a property or prop, which means it becomes accessible to consumers of the component.
+
+You can also specify a default initial value for a prop. This will be used if the component's consumer doesn't specify the prop on the component -- or if its initial value is undefined -- when instantiating the component.
+
+So with `export let todos = []`, we are telling Svelte that our `Todos.svelte` component will accept a `todos` attribute which, when omitted, will be initialized to an empty array.
+
+2. Have a look at the app, and you'll see the "Nothing to do here!" message. This is because we are currently not passing any value into it from `App.svelte`, so it's using the default value.
+
+3. Now let's move our todos to `App.svelte` and pass them to the `Todos.svelte` component as a prop. Update `src/App.svelte` as follows:
+```
+<script>
+    let todos = [
+        { id: 1, name: 'Create a Svelte starter app', completed: true },
+        { id: 2, name: 'Create your first component', completed: true },
+        { id: 3, name: 'Complete the rest of the tutorial', completed: false }
+    ]
+</script>
+
+<Todos todos={todos} />
+```
+
+4. When the attribute and the variable have the same name, Svelte allows you to just specify the variable as a handy shortcugt, so we can rewrite our last line like this. Try this now:
+```
+<Todos {todos} />
+```
+At this point, your todos should render just like they did before, except that now we're passing them in from the `App.svelte` component.
 
 
 
