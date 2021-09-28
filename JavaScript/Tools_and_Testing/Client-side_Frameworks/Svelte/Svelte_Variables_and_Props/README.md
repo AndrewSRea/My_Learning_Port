@@ -148,6 +148,41 @@ So with `export let todos = []`, we are telling Svelte that our `Todos.svelte` c
 ```
 At this point, your todos should render just like they did before, except that now we're passing them in from the `App.svelte` component.
 
+## Toggling and removing todos
+
+Let's add some functionality to toggle the task status. Svelte has the `on:eventname` directive for listening to DOM events. Let's add a handler to the `on:click` event of the checkbox input to toggle the completed value.
+
+1. Update the `<input type="checkbox">` element inside `src/components/Todo.svelte` as follows:
+```
+<input type="checkbox" id="todo-{todo.id}"
+    on:click={() => todo.completed = !todo.completed}
+    checked={todo.completed}
+/>
+```
+
+2. Next, we'll add a function to remove a todo from our `todos` array. At the bottom of the `Todos.svelte` `<script>` section, add the `removeTodo()` function like so:
+```
+function removeTodo(todo) {
+    todos = todos.filter(t => t.id !== todo.id);
+}
+```
+
+3. We'll call it via the *Delete* button. Update it with a `click` event, like so:
+```
+<button type="button" class="btn btn__danger"
+    on:click={() => removeTodo(todo)}
+>
+    Delete <span class="visually-hidden">{todo.name}</span>
+</button>
+```
+A very common mistake with handlers in Svelte is to pass the result of executing a function as a handler, instead of passing the function. For example, if you specify `on:click={removeTodo(todo)}`, it will execute `removeTodo(todo)` and the result will be passed as a handler, which is not what we had in mind.
+
+In this case, you have to specify `on:click{() => removeTodo(todo)}` as the handler. If `removeTodo()` received no params, you could use `on:event={removeTodo}`, but not `on:event={removeTodo()}`. This is not some special Svelte syntax -- here we are just using regular JavaScript [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+
+Again, this is good progress -- at this point, we can now delete tasks. When a todo item's *Delete* button is pressed, the relevant todo is removed from the `todos` array, and the UI updates to no longer show it. In addition, we can now check the checkboxes, and the completed status of the relevant todos will now update in the todos array.
+
+However, the "x out of y items completed" heading is not being updated. Read on to find out why this is happening and how we can solve it.
+
 
 
 
