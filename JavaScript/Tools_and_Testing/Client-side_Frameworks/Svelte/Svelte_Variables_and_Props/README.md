@@ -60,7 +60,7 @@ Now let's do something with that information.
 
 At the moment, our displayed todo items are all static. We want to iterate over each item in our `todos` array and render the markup for each task, so let's do that now.
 
-HTML doesn't have a way of expressing logic -- like conditionals and loops. Svelte does. In this case, we use the [`{#each...}`]() directive to iterate over the `todos` array. The second parameter, if provided, will contain the index of the current item. Also, a key expression can be provided, which will uniquely identify each item. Svelte will use it to [diff the list](https://en.wikipedia.org/wiki/Diff) when data changes, rather than adding or removing items at the end, and it's a good practice to always specify one. Finally, an `:else` block can be provided, which will be rendered when the list is empty.
+HTML doesn't have a way of expressing logic -- like conditionals and loops. Svelte does. In this case, we use the [`{#each...}`](https://svelte.dev/docs#each) directive to iterate over the `todos` array. The second parameter, if provided, will contain the index of the current item. Also, a key expression can be provided, which will uniquely identify each item. Svelte will use it to [diff the list](https://en.wikipedia.org/wiki/Diff) when data changes, rather than adding or removing items at the end, and it's a good practice to always specify one. Finally, an `:else` block can be provided, which will be rendered when the list is empty.
 
 Let's give it a try.
 
@@ -182,6 +182,34 @@ In this case, you have to specify `on:click{() => removeTodo(todo)}` as the hand
 Again, this is good progress -- at this point, we can now delete tasks. When a todo item's *Delete* button is pressed, the relevant todo is removed from the `todos` array, and the UI updates to no longer show it. In addition, we can now check the checkboxes, and the completed status of the relevant todos will now update in the todos array.
 
 However, the "x out of y items completed" heading is not being updated. Read on to find out why this is happening and how we can solve it.
+
+## Reactive todos
+
+As we've already seen, every time the value of a component top-level variable is modified, Svelte knows how to update the UI. In our app, the `todos` array value is updated directly every time a todo is toggled or deleted, and so Svelte will update the DOM automatically.
+
+The same is not true for `totalTodos` and `completedTodos`, however. In the following code, they are assigned a value when the component is instantiated and the script is executed, but after that, their values are not modified:
+```
+let totalTodos = todos.length;
+let completedTodos = todos.filter(todo => todo.completed).length;
+```
+We could recalculate them after toggling and removing todos, but there's an easier way to do it.
+
+We can tell Svelte that we want our `totalTodos` and `completedTodos` variables to be reactive by prefixing them with `$:`. Svelte will generate the code to automatically update them whenever data they depend on is changed.
+
+<hr>
+
+**Note**: Svelte uses the `$:` [JavaScript label statement syntax]() to mark reactive statements. Just like the `export` keyword being used to declare props, this may look a little alien. This is another example in which Svelte takes advantage of valid JavaScript syntax and gives it a new purpose -- in this case, to mean "rerun this code whenever any of the referenced values change". Once you get used to it, there's no going back.
+
+<hr>
+
+Update your `totalTodos` and `completedTodos` variable definitions inside `src/components/Todos.svelte` to look like so:
+```
+$: totalTodos = todos.length
+$: completedTodos = todos.filter(todo => todo.completed).length
+```
+If you check your app now, you'll see that the heading's numbers are updated when todos are completed or deleted. Nice!
+
+Behind the scenes, the Svelte compiler will parse and analyze our code to make a dependency tree, then it will generate the JavaScript code to reevaluate each reactive statement whenever one of their dependencies is updated. Reactivity in Svelte is implemented in a very lightweight and performant way, without listeners, setters, getters, or nay other complex mechanism.
 
 
 
