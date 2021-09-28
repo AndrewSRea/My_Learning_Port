@@ -198,7 +198,7 @@ We can tell Svelte that we want our `totalTodos` and `completedTodos` variables 
 
 <hr>
 
-**Note**: Svelte uses the `$:` [JavaScript label statement syntax]() to mark reactive statements. Just like the `export` keyword being used to declare props, this may look a little alien. This is another example in which Svelte takes advantage of valid JavaScript syntax and gives it a new purpose -- in this case, to mean "rerun this code whenever any of the referenced values change". Once you get used to it, there's no going back.
+**Note**: Svelte uses the `$:` [JavaScript label statement syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) to mark reactive statements. Just like the `export` keyword being used to declare props, this may look a little alien. This is another example in which Svelte takes advantage of valid JavaScript syntax and gives it a new purpose -- in this case, to mean "rerun this code whenever any of the referenced values change". Once you get used to it, there's no going back.
 
 <hr>
 
@@ -210,6 +210,81 @@ $: completedTodos = todos.filter(todo => todo.completed).length
 If you check your app now, you'll see that the heading's numbers are updated when todos are completed or deleted. Nice!
 
 Behind the scenes, the Svelte compiler will parse and analyze our code to make a dependency tree, then it will generate the JavaScript code to reevaluate each reactive statement whenever one of their dependencies is updated. Reactivity in Svelte is implemented in a very lightweight and performant way, without listeners, setters, getters, or nay other complex mechanism.
+
+## Adding new todos
+
+Now onto the next major task for this article -- let's add some functionality for adding new todos.
+
+1. First, we'll create a variable to hold the text of the new todo. Add this declaration to the `<script>` section of `Todos.svelte` file:
+```
+let newTodoName = '';
+```
+
+2. Now we will use this value in the `<input>` for adding new tasks. To do that, we need to bind our `newTodoName` variable to the `todo-0` input, so that the `newTodoName` variable value stays in sync with the input's `value` property. We could do something like this:
+```
+<input value={newTodoName} on:keydown{(e) => newTodoName = e.target.value} />
+```
+Whenever the value of the variable `newTodoName` changes, it will be reflected in the `value` attribute of the input, and whenever a key is pressed in the input, we will update the contents of the variable `newTodoName`.
+
+This is a manual implementation of two-way data binding for an input box. But we don't need to do this -- Svelte provides an easier way to bind any property to a variable, using the [`bind:property`](https://svelte.dev/docs#bind_element_property) directive:
+```
+<input bind:value={newTodoName} />
+```
+So, let's implement this. Update the `todo-0` input like so:
+```
+<input bind:value={newTodoName} type="text" id="todo-0" autocomplete="off" class="input input__lg" />
+```
+
+3. An easy way to test that this works is to add a reactive statement to log the contents of `newTodoName`. Add this snippet at the end of the `<script>` section:
+```
+$: console.log('newTodoName: ', newTodoName)
+```
+
+<hr>
+
+**Note**: As you may have noticed, reactive statements aren't limited to variable declarations. You can put *any* JavaScript statement after the `$:` sign.
+
+<hr>
+
+4. Now try going back to `localhost:5000`, pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> to open your browser console and typing something into the input field. You should  see your entries logged. At this point, you can delete the reactive `console.log()` if you wish.
+
+5. Next up, we'll create a function to add the new todo -- `addTodo()` -- which will push a new `todo` object onto the `todos` array. Add this to the bottom of your `<script>` block inside `src/components/Todos.svelte`:
+```
+function addTodos() {
+    todos.push({ id: 999, name: newTodoName, completed: false });
+    newTodoName = '';
+}
+```
+
+<hr>
+
+**Note**: For the moment, we are just assigning the same `id` to every todo, but don't worry, we will fix that soon.
+
+<hr>
+
+6. Now we want to update our HTML so that we call `addTodo()` whenever the form is submitted. Update the NewTodo form's opening tag like so:
+```
+<form on:submit|preventDefault={addTodo}>
+```
+The [`on:eventname`](https://svelte.dev/docs#on_element_event) directive supports adding modifiers to the DOM event with the `|` character. In this case, the `preventDefault` modifier tells Svelte to generate the code to call `event.preventDefault()` before running the handler. Explore the previous link to see what other modifiers are available.
+
+7. If you try adding new todos at this point, the new todos are added to the todos array but our UI is not updated. Remember that in Svelte, [reactivity is triggered with assignments](https://svelte.dev/docs#2_Assignments_are_reactive). That means that the `addTodo()` function is executed, the element is added to the `todos` array, but Svelte won't detect that the push method modified the array, so it won't refresh the tasks' `<ul>`.
+
+Just adding `todos = todos` to the end of the `addTodo()` function would solve the problem, but it seems strange to have to include that at the end of the function. Instead, we'll take out the `push()` method and use [spread syntax]() to achieve the same result -- we'll assign a value to the `todos` array equal to the `todos` array plus the new object.
+
+<hr>
+
+**Note**: Array has several mutable operations -- `push()`, `pop()`, `splice()`, `shift()`, `unshift()`, `reverse()`, and `sort()`. Using them often causes side effects and bugs that are hard to track. By using the spread syntax instead of `push()`, we avoid mutating the array, which is considered good practice.
+
+<hr>
+
+Update your `addTodo()` function like so:
+```
+function addTodo() {
+    todos = [...todos, { id: 999, name: newTodoName, completed: false }];
+    newTodoName = '';
+}
+```
 
 
 
