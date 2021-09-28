@@ -56,6 +56,63 @@ Now let's do something with that information.
 
 4. To prove it, go to that array, and try changing some of the todo object's completed property values, and even add a new todo object. Observe how the numbers in the message are updated appropriately.
 
+## Dynamically generating the todos from the data
+
+At the moment, our displayed todo items are all static. We want to iterate over each item in our `todos` array and render the markup for each task, so let's do that now.
+
+HTML doesn't have a way of expressing logic -- like conditionals and loops. Svelte does. In this case, we use the [`{#each...}`]() directive to iterate over the `todos` array. The second parameter, if provided, will contain the index of the current item. Also, a key expression can be provided, which will uniquely identify each item. Svelte will use it to [diff the list](https://en.wikipedia.org/wiki/Diff) when data changes, rather than adding or removing items at the end, and it's a good practice to always specify one. Finally, an `:else` block can be provided, which will be rendered when the list is empty.
+
+Let's give it a try.
+
+1. Replace the existing `<ul>` element with the following simplified version to get an idea of how it works:
+```
+<ul>
+{#each todos as todo, index (todo.id)}
+    <li>
+        <input type="checkbox" checked={todo.completed}/> {index}. {todo.name} (id: {todo.id})
+    </li>
+{:else}
+    Nothing to do here!
+{/each}
+</ul>
+```
+
+2. Go back to the app and you'll see something like this:
+
+![Image of the unordered list created from the code above](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_variables_props/01-each-block.png)
+
+3. Now that's we've seen that this is working, let's generate a complete todo item with each loop of the `{#each}` directive, and inside embed the information from the `todos` array: `id`, `name`, and `completed`. Replace your existing `<ul>` block with the following:
+```
+<!-- Todos -->
+<ul role="list" class="todo-list stack-large" aria-labelledby="list-heading">
+    {#each todos as todo (todo.id)}
+        <li class="todo">
+            <div class="stack-small">
+                <div class="c-cb">
+                    <input type="checkbox" id="todo-{todo.id}" checked={todo.completed}/>
+                    <label for="todo-{todo.id}" class="todo-label">
+                        {todo.name}
+                    </label>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn">
+                        Edit <span class="visually-hidden">{todo.name}</span>
+                    </button>
+                    <button type="button" class="btn btn__danger">
+                        Delete <span class="visually-hidden">{todo.name}</span>
+                    </button>
+                </div>
+            </div>
+        </li>
+    {:else}
+        <li>Nothing to do here!</li>
+    {/each}
+</ul>
+```
+Notice how we are using curly braces to embed JavaScript expressions in HTML attributes, like we did with the `checked` and `id` attributes of the checkbox.
+
+We've turned our static markup into a dynamic template ready to display the tasks from our component's state. Great! We are getting there.
+
 
 
 
