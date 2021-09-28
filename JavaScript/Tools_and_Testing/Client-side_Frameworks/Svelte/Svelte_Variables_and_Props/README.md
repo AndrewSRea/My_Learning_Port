@@ -358,7 +358,32 @@ The `filterTodos()` function will receive the current filter and the list of tod
 ```
 There are a couple of things going on in this markup.
 
-We will show the current filter by applying the `btn__primary` class to the active filter button. To conditionally apply style classes to an element
+We will show the current filter by applying the `btn__primary` class to the active filter button. To conditionally apply style classes to an element, we use the `class:name={value}` directive. If the value expression evaluates to truthy, the class name will be applied. You can add many of these directives, with different conditions, to the same element. So when we issue `class:btn__primary={filter === 'all'}`, Svelte will apply the `btn__primary` class if filter equals all.
+
+<hr>
+
+**Note**: Svelte provides a shortcut which allows us to shorten `<div class:active={active}>` to `<div class:active>` when the class matches the variable name.
+
+<hr>
+
+Something similar happens with `aria-pressed={filter === 'all'}` -- when the JavaScript expression passed between curly braces evaluates to a truthy value, the `aria-pressed` attribute will be added to the button.
+
+Whenever we click on a button, we update the filter variable by issuing `on:click={() => filter = 'all'}`. Read on to find out how Svelte reactivity will take care of the rest.
+
+3. Now we just need to use the helper function in the `{#each}` loop; update it like this:
+```
+...
+    <ul role="list" class="todo-list stack-large" aria-labelledby="list-heading">
+    {#each filterTodos(filter, todos) as todo (todo.id)}
+...
+```
+After analyzing our code, Svelte detects that our `filterTodos()` function depends on the variables `filter` and `todos`. And, just like with any other dynamic expression embedded in the markup, whenever any of these dependencies change, the DOM will be updated accordingly. So whenever `filter` or `todos` changes, the `filterTodos()` function will be reevaluated and the items inside the loop will be updated.
+
+<hr>
+
+**Tip**: Reactivity can be tricky sometimes. Svelte recognizes `filter` as a dependency because we are referencing it in the `filterTodos(filter, todo)` expression. `filter` is a top-level variable, so we might be tempted to remove it from the helper function params, and just call it like this: `filterTodos(todo)`. This would work, but now Svelte has no way to find out that `{#each filterTodos(todos)... }` depends on `filter`, and the list of filtered todos won't be updated when the filter changes. Always remember that Svelte analyzes our code to find our dependencies, so it's better to be explicit about it and not rely on the visibility of top-level variables. Besides, it's a good practice to make our code clear and explicit about what information it is using.
+
+<hr>
 
 
 
