@@ -136,6 +136,84 @@ And we'll declare the following reactive statement -- `$: onclick(filter)` -- to
 
 When any filter button is clicked, we just update the filter variable with the new filter. Now our `FilterButton` component will work again.
 
+## Easier two-way data binding with the bind directive
+
+In the previous example, we realized that our `FilterButton` component wasn't working because our application state was flowing down from parent to child through the `filter` prop -- but it wasn't going back up. So we added an `onclick` prop to let the child component communicate the new `filter` value to its parent.
+
+It works OK, but Svelte provides us an easier and more straightforward way to achieve two-way data binding. Data ordinarily flows down from parent to child using props. If we want it to also flow the other way -- from child to parent -- we can use [the `bind:` directive](https://svelte.dev/docs#bind_element_property).
+
+Using `bind`, we will tell Svelte that any changes made to the `filter` prop in the `FilterButton` component should propagate back up to the parent component, `Todos`. That is, we will bind the `filter` variable's value in the parent to its value in the child.
+
+1. In `Todos.svelte`, update the call to the `FilterButton` component as follows:
+```
+<FilterButton bind:filter={filter} />
+```
+As usual, Svelte provides us with a nice shorthand -- `bind:value={value}` is equivalent to `bind:value`. So in the above example, you could just write `<FilterButton bind:filter />`.
+
+2. The child component can now modify the value of the parent's filter variable, so we no longer need the `onclick` prop. Modify your `FilterButton` `<script>` like this:
+```
+<script>
+    export let filter = 'all'
+</script>
+```
+
+3. Try your app again, and you should still see your filters working correctly.
+
+## Creating out Todo component
+
+Now we will create a `Todo` component to encapsulate each individual todo -- including the checkbox and some editing logic so you can change an existing todo.
+
+Our `Todo` component will receive a single `todo` object as a prop. Let's declare the `todo` prop and move the code from the Todos component. Just for now, we'll replace the call to `removeTodo` with an alert. We'll add that functionality back in later on.
+
+1. Create a new component file -- `components/Todo.svelte`.
+
+2. Put the following contents inside this file:
+```
+<script>
+    export let todo
+</script>
+
+<div class="stack-small">
+    <div class="c-cb">
+        <input type="checkbox" id="todo-{todo.id}"
+            on:click={() => todo.completed = !todo.completed}
+            checked={todo.completed}
+        />
+        <label for="todo-{todo.id}" class="todo-label">{todo.name}</label>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn">
+            Edit <span class="visually-hidden">{todo.name}</span>
+        </button>
+        <button type="button" class="btn btn__danger" on:click={() => alert('not implemented')}>
+            Delete <span class="visually-hidden">{todo.name}</span>
+        </button>
+    </div>
+</div>
+```
+
+3. Now we need to import our `Todo` component into `Todos.svelte`. Go to this file now, and add the following `import` statement below your previous one:
+```
+import Todo from './Todo.svelte';
+```
+
+4. Next, we need to update our `{#each}` block to include a `<Todo>` component for each todo, rather than the code that has been moved out to `Todo.svelte`. We are also passing the current `todo` object into the component as a prop.
+
+Update the `{#each}` block inside `Todos.svelte` like so:
+```
+<ul role="list" class="todo-list stack-large" aria-labelledby="list-heading">
+    {#each filterTodos(filter, todos) as todo (todo.id)}
+        <li class="todo">
+            <Todo {todo} />
+        </li>
+    {:else}
+        <li>Nothing to do here!</li>
+    {/each}
+</ul>
+```
+
+The list of todos is displayed on the page, and the checkboxes should work (try checking/unchecking a couple, and then observing that the filters still work as expected), but our "x out of y items completed" status heading will no longer update accordingly. That's because our `Todo` component is receiving the todo via the prop, but it's not sending any information back to its parent. We'll fix this later on.
+
 
 
 
