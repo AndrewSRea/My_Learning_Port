@@ -256,6 +256,61 @@ Our handler receives the `e` parameter (the event object) which, as described be
 
 Now we'll take care of the `update` event so that our parent component can get notified of any modified todo.
 
+## Updating todos
+
+We still have to implement functionality to allow us to edit existing todos. We'll have to include an editing mode in the `Todo` component. When entering editing mode, we'll show an `<input>` field to allow us to edit the current todo name, with two buttons to confirm or cancel our changes.
+
+### Handling the events
+
+1. We'll need one variable to track whether we are in editing mode and another to store the name of the task being updated. Add the following variable definitions at the bottom of the `<script>` section of the `Todo` component:
+```
+let editing = false;           // track editing mode
+let name = todo.name:          // hold the name of the todo being edited
+```
+
+2. We have to decide what events our `Todo` component will emit:
+    - We could emit different events for the status toggle and editing of the name (e.g. `updateTodoStatus` and `updateTodoName`).
+    - Or we could take a more generic approach and emit a single `update` event for both operations.
+
+We will take the second approach so we can demonstrate a different technique. The advantage of this approach is that later we can add more fields to the todos and still handle all updates with the same event.
+
+Let's create an `update()` function that will receive the changes and will emit an update event with the modified todo. Add the following, again to the bottom of the `<script>` section:
+```
+function update(updatedTodo) {
+    todo = { ...todo, ...updatedTodo };     // applies modifications to todo
+    dispatch('update', todo);               // emit update event
+}
+```
+Here we are using the [spread syntax]() to return the original todo with the modifications applied to it.
+
+3. Next we'll create different functions to handle each user action. When the Todo is in editing mode, the user can save or cancel the changes. When it's not in editing mode, the user can delete the todo, edit it, or toggle its status between completed and active.
+
+Add the following set of functions below your previous function to handle these actions:
+```
+function onCancel() {
+    name = todo.name;                         // restores name to its initial value
+    editing = false;                          // and exit editing mode
+}
+
+function onSave() {
+    update({ name: name });                   // updates todo name
+    editing = false;                          // and exit editing mode
+}
+
+function onRemove() {
+    dispatch('remove', todo);                 // emit remove event
+}
+
+function onEdit() {
+    editing = true;                           // enter editing mode
+}
+
+function onToggle() {
+    update({ completed: !todo.completed });   // updates todo status
+}
+```
+
+### Updating the markup
 
 
 
