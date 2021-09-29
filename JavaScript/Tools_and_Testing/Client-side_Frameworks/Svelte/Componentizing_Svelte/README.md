@@ -312,6 +312,45 @@ function onToggle() {
 
 ### Updating the markup
 
+Now we need to update our `Todo` component's markup to call the above functions when the appropriate actions are taken.
+
+To handle the editing mode, we are using the `editing` variable, which is a Boolean. When it's `true`, it should display the `<input>` field for editing the todo name, and the *Cancel* and *Save* buttons. When it's not in editing mode, it will display the checkbox, the todo name, and the buttons to edit and delete the todo.
+
+To achieve this, we will use an [`if` block](https://svelte.dev/docs#if). The `if` block conditionally renders some markup. Take into account that it won't just show or hide the markup based on the condition -- it will dynamically add and remove the elements from the DOM, depending on the condition.
+
+When `editing` is `true`, for example, Svelte will show the update form; when it's `false`, it will remove it from the DOM and add in the checkbox. Thanks to Svelte reactivity, assigning the value of the editing variable will be enough to display the correct HTML elements.
+
+The following gives you an idea of what the basic `if` block structure looks like:
+```
+<div class="stack-small">
+{#if editing}
+    <!-- markup for editing todo: label, input text, Cancel and Save Button -->
+{:else}
+    <!-- markup for displaying todo: checkbox, label, Edit and Delete Button -->
+{/if}
+</div>
+```
+The non-editing section -- that is, the `{:else}` part (lower half) of the `if` block -- will be very similar to the one we had in our Todos component. The only difference is that we are calling `onToggle()`, `onEdit()`, and `onRemove()`, depending on the user action.
+```
+{:else}
+    <div class="c-cb">
+        <input type="checkbox" id="todo-{todo.id}"
+            on:click={onToggle} checked={todo.completed}
+        >
+        <label for="todo-{todo.id}" class="todo-label">{todo.name}</label>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn" on:click={onEdit}>
+            Edit<span class="visually-hidden"> {todo.name}</span>
+        </button>
+        <button type="button" class="btn btn__danger" on:click={onRemove}>
+            Delete<span class="visually-hidden"> {todo.name}</span>
+        </button>
+    </div>
+{/if}
+</div>
+```
+
 
 
 
