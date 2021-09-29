@@ -214,6 +214,48 @@ Update the `{#each}` block inside `Todos.svelte` like so:
 
 The list of todos is displayed on the page, and the checkboxes should work (try checking/unchecking a couple, and then observing that the filters still work as expected), but our "x out of y items completed" status heading will no longer update accordingly. That's because our `Todo` component is receiving the todo via the prop, but it's not sending any information back to its parent. We'll fix this later on.
 
+## Sharing data between components: props-down, events-up pattern
+
+The `bind` directive is pretty straightforward and allows you to share data between a parent and child component with minimal fuss. However, when your application grows larger and more complex, it can easily get difficult to keep track of all your bound values. A different approach is the "props-down, events-up" communication pattern.
+
+Basically, this pattern relies on child components receiving data from their parents via props and parent components updating their state by handling events emitted from child components. So props *flow down* from parent to child and events *bubble up* from child to parent. This pattern establishes a two-way flow of information, which is predictable and easier to reason about.
+
+Let's look at how to emit our own events to reimplement the missing *Delete* button functionality.
+
+To create custom events, we'll use the `createEventDispatcher` utility. This will return a `dispatch()` function that will allow us to emit custom events. When you dispatch an event, you have to pass the name of the event and, optionally, an object with additional information that you want to pass to every listener. This additional data will be available on the `detail` property of the event object.
+
+<hr>
+
+**Note**: Custom events in Svelte share the same API as regular DOM events. Moreover, you can bubble up an event to your parent component by specifying `on:event` without any handler.
+
+<hr>
+
+We'll edit our `Todo` component to emit a `remove` event, passing the todo being removed as additional information.
+
+1. First of all, add the following lines to the top of the `Todo` component's `<script>` section:
+```
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+```
+
+2. Now update the *Delete* button in the markup section of the same file to look like so:
+```
+<button type="button" class="btn btn__danger" on:click={() => dispatch('remove', todo)}>
+    Delete <span class="visually-hidden">{todo.name}</span>
+</button>
+```
+With `dispatch('remove', todo)`, we are emitting a `remove` event, and passing as additional data the `todo` being deleted. The handler will be called with an event object available, with the additional data available in the `event.detail` property.
+
+3. Now we have to listen to that event from inside `Todos.svelte` and act accordingly. Go back to this file and update your `<Todo>` component call like so:
+```
+<Todo {todo} on:remove={e => removeTodo(e.detail)} />
+```
+Our handler receives the `e` parameter (the event object) which, as described before, holds the todo being deleted in the `detail` property.
+
+4. At this point, if you try out your app again, you should see that the *Delete* functionality now works again! So our custom event has worked as we hoped. In addition, the `remove` event listener is sending the data change back up to the parent, so our "x out of y items completed" status heading will now update appropriately when todos are deleted.
+
+Now we'll take care of the `update` event so that our parent component can get notified of any modified todo.
+
 
 
 
