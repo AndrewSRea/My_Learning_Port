@@ -108,6 +108,34 @@ import FilterButton from './FilterButton.svelte'
 
 So far, so good! Let's try out the app now. You'll notice that when you click on the filter buttons, they are selected and the style updates appropriately. But! We have a problem -- the todos aren't filtered. That's because the `filter` variable flows down the `Todos` component to the `FilterButton` component through the prop, but changes occurring in the `FilterButton` component don't flow back up to its parent -- the data binding is one-way by default. Let's look at a way to solve this.
 
+## Sharing data between components: passing a handler as a prop
+
+One way to let child components notify their parents of any changes is to pass a handler as a prop. The child component will execute the handler, passing the needed information as a parameter, and the handler will modify the parent's state.
+
+In our case, the `FilterButton` component will receive an `onclick` handler from its parent. Whenever the user clicks on any filter button, the child will call the `onclick` handler, passing the selected filter as a parameter, back up to its parent.
+
+We will just declare the `onclick` prop assigning a dummy handler to prevent errors, like this:
+```
+export let onclick = (clicked) => {}
+```
+And we'll declare the following reactive statement -- `$: onclick(filter)` -- to call the `onclick` handler whenever the `filter` variable is updated.
+
+1. The `<script>` section of our `FilterButton` component should end up looking like this -- update it now:
+```
+<script>
+    export let filter = 'all'
+    export let onclick = (clicked) => {}
+    $: onclick(filter)
+</script>
+```
+
+2. Now, when we call `FilterButton` inside `Todos.svelte`, we'll need to specify the handler. Update it like this:
+```
+<FilterButton {filter} onclick={ (clicked) => filter = clicked }/>
+```
+
+When any filter button is clicked, we just update the filter variable with the new filter. Now our `FilterButton` component will work again.
+
 
 
 
