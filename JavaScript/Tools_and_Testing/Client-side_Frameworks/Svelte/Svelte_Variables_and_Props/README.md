@@ -428,4 +428,4 @@ In the next article, we will add further functionality, which will allow users t
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Todo_List_App#starting-our-svelte-todo-list-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props#dynamic-behavior-in-svelte-working-with-variables-and-props) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Todo_List_App#starting-our-svelte-todo-list-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props#dynamic-behavior-in-svelte-working-with-variables-and-props) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Componentizing_Svelte#componentizing-our-svelte-app)
