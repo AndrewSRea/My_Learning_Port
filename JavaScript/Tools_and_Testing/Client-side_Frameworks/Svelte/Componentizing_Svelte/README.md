@@ -350,6 +350,100 @@ The non-editing section -- that is, the `{:else}` part (lower half) of the `if` 
 {/if}
 </div>
 ```
+It is worth noting that:
+
+* When the user presses the *Edit* button, we execute `onEdit()`, which just sets the `editing` variable to `true`.
+* When the user clicks on the checkbox, we call the `onToggle()` function, which executes `update()`, passing an object with the new `completed` value as a parameter.
+* The `update()` function emits the `update` event, passing as additional information a copy of the original todo with the changes applied.
+* Finally, the `onRemove()` function emits the `remove` event, passing the `todo` to be deleted as additional data.
+
+The editing UI (the upper half) will contain an `<input>` field and two buttons to cancel or save the changes:
+```
+<div class="stack-small">
+{#if editing}
+    <form on:submit|preventDefault={onSave} class="stack-small" on:keydown={e => e.key === 'Escape' && onCancel()}>
+        <div class="form-group">
+            <label for="todo-{todo.id}" class="todo-label">New name for '{todo.name}'</label>
+            <input bind:value={name} type="text" id="todo-{todo.id}" autoComplete="off" class="todo-text" />
+        </div>
+        <div class="btn-group">
+            <button class="btn todo-cancel" on:click={onCancel} type="button">
+                Cancel<span class="visually-hidden">renaming {todo.name}</span>
+            </button>
+            <button class="btn btn__primary todo-edit" type="submit" disabled={!name}>
+                Save<span class="visually-hidden">new name for {todo.name}</span>
+            </button>
+        </div>
+    </form>
+{:else}
+[...]
+```
+When the user presses the *Edit* button, the `editing` variable will be set to `true`, and Svelte will remove the markup in the `{:else}` part of the DOM and replace it with the markup in the `{#if...}` section.
+
+The `<input>`'s `value` property will be bound to the `name` variable, and the buttons to cancel and save the changes call `onCancel()` and `onSave()` respectively (we added those functions earlier):
+
+* When `onCancel()` is invoked, `name` is restored to its original value (when passed in as a prop) and we exit editing mode (by setting `editing` to `false`).
+* When `onSave()` is invoked, we run the `update()` function -- passing it the modified `name` -- and exit editing mode.
+
+We also disable the *Save* button when the `<input>` is empty, using the `disabled={!name}` attribute, and allow the user to cancel the edit using the <kbd>Escape</kbd> key, like this:
+```
+on:keydown={e => e.key === 'Escape' && onCancel()}
+```
+We also use `todo.id` to create unique ids for the new input controls and labels.
+
+1. The complete updated markup of our `Todo` component looks like the following. Update yours now:
+```
+<div class="stack-small">
+{#if editing}
+<!-- markup for editing todo: label, input text, Cancel and Save Button -->
+    <form on:submit|preventDefault={onSave} class="stack-small" on:keydown={e => e.key === 'Escape' && onCancel()}>
+        <div class="form-group">
+            <label for="todo-{todo.id}" class="todo-label">New name for '{todo.name}'</label>
+            <input bind:value={name} type="text" id="todo-{todo.id}" autoComplete="off" class="todo-text" />
+        </div>
+        <div class="btn-group">
+            <button class="btn todo-cancel" on:click={onCancel} type="button">
+                Cancel<span class="visually-hidden">renaming {todo.name}</span>
+            </button>
+            <button class="btn btn__primary todo-edit" type="submit" disabled={!name}>
+                Save<span class="visually-hidden">new name for {todo.name}</span>
+            </button>
+        </div>
+    </form>
+{:else}
+    <!-- markup for displaying todo: checkbox, label, Edit and Delete Button -->
+    <div class="c-cb">
+        <input type="checkbox" id="todo-{todo.id}"
+            on:click={onToggle} checked={todo.completed}
+        >
+        <label for="todo-{todo.id}" class="todo-label">{todo.name}</label>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn" on:click={onEdit}>
+            Edit<span class="visually-hidden"> {todo.name}</span>
+        </button>
+        <button type="button" class="btn btn__danger" on:click={onRemove}>
+            Delete<span class="visually-hidden"> {todo.name}</span>
+        </button>
+    </div>
+{/if}
+</div>
+```
+
+<hr>
+
+**Note**: We could further split this into two different components, one for editing the todo and the other for displaying it. In the end, it boils down to how comfortable you feel dealing with this level of complexity in a single component. You should also consider whether splitting it further would enable reusing this component in a different context.
+
+<hr>
+
+2. To get the update functionality working, we have to handle the `update` event from the `Todos` component. In its `<script>` section, add this handler:
+```
+function updateTodo(todo) {
+    const i = todos.findIndex(t => t.id === todo.id);
+    todos[i] = { ...todos[i], ...todo };
+}
+```
+We find the `todo` by `id` in our `todos` array, and update its content using spread syntax. In this case, we could have also just used `todos[i] = todo`, but this implementation is more bullet-proof, allowing the `Todo` component to return only the updated parts of the todo.
 
 
 
