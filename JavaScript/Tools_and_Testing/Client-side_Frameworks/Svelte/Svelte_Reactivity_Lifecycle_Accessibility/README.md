@@ -36,7 +36,64 @@ Remember to run `npm install && npm run dev` to start your app in development mo
 
 To code along with us using the REPL, start at:
 
-[https://svelte.dev/repl/76cc90c43a37452e8c7f70521f88b698?version=3.23.2]()
+[https://svelte.dev/repl/76cc90c43a37452e8c7f70521f88b698?version=3.23.2](https://svelte.dev/repl/76cc90c43a37452e8c7f70521f88b698?version=3.23.2)
+
+## Working on the MoreActions component
+
+Now we'll tackle the *Check All* and *Remove Completed* buttons. Let's create a component that will be in charge of displaying the buttons and emitting the corresponding events.
+
+1. Create a new file -- `components/MoreActions.svelte`.
+
+2. When the first button is clicked, we'll emit a `checkAll` event to signal that all the todos should be checked/unchecked. When the second button is clicked, we'll emit a `removeCompleted` event to signal that all of the completed todos should be removed. Put the following content into your `MoreActions.svelte` file:
+```
+<script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let completed = true;
+
+    const checkAll = () => {
+        dispatch('checkAll', completed);
+        completed = !completed;
+    }
+
+    const removeCompleted = () => dispatch('removeCompleted');
+
+</script>
+
+<div class="btn-group">
+    <button type="button" class="btn btn__primary" on:click={checkAll}>{completed ? 'Check' : 'Uncheck'} all</button>
+    <button type="button" class="btn btn__primary" on:click={removeCompleted}>Remove completed</button>
+</div>
+```
+We've also included a `completed` variable to toggle between checking and unchecking all tasks.
+
+3. Back over in `Todos.svelte`, we are going to import our `MoreActions` component and create two functions to handle the events emitted by the `MoreActions` component.
+
+Add the following import statement below the existing ones:
+```
+import MoreActions from './MoreActions.svelte';
+```
+
+4. Then add the described functions at the end of the `<script>` section:
+```
+const checkAllTodos = (completed) => todos.forEach(t => t.completed = completed);
+
+const removeCompletedTodos = () => todos = todos.filter(t => !t.completed);
+```
+
+5. Now, go to the bottom of the `Todos.svelte` markup section and replace the `btn-group` `<div>` that we copied into `MoreActions.svelte` with a call to the `MoreActions` component, like so:
+```
+<!-- MoreActions -->
+<MoreActions
+    on:checkAll={e => checkAllTodos(e.detail)}
+    on:removeCompleted={removeCompletedTodos}
+/>
+```
+
+6. OK, let's go back into the app and try it out! You'll find that the *Remove Completed* button works fine, but the *Check All*/*Uncheck All* button just silently fails.
+
+To find out what is happening here, we'll have to dig a little deeper into Svelte reactivity.
 
 
 
