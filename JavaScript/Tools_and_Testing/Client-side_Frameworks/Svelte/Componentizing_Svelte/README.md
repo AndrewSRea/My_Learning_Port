@@ -445,13 +445,62 @@ function updateTodo(todo) {
 ```
 We find the `todo` by `id` in our `todos` array, and update its content using spread syntax. In this case, we could have also just used `todos[i] = todo`, but this implementation is more bullet-proof, allowing the `Todo` component to return only the updated parts of the todo.
 
+3. Next, we have to listen for the `update` event on our `<Todo>` component call, and run our `updateTodo()` function when this occurs, to change the `name` and `completed` status. Update your `<Todo>` call like this:
+```
+{#each filterTodos(filter, todos) as todo (todo.id)}
+    <li class="todo">
+        <Todo {todo}
+            on:update={e => updateTodo(e.detail)}
+            on:remove={e => removeTodo(e.detail)}
+        />
+    </li>
+```
 
+4. Try your app again, and you should see that you can delete, add, edit, cancel editing of, and toggle complettion status of todos! And our "x out of y items completed" status heading will now update appropriately when todos are completed.
 
+As you can see, it's easy to implement the "props-down, events-up" pattern in Svelte. Nevertheless, for simple components, `bind` can be a good choice; Svelte will let you choose.
 
+<hr>
 
+**Note**: Svelte provides more advanced mechanisms to share information among components: the [Context API]() and [Stores](). The Context API provides a mechanism for components and their descendants to "talk" to each other without passing around data and functions as props, or dispatching lots of events. Stores allows you to share reactive data among components that are not hierarchically related. We will look at Stores later on in the series.
 
+<hr>
 
+## The code so far
 
+### Git
 
+To see the state of the code as it should be at the end of this article, access your copy of our repo like this:
+```
+cd mdn-svelte-tutorial/05-advanced-concepts
+```
+Or directly download the folder's content:
+```
+npx degit opensas/mdn-svelte-tutorial/05-advanced-concepts
+```
+Remember to run `npm install && npm run dev` to start your app in development mode.
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Componentizing_Svelte
+### REPL
+
+To see the current state of the code in a REPL, visit:
+
+[https://svelte.dev/repl/76cc90c43a37452e8c7f70521f88b698?version=3.23.2](https://svelte.dev/repl/76cc90c43a37452e8c7f70521f88b698?version=3.23.2)
+
+## Summary
+
+Now we have all of our app's required functionality in place. We can display, add, edit and delete todos, mark them as completed, and filter by status.
+
+In this article, we covered the following topics:
+
+* Extracting functionality to a new component.
+* Passing information from child to parent using a handler received as a prop.
+* Passing information from child to parent using the `bind` directive.
+* Conditionally rendering blocks of markup using the `if` block.
+* Implementing the "props-down, events-up" communication pattern.
+* Creating and listening to custom events.
+
+In the next article, we will continue componentizing our app and look at some advanced techniques for working with the DOM.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props#dynamic-behavior-in-svelte-working-with-variables-and-props) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Componentizing_Svelte#componentizing-our-svelte-app) - [[Next page]]()
