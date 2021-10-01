@@ -95,6 +95,70 @@ const removeCompletedTodos = () => todos = todos.filter(t => !t.completed);
 
 To find out what is happening here, we'll have to dig a little deeper into Svelte reactivity.
 
+## Reactivity gotchas: updating objects and arrays
+
+To see what's happening, we can log the `todos` array from the `checkAllTodos()` function to the console.
+
+1. Update your existing `checkAllTodos()` function to the following:
+```
+const checkAllTodos = (completed) => {
+    todos.forEach(t => t.completed = completed);
+    console.log('todos', todos);
+}
+```
+
+2. Go back to your browser, open your DevTools console, and click *Check All/Uncheck All* a few times.
+
+You'll notice that the array is successfully updated every time you press the button (the `todo` objects' `completed` properties are toggled between `true` and `false`), but Svelte is not aware of that. This also means that, in this case, a reactive statement like `$: console.log('todos', todos)` won't be very useful.
+
+To find out why this is happening, we need to understand how reactivity works in Svelte when updating arrays and objects.
+
+Many web frameworks use the virtual DOM technique to update the page. Basically, the virtual DOM is an in-memory copy of the contents of the web page. The framework updates this virtual representation, which is then synced with the "real" DOM. This is much faster than directly updating the DOM and allows the framework to apply many optimization techniques.
+
+These frameworks, by default, basically rerun all our JavaScript on every change against this virtual DOM, and apply different methods to cache expensive calculations and optimize execution. They make little to no attempt to understand what our JavaScript code is doing.
+
+Svelte doesn't use a virtual DOM representation. Instead, it parses and analyzes our code, creates a dependency tree, and then generates the required JavaScript to update only the parts of the DOM that need to be updated. This approach usually generates optimal JavaScript code with minimal overhead, but it also has its limitations.
+
+Sometimes Svelte cannot detect changes to variables being watched. Rmember that to tell Svelte that a variable has changed, you have to assign it a new value. A simple rule of thumb is that **the name of the updated variable must appear on the left hand side of the assignment**.
+
+For example, in the following piece of code:
+```
+const foo = obj.foo;
+foo.bar = 'baz';
+```
+Svelte won't update references to `obj.foo.bar`, unless you follow it up with `obj = obj`. That's because Svelte can't track object references, so we have to explicitly tell it that `obj` has changed by issuing an assignment.
+
+<hr>
+
+**Note**: If `foo` is a top level variable, you can easily tell Svelte to update `obj` whenever `foo` is changed with the following reactive statement: `$: foo, obj = obj`. With this, we are defining `foo` as a dependency, and whenever it changes, Svelte will run `obj = obj`.
+
+<hr>
+
+In our `checkAllTodos()` function, when we run:
+```
+todos.forEach(t => t.completed = completed);
+```
+Svelte will not mark `todos` as changed because it does not know that when we update our `t` variable inside the `forEach()` method, we are also modifying the `todos` array. And that makes sense, because otherwise Svelte would be aware of the inner workings of the `forEach()` method; the same would therefore be true for any method attached to any object or array.
+
+Nevertheless, there are different techniques that we can apply to solve this problem, and all of them involve assigning a new value to the variable being watched.
+
+Like we already saw, we could just tell Svelte to update the variable with a self-assignment, like this:
+```
+const checkAllTodos = (completed) => {
+    todos.forEach(t => t.completed = completed);
+    todos = todos;
+}
+```
+This will solve the problem. Internally, Svelte will flag `todos` as changed and remove the apparently redundant self-assignment. Apart from the fact that it looks weird, it's perfectly OK to use this technique, and sometimes it's the most concise way to do it.
+
+We could also access the `todos` array by index, like this:
+```
+const checkAllTodos = (completed) => {
+    todos.forEach( (t,i) => todos[i].completed = completed);
+}
+```
+Assignments to properties of arrays and objects -- e.g. `obj.foo += 1` or `array[i] = x` -- work the same way as assignments to the values themselves. When Svelte analyzes this code, it can detect that the `todos` array is being modified.
+
 
 
 
