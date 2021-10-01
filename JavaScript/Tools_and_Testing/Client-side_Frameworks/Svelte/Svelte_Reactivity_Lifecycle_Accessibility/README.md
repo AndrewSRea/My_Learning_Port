@@ -242,12 +242,134 @@ We'd also like to add some usability features, like disabling the *Save* button 
 
 To implement all these features, we'll need programmatic access to DOM nodes to run functions like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) and [`select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select). We will also have to use [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) to run specific tasks when the control receives focus.
 
-The problem is that all these DOM nodes are dynamically created by Svelte at runtime. So we'll have to wait for them to be created and added to the DOM in order to use them. To do so, we'll have to learn about the [component lifecycle]() to understand when we can access them -- more on this later.
+The problem is that all these DOM nodes are dynamically created by Svelte at runtime. So we'll have to wait for them to be created and added to the DOM in order to use them. To do so, we'll have to learn about the [component lifecycle](https://svelte.dev/tutorial/onmount) to understand when we can access them -- more on this later.
 
 ## Creating a NewTodo component
 
+Let's begin by extracting our new todo form out of its own component. With what we know so far, we can create a new component file and adjust the code to emit an `addTodo` event, passing the name of the new `todo` in with the additional details.
 
+1. Create a new file -- `components/NewTodo.svelte`.
 
+2. Put the following contents inside it:
+```
+<script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let name = '';
+
+    const addTodo = () => {
+        dispatch('addTodo', name);
+        name = '';
+    }
+
+    const onCancel = () => name = '';
+
+</script>
+
+<form on:submit|preventDefault={addTodo} on:keydown={e => e.key === 'Escape' && onCancel()}>
+    <h2 class="label-wrapper">
+        <label for="todo-0" class="label__lg">What needs to be done?</label>
+    </h2>
+    <input bind:value={name} type="text" id="todo-0" autoComplete="off" class="input input__lg" />
+    <button type="submit" disabled={!name} class="btn btn__primary btn__lg">Add</button>
+</form>
+```
+Here we are binding the `<input>` to the `name` variable with `bind:value={name}` and disabling the *Add* button when it is empty (i.e. no text content) using `disabled={!name}`. We are also taking care of the <kbd>Escape</kbd> key with `on:keydown={e => e.key === 'Escape' && onCancel()}`. Whenever the <kbd>Escape</kbd> key is pressed, we run `onCancel()`, which just clears up the `name` variable.
+
+3. Now we have to `import` and use it from inside the `Todos` component, and update the `addTodo()` function to receive the name of the new todo.
+
+Add the following `import` statement below the others inside `Todos.svelte`:
+```
+import NewTodo from './NewTodo.svelte';
+```
+
+4. And update the `addTodo()` function like so:
+```
+function addTodo(name) {
+    todos = [...todos, { id: newTodoId, name, completed: false }];
+}
+```
+
+`addTodo()` now receives the name of the new todo directly, so we no longer need the `newTodoName` variable to give it its value. Our `NewTodo` component takes care of that.
+
+<hr>
+
+**Note**: The `{ name }` syntax is just a shorthand for `{ name: name }`. This one comes from JavaScript itself and has nothing to do with Svelte, besides providing some inspriation for Svelte's own shorthands.
+
+<hr>
+
+5. Finally for this section, replace the `NewTodo` form markup with a call to the `NewTodo` component, like so:
+```
+<!-- NewTodo -->
+<NewTodo on:addTodo={e => addTodo(e.detail)} />
+```
+
+## Working with DOM nodes using the `bind:this={dom_node}` directive
+
+Now we ant the `NewTodo` `<input>` to regain focus every time the *Add* button is pressed. For that, we'll need a reference to the DOM node of the input. Svelte provides a way to do this with the `bind:this={dom_node}` directive. When specified, as soon as the component is mounted and the DOM node is created, Svelte assigns a reference to the DOM node to the specified variable.
+
+We'll create a `nameEl` variable and bind it to the input using `bind:this={nameEl}`. Then inside `addTodo()`, after adding the new todo, we will call `nameEl.focus()` to refocus the `<input>` again. We will do the same when the user presses the <kbd>Escape</kbd> key, with the `onCancel()` function.
+
+Update the contents of `NewTodo.svelte` like so:
+```
+<script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    let name = '';
+    let nameEl;                        // reference to the name input DOM node
+
+    const addTodo = () => {
+        dispatch('addTodo', name);
+        name = '';
+        nameEl.focus();                // give focus to the name input
+    }
+
+    const onCancel = () => {
+        name = '';
+        nameEl.focus();                // give focus to the name input
+    }
+
+</script>
+
+<form on:submit|preventDefault={addTodo} on:keydown={e => e.key === 'Escape' && onCancel()}>
+    <h2 class="label-wrapper">
+        <label for="todo-0" class="label__lg">What needs to be done?</label>
+    </h2>
+    <input bind:value={name} bind:this={nameEl} type="text" id="todo-0" autoComplete="off" class="input input__lg" />
+    <button type="submit" disabled={!name} class="btn btn__primary btn__lg">Add</button>
+</form>
+```
+Try the app out -- type a new todo name in to the `<input>` field, press <kbd>Tab</kbd> to give focus to the *Add* button, and then hit <kbd>Enter</kbd> or <kbd>Escape</kbd> to see how the input receovers focus.
+
+### Autofocusing our input
+
+The next feature we will add to our `NewTodo` component will be an `autofocus` prop, which will allow us to specify that we want the `<input>` field to be focused on page load.
+
+1. Our first attempt is as follows -- let's try adding the `autofocus` prop and just call `nameEl.focus()` from the `<script>` block. Update the first part of the `NewTodo.svelte` `<script>` section (the first four lines) to look like this:
+```
+<script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    export let autofocus = false;
+
+    let name = '';
+    let nameEl;                        // reference to the name input DOM node
+
+    if (autofocus) nameEl.focus();
+```
+
+2. Now go back to the `Todos` component, and pass the `autofocus` prop into the `<NewTodo>` component call, like so:
+```
+<!-- NewTodo -->
+<NewTodo autofocus on:addTodo={e => addTodo(e.detail)} />
+```
+
+3. If you try your app out now, you'll see that the page is now blank, and in your DevTools web console, you'll see an error along the lines of: `TypeError: nameEl is undefined`.
+
+To understand what's happening here, let's talk some more about that [component lifecycle](https://svelte.dev/tutorial/onmount) we mentioned earlier.
 
 
 
