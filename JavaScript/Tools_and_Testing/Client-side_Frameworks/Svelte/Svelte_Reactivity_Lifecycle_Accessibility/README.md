@@ -414,6 +414,68 @@ onMount(() => autofocus && nameEl.focus())     // if autofocus is true, we run n
 
 <hr>
 
+## Waiting for the DOM to be updated with the `tick()` function
+
+Now we will take care of the `Todo` component's focus management details. First of all, we want a `Todo` component's edit `<input>` to receive focus when we enter editing mode by pressing its *Edit* button. In the same fashion as we saw earlier, we'll create a `nameEl` variable inside `Todo.svelte` and call `nameEl.focus()` after setting the `editing` variable to `true`.
+
+1. Open the file `components/Todo.svelte` and add a `nameEl` variable declaration, just below your editing and name declarations:
+```
+let nameEl;          // reference to the name input DOM node
+```
+
+2. Now update your `onEdit()` function like so:
+```
+function onEdit() {
+    editing = true;          // enter editing mode
+    nameEl.focus();          // set focus to name input
+}
+```
+
+3. And finally, bind `nameEl` to the `<input>` field, by updating it like so:
+```
+<input bind:value={name} bind:this={nameEl} type="text" id="todo-{todo.id}" autoComplete="off" class="todo-text" />
+```
+
+4. However, when you try the updated app, you'll get an error along the lines of "TypeError: nameEl is undefined" in the console when you press a todo's *Edit* button.
+
+So what is happening here? When you update a component's state in Svelte, it doesn't update the DOM immediately. Instead, it waits until the next microtask to see if there are any other changes that need to be applied, including in other components. Doing so avoids unnecessary work and allows the browser to batch things more effectively.
+
+In this case, when `editing` is `false`, the edit `<input>` is not visible because it does not exist in the DOM. Inside the `onEdit()` function, we set `editing = true` and immediately afterwards try to access the `nameEl` variable and execute `nameEl.focus()`. The problem here is that Svelte hasn't yet updated the DOM.
+
+One way to solve this problem is to use [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to delay the call to `nameEl.focus()` until the next event cycle, and give Svelte the opportunity to update the DOM.
+
+Try this now:
+```
+function onEdit() {
+    editing = true;                          // enter editing mode
+    setTimeout(() => nameEl.focus(), 0);     // asynchronous call to set focus to name input
+}
+```
+The above solution works, but it is rather inelegant. Svelte provides a better way to handle these cases. The [`tick()` function](https://svelte.dev/tutorial/tick) returns a promise that resolves as soon as any pending state changes have been applied to the DOM (or immediately, if there are no pending state changes). Let's try it now.
+
+1. First of all, import `tick` at the top of the `<script>` section alongside your existing import:
+```
+import { tick } from 'svelte';
+```
+
+2. Next, call `tick()` with [`await`]() from an [async function](); update `onEdit()` like so:
+```
+async function onEdit() {
+    editing = true;                // enter editing mode 
+    await tick();
+    nameEl.focus();
+}
+```
+
+3. If you try it now, you'll see that everything works as expected.
+
+<hr>
+
+**Note**: To see another example using `tick()`, visit the [Svelte tutorial]().
+
+<hr>
+
+
 
 
 
