@@ -179,6 +179,75 @@ All of these solutions involve an assignment in which the updated variable is on
 
 **Choose one, and update your `checkAllTodos()` function as required. Now you should be able to check and uncheck all your todos at once. Try it!**
 
+## Finishing our MoreActions component
+
+We will add one usability detail to our component. We'll disable the buttons when there are no tasks to be processed. To create this, we'll receive the `todos` array as a prop, and set the `disabled` property of each button accordingly.
+
+1. Update your `MoreActions.svelte` component like this:
+```
+<script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
+    export let todos;
+
+    let completed = true;
+
+    const checkAll = () => {
+        dispatch('checkAll', completed);
+        completed = !completed;
+    }
+
+    const removeCompleted = () => dispatch('removeCompleted');
+
+    $: completedTodos = todos.filter(t => t.completed).length;
+</script>
+
+<div class="btn-group">
+    <button type="button" class="btn btn__primary" 
+        disabled={todos.length === 0} on:click={checkAll}>{completed ? 'Check' : 'Uncheck'} all</button>
+    <button type="button" class="btn btn__primary" 
+        disabled={completedTodos === 0} on:click={removeCompleted}>Remove completed</button>
+</div>
+```
+We've also declared a reactive `completedTodos` variable to enable or disable the *Remove Completed* button.
+
+2. Don't forget to pass the prop into `MoreActions` from inside `Todos.svelte`, where the component is called:
+```
+<MoreActions {todos}
+    on:checkAll={e => checkAllTodos(e.detail)}
+    on:removeCompleted={removeCompletedTodos}
+/>
+```
+
+## Working with the DOM: focusing on the details
+
+Now that we have completed all of the app's required functionality, we'll concentrate on some accessibility features that will improve the usability of our app for both keyboard-only and screenreader users.
+
+In its current state, our app has a couple of keyboard accessibility problems involving focus management. Let's have a look at these issues.
+
+## Exploring keyboard accessibility issues in our todo app
+
+Right now, keyboard users will find out that the focus flow of our app is not very predictable or coherent.
+
+If you click on the input at the top of our app, you'll see a thick, dashed outline around that input. This outline is your visual indicator that the browser is currently focused on this element.
+
+If you are a mouse user, you might have skipped this visual hint. But if you are working exclusively with the keyboard, knowing which control has focus is of vital importance. It tells us which control is going to receive our keystrokes.
+
+If you press the <kbd>Tab</kbd> key repeatedly, you'll see the dashed focus indicator cycling between all the focusable elements on the page. If you move the focus to the *Edit* button and press <kbd>Enter</kbd>, suddenly the focus disappears, and you can no longer tell which control will receive our keystrokes.
+
+Moreover, if you press the <kbd>Escape</kbd> or <kbd>Enter</kbd> key, nothing happens. And if you click on *Cancel* or *Save*, the focus disappears again. For a user working with the keyboard, this behavior will be confusing at best.
+
+We'd also like to add some usability features, like disabling the *Save* button when required fields are empty, giving focus to certain HTML elements or auto-selecting contents when a text input receives focus.
+
+To implement all these features, we'll need programmatic access to DOM nodes to run functions like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) and [`select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select). We will also have to use [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) to run specific tasks when the control receives focus.
+
+The problem is that all these DOM nodes are dynamically created by Svelte at runtime. So we'll have to wait for them to be created and added to the DOM in order to use them. To do so, we'll have to learn about the [component lifecycle]() to understand when we can access them -- more on this later.
+
+## Creating a NewTodo component
+
+
+
 
 
 
