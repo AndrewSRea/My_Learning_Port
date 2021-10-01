@@ -371,7 +371,48 @@ The next feature we will add to our `NewTodo` component will be an `autofocus` p
 
 To understand what's happening here, let's talk some more about that [component lifecycle](https://svelte.dev/tutorial/onmount) we mentioned earlier.
 
+## Component lifecycle, and the `onMount()` function
 
+When a component is instantiated, Svelte runs the initialization code (that is, the `<script>` section of the component). But at that moment, all the nodes that comprise the component are not attached to the DOM. In fact, they don't even exist.
+
+So how can you know when the component has already been created and mounted on the DOM? The answer is that every component has a lifecycle that starts when it is created, and ends when it is destroyed. There are a handful of functions that allow you to run code at key moments during that lifecycle.
+
+The one you'll use most frequently is `onMount()`, which lets us run a callback as soon as the component has been mounted on the DOM. Let's give it a try and see what happens to the `nameEl` variable.
+
+1. To start with, add the following line at the beginning of the `NewTodo.svelte` `<script>` section:
+```
+import { onMount } from 'svelte';
+```
+
+2. And these lines at the end of it:
+```
+console.log('initializing:', nameEl);
+onMount( () => {
+    console.log('mounted:', nameEl);
+})
+```
+
+3. Now remove the `if (autofocus) nameEl.focus()` line to avoid throwing the error we were seeing before.
+
+4. The app will now work again, and you'll see the following in your console:
+```
+initializing: undefined
+mounted: <input id="todo-0" class="input input__lg" type="text" autocomplete="off">
+```
+As you can see, while the component is initializing, `nameEl` is undefined, which makes sense because the node input doesn't even exist yet. After the component has been mounted, Svelte assigned a reference to the `<input>` DOM node to the `nameEl` variable, thanks to the `bind:this={nameEl}` directive.
+
+5. To get the autofocus functionality working, replace the previous `console.log()`/`onMount()` block you added with this:
+```
+onMount(() => autofocus && nameEl.focus())     // if autofocus is true, we run nameEl.focus()
+```
+
+6. Go to your app again, and you'll now see the `<input>` field is focused on page load.
+
+<hr>
+
+**Note**: You can have a look at the other [lifecycle functions in the Svelte docs](https://svelte.dev/docs#svelte), and you can see them in action in the [interactive tutorial](https://svelte.dev/tutorial/onmount).
+
+<hr>
 
 
 
