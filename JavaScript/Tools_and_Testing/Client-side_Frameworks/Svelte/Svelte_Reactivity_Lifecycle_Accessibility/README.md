@@ -567,7 +567,7 @@ import { selectOnFocus } from '../actions.js';
 ```
 With a few lines of code, we can add functionality to regular HTML elements, in a very reusable and declarative way. It just takes an `import` and a short directive like `use:selectOnFocus` that clearly depicts its purpose. And we can achieve this without the need to create a custom wrapper element like `TextInput`, `MyInput`, or something similar. Moreover, you can add as many `use:action` directives as you want to an element.
 
-Also, we didn;t have to struggle with `onMount()`, `onDestroy()`, or `tick()` -- the `use` directive takes care of the component lifecycle for us.
+Also, we didn't have to struggle with `onMount()`, `onDestroy()`, or `tick()` -- the `use` directive takes care of the component lifecycle for us.
 
 
 
