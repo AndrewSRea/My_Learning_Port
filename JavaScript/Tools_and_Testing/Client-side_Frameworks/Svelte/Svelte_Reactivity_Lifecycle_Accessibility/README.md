@@ -458,7 +458,7 @@ The above solution works, but it is rather inelegant. Svelte provides a better w
 import { tick } from 'svelte';
 ```
 
-2. Next, call `tick()` with [`await`]() from an [async function](); update `onEdit()` like so:
+2. Next, call `tick()` with [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) from an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function); update `onEdit()` like so:
 ```
 async function onEdit() {
     editing = true;                // enter editing mode 
@@ -471,9 +471,58 @@ async function onEdit() {
 
 <hr>
 
-**Note**: To see another example using `tick()`, visit the [Svelte tutorial]().
+**Note**: To see another example using `tick()`, visit the [Svelte tutorial](https://svelte.dev/tutorial/tick).
 
 <hr>
+
+## Adding functionality to HTML elements with the `use:action` directive
+
+Next up, we want the `name` `<input>` to automatically select all text on focus. Moreover, we want to develop this in such a way that it could be easily reused on any HTML `<input>` and applied in a declarative way. We will use this requirement as an excuse to show a very powerful feature that Svelte provides us to add functionality to regular HTML elements: [actions](https://svelte.dev/docs#use_action).
+
+To select the text of a DOM input node, we have to call [`select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select). To get this function called whenever the node gets focused, we need an event listener along these lines:
+```
+node.addEventListener('focus', event => node.select())
+```
+And in order to avoid memory leaks, we should also call the [`removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) function when the node is destroyed.
+
+<hr>
+
+**Note**: All this is just standard WebAPI functionality, nothing here is specific to Svelte.
+
+<hr>
+
+We could achieve all this in our `Todo` component whenever we add or remove the `<input>` from the DOM, but we would have to be very careful to add the event listener after the node has been added to the DOM, and remove the listener before the node is removed from the DOM. In addition, our solution would not be very reusable.
+
+That's where Svelte actions come into play. Basically, they let us run a function whenever an element has been added to the DOM, and after removal from the DOM.
+
+In our immediate use case, we will define a function called `selectOnFocus()` that will receive a node as a parameter. The function will add an event listener to that node so that whenever it gets focused, it will select the text. Then it will return an object with a `destroy` property. The `destroy` property is what Svelte will execute after removing the node from the DOM. Here we will remove the listener to make sure we don't leave any memory leak behind.
+
+1. Let's create the function `selectOnFocus()`. Add the following to the bottom of the `Todo.svelte` `<script>` section:
+```
+function selectOnFocus(node) {
+    if (node && typeof node.select === 'function') {                       // make sure node is defined and has a select() method
+        const onFocus = event => node.select();                            // event handler 
+        node.addEventListener('focus', onFocus);                           // when node gets focus, call onFocus()
+        return {
+            destroy: () => node.removeEventListener('focus', onFocus);     // this will be executed when the node is removed from the DOM
+        }
+    }
+}
+```
+
+2. Now we need to tell the `<input>` to use that function with [`use:action`]() directive:
+```
+<input use:selectOnFocus />
+```
+With this directive, we are telling Svelte to run this function, passing the DOM node of the `<input>` as a parameter, as soon as the component is mounted on the DOM. It will also be in charge of executing the `destroy` function when the component is removed from the DOM. So, with the `use` directive, Svelte takes care of the component's lifecycle for us.
+
+In our case, our `<input>` would end up like so -- update the component's first label/input pair (inside the edit template) like so:
+```
+<label for="todo-{todo.id}" class="todo-label">New name for '{todo.name}'</label>
+<input bind:value={name} bind:this={nameEl} use: selectOnFocus type="text" id="todo-{todo.id}" autoComplete="off" class="todo-text" />
+```
+
+3. Let's try it out. Go to your app, press a todo's *Edit* button, then <kbd>Tab</kbd> to take focus away from the `<input>`. Now click on the `<input>` -- you'll see that the entire input text is selected.
 
 
 
