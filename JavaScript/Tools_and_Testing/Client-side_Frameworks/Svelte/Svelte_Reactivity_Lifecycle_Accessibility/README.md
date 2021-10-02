@@ -524,6 +524,51 @@ In our case, our `<input>` would end up like so -- update the component's first 
 
 3. Let's try it out. Go to your app, press a todo's *Edit* button, then <kbd>Tab</kbd> to take focus away from the `<input>`. Now click on the `<input>` -- you'll see that the entire input text is selected.
 
+### Make the action reusable
+
+Now let's make this function truly reusable across components. `selectOnFocus()` is just a function without any dependency on the `Todo.svelte` component, so we can just extract it to a file and use it from there.
+
+1. Create a new file, `actions.js`, inside the `src` folder.
+
+2. Give it the following content:
+```
+export function selectOnFocus(node) {
+    if (node && typeof node.select === 'function') {
+        const onFocus = event => node.select();
+        node.addEventListener('focus', onFocus);
+        return {
+            destroy: () => node.removeEventListener('focus', onFocus);
+        }
+    }
+}
+```
+
+3. Now import it from inside `Todo.svelte`; add the following import statement just below the others:
+```
+import { selectOnFocus } from '../actions.js';
+```
+
+4. And remove the `selectOnFocus()` definition from `Todo.svelte` -- we no longer need it there.
+
+### Reusing our action
+
+To demonstrate our action's reusability, let's make use of it in `NewTodo.svelte`.
+
+1. Import `selectOnFocus()` from `actions.js` in this file, too, as before:
+```
+import { selectOnFocus } from '../actions.js';
+```
+
+2. Add the `use:selectOnFocus` directive to the `<input>`, like this:
+```
+<input bind:value={name} bind:this={nameEl} use:selectOnFocus
+    type="text" id="todo-0" autoComplete="off" class="input input__lg"
+/>
+```
+With a few lines of code, we can add functionality to regular HTML elements, in a very reusable and declarative way. It just takes an `import` and a short directive like `use:selectOnFocus` that clearly depicts its purpose. And we can achieve this without the need to create a custom wrapper element like `TextInput`, `MyInput`, or something similar. Moreover, you can add as many `use:action` directives as you want to an element.
+
+Also, we didn;t have to struggle with `onMount()`, `onDestroy()`, or `tick()` -- the `use` directive takes care of the component lifecycle for us.
+
 
 
 
