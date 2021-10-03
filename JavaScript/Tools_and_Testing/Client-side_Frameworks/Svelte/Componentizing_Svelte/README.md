@@ -503,4 +503,4 @@ In the next article, we will continue componentizing our app and look at some ad
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props#dynamic-behavior-in-svelte-working-with-variables-and-props) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Componentizing_Svelte#componentizing-our-svelte-app) - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Variables_and_Props#dynamic-behavior-in-svelte-working-with-variables-and-props) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Componentizing_Svelte#componentizing-our-svelte-app) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Reactivity_Lifecycle_Accessibility#advanced-svelte-reactivity-lifecycle-accessibility)
