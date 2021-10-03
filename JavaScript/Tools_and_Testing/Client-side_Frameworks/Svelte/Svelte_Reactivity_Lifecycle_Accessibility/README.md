@@ -569,6 +569,67 @@ With a few lines of code, we can add functionality to regular HTML elements, in 
 
 Also, we didn't have to struggle with `onMount()`, `onDestroy()`, or `tick()` -- the `use` directive takes care of the component lifecycle for us.
 
+### Other actions improvements
+
+In the previous section, while working with the `Todo` components, we had to deal with `bind:this`, `tick()`, and `async` functions just to give focus to our `<input>` as soon as it was added to the DOM.
+
+1. This is how we can implement it with actions instead:
+```
+const focusOnInit = (node) => node && typeof node.focus === 'function' && node.focus();
+```
+
+2. And then in our markup, we just need to add another `use:` directive:
+```
+<input bind:value={name} use:selectOnFocus use:focusOnInit ...
+```
+
+3. Our `onEdit()` function can now be much simpler:
+```
+function onEdit() {
+    editing = true;          // enter editing mode
+}
+```
+As a last example before we move on, let's go back to out `Todo.svelte` component and give focus to the *Edit* button after the user presses *Save* or *Cancel*.
+
+We could try just reusing our `focusOnInit` action again, adding `use:focusOnInit` to the *Edit* button. But we'd be introducing a subtle bug. When you add a new todo, the focus will be put on the *Edit* button of the recently added todo. That's because the `focusOnInit` action is running when the component is created.
+
+That's not what we want -- we want the *Edit* button to receive focus only when the user has pressed *Save* or *Cancel*.
+
+1. So, go back to your `Todo.svelte` file.
+
+2. First of all, we'll create a flag named `editButtonPressed` and initialize it to `false`. Add this just below your other variable definitions:
+```
+let editButtonPressed = false;          // track if edit button has been pressed, to give focus to it after cancel or save
+```
+
+3. Next, we'll modify the *Edit* button's functionality to save this flag, and create the action for it. Update the `onEdit()` function like so:
+```
+function onEdit() {
+    editButtonPressed = true;          // user pressed the Edit button, focus will come back to the Edit button
+    editing = true;                    // enter editing mode
+}
+```
+
+4. Below it, add the following definition for `focusEditButton()`:
+```
+const focusEditButton = (node) => editButtonPressed && node.focus();
+```
+
+5. Finally, we use the `focusEditButton` action on the *Edit* button, like so:
+```
+<button type="button" class="btn" on:click={onEdit} use:focusEditButton>
+    Edit <span class="visually-hidden">{todo.name}</span>
+</button>
+```
+
+6. Go back and try your app again. At this point, every time the *Edit* button is added to the DOM, the `focusEditButton` action is executed, but it will only give focus to the button if the `editButtonPressed` flag is `true`.
+
+<hr>
+
+**Note**: We have barely scratched the surface of actions here. Actions can also have reactive parameters, and Svelte lets us detect when any of those parameters change. So we can add functionality that integrates nicely with the Svelte reactive system. Have a look at the relevant Svelte School article for a more [detailed introduction to actions](https://svelte.school/tutorials/introduction-to-actions). Actions are also very useful for seamlessly [integrating with third party libraries](https://svelte.school/tutorials/external-libraries-in-svelte-and-sapper-using-actions).
+
+<hr>
+
 
 
 
