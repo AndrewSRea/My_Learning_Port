@@ -746,14 +746,41 @@ function removeTodo(todo) {
 
 <hr>
 
+## The code so far
 
+### Git
 
+To see the state of the code as it should be at the end of this article, access your copy of our repo like this:
+```
+cd mdn-svelte-tutorial/06-stores
+```
+Or directly download the folder's content:
+```
+nox degit opensas/mdn-svelte-tutorial/06-stores
+```
+Remember to `npm install && npm run dev` to start your app in development mode.
 
+### REPL
 
+To see the current state of the code in a REPL, visit:
 
+[https://svelte.dev/repl/d1fa84a5a4494366b179c87395940039?version=3.23.2](https://svelte.dev/repl/d1fa84a5a4494366b179c87395940039?version=3.23.2)
 
+## Summary
 
+In this article, we have finished adding all the required functionality to our app, plus we've taken care of a number of accessibility and usability issues. We also finished splitting our app into manageable components, each one with a unique responsibility.
 
+In the meantime, we saw a few advanced Svelte techniques, like:
 
+* Dealing with reactivity gotchas when updating objects and arrays.
+* Working with DOM nodes using `bind:this={dom_node}` (binding DOM elements).
+* Using the component lifecycle `onMount()` function.
+* Forcing Svelte to resolve pedning state changes with the `tick()` function.
+* Adding functionality to HTML elements in a reusable and declarative way with the `use:action` directive.
+* Accessing component methods using `bind:this={component}` (binding components).
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Reactivity_Lifecycle_Accessibility
+In the next article, we will see how to use stores to communicate between components, and add animations to our components.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Componentizing_Svelte#componentizing-our-svelte-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Reactivity_Lifecycle_Accessibility#advanced-svelte-reactivity-lifecycle-accessibility) - [[Next page]]()
