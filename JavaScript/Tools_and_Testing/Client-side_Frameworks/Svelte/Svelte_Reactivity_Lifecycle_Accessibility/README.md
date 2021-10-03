@@ -630,6 +630,124 @@ const focusEditButton = (node) => editButtonPressed && node.focus();
 
 <hr>
 
+## Component binding: exposing component methods and variables using the `bind:this={component} directive
+
+There's still one accessibility annoyance left. When the user presses the *Delete* button, the focus vanishes.
+
+So, the last feature we will be looking at in this article involves setting the focus on the status heading after a todo has been deleted.
+
+Why the status heading? In this case, the element that had the focus has been deleted, so there's not a clear candidate to receive focus. We've picked the status heading because it's near the list of todos, and it's a way to give a visual feedback about the removal of the task, as well as indicating what's happened to screenreader users.
+
+First, we'll extract the status heading to its own component.
+
+1. Create a new file -- `components/TodosStatus.svelte`.
+
+2. Add the following contents to it:
+```
+<script>
+    export let todos;
+
+    $: totalTodos = todos.length;
+    $: completedTodos = todos.filter(todo => todo.completed).length;
+</script>
+
+<h2 id="list-heading">{completedTodos} out of {totalTodos} items completed</h2>
+```
+
+3. Import the file at the beginning of `Todos.svelte`, adding the following `import` statement below the others:
+```
+import TodosStatus from './TodoStatus.svelte`;
+```
+
+4. Replace the `<h2>` status heading inside `Todos.svelte` with a call to the `TodosStatus` component, passing `todos` to it as a prop, like so:
+```
+<TodosStatus {todos} />
+```
+
+5. You can also do a bit of clean-up, removing the `totalTodos` and `completedTodos` variables from `Todos.svelte`. Just remove the `$: totalTodos = ...` and the `$: completedTodos = ...` lines, and also remove the reference to `totalTodos` when we calculate `newTodoId` and use `todos.length` instead. To do this, replace the block that begins with `let newTodoId` with this:
+```
+$: newTodoId = todos.length ? Math.max(...todos.map(t => t.id)) + 1 : 1;
+```
+
+6. Everything works as expected -- we just extracted the last piece of markup to its own component.
+
+Now we need to find a way to give focus to the `<h2>` status label after a todo has been removed.
+
+So far, we saw how to send information to a component via props, and how a component can communicate with its parent by emitting events or using two-way data binding. The child component could get a reference to the `<h2>` node using `bind:this={dom_node}` and expose it to the outside using two-way data binding. But doing so would break the component encapsulation; setting focus on it should be its own responsibility.
+
+So we need the `TodoStatus` component to expose a method that its parent can call to give focus to it. It's a very common scenario that a component needs to expose some behavior or information to the consumer; let's see how to achieve it with Svelte.
+
+We've already seen that Svelte uses `export let var = ...` to [declare props](). But if instead of using `let` you export a `const`, `class`, or `function`, it is read-only outside the component. Function expressions are valid props, however. In the following example, the first three declarations are props, and the rest are exported values:
+```
+<script>
+    export let bar = 'optional default initial value';        // prop
+    export let baz = undefined;                               // prop
+    export let format = n => n.toFixed(2);                    // prop
+
+    // these are readonly
+    export const thisIs = 'readonly';                         // read-only export
+
+    export function greet(name) {                             // read-only export                 
+        alert(`hello ${name}!`);
+    }
+
+    export const greet = (name) => alert(`hello ${name}!`);   // read-only export
+</script>
+```
+With this in mind, let's go back to our use case. We'll create a function called `focus()` that gives focus to the `<h2>` heading. For that, we'll need a `headingEl` variable to hold the reference to the DOM node and we'll have to bind it to the `<h2>` element using `bind:this={headingEl}`. Our focus method will just run `headingEl.focus()`.
+
+1. Update the contents of `TodosStatus.svelte` like so:
+```
+<script>
+    export let todos;
+
+    $: totalTodos = todos.length;
+    $: completedTodos = todos.filter(todo => todo.completed).length;
+
+    let headingEl;
+
+    export function focus() {
+        headingEl.focus();
+    }
+</script>
+
+<h2 id="list-heading" bind:this={headingEl} tabindex="-1">{completedTodos} out of {totalTodos} items completed</h2>
+```
+Note that we've added a `tabindex` attribute to the `<h2>` to allow the element to receive focus programmatically.
+
+As we saw earlier, using the `bind:this={headingEl}` directive gives us a reference to the DOM node in the variable `headingEl`. Then we use `export function focus()` to expose a function that gives focus to the `<h2>` heading.
+
+How can we access those exported values from the parent? Just as you can bind to DOM elements with the `bind:this={dom_node}` directive, you can also bind to component instances themselves with `bind:this={component}`. So, when you use `bind:this` on an HTML element, you get a reference to the DOM node, and when you do it on a Svelte component, you get a reference to the instance of that component.
+
+2. So, to bind to the instance of `TodosStatus`, we'll first create a `todosStatus` variable in `Todos.svelte`. Add the following line below your `import` statements:
+```
+let todosStatus;          // reference to TodosStatus instance
+```
+
+3. Next, add a `bind:this={todosStatus}` directive to the call, as follows:
+```
+<!-- TodosStatus -->
+<TodosStatus bind:this={todosStatus} {todos} />
+```
+
+4. Now we can call the `exported focus()` method from our `removeTodo()` function:
+```
+function removeTodo(todo) {
+    todos = todos.filter(t => t.id !== todo.id);
+    todosStatus.focus();     // give focus to status heading
+}
+```
+
+5. Go back to your app -- now if you delete any todo, the status heading will be focused. This is useful to highlight the change in numbers of todos, both to sighted users and screenreader users.
+
+<hr>
+
+**Note**: You might be wondering why we need to declare a new variable for component binding -- why can't we just call `TodosStatus.focus()`? You might have multiple `TodosStatus` instances active, so you need a way to reference each particular instance. That's why you have to specify a variable in which to bind each specific instance.
+
+<hr>
+
+
+
 
 
 
