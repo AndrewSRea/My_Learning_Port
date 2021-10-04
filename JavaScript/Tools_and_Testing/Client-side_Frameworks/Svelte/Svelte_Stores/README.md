@@ -44,7 +44,98 @@ A store is an object with a `subscribe()` method that allows interested parties 
 
 Svelte provides functions for creating [readable](https://svelte.dev/docs#readable), [writable](https://svelte.dev/docs#writable), and [derived](https://svelte.dev/docs#derived) stores in the `svelte/store` module.
 
-Svelte also provides a very intuitive way to integrate stores into its reactivity system using the [reactive `$store` syntax](). If you create your own stores honoring the store contract, you get this reactivity syntactic sugar for free.
+Svelte also provides a very intuitive way to integrate stores into its reactivity system using the [reactive `$store` syntax](https://svelte.dev/docs#4_Prefix_stores_with_%24_to_access_their_values). If you create your own stores honoring the store contract, you get this reactivity syntactic sugar for free.
+
+## Creating the Alert component
+
+To show how to work with stores, we will create an `Alert` component. These kind of widgets might also be known as popup notifications, toast, or notification bubbles.
+
+Our `Alert` component will be displayed by the `App` component, but any component will be able to write to this store, and the `Alert` component will subscribe to it and display a message whenever the store is modified.
+
+1. Create a new file -- `stores.js` -- inside your `src` directory.
+
+2. Give it the following content:
+```
+import { writable } from 'svelte/store';
+
+export const alert = writable('Welcome to the To-Do list app!'); 
+```
+
+<hr>
+
+**Note**: Stores can be defined and used outside of Svelte components, so you can organize them in any way you please.
+
+<hr>
+
+In the above code, we import the `writable()` function from `svelte/store` and use it to create a new store called `alert` with an initial value of "Welcome to the To-Do list app!". We then `export` the store.
+
+### Creating the actual component
+
+Let's now create our `Alert` component and see how we can read values from the store.
+
+1. Create another new file named `src/components/Alert.svelte`.
+
+2. Give it the following content:
+```
+<script>
+    import { alert } from '../stores.js';
+    import { onDestroy } from 'svelte';
+
+    let alertContent = '';
+
+    const unsubscribe = alert.subscribe(value => alertContent = value);
+
+    onDestroy(unsubscribe);
+</script>
+
+{#if alertContent}
+<div on:click={() => alertContent = ''}>
+    <p>{ alertContent }</p>
+</div>
+{/if}
+
+<style>
+    div {
+        position: fixed;
+        cursor: pointer;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+        margin-top: 1rem;
+        right: 0;
+        display: flex;
+        align-items: center;
+        border-radius: 0.2rem;
+        background-color: #565656;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 700;
+        padding: 0.5rem 1.4rem;
+        font-size: 1.5rem;
+        z-index: 100;
+        opacity: 95%;
+    }
+    div p {
+        color: #fff;
+    }
+    div svg {
+        height: 1.6rem;
+        fill: currentColor;
+        width: 1.4rem;
+        margin-right: 0.5rem;
+    }
+</style>
+```
+Let's walk through this piece of code in detail.
+
+* At the beginning, we import the `alert` store.
+* Next, we import the `onDestroy()` lifecycle function, which lets us execute a callback after the component has been unmounted.
+* We then create a local variable named `alertContent`. Remember that we can access top-level variables from the markup and whenever they are modified, the DOM will update accordingly.
+* Then we call the method `alert.subscribe()`, passing it a callback function as a parameter. Whenever the value of the store changes, the callback function will be called with the new value as its parameter. In the callback function, we just assign the value we receive to the local variable, which will trigger the update of the component's DOM.
+* The `subscribe()` method also returns a clean-up function, which takes care of releasing the subscription. So we subscribe when the component is being initialized, and use `onDestroy` to unsubscribe when the component is unmounted.
+* Finally, we use the `alertContent` variable in our markup, and if the user clicks on the alert, we clean it.
+* At the end, we include a few CSS lines to style our `Alert` component.
+
+This setup allow us to work with stores in a reactive way. When the value of the store changes, the callback is executed. There we assign a new value to a local variable, and thanks to Svelte reactivity, all our markup and reactive dependencies are updated accordingly.
 
 
 
@@ -54,5 +145,4 @@ Svelte also provides a very intuitive way to integrate stores into its reactivit
 
 
 
-
-JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Stores
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Stores
