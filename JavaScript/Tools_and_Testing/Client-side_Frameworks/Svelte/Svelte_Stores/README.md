@@ -318,7 +318,21 @@ Finally, with the `onDestroy()` lifecycle function, we make sure to call the `cl
 
 We also added an SVG icon above the alert paragraph to make it look a bit nicer. Try it out again, and you should see the changes.
 
+## Making our Alert component accessible
 
+Our `Alert` component is working fine, but it's not very friendly to assistive technologies. The problem is elements that are dynamically added and removed from the page. While visually evident to users who can see the page, they may not be so obvious to users of assistive technologies, like screen readers. To handle those situations, we can take advantage of [ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions), which provide a way to programmatically expose dynamic content changes so that they can be detected and announced by assistive technologies.
+
+We can declare a region that contains dynamic content that should be announced by assistive technologies with the `aria-live` property followed by the politeness setting, which is used to set the priority with which screen readers should handle updates to that region. The possible settings are `off`, `polite`, or `assertive`.
+
+For common situations, you also have several predefined specialized `role` values that can be used, like `log`, `status`, and `alert`.
+
+In our case, just adding a `role="alert"` to the `<div>` container will do the trick, like this:
+```
+<div role="alert" on:click={() => visible = false}>
+```
+In general, testing your applications using screen readers is a good idea, not only to discover accessibility issues but also to get used to how visually impaired people use the Web. You have several options, like [NVDA](https://www.nvaccess.org/) for Windows, [ChromeVox](https://support.google.com/chromebook/answer/7031755) for Chrome, [Orca](https://wiki.gnome.org/Projects/Orca) on Linux, and [VoiceOver]() for Mac OS X and iOS, among other options.
+
+To learn more about detecting and fixing accessibility issues, check out our [Handling common accessibility problems]() article.
 
 
 
