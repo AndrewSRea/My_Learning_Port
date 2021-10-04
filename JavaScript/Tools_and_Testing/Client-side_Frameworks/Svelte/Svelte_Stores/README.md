@@ -269,6 +269,55 @@ We could do the same within any component or `.js` file.
 
 **Note**: Outside of Svelte components, you cannot use the `$store` syntax. That's because the Svelte compiler won't touch anything outside of Svelte components. In that case, you'll have to rely on the `store.subscribe()` and `store.set()` methods.
 
+## Improving our Alert component
+
+It's a bit annoying having to click on the alert to get rid of it. It would be better if the notification just disappeared after a couple of seconds.
+
+Let's see how to do that. We'll specify a prop with the milliseconds to wait before clearing the notification, and we'll define a timeout to remove the alert. We'll also take care of clearing the timeout when the `Alert` component is unmounted to prevent memory leaks.
+
+1. Update the `<script>` section of your `Alert.svelte` component like so:
+```
+<script>
+    import { onDestroy } from 'svelte';
+    import { alert } from '../stores.js';
+
+    export let ms = 3000;
+    let visible;
+    let timeout;
+
+    const onMessageChange = (message, ms) => {
+        clearTimeout(timeout);
+        if (!message) {               // hide Alert if message is empty
+            visible = false;
+        } else {
+            visible = true;                                               // show alert
+            if (ms > 0) timeout = setTimeout(() => visible = false, ms);  // and hide it after ms milliseconds
+        }
+    }
+    $: onMessageChange($alert, ms);   // whenever the alert store or the ms props change, run onMessageChange
+
+    onDestroy(() => clearTimeout(timeout));     // make sure we clean up the timeout
+
+</script>
+```
+
+2. And update the `Alert.svelte` markup section like so:
+```
+{#if visible}
+<div on:click={() => visible = false}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+    <p>{ $alert }</p>
+</div>
+{/if}
+```
+Here we first create the prop `ms` with a default value of 3000 (milliseconds). Then we create an `onMessageChange()` function that will take care of controlling whether the `Alert` is visible or not. With `$: onMessageChange($alert, ms)`, we tell Svelte to run this function whenever the `$alert` store or the `ms` prop changes.
+
+Whenever the `$alert` store changes, we'll clean up any pending timeout. If `$alert` is empty, we set `visible` to `false` and the `Alert` will be removed from the DOM. If it is not empty, we set `visible` to `true` and use the `setTimeout()` function to clear the alert after `ms` milliseconds.
+
+Finally, with the `onDestroy()` lifecycle function, we make sure to call the `clearTimeout()` function.
+
+We also added an SVG icon above the alert paragraph to make it look a bit nicer. Try it out again, and you should see the changes.
+
 
 
 
