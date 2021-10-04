@@ -330,11 +330,70 @@ In our case, just adding a `role="alert"` to the `<div>` container will do the t
 ```
 <div role="alert" on:click={() => visible = false}>
 ```
-In general, testing your applications using screen readers is a good idea, not only to discover accessibility issues but also to get used to how visually impaired people use the Web. You have several options, like [NVDA](https://www.nvaccess.org/) for Windows, [ChromeVox](https://support.google.com/chromebook/answer/7031755) for Chrome, [Orca](https://wiki.gnome.org/Projects/Orca) on Linux, and [VoiceOver]() for Mac OS X and iOS, among other options.
+In general, testing your applications using screen readers is a good idea, not only to discover accessibility issues but also to get used to how visually impaired people use the Web. You have several options, like [NVDA](https://www.nvaccess.org/) for Windows, [ChromeVox](https://support.google.com/chromebook/answer/7031755) for Chrome, [Orca](https://wiki.gnome.org/Projects/Orca) on Linux, and [VoiceOver](https://www.apple.com/accessibility/vision/) for Mac OS X and iOS, among other options.
 
-To learn more about detecting and fixing accessibility issues, check out our [Handling common accessibility problems]() article.
+To learn more about detecting and fixing accessibility issues, check out our [Handling common accessibility problems](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Common_Accessibility_Problems#handling-common-accessibility-problems) article.
 
+## Using the store contract to persist our todos
 
+Our little app lets us manage our todos quite easily, but is rather useless if we always get the same list of hardcoded todos when we reload it. To make it truly useful, we have to find out how to persist our todos.
+
+First we need some way for our `Todos` component to give back the updated todos to its parent. We could emit an updated event with the list of todos, but it's easier just to bind the `todos` variable. Let's open `App.svelte` and try it.
+
+1. First of all, add the following line below your `todos` array:
+```
+$: console.log('todos', todos);
+```
+
+2. Next, update your `Todos` component call as follows:
+```
+<Todos bind:todos />
+```
+
+<hr>
+
+**Note**: `<Todos bind:todos />` is just a shortcut for `<Todos bind:todos={todos} />`.
+
+<hr>
+
+3. Go back to your app, try adding some todos, then go to your developer tools web console. You'll see that every modification we make to our todos is reflected in the `todos` array defined in `App.svelte`, thanks to the `bind` directive.
+
+Now we have to find a way to persist these todos. We could implement some code in our `App.svelte` component to read and save our todos to [web storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) or to a web service.
+
+But wouldn't it be better if we could develop some generic store that allows us to persist its content? This would allow us to use it just like any other store, and abstract away the persistence mechanism. We could create a store that syncs its content to web storage, and later develop another one that syncs against a web service. Switching between them would be trivial and we wouldn't have to touch `App.svelte` at all.
+
+### Saving our todos
+
+So let's start by using a regular writable store to save our todos.
+
+1. Open the file `stores.js` and add the following store below the existing one:
+```
+export const todos = writable([]);
+```
+
+2. That was easy. Now we need to import the store and use it in `App.svelte`. Just remember that to access the todos now, we have to use the `$todos` reactive `$store` syntax.
+
+Update your `App.svelte` file like this:
+```
+<script>
+    import Todos from './components/Todos.svelte';
+    import Alert from './components/Alert.svelte';
+
+    import { todos } from './stores.js';
+
+    $todos = [
+        { id: 1, name: 'Create a Svelte starter app', completed: true },
+        { id: 2, name: 'Create your first component', completed: true },
+        { id: 3, name: 'Complete the rest of the tutorial', completed: false }
+    ]
+
+</script>
+
+<Alert />
+<Todos bind:todos={$todos} />
+```
+
+3. Try it out. Everything should work. Next, we'll see how to define our own custom stores.
 
 
 
