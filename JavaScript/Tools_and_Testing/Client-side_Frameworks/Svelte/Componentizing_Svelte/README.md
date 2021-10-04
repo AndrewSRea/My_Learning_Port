@@ -77,12 +77,12 @@ We'll begin by creating our `FilterButton.svelte`.
         <span>All</span>
         <span class="visually-hidden">tasks</span>
     </button>
-    <button class="btn toggle-btn" class:btn__primary={filter === 'active'} aria-pressed={filter === 'active'} on:click{()=> filter = 'active'} >
+    <button class="btn toggle-btn" class:btn__primary={filter === 'active'} aria-pressed={filter === 'active'} on:click={()=> filter = 'active'} >
         <span class="visually-hidden">Show</span>
         <span>Active</span>
         <span class="visually-hidden">tasks</span>
     </button>
-    <button class="btn toggle-btn" class:btn__primary={filter === 'completed'} aria-pressed={filter === 'completed} on:click{()=> filter = 'completed'} >
+    <button class="btn toggle-btn" class:btn__primary={filter === 'completed'} aria-pressed={filter === 'completed} on:click={()=> filter = 'completed'} >
         <span class="visually-hidden">Show</span>
         <span>Completed</span>
         <span class="visually-hidden">tasks</span>
