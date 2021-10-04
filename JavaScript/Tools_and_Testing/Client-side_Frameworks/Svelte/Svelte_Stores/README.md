@@ -137,6 +137,71 @@ Let's walk through this piece of code in detail.
 
 This setup allow us to work with stores in a reactive way. When the value of the store changes, the callback is executed. There we assign a new value to a local variable, and thanks to Svelte reactivity, all our markup and reactive dependencies are updated accordingly.
 
+### Using the component
+
+Let's now use our component.
+
+1. In `App.svelte`, we'll import the component. Add the following import statement below the existing one:
+```
+import Alert from './components/Alert.svelte';
+```
+
+2. Then call the `Alert` component just above the `Todos` call, like this:
+```
+<Alert />
+<Todos {todos} />
+```
+
+3. Load your test app now, and you should now see the `Alert` message on screen. You may click on it to dismiss it.
+
+## Making stores reactive with the reactive `$store` syntax
+
+This works, but you'll have to copy and paste all this code every time you want to subscribe to a store:
+```
+<script>
+    import myStore from '../stores.js';
+    import { onDestroy } from 'svelte';
+
+    let myStoreContent = '';
+
+    const unsubscribe = myStore.subscribe(value => myStoreContent = value);
+
+    onDestroy(unsubscribe);
+</script>
+
+{myStoreContent}
+```
+That's too much boilerplate for Svelte! Being a compiler, Svelte has more resources to make our lives easier. In this case, Svelte provides the reactive `$store` syntax, also known as auto-subscription. In simple terms, you just prefix the store with the `$` sign and Svelte will generate the code to make it reactive automatically. So our previous code block can be replaced with this:
+```
+<script>
+    import myStore from './stores.js';
+</script>
+
+{$myStore}
+```
+And `$myStore` will be fully reactive. This also applies to your own custom stores. If you implement the `subscribe()` and `set()` methods, like we'll do later, the reactive `$store` syntax will also apply to your stores.
+
+1. Let's apply this to our `Alert` component. Update the `<script>` and markup sections of `Alert.svelte` as follows:
+```
+<script>
+    import { alert } from './stores.js';
+</script>
+
+{#if $alert}
+<div on:click={() => $alert = ''}>
+    <p>{ $alert }</p>
+</div>
+{/if}
+```
+
+2. Check your app again and you'll see that this works just like before. That's much better!
+
+Behind the scenes, Svelte has generated the code to declare the local variable `$alert`, subscribe to the `alert` store, update `$alert` whenever the store's content is modified, and unsubscribe when the component is unmounted. It will also generate the `alert.set(...)` statements whenever we assign a value to `$alert`.
+
+The end result of this nifty trick is that you can access global stores just as easily as using reactive local variables.
+
+This is a perfect example of how Svelte puts the compiler in charge of better developer ergonomics, not only saving us from typing boiler plate, but also generating less error-prone code.
+
 
 
 
