@@ -202,6 +202,73 @@ The end result of this nifty trick is that you can access global stores just as 
 
 This is a perfect example of how Svelte puts the compiler in charge of better developer ergonomics, not only saving us from typing boiler plate, but also generating less error-prone code.
 
+## Writing to our store
+
+Writing to our store is just a matter of importing it and executing `$store = 'new value'`. Let's use it in our `Todos` component.
+
+1. Add the following `import` statement below the existing ones:
+```
+import { alert } from '../stores.js';
+```
+
+2. Update your `addTodo()` function like so:
+```
+function addTodo(name) {
+    todos = [...todos, { id: newTodoId, name, completed: false }];
+    $alert = `Todo '${name}' has been added`;
+}
+```
+
+3. Update `removeTodo()` like so:
+```
+function removeTodo(todo) {
+    todos = todos.filter(t => t.id !== todo.id);
+    todosStatus.focus();      // give focus to status heading
+    $alert = `Todo '${todo.name}' has been deleted`;
+}
+```
+
+4. Update the `updateTodo()` function to this:
+```
+function updateTodo(todo) {
+    const i = todos.findIndex(t => t.id === todo.id);
+    if (todos[i].name !== todo.name)            $alert = `todo '${todos[i].name}' has been renamed to '${todo.name}'`
+    if (todos[i].completed !== todo.completed)  $alert = `todo '${todos[i].name}' marked as ${todo.completed ? 'completed' : 'active'}`
+    todos[i] = { ...todos[i], ...todo }
+}
+```
+
+5. Add the following reactive block beneath the block that starts with `let filter = 'all'`:
+```
+$: {
+    if (filter === 'all')              $alert = 'Browsing all todos'
+    else if (filter === 'active')      $alert = 'Browsing active todos'
+    else if (filter === 'completed')   $alert = 'Browsing completed todos'
+}
+```
+
+6. And finally for now, update the `const checkAllTodos` and `const removeCompletedTodos` blocks as follows:
+```
+const checkAllTodos = (completed) => {
+    todos = todos.map(t => ({...t, completed}));
+    $alert = `${completed ? 'Checked' : 'Unchecked'} ${todos.length} todos`;
+}
+const removeCompletedTodos = () => {
+    $alert = `Removed ${todos.filter(t => t.completed).length} todos`;
+    todos = todos.filter(t => !t.completed);
+}
+```
+
+7. So basically, we've imported the store and updated it on every event, which causes a new alert to show each time. Have a look at your app again, and try adding/deleting/updating a few todos!
+
+As soon as we execute `$alert = ...`, Svelte will run `alert.set(...)`. Our `Alert` component -- like every subscriber to the alert store -- will be notified when it receives a new value, and thanks to Svelte reactivity, its markup will be updated.
+
+We could do the same within any component or `.js` file.
+
+<hr>
+
+**Note**: Outside of Svelte components, you cannot use the `$store` syntax. That's because the Svelte compiler won't touch anything outside of Svelte components. In that case, you'll have to rely on the `store.subscribe()` and `store.set()` methods.
+
 
 
 
