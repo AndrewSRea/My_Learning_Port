@@ -128,6 +128,59 @@ Once you have TypeScript configured, you can start using it from a Svelte compon
 
 <hr>
 
+## Improved developer experience with TypeScript
+
+TypeScript provides code editors and IDEs with lots of information to allow them to deliver a friendlier development experience.
+
+We'll use [Visual Studio Code](https://code.visualstudio.com/) to do a quick test and see how we can get autocompletion hints and type-checking as we're writing components.
+
+<hr>
+
+**Note**: If you don't wish to use VS Code, we also provide instructions for using TypeScript error checking from the terminal instead, slightly later on.
+
+<hr>
+
+There is work in progress to support TypeScript in Svelte projects in several code editors. The most complete support so far is available in the [Svelte for VS Code extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode), which is developed and maintained by the Svelte team. This extension offers type checking, inspecting, refactoring, intellisense, hover-information, auto-completion, and other features. This kind of developer assistance is another good reason to start using TypeScript in your projects.
+
+<hr>
+
+**Note**: Make sure you are using [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) and NOT the old "Svelte" by James Birtles, which has been discontinued. In case you have it installed, you should uninstall it and install the official Svelte extension instead.
+
+<hr>
+
+Anyway, assuming you are inside the VS Code application, from the root of your project's folder, type `code .` (the trailing dot tells VS Code to open the current folder) to open the code editor. VS Code will tell you that there are recommended extensions to install.
+
+![Image of an alert box showing extension recommendations](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/01-vscode-extension-recommendations.png)
+
+Clicking *Install all* will install Svelte for VS Code.
+
+![Image of the Svelte for VS Code extension](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/02-svelte-for-vscode.png)
+
+We can also see that the `setupTypeScript.js` file made a couple of changes to our project. The `main.js` file has been renamed to `main.ts`, which means that VS Code can provide hover-information on our Svelte components:
+
+![Image of altered `main.js` file](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/03-vscode-hints-in-main-ts.png)
+
+We also get type-checking for free. If we pass an unknown property in the options parameter of the `App` constructor (for example, a typo like `traget` instead of `target`), TypeScript will complain:
+
+![Image of an error message created from type-checking](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/04-vscode-type-checking-in-main-ts.png)
+
+In the `App.svelte` component, the `setupTypeScript.js` script has added the `lang="ts"` attribute to the `<script>` tag. Moreover, thanks to type inference, in many cases we won't even need to specify types to get code assistance. For example, if you start adding an `ms` property to the `Alert` component call, TypeScript will infer from the default value that the `ms` property should be a number:
+
+![Image of Svelte extension suggesting alternative code examples](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/05-vscode-type-inference-and-code-assistance.png)
+
+And if you pass something that is not a number, it will complain about it:
+
+![Image of Svelte extension error message due to incorrect assigned "type"](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/06-vscode-type-checking-in-components.png)
+
+The application template has a `validate` script configured that runs `svelte-check` against your code. This package allows you to detect errors and warnings normally displayed by a code editor from the command line, which makes it pretty useful for running it in a continuous integration (CI) pipeline. Just run `npm run validate` to check for unused CSS, and return A11y hints and TypeScript compile errors.
+
+In this case, if you run `npm run validate` (either in the VS Code console or terminal), you will get the following error:
+
+![Image showing error message in a terminal after running `nom run validate`](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/07-vscode-svelte-check.png)
+
+Even better, if you run it from the VS Code integrated terminal (you can open it with the <kbd>Ctrl</kbd> + <kbd>`</kbd> keyboard shortcut), <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + clicking on the file name will take you to the line containing the error.
+
+You can also run the `validate` script in watch mode with `npm run validate -- --watch`. In this case, the script will execute whenever you change any file. If you are running this in your regular terminal, you are advised to keep it running in the background in a separate terminal window of its own so that it can keep reporting errors but won't interfere with other terminal usage.
 
 
 
@@ -135,7 +188,10 @@ Once you have TypeScript configured, you can start using it from a Svelte compon
 
 
 
-1 
+
+
+
+
 
 
 
