@@ -67,12 +67,75 @@ There seem to be a broad consensus that TypeScript is particularly well-suited f
 
 In the end, it's your decision. In the following sections, we hope to give you more evidence to make up your mind about it.
 
+## Creating a Svelte TypeScript project from scratch
+
+You can start a new Svelte TypeScript project using the [standard template](https://github.com/sveltejs/template). All you have to do is run the following terminal commands (run them somewhere where you are storing your Svelte test projects -- it creates a new directory):
+```
+npx degit sveltejs/template svelte-typescript-app
+
+cd svelte-typescript-app
+
+node scripts/setupTypeScript.js
+```
+This creates a starter project that includes TypeScript support, which you can then modify as you wish.
+
+Then you'll have to tell npm to download dependencies and start the project in development mode, like we usually do:
+```
+npm install
+
+npm run dev
+```
+
+## Adding TypeScript support to an existing Svelte Project
+
+To add TypeScript support to an existing Svelte project, you can [follow these instructions](https://svelte.dev/blog/svelte-and-typescript#Adding_TypeScript_to_an_existing_project). Alternatively, you can download the [`setupTypeScript.js`](https://github.com/sveltejs/template/blob/master/scripts/setupTypeScript.js) file to a `scripts` folder inside your project's root folder, and then run `node scripts/setupTypeScript.js`.
+
+You can even use `degit` to download the script. That's what we will do to start porting our application to TypeScript.
+
+<hr>
+
+**Note**: Remember that you can run `npx degit opensas/mdn-svelte-tutorial/07-typescript-support svelte-todo-typescript` to get the complete to-do list application in JavaScript before you start porting it to TypeScript.
+
+<hr>
+
+Go to the root directory of the project and enter these commands:
+```
+npx degit sveltejs/template/script scripts     # download script file to a scripts folder
+
+node scripts/setupTypeScript.js                # run it
+```
+You will need to rerun your dependency manager to get started.
+```
+npm install          # download new dependencies
+
+npm run dev          # start the app in development mode
+```
+These instructions apply to any Svelte project you'd like to convert to TypeScript. Just take into account that the Svelte community is constantly improving Svelte TypeScript support, so you should run `npm update` regularly to take advantage of the latest changes.
+
+<hr>
+
+**Note**: If you find any trouble working with TypeScript inside a Svelte application, have a look at this [troubleshooting/FAQ section about TypeScript support](https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#troubleshooting--faq).
+
+<hr>
+
+As we said before, TypeScript is a superset of JavaScript, so your application will run without modifications. Currently you will be running a regular JavaScript application with TypeScript support enabled, without taking advantage of any of the features that TypeScript provides. You can now start adding types progressively.
+
+Once you have TypeScript configured, you can start using it from a Svelte component by adding a `<script lang="ts">` at the beginning of the script section. To use it from regular JavaScript files, just change the file extension from `.js` to `.ts`. You'll also have to update any corresponding import statements. (Don't include the `.ts` in your `import` statements. TypeScript chose to omit those extensions.)
+
+<hr>
+
+**Note**: Using TypeScript in component markup sections is [not supported yet](https://github.com/sveltejs/svelte/issues/4701). You'll have to use JavaScript from the markup, and TypeScript in the `<script lang="ts">` section.
+
+<hr>
 
 
 
 
 
 
+
+
+1 
 
 
 
