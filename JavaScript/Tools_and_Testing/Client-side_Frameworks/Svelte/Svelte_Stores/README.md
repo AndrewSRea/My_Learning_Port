@@ -601,16 +601,36 @@ Transitions can also receive parameters, like this:
 
 This is just the tip of the iceberg. Svelte has lots of options for dealing with animations and transitions. Svelte also supports specifying different transitions to apply when the element is added or removed from the DOM with the `in:fn`/`out:fn` directives, and it also allows you to define your [custom CSS](https://svelte.dev/tutorial/custom-css-transitions) and [JavaScript](https://svelte.dev/tutorial/custom-js-transitions) transitions. It also has several easing functions to specify the rate of change over time. Have a look at the [ease visualizer](https://svelte.dev/examples#easing) to explore the various ease functions available.
 
+## The code so far
 
+### Git
 
+To see the state of the code as it should be at the end of this article, access your copy of our repo like this:
+```
+cd mdn-svelte-tutorial/07-next-steps
+```
+Or directly download the folder's content:
+```
+npx degit opensas/mdn-svelte-tutorial/07-next-steps
+```
+Remember to run `npm install && npm run dev` to start your app in development mode.
 
+### REPL
 
+To see the current state of the code in a REPL, visit:
 
+[https://svelte.dev/repl/378dd79e0dfe4486a8f10823f3813190?version=3.23.2](https://svelte.dev/repl/378dd79e0dfe4486a8f10823f3813190?version=3.23.2)
 
+## Summary
 
+In this article, we added two new features: an `Alert` component and persisting `todos` to web storage.
 
+* This allowed us to showcase some advanced Svelte techniques. We developed the `Alert` component to show how to implement cross-component state management using stores. We also saw how to auto-subscribe to stores to seamlessly integrate them with the Svelte reactivity system.
+* Then we saw how to implement our own store from scratch, and also how to extend Svelte's writable store to persist data to web storage.
+* At the end, we had a look at using the Svelte `transition` directive to implement animations on DOM elements.
 
+In the next article, we will learn how to add TypeScript support to our Svelte application. To take advantage of all of its features, we will also port our entire application to TypeScript.
 
+<hr>
 
-
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Stores
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Reactivity_Lifecycle_Accessibility#advanced-svelte-reactivity-lifecycle-accessibility) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Stores#working-with-svelte-stores) - [[Next page]]()
