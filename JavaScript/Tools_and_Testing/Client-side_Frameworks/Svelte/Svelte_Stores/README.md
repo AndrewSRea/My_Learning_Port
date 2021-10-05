@@ -395,6 +395,77 @@ Update your `App.svelte` file like this:
 
 3. Try it out. Everything should work. Next, we'll see how to define our own custom stores.
 
+### How to implement a store contract: The theory
+
+You can create your own stores without relying on `svelte/store` by implementing the store contract. Its features must work like so:
+
+1. A store must contain a `subscribe()` method, which must accept as its argument a subscription function. All of a store's active subscription functions must be called whenever the store's value changes.
+2. The `subscribe()` method must return an `unsubscribe()` function, which when called must stop its subscription.
+3. A store may optionally contain a `set()` method, which must accept as its argument a new value for the store, and which synchronously calls all of the store's active subscription functions. A store with a `set()` method is called a writable store.
+
+First of all, let's add the following `console.log()` statements to our `App.svelte` component to see the `todos` store and its content in action. Add these lines below the `todos` array:
+```
+console.log('todos store - todos:', todos);
+console.log('todos store content - $todos:', $todos);
+```
+When you run the app now, you see something like this in your web console:
+
+![Image of a DevTools console showing the console.log() code shown above](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_stores/02-svelte-store-in-action.png)
+
+As you can see, our store is just an object containing `subscribe()`, `set()`, and `update()` methods, and `$todos` is our array of todos.
+
+Just for reference, here's a basic working store implemented from scratch:
+```
+export const writable = (initial_value = 0) => {
+    let value - initial_value;     // content of the store
+    let subs = [];                 // subscriber's handlers
+
+    const subscribe = (handler) => {
+        subs = [...subs, handler];                                 // add handler to the array of subscribers
+        handler(value);                                            // call handler with current value
+        return () => subs = subs.filter(sub => sub !== handler);   // return unsubscribe function
+    }
+
+    const set = (new_value) => {
+        if (value === new_value) return;     // same value, exit
+        value = new_value;                   // update value
+        subs.forEach(sub => sub(value));     // update subscribers
+    }
+
+    const update = (update_fn) => set(update_fn(value));     // update function
+
+    return { subscribe, set, update };     // store contract
+}
+```
+Here we declare `subs`, which is an array of subscribers. In the `subscribe()` method, we add the handler to the `subs` array and return a function that, when executed, will remove the handler from the array.
+
+When we call `set()`, we update the value of the store, and call each handler -- passing the new value as a parameter.
+
+Anyway, usually you don't implement stores from scratch; instead, you'd use the writable store to create [custom stores](https://svelte.dev/tutorial/custom-stores) with domain-specific logic. In the following example, we create a counter store, which will only allow us to add one to the counter or reset its value:
+```
+import { writable } from 'svelte/store';
+
+function myStore() {
+    const { subscribe, set, update } = writable(0);
+
+    return {
+        subscribe,
+        addOne: () => update(n => n + 1),
+        reset: () => set(0)
+    };
+}
+```
+If our To-Do list app gets too complex, we could let our todos store handle every state modification. We could move all the methods that modify the `todo` array (like `addTodo()`, `removeTodo()`, etc.) from our `Todos` component to the store. If you have a central place where all the state modification is applied, components could just call those methods to modify the app's state and reactively display the info exposed by the store. Having a unique place to handle state modifications makes it easier to reason about the state flow and spot issues.
+
+Svelte won't force you to organize your state management in a specific way, it just provides the tools for you to choose how to handle it.
+
+
+
+
+
+
+
+
 
 
 
