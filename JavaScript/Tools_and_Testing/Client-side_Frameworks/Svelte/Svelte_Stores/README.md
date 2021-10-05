@@ -559,6 +559,48 @@ Using `localStore('mdn-svelte-todo', initialTodos)`, we are configuring the stor
 
 Svelte stores provide a very simple and lightweight but extremely powerful way to handle complex app state from a global data store in a reactive way. And because Svelte compiles our code, it can provide the [`$store` auto-subscription syntax](https://svelte.dev/docs#4_Prefix_stores_with_%24_to_access_their_values) that allows us to work with stores in the same way as local variables. Because stores has a minimal API, it's very simple to create our custom stores to abstract away the inner workings of the store itself.
 
+## Bonus track: Transitions
+
+Let's change the subject now, and do something fun and different -- let's add an animation to our alerts. Svelte provides a whole module to define [transitions](https://svelte.dev/tutorial/transition) and [animations](https://svelte.dev/tutorial/animate) so we can make our user interfaces more appealing.
+
+A transition is applied with the [`transition:fn`](https://svelte.dev/docs#transition_fn) directive, and is triggered by an element entering or leaving the DOM as a result of a state change. The `svelte/transition` module exports seven functions: `fade`, `blur`, `fly`, `slide`, `scale`, `draw`, and `crossfade`.
+
+Let's give our `Alert` component a `fly` transition. We'll open the `Alert.svelte` file and import the `fly` function from the `svelte/transition` module.
+
+1. Put the following `import` statement below the existing ones:
+```
+import { fly } from 'svelte/transition';
+```
+
+2. To use it, update your opening `<div>` tag like so:
+```
+<div role="alert" on:click={() => visible = false}
+    transition:fly
+>
+```
+Transitions can also receive parameters, like this:
+```
+<div role="alert" on:click={() => visible = false}
+    transition:fly="{{delay: 250, duration: 300, x: 0, y: -100, opacity: 0.5}}"
+>
+```
+
+<hr>
+
+**Note**: The double curly braces are not special Svelte syntax. It's just a literal JavaScript object being passed as a parameter to the `fly` transition.
+
+<hr>
+
+3. Try your app out again -- you'll see that the notifications now look a bit more appealing.
+
+<hr>
+
+**Note**: Being a compiler allows Svelte to optimize the size of our bundle by excluding features that are not used. In this case, if we compile our app for production with `npm run build`, our `public/build/bundle.js` file will weigh a little less than 22KB. If we remove the `transition:fly` directive, Svelte isn't smart enough to realize the `fly` function is not being used and the `bundle.js` file size will drop down to just 18KB.
+
+<hr>
+
+This is just the tip of the iceberg. Svelte has lots of options for dealing with animations and transitions. Svelte also supports specifying different transitions to apply when the element is added or removed from the DOM with the `in:fn`/`out:fn` directives, and it also allows you to define your [custom CSS](https://svelte.dev/tutorial/custom-css-transitions) and [JavaScript](https://svelte.dev/tutorial/custom-js-transitions) transitions. It also has several easing functions to specify the rate of change over time. Have a look at the [ease visualizer](https://svelte.dev/examples#easing) to explore the various ease functions available.
+
 
 
 
