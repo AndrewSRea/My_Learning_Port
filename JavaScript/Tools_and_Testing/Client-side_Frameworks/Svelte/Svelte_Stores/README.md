@@ -459,6 +459,107 @@ If our To-Do list app gets too complex, we could let our todos store handle ever
 
 Svelte won't force you to organize your state management in a specific way, it just provides the tools for you to choose how to handle it.
 
+### Implementing our custom todos store
+
+Out To-Do list app is not particularly complex, so we won't move all our modification methods into a central place. WE'll just leave them as they are, and instead concentrate on persisting out todos.
+
+<hr>
+
+**Note**: If you are following this guide by working from the Svelte REPL, you won't be able to complete this step. For security reasons, the Svelte REPL works in a sandboxed environment which will not let you access web storage, and you will get a "The operation is insecure" error. In order to follow this section, you'll have to clone the repo and go to the `mdn-svelte-tutorial/06-stores` folder, or you can directly download the folder's content with `npx degit opensas/mdn-svelte-tutorial/06-stores`.
+
+<hr>
+
+So, to implement a custom store that saves its content to web storage, we will need a writable store that:
+
+* Initially reads the value from web storage, and if it's not present, initializes it with default value.
+* Whenever the value is modified, updates the store itself and also the data in local storage.
+
+Moreover, because web storage only supports saving string values, we will have to convert from object to string when saving, and vice versa when we are loading the value from local storage.
+
+1. Create a new file called `localStore.js` in your `src` directory.
+
+2. Give it the following content:
+```
+import { writable } from 'svelte/store';
+
+export const localStore = (key, initial) => {                    // receives the key of the local storage and an initial value
+    
+    const toString = (value) => JSON.stringify(value, null, 2);  // helper function
+    const toObj = JSON.parse;                                    // helper function
+
+    if (localStorage.getItem(key) === null) {                    // item not present in local storage
+        localStorage.setItem(key, toString(initial));            // initialize local storage with initial value
+    }
+
+    const saved = toObj(localStorage.getItem(key));              // convert to object
+ 
+    const { subscribe, set, update } = writable(saved);          // create the underlying writable store
+
+    return {
+        subscribe,
+        set: (value) => {
+            localStorage.setItem(key, toString(value));          // save also to local storage as a string
+            return set(value);
+        },
+        update
+    }
+}
+```
+
+* Our `localStore` function will be a function that, when executed, initially reads its content from web storage, and returns an object with three methods: `subscribe()`, `set()`, and `update()`.
+* When we create a new `localStore`, we'll have to specify the key of the web storage and an initial value. We then check if the value exists in web storage and, if not, we create it.
+* We use the [`localStorage.getItem(key)`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem) and [`localStorage.setItem(key, value)`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem) methods to read and write information to web storage, and the [`toString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString) and `toObj()` (which uses [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)) helper functions to convert the values.
+* Next, we convert the string content received from the web storage to an object, and save that object in our store.
+* Finally, every time we update the contents of the store, we also update the web storage, with the value converted to a string.
+
+Notice that we only had to redefine the `set()` method, adding the operation to save the value to web storage. The rest of the code is mostly initializing and converting stuff.
+
+3. Now we will use our local store from `stores.js` to create our locally persisted todos store.
+
+Update `stores.js` like so:
+```
+import { writable } from 'svelte/store';
+import { localStore } from './localStore.js';
+
+export const alert = writable('Welcome to the To-Do list app!');
+
+const initialTodos = [
+    { id: 1, name: 'Visit MDN web docs', completed: true },
+    { id: 2, name: 'Complete the Svelte tutorial', completed: false },
+]
+
+export const todos = localStore('mdn-svelte-todo', initialTodos);
+```
+Using `localStore('mdn-svelte-todo', initialTodos)`, we are configuring the store to save the data in web storage under the key `mdn-svelte-todo`. We also set a couple of todos as initial values.
+
+4. Now let's get rid of the hardcoded todos in `App.svelte`. Update its contents like this -- we are basically just deleting the `$todos` array and the `console.log()` statements:
+```
+<script>
+    import Todos from './components/Todos.svelte';
+    import Alert from './components/Alert.svelte';
+
+    import { todos } from './stores.js';
+</script>
+
+<Alert />
+<Todos bind:todos={$todos} />
+```
+
+<hr>
+
+**Note**: This is the only change we have to make in order to use our custom store. `App.svelte` is completely transparent in terms of what kind of store we are using.
+
+<hr>
+
+5. Go ahead and try your app again. Create a few todos and then close the browser. You may even stop the Svelte server and restart it. Upon revisiting the URL, your todos will still be there.
+
+6. You can also inspect it in the DevTools console. In the web console, enter the command `localStorage.getItem('mdn-svelte-todo')`. Make some changes to your app, like pressing the *Uncheck All* button, and check the web storage content once more. You will get something like this:
+
+![Image of the moz-todo-svelte app and the DevTools Inspector side-by-side](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_stores/03-persisting-todos-to-local-storage.png)
+
+Svelte stores provide a very simple and lightweight but extremely powerful way to handle complex app state from a global data store in a reactive way. And because Svelte compiles our code, it can provide the [`$store` auto-subscription syntax](https://svelte.dev/docs#4_Prefix_stores_with_%24_to_access_their_values) that allows us to work with stores in the same way as local variables. Because stores has a minimal API, it's very simple to create our custom stores to abstract away the inner workings of the store itself.
+
+
 
 
 
