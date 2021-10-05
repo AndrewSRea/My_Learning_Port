@@ -30,7 +30,7 @@ Unfortunately, [TypeScript support is not yet available in the REPL](https://git
 
 ## TypeScript: optional static typing for JavaScript
 
-[TypeScript]() is a superset of JavaScript that provides features such as optional static typing, classes, interfaces, and generics. The goal of TypeScript is to help catch mistakes early through its type system and make JavaScript development more efficient. One of the big benefits is enabling IDEs ([Integrated Development Environment](https://en.wikipedia.org/wiki/Integrated_development_environment))to provide a richer environment for spotting common errors as you type the code.
+[TypeScript]() is a superset of JavaScript that provides features such as optional static typing, classes, interfaces, and generics. The goal of TypeScript is to help catch mistakes early through its type system and make JavaScript development more efficient. One of the big benefits is enabling IDEs ([Integrated Development Environment](https://en.wikipedia.org/wiki/Integrated_development_environment)) to provide a richer environment for spotting common errors as you type the code.
 
 Best of all, JavaScript code is valid TypeScript code; TypeScript is a superset of JavaScript. You can rename most of your `.js` files to `.ts` files and they will still work.
 
