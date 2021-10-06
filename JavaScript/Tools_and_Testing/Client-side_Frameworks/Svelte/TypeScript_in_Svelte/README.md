@@ -592,6 +592,119 @@ Warn: Parameter 'node' implicitly has an 'any' type, but a better type may be in
 ```
 We just have to define the node variable to be of type `HTMLElement`. In the two lines indicated above, replace the first instance of `node` with `node: HTMLElement`.
 
+### actions.js
+
+Next, we'll take care of the `actions.js` file.
+
+1. Rename it to `actions.ts` and add the type of the node parameter. It should end up looking like this:
+```
+// actions.ts
+export function selectOnFocus(node: HTMLInputElement) {
+    if (node && typeof node.select === 'function') {                    // make sure node is defined and has a select() method
+        const onFocus = () => node.select();                            // event handler
+        node.addEventListener('focus', onFocus);                        // when node gets focus call onFocus()
+        return {
+            destroy: () => node.removeEventListener('focus', onFocus);  // this will be executed when the node is removed from the DOM
+        }
+    }
+}
+```
+
+2. Now update `Todo.svelte` and `NewTodo.svelte` where we import the actions file. Remember that imports in TypeScript don't include the file extension. In each case, it should end up like this:
+```
+import { selectOnFocus } from '../actions';
+```
+
+### Migrating the stores to TypeScript
+
+Now we have to migrate the `stores.js` and `localStore.js` files to TypeScript.
+
+Tip: The script `npm run validate`, which uses the [`svelte-check`](https://github.com/sveltejs/language-tools/tree/master/packages/svelte-check) tool, will only check our application's `.svelte` files. If you want to also check the `.ts` files, you can run `npm run validate && npx tsc --noemit`, which tells the TypeScript compiler to check for errors without generating the `.js` output files. You could even add a script to your `package.json` file that runs that command.
+
+We'll start with `stores.js`.
+
+1. Rename the file to `stores.ts`.
+
+2. Set the type of our `initialTodos` array to `TodoType[]`. This is how the contents will end up:
+```
+// stores.js
+import { writable } from 'svelte/store';
+import { localStore } from './localStore.js';
+import type { TodoType } from './types/todo.type';
+
+export const alert = writable('Welcome to the To-Do list app!');
+
+const initialTodos: TodoType[] - [
+    { id: 1, name: 'Visit MDN web docs', completed: true },
+    { id: 2, name: 'Complete the Svelte tutorial', completed: false },
+]
+
+export const todos = localStore('mdn-svelte-todo', initialTodos);
+```
+
+3. Remember to update the `import` statements in `App.svelte`, `Alert.svelte`, and `Todos.svelte`. Just remove the `.js` extension, like this:
+```
+import { todos } from '../stores';
+```
+
+Now onto `localStorage.js`.
+
+Update the `import` statement in `stores.ts`, like so:
+```
+import { localStore } from './localStore';
+```
+
+1. Start by renaming the file to `localStore.ts`.
+
+2. TypeScript is telling us to specify the type of the `key`, `initial`, and `value` variables. The first one is easy -- the key of our local web storage should be a string.
+
+But `initial` and `value` should be any object that could be converted to a valid JSON string with the [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) method. So it is in fact any JavaScript object with a couple limitations -- for example, `undefined`, functions, and symbols are not valid JSON values.
+
+So we'll create the type `JsonValue` to specify these conditions.
+
+Create the file `json.type.ts` in the `types` folder.
+
+3. Give it the following content:
+```
+export type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+```
+The `|` operator lets us declare variables that could store values of two or more types. A `JsonValue` could be a string, a number, a boolean, and so on. In this case, we are also making use of recursive types, to specify that a `JsonValue` can have an array of `JsonValue`, and also an object with properties of type `JsonValue`.
+
+4. We will import our `JsonValue` type and use it accordingly. Update your `localStore.ts` file like this:
+```
+// localStore.ts
+import { writable } from 'svelte/store';
+
+import type { JsonValue } from './types/json.type';
+
+export const localStore = (key: string, initial: JsonValue) => {             // receives the key of the local storage and an initial value
+
+    const toString = (value: JsonValue) => JSON.stringify(value, null, 2);   // helper function
+    const toObj = JSON.parse;                                                // helper function
+
+    if (localStorage.getItem(key) === null) {                                // item not present in local storage
+        localStorage.setItem(key, toString(initial));                        // initialize local storage with initial value
+    }
+
+    const saved = toObj(localStorage.getItem(key));                          // convert to object
+
+    const { subscribe, set, update } = writable(saved);                      // create the underlying writable store
+
+    return {
+        subscribe,
+        set: (value: JsonValue) => {
+            localStorage.setItem(key, toString(value));                      // save also to local storage as a string
+            return set(value);
+        },
+        update
+    }
+}
+```
+
+Now if we try to create a `localStore` with something that cannot be converted to JSON via `JSON.stringify()` -- for example, an object with a function as a property, VS Code/`validate` will complain about it:
+
+![Image of a VS Code warning message about inability of converting JSON data](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/11-vscode-invalid-store.png)
+
 
 
 
