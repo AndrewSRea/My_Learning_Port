@@ -569,7 +569,7 @@ export let todo: TodoType;
 
 3. The first warning we get is TypeScript telling us to define the type of the `update()` function's `updatedTodo` variable. This can be a little tricky because `updatedTodo` contains only the attributes of the todo that have been updated. That means it's not a complete todo -- it only has a subset of a todo's properties.
 
-For these kinds of cases, TypeScript provides several [utility types]() to make it easier to apply these common transformations. What we need right now is the [`Partial<T>`]() utility, which allows us to represent all subsets of a given type. The partial utility returns a new type based on the type `T`, where every property of `T` is optional.
+For these kinds of cases, TypeScript provides several [utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html) to make it easier to apply these common transformations. What we need right now is the [`Partial<T>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialt) utility, which allows us to represent all subsets of a given type. The partial utility returns a new type based on the type `T`, where every property of `T` is optional.
 
 We'll use it in the `update()` function -- update yours like so:
 ```
