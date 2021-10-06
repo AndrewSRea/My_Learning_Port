@@ -182,6 +182,172 @@ Even better, if you run it from the VS Code integrated terminal (you can open it
 
 You can also run the `validate` script in watch mode with `npm run validate -- --watch`. In this case, the script will execute whenever you change any file. If you are running this in your regular terminal, you are advised to keep it running in the background in a separate terminal window of its own so that it can keep reporting errors but won't interfere with other terminal usage.
 
+## Creating a custom type
+
+TypeScript supports structural typing. Structural typing is a way of relating types based solely on their members, even if you do not explicitly define the type.
+
+We'll define a `TodoType` type to see how TypeScript enforces that anything passed to a component expecting a `TodoType` will be structurally compatible with it.
+
+1. Inside the `src` folder, create a `types` folder.
+
+2. Add a `todo.type.ts` file inside it.
+
+3. Give `todo.type.ts` the following content:
+```
+export type TodoType = {
+    id: number,
+    name: string,
+    completed: boolean
+}
+```
+
+<hr>
+
+**Note**: The Svelte template uses [svelte-preprocess](https://github.com/sveltejs/svelte-preprocess) 4.0.0 to support TypeScript. From that version onward, you have to use `export`/`import` type syntax to import types and interfaces. Check [this section of the troubleshooting guide](https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#how-do-i-import-interfaces-into-my-svelte-components-i-get-errors-after-transpilation) for more information.
+
+<hr>
+
+4. Now we'll use `TodoType` from our `Todo.svelte` component. First, add the `lang="ts"` to our `<script>` tag.
+
+5. Let's `import` the type and use it to declare the `todo` property. Replace the `export let todo` line with the following:
+```
+import type { TodoType } from '../types/todo.type';
+
+export let todo: TodoType;
+```
+
+<hr>
+
+**Note**: Another reminder -- when importing a `.ts` file, you have to omit the extension. Check the [`import` section](https://www.typescriptlang.org/docs/handbook/modules.html#import) of the TypeScript manual for more information.
+
+<hr>
+
+6. Now from `Todos.svelte`, we will instantiate a Todo component with a literal object as its parameter before the call to the `MoreActions` component, like this:
+```
+<hr />
+
+<Todo todo={ { name: 'a new task with no id!', completed: false } } />
+
+<!-- MoreActions -->
+<MoreActions {todos} />
+```
+
+7. Add the `lang="ts"` to the `<script>` tag of the `Todos.svelte` component, so that it knows to use the type checking we have specified.
+
+We will get the following error:
+```
+Property 'id' is missing in type '{ name: string; completed: false; }' but required in type 'TodoType'.
+```
+By now, you should get an idea about the kind of assistance we can get from TypeScript when building Svelte projects.
+
+Now we will undo these changes in order to start porting our application to TypeScript, so we won't be bothered with all the validate warnings.
+
+1. Remove the flawed todo and the `lang="ts"` attribute from the `Todos.svelte` file.
+2. Also, remove the import of `TodoType` and the `lang="ts"` from `Todo.svelte`.
+
+We'll take care of them properly, later on.
+
+## Porting our to-do list app to TypeScript
+
+Now we are ready to start porting our to-do list application to take advantage of all the features that TypeScript offers us.
+
+Let's start by running the validate script in watch mode inside your project root:
+```
+npm run validate -- --watch
+```
+This should output something like the following:
+```
+svelte-check "--watch"
+
+Loading svelte-check in workspace: ./svelte-todo-typescript
+Getting Svelte diagnostics...
+====================================
+svelte-check found no errors and no warnings
+```
+Note that if you are using a supporting code editor like VS Code, a simple way to start porting a Svelte component is to just add the `<script lang="ts">` at the top of your component and look for the three-dotted hints:
+
+![Image of VS Code window showing code hint suggestions](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/09-vscode-alert-hints.png)
+
+### Alert.svelte
+
+Let's start with our `Alert.svelte` component.
+
+1. Add `lang="ts"` into your `Alert.svelte` component's `<script>` tag. You'll see some warnings in the output of the `validate` script:
+```
+$ npm run validate -- --watch
+> svelte-check "--watch"
+
+./svelte-todo-typescript
+Getting Svelte diagnostics...
+====================================
+
+./svelte-todo-typescript/src/components/Alert.svelte:8:7
+Warn: Variable 'visible' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+    let visible
+
+./svelte-todo-typescript/src/components/Alert.svelte:9:7
+Warn: Variable 'timeout' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+    let timeout
+
+./svelte-todo-typescript/src/components/Alert.svelte:11:28
+Warn: Parameter 'message' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+Change = (message, ms) => {
+
+./svelte-todo-typescript/src/components/Alert.svelte:11:37
+Warn: Parameter 'ms' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+(message, ms) => {
+```
+
+2. You can fix these by specifying the corresponding types, like so:
+```
+export let ms = 3000;
+
+    let visible: boolean;
+    let timeout: number;
+
+    const onMessageChange = (message: string, ms: number) => {
+        clearTimeout(timeout)
+        if (!message) {             // hide Alert if message is empty
+```
+
+<hr>
+
+**Note**: There's no need to specify the `ms` type with `export let ms:number = 3000` because TypeScript is already inferring it from its default value.
+
+<hr>
+
+### MoreActions.svelte
+
+Now we'll do the same for the `MoreActions.svelte` component.
+
+1. Add the `lang="ts"` attribute, like before. TypeScript will warn us about the `todos` prop and the `t` variable in the call to `todos.filter(t => ...)`.
+```
+Warn: Variable 'todos' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+    export let todos
+
+Warn: Parameter 't' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+    $: completedTodos = todos.filter(t => t.completed).length
+```
+
+2. We will use the `TodoType` we already defined to tell TypeScript that `todos` is a `TodoType` array -- replace your `export let todos` line with the following:
+```
+import type { TodoType } from '../types/todo.type';
+
+export let todos: TodoType[];
+```
+Notice that now TypeScript can infer that the `t` variable in `todos.filter(t => t.completed)` is of type `TodoType`. Nevertheless, if we think it makes our code easier to read, we could specify it like this:
+```
+$: completedTodos = todos.filter((t: TodoType) => t.completed).length
+```
+Most of the time, TypeScript will be able to correctly infer the reactive variable type, but sometimes you might get an "implicitly has 'any' type" error when working with reactive assignments. In those cases, you can declare the typed variable in a different statement, like this:
+```
+let completedTodos: number
+$: completedTodos = todos.filter((t: TodoType) => t.completed).length
+```
+You can't specify the type in the reactive assignment itself. The following statement `$: completedTodos: number = todos.filter[...]` is invalid. For more information, read [How do I type reactive assignments? / I get an "implicitly has type 'any' error"](https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#how-do-i-type-reactive-assignments--i-get-an-implicitly-has-type-any-error).
+
+### FilterButton.svelte
+
 
 
 
