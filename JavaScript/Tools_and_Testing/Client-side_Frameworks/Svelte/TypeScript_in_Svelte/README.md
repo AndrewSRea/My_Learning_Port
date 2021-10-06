@@ -496,6 +496,102 @@ Update your `<script>` section to look like this:
 </script>
 ```
 
+### Todos.svelte
+
+We are encountering the following errors related to passing `todos` to the `TodosStatus.svelte` (and `Todo.svelte`) components:
+```
+./src/components/Todos.svelte:70:39
+Error: Type 'TodoType[]' is not assignable to type 'undefined'. (ts)
+    <TodosStatus bind:this={todosStatus} {todos} />
+
+./src/components/Todos.svelte:76:12
+Error: Type 'TodoType' is not assignable to type 'undefined'. (ts)
+    <Todo {todo}
+```
+This is because the `todos` prop in the `TodosStatus` component has no default value, so TypeScript has inferred it to be of type `undefined`, which is not compatible with an array of `TodoType`. The same thing is happening with our Todo component.
+
+Let's fix it.
+
+1. Open the file `TodosStatus.svelte` and add the `lang="ts"` attribute.
+
+2. Then import the `TodoType` and declare the `todos` prop as an array of `TodoType`. Replace the first line of the `<script>` section with the following:
+```
+import type { TodoType } from '../types/todo.type';
+
+export let todos: TodoType[];
+```
+
+3. We will also specify the `headingEl`, which we used to bind to the heading tag, as an `HTMLElement`. Update the `let headingEl` line with the following:
+```
+let headingEl: HTMLElement
+```
+
+4. Finally, you'll notice the following error reported, related to where we set the `tabindex` attribute. That's because TypeScript is type-checking the `<h2>` element and expects `tabindex` to be of type `number`.
+```
+(JSX attribute) svelte.JSX.HTMLAttributes<HTMLHeadingElement>.tabindex ?: number
+
+Type 'string' is not assignable to type 'number'. ts(2322)
+```
+To fix it, replace `tabindex="-1"` with `tabindex={-1}`, like this:
+```
+<h2 id="list-heading" bind:this={headingEl} tabindex={-1}>{completedTodos} out of {totalTodos} items completed.</h2>
+```
+This way TypeScript can prevent us from incorrectly assigning it to a string variable.
+
+### NewTodo.svelte
+
+Next, we will take care of `NewTodo.svelte`.
+
+1. As usual, add the `lang="ts"` attribute.
+
+2. The warning will indicate that we have to specify a type for the `nameEl` variable. Set its type to `HTMLElement` like this:
+```
+let nameEl: HTMLElement     // reference to the name input DOM node
+```
+
+3. Last for this file, we need to specify the correct type for our `autofocus` variable. Update its definition like this:
+```
+export let autofocus: boolean = false;
+```
+
+### Todo.svelte
+
+Now the only warnings that `npm run validate` emits are triggered by calling the `Todo.svelte` component. Let's fix them.
+
+1. Open the `Todo.svelte` file, and add the `lang="ts"` attribute.
+
+2. Let's import the `TodoType`, and set the type of the `todo` prop. Replace the `export let todo` line with the following:
+```
+import type { TodoType } from '../types/todo.type';
+
+export let todo: TodoType;
+```
+
+3. The first warning we get is TypeScript telling us to define the type of the `update()` function's `updatedTodo` variable. This can be a little tricky because `updatedTodo` contains only the attributes of the todo that have been updated. That means it's not a complete todo -- it only has a subset of a todo's properties.
+
+For these kinds of cases, TypeScript provides several [utility types]() to make it easier to apply these common transformations. What we need right now is the [`Partial<T>`]() utility, which allows us to represent all subsets of a given type. The partial utility returns a new type based on the type `T`, where every property of `T` is optional.
+
+We'll use it in the `update()` function -- update yours like so:
+```
+function update(updatedTodo: Partial<TodoType>) {
+    todo = { ...todo, ...updatedTodo };   // applies modifications to todo
+    dispatch('update', todo);             // emit update event
+}
+```
+With this, we are telling TypeScript that the `updatedTodo` variable will hold a subset of the `TodoType` properties.
+
+4. Now svelte-check tells us that we have to define the type of our action function parameters:
+```
+./src/components/Todo.svelte:45:24
+Warn: Parameter 'node' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+    const focusOnInit = (node) => node && typeof node.focus === 'function' && node.focus();
+
+./src/components/Todo.svelte:47:28
+Warn: Parameter 'node' implicitly has an 'any' type, but a better type may be inferred from usage. (ts)
+    const focusEditButton = (node) => editButtonPressed && node.focus();
+```
+We just have to define the node variable to be of type `HTMLElement`. In the two lines indicated above, replace the first instance of `node` with `node: HTMLElement`.
+
 
 
 
