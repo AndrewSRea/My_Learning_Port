@@ -207,6 +207,12 @@ export type TodoType = {
 
 <hr>
 
+**Personal note**: After following the instructions above, and adding `lang="ts"` attributes to various files as instructed below, I started receiving multiple error messages in my terminal for each of the components in which I added the `lang="ts"` attribute -- many of which are not described below.
+
+So I have decided not to add TypeScript to my Svelte To-Do app for this reason. I may try to create this app again in a separate folder and try to add TypeScript to that second app.
+
+<hr>
+
 4. Now we'll use `TodoType` from our `Todo.svelte` component. First, add the `lang="ts"` to our `<script>` tag.
 
 5. Let's `import` the type and use it to declare the `todo` property. Replace the `export let todo` line with the following:
@@ -348,6 +354,147 @@ You can't specify the type in the reactive assignment itself. The following stat
 
 ### FilterButton.svelte
 
+Now we'll take care of the `FilterButton` component.
+
+1. Add the `lang="ts"` attribute to the `<script>` tag, as usual. You'll notice there are no warnings -- TypeScript infers the type of the filter variable from the default value. But we know that there are only three values for the filter: all, active, and completed. So we can let TypeScript know about them by creating an enum Filter.
+
+2. Create a `filter.enum.ts` file in the `types` folder.
+
+3. Give it the following contents:
+```
+export enum Filter {
+    ALL = 'all',
+    ACTIVE = 'active',
+    COMPLETED = 'completed',
+}
+```
+
+4. Now we will use this from the `FilterButton` component. Replace the content of the `FilterButton.svelte` file with the following:
+```
+<!-- components/FilterButton.svelte -->
+<script lang="ts">
+    import { Filter } from '../types/filter.enum';
+
+    export let filter: Filter = Filter.ALL;
+</script>
+
+<div class="filters btn-group stack-exception">
+    <button class="btn toggle-btn" class:btn__primary={filter === Filter.ALL} aria-pressed={filter === Filter.ALL} on:click={()=> filter = Filter.ALL} >
+        <span class="visually-hidden">Show</span>
+        <span>All</span>
+        <span class="visually-hidden">tasks</span>
+    </button>
+    <button class="btn toggle-btn" class:btn__primary={filter === Filter.ACTIVE} aria-pressed={filter === Filter.ACTIVE} on:click={()=> filter = Filter.ACTIVE} >
+        <span class="visually-hidden">Show</span>
+        <span>Active</span>
+        <span class="visually-hidden">tasks</span>
+    </button>
+    <button class="btn toggle-btn" class:btn__primary={filter === Filter.COMPLETED} aria-pressed={filter === Filter.COMPLETED} on:click={()=> filter = Filter.COMPLETED} >
+        <span class="visually-hidden">Show</span>
+        <span>Completed</span>
+        <span class="visually-hidden">tasks</span>
+    </button>
+</div>
+```
+Here we are just importing the `Filter` enum, and using it instead of the string values we used previously.
+
+### Todos.svelte
+
+We will also use the `Filter` enum in the `Todos.svelte` component.
+
+1. First, add the `lang="ts"` attribute to it, as before.
+
+2. Next, import the `Filter` enum -- add the following `import` statement below your existing ones:
+```
+import { Filter } from '../types/filter.enum';
+```
+
+3. Now we will use it whenever we reference the current filter. Replace your two filter-related blocks with the following:
+```
+let filter: Filter = Filter.ALL;
+    const filterTodos = (filter: Filter, todos) =>
+        filter === Filter.ACTIVE ? todos.filter(t => !t.completed) :
+        filter === Filter.COMPLETED ? todos.filter(t => t.completed) :
+        todos
+
+$: {
+    if (filter === Filter.ALL)              $alert = 'Browsing all todos'
+    else if (filter === Filter.ACTIVE)      $alert = 'Browsing active todos'
+    else if (filter === Filter.COMPLETED)   $alert = 'Browsing completed todos'
+}
+```
+
+4. `validate` will still give us some warnings from `Todos.svelte`. Let's fix them.
+
+Start by importing the `TodoType` and telling TypeScript that our `todos` variable is an array of `TodoType`. Replace `export let todos = []` with the following two lines:
+```
+import type { TodoType } from '../types/todo.type';
+
+export let todos: TodoType[] = [];
+```
+
+5. Next, we'll specify all the missing types. The variable `todoStatus`, which we used to programmatically access the methods exposed by the `TodosStatus` component, is of type `TodosStatus`. And each `todo` will be of type `TodoType`.
+
+Update your `<script>` section to look like this:
+```
+<script lang="ts">
+    import FilterButton from './FilterButton.svelte';
+    import Todo from './Todo.svelte';
+    import MoreActions from './MoreActions.svelte';
+    import NewTodo from './NewTodo.svelte';
+    import TodosStatus from './TodosStatus.svelte';
+    import { alert } from '../stores';
+
+    import { Filter } from '../types/filter.enum';
+
+    import type { TodoType } from '../types/todo.type';
+
+    export let todos: TodoType[] = [];
+
+    let todosStatus: TodosStatus;     // reference to TodosStatus instance
+
+    $: newTodoId = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1
+
+    function addTodo(name: string) {
+        todos = [...todos, { id: newTodoId, name, completed: false}];
+        $alert = `Todo '${name}' has been added`;
+    }
+
+    function removeTodo(todo: TodoType) {
+        todos = todos.filter(t => t.id !== todo.id);
+        todosStatus.focus();     // give focus to status heading
+        $alert = `Todo '${todo.name}' has been deleted`;
+    }
+
+    function updateTodo(todo: TodoType) {
+        const i = todos.findIndex(t => t.id === todo.id);
+        if (todos[i].name !== todo.name)            $alert = `todo '${todos[i].name}' has been renamed to '${todo.name}'`
+        if (todos[i].completed !== todo.completed)  $alert = `todo '${todos[i].name}' marked as ${todo.completed ? 'completed' : 'active'}`
+        todos[i] = { ...todos[i], ...todo }
+    }
+
+    let filter: Filter = Filter.ALL;
+    const filterTodos = (filter: Filter, todos: TodoType[]) =>
+        filter === Filter.ACTIVE ? todos.filter(t => !t.completed) :
+        filter === Filter.COMPLETED ? todos.filter(t => t.completed) :
+        todos
+
+    $: {
+        if (filter === Filter.ALL)              $alert = 'Browsing all todos'
+        else if (filter === Filter.ACTIVE)      $alert = 'Browsing active todos'
+        else if (filter === Filter.COMPLETED)   $alert = 'Browsing completed todos'
+    }
+
+    const checkAllTodos = (completed: boolean) => {
+        todos = todos.map(t => ({...t, completed}));
+        $alert = `${completed ? 'Checked' : 'Unchecked'} ${todos.length} todos`;
+    }
+    const removeCompletedTodos = () => {
+        $alert = `Removed ${todos.filter(t => t.completed).length} todos`;
+        todos = todos.filter(t => !t.completed);
+    }
+</script>
+```
 
 
 
