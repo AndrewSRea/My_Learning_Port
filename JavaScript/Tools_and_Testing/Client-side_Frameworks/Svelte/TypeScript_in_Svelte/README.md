@@ -781,9 +781,9 @@ export class StringStack {
 ```
 That would work. But if we wanted to work with numbers, we would then have to duplicate our code and create a `NumberStack` class. And how could we handle a stack of types we don't know yet, and that should be defined by the consumer?
 
-To solve all these problems, we can use Generics.
+To solve all these problems, we can use generics.
 
-This is our `Stack` class reimplemented using Generics:
+This is our `Stack` class reimplemented using generics:
 ```
 export class Stack<T> {
     private elements: T[] = [];
@@ -796,7 +796,120 @@ export class Stack<T> {
     }
 }
 ```
+We define a generic type `T` and then use it like we would normally use a specific type. Now `elements` is an array of type `T`, and `push()` and `pop()` both receive and return a variable ot type `T`.
 
+This is how we would use our generic `Stack`:
+```
+const numberStack = new Stack<number>();
+numberStack.push(1);
+```
+Now TypeScript knows that our stack can only accept numbers, and will issue an error it we try to push anything else:
+
+![Image of DevTools error message showing error due to a string being pushed instead of a number](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/12-vscode-generic-stack-error.png)
+
+TypeScript can also infer generic types by its usage. Generics also support default values and constraints.
+
+Generics is a powerful feature that allows our code to abstract away from the specific types being used, making it more reusable and generic without giving up on type-safety. To learn more about it, check out the [TypeScript Introduction to Generics](https://www.typescriptlang.org/docs/handbook/generics.html).
+
+### Using Svelte stores with Generics
+
+Svelte stores support Generics out of the box. And because of the generic type inference, we can take advantage of it without even touching our code.
+
+If you open the file `Todos.svelte` and assign a `number` type to our `$alert` store, you'll get the following error:
+
+![Image of a VS Code error message showing error due to a number being passed as a string](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/13-vscode-generic-alert-error.png)
+
+That's because when we defined our alert store in the `stores.ts` file with:
+```
+export const alert = writable('Welcome to the To-Do list app!');
+```
+TypeScript inferred the generic type to be `string`. If we wanted to be explicit about it, we could do the following:
+```
+export const alert = writable<string>('Welcome to the To-Do list app!');
+```
+Now we'll make our `localStore` store support generics. Remember that we defined the `JsonValue` type to prevent the usage of our `localStore` store with values that cannot be persisted using `JSON.stringify()`. Now we want the consumers of `localStore` to be able to specify the type of data to persist but instead of working with any type, they should comply with the `JsonValue` type. We'll specify that with a Generic constraint, like this:
+```
+export const localStore = <T extends JsonValue>(key: string, initial: T);
+```
+We define a generic type `T` and specify that it must be compatible with the `JsonValue` type. Then we'll use the `T` type appropriately.
+
+Our `localStore.ts` file will end up like this -- try the new code now in your version:
+```
+// localStore.ts
+import { writable } from 'svelte/store';
+
+import type { JsonValue } from './types/json.type';
+
+export const localStore = <T extends JsonValue>(key: string, initial: T) => {   // receives the key of the local storage and an initial value
+    
+    const toString = (value: T) => JSON.stringify(value, null, 2);   // helper function
+    const toObj = JSON.parse;                                        // helper function
+
+    if (localStorage.getItem(key) === null) {                        // item not present in local storage
+        localStorage.setItem(ley, toString(initial));                // initialize local storage with initial value
+    }
+
+    const saved = toObj(localStorage.getItem(key));                  // convert to object
+
+    const { subscribe, set, update } = writable<T>(saved);           // create the underlying writable store
+
+    return {
+        subscribe,
+        set: (value: T) => {
+            localStorage.setItem(key, toString(value));              // save also to local storage as a string
+            return set;
+        },
+        update
+    }
+}
+```
+And thanks to generic type inference, TypeScript already knows that our `$todos` store should contain an array of `TodoType`, with this error message:
+```
+Type '{ id: number; name: string; complete: false; }' is not assignable to type 'TodoType'.
+    Object literal may only specify known properties, but 'complete' does not exist in type 'TodoType'. Did you mean to write 'completed'? ts(2322)
+```
+Once again, if we wanted to be explicit about it, we could do so in the `stores.ts` file like this:
+```
+const initialTodos: TodoType[] = [
+    { id: 1, name: 'Visit MDN web docs', completed: true },
+    { id: 2, name: 'Complete the Svelte tutorial', completed: false },
+]
+
+export const todos = localStore<TodoType[]>('mdn-svelte-todo', initialTodos);
+```
+That will do for our brief tour of TypeScript Generics.
+
+## The code so far
+
+### Git
+
+To see the state of the code as it should be at the end of this article, access your copy of our repo like this:
+```
+cd mdn-svelte-tutorial/08-next-steps
+```
+Or directly download the folder's content:
+```
+npx degit opensas/mdn-svelte-tutorial/08-next-steps
+```
+Remember to run `npm install && npm run dev` to start your app in development mode.
+
+### REPL
+
+As we said earlier, TypeScript is not yet available in the REPL.
+
+## Summary
+
+In this article, we took our to-do list application and ported it to TypeScript.
+
+We first learned about TypeScript and what advantages it can bring us. Then we saw how to create a new Svelte project with TypeScript support. We also saw how to convert an existing Svelte project to use TypeScript -- our to-do list app.
+
+We saw how to work with [Visual Studio Code](https://code.visualstudio.com/) and the [Svelte extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) to get features like type checking and auto-completion. We also used the `svelte-check` tool to inspect TypeScript issues from the command line.
+
+In the next article, we will learn how to compile and deploy our app to production. We will also see which resources are avaiable online to go further with learning Svelte.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Svelte_Stores#working-with-svelte-stores) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/TypeScript_in_Svelte#typescript-support-in-svelte) - [[Next page]]()
 
 
 
