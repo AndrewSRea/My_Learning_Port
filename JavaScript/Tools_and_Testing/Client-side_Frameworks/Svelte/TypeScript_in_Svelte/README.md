@@ -705,6 +705,98 @@ Now if we try to create a `localStore` with something that cannot be converted t
 
 ![Image of a VS Code warning message about inability of converting JSON data](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript/11-vscode-invalid-store.png)
 
+And best of all, it will even work with the [`$store` auto-subscription syntax](https://svelte.dev/docs#4_Prefix_stores_with_%24_to_access_their_values). If we try to save an invalid value to our `todos` store using the `$store` syntax, like this:
+```
+<!-- App.svelte -->
+<script lang="ts">
+    import Todos from './components/Todos.svelte';
+    import Alert from './components/Alert.svelte';
+
+    import { todos } from './stores';
+
+    // this is invalid, the content cannot be converted to JSON using JSON.stringify
+    $todos = { handler: () => {} };
+
+</script>
+```
+The validate script will report the following error:
+```
+> npm run validate
+
+Getting Svelte diagnostics...
+====================================
+
+./svelte-todo-typescript/src/App.svelte:8:12
+Error: Argument of type '{ handler: () => void; }' is not assignable to parameter of type 'JsonValue'.
+    Types of property 'handler' are incompatible.
+        Type '() => void' is not assignable to type 'JsonValue'.
+            Type '() => void' is not assignable to type '{ [key: string]: JsonValue; }'.
+                Index signature is missing in type '() => void'. (ts)
+$todos = { handler: () => {} };
+```
+This is another example of how specifying types can make our code more robust, and help us catch more bugs before they get into production.
+
+And that's it. We've converted our whole application to use TypeScript.
+
+## Bulletproofing our stores with Generics
+
+Our stores have already been ported to TypeScript but we can do better. We shouldn't need to store any kind of value -- we know that the alert store should contain string messages, and the todos store should contain an array of `TodoType`, etc. We can let TypeScript enforce this using [TypeScript Generics](https://www.typescriptlang.org/docs/handbook/generics.html). Let's find out more.
+
+### Understanding TypeScript Generics
+
+Generics allow us to create reusable code components that work with a variety of types instead of a single type. They can be applied to interfaces, classes, and functions. Generic types are passed as parameters using a special syntax: they are specified between angle-brackets and, by convention, are denoted with an upper-cased single char letter. Generic types allow us to capture the types provided by the user to be used later.
+
+Let's see a quick example: a simple `Stack` class that let's us `push` and `pop` elements, like this:
+```
+export class Stack {
+    private elements = [];
+
+    push = (element) => this.elements.push(element);
+
+    pop() {
+        if (this.elements.length === 0) throw new Error('The stack is empty!');
+        return this.elements.pop();
+    }
+}
+```
+In this case, `elements` is an array of type `any` and accordingly, the `push()` and `pop()` methods both receive and return a variable of type `any`. So it's perfectly valid to do something like the following:
+```
+const anyStack = new Stack();
+
+anyStack.push(1);
+anyStack.push('hello');
+```
+But what if we wanted to have a `Stack` that would only work with type `string`? We could do the following:
+```
+export class StringStack {
+    private elements: string[] = [];
+
+    push = (element: string) => this.elements.push(element);
+
+    pop(): string {
+        if (this.elements.length === 0) throw new Error('The stack is empty!');
+        return this.elements.pop();
+    }
+}
+```
+That would work. But if we wanted to work with numbers, we would then have to duplicate our code and create a `NumberStack` class. And how could we handle a stack of types we don't know yet, and that should be defined by the consumer?
+
+To solve all these problems, we can use Generics.
+
+This is our `Stack` class reimplemented using Generics:
+```
+export class Stack<T> {
+    private elements: T[] = [];
+
+    push = (element: T): number => this.elements.push(element);
+
+    pop(): T {
+        if (this.elements.length === 0) throw new Error('The stack is empty!');
+        return this.elements.pop();
+    }
+}
+```
+
 
 
 
