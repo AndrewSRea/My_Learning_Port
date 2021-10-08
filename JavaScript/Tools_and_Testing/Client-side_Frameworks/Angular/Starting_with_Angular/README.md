@@ -14,6 +14,7 @@ When you build applications with Angular, you're taking advantage of a platform 
 
 Before you start exploring the Angular platform, you should know about the Angular CLI. The Angular CLI is the fastest, easiest, and recommended way to develop Angular applications. The Angular CLI makes a number of tasks easy. Here are some examples:
 
+| --- | --- |
 | [`ng build`](https://angular.io/cli/build) | Compiles an Angular app into an output directory. |
 | [`ng serve`](https://angular.io/cli/serve) | Builds and serves your application, rebuilding on file changes. |
 | [`ng generate`](https://angular.io/cli/generate) | Generates or modifies files based on a schematic. |
