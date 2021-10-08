@@ -257,3 +257,20 @@ To go further and learn more about Svelte, you should definitely visit the [Svel
 You can also consult the [Svelte API docs](https://svelte.dev/docs) and the available [examples](https://svelte.dev/examples#hello-world).
 
 To understand the motivations behind Svelte, you should read [Rich Harris](https://twitter.com/Rich_Harris)'s [Rethinking reactivity](https://www.youtube.com/watch?v=AdNJ3fydeao&t=47s) presentation on YouTube. He is the creator of Svelte, so he has a couple of things to say about it. You also have the interactive slides available here, which are unsurprisingly built with Svelte. If you liked it, you will also enjoy [The Return of "Write Less, Do More"](https://www.youtube.com/watch?v=BzX4aTRPzno) presentation, which Rich harris gave at [JSCAMP 2019](https://jscamp.tech/2019/).
+
+### Related projects
+
+There are other projects related to Svelte that are worth checking out:
+
+* [Sapper](https://sapper.svelte.dev/): An application framework powered by Svelte that provides server-side rendering (SSR), code splitting, file-based routing and offline support, and more. Think of it as [Next.js](https://nextjs.org/) for Svelte. If you are planning to develop a fairly complex web application, you should definitely have a look at this project.
+* [Svelte Native](https://svelte-native.technology/): A mobile application framework powered by Svelte. Think of it as [React Native](https://reactnative.dev/) for Svelte.
+* [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode): The officially supported VS Code plugin for working with `.svelte` files, which we looked at in our [TypeScript article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/TypeScript_in_Svelte#typescript-support-in-svelte).
+
+### Other resources
+
+* There's a [complete course about Svelte and Sapper](https://frontendmasters.com/courses/svelte/) by Rich Harris, available at Frontend Masters.
+* Even though Svelte is a relatively young project, there are lots of tutorials and [courses](https://www.udemy.com/topic/svelte-framework/?sort=popularity) available on the web, so it's difficult to make a recommendation.
+* Nevertheless, [Svelte.js -- The Complete Guide](https://www.udemy.com/course/sveltejs-the-complete-guide/) by [Academind](https://academind.com/) is a very popular option with great ratings.
+* [The Svelte handbook](https://www.freecodecamp.org/news/the-svelte-handbook/) by [Flavio Copes](https://flaviocopes.com/) is also a useful reference for learning the main Svelte concepts.
+* If you prefer to read books, there's [Svelte and Sapper in Action](https://www.manning.com/books/svelte-and-sapper-in-action) by [Mark Volkman](https://twitter.com/mark_volkmann), expected to be published in September 2020, but which you can already [preview online](https://livebook.manning.com/book/svelte-and-sapper-in-action/welcome/v-5/) for free.
+* If you want to dive deeper and understand the inner working of Svelte's compiler, you should check [Tan Li Hau](https://twitter.com/lihautan)'s [Compile Svelte in your head](https://lihautan.com/compile-svelte-in-your-head-part-1/) blog posts. Here's [Part 1](https://lihautan.com/compile-svelte-in-your-head-part-1/), [Part 2](https://lihautan.com/compile-svelte-in-your-head-part-2/), and [Part 3](https://lihautan.com/compile-svelte-in-your-head-part-3/).
