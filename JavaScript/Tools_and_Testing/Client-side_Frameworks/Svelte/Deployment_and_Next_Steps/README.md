@@ -149,7 +149,7 @@ Auto-detected Project Settings (Svelte):
 
 5. Once it has finished deploying, go to the "Production" URL in your browser, and you'll see the app deployed!
 
-You can also [import a Svelte git project]() into Vercel from [GitHub](), [GitLab](), or [BitBucket]().
+You can also [import a Svelte git project](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvercel%2Ftree%2Fmain%2Fexamples%2Fsvelte) into Vercel from [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), or [BitBucket](https://bitbucket.org/product).
 
 <hr>
 
@@ -160,3 +160,100 @@ You can also [import a Svelte git project]() into Vercel from [GitHub](), [GitLa
 ### Automatic deployment to GitLab pages
 
 For hosting static files, there are several online services that allow you to automatically deploy your site whenever you push changes to a git repository. Most of them involve setting up a deployment pipeline that gets triggered on every `git push`, and takes care of building and deploying your website.
+
+To demonstrate this, we will deploy our todos app to [GitLab Pages](https://about.gitlab.com/stages-devops-lifecycle/pages/).
+
+1. First, you'll have to [register at GitLab](https://gitlab.com/users/sign_up) and then [create a new project](https://gitlab.com/projects/new). Give your new project a short, easy name like "mdn-svelte-todo". You will have a remote URL that points to your new GitLab git repository, like `git@gitlab.com:[your-user]/[your-project].git`.
+
+2. Before you start to upload content to your git repository, it is a good practice to add a `.gitignore` file to tell git which files to exclude from source control. In our case, we will tell git to exclude files in the `node_modules` directory by creating a `.gitignore` file in the root folder of your local project, with the following content:
+```
+node_modules/
+```
+
+3. Now let's go back to GitLab. After creating a new repo, GitLab will greet you with a message explaining different options to upload your existing files. Follow the steps listed under the *Push an existing folder* heading:
+```
+cd your_root_directory # Go into your project's root directory
+git init
+git remote add origin https://gitlab.com/[your-user]/mdn-svelte-todo.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+```
+
+<hr>
+
+**Note**: You could use [the `git` protocol](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols#_the_git_protocol) instead of `https`, which is faster and saves you from typing your username and password every time you access your origin repo. To use it, you'll have to [create an SSH key pair](https://docs.gitlab.com/ee/ssh/index.html#generating-a-new-ssh-key-pair). Your origin URL will be like this: `git@gitlab.com:[your-user]/mdn-svelte-todo.git`.
+
+<hr>
+
+With these instructions, we initialize a local git repository, then set our remote origin (to which we will push our code) as our repo on GitLab. Next, we commit all the files to the local git repo, and then push those to the remote origin on GitLab.
+
+GitLab uses a built-in tool called GitLab CI/CD to build your site and publish it to the GitLab Pages server. The sequence of scripts that GitLab CI/CD runs to accomplish this task is created from a file named `.gitlab-ci.yml`, which you can create and modify at will. A specific job called `pages` in the configuration file will make GitLab aware that you are deploying a GitLab Pages website.
+
+Let's have a go at doing this now.
+
+1. Create a `.gitlab-ci.yml` file inside your project's root and give it the following content:
+```
+image: node:latest
+pages:
+    stage: deploy
+    script:
+        - npm install
+        - npm run build
+    artifacts:
+        paths:
+            - public
+    only:
+        - master
+```
+Here we are telling GitLab to use an image with the latest version of node to build our app. Next, we are declaring a `pages` job, to enable GitLab Pages. Whenever there's a push to our repo, GitLab will run `npm install` and `npm run build` to build our application. We are also telling GitLab to deploy the contents of the `public` folder. On the last line, we are configuring GitLab to redeploy our app only when there's a push to our master branch.
+
+2. Since our app will be published at a subdirectory (like `https://your-user.gitlab.io/mdn-svelte-todo`), we'll have to make the references to the JavaScript and CSS files in our `public/index.html` file relative. To do this, we just remove the leading slashes (`/`) from the `/global.css`, `/build/bundle.css`, and `/build/bundle.js` URLs, like this:
+```
+<title>Svelte To-Do list</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="build/bundle.css">
+
+<script defer src="build/bundle.js"></script>
+```
+Do this now.
+
+3. Now we just have to commit and push our changes to GitLab. Do this by running the following commands:
+```
+> git add public/index.html
+> git add .gitlab-ci.yml
+> git commit -m "Added .gitlab-ci.yml file and fixed index.html absolute paths"
+> git push
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 541 bytes | 541.00 KiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0)
+To gitlab.com:opensas/mdn-svelte-todo.git
+    7dac9f3..5725f46  master -> master
+```
+Whenever there's a job running, GitLab will display an icon showing the process of the job. Clicking on it will let you inspect the output of the job.
+
+![Image of an icon in a GitLab project showing the process of adding the project](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_deployment_next/01-gitlab-pages-deploy.png)
+
+You can also check the progress of the current and previous jobs from the *CI / CD > Jobs* menu option of your GitLab project.
+
+![Image of a GitLab page showing current and previous jobs in progress](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_deployment_next/02-gitlab-pages-job.png)
+
+Once GitLab finishes building and publishing your app, it will be accessible at `https://your-user.gitlab.io/mdn-svelte-todo/`. You can check your page's URL in GitLab's UI -- see the *Settings > Pages* menu option.
+
+With this configuration, whenever you push changes to the GitLab repo, the application will be automatically rebuilt and deployed to GitLab Pages.
+
+## Learning more about Svelte
+
+In this section, we'll give you some resources and projects to go and check out, in order to take your Svelte learning further.
+
+### Svelte documentation
+
+To go further and learn more about Svelte, you should definitely visit the [Svelte homepage](https://svelte.dev/). There you'll find [many articles](https://svelte.dev/blog) explaining Svelte's philosophy. If you haven't already done it, make sure you go through the [Svelte interactive tutorial](https://svelte.dev/tutorial/basics). We already covered most of its content, so it won't take you much time to complete it -- you should consider it as practice!
+
+You can also consult the [Svelte API docs](https://svelte.dev/docs) and the available [examples](https://svelte.dev/examples#hello-world).
+
+To understand the motivations behind Svelte, you should read [Rich Harris](https://twitter.com/Rich_Harris)'s [Rethinking reactivity](https://www.youtube.com/watch?v=AdNJ3fydeao&t=47s) presentation on YouTube. He is the creator of Svelte, so he has a couple of things to say about it. You also have the interactive slides available here, which are unsurprisingly built with Svelte. If you liked it, you will also enjoy [The Return of "Write Less, Do More"](https://www.youtube.com/watch?v=BzX4aTRPzno) presentation, which Rich harris gave at [JSCAMP 2019](https://jscamp.tech/2019/).
