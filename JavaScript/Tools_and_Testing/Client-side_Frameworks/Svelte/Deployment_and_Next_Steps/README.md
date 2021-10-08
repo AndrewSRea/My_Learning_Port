@@ -274,3 +274,34 @@ There are other projects related to Svelte that are worth checking out:
 * [The Svelte handbook](https://www.freecodecamp.org/news/the-svelte-handbook/) by [Flavio Copes](https://flaviocopes.com/) is also a useful reference for learning the main Svelte concepts.
 * If you prefer to read books, there's [Svelte and Sapper in Action](https://www.manning.com/books/svelte-and-sapper-in-action) by [Mark Volkman](https://twitter.com/mark_volkmann), expected to be published in September 2020, but which you can already [preview online](https://livebook.manning.com/book/svelte-and-sapper-in-action/welcome/v-5/) for free.
 * If you want to dive deeper and understand the inner working of Svelte's compiler, you should check [Tan Li Hau](https://twitter.com/lihautan)'s [Compile Svelte in your head](https://lihautan.com/compile-svelte-in-your-head-part-1/) blog posts. Here's [Part 1](https://lihautan.com/compile-svelte-in-your-head-part-1/), [Part 2](https://lihautan.com/compile-svelte-in-your-head-part-2/), and [Part 3](https://lihautan.com/compile-svelte-in-your-head-part-3/).
+
+### Interacting with the community
+
+There are a number of different ways to get support and interact with the Svelte community:
+
+* [svelte.dev/chat](https://discord.com/invite/yy75DKs): Svelte's Discord server.
+* [@sveltejs](https://twitter.com/sveltejs): The official Twitter account.
+* [@sveltesociety](https://twitter.com/sveltesociety): Svelte community Twitter account.
+* [Svelte Recipes](https://github.com/svelte-society/recipes-mvp#recipes-mvp): Community-driven repository of recipes, tips, and best practices to solve common problems.
+* [Svelte questions on StackOverflow](https://stackoverflow.com/questions/tagged/svelte): Questions with the `svelte` tag at SO.
+* [Svelte reddit community](https://www.reddit.com/r/sveltejs/): Svelte community discussion and content rating site at reddit.
+* [Svelte DEV community](https://dev.to/t/svelte): A collection of Svelte-related technical articles and tutorials from the DEV.io community.
+
+## Summary
+
+Congratulations! You have completed the Svelte tutorial. In the previous articles, we went from zero knowledge about Svelte to building and deploying a complete application.
+
+* We learned about Svelte philosophy and what sets it apart from other front-end frameworks.
+* We saw how to add dynamic behavior to our website, how to organize our app in components and different ways to share information among them.
+* We took advantage of the Svelte reactivity system and learned how to avoid common pitfalls.
+* We also saw some advanced concepts and techniques to interact with DOM elements and to programmatically extend HTML element capabilities using the `use` directive.
+* Then we saw how to use stores to work with a central data repository, and we created our own custom store to persist our application's data to Web Storage.
+* We also took a look at Svelte's TypeScript support.
+
+In this article, we've learned about a couple of zero-fuss options to deploy our app in production and seen how to setup a basic pipeline to deploy our app to GitLab on every commit. Then we provided you with a list of Svelte resources to go further with your Svelte learning.
+
+Congratulations! After completing this series of tutorials, you should have a strong base from which to start developing professional web applications with Svelte.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/TypeScript_in_Svelte#typescript-support-in-svelte) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Deployment_and_Next_Steps#deployment-and-next-steps) - [[Next module: Angular]]()
