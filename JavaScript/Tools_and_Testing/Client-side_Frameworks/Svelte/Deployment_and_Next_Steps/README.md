@@ -103,3 +103,60 @@ Later on in the same file, you'll see how rollup minimizes our scripts in produc
     ],
 ```
 There are [many plugins for rollup](https://github.com/rollup/awesome) that allow you to customize its behavior. A particularly useful plugin which is also maintained by the Svelte team is [svelte-preprocess](https://github.com/sveltejs/svelte-preprocess), which pre-processes many different languages in Svelte files, such as PostCSS, SCSS, Less, CoffeeScript, SASS, and TypeScript.
+
+## Deploying your Svelte application
+
+From the point of view of a web server, a Svelte application is nothing more than a bunch of HTML, CSS, and JavaScript files. All you need is a web server capable of serving static files, which means you have plenty of options to choose from. Let's look at a couple of examples.
+
+<hr>
+
+**Note**: The following section could be applied to any client-side static website requiring a build step, not just Svelte apps.
+
+<hr>
+
+### Deploying with Vercel
+
+One of the easiest ways to deploy a Svelte application is using [Vercel](https://vercel.com/home). Vercel is a cloud platform specifically tailored for static sites, which has out-of-the-box support for most common front-end tools, Svelte being one of them.
+
+To deploy our app, follow these steps.
+
+1. [Register for an account with Vercel](https://vercel.com/signup).
+
+2. Navigate to the root of your app and run `npx vercel`. The first time you do it, you'll be prompted to enter your email address, and follow the steps in the email sent to that address, for security purposes.
+
+3. Run `npx vercel` again, and you'll be prompted to answer a few questions, like this:
+```
+> npx vercel
+Vercel CLI 19.1.2
+? Set up and deploy “./mdn-svelte-tutorial”? [Y/n] y
+? Which scope do you want to deploy to? opensas
+? Link to existing project? [y/N] n
+? What's your project's name? mdn-svelte-tutorial
+? In which directory is your code located? ./
+Auto-detected Project Settings (Svelte):
+- Build Command: `npm run build` or `rollup -c`
+- Output Directory: public
+- Development Command: sirv public --single --dev --port $PORT
+? Want to override the settings? [y/N] n
+    Linked to opensas/mdn-svelte-tutorial (created .vercel)
+    Inspect: https://vercel.com/opensas/mdn-svelte-tutorial/[...] [1s]
+✅   Production: https://mdn-svelte-tutorial.vercel.app [copied to clipboard] [19s]
+    Deployed to production. Run `vercel --prod` to overwrite later (https://vercel.link/2F).
+    To change the domain or build command, go to https://zeit.co/opensas/mdn-svelte-tutorial/settings
+```
+
+4. Accept all the defaults, and you'll be fine.
+
+5. Once it has finished deploying, go to the "Production" URL in your browser, and you'll see the app deployed!
+
+You can also [import a Svelte git project]() into Vercel from [GitHub](), [GitLab](), or [BitBucket]().
+
+<hr>
+
+**Note**: You can globally install Vercel with `npm i -g vercel` so you don't have to use `npx` to run it.
+
+<hr>
+
+### Automatic deployment to GitLab pages
+
+For hosting static files, there are several online services that allow you to automatically deploy your site whenever you push changes to a git repository. Most of them involve setting up a deployment pipeline that gets triggered on every `git push`, and takes care of building and deploying your website.
