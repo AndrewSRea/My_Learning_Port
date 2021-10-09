@@ -57,7 +57,7 @@ Angular CLI commands all start with `ng`, followed by what you'd like the CLI to
 <hr>
 
 ```
-ng new todo --routing-false --style-css
+ng new todo --routing=false --style=css
 ```
 The `ng new` command creates a minimal starter Angular application on your Desktop. The additional flags, `--routing` and `--style`, define how to handle navigation and styles in the application. This tutorial describes these features later in more detail.
 
@@ -74,3 +74,40 @@ When the CLI prompts you about analytics, answer no.
 In the browser, navigate to `http://localhost:4200/` to see your new starter application. If you change any of the source files, the application automatically reloads.
 
 While `ng serve` is running, you might want to open a second terminal tab or window in order to run commands. If at any point you would like to stop serving your application, press <kbd>Ctrl</kbd> + <kbd>C</kbd> while in the terminal.
+
+## Get familiar with your Angular application
+
+The application source files that this tutorial focuses on are in `src/app`. Key files that the CLI generates automatically include the following:
+
+1. `app.module.ts`: Specifies the files that the application uses. This file acts as a central hub for the other files in your application.
+2. `app.component.ts`: Also known as the class, contains the logic for the application's main page.
+3. `app.component.html`: Contains the HTML for `AppComponent`. The contents of this file are also known as the template. The template determines the view or what you see in the browser.
+4. `app.component.css`: Contains the styles for `AppComponent`. You use this file when you want to define styles that only apply to a specific component, as opposed to your application overall.
+
+A component in Angular is made up of three main parts -- the template, styles, and the class. For example, `app.component.ts`, `app.component.html`, and `app.component.css` together constitute the `AppComponent`. This structure separates the logic, view, and styles so that the application is more maintainable and scalable.
+
+In this way, you are using the best practices from the very beginning.
+
+The Angular CLI also generates a file for component testing called `app.component.spec.ts`, but this tutorial doesn't go into testing, so you can ignore that file.
+
+Whenever you generate a component, the CLI creates these four files in a directory with the name you specify.
+
+## The structure of an Angular application
+
+Angular is built with TypeScript. TypeScript is a superset of JavaScript, meaning that any valid JavaScript is valid TypeScript. TypeScript offers typing and a more concise syntax than plain JavaScript, which gives you a tool for creating more maintainable code and minimizing bugs.
+
+Components are the building blocks of an Angular application. A component includes a TypeScript class that has a `@Component()` decorator, an HTML template, and styles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Starting_with_Angular
