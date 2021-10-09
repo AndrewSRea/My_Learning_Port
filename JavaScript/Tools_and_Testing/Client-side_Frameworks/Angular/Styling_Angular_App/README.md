@@ -131,15 +131,12 @@ ul li {
     list-style: none;
 }
 ```
+The last step is to revisit your browser and look at how the styling has updated. Things now make a bit more sense.
 
+## Summary
 
+Now that our brief tour of styling in Angular is done, let's return to creating our app functionality. In the next article, we will create a proper component for to-do items, and make it so that you can check, edit, and delete to-do items.
 
+<hr>
 
-
-
-
-
-
-
-
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Styling_Angular_App
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Beginning_Todo_List_App#beginning-our-angular-todo-list-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Styling_Angular_App#styling-our-angular-app) - [[Next page]]()
