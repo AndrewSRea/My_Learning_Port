@@ -168,6 +168,35 @@ When the application loads the component and its template, the browser sees the 
 <h1>To do application</h1>
 ```
 
+### Styles
+
+A component can inherit global styles from the application's `styles.css` file and augment or override them with its own styles. You can write component-specific styles directly in the `@Component()` decorator or specify the path to a CSS file.
+
+To include the styles directly in the component decorator, use the `styles` property:
+```
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styles: ['h1 { color: red; }']
+})
+```
+Typically, a component uses styles in a separate file using the `styleUrls` property:
+```
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+```
+With component-specific styles, you can organize your CSS so that it is easily maintainable and portable.
+
+## Summary
+
+That's it for your first introduction to Angular. At this point, you should be set up and ready to build an Angular app, and have a basic understanding of how Angular works. In the next article, we'll deepen that knowledge and start to build up the structure of our to-do list application.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Deployment_and_Next_Steps#deployment-and-next-steps) - [[Previous module: Svelte]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Svelte/Starting_with_Svelte#getting-started-with-svelte) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Starting_with_Angular#getting-started-with-angular) - [[Next page]]()
 
 
 
