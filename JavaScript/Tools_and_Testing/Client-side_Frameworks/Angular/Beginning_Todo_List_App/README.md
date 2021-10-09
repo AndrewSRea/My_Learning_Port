@@ -82,14 +82,69 @@ The `allItems` array contains the to-do items and whether they are done. The fir
 
 The getter, `get items()`, retrieves the items from the `allItems` array if the `filter` is equal to `all`. Otherwise, `get items()` returns the `done` items or the outstanding items depending on how the user filters the view. The getter also establishes the name of the array as `items`, which you'll use in the next section.
 
+## Add HTML to the AppComponent template
 
+To see the list of items in the browser, replace the contents of `app.component.html` with the following HTML:
+```
+<div class="main">
+    <h1>My To Do List</h1>
+    <h2>What would you like to do today?</h2>
 
+    <ul>
+        <li *ngFor="let item of items">{{item.description}}</li>
+    </ul>
+</div>
+```
+The `<li>` contains an `*ngFor`, a built-in Angular directive that iterates over the items in the `items` array. For each item, `*ngFor` creates a new `<li>`. The double curly braces that contain `item.description` instructs Angular to populate each `<li>` with the text of each item's description.
 
+In the browser, you should see the list of items as follows:
+```
+My To Do List
+What would you like to do today?
 
+* eat
+* sleep
+* play
+* laugh
+```
 
+## Add items to the list
 
+A to-do list needs a way to add items.
 
+In `app.component.ts`, add the following method to the class:
+```
+addItem(description: string) {
+    this.allItems.unshift({
+        description,
+        done: false
+    });
+}
+```
+The `addItem()` method takes an item that the user provides and adds it to the array when the user clicks the **Add** button. The `addItem()` method uses the array method `unshift()` to add a new item to the beginning of the array and the top of the list. You could alternatively use `push()`, which would add the new item to the end of the array and the bottom of the list.
 
+To use the `addItem()` method, edit the HTML in the `AppComponent` template.
 
+In `app.component.html`, replace the `<h2>` with the following:
+```
+<label for="addItemInput">What would you like to do today?</label>
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Beginning_Todo_List_App
+<input
+    #newItem
+    placeholder="add an item"
+    (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+    class="lg-text-input"
+    id="addItemInput"
+/>
+
+<button class="btn-primary" (click)="addItem(newItem.value)">Add</button>
+```
+When the user types a new item in the `<input>` and presses **Enter**, the `addItem()` method adds the value to the `items` array. Pressing the **Enter** key also resets the value of `<input>` to an empty string. Alternatively, the user can click the **Add** button which calls the same `addItem()` method.
+
+## Summary
+
+By now, you should have your basic list of to-dos displaying in your browser. That's great progress! Of course, we have a lot more to do. In the next article, we will look at adding some styling to our application.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Starting_with_Angular#getting-started-with-angular) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Beginning_Todo_List_App#beginning-our-angular-todo-list-app) - [[Next page]]()
