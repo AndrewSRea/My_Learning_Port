@@ -36,3 +36,60 @@ export interface Item {
 }
 ```
 The `Item` `interface` creates an `item` object model so that your application understands what an `item` is. For this to-do list, an `item` is an object that has a description and can be done.
+
+## Add logic to AppComponent
+
+Now that your application knows what an `item` is, you can give it some items by adding them to the TypeScript file, `app.component.ts`. In `app.component.ts`, replace the contents with the following:
+```
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+
+export class AppComponent {
+    title = 'todo';
+
+    filter: 'all' | 'active' | 'done' = 'all';
+
+    allItems = [
+        { description: 'eat', done: true },
+        { description: 'sleep', done: false },
+        { description: 'play', done: false },
+        { description: 'laugh', done: false },
+    ];
+
+    get items() {
+        if (this.filter === 'all') {
+            return this.allItems;
+        }
+        return this.allItems.filter(item => this.filter === 'done' ? item.done : !item.done);
+    }
+
+}
+```
+The first line is a JavaScript import that imports Angular. The `@Component()` decorator specifies metadata about the `AppComponent`. The default metadata properties are as follows:
+
+* `selector`: Tells you the name of the CSS selector that you use in a template to instantiate this component. Here it is `'app-root`. In the `index.html`, within the `<body>` tag, the Angular CLI added `<app-root></app-root>` when generating your application. You use all component selectors in the same way by adding them to other component HTML templates.
+* `templateUrl`: Specifies the HTML file to associate with this component. Here it is, `'./app.component.html'`.
+* `styleUrls`: Provides the location and name of the file for your styles that apply specifically to this component. Here it is `'./app.component.css'`.
+
+The `filter` property is of type `union`, which means `filter` could have the value of `all`, `active`, or `done`. With the `union` type, if you make a typo in the value you assign to the `filter` property, TypeScript lets you know so that you can catch the bug early. This guide shows you how to add filtering in a later step, but you can also use a filter to show the default list of all the items.
+
+The `allItems` array contains the to-do items and whether they are done. The first item, `eat`, has a `done` value of `true`.
+
+The getter, `get items()`, retrieves the items from the `allItems` array if the `filter` is equal to `all`. Otherwise, `get items()` returns the `done` items or the outstanding items depending on how the user filters the view. The getter also establishes the name of the array as `items`, which you'll use in the next section.
+
+
+
+
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Beginning_Todo_List_App
