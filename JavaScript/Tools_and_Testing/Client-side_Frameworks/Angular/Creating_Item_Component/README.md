@@ -175,19 +175,136 @@ The `AppComponent` has a `remove()` method for removing the item, which is bound
 
 Now you should be able to edit and delete items from the list. When you add or delete items, the count of the items should also change. To make the list more user-friendly, add some styles to the `ItemComponent`.
 
+## Add styles to ItemComponent
 
+You can use a component's stylesheet to add styles specific to that component. The following CSS adds basic styles, flexbox for the buttons, and custom checkboxes.
 
+Paste the following styles into `item.component.css`.
+```
+.item {
+    padding: .5rem 0 .75rem 0;
+    text-align: left;
+    font-size: 1.2rem;
+}
 
+.btn-wrapper {
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
 
+.btn {
+    /* menu buttons flexbox styles */
+    flex-basis: 49%;
+}
 
+.btn-save {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
 
+.btn-save:hover {
+    background-color: #444242;
+}
 
+.btn-save:focus {
+    background-color: #fff;
+    color: #000;
+}
 
+.checkbox-wrapper {
+    margin: .5rem 0;
+}
 
+.btn-warn {
+    background-color: #b90000;
+    color: #fff;
+    border-color: #9a0000;
+}
 
+.btn-warn:hover {
+    background-color: #9a0000;
+}
 
+.btn-warn:active {
+    background-color: #e30000;
+    border-color: #000
+}
 
+.sm-text-input {
+    width: 100%;
+    padding: .5rem;
+    border: 2px solid #555;
+    display: block;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin: 1rem 0;
+}
 
+/* Custom checkboxes
+    Adapted from https://css-tricks.com/the-checkbox-hack/#custom-designed-radio-buttons-and-checkboxes 
+*/
 
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
 
-cd JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Creating_Item_Component
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative;
+    padding-left: 1.95em;
+    cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 1.25em; height: 1.25em;
+    border: 2px solid #ccc;
+    background: #fff;
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '\2713\0020';
+    position: absolute;
+    top: .15em; left: .22em;
+    font-size: 1.3em;
+    line-height: 0.8;
+    color: #0d8dee;
+    transition: all .2s;
+    font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+}
+
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+    border: 2px dotted blue;
+}
+```
+
+## Summary
+
+You should now have a styled Angular to-do list application that can add, edit, and remove items. The next step is to add filtering so that you can look at items that meet specific criteria.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Styling_Angular_App#styling-our-angular-app) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks/Angular/Creating_Item_Component#creating-an-item-component) - [[Next page]]()
