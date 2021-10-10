@@ -138,6 +138,44 @@ If a user enters text and clicks **Save**, `saveItem()` sets `editable` to `fals
 
 Though the application should compile at this point, you need to use the `ItemComponent` in `AppComponent` so you can see the new features in the browser.
 
+## Use the ItemComponent in the AppComponent
+
+Including one component within another in the context of a parent-child relationship gives you the flexibility of using components wherever you need them.
+
+The `AppComponent` serves as a shell for the application where you can include other components.
+
+To use the `ItemComponent` in `AppComponent`, put the `ItemComponent` selector in the `AppComponent` template. Angular specifies the selector of a component in the metadata of the `@Component()` decorator. In this example, the selector is `app-item`:
+```
+@Component({
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.css']
+})
+```
+To use the `ItemComponent` selector within the `AppComponent`, you add the element, `<app-item>`, which corresponds to the selector you defined for the component class to `app.component.html`. Replace the current unordered list in the `app.component.html` with the following updated version:
+```
+<h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
+<ng-template #elseBlock>items</ng-template></h2>
+
+<ul>
+    <li *ngFor="let item of items">
+        <app-item (remove)="remove(item)" [item]="item"></app-item>
+    </li>
+</ul>
+```
+The double curly brace syntax, `{{}}`, in the `<h2>` interpolates the length of the `items` array and displays the number.
+
+The `<span>` in the `<h2>` uses an `*ngIf` and `else` to determine whether the `<h2>` should say "item" or "items". If there is only a single item in the list, the `<span>` containing the "item" displays. Otherwise, if the length of the `items` array is anything other than `1`, the `<ng-template>`, which we've named `elseBlock`, with the syntax `#elseBlock`, shows instead of the `<span>`. You can use Angular's `<ng-template>` when you don't want content to render by default. In this case, when the length of the `items` array is not `1`, the `*ngIf` shows the `elseBlock` and not the `<span>`.
+
+The `<li>` uses Angular's repeater directive, `*ngFor`, to iterate over all of the items in the `items` array. Angular's `*ngFor`, like `*ngIf`, is another directive that helps you change the structure of the DOM while writing less code. For each `item`, Angular repeats the `<li>` and everything within it, which includes `<app-item>`. This means that for each item in the array, Angular creates another instance of `<app-item>`. For any number of items in the array, Angular would create that many `<li>` elements.
+
+You can use an `*ngFor` on other elements, too, such as `<div>`, `<span>`, or `<p>`, to name a few.
+
+The `AppComponent` has a `remove()` method for removing the item, which is bound to the `remove` property in the `ItemComponent`. The `item` property in the square brackets, `[]`, binds the value of `item` between the `AppComponent` and the `ItemComponent`.
+
+Now you should be able to edit and delete items from the list. When you add or delete items, the count of the items should also change. To make the list more user-friendly, add some styles to the `ItemComponent`.
+
+
 
 
 
