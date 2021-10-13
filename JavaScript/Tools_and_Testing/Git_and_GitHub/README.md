@@ -36,3 +36,41 @@ It is also preferable that you have some basic terminal knowledge. For example, 
 **Note**: GitHub is not the only site/toolset you can use with Git. There are other alternatives such as [GitLab](https://about.gitlab.com/) that you could try, and you could also try setting your own Git server up and using it instead of GitHub. We've only stuck with GitHub in this course to provide a single way that works.
 
 <hr>
+
+## Guides
+
+The links below take you to resources provided by [GitHub Guides](https://guides.github.com/), and the text and images in these guides are the sole property and copyright of GitHub itself.
+
+**[Hello, World (from GitHub)]()**
+
+This is a good place to start -- this practical guide gets you to jump right into using GitHub, learning the basics of Git such as creating repositories and branches, making commits, and opening and merging pull requests.
+
+**[Git Handbook (from GitHub)]()**
+
+This Git Handbook goes into a little more depth, explaining what a VCS is, what a repository is, how the basic GitHub model works, Git commands and examples, and more.
+
+**[Forking Projects (from GitHub)]()**
+
+Forking projects is essential when youi want to contribute to someone else's code. This guide explains how.
+
+**[About Pull Requests (from GitHub)]()**
+
+A useful guide to managing pull requests, the way that your suggested code changes are delivered to people's repositories for consideration.
+
+**[Mastering issues (from GitHub)]()**
+
+Issues are like a forum for your GitHub project, where people can ask questions and report problems, and you can manage updates (for example, assigning people to fix issues, clarifying the issue, letting people know things are fixed). This article tells you what you need to know about issues.
+
+<hr>
+
+**Note**: There is **a lot more** that you can do with Git and GitHub, but we feel that the above represents the minimum you need to know to start using Git effectively. As you get deeper into Git, you'll start to realize that it is easy to go wrong when you start using more complicated commands. Don't worry, even professional web developers find Git confusing sometimes, and often solve problems by searching for solutions on the web, or consulting sites like [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) and [Dangit, git!](https://dangitgit.com/)
+
+## See also
+
+* [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
+* [Git command list](https://git-scm.com/docs)
+* [Mastering markdown](https://guides.github.com/features/mastering-markdown/) (the text format you write in PR, issue comments, and `.md` files).
+* [Getting Started with GitHub Pages](https://guides.github.com/features/pages/) (how to publish demos and websites on GitHub).
+* [Learn Git branching](https://learngitbranching.js.org/)
+* [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) (a very useful compendium of ways to achieve specific things in Git, including how to correct things when you went wrong).
+* [Dangit, Git!](https://dangitgit.com/) (another useful compendium, specifically with ways to correct things when you went wrong).
