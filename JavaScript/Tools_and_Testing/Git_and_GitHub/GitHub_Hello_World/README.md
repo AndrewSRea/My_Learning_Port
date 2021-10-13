@@ -78,3 +78,53 @@ Here at GitHub, our developers, writers, and designers use branches for keeping 
 ![Gif showing creation of a new branch from a repo's main branch](https://guides.github.com/activities/hello-world/readme-edits.gif)
 
 Now you have two branches, `main` and `readme-edits`. They look exactly the same, but not for long! Next we'll add our changes to the new branch.
+
+## Step 3. Make and commit changes
+
+Bravo! Now you're on the code view for your `readme-edits` branch, which is a copy of `main`. Let's make some edits.
+
+On GitHub, saved changes are called *commits*. Each commit has an associated *commit message*, which is a description explaining why a particular change was made. Commit messages capture the history of your changes, so other contributors can understand what you've done and why.
+
+### Make and commit changes
+
+1. Click the `README.md` file.
+2. Click the pencil icon in the upper right corner of the file view to edit.
+3. In the editor, write a bit about yourself.
+4. Write a commit message that describes your changes.
+5. Click the **Commit changes** button.
+
+![Image showing the editing of a README in a GitHub repo](https://guides.github.com/activities/hello-world/commit.png)
+
+These changes will be made to just the README file on your `readme-edits` branch, so now this branch contains content that's different from `main`.
+
+## Step 4. Open a Pull Request
+
+Nice edits! Now that you have changes in a branch off of `main`, you can open a *pull request*.
+
+Pull Requests are the heart of collaboration on GitHub. When you open a *pull request*, you're proposing your changes and requesting that someone review and pull in your contribution and merge them into their branch. Pull requests show *diffs*, or differences, of the content from both branches. The changes, additions, and subtractions are shown in gren and red.
+
+As soon as you make a commit, you can open a pull request and start a discussion, even before the code is finished.
+
+By using GitHub's [@mention system](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/about-writing-and-formatting-on-github#text-formatting-toolbar) in your pull request message, you can ask for feedback from specific people or teams, whether they're down the hall or 10 time zones away.
+
+You can even open pull requests in your own repository and merge them yourself. It's a great way to learn the GitHub flow before working on larger projects.
+
+### Open a Pull Request for changes to the README
+
+Click the links in the table below to see a screenshot of the instructions given in the **Step** in action.
+
+| Step | Links to Screenshots |
+| --- | --- |
+| Click the **Pull Request** tab, then from the Pull Request page, click the green **New pull request** button. | [https://guides.github.com/activities/hello-world/pr-tab.gif](https://guides.github.com/activities/hello-world/pr-tab.gif) |
+| In the **Example Comparisons** box, select the branch you made, `readme-edits`, to compare with `main` (the original). | [https://guides.github.com/activities/hello-world/pick-branch.png](https://guides.github.com/activities/hello-world/pick-branch.png) |
+| Look over your changes in the diffs on the Compare page, make sure they're what you want to submit. | [https://guides.github.com/activities/hello-world/diff.png](https://guides.github.com/activities/hello-world/diff.png) |
+| When you're satisfied that these are the changes you want to submit, click the big green **Create Pull Request** button. | [https://guides.github.com/activities/hello-world/create-pr.png](https://guides.github.com/activities/hello-world/create-pr.png) |
+| Give your pull request a title and write a brief description of your changes. | [https://guides.github.com/activities/hello-world/pr-form.png](https://guides.github.com/activities/hello-world/pr-form.png) |
+
+When you're done with your message, click **Create pull request**!
+
+<hr>
+
+**Tip**: You can use [emoji](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#using-emoji) and [drag and drop images and gifs](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/attaching-files) onto comments and Pull Requests.
+
+<hr>
