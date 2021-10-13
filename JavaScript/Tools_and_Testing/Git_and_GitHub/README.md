@@ -41,7 +41,7 @@ It is also preferable that you have some basic terminal knowledge. For example, 
 
 The links below take you to resources provided by [GitHub Guides](https://guides.github.com/), and the text and images in these guides are the sole property and copyright of GitHub itself.
 
-**[Hello, World (from GitHub)]()**
+**[Hello, World (from GitHub)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/GitHub_Hello_World#hello-world)**
 
 This is a good place to start -- this practical guide gets you to jump right into using GitHub, learning the basics of Git such as creating repositories and branches, making commits, and opening and merging pull requests.
 
