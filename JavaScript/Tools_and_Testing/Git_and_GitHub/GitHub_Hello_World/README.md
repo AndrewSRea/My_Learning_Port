@@ -111,7 +111,7 @@ You can even open pull requests in your own repository and merge them yourself. 
 
 ### Open a Pull Request for changes to the README
 
-Click the links in the table below to see a screenshot of the instructions given in the **Step** in action.
+Click the links in the table below to see a screenshot of the instructions given in the **Step** column in action.
 
 | Step | Links to Screenshots |
 | --- | --- |
@@ -128,3 +128,38 @@ When you're done with your message, click **Create pull request**!
 **Tip**: You can use [emoji](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#using-emoji) and [drag and drop images and gifs](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/attaching-files) onto comments and Pull Requests.
 
 <hr>
+
+## Step 5. Merge your Pull Request
+
+In this final step, it's time to bring your changes together -- merging your `readme-edits` branch into the `main` branch.
+
+1. Click the green **Merge pull request** button to merge the changes into `main`.
+2. Click **Confirm merge**.
+3. Go ahead and delete the branch, since its changes have been incorporated, with the **Delete branch** button in the purple box.
+
+![Image showing the "Merge pull request" button in a merging branch](https://guides.github.com/activities/hello-world/merge-button.png)
+
+![Image showing the "Delete branch" button after a branch has been merged](https://guides.github.com/activities/hello-world/delete-button.png)
+
+### Celebrate!
+
+By completing this tutorial, you've learned to create a project and make a pull request on GitHub!
+
+Here's what you've accomplished in this tutorial:
+
+* Created an open source repository.
+* Started and managed a new branch.
+* Changed a file and committed those changes to GitHub.
+* Opened and merged a Pull Request.
+
+Take a look at your GitHub profile and you'll see your new [contribution squares](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/viewing-contributions-on-your-profile)!
+
+To learn more about the power of Pull Requests, we recommend reading the [GitHub flow Guide](https://guides.github.com/introduction/flow/). You might also visit [GitHub Explore](https://github.com/explore) and get involved in an Open Source project.
+
+<hr>
+
+**Tip**: Check out our other [Guides](https://guides.github.com/), [YouTube Channel](https://www.youtube.com/githubguides), and [On-Demand Training](https://lab.github.com/) for more on how to get started with GitHub.
+
+<hr>
+
+[[Back to the Git and GitHub Guides page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub#git-and-github) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/GitHub_Hello_World#hello-world) - [[Next page]]()
