@@ -118,4 +118,38 @@ Right now, you've essentially told Git, "Okay, I've taken a snapshot of my chang
 
 ## Making a Pull Request
 
-At last, you're ready to propose changes into the main project!
+At last, you're ready to propose changes into the main project! This is the final step in producing a fork of someone else's project, and arguably the most important. If you've made a change that you feel would benefit the community as a whole, you should definitely consider contributing back.
+
+To do so, head on over to the repository on GitHub.com where your project lives. For this example, it would be at `https://www.github.com<your_username>/Spoon-Knife`. You'll see a banner indicating that you've recently oushed a new branch, and that you can submit this branch "upstream", to the original repository:
+
+![Image of a recently pushed branch to the "Spoon-Knife" repo](https://github-images.s3.amazonaws.com/help/pull_requests/recently_pushed_branch.png)
+
+Clicking on **Compare and Pull Request** sends you to a discussion page, where you can enter a title and optional description. It's important to provide as much useful information and a rationale for *why* you're making this Pull Request in the first place. The project owner needs to be able to determine whether your change is as useful to everyone as you think it is.
+
+When you're ready typing out your heartfelt argument, click on **Send pull request**. You're done!
+
+![Image of a description text box with an argument for a pull request](https://github-images.s3.amazonaws.com/help/pull_requests/pullrequest-send.png)
+
+Pull Requests are an area for discussion. In this case, the Octocat is very busy, and probably won't merge your changes. For other projects, don't be offended if the project owner rejects your Pull Request, or asks for more information on why it's been amde. It may even be that the project owner chooses not to merge your pull request, and that's totally okay. Your copy will exist in infamy on the Internet. And who knows -- maybe someone you've never met will find your changes much more valuable than the original project. Share and share alike!
+
+## Huzzah!
+
+You've successfully forked and contributed back to repository. Go forth, and contribute some more!
+
+## Troubleshooting cloning errors
+
+When cloning a repository, it's possible that you might encounter some errors.
+
+If you're unable to clone a repository, check that:
+
+* You can connect using HTTOS. For more information, see "[HTTPS cloning errors](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors#https-cloning-errors)."
+* You have permission to access the repository you want to clone. For more information, see "[Error: Repository not found](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors#error-repository-not-found)."
+* The default branch you want to clone still exists. For more information, see have permission to access the repository you want to clone. For more information, see "[Error: Remote HEAD refers to nonexistent ref, unable to checkout](https://docs.github.com/en/repositories/creating-and-managing-repositories/troubleshooting-cloning-errors#error-remote-head-refers-to-nonexistent-ref-unable-to-checkout)."
+
+## Further reading
+
+* "[Troubleshooting connectivity problems](https://docs.github.com/en/get-started/using-github/troubleshooting-connectivity-problems)"
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Git_Handbook#git-handbook) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Forking_Projects#forking-projects) - [[Next page]]()
