@@ -176,4 +176,16 @@ With a *shared repository*, individuals and teams are explicitly designated as c
 
 For an open source project, or for projects to which anyone can contribute, managing individual permissions can be challenging, but a *fork and pull* model allows anyone who can view the project to contribute. A fork is a copy of a project under a developer's personal account. Every developer has full control of their fork and is free to implement a fix or new feature. Work completed in forks is either kept separate, or is surfaced back to the original project via a pull request. There, maintainers can review the suggested changes before they're merged. See the [Forking Projects Guide](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Forking_Projects#forking-projects) for more information.
 
+## Learn at your own pace
 
+The GitHub team has created a library of educational videos and guides to help users continue to develop their skills and build better software.
+
+* [Beginner projects to explore](https://github.com/showcases/great-for-new-contributors)
+* [GitHub video guides](https://www.youtube.com/githubguides)
+* [GitHub on-demand training](https://lab.github.com/)
+* [GitHub training guides](https://guides.github.com/)
+* [GitHub training resources](https://lab.github.com/)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/GitHub_Hello_World#hello-world) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Git_Handbook#git-handbook) - [[Next page]]()
