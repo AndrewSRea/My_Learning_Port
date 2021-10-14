@@ -58,3 +58,64 @@ You can also use the GitHub URL to clone a repository. (`/cli/cli` here being a 
 ```
 gh repo clone https://github.com/cli/cli
 ```
+
+### Cloning an empty repository
+
+An empty repository contains no files. It's often made if you don't initialize the repository with a README when creating it.
+
+1. On GitHub, navigate to the main page of the repository.
+
+2. To clone your repository using the command line using HTTPS, under "Quick setup", click the "clipboard" icon. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click the "clipboard" icon.
+
+![Image of the "Quick setup" process of cloning a repo](https://docs.github.com/assets/images/help/repository/empty-https-url-clone-button.png)
+
+Alternatively, to clone your repository in Desktop, click **Set up in Desktop** and follow the prompts to complete the clone.
+
+![Image of the "Set up in Desktop" process of cloning a repo](https://docs.github.com/assets/images/help/repository/empty-desktop-clone-button.png)
+
+3. Open Terminal.
+
+4. Change the current working directory to the location where you want the cloned directory.
+
+5. Type `git clone`, and then paste the URL you copied earlier.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+```
+
+6. Press **Enter** to create your local clone.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `Spoon-Knife`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+
+<hr>
+
+:warning: Since the repository we wish to clone was forked from another repository, and therefore the repository has already been created by someone else, the only command we need on the command line is:
+```
+git clone https://github.com/YOUR-USERNAME/Spoon-Knife
+```
+You could actually just type `git clone` on the command line of your terminal, and copy and paste the URL of your `Spoon-Knife` repository, then press **Enter**.
+
+<hr>
+
+## Making an pushing changes
+
+Go ahead and make a few changes to the project using your favorite text editor, like [Atom](https://atom.io/) or [Visual Studio Code](https://code.visualstudio.com/). You could, for example, change the text in *index.html* to add your GitHub username.
+
+When you're ready to submit your changes, **stage** and **commit** your changes.
+
+<hr>
+
+Is staging and committing changes locally too advanced right now? [Check out this on-demand training](https://lab.github.com/) for interactive tutorials to help you learn more.
+
+<hr>
+
+Right now, you've essentially told Git, "Okay, I've taken a snapshot of my changes!" You can continue to make more changes, and take more commit snapshots. When you're ready to push your changes up to GitHub.com, push your changes to the remote.
+
+## Making a Pull Request
+
+At last, you're ready to propose changes into the main project!
