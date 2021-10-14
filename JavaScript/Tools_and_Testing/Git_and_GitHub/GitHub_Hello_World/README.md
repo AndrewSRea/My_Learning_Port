@@ -162,4 +162,4 @@ To learn more about the power of Pull Requests, we recommend reading the [GitHub
 
 <hr>
 
-[[Back to the Git and GitHub Guides page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub#git-and-github) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/GitHub_Hello_World#hello-world) - [[Next page]]()
+[[Back to the Git and GitHub Guides page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub#git-and-github) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/GitHub_Hello_World#hello-world) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Git_Handbook#git-handbook)
