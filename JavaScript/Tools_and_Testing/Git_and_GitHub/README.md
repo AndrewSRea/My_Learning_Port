@@ -45,11 +45,11 @@ The links below take you to resources provided by [GitHub Guides](https://guides
 
 This is a good place to start -- this practical guide gets you to jump right into using GitHub, learning the basics of Git such as creating repositories and branches, making commits, and opening and merging pull requests.
 
-**[Git Handbook (from GitHub)]()**
+**[Git Handbook (from GitHub)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Git_Handbook#git-handbook)**
 
 This Git Handbook goes into a little more depth, explaining what a VCS is, what a repository is, how the basic GitHub model works, Git commands and examples, and more.
 
-**[Forking Projects (from GitHub)]()**
+**[Forking Projects (from GitHub)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Forking_Projects#forking-projects)**
 
 Forking projects is essential when youi want to contribute to someone else's code. This guide explains how.
 
