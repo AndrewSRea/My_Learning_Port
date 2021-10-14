@@ -81,3 +81,99 @@ Developers can find more information about the GitHub flow in the resources prov
 
 * [Interactive guide](https://guides.github.com/introduction/flow/)
 * [GitHub Flow video](https://www.youtube.com/watch?v=47E-jcuQz5c&list=PLg7s6cbtAD17Gw5u8644bgKhgRLiJXdX4&index=2)
+
+## GitHub and the command line
+
+For developers new to the command line, the GitHub Training team has put together a series of [tutorials](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) on Git commands to guide the way. Sometimes a series of commands can paint a picture of how to use Git:
+
+### Example: Contribute to an existing repository
+
+```
+# download a repository on GitHub.com to our machine
+git clone https://github.com/me/repo.git
+
+# change into the `repo` directory
+cd repo
+
+# create a new branch to store any new changes
+git branch my-branch
+
+# switch to that branch (line of development)
+git checkout my-branch
+
+# make changes, for example, edit `file1.md` and `file2.md` using the text editor
+
+#stage the changed files
+git add file1.md file2.md
+
+# take a snapshot of the staging area (anything that's been added)
+git commit -m "my snapshot"
+
+# push changes to github
+git push --set-upstream origin my-branch
+```
+
+### Example: Start a new repository and publish it to GitHub
+
+First, you will need to create a new repository on GitHub. You can learn how to create a new repository in our [Hello World guide](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/GitHub_Hello_World#hello-world). **Do not** initialize the repository with a README, .gitignore, or License. This empty repository will await your code.
+```
+# create a new directory, and initialize it with git-specific functions
+git init my-repo
+
+# change into the `my-repo` directory
+cd my-repo
+
+# create the first file in the project
+touch README.md
+
+# git isn't aware of the file, stage it
+git add README.md
+
+# take a snapshot of the staging area
+git commit -m "add README to initial commit"
+
+# provide the path for the repository you created on github
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+
+# push changes to github
+git push --set-upstream origin main
+```
+
+### Example: Contribute to an existing branch on GitHub
+
+```
+# assumption: a project called `repo` already exists on the machine, and a new branch has been pushed to GitHub.com since the last time changes were made locally
+
+# change into the `repo` directory
+cd repo
+
+# update all remote tracking branches, and the currently checked out branch
+git pull
+
+# change into the existing branch called `feature-a`
+git checkout feature-a
+
+# make changes, for example, edit `file1.md` using the text editor
+
+# stage the changed file
+git add file1.md
+
+# take a snapshot of the staging area
+git commit -m "edit file1"
+
+# push changes to github
+git push
+```
+
+## Models for collaborative development
+
+There are two primary ways people collaborate in GitHub:
+
+1. Shared repository
+2. [Fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/about-forks) and [pull](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+
+With a *shared repository*, individuals and teams are explicitly designated as contributors with read, write, or administrator access. This simple permission structure, combined with features like protected branches and Marketplace, helps teams progress quickly when they adopt GitHub.
+
+For an open source project, or for projects to which anyone can contribute, managing individual permissions can be challenging, but a *fork and pull* model allows anyone who can view the project to contribute. A fork is a copy of a project under a developer's personal account. Every developer has full control of their fork and is free to implement a fix or new feature. Work completed in forks is either kept separate, or is surfaced back to the original project via a pull request. There, maintainers can review the suggested changes before they're merged. See the [Forking Projects Guide](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Forking_Projects#forking-projects) for more information.
+
+
