@@ -33,7 +33,7 @@ You can link a pull request to an issue to show that a fix is in progress and to
 
 **Tips**:
 
-* To toggle between collapsing and expanding all outdated review comments in a pull request, hold down <kbd>option</kbd> and click **Show oudated** or **Hide outdated**. For more shortcuts, see "[Keyboard shortcuts](https://docs.github.com/en/get-started/using-github/keyboard-shortcuts)."
+* To toggle between collapsing and expanding all outdated review comments in a pull request, hold down <kbd>option</kbd> and click **Show outdated** or **Hide outdated**. For more shortcuts, see "[Keyboard shortcuts](https://docs.github.com/en/get-started/using-github/keyboard-shortcuts)."
 * You can squash commits when merging a pull request to gain a more streamlined view of changes. For more information, see "[About pull request merges](https://docs.github.com/en/github/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges)."
 
 <hr>
