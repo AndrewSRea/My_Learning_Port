@@ -70,4 +70,30 @@ You can access your notifications through the [notifications](https://github.com
 
 ![Image showing a possible keyboard shortcut for a notification action](https://guides.github.com/features/issues/notification.png)
 
-Muted threads won't show up as unread again until you are specifically @mentioned again. This makes muting a great strategy for threads
+Muted threads won't show up as unread again until you are specifically @mentioned again. This makes muting a great strategy for threads that you have little interest in (perhaps a subsystem that you aren't familiar with). If you mark an issue as read, it will stay that way until someone comments on the thread again.
+
+GitHub also syncs read/unread status for email notifications -- if you read a notification in your email client, it will be marked as read in the web-based interface. (Make sure you allow your email client to display images if you'd like this functionality.)
+
+### @mentions
+
+@mentions are the way that we reference other GitHub users inside of GitHub Issues. Inside of the description or any comment of the issue, include the @username of another GitHub user to send them a notification. This works very similar to how Twitter uses @mentions.
+
+We like to use the `/cc` syntax (an abbreviation for carbon copy) to include people in issues:
+
+<blockquote>
+
+It looks like the new widget form is broken on Safari. When I try and create the widget, Safari crashes. This is reproducible on 10.8, but not 10.9. Maybe a browser bug?
+
+/cc @kneath @jresig
+
+</blockquote>
+
+This works great if you know the specific users to include, but many times we're working across teams and don't really know who might be able to help us. @mentions also work for Teams within your GitHub organization. If you create a Team called *browser-bugs* under the @acmeinc organization, you can reference the team with @mentions:
+
+<blockquote>
+
+/cc @acmeinc/browser-bugs
+
+</blockquote>
+
+This will send notifications to every member of the browser-bugs team.
