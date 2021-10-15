@@ -106,7 +106,7 @@ Oftentimes issues are dependent on other issues or, at least, relate to them and
 
 Hey @kneath, I think the problem started in #42
 
-<blockquote>
+</blockquote>
 
 When you do this, we'll create an event inside of issue #42 that looks something like this:
 
