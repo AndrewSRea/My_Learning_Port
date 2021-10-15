@@ -53,17 +53,19 @@ This Git Handbook goes into a little more depth, explaining what a VCS is, what 
 
 Forking projects is essential when youi want to contribute to someone else's code. This guide explains how.
 
-**[About Pull Requests (from GitHub)]()**
+**[About Pull Requests (from GitHub)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Pull_Requests#pull-requests)**
 
 A useful guide to managing pull requests, the way that your suggested code changes are delivered to people's repositories for consideration.
 
-**[Mastering issues (from GitHub)]()**
+**[Mastering issues (from GitHub)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Mastering_Issues#mastering-issues)**
 
 Issues are like a forum for your GitHub project, where people can ask questions and report problems, and you can manage updates (for example, assigning people to fix issues, clarifying the issue, letting people know things are fixed). This article tells you what you need to know about issues.
 
 <hr>
 
 **Note**: There is **a lot more** that you can do with Git and GitHub, but we feel that the above represents the minimum you need to know to start using Git effectively. As you get deeper into Git, you'll start to realize that it is easy to go wrong when you start using more complicated commands. Don't worry, even professional web developers find Git confusing sometimes, and often solve problems by searching for solutions on the web, or consulting sites like [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) and [Dangit, git!](https://dangitgit.com/)
+
+<hr>
 
 ## See also
 
