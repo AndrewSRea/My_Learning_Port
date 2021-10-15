@@ -18,14 +18,14 @@ Working out what tools you should be using can be a difficult process, so we hav
 
 Client-side tooling can be intimidating, but this series of articles aims to illustrate the purpose of some of the most common client-side tool types, explain the tools you can chain together, how to install them using package managers, and control them using the command line. We finish up by providing a complete toolchain example showing you how to get productive.
 
-**[Understanding client-side JavaScript frameworks]()**
+**[Understanding client-side JavaScript frameworks](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks#understanding-client-side-javascript-frameworks)**
 
 JavaScript frameworks are an essential part of modern front-end web development, providing developers with tried and tested tools for building scalable, interactive web applications. Many modern companies use frameworks as a standard part of their tooling, so many front-end development jobs now require framework experience. This module gives you some fundamental background knowledge about how client-side frameworks work and how they fit into your toolset, before moving on to tutorial series covering some of today's most popular ones.
 
-**[Git and GitHub]()**
+**[Git and GitHub](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub#git-and-github)**
 
 All developers will use some kind of **version control system (VCS)**, a tool to allow them to collaborate with other developers on a project without danger of them overwriting each other's work, and roll back to previous versions of the code base if a problem is discovered later on. The most popular VCS (at least, among web developers) is **Git**, along with **GitHub**, a site that provides hosting for your repositories and several tools for working with them. This module aims to teach you what you need to know about both of them.
 
-**[Cross browser testing]()**
+**[Cross browser testing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing#cross-browser-testing)**
 
 This module looks specifically at the area of testing web projects across different browsers. Here we look at identifying your target audience (e.g. what users, browsers, and devices do you most need to worry about?), how to go about testing, the main issues that you'll face with different types of code and how to fix/mitigate those, what tools are most useful in helping you test and fix problems, and how to use automation to speed up testing.
