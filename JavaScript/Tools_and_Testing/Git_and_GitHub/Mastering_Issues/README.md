@@ -97,3 +97,78 @@ This works great if you know the specific users to include, but many times we're
 </blockquote>
 
 This will send notifications to every member of the browser-bugs team.
+
+### References
+
+Oftentimes issues are dependent on other issues or, at least, relate to them and you'd like to connect the two. You can reference issues by typing in a hashtag plus the issue number.
+
+<blockquote>
+
+Hey @kneath, I think the problem started in #42
+
+<blockquote>
+
+When you do this, we'll create an event inside of issue #42 that looks something like this:
+
+![Image of an issue referencing another issue](https://guides.github.com/features/issues/reference.png)
+
+Issue on another repository? Just include the repository before the name like `kneath/example-project#42`.
+
+One of the more interesting ways to use GitHub Issues is to reference issues directly from commits. Include the issue number of the commit message.
+
+![Image of a commit using a reference to an Issue](https://guides.github.com/features/issues/commit.png)
+
+By prefacing your commits with "Fixes", "Fixed", "Fix", "Closes", "Closed" or "Close" when the commit is merged into main, it will also automatically close the issue.
+
+References make it possible to deeply connect the work being done with the bug being tracked, and are a great way to add visibility into the history of your project.
+
+## Search
+
+At the very top of each page is a search box that lets you search through issues.
+
+![Image of a search box at the top of a repo page](https://guides.github.com/features/issues/search.png)
+
+You can scope search results by:
+
+* Keyword, such as "[all issues mentioning the sidebar](https://github.com/twbs/bootstrap/issues?q=sidebar)."
+* State, such as "[all issues mentioning the sidebar that are closed](https://github.com/twbs/bootstrap/issues?q=sidebar+is%3Aclosed)."
+* Assignee, such as "[all issues mentioning the sidebar that were assigned to @mdo](https://github.com/twbs/bootstrap/issues?q=sidebar+is%3Aclosed+assignee%3Amdo)."
+
+[Our Help article on searching Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/filtering-and-searching-issues-and-pull-requests) can show you other ways to search: using created/updated dates, labels, authors, comment counts, by repository owner, and more.
+
+## Overviews & Reports
+
+Outside of the Issues section, there are two other pages that help summarize what's going on with Issues across your repository and across all of your repositories.
+
+### The Issue Dashboard
+
+If you're looking for a broader listing of all your issues across many projects, the [Issues Dashboard]() can be a great tool. The dashboard works very similar to the issues section, but collects issues differently:
+
+* All issues in repositories you own and collaborate on.
+* Issues assigned to you.
+* Issues you've created.
+
+If you use organizations, each one has its own Issues dashboard that separates out Issues within the organization.
+
+### Pulse
+
+Underneath each repository is a section called **Pulse** -- Pulse is a snapshot of everything that's happened in the repository in the past week (or day, or past 3 months, etc).
+
+![Image of the "Pulse" of a repo page](https://guides.github.com/features/issues/pulse.png)
+
+It's a great way to catch up with repositories when you've been away and don't want the granularity notifications offer when watching a repository.
+
+## Other Uses for Issues
+
+Issues are great for tracking all kinds of things -- and GitHub is a great place to easily share and collaborate on your issues. Here's some of our favorites:
+
+* [Bug tracker for your open source projects](https://github.com/nodejs/node-v0.x-archive/issues)
+* [Request for recipes](https://github.com/newmerator/recipes/issues) (maybe you have a good **[gluten-free pizza dough recipe](https://github.com/newmerator/recipes/issues/3)**?)
+
+## Fin
+
+**Now congratulate yourself** -- that was a lot to read! Issue management is one of the most powerful tools at any developer's disposal. I guess all that's left is to actually fix the bugs now.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Pull_Requests#pull-requests) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Git_and_GitHub/Mastering_Issues#mastering-issues) - [[Next module: Cross browser testing]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing#cross-browser-testing)
