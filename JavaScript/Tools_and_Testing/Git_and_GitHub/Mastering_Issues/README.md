@@ -142,7 +142,7 @@ Outside of the Issues section, there are two other pages that help summarize wha
 
 ### The Issue Dashboard
 
-If you're looking for a broader listing of all your issues across many projects, the [Issues Dashboard]() can be a great tool. The dashboard works very similar to the issues section, but collects issues differently:
+If you're looking for a broader listing of all your issues across many projects, the [Issues Dashboard](https://github.com/issues) can be a great tool. The dashboard works very similar to the issues section, but collects issues differently:
 
 * All issues in repositories you own and collaborate on.
 * Issues assigned to you.
