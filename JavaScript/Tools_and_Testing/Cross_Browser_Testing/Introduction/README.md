@@ -128,3 +128,33 @@ It is often a good idea to test on prerelease versions of browsers. See the foll
 * [Opera Developer](https://www.opera.com/computer/beta)
 
 This is especially prevalent if you are using very new technologies in your site, and you want to test against the latest implementations, or if you are coming across a bug in the latest release version of a browser, and you want to see if the browser's developers have fixed the bug in a newer version.
+
+### Fixes/iteration
+
+Once you've discovered a bug, you need to try to fix it.
+
+The first thing to do is to narrow down where the bug occurs as much as possible. Get as much information as you can from the person reporting the bug -- what platform(s), device(s), browser version(s), etc. Try it on similar configurations (e.g. the same browser version on different desktop platforms, or a few different versions of the same browser on the same platform) to see how widely the bug persists.
+
+It might not be your fault -- if a bug exists in a browser, then hopefully the vendor will rapidly fix it. It might have already been fixed -- for example, if a bug is present in Firefox release 49, but it is no longer there in Firefox Nightly (version 52), then they have fixed it. If it is not fixed, then you may want to file a bug (see [Reporting bugs]() below).
+
+If it is your fault, you need to fix it! Finding out the cause of the bug involves the same strategy as any web development bug (again, see [Debugging HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Debugging_HTML), [Debugging CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Debugging_CSS), and [What went wrong? Troubleshooting JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_First_Steps/Troubleshooting_JS#what-went-wrong-troubleshooting-javascript)). Once you've discovered what is causing your bug, you need to decide how to work around it in the particular browser in which it is causing problems -- you can't just change the problem code outright, as this may break the code in other browsers. The general approach is usually to fork the code in some way, for example, use JavaScript feature detection code to detect situations in which a problem feature doesn't work, and run some different code in those cases which does work.
+
+Once a fix has been made, you'll want to repeat your testing process to make sure your fix is working OK, and hasn't caused the site to break in other places or in other browsers.
+
+## Reporting bugs
+
+Just to reiterate on what was said above, if you discover bugs in browsers, you should report them:
+
+* [Firefox Bugzilla](https://bugzilla.mozilla.org/home)
+* [EdgeHTML issue tracker](https://developer.microsoft.com/en-us/microsoft-edge/)
+* [Safari](https://bugs.webkit.org/)
+* [Chrome](https://bugs.chromium.org/p/chromium/issues/list)
+* [Opera](https://help.opera.com/en/computer-bug-wizard/)
+
+## Summary
+
+This article should have given you a high-level understanding of the most important concepts you need to know about cross browser testing. Armed with this knowledge, you are now ready to move on and start learning about Cross browser testing strategies.
+
+<hr>
+
+[[Back to the Cross browser testing opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing#cross-browser-testing) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Introduction#introduction-to-cross-browser-testing) - [[Next page]]()
