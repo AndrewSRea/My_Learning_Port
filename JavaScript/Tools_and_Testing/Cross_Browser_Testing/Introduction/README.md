@@ -58,4 +58,20 @@ Steps 2-4 will tend to be repeated as many times as necessary to get all of the 
 
 ### Initial planning
 
-In the inital planning phase, you will
+In the inital planning phase, you will probably have several planning meetings with the site owner/client (this might be your boss, or someone from an external company you are building a website for), in which you determine exactly what the website should be -- what content and functionality should it have, what should it look like, etc. At this point, you'll also want to know how much time you have to develop the site -- what is their deadline, and how much are they going to pay you for your work? We won't go into much detail about this, but cross-browser issues can have a serious effect on such planning.
+
+Once you've got an idea of the required featureset, and what technologies you will likely build these features with, you should start exploring the target audience -- what browsers, devices, etc., will the target audience for this site be using? The client might already have data about this from previous research they've done, e.g. from other websites they own, or from previous versions of the website you are now working on. If not, you will be able to get a good idea by looking at other sources, such as usage stats for competitors, or countries the site will be serving. You can also use a bit of intuition.
+
+So, for example, you might be building an e-commerce site that serves customers in North America. The site should work entirely in the last few versions of the most popular desktop and mobile (iOS, Android, Windows phone) browsers -- this should include Chrome (and Opera as it is based on the same rendering engine as Chrome), Firefox, IE/Edge, and Safari. It should also provide an acceptable experience on IE 8 and 9, and be accessible with WCAG AA compliance.
+
+Now you know your target testing platforms, you should go back and review the required featureset and what technologies you are going to use. For example, if the e-commerce site owner wants a WebGL-powered 3D tour of each product built into the product pages, they will need to accept that this just won't work in IE versions before 11. You'd have to agree to provide a version of the site without this feature to users of older IE versions.
+
+You should compile a list of the potential problem areas.
+
+<hr>
+
+**Note**: You can find browser support information for technologies by looking up the different features on [MDN](https://developer.mozilla.org/en-US/). You should also consult [caniuse.com](https://caniuse.com/), for some further useful details. 
+
+<hr>
+
+Once you've agreed on these details, you can go ahead and start developing the site.
