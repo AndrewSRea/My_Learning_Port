@@ -75,3 +75,15 @@ You should compile a list of the potential problem areas.
 <hr>
 
 Once you've agreed on these details, you can go ahead and start developing the site.
+
+### Development
+
+Now on to the development of the site. You should split up the different parts of the development into modules. For example, you might split the different site areas up -- home page, product page, shopping cart, payment workflow, etc. You might then further subdivide these -- implement common site header and footer, implement product page detail view, implement persistent shopping cart widget, etc.
+
+There are multiple general strategies to cross browser development. For example:
+
+* Get all the functionality working as closely as possible in all target browsers. This may involve writing different code paths that reproduce functionality in different ways aimed at different browsers, or using a [Polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) to mimic any missing support using JavaScript or other technologies, or using a library that allows you to write a single bit of code and then does different things in the background depending on what the browser supports.
+* Accept that some things aren't going to work the same on all browsers, and provide different (acceptable) solutions in browsers that don't support the full functionality. Sometimes this is inevitable due to device constraints -- a cinema widescreen isn't going to give the same visual experience as a 4" mobile screen, regardless of how you program your site.
+* Accept that your site just isn't going to work in some older browsers, and move on. This is OK, provided your client/userbase is OK with it.
+
+Normally your development will involve a combination of the above three approaches. The most important thing is that you test each small part before committing it -- don't leave all the testing till the end!
