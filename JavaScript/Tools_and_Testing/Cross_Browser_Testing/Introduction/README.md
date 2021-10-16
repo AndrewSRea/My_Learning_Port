@@ -36,7 +36,7 @@ There are many different reasons why cross browser issues occur, and note that h
 
 Cross browser issues commonly occur because:
 
-* Sometimes browser have bugs, or implement features differently. This situation is a lot less bad than it used to be; back when IE4 and Netscape 4 were competing to be the dominant browser in the 1990s, browser companies deliberately implemented things differently to each other to try to gain competitive advantage, which made life hell for developers. Browsers are much better at following standards these days, but differences and bugs still creep through sometimes.
+* Sometimes browsers have bugs, or implement features differently. This situation is a lot less bad than it used to be; back when IE4 and Netscape 4 were competing to be the dominant browser in the 1990s, browser companies deliberately implemented things differently to each other to try to gain competitive advantage, which made life hell for developers. Browsers are much better at following standards these days, but differences and bugs still creep through sometimes.
 * Some browsers may have different levels of support for technology features than others. This is inevitable when you are dealing with bleeding edge features that browsers are just getting around to implementing, or if you have to support really old browsers that are no longer being developed, which may have been frozen (i.e. no more new work done on them) a long time before a new feature was even invented. As an example, if you want to use cutting edge JavaScript features in your site, they might not work in older browsers. If you need to support older browsers, you might have to not use those, or convert your code to old fashioned syntax using some kind of cross-compiler where needed.
 * Some devices may have constraints that cause a website to run slowly, or display badly. For example, if a site has been designed to look nice on a desktop PC, it will probably look tiny and be hard to read on a mobile device. If your site includes a load of big animations, it might be OK on a high spec tablet, but might be sluggish or jerky on a low end device.
 
@@ -87,3 +87,30 @@ There are multiple general strategies to cross browser development. For example:
 * Accept that your site just isn't going to work in some older browsers, and move on. This is OK, provided your client/userbase is OK with it.
 
 Normally your development will involve a combination of the above three approaches. The most important thing is that you test each small part before committing it -- don't leave all the testing till the end!
+
+### Testing/discovery
+
+After each implementation phase, you will need to test the new functionality. To start with, you should make sure there are no general issues with your code that are stopping your feature from working:
+
+1. Test it in a couple of stable browsers on your system, like Firefox, Safari, Chrome, or IE/Edge.
+2. Do some lo-fi accessibility testing, such as trying to use your site with only the keyboard, or using your site via a screen reader to see if it is navigable.
+3. Test on a mobile platform, such as Android or iOS.
+
+At this point, fix any problems you find with your new code.
+
+Next, you should try expanding your list of test browsers to a full list of target audience browsers and start concentrating on weeding out cross browser issues (see the next article for more information on [determining your target browsers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Strategies_for_Testing#gotta-test-em-all)). For example:
+
+* Try to test the latest change on all the modern desktop browsers you can -- including Firefox, Chrome, Opera, IE, Edge, and Safari on desktop (Mac, Windows, and Linux, ideally).
+* Test it in common phone and tablet browsers (e.g. iOS Safari on iPhone/iPad, Chrome and Firefox on iPhone/iPad/Android).
+* Also do tests in any other browsers you have included inside your target list.
+
+The most lof-fi option is to just do all the testing you can by yourself (pulling in teammates to help out if you are working in a team). You should try to test it on real physical devices where possible.
+
+If you haven't got the means to test all those different browsers, operating systems, and device combinations on physical hardware, you can also make use of emulators (emulate a device using software on your desktop computer) and virtual machines (software that allows you to emulate multiple operating system/software combinations on your desktop computer). This is a very popular choice, especially in some circumstances -- for example, Windows doesn't let you have multiple versions of Windows installed simultaneously on the same machine, so using multiple virtual machines is often the only option here.
+
+Another option is user groups -- using a group of people outside your development team to test your site. This could be a group of friends or family, a group of other employees, a class at a local university, or a professional user testing setup, where people are paid to test out your site and provide results.
+
+Finally, you can get smarter with your testing using auditing or automation tools; this is a sensible choice as your projects get bigger, as doing all this testing by hand can start to take a really long time. You can set up your own testing automation system ([Selenium]() being the popular app of choice) that could, for example, load your site in a number of different browsers, and:
+
+* See if a button click causes something to happen successfully (like, for example, a map displaying), displaying the results once the tests are completed.
+* Take a screenshot of each, allowing you to see if a layout is consistent across the different browsers.
