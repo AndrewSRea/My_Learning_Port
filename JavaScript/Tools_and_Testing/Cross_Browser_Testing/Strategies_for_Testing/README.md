@@ -56,3 +56,33 @@ If you live somewhere else, or are working on a site that will serve somewhere e
 
 ### Browser support stats
 
+One helpful measure you can call on to inform your browser testing choices is browser support stats. There are a number of sites that provide such stats. For example:
+
+* [Netmarketshare](https://www.netmarketshare.com/browser-market-share.aspx?options=%7B%22filter%22%3A%7B%22%24and%22%3A%5B%7B%22deviceType%22%3A%7B%22%24in%22%3A%5B%22Desktop%2Flaptop%22%5D%7D%7D%5D%7D%2C%22dateLabel%22%3A%22Trend%22%2C%22attributes%22%3A%22share%22%2C%22group%22%3A%22browser%22%2C%22sort%22%3A%7B%22share%22%3A-1%7D%2C%22id%22%3A%22browsersDesktop%22%2C%22dateInterval%22%3A%22Monthly%22%2C%22dateStart%22%3A%222019-11%22%2C%22dateEnd%22%3A%222020-10%22%2C%22segments%22%3A%22-1000%22%7D)
+* [Statcounter](https://gs.statcounter.com/)
+
+These are both very North America-centric, and not particularly accurate, but they can give you an idea of broad trends.
+
+For example, let's go to [Netmarketshare](https://www.netmarketshare.com/browser-market-share.aspx?options=%7B%22filter%22%3A%7B%22%24and%22%3A%5B%7B%22deviceType%22%3A%7B%22%24in%22%3A%5B%22Desktop%2Flaptop%22%5D%7D%7D%5D%7D%2C%22dateLabel%22%3A%22Trend%22%2C%22attributes%22%3A%22share%22%2C%22group%22%3A%22browser%22%2C%22sort%22%3A%7B%22share%22%3A-1%7D%2C%22id%22%3A%22browsersDesktop%22%2C%22dateInterval%22%3A%22Monthly%22%2C%22dateStart%22%3A%222019-11%22%2C%22dateEnd%22%3A%222020-10%22%2C%22segments%22%3A%22-1000%22%7D). You can see that Opera is listed as having small but visible usage figures, so we should add it to our support chart, too, as grade C.
+
+IE8 is listed as being significant, too, but it is older and no longer capable. Opera Mini is also significant, but it isn't very capable in terms of running complex JavaScript at runtime, etc. (See [Opera Mini and JavaScript](https://dev.opera.com/articles/opera-mini-and-javascript/) for more details.) We should put this into grade B as well.
+
+### Using analytics
+
+A much more accurate source of data, if you can get it, comes from an analytics app like [Google Analytics](https://marketingplatform.google.com/about/analytics/). This is an application that will give you accurate stats on exactly what browsers people are using to browse your site. Of course, this relies on you already having a site to use it on, so it isn't much good for completely new sites.
+
+But an analytics history can be useful for finding support stats to influence, say, a new version of a company's site, or new features you are adding to an existing site. If you have these available, they are far more accurate than global browser stats like those mentioned above.
+
+You may also consider using open source and privacy focused analytics platforms like [Open Web Analytics](https://www.openwebanalytics.com/) and [Matomo](https://matomo.org/). They expect you to self-host the analytics platform.
+
+#### Setting up Google Analytics
+
+1. First of all, you'll need a Google account. Use this account to sign into [Google Analytics](https://marketingplatform.google.com/about/analytics/).
+2. Choose the [Google Analytics](https://analytics.google.com/analytics/web/provision/#/provision) (web) option, and click the *Sign Up* button.
+3. Enter your website/app details into the signup page. This is fairly intuitive to set up; the most important field to get right is the website URL. This needs to be your site/app's root URL.
+4. Once you've finished filling in everything, press the *Get Tracking ID* button, then accept the terms of service that appear.
+5. The next page provides you with some code snippets and other instructions. For a basic website, what you need to do is copy the *Website tracking* code block and paste it into all the different pages you want to track using Google Analytics on your site. You could place the snippets below your closing `</body>` tag, or somewhere else appropriate that keeps it from getting muddled up with your application code.
+6. Upload the changes to the development server, or wherever else you need your code.
+
+That's it! Your site should now be ready to start reporting analytics data.
+
