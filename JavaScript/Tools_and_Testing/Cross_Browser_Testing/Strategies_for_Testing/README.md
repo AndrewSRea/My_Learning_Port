@@ -183,3 +183,26 @@ We will cover each of the other options below.
 **Note**: We also need to consider accessibility -- there are a number of useful tools you can install on your machine to facilitate accessibility testing, but we'll cover those in the [Handling common accesibility problems](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Common_Accessibility_Problems#handling-common-accessibility-problems) article later in the course.
 
 <hr>
+
+### Emulators
+
+Emulators are basically programs that run inside your computer and emulate a device or particular device conditions of some kind, allowing you to do some of your testing more conveniently than having to find a particular combination of hardware/software to test.
+
+An emulator might be as simple as testing a device condition. For example, if you want to do some quick and dirty testing of your width/height media queries for responsive design, you could use Firefox's [Responsive Design Mode](https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_Mode). Safari has a similar mode, too, which can be enabled by going to *Safari > Preferences*, and checking *Show Develop menu*, then choosing *Develop > Enter Responsive Design Mode*. Chrome also has something similar: Device mode. (See [Simulate Mobile Devices with Device Mode](https://developer.chrome.com/docs/devtools/device-mode/).)
+
+More often than not, though, you'll have to install some kind of emulator. The most common devices/browsers you'll want to test are as follows:
+
+* The official [Android Studio IDE](https://developer.android.com/studio) for developing Android apps is a bit heavyweight for just testing websites on Google Chrome or the old Stock Android browser, but it does come with a robust [emulator](https://developer.android.com/studio/run/emulator.html). If you want something a bit more lightweight, [Andy](https://www.andyroid.net/) is a reasonable option that runs on both Windows and Mac.
+* Apple provides an app called [Simulator](https://help.apple.com/simulator/mac/current/#/) that runs on top of the [XCode](https://developer.apple.com/xcode/) development environment, and emulates iPad/iPhone/Apple Watch/Apple TV. This includes the native iOS Safari browser. This unfortunately only runs on a Mac.
+
+You can often find simulators for other mobile device environments, too. For example:
+
+* [Blackberry](https://developer.blackberry.com/develop/simulator/) (emulator available for Windows, Mac OSX, and Linux).
+* You can emulate [Opera Mini](https://dev.opera.com/articles/installing-opera-mini-on-your-computer/) on its own, if you want to test it.
+* There are emulators available for Windows Mobile OSes: see [Windows Phone Emulator for Windows Phone 8](https://docs.microsoft.com/en-us/previous-versions/windows/apps/ff402563(v=vs.105)?redirectedfrom=MSDN) and [Test with the Microsoft Emulator for Windows 10 Mobile](https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/test-with-the-emulator). (These only run on Windows.)
+
+<hr>
+
+**Note**: Many emulators actually require the use of a virtual machine (see below). When this is the case, instructions are often provided, and/or use of the virtual machine is incorporated into the installer of the emulator.
+
+<hr>
