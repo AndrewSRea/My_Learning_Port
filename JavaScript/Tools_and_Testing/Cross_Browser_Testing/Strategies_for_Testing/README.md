@@ -206,3 +206,41 @@ You can often find simulators for other mobile device environments, too. For exa
 **Note**: Many emulators actually require the use of a virtual machine (see below). When this is the case, instructions are often provided, and/or use of the virtual machine is incorporated into the installer of the emulator.
 
 <hr>
+
+### Virtual machines
+
+Virtual machines are applications that run on your desktop computer and allow you to run emulations of entire operating systems, each compartmentalized in its own virtual hard drive (often represented by a single large file existing on the host machine's hard drive). There are a number of popular virtual machine apps available, such as [Parallels](https://www.parallels.com/), [VMWare](https://www.vmware.com/), and [Virtual Box](https://www.virtualbox.org/wiki/Downloads). We personally like the latter because it is free.
+
+<hr>
+
+**Note**: You need a lot of hard disk space available to run virtual machine emulations. Each operating system you emulate can take up a lot of memory. You tend to choose the hard drive space you want for each install. You could get away with probably 10GB, but some sources recommend up to 50GB or more, so the operating system will run reliably. A good option provided by most virtual machine apps is to create a **dynamically allocated** hard drive that grows and shrinks as the need arises.
+
+<hr>
+
+To use a Virtual Box, you need to:
+
+1. Get hold of an installer disk or image (e.g. [ISO file](https://en.wikipedia.org/wiki/Optical_disc_image)) for the operating system you want to emulate. Virtual Box is unable to provide these. Most, like Windows OSes, are commercial products that can't be freely distributed.
+2. [Download the appropriate installer](https://www.virtualbox.org/wiki/Downloads) for your operating system and install it.
+3. Open the app. You'll be presented with a view like the following:
+
+![Image of a Virtual Box app](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Testing_strategies/virtualbox.png)
+
+4. To create a new virtual machine, press the *New* button in the top left hand corner.
+5. Follow the instructions and fill in the following dialog boxes as appropriate. You'll:
+    - Provide a name for the new virtual machine.
+    - Choose which operating system and version you are installing on it.
+    - Set how much RAM should be allocated. (We'd recommend something like 2048MB, or 2GB.)
+    - Create a virtual hard disk. (Choose the default options across the three dialog boxes containing *Create a virtual hard disk now*, *VDI (virtual disk image)*, and *Dynamically allocated*.)
+    - Choose the file location and size for the virtual hard disk. (Choose a sensible name and location to keep it, and for the size, specify around 50GB or as much as you are comfortable with specifying.)
+
+Now the new virtual box should appear in the left hand menu of the main Virtual Box UI window. At this point, you can double-click to open it -- it will start to boot up the virtual machine, but it won't yet have the operating system (OS) installed. At this point, you need to point the dialog box at the installer image/disk, and it will run through the steps to install the OS just like on a physical machine.
+
+![Image of a dialog box with a dropdown for choosing an ISO file](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Testing_strategies/virtualbox-installer.png)
+
+<hr>
+
+**Warning**: You need to make sure you have the operating system image you want to install on the virtual machine available at this point, and install it right away. If you cancel the process at this point, it can render the virtual machine unusable, and make it so you need to delete it and create it again. This is not fatal, but it is annoying.
+
+<hr>
+
+After the process has completed, you should have a virtual machine running an operating system inside a window on your host computer.
