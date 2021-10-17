@@ -86,3 +86,66 @@ You may also consider using open source and privacy focused analytics platforms 
 
 That's it! Your site should now be ready to start reporting analytics data.
 
+#### Studying analytics data
+
+Now you should be able to go back to the [Analytics Web](https://analytics.google.com/analytics/web/provision/#/provision) homepage, and start looking at the data you've collected about your site (you need to leave a little bit of time for some data to actually be collected, of course).
+
+By default, you should see the reporting taab, like so:
+
+![Image of opening page of an example website's Google Analytics](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Testing_strategies/analytics-reporting.png)
+
+There is a huge amount of data you could look at using Google Analytics -- customized reports in different categories, etc. -- and we haven't got time to discuss it all. [Getting started with Analytics](https://support.google.com/analytics/answer/1008015) provides some useful guidance on reporting (and more) for beginners.
+
+You should also be encouraged to look at the different options on the left hand side, and see what kinds of data you can find out. For example, you can find out what browsers and operating systems your users are using by selecting *Audience > Technology > Browser & OS* from the left hand menu.
+
+<hr>
+
+**Note**: When using Google Analytics, you need to beware of misleading bias, e.g. "We have no Firefox Mobile users" might lead you to not bother supporting Firefox mobile. But you are not going to have any Firefox Mobile users if the site was broken on Firefox mobile in the first place.
+
+<hr>
+
+### Other considerations
+
+There are other considerations that you should probably include as well. You should definitely include accessibility as a grade A testing requirement. (We'll cover exactly what you should test in our [Handling common accessibility problems](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Common_Accessibility_Problems#handling-common-accessibility-problems) article.)
+
+Plus, you might have other considerations. If you are creating some kind of company intranet for delivering sales figures to managers, and all the managers have been provided with Windows phones, for example, you will probably want to make mobile IE support a priority.
+
+### Final support chart
+
+So, our final support chart will end up looking like so:
+
+1. A grade: Chrome and Firefox for Windows/Mac, Safari for Mac, Edge and IE for Windows (last two versions of each), iOS Safari for iPhone/iPad, Android stock browser (last two versions) on phone/tablet, Chrome and Firefox for Android (last two versions) on phone tablet. Accessibility passing common tests.
+2. B grade: IE 8 and 9 for Windows, Opera Mini.
+3. C grade: Opera, other niche modern browsers.
+
+## What are you going to test?
+
+When you've got a new additon to your codebase that needs testing, before you start testing you should write out a list of testing requirements that need to pass to be accepted. These requirements can be visual or functional -- both combine to make a usable website feature.
+
+Consider the following example (see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/strategies/hidden-info-panel.html), and also the [example running live](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/strategies/hidden-info-panel.html)):
+
+![Image of an example of a feature in an app](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Testing_strategies/sliding-box-demo.png)
+
+Test criteria for this feature could be written like so:
+
+A and B grade:
+
+* Button should be activatable by the user's primary control mechanism, whatever it is -- this should include mouse, keyboard, and touch.
+* Toggling the button should make the information box appear/disappear.
+* The text should be readable.
+* Visually impaired users using screenreaders should be able to access the text.
+
+A grade:
+
+* The information box should animate smoothly as it appears/disappears.
+* The gradient and text shadow should appear to enhance the look of the box.
+
+You may notice from the text in the example that it won't work in IE8 -- this is a problem according to our support chart, which you'll have to work on, perhaps by using a feature detection library to implement the functionality in a different way if the browser doesn't support CSS transitions. (See [Implementing feature detection](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Implementing_Feature_Detection#implementing-feature-detection), later on in the course.)
+
+You might also notice that the button isn't usable using only the keyboard -- this also needs to be remedied. Maybe we could use some JavaScript to implement a keyboard control for the toggle, or use some other method entirely?
+
+These test criteria are useful, because:
+
+* They give you a set of steps to follow when you are performing tests.
+* They can be easily turned into sets of instructions for user groups to follow when carrying out tests (e.g. "try to activate the button using your mouse, and then the keyboard...") -- see [User testing]() below.
+* They can also provide a basis for writing automated tests. It is easier to write such tests if you know exactly what you want to test, and what the success conditions are. (See [Selenium]() later in the series.)
