@@ -244,3 +244,22 @@ Now the new virtual box should appear in the left hand menu of the main Virtual 
 <hr>
 
 After the process has completed, you should have a virtual machine running an operating system inside a window on your host computer.
+
+You need to treat this virtual operating system installation just like you would any real installation -- for example, as well as installing the browsers you want to test, install an anti-virus program to protect it from viruses.
+
+Having multiple virtual machines is very useful, particularly for Windows IE/Edge testing -- on Windows, you are not able to have multiple versions of the default browser installed side by side, so you might want to build up a library of virtual machines to handle different tests as required, e.g.:
+
+* Windows 10 with Edge 14
+* Windows 10 with Edge 13
+* Windows 8.1 with IE11
+* Windows 8 with IE10
+* Windows 7 with IE9
+* Windows XP with IE8
+* Windows XP with IE7
+* Windows XP with IE6
+
+<hr>
+
+**Note**: Another good thing about virtual machines is that the virtual disk images are fairly self-contained. If you are working on a team, you can create one virtual disk image, then copy it and pass it around. Just make sure you have the required licenses to run all those copies of Windows or whatever else you are running if it is a licensed product.
+
+<hr>
