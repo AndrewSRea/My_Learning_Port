@@ -148,4 +148,38 @@ These test criteria are useful, because:
 
 * They give you a set of steps to follow when you are performing tests.
 * They can be easily turned into sets of instructions for user groups to follow when carrying out tests (e.g. "try to activate the button using your mouse, and then the keyboard...") -- see [User testing]() below.
-* They can also provide a basis for writing automated tests. It is easier to write such tests if you know exactly what you want to test, and what the success conditions are. (See [Selenium]() later in the series.)
+* They can also provide a basis for writing automated tests. It is easier to write such tests if you know exactly what you want to test, and what the success conditions are. (See [Selenium](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation#selenium) later in the series.)
+
+## Putting together a testing lab
+
+One option for carrying out browser tests is to do the testing yourself. To do this, you will probably use a combination of actual physical devices, and emulated environments (using either an emulator or a virtual machine).
+
+### Physical devices
+
+It is generally better to have a real device running the browser you want to test -- this provides the greatest accuracy in terms of behavior and overall user experience. You'll probably want something like the following, for a reasonable low-level device lab:
+
+* A Mac, with the browsers installed that you need to test -- this can include Firefox, Chrome, Opera, and Safari.
+* A windows PC, with the browsers installed that you need to test -- this can include Edge (or IE), Chrome, Firefox, and Opera.
+* A higher-spec Android phone and tablet with browser installed that you need to test -- this can include Chrome, Firefox, and Opera Mini for Android, as well as the original Android stock browser.
+* A higher-spec iOS phone and tablet with the browsers installed that you need to test -- this can include iOS Safari and Chrome, Firefox, and Opera Mini for iOS.
+
+The following are also good options, if you can get them:
+
+* A Linux PC available, in case you need to test bugs specific to Linux versions of browsers. Linux users commonly use Firefox, Opera, and Chrome. If you only have one machine available, you could consider creating a dual boot machine running Linux and Windows on separate partitions. Ubuntu's installer makes this quite easy to set up. See [WindowsDualBoot](https://help.ubuntu.com/community/WindowsDualBoot) for help with this.
+* A couple of lower-spec mobile devices, so you can test performance of features like animations on less powerful processors.
+
+Your main work machine can also be a place to install other tools for specific purposes, such as accessibility auditing tools, screen readers, and emulators/virtual machines.
+
+Some larger companies have device labs that stock a very large selection of different devices, enabling developers to hunt down bugs on very specific browser/device combinations. Smaller companies and individuals are generally not able to afford such a sophisticated lab, so tend to make do with smaller labs, emulators, vritual machines, and commercial testing apps.
+
+We will cover each of the other options below.
+
+<hr>
+
+**Note**: Some efforts have been made to create publicly accessible device labs -- see [Open Device Labs](https://web.archive.org/web/20201111195410/https://opendevicelab.com/).
+
+<hr>
+
+**Note**: We also need to consider accessibility -- there are a number of useful tools you can install on your machine to facilitate accessibility testing, but we'll cover those in the [Handling common accesibility problems](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Common_Accessibility_Problems#handling-common-accessibility-problems) article later in the course.
+
+<hr>
