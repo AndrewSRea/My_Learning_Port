@@ -67,3 +67,72 @@ Other popular editors have similar linting packages available. For example, see:
 * [SublimeLinter](http://www.sublimelinter.com/en/stable/) for Sublime Text
 * [Notepad++ linter](https://sourceforge.net/projects/notepad-linter/)
 * [VSCode linters](https://marketplace.visualstudio.com/search?target=vscode&category=Linters&sortBy=Installs)
+
+### Browser developer tools
+
+The developer tools built into most browsers also feature useful tools for hunting down errors, mainly for CSS.
+
+<hr>
+
+**Note**: HTML errors don't tend to show up so easily in dev tools, as the browser will try to correct badly-formed markup automatically. The W3C validator is the best way to find HTML errors -- see [Validation](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#validation) above.
+
+<hr>
+
+As an example, in Firefox the CSS inspector will show CSS declarations that aren't applied crossed out, with a warning triangle. Hovering over the warning triangle will provide a descriptive error message:
+
+![Image of a dev tools CSS inspector](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/css-message-devtools.png)
+
+Other browser devtools have similar features.
+
+## Common cross browser problems
+
+Now let's move on to look at some of the most common cross browser HTML and CSS problems. The main areas we'll look at are lack of support for modern features, and layout issues.
+
+### Older browsers not supporting modern features 
+
+This is a common problem, especially when you need to support old browsers (such as old IE versions) or you are using features that are implemented using CSS prefixes. In general, most core HTML and CSS functionality (such as basic HTML elements, CSS basic colors and text styling) works across most browsers you'll want to support. More problems are uncovered when you start wanting to use newer features such as [Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox), or [HTML5 video/audio](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery), or even more nascent, [CSS Grids](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids#native_css_grids_with_grid_layout) or [-webkit-background-clip: text](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Advanced_styling_effects#-webkit-background-clip_text).
+
+Once you've identified a list of potential problem technologies you will be using, it is a good idea to research what browsers they are supported in, and what related techniques are useful. See [Finding help]() below.
+
+#### HTML fallback behavior
+
+Some problems can be solved by just taking advantage of the natural way in which HTML/CSS work.
+
+Unrecognized HTML elements are treated by the browser as anonymous inline elements (effectively inline elements with no semantic value, similar to [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) elements). You can still refer to them by their names, and style them with CSS, for example -- you just need to make sure they are behaving as you want them to. For example, setting `display: block;` on all of the new semantic elements (such as [`<article>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article), [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside), etc.), but only in old versions of IE that don't recognize them (so, IE 8 and lower). This way new browsers can just use the code as normal, but older IE versions will be able to style these elements, too.
+
+<hr>
+
+**Note**: See [IE conditional comments]() for the best way to do this. <!-- below -->
+
+<hr>
+
+More complex elements like HTML [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), and [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) (and other features besides) have natural mechanisms for fallbacks to be added, which work on the same principle as described above. You can add fallback content in between the opening and closing tags, and non-supporting browsers will effectively ignore the outer element and run the nested content.
+
+For example:
+```
+<video id="video" controls preload="metadata" poster="img/poster.jpg">
+    <source src="video/tears-of-steel-battle-clip-medium.mp4" type="video/mp4">
+    <source src="video/tears-of-steel-battle-clip-medium.webm" type="video/webm">
+    <!-- Offer download -->
+    <p>Your browser does not support HTML5 video; here is a link to
+    <a href="video/tears-of-steel-battle-clip-medium.mp4">view the video</a> directly.</p>
+</video>
+```
+This example includes a simple link allowing you to download the video if even the HTML5 video player doesn't work so, at least, the user can still access the video.
+
+HTML5 form elements also exhibit fallback qualities -- HTML5 introduced some special [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) types for inputting specific information into forms, such as times, dates, colors, numbers, etc. These are very useful, particularly on mobile platforms, where providing a pain-free way of entering data is very important for the user experience. Supporting platforms provide special UI widgets when these input types are used, such as a calendar widget for entering dates.
+
+The following example shows date and time inputs:
+```
+<form>
+    <div>
+        <label for="date">Enter a date:</label>
+        <input id="date" type="date">
+    </div>
+    <div>
+        <label for="time">Enter a time:</label>
+        <input id="time" type="time">
+    </div>
+</form>
+```
+You can see the output of this code running live as [forms-test.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/html-css/forms-test.html) on GitHub. (And see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/html-css/forms-test.html) as well.)
