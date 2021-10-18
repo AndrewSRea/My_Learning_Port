@@ -293,3 +293,23 @@ When running tests, it can also be a good idea to:
 * Use browser's private mode functionality when running tests, where available (e.g. [Private Browsing](https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history) in Firefox, [Incognito Mode](https://support.google.com/chrome/answer/95464) in Chrome) so things like cookies and temp files are no saved.
 
 These steps are designed to make sure that the browser you are testing in is as "pure" as possible, i.e. there is nothing installed that could affect the results of the tests.
+
+<hr>
+
+**Note**: Another useful lo-fi option, if you have the hardware available, is to test your sites on low-end phones/other devices -- as sites get larger and feature more effects, there is a higher chance of the site slowing down, so you need to start giving performance more consideration. Trying to get your functionality working on a low end device will make it more likely that the experience will be good on higher-end devices.
+
+<hr>
+
+**Note**: Some server-side development environments provide useful mechanisms for rolling out site changes to only a subset of users, providing a useful mechanism for getting a feature tested by a subset of users without the need for a separate development server. An example is [Django Waffle Flags]().
+
+<hr>
+
+## Summary
+
+After reading this article, you should now have a good idea of what you can do to identify your target audience/target browser list, and then effectively carry out cross-browser testing on that list.
+
+Next, we'll turn our attention to the actual code issues your testing might uncover, starting with HTML and CSS.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Introduction#introduction-to-cross-browser-testing) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Strategies_for_Testing#strategies-for-carrying-out-testing) - [[Next page]]()
