@@ -300,7 +300,7 @@ These steps are designed to make sure that the browser you are testing in is as 
 
 <hr>
 
-**Note**: Some server-side development environments provide useful mechanisms for rolling out site changes to only a subset of users, providing a useful mechanism for getting a feature tested by a subset of users without the need for a separate development server. An example is [Django Waffle Flags]().
+**Note**: Some server-side development environments provide useful mechanisms for rolling out site changes to only a subset of users, providing a useful mechanism for getting a feature tested by a subset of users without the need for a separate development server. An example is [Django Waffle Flags](https://github.com/django-waffle/django-waffle).
 
 <hr>
 
