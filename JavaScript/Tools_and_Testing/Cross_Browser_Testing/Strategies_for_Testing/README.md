@@ -263,3 +263,33 @@ Having multiple virtual machines is very useful, particularly for Windows IE/Edg
 **Note**: Another good thing about virtual machines is that the virtual disk images are fairly self-contained. If you are working on a team, you can create one virtual disk image, then copy it and pass it around. Just make sure you have the required licenses to run all those copies of Windows or whatever else you are running if it is a licensed product.
 
 <hr>
+
+### Automation and commercial apps
+
+As mentioned in the last chapter, you can take a lot of the pain out of browser testing by using some kind of automation system. You can set up your own testing automation system ([Selenium](https://www.selenium.dev/) being the popular app of choice), which does take some setup, but can be very rewarding when you get it worked out.
+
+There are also commercial tools available such as [Sauce Labs](https://saucelabs.com/), [Browser Stack](https://www.browserstack.com/), and [Lambda Test](https://www.lambdatest.com/), that do this kind of thing for you, without you having to worry about the setup, if you wish to invest some money in your testing.
+
+Another alternative is to use no-code test automation tools such as [Endtest](https://endtest.io/).
+
+We will look at how to use such tools later on in the module.
+
+## User testing
+
+Before we move on, we'll finish this article off by talking a bit about user testing -- this can be a good option if you have a willing user group to test your new functionality on. Bear in mind that this can be as lo-fi or as sophisticated as you klike -- your user group could be a group of friends, a group of colleagues, or a group of unpaid or paid volounteers, depending on whether you have any money to spend on testing.
+
+Generally, you'll get your users to look at the page or view containing the new functionality on some kind of a development server, so you are not putting the final site or change live until it is finished. You should get them to follow some steps and report the results they get. It is useful to provide a set of steps (sometimes called a script) so that you get more reliable results pertaining to what you were trying to test. We mentioned this in the [What are you going to test](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Strategies_for_Testing#what-are-you-going-to-test) section above -- it is easy to turn the test criteria detailed there into steps to follow. For example, the following would work for a sighted user:
+
+* Click the question mark button using the mouse on your desktop computer a few times. Refresh the browser window.
+* Select and activate the question mark button using the keyboard on your desktop computer a few times.
+* Tap the question mark button a few times on your touch screen device.
+* Toggling the button should make the information box appear/disappear. Does it do this, in each of the above three cases?
+* Is the text readable?
+* Does the information box animate smoothly as it appears/disappears?
+
+When running tests, it can also be a good idea to:
+
+* Set up a separate browser profile where possible, with browser extensions and other such things disabled, and run your tests in that profile. (See [Use the Profile Manager to create and remove Firefox profiles](https://support.mozilla.org/en-US/kb/profile-manager-create-remove-switch-firefox-profiles?redirectslug=profile-manager-create-and-remove-firefox-profiles&redirectlocale=en-US) and [Share Chrome with others or add personas](https://support.google.com/chrome/answer/2364824), for example.)
+* Use browser's private mode functionality when running tests, where available (e.g. [Private Browsing](https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history) in Firefox, [Incognito Mode](https://support.google.com/chrome/answer/95464) in Chrome) so things like cookies and temp files are no saved.
+
+These steps are designed to make sure that the browser you are testing in is as "pure" as possible, i.e. there is nothing installed that could affect the results of the tests.
