@@ -22,3 +22,48 @@ Basically, it is a matter of checking whether your HTML and CSS code is well-for
 
 <hr>
 
+### Validation
+
+For HTML, validation involves making sure all your tags are properly closed and nested, you are using a DOCTYPE, and you are using tags for their correct purpose. A good strategy is to validate your code regularly. One service that can do this is the W3C [Markup validation Service](), which allows you to point to your code using a [URI](https://danielmiessler.com/study/difference-between-uri-url/), your local computer's file path, or by directly entering the code into a textbox, and the app will return a list of errors:
+
+![Image of the W3C Markup Validation Service](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/validator.png)
+
+CSS has a similar story -- you need to check that your property names are spelled correctly, property values are spelled correctly and are valid fo the properties that are used on, you are not missing any curly braces, and so on. The W3C has a [CSS Validator](https://jigsaw.w3.org/css-validator/) available, too, for this purpose.
+
+### Linters
+
+Another good option to choose is a so-called Linter application, which not only points out errors but can also flag up warnings about bad practices in your CSS, and other points besides. Linters can generally be customized to be stricter or more relaxed in their error/warning reporting.
+
+There are many online linter applications, the best of which are probably [Dirty Markup](https://www.10bestdesign.com/dirtymarkup/) (HTML, CSS, JavaScript), and [CSS Lint](http://csslint.net/) (CSS only). These allow you to paste your code into a window, and it will flag up any errors with crosses, which can then be hovered over to get an error message informing you what the problem is. Dirty Markup also allows you to make fixes to your markup using the *Clean* button.
+
+<hr>
+
+**Personal note**: The design of the **Dirty Markup** linter listed above did not instill me with a lot of confidence in the ability of the app. (It looks like the website hasn't been maintained in quite a while.)
+
+Through some internet searching, I found a GitHub page with a developer community-created list of [awesome-linters](https://github.com/caramelomartins/awesome-linters) for many code languages, including [HTML](https://github.com/caramelomartins/awesome-linters#html), [CSS](https://github.com/caramelomartins/awesome-linters#css), and [JavaScript](https://github.com/caramelomartins/awesome-linters#javascript).
+
+<hr>
+
+![Image of the Dirty Markup app highlighting errors in code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/dirty-markup.png)
+
+However, it is not very convenient to have to copy and paste your code over to a webpage to check its validity several times. What you really want is a linter that will fit into your standard workflow with the minimum of hassle.
+
+Many code editors have linter plugins. GitHub's [Atom](https://atom.io/) code editor, for example, has a rich plugin ecosystem available, with amny linting options. To show you an example of how such plugins generally work:
+
+**(These instructions do not have to be followed if you already have a code editor installed in your local computer, and wish to install code linters in your already-downloaded code editor. See below these instructions.)**
+
+1. Install Atom (if you haven't got an up-to-date version already installed) -- download it from the Atom page linked above.
+2. Go to Atom's *Preferences...* dialog (e.g. by choosing *Atom > Preferences...* on Mac, or *File > Preferences...* on Windows/Linux) and choose the *Install* option in the left hand menu.
+3. In the *Search packages* text field, type "lint" and press Enter/Return to search for linting-related packages.
+4. You should see a package called **lint** at the top of the list. Install this first (using the *Install* button), as other linters rely on it to work. After that, install the **linter-csslint** plugin for linting CSS, and the **linter-tidy** plugin for linting HTML.
+5. After the packages have finished installing, try loading up an HTML file and a CSS file: you'll see any issues highlighted with green (for warnings) and red (for errors) circles next to the line numbers, and a separate panel at the bottom provides line numbers, error messages, and sometimes suggested values or other fixes.
+
+![Image of "linter-tidy" working on HTML code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/atom-htmltidy.png)
+
+![Image of "linter-csslint" working on CSS code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/atom-csslint.png)
+
+Other popular editors have similar linting packages available. For example, see:
+
+* [SublimeLinter](http://www.sublimelinter.com/en/stable/) for Sublime Text
+* [Notepad++ linter](https://sourceforge.net/projects/notepad-linter/)
+* [VSCode linters](https://marketplace.visualstudio.com/search?target=vscode&category=Linters&sortBy=Installs)
