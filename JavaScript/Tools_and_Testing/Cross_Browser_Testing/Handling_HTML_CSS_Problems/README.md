@@ -136,3 +136,77 @@ The following example shows date and time inputs:
 </form>
 ```
 You can see the output of this code running live as [forms-test.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/html-css/forms-test.html) on GitHub. (And see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/html-css/forms-test.html) as well.)
+
+If you view the example on a supporting browser like desktop/Android Chrome or iOS Safari, you'll see the special widgets/features in action as you try to input data. On a non-supporting platform such as Firefox or Internet Explorer, the inputs will just fallback to normal text inputs so, at least, the user can still enter some information.
+
+<hr>
+
+**Note**: Of course, this may not be a great solution for your project's needs -- the difference in visual presentation is not great, plus it is harder to guarantee the data will be entered in the format you want it in. For cross browser forms, it is probably better to rely on simple form elements, or selectively use advanced form elements only in supporting browsers, or using a library that provides decent cross browser form widgets, such as [jQuery UI](https://jqueryui.com/) or [Bootstrap datepicker](https://bootstrap-datepicker.readthedocs.io/en/latest/).
+
+<hr>
+
+#### CSS fallback behavior
+
+CSS is arguably better at fallbacks than HTML. If a browser encounters a declaration or rule it doesn't understand, it just skips it completely without applying it or throwing an error. This might be frustrating for you and your users if such a mistake slips through to production code but, at least, it means the whole site doesn't come crashing down because of one error and, if used cleverly, you can use it to your advantage.
+
+Let's look at an example -- a simple box styled with CSS, which has some styling provided by various CSS3 features. You can see this example running live on GitHub as [button-with-fallback.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/html-css/button-with-fallback.html), and see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/html-css/button-with-fallback.html) as well.
+
+The button has a number of declarations that style, but the two we are most interested in are as follows:
+```
+button {
+    ...
+
+    background-color: #ff0000;
+    background-color: rgba(255,0,0,1);
+    box-shadow: inset 1px 1px 3px rgba(255,255,255,0.4),
+                inset -1px -1px 3px rgba(0,0,0,0.4);
+}
+
+button:hover {
+    background-color: rgba(255,0,0,0.5);
+}
+
+button:active {
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.4),
+                inset -1px -1px 3px rgba(255,255,255,0.4);
+}
+```
+Here we are providing an [RGBA](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgba()) [`background-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color) that changes opacity on hover to give the user a hint that the button is interactive, and some semi-transparent inset [`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow) shades to give the button a bit of texture and depth. The trouble is that RGBA colors and box shadows don't work in IE versions older than 9 -- in older versions, the background just wouldn't show up at all so the text would be unreadable, no good at all!
+
+To sort this out, we have added a second a second `background-color` declaration, which just specifies a hex color -- this is supported way back in really old browsers, and acts as a fallback if the modern shiny features don't work. What happens is a browser visiting this page first applies the first `background-color` value; when it gets to the second `background-color` declaration, it will override the initial value with this value if it supports RGBA colors. If not, it will just ignore the entire declaration and move on.
+
+<hr>
+
+**Note**: The same is true for other CSS features like [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries), [`@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face), and [`@supports](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) blocks -- if they are not supported, the browser just ignores them.
+
+<hr>
+
+#### IE conditional comments
+
+IE conditional comments are a modified proprietary HTML comment syntax, which can be used to selectively apply HTML code to different versions of IE. This has proven to be a very effective mechanism for fixing cross browser bugs. The syntax looks like this:
+```
+<!--[if lte IE 8]>
+    <script src="ie-fix.js"></script>
+    <link href="ie-fix.css" rel="stylesheet" type="text/css">
+<![endif]-->
+```
+This block will apply the IE-specific CSS and JavaScript only if the browser viewing the page is IE 8 or older. `lte` means "less than or eqaul to", but you can also use `lt`, `gt`, `gte`, `!` for NOT, and other logical syntax.
+
+<hr>
+
+**Note**: Sitepoint's [Internet Explorer Conditional Comments](https://www.sitepoint.com/internet-explorer-conditional-comments/) provides a useful beginner's tutorial/reference that explains the conditional comment syntax in detail.
+
+<hr>
+
+As you can see, this is especially useful for applying code fixes to old versions of IE. The use case we mentioned earlier (making modern semantic elements stylable in old versions of IE) can be achieved easily using conditional comments. For example, you could put something like this in your IE stylesheet:
+```
+aside, main, article, section, nav, figure, figcaption {
+    display: block;
+}
+```
+It isn't that simple, however -- you also need to create a copy of each element you want to style in the DOM via JavaScript, for them to be stylable. This is a strange quirk, and we won't bore you with the details here. For example:
+```
+const asideElem = document.createElement('aside');
+    ...
+```
+This seems like a pain to deal with, but fortunately there is a [polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) available that does the necessary fixes for you, and more besides -- see [HTML5Shiv](https://github.com/aFarkas/html5shiv) for all the details. (See [manual installation](https://github.com/aFarkas/html5shiv#installation) for the simplest usage.)
