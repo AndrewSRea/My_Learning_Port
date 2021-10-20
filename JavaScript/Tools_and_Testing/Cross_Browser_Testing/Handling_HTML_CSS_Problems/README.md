@@ -210,3 +210,41 @@ const asideElem = document.createElement('aside');
     ...
 ```
 This seems like a pain to deal with, but fortunately there is a [polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) available that does the necessary fixes for you, and more besides -- see [HTML5Shiv](https://github.com/aFarkas/html5shiv) for all the details. (See [manual installation](https://github.com/aFarkas/html5shiv#installation) for the simplest usage.)
+
+#### Selector support
+
+Of course, no CSS features will apply at all if you don't use the right [selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors) to select the element you want to style! If you just write a selector incorrectly so the styling isn't as expected in any browser, you'll just need to troubleshoot and work out what is wrong with your selector. We find that it is helpful to inspect the element you are trying to style using your browser's dev tools, then look at the DOM tree breadcrumb trail that DOM inspectors tend to provide to see if your selector makes sense compared to it.
+
+For example, in the Firefox dev tools, you get this kind of output at the bottom of the DOM insepctor:
+
+![Image of a DOM tree breadcrumb in a dev tools inspector](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/dom-breadcrumb-trail.png)
+
+If, for example, you were trying to use this selector, you'd be able to see that it wouldn't select the input element as desired:
+```
+form > #date
+```
+(The `date` form input isn't directly inside the `<form>`. You'd be better off using a general descendant selector instead of a child selector.)
+
+However, another issue that appears in versions of IE older than 9 is that none of the newer selectors (mainly pseudo-classes and pseudo-elements like [`:nth-of-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type), [`:not`](https://developer.mozilla.org/en-US/docs/Web/CSS/:not), [`::selection`](https://developer.mozilla.org/en-US/docs/Web/CSS/::selection), etc.) work. If you want to use these in your CSS and you need to support older IE versions, a good move is to use Keith Clark's [Selectivzr](http://selectivizr.com/) library -- this is a small JavaScript library that works on top of an existing JavaScript library like [jQuery](https://jquery.com/) or [MooTools](https://mootools.net/).
+
+1. To try this example, make a local copy of [selectivizr-example-start.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/html-css/selectivizr-example-start.html). If you look at this running live, you'll see that it contains two paragraphs, one of which is styled. We've selected the paragraph with `p:first-child`, which won't work in old versions of IE.
+2. Now download [MooTools](https://mootools.net/) and [Selectivizr](http://selectivizr.com/), and save them in the same directory as your sample HTML.
+3. Put the following code into the head of your HTML document, just before the opening `<style>` tag:
+```
+<script type="text/javascript" src="MooTools-Core-1.6.0.js"></script>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="selectivizr-min.js"></script>
+    <![endif]-->
+```
+If you try running this in an old version of IE, it should work fine.
+
+![Image of Selectivizr running in IE7](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/HTML_and_CSS/new-selector-ie7.png)
+
+<hr>
+
+**Personal note**: I was going to create a folder for the example above but the MooTools download proved to be too large to attempt to commit it to my **My_Learning_Port** GitHub repository. Also, the Selectivizr zip file could not download to my local computer's **Downloads** folder.
+
+<hr>
+
+Unable to expand "selectivizr-1.0.2.zip" into "Downloads".
+(Error 21 - Is a directory.)
