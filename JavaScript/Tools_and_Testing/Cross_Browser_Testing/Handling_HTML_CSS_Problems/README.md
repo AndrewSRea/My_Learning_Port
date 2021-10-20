@@ -290,3 +290,21 @@ test.style.webkitTransform = 'rotate(90deg)';
 ```
 As you start to type the property name representation after the second dot (note that in JavaScript, CSS property names are written in lowel camel case, not hyphenated), the JavaScript console should begin to autocomplete the names of the properties that exist in the browser and match what you've written so far. This is useful for finding out what versions of the property are implemented in that browser.
 
+At the time of writing, both Firefox and Chrome implemented `-webkit-` prefixed and non-prefixed versions of [`transform`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)!
+
+Once you've found out which prefixes you need to support, you should write them all out in your CSS. For example:
+```
+-ms-transform: rotate(90deg);
+-webkit-transform: rotate(90deg);
+transform: rotate(90deg);
+```
+This ensures that all browsers that support any of the above forms of the property can make the feature work. It is worth putting the non-prefixed version last, because that will be the most up-to-date version, which you'll want browsers to use, if possible. If, for example, a browser implements both the `-webkit-` version and the non-prefixed version, it will first apply the `-webkit-` version, then override it with the non-prefixed version. You want it to happen this way around, not the other way around.
+
+Of course, doing this for lots of different CSS rules can get really tedious. It is better to use an automation tool to do it for you. And such tools exist:
+
+The [prefix-free JavaScript library](https://projects.verou.me/prefixfree/) can be attached to a page, and will automatically detect what capabilities are possessed by browsers viewing the page and add prefixes as appropriate. It is really easy and convenient to use, although it does have some downsides (see the link above for details), and it is arguable that parsing every stylesheet in your site and adding prefixes at runtime can be a drain on the computer's processing power for a large site.
+
+Another solution is to add prefixes automatically during development, and this (and other things besides) can be done using tools like [Autoprefixer](https://github.com/postcss/autoprefixer) and [PostCSS](https://postcss.org/). These tools can be used in a variety of ways. For example, [Autoprefixer](https://goonlinetools.com/autoprefixer) has an [online version](https://autoprefixer.github.io/) that allows you to enter your non-prefixed CSS on the left, and gives you a prefix-added version on the right. You can choose which browsers you want to mmake sure you support using the notation outlined in [Autoprefixer options](https://github.com/postcss/autoprefixer#options). Also, see [Browserslist queries](https://github.com/browserslist/browserslist#queries), which this is based on, for more detail. As an example, the following query will select the last 2 versions of all major browsers and versions of IE above 9.
+```
+last 2 versions, ie > 9
+```
