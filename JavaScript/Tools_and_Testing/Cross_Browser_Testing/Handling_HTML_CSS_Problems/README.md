@@ -246,5 +246,47 @@ If you try running this in an old version of IE, it should work fine.
 
 <hr>
 
-Unable to expand "selectivizr-1.0.2.zip" into "Downloads".
-(Error 21 - Is a directory.)
+#### Handling CSS prefixes
+
+Another set of problems comes with CSS prefixes -- these are a mechanism originally used to allow browser vendors to implement their own version of a CSS (or JavaScript) feature while technology is in an experimental state, so they can play with it and get it right without conflicting with other browser's implementations, or the final unprefixed implementations. So, for example:
+
+* Mozilla uses `-moz-`
+* Chrome/Opera/Safari use `-webkit-`
+* Microsoft uses `-ms-`
+
+Here's some examples:
+```
+-webkit-transform: rotate(90deg);
+
+background-image: -moz-linear-gradient(left,green,yellow);
+background-image: -webkit-gradient(linear,left center,right center,from(green),to(yellow));
+background-image: linear-gradient(to right,green,yellow);
+```
+The first line shows a [`transform`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) property with a `-webkit-` prefix -- this was needed to make transforms work in Chrome, etc., until the feature was finalized and such browsers added a prefix-free version of the property (at the time of writing, Chrome supported both versions).
+
+The last three lines show three different versions of the [`linear-gradient()`]() function, which is used to generate a linear gradient in the background of an element:
+
+1. The first one has a `-moz-` prefix, and shows a slightly older version of the syntax (Firefox).
+2. The second one has a `-webkit-` prefix, and shows an even older, proprietary version of the syntax. (This is actually from a really old version of the Webkit engine).
+3. The third one has no prefix, and shows the final version of the syntax (included in the [CSS Image Values and Replaced Content Module Level 3 spec](https://drafts.csswg.org/css-images-3/#linear-gradients), which defines this feature).
+
+Prefixed features were never supposed to be used in production websites -- they are subject to change or removal without warning, and cause cross browser issues. This is particularly a problem when developers decide to only use, say, the `-webkit-` version of a property -- meaning that the site won't work in other prefixed versions of various CSS properties, so they will work with such code. Usage of prefixes by browser vendors has declined recently precisely because of these types of problems, but there are still some that need attention.
+
+If you insist on using prefixed features, make sure you use the right ones. You can look up what browsers require prefixes on MDN reference pages, and sites like [caniuse.com](https://caniuse.com/). If you are unsure, you can also find out by doing some testing directly in browsers.
+
+Try this simple example:
+
+1. Open up google.com, or another site that has a prominent heading or other block-level element.
+2. Right/Cmd + click on the element in question and choose Inspect/Inspect element (or whatever the option is in your browser) -- this should open up the dev tools in your browser, with the element highlighted in the DOM inspector.
+3. Look for a feature you can use to select that element. For example, at the time of writing, the main Google logo had an ID of `hplogo`.
+4. Store a reference to this element in a variable. For example:
+```
+const text = document.getElementById('hplogo');
+```
+5. Now try to set a new value for the CSS property you are interested in on that element. You can do this using the [style]() property of the element. For example, try typing these into the JavaScript console:
+```
+test.style.transform = 'rotate(90deg)';
+test.style.webkitTransform = 'rotate(90deg)';
+```
+As you start to type the property name representation after the second dot (note that in JavaScript, CSS property names are written in lowel camel case, not hyphenated), the JavaScript console should begin to autocomplete the names of the properties that exist in the browser and match what you've written so far. This is useful for finding out what versions of the property are implemented in that browser.
+
