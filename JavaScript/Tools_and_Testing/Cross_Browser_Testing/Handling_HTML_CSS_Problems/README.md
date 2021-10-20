@@ -308,3 +308,61 @@ Another solution is to add prefixes automatically during development, and this (
 ```
 last 2 versions, ie > 9
 ```
+Autoprefixer can also be used in other, more convenient ways -- see [Autoprefixer usage](https://github.com/postcss/autoprefixer#usage). For example, you can use it with a task runner/build tool such as [Gulp](https://gulpjs.com/) or [Webpack](https://webpack.github.io/) to automatically add prefixes once development has been done. (Explaining how these work is somewhat beyond the scope of this article.)
+
+You can also use a plugin for a text editor such as Atom or Sublime text. For example, in Atom:
+
+1. You can install it by going to *Preferences > Install*, searching for *Autoprefixer*, then hitting install.
+2. You can set a browser query by pressing the Autoprefixer *Settings* button and entering the query in the text field in the *Settings* section on the page.
+3. In your code, you can select sections of CSS to which you want to add prefixes, open the command palette (*Cmd/Ctrl + Shift + P*), then type in Autoprefixer and select the Autoprefixer result that autocompletes.
+
+As an example, we entered the following code:
+```
+body {
+    display: flex;
+}
+```
+We highlighted it and ran the Autoprefixer command, and it replaced it with this:
+```
+body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+```
+
+### Layout issues
+
+Another problem that might come up is differences in layouts between browsers. Historically, this used to be much more of a problem but recently, with modern browsers tending to support CSS more consistently, layout issues tend to be more commonly associated with:
+
+* Lack of (or differences in) support for modern layout features.
+* Layouts not looking good in mobile browsers (i.e. responsive design problems).
+
+<hr>
+
+**Note**: Historically, web developers used to use CSS files called resets, which removed all the default browser styling applied to HTML, and then applied their own styles for everything over the top -- this was done to make styling on a project more consistent, and reduce possible cross browser issues, especially for things like layout. However, it has more recently been seen as overkill. The best equivalent we have in modern times is [normalize.css](https://necolas.github.io/normalize.css/), a neat bit of CSS that builds slightly on the default browser styling to make things more consistent and fix some layout issues. You are advised to apply normalize.css to all your HTML pages.
+
+<hr>
+
+**Note**: When trying to track down a tricky layout issue, a good technique is to add a brightly colored [`outline`]() to the offending element, or all the elements nearby. This makes it a lot easier to see where everything is placed. See [Debug your CSS with outline visualizations](https://www.otsukare.info/2016/10/05/debugging-css) for more details.
+
+<hr>
+
+#### Support for new layout features
+
+Much of the layout work on the web today is done using [floats](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Floats) -- this is because floats are well-supported (way back to IE4, albeit with a number of bugs that would also need to be investigated if you were to try to support IE that far back). However, they are not really meant for layout purposes -- using floats the way we do is really a hack -- and they do have some serious limitations (e.g. see [Why Flexbox?](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox#why_flexbox))
+
+More recently, dedicated layout mechanisms have appeared, like [Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) and [CSS Grids](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids#native_css_grids_with_grid_layout), which make common layout tasks far easier and remove such shortcomings. These, however, are not as well-supported in browsers:
+
+* CSS grids are very new. At the time of writing, they were only [supported](https://gridbyexample.com/browsers/) in the very newest versions of modern browsers.
+* Flexbox is [well-supported](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox#cross-browser_compatibility) in modern browsers, but provides problems in older browsers. IE 9 doesn't support it at all, and IE 10 and old versions of iOS/desktop Safari respectively support incompatible old versions of the flexbox spec. This results in some interesting browser prefix juggling if you want to try to use flexbox across all these browsers (see [Advanced Cross-Browser Flexbox](https://dev.opera.com/articles/advanced-cross-browser-flexbox/) to get an idea).
+
+Layout features aren't as easy to provide graceful fallbacks for simple colors, shadows, or gradients. If layout properties are ignored, your entire design will likely fall to pieces. Because of this, you need to use feature detection to detect whether visiting browsers support those layout features, and selectively apply different layouts depending on the result. (We will cover feature detection in detail in a later article.)
+
+For example, you could apply a flexbox layout to modern browsers, then instead apply a floated layout to older browsers that don't support flexbox.
+
+<hr>
+
+**Note**: There is a fairly new feature in CSS called [`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports), which allows you to implement native feature detection tests.
+
+<hr>
