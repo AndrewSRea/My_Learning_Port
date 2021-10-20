@@ -366,3 +366,37 @@ For example, you could apply a flexbox layout to modern browsers, then instead a
 **Note**: There is a fairly new feature in CSS called [`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports), which allows you to implement native feature detection tests.
 
 <hr>
+
+#### Responsive design problems
+
+Responsive design is the practice of creating web layouts that change to suit different device form factors -- for example, different screen widths, orientations (portrait or landscape), or resolutions. A desktop layout, for example, will look terrible when viewed on a mobile device, so you need to provide a suitable mobile layout using [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries), and make sure it is applied correctly using [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag). You can find a detailed account of such practices in [The building blocks of responsive design](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/responsive_design_building_blocks).
+
+Resolution is a big issue, too -- for example, mobile devices are less likely to need big heavy images than desktop computers, and are more likely to have slower internet connections and possibly even expensive data plans that make wasted bandwidth more of a problem. In addition, different devices can have a range of different resolutions, meaning that smaller images could appear pixelated. There are a number of techniques that allow you to work around such problems, from simple [mobile first media queries](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first), to more complex [responsive image techniques](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#resolution_switching_different_sizes).
+
+Another difficulty that can present problems is browser support for the features that make the above techniques possible. Media queries are not supported in IE 8 or less, so if you want to use a mobile first layout and have the desktop layout then apply to old IE versions, you'll have to apply a media query [polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) to your page, like [css3-mediaqueries-js](https://code.google.com/archive/p/css3-mediaqueries-js/), or [Respond.js](https://github.com/scottjehl/Respond).
+
+## Finding help
+
+There are many other issues you'll encounter with HTML and CSS, making knowledge of how to find answers online invaluable.
+
+Among the best sources of support information are the [Mozilla Development Network](https://developer.mozilla.org/en-US/), [stackoverflow.com](https://stackoverflow.com/), and [caniuse.com](https://caniuse.com/).
+
+To use the Mozilla Developer Network (MDN), most people do a search engine search of the technology they are trying to find information on, plus the term "mdn" -- for example, "mdn HTML5 video". MDN contains several useful types of content:
+
+* Reference material with browser support information for client-side web technologies, e.g. the [`<video>` reference page](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video).
+* Other supporting reference material, e.g. the [Guide to media types and formats on the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats).
+* Useful tutorials that solve specific problems, for example, [Creating a cross-browser video player](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/cross_browser_video_player).
+
+[caniuse.com](https://caniuse.com/) provides support information, along with a few useful external resource links. For example, see [https://caniuse.com/#search=video](https://caniuse.com/?search=video). (You just have to enter the feature you are searching for into the text box.)
+
+[stackoverflow.com](https://stackoverflow.com/) (SO) is a forum site where you can ask questions and have fellow developers share their solutions, look up previous posts, and help other developers. You are advised to look and see if there is an answer to your question already, before posting a new question. For example, we searched for "cross browser html5 video" on SO, and very quickly came up with [HTML5 Video with full cross browser compatibility](https://stackoverflow.com/questions/16212510/html5-video-with-full-cross-browser-compatibility).
+
+Aside from that, try searching your favorite search engine for an answer to your problem. It is often useful to search for specific error messages if you have them -- other developers will be likely to have had the same problems as you.
+
+## Summary
+
+Now you should be familiar with the main types of cross browser HTML and CSS problems that you'll meet in web development, and how to go about fixing them.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Strategies_for_Testing#strategies-for-carrying-out-testing) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#handling-common-html-and-css-problems) - [[Next page]]()
