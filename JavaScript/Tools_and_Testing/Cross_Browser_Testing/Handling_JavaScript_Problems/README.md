@@ -41,3 +41,29 @@ AS we said in the [previous article](https://github.com/AndrewSRea/My_Learning_P
 **Note**: [Buggy JavaScript Code: The 10 Most Common Mistakes JavaScript Developers Make](https://www.toptal.com/javascript/10-most-common-javascript-mistakes) has some nice discussions of these common mistakes and more.
 
 <hr>
+
+### Linters
+
+As with [HTML and CSS](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#linters), you can ensure better quality, less error-prone JavaScript code using a linter, which points out errors and can also flag up warnings about bad practices, etc., and be customized to be stricter or more relaxed in their error/warning reporting. The JavaScript/ECMAScript linters we'd recommend are [JSHint](https://jshint.com/) and [ESLint](https://eslint.org/). These can be used in a variety of ways, some of which we'll detail below.
+
+#### Online
+
+The [JSHint homepage](https://jshint.com/) provides an online linter, which allows you to enter your JavaScript code on the left and provides an output on the right, including metrics, warnings, and errors.
+
+![Image of the JSHint homepage](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/jshint-online.png)
+
+#### Code editor plugins
+
+It is not very convenient to have to copy and paste your code over to a webpage to check its validity several times. What you really want is a linter that will fit into your standard workflow with the minimum of hassle. Many code editors have linter plugins. For example, GitHub's [Atom]() code editor has a JSHint plugin available.
+
+To install it:
+
+1. Install Atom (if you haven't got an up-to-date version already installed) -- download it from the Atom page linked above.
+2. Go to Atom's *Preferences...* dialog (e.g. by choosing *Atom > Preferences...* on Mac, or *File > Preferences...* on Windows/Linux) and choose the *Install* option in the left-hand menu.
+3. In the *Search packages* text field, type "jslint" and press Enter/Return to search for linting-related packages.
+4. You should see a package called **lint** at the top of the list. Install this first (using the *Install* button), as other linters rely on it to work. After that, install the **linter-jshint** plugin.
+5. After the packages have finished installing, try loading up a JavaScript file: you'll see any issues highlighted with green (for warnings) and red (for errors) circles next to the line numbers, and a separate panel at the bottom provides line numbers, error messages, and sometime suggested values or other fixes.
+
+![Image of a JSLint linter inaction on JavaScript code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/jshint-linter.png)
+
+Other popular editors have similar linting packages available. For example, see the "Plugins for text editors and IDEs" section of the [JSHint install page](https://jshint.com/install/).
