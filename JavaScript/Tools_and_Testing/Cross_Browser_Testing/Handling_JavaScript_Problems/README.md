@@ -140,3 +140,44 @@ request.onload = function() {
 }
 ```
 To summarize, any time something is not working and a value does not appear to be what it is meant to be at some point in your code, you can use `console.log()` to print it out and see what is happening.
+
+#### Using the JavaScript debugger
+
+Unfortunately, we still have the same error -- the problem has not gone away. Let's investigate this now, using a more sophisticated feature of browser developer tools: the [JavaScript debugger](https://developer.mozilla.org/en-US/docs/Tools/Debugger), as it is called in Firefox.
+
+<hr>
+
+**Note**: Similar tools are available in other browsers: the [Sources tab](https://developer.chrome.com/docs/devtools/javascript/sources/) in Chrome, Debugger in Safari (see [Safari Web Development Tools](https://developer.apple.com/safari/tools/)), etc.
+
+<hr>
+
+In Firefox, the Debugger tab looks as follows:
+
+![Image of the Debugger tab in Firefox DevTools](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/debugger-tab.png)
+
+* On the left, you can select the script you want to debug (in this case, we have only one).
+* The center panel shows the code in the selected script.
+* The right-hand panel shows useful details pertaining to the current environment -- *Breakpoints*, *Callstack*, and currently active *Scopes*.
+
+The main feature of such tools is the ability to add breakpoints to code -- these are points where the execution of the code stops, and at that point you can examine the environment in its current state and see what is going on.
+
+Let's get to work. The error is now being thrown at line 51. Click on line number 51 in the center panel to add a breakpoint to it. (You'll see a blue arrow appear over the top of it.) Now refresh the page (Cmd/Ctrl + R) -- the browser will pause execution of the code at line 51. At this point, the right-hand side will update to show some very useful information.
+
+![Image of paused code and information shown in right-hand panel of DevTools Debugger](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/breakpoint.png)
+
+* Under *Breakpoints*, you'll see the details of the breakpoint you have set.
+* Under *Call Stack*, you'll see a few entries -- this is basically a list of the series of functions that were invoked to cause the current function to be invoked. At the top, we have `showHeroes()`, the function we are currently in, and second we have `onload`, which stores the event handler function containing the call to `showHeroes()`.
+* Under *Scopes*, you'll see the currently active scope for the function we are looking at. We only have three -- `showHeroes`, `block`, and `Window` (the global scope). Each scope can be expanded to show the values of variables inside the scope when execution of the code was stopped.
+
+We can find out some very useful information in here.
+
+1. Expand the `showHeroes` scope -- you can see from this that the heroes variable is `undefined`, indicating that accessing the `members` property of `jsonObj` (first line of the function) didn't work.
+2. You can also see that the `jsonObj` variable is storing a text string, not a JSON object.
+3. Exploring further down the call stack, click `onload` in the *Call Stack* section. The view will update to show the `request.onload` function in the center panel, and its scopes in the *Scopes* section.
+4. If you expand the `onload` scope, you see that the `superHeroes` variable is a text string, too, not an object. This settles it -- our [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) call is returning the JSON as text, not JSON.
+
+We'd like you to try fixing this problem yourself. To give you a clue, you can either [tell the XMLHttpRequest object explicitly to return JSON format](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType), or [convert the returned text to JSON](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON#converting-between-objects-and-text) after the response arrives. If you get stuck, consult out [fixed-ajax.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/fixed-ajax.html) example.
+
+<hr>
+
+**Note**: The debugger tab has many other useful features that we've not discussed here -- for example, conditional breakpoints and watch expressions. For a lot more information, see the [Debugger](https://developer.mozilla.org/en-US/docs/Tools/Debugger) page.
