@@ -28,9 +28,11 @@
             request.open('GET', requestURL);
             request.send();
 
-            let superHeroes = request.response;
-            populateHeader(superHeroes);
-            showHeroes(superHeroes);
+            request.onload = function() {
+                let superHeroes = request.response;
+                populateHeader(superHeroes);
+                showHeroes(superHeroes);
+            }
 
             function populateHeader(jsonObj) {
                 const myH1 = document.createElement('h1');
