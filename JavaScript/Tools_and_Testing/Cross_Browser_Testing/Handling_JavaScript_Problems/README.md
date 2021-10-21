@@ -117,3 +117,26 @@ But this fails.
 
 #### The Console API
 
+You may already know what is wrong with this code, but let's explore it some more to show how you could investigate this. For a start, there is a [Console]() API that allows JavaScript code to interact with the browser's JavaScript console. It has a number of features available, but the main one you'll use often is [`console.log()`](), which prints a custom message to the console.
+
+Try inserting the following line just below line 31:
+```
+console.log('Response value: ' + superHeroes);
+```
+Refresh the page in the browser, and you will get an output in the console of "Response value: ", plus the same error message we saw before.
+
+The `console.log()` output shows that the `superHeroes` object doesn't appear to contain anything. A very common problem with async requests like this is when you try to do something with the `response` object before it has actually been returned from the network. Let's fix this problem by running the code once the `load` event has been fired -- remove the `console.log()` line, and update this code block:
+```
+let superHeroes = request.reposnse;
+populateHeader(superHeroes);
+showHeroes(superHeroes);
+```
+...to the following:
+```
+request.onload = function() {
+    let superHeroes - request.response;
+    populateHeader(superHeroes);
+    showHeroes(superHeroes);
+}
+```
+To summarize, any time something is not working and a value does not appear to be what it is meant to be at some point in your code, you can use `console.log()` to print it out and see what is happening.
