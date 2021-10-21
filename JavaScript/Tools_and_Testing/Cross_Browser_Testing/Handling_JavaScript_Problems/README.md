@@ -67,3 +67,53 @@ To install it:
 ![Image of a JSLint linter inaction on JavaScript code](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/jshint-linter.png)
 
 Other popular editors have similar linting packages available. For example, see the "Plugins for text editors and IDEs" section of the [JSHint install page](https://jshint.com/install/).
+
+#### Other uses
+
+There are other ways to use such linters. You can read about them on the [JSHint](https://jshint.com/install/) and [ESLint](https://eslint.org/docs/user-guide/getting-started) install pages.
+
+It is worth mentioning command line uses -- you can install these tools as command line utilities (available via the CLI -- command line interface) using npm (Node Package Manager -- you'll have to install [NodeJS](https://nodejs.org/en/) first). For example, the following command installs JSHint:
+```
+npm install -g jshint
+```
+You can then point these tools at JavaScript files you want to lint. For example:
+
+![Image of a command line interface using JSHint commands to check a JavaScript file](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/js-hint-commandline.png)
+
+You can also use these tools with a task runner/build tool such as [Gulp]() or [Webpack]() to automatically lint your JavaScript during development. (See [Using a task runner to automate testing tools](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#using-a-task-runner-to-automate-testing-tools) in a later article.) See [EsLint integrations](https://eslint.org/docs/user-guide/integrations) for ESLint options. JSHint is supported out of the box by Grunt, and also has other integrations available, e.g. [JSHint loader for Webpack](https://github.com/webpack-contrib/jshint-loader).
+
+<hr>
+
+**Note**: ESLint takes a bit more setup and configuration than JSHint, but it is more powerful, too.
+
+<hr>
+
+### Browser developer tools
+
+Browser developer tools have many useful features for helping to debug JavaScript. For a start, the JavaScript console will report errors in your code.
+
+Make a local copy of our [broken-ajax.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/javascript/broken-ajax.html) example. (See the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/broken-ajax.html) also.)
+
+If you look at the console, you'll see the error message "Uncaught TypeError: can't access property "length", heroes is undefined", and the referenced line number is 49. If we look at the source code, the relevant code section is this:
+```
+function showHeroes(jsonObj) {
+    let heroes = jsonObj['members'];
+
+    for(i = 0; i < heroes.length; i++) {
+        ...
+```
+So the code falls over as soon as we try to access a property of `jsonObj` (which, as you might expect, is supposed to be a [JSON object](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects/Working_with_JSON#working-with-json)). This is supposed to be fetched from an external `.json` file using the following `XMLHttpRequest` call:
+```
+let requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+let request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.send();
+
+let superHeroes = request.response;
+populateHeader(superHeroes);
+showHeroes(superHeroes);
+```
+But this fails.
+
+#### The Console API
+
