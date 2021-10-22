@@ -54,7 +54,7 @@ The [JSHint homepage](https://jshint.com/) provides an online linter, which allo
 
 #### Code editor plugins
 
-It is not very convenient to have to copy and paste your code over to a webpage to check its validity several times. What you really want is a linter that will fit into your standard workflow with the minimum of hassle. Many code editors have linter plugins. For example, GitHub's [Atom]() code editor has a JSHint plugin available.
+It is not very convenient to have to copy and paste your code over to a webpage to check its validity several times. What you really want is a linter that will fit into your standard workflow with the minimum of hassle. Many code editors have linter plugins. For example, GitHub's [Atom](https://atom.io/) code editor has a JSHint plugin available.
 
 To install it:
 
@@ -80,7 +80,7 @@ You can then point these tools at JavaScript files you want to lint. For example
 
 ![Image of a command line interface using JSHint commands to check a JavaScript file](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/JavaScript/js-hint-commandline.png)
 
-You can also use these tools with a task runner/build tool such as [Gulp]() or [Webpack]() to automatically lint your JavaScript during development. (See [Using a task runner to automate testing tools](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#using-a-task-runner-to-automate-testing-tools) in a later article.) See [EsLint integrations](https://eslint.org/docs/user-guide/integrations) for ESLint options. JSHint is supported out of the box by Grunt, and also has other integrations available, e.g. [JSHint loader for Webpack](https://github.com/webpack-contrib/jshint-loader).
+You can also use these tools with a task runner/build tool such as [Gulp](https://gulpjs.com/) or [Webpack](https://webpack.github.io/) to automatically lint your JavaScript during development. (See [Using a task runner to automate testing tools](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#using-a-task-runner-to-automate-testing-tools) in a later article.) See [EsLint integrations](https://eslint.org/docs/user-guide/integrations) for ESLint options. JSHint is supported out of the box by Grunt, and also has other integrations available, e.g. [JSHint loader for Webpack](https://github.com/webpack-contrib/jshint-loader).
 
 <hr>
 
@@ -117,7 +117,7 @@ But this fails.
 
 #### The Console API
 
-You may already know what is wrong with this code, but let's explore it some more to show how you could investigate this. For a start, there is a [Console]() API that allows JavaScript code to interact with the browser's JavaScript console. It has a number of features available, but the main one you'll use often is [`console.log()`](), which prints a custom message to the console.
+You may already know what is wrong with this code, but let's explore it some more to show how you could investigate this. For a start, there is a [Console](https://developer.mozilla.org/en-US/docs/Web/API/console) API that allows JavaScript code to interact with the browser's JavaScript console. It has a number of features available, but the main one you'll use often is [`console.log()`](https://developer.mozilla.org/en-US/docs/Web/API/console/log), which prints a custom message to the console.
 
 Try inserting the following line just below line 31:
 ```
@@ -250,7 +250,7 @@ if ("geolocation" in navigator) {
 ```
 You could also write such a test for a CSS feature. For example, by testing for the existence of *[element.style.property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)* (e.g. `paragraph.style.transform !== undefined`). But for both CSS and JavaScript, it is probably better to use an established feature detection library rather than writing your own all the time. Modernizr is the industry standard for feature detection tests.
 
-As a last point, don't confuse feature detection with **browser sniffing** (detecting what specific browser is accessing the site) -- this is a terrible practice that should be discouraged at all costs. See [Using bad browser sniffing code](), later on, for more details.
+As a last point, don't confuse feature detection with **browser sniffing** (detecting what specific browser is accessing the site) -- this is a terrible practice that should be discouraged at all costs. See [Using bad browser sniffing code](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_JavaScript_Problems#using-bad-browser-sniffing-code), later on, for more details.
 
 <hr>
 
@@ -443,3 +443,30 @@ Many developers implemented bad browser sniffing code and didn't maintain it, an
 The lesson to be learned here is NEVER use browser sniffing. The only real use case for browser sniffing code in the modern day is if you are implementing a fix for a bug in a very specific version of a particular browser. But even then, most bugs get fixed pretty quickly in browser vendor rapid release cycles. It won't come up very often. [Feature detection](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_JavaScript_Problems#feature-detection) is almost always a better option -- if you detect whether a feature is supported, you won't need to change your code when new browser versions come out, and the tests are much more reliable.
 
 If you come across browser sniffing when joining an existing project, look at whether it can be replaced with something more sensible. Browser sniffing causes all kinds of interesting bugs, like [bug 1308462](https://bugzilla.mozilla.org/show_bug.cgi?id=1308462).
+
+### Handling JavaScript prefixes
+
+In the previous article, we included quite a lot of discussion about [handling CSS prefixes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#handling-css-prefixes). Well, new JavaScript implementations sometimes use prefixes, too, although JavaScript uses camel case rather than hyphenation like CSS. For example, if a prefix was being used on a new jshint API object called `Object`:
+
+* Mozilla would use `mozObject`
+* Chrome/Opera/Safari would use `webkitObject`
+* Microsoft would use `msObject`
+
+Here's an example, taken from our [violent-theremin demo](https://mdn.github.io/violent-theremin/) (see the [source code](https://github.com/mdn/violent-theremin)), which uses a combination of the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) to create a fun (and noisy) drawing tool:
+```
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const autoCtx = new AudioContext();
+```
+In the case of the Web Audio API, the key entry points to using the API were supported in Chrome/Opera via `webkit` prefixed versions (they now support the unprefixed versions). The easy way to get around this situation is to create a new version of the objects that are prefixed in some browsers, and make it equal to the non-prefixed version, OR the prefixed version (OR any other prefixed versions that need consideration) -- whichever one is supported by the browser currently viewing the site will be used.
+
+Then we use that object to manipulate the API rather than the original one. In this case, we are creating a modified [AudioContext](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext) constructor, then creating a new audio context instance to use for our Web Audio coding.
+
+This pattern can be applied to just about any prefixed JavaScript feature. JavaScript libraries/polyfills also make use of this kind of code, to abstract browser differences away from the developer as much as possible.
+
+Again, prefixed features were never supposed to be used in production websites -- they are subject to change or removal without warning, and cause cross browser issues. If you insist on using prefixed features, make sure you use the right ones. You can look up what browsers require prefixes for different JavaScript/API features on MDN reference pages, and sites like [caniuse.com](https://caniuse.com/). If you are unsure, you can also find out by doing some testing directly in browsers. 
+
+For example, try going into your browser's developer console and start typing:
+```
+window.AudioContext
+```
+If this feature is supported in your browser, it will autocomplete.
