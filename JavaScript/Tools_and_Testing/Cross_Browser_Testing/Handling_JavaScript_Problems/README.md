@@ -470,3 +470,15 @@ For example, try going into your browser's developer console and start typing:
 window.AudioContext
 ```
 If this feature is supported in your browser, it will autocomplete.
+
+## Finding help
+
+There are many other issues you'll encounter with JavaScript. The most important thing to know really is how to find answers online. Consult the HTML and CSS article's [Finding help section](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#finding-help) for our best advice.
+
+## Summary
+
+So that's JavaScript. Simple, huh? Maybe not so simple, but this article should, at least, give you a start, and some ideas on how to tackle the JavaScript-related problems you will come across.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#handling-common-html-and-css-problems) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_JavaScript_Problems#handling-common-javascript-problems) - [[Next page]]()
