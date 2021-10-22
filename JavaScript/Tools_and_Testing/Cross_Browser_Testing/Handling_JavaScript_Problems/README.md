@@ -235,3 +235,50 @@ There are a few strategies for handling incompatibilities between browsers relat
 **Note**: These strategies do not exist in separate silos -- you can, of course, combine them as needed. For example, you could use feature detection to determine whether a feature is supported. If it isn't, you could then run code to load a polyfill or a library to handle the lack of support.
 
 <hr>
+
+#### Feature detection
+
+The idea behind feature detection is that you can run a test to determine whether a JavaScript feature is supported in the current browser, and then conditionally run code to provide an acceptable experience both in browsers that do and don't support the feature. As a quick example, the [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) (which exposes available location data for the device the web browser is running on) has a main entry point for its use -- a `geolocation` property available on the global [Navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) object. Therefore, you can detect whether the browser supports geolocation or not by using something like the following:
+```
+if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        // show the location on a map, perhaps using the Google Maps API
+    });
+} else {
+    // Give the user a choice of static maps instead
+}
+```
+You could also write such a test for a CSS feature. For example, by testing for the existence of *[element.style.property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)* (e.g. `paragraph.style.transform !== undefined`). But for both CSS and JavaScript, it is probably better to use an established feature detection library rather than writing your own all the time. Modernizr is the industry standard for feature detection tests.
+
+As a last point, don't confuse feature detection with **browser sniffing** (detecting what specific browser is accessing the site) -- this is a terrible practice that should be discouraged at all costs. See [Using bad browser sniffing code](), later on, for more details.
+
+<hr>
+
+**Note**: Some features are known to be undetectable -- see Modernizr's list of [Undetectables](https://github.com/Modernizr/Modernizr/wiki/Undetectables).
+
+<hr>
+
+**Note**: Feature detection will be covered in a lot more detail in its own dedicated article, later in the module.
+
+<hr>
+
+#### Libraries
+
+JavaScript libraries are essentially third party units of code that you can attach to your page, providing you with a wealth of ready-mde functionality that can be used straight away, saving you a lot of time in the process. A lot of JavaScript libraries probably came into existence because their developer was writing a set of common utility functions to save them time when writing future projects, and decided to release them into the wild because other people might find them useful, too.
+
+JavaScript libraries tend to come in a few main varieties (some libraries will serve more than one of these purposes):
+
+* Utility libraries: Provide a bunch of functions to make mundane tasks easier and less boring to manage: [jQuery](https://jquery.com/), for example, provides its own fully-featured selectors and DOM manipulation libraries, to allow CSS-selector type selecting of elements in JavaScript and easier DOM building. It is not so important now we have modern features like [`Document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)/[`Document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)/[`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) methods available across browsers, but it can still be useful when older browsers need supporting.
+* Convenience libraries: Make difficult things easier to do. For example, the [WebGL API](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) is really complex and challenging to use when you write it directly, so the [Three.js](https://threejs.org/) library (and others) is built on top of WebGL and provides a much easier API for creating common 3D objects, lighting, textures, etc. The [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) is also very complex to use, so code libraries have started appearing to make common Service Worker uses-cases much easier to implement. (See the [Service Worker Cookbook](https://serviceworke.rs/) for several useful code samples.)
+* Effects libraries: These libraries are designed to allow you to easily add special effects to your websites. This was more useful back when [DHTML](https://developer.mozilla.org/en-US/docs/Glossary/DHTML) was a popular buzzword, and implementing an effect involved a lot of complex JavaScript, but these days browsers have a lot of built in CSS3 features and APIs to implement effects more easily. See [JavaScripting.com/animation](https://www.javascripting.com/animation/) for a list of libraries. 
+
+<hr>
+
+**Note**: JavaScripting.com no longer has lists of JavaScript libraries of any kind. [DEV.to](https://dev.to/) is a developer community website with up-to-date resources, and has a list of the [10 Best JavaScript Animation Libraries](https://dev.to/tantanmoy/10-best-javascript-animation-libraries-3dhc).
+
+<hr>
+
+* UI libraries: Provide methods for implementing complex UI features that would otherwise be challenging to implement and get working cross browser -- for example, [Foundation](https://get.foundation/), [Bootstrap](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap#bootstrap), and [Material-UI](https://mui.com/) (the latter is a set of components for use with the React framework). These tend to be used as the basis of an entire site layout. It is often difficult to drop them in just for one UI feature.
+* Normalization libraries: Give you a simple syntax that allows you to easily complete a task without having to worry about cross browser differences. The library will manipulate appropriate APIs in the background so the functionality will work whatever the browser (in theory). For example, [LocalForage](https://github.com/localForage/localForage) is a library for client-side data storage, which provides a simple syntax for storing and retrieving data. In the background, it uses the best API the browser has available for storing the data, whether that is [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), [Web Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), or even WebSQL (which is now deprecated, but is still supported in some older versions of Safari/IE).
+
+When choosing a library to use, make sure that it works across the set of browsers you want to support, and test your implementation thoroughly. Also, make sure that the library is popular and well-supported, and isn't likely to become obsolete next week. Talk to other developers to find out what they recommend, and see how much activity and how many contributors the library has on GitHub (or wherever else it is stored), etc.
