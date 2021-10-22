@@ -379,3 +379,67 @@ You can see this code in action in [fetch-polyfill-only-when-needed.html](https:
 **Note**: There are some third party options to consider -- for example, [Polyfill.io](https://polyfill.io/v3/). This is a meta-polyfill library that will look at each browser's capabilities and apply polyfills as needed, depending on what APIs and JS features you are using in your code.
 
 <hr>
+
+#### JavaScript transpiling
+
+Another option that is becoming popular for people that want to use modern JavaScript features now is converting code that makes use of ECMAScript 6/ECMAScript 2015 features to a version that will work in older browsers.
+
+<hr>
+
+**Note**: This is called "transpiling" -- you are not compiling code into a lower level to be run on a computer (like you would, say, with C code). Instead, you are changing it into a syntax that exists at a similar level of abstraction so it can be used in the same way, but in slightly different circumstances. (In this case, transforming one flavor of JavaScript into another.)
+
+<hr>
+
+So, for example, we talked about arrow functions (see [arrow-function.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/javascript/arrow-function.html) live, and see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/arrow-function.html)) earlier in the article, which only work in the newest browsers:
+```
+() => { ... }
+```
+We could transpile this across to a traditional old-fashioned anonymous function so it would work in older browsers:
+```
+function() { ... }
+```
+The recommended tool for JavaScript transpiling is curent;y [Babel](https://babeljs.io/). This offers transpilation capabilities for language features that are appropriate for transpilation. For features that can't just be easily transpiled into an older equivalent, Babel also offers polyfills to provide support.
+
+The easiest way to give Babel a try is to use the [online version](https://babeljs.io/repl/#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&corejs=3.6&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.8&externalPlugins=&assumptions=%7B%7D), which allows you to enter your source code on the left, and outputs a transpiled version on the right.
+
+<hr>
+
+**Note**: There are many ways to use Babel (task runners, automation tools, etc.), as you'll see on the [setup page](https://babeljs.io/en/setup/).
+
+<hr>
+
+### Using bad browser sniffing code
+
+All browsers have a **user-agent** string, which identifies what the browser is (version, name, OS, etc.) In the bad old days when pretty much everyone used Netscape or Internet Explorer, developers used to use so-called **browser sniffing code** to detect which browser the user was using, and give them appropriate code to work on that browser.
+
+The code used to look something like this (although this is a simplified example):
+```
+let ua = navigator.userAgent;
+
+if(ua.indexOf('Firefox') !== -1) {
+    // run Firefox-specific code
+} else if(ua.indexOf('Chrome') !== -1) {
+    // run Chrome-specific code
+}
+```
+The idea was fairly good -- detect what browser is viewing the site, and run code as appropriate to make sure the browser will be able to use your site OK.
+
+<hr>
+
+**Note**: Try opening up your JavaScript console now and running `navigator.userAgent` to see what you get returned.
+
+<hr>
+
+However, as time went on, developers started to see major problems with this approach. For a start, the code was error prone. What if you knew a feature didn't work in, say, Firefox 10 and below, and implemented code to detect this, and then Firefox 11 came out -- which did support that feature? Firefox 11 probably wouldn't be supported because it's not Firefox 10. You'd have to change all your sniffing code regularly.
+
+Many developers implemented bad browser sniffing code and didn't maintain it, and browsers start getting locked out of using websites containing features that they had since implemented. This became so common that browsers started to lie about what browser was in their user-agent strings (or claim in the user-agent string they were **all** browsers) to get around sniffing code. Browsers also implemented facilities to allow users to change what user-agent strings the browser reported when queried with JavaScript. This all made browser sniffing even more error prone, and ultimately pointless.
+
+<hr>
+
+**Note**: You should read [History of the browser user-agent string](https://webaim.org/blog/user-agent-string-history/) by Aaron Andersen for a useful and amusing take on this situation.
+
+<hr>
+
+The lesson to be learned here is NEVER use browser sniffing. The only real use case for browser sniffing code in the modern day is if you are implementing a fix for a bug in a very specific version of a particular browser. But even then, most bugs get fixed pretty quickly in browser vendor rapid release cycles. It won't come up very often. [Feature detection](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_JavaScript_Problems#feature-detection) is almost always a better option -- if you detect whether a feature is supported, you won't need to change your code when new browser versions come out, and the tests are much more reliable.
+
+If you come across browser sniffing when joining an existing project, look at whether it can be replaced with something more sensible. Browser sniffing causes all kinds of interesting bugs, like [bug 1308462](https://bugzilla.mozilla.org/show_bug.cgi?id=1308462).
