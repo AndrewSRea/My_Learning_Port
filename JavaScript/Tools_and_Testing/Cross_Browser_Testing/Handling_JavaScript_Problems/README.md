@@ -333,3 +333,49 @@ fetch('flowers.jpg').then(function(response) {
 **Note**: Again, there are many different ways to make use of the different polyfills you will encounter -- consult each polyfill's individual documentation.
 
 <hr>
+
+One thing you might be thinking is "why should we always load the polyfill code, even if we don't need it?" This is a good point -- as your sites get more complex and you start to use more libraries, polyfills, etc., you can start to load a lot of extra code, which can start to affect performance, especially on less-powerful devices. It makes sense to only load files as needed.
+
+Doing this requires some extra setup in your JavaScript. You need some kind of a feature detection test that detects whether the browser supports the feature we are trying to use:
+```
+if (browserSupportsAllFeatures()) {
+    main();
+} else {
+    loadScript('polyfills.js', main);
+}
+
+function main(err) {
+    // actual app code goes in here
+}
+```
+So first we run a conditional that checks whether the function `browserSupportsAllFeatures()` returns true. If it does, we run the `main()` function, which will contain all our app's code. `browserSupportsAllFeatures()` looks like this:
+```
+function browserSupportsAllFeatures() {
+    return window.Promise && window.fetch;
+}
+```
+Here we are testing whether [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) object and [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) function exist in the browser. If both do, the function returns `true`. If the function returns `false`, then we run the code inside the second part of the conditional -- this runs a function called `loadScript()`, which loads the polyfill into the page, then runs `main()` after the loading has finished. `loadScript()` looks like this:
+```
+function loadScript(src, done) {
+    const js = document.createElement('script');
+    js.src = src;
+    js.onload = function() {
+        done();
+    };
+    js.onerror = function() {
+        done(new Error('Failed to load script ' + src));
+    };
+    document.head.appendChild(js);
+}
+```
+This function creates a new `<script>` element, then sets its `src` attribute to the path we specified as the first argument (`'polyfills.js'` when we called it in the code above). When it has loaded, we run the function we specified as the second argument (`main()`). If an error occurs in the loading of the script, we still call the function, but with a custom error that we can retrieve to help debug a problem if it occurs.
+
+Note that polyfills.js is basically the two polyfills we are using put together into one file. We did this manually, but there are cleverer solutions that will automatically generate bundles for you -- see [Browserify](https://browserify.org/). (See [Getting started with Browserify](https://www.sitepoint.com/getting-started-browserify/) for a basic tutorial.) It is a good idea to bundle JS files into one like this -- reducing the number of HTTP requests you need to make improvements to the perfomance of your site.
+
+You can see this code in action in [fetch-polyfill-only-when-needed.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/javascript/fetch-polyfill-only-when-needed.html) (see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/fetch-polyfill-only-when-needed.html) also). We'd like to make it clear that we can't take credit for this code -- it was originally written by Philip Walton. Check out his article [Loading Polyfills Only When Needed](https://philipwalton.com/articles/loading-polyfills-only-when-needed/) for the original code, plus a lot of useful explanation around the wider subject.
+
+<hr>
+
+**Note**: There are some third party options to consider -- for example, [Polyfill.io](https://polyfill.io/v3/). This is a meta-polyfill library that will look at each browser's capabilities and apply polyfills as needed, depending on what APIs and JS features you are using in your code.
+
+<hr>
