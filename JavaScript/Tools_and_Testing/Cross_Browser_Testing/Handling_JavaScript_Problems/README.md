@@ -282,3 +282,54 @@ JavaScript libraries tend to come in a few main varieties (some libraries will s
 * Normalization libraries: Give you a simple syntax that allows you to easily complete a task without having to worry about cross browser differences. The library will manipulate appropriate APIs in the background so the functionality will work whatever the browser (in theory). For example, [LocalForage](https://github.com/localForage/localForage) is a library for client-side data storage, which provides a simple syntax for storing and retrieving data. In the background, it uses the best API the browser has available for storing the data, whether that is [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), [Web Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), or even WebSQL (which is now deprecated, but is still supported in some older versions of Safari/IE).
 
 When choosing a library to use, make sure that it works across the set of browsers you want to support, and test your implementation thoroughly. Also, make sure that the library is popular and well-supported, and isn't likely to become obsolete next week. Talk to other developers to find out what they recommend, and see how much activity and how many contributors the library has on GitHub (or wherever else it is stored), etc.
+
+Library usage at a basic level tends to consist of downloading the libarary's files (JavaScript, possibly some CSS or other dependencies, too) and attaching them to your page (e.g. via a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element), although there are normally many other usage options for such libraries, like installing them as [Bower](https://bower.io/) components, or including them as dependencies via the [Webpack](https://webpack.github.io/) module bundler. You will have to read the libraries' individual install pages for more information.
+
+<hr>
+
+**Note**: You will also come across JavaScript frameworks in your travels around the Web, like [Ember](https://emberjs.com/) and [Angular](https://angularjs.org/). Whereas libraries are often usable for solving individual problems and dropping into existing sites, frameworks tend to be more along the lines of complete solutions for developing complex web applications.
+
+<hr>
+
+#### Polyfills
+
+Polyfills also consist of third party JavaScript files that you can drop into your project, but they differ from libraries -- whereas libraries tend to enhance existing functionality and make things easier, polyfills provide functionality that doesn't exist at all. Polyfills use JavaScript or other technologies entirely to build in support for a feature that a browser doesn't support natively. For example, you might use a polyfill like [es6-promise](https://github.com/stefanpenner/es6-promise) to make promises work in browsers where they are not supported natively.
+
+Modernizr's list of [HTML5 Cross Browser Polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills) is a useful place to find polyfills for different purposes. Again, you should research them before you use them -- make sure they work and are maintained.
+
+Let's work through an exercise -- in this example, we will use a Fetch polyfill to provide support for the Fetch API in older browsers. However, we also need to use the es6-promise polyfill, as Fetch makes heavy use of promises, and browsers that don't support them will still be in trouble.
+
+1. To get started, make a local copy of our [fetch-polyfill.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/fetch-polyfill.html) example and [our nice image of some flowers](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/flowers.jpg) in a new directory. We are going to write code to fetch the flowers image and display it in the page. 
+2. Next, save a copy of the [Fetch polyfill](https://raw.githubusercontent.com/github/fetch/master/fetch.js) in the same directory as the HTML.
+3. Apply the polyfill scripts to the page using the following code -- place these above the existing [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element so they will be available on the page already when we start trying to use Fetch. (We are also loading a Promise polyfill from a CDN, as IE11 does support promises, which Fetch requires):
+```
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<script src="fetch.js"></script>
+```
+4. Inside the original [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script), add the following code:
+```
+var myImage = document.querySelector('.my-image');
+
+fetch('flowers.jpg').then(function(response) {
+    response.blob().then(function(myBlob) {
+        var objectURL = URL.createObjectURL(myBlob);
+        myImage.src = objectURL;
+    });
+});
+```
+6. Now if you load it in a browser that doesn't support Fetch (Safari and IE are obvious candidates), you should still see the flower image appear -- cool!
+
+<hr>
+
+**Personal note**: This won't work unless you set up a local server using [SimpleHTTPServer](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) in your terminal.
+
+<hr>
+
+**Note**: You can find our finished version at [fetch-polyfill-finished.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/javascript/fetch-polyfill-finished.html) (and also see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/fetch-polyfill-finished.html)).
+
+<hr>
+
+**Note**: Again, there are many different ways to make use of the different polyfills you will encounter -- consult each polyfill's individual documentation.
+
+<hr>
