@@ -196,3 +196,42 @@ As your apps get more complex and you start to use more JavaScript, you may star
 **Note**: Addy Osmani's [Writing Fast, Memory-Efficient JavaScript](https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/) contains a lot of detail and some excellent tips for boosting JavaScript performance.
 
 <hr>
+
+## Cross-browser JavaScript problems
+
+In this section, we'll look at some of the more common cross-browser JavaScript problems. We'll break this down into:
+
+* Using modern core JavaScript features.
+* Using modern Web API features.
+* Using bad browser sniffing code.
+* Performance problems.
+
+### Using modern JavaScript/API features
+
+In the [previous article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#older-browsers-not-supporting-modern-features), we described some of the ways in which HTML and CSS errors and unrecognized features can be handled due to the nature of the languages. JavaScript is not as permissive as HTML and CSS, however -- if the JavaScript engine encounters mistakes or unrecognized syntax, more often than not it will throw errors.
+
+There are a number of modern JavaScript language features defined in recent versions of the specs that won't work in older browsers. Some of these are syntactic sugar (basically an easier, nicer way of writing what you can already do using existing features), and some offer interesting new possibilities.
+
+For example:
+
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) are a great new feature for performing asynchronous operations and making sure those operations are complete before code that relies on their results is used for something else. As an example, the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch) (a modern equivalent to [XMLHTTPRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)) uses promises to fetch resources across the network and make sure that the response has been returned before they are used (for example, displaying an image inside an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element). They are not supported in IE at all but are supported across all modern browsers.
+* Arrow functions provide a shorter, more convenient syntax for writing [anonymous functions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/JS_Building_Blocks/Functions#anonymous-functions), which also has other advantages (see [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)). For a quick example, see [arrow-function.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/javascript/arrow-function.html). (See the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/javascript/arrow-function.html) also.) Arrow functions are supported across all modern browsers, except for IE and Safari.
+* Declaring [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) at the top of your JavaScript code causes it to be parsed with a stricter set of rules, meaning that more warnings and errors will be thrown, and some things will be disallowed that would otherwise be acceptable. It is arguably a good idea to use strict mode, as it makes for better, more efficient code. However, it has limited/patchy support across browsers (see [Strict mode in browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#strict_mode_in_browsers)).
+* [Typed arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) allow JavaScript code to access and manipulate raw binary data, which is necessary as browser APIs, for example, start to manipulate streams or raw video and audio data. These are available in IE 10 and above, and all modern browsers.
+
+There are also many new APIs appearing in recent browsers, which don't work in older browsers. For example:
+
+* [Indexed API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), and others for storing website data on the client-side.
+* [Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) for running JavaScript in a separate thread, helping to improve performance.
+* [WebGL API](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) for real 3D graphics.
+* [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) for advanced audio manipulation.
+* [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) for multi-person, real-time video/audio connectivity (e.g. video conferencing).
+* [WebVR API](https://developer.mozilla.org/en-US/docs/Web/API/WebVR_API) for engineering virtual reality experience in the browser (e.g. controlling a 3D view with data input from VR Hardware).
+
+There are a few strategies for handling incompatibilities between browsers relating to feature support. Let's explore the most common ones.
+
+<hr>
+
+**Note**: These strategies do not exist in separate silos -- you can, of course, combine them as needed. For example, you could use feature detection to determine whether a feature is supported. If it isn't, you could then run code to load a polyfill or a library to handle the lack of support.
+
+<hr>
