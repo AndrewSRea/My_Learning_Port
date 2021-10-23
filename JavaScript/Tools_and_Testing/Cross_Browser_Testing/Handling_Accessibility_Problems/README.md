@@ -177,6 +177,8 @@ Next on our list, the form [`<label>`](https://developer.mozilla.org/en-US/docs/
 
 **Note**: For more information about link text and form labels, read [Meaningful text labels](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#meaningful_text_labels).
 
+<hr>
+
 Finally, a quick word about data tables. A basic data table can be written with very simple markup (see [bad-table.html](https://mdn.github.io/learning-area/accessibility/html/bad-table.html), live, and see the [source code](https://github.com/mdn/learning-area/blob/master/accessibility/html/bad-table.html)), but this has problems -- there is no way for a screen reader user to associate rows and columns together as groupings of data. To do this, you need to know what the header rows are, and if they are heading up rows, columns, etc. This can only be done visually for such a table.
 
 If you instead look at our [punk-bands-complete.html](https://mdn.github.io/learning-area/css/styling-boxes/styling-tables/punk-bands-complete.html) example (and see the [source code](https://github.com/mdn/learning-area/blob/master/css/styling-boxes/styling-tables/punk-bands-complete.html)), you can see a few accessibility aids at work here, such as table headers ([`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th) and `scope` attributes), a [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption) element, etc.
