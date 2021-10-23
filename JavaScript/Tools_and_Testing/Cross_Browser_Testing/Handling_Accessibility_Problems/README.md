@@ -172,3 +172,27 @@ There are certain features and best practices in HTML designed to provide contex
 The key to accessible link text is that people using screen readers will often use a common feature whereby they pull up a list of all the links on the page. In this case, the link text needs to make sense out of context. For example, a list of links labeled "click here", "click me", etc., is really bad for accessibility. It is better for link text to make sense in context and out of context.
 
 Next on our list, the form [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) element is one of the central features that allows us to make forms accessible. The trouble with forms is that you need labels to say what data should be entered into each form input. Each label needs to be included inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) to link it unambiguously to its partner form input (each `<label>` `for` attribute value needs to match the form element `id` value), and it will make sense even if the source order is not completely logical.
+
+<hr>
+
+**Note**: For more information about link text and form labels, read [Meaningful text labels](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#meaningful_text_labels).
+
+Finally, a quick word about data tables. A basic data table can be written with very simple markup (see [bad-table.html](https://mdn.github.io/learning-area/accessibility/html/bad-table.html), live, and see the [source code](https://github.com/mdn/learning-area/blob/master/accessibility/html/bad-table.html)), but this has problems -- there is no way for a screen reader user to associate rows and columns together as groupings of data. To do this, you need to know what the header rows are, and if they are heading up rows, columns, etc. This can only be done visually for such a table.
+
+If you instead look at our [punk-bands-complete.html](https://mdn.github.io/learning-area/css/styling-boxes/styling-tables/punk-bands-complete.html) example (and see the [source code](https://github.com/mdn/learning-area/blob/master/css/styling-boxes/styling-tables/punk-bands-complete.html)), you can see a few accessibility aids at work here, such as table headers ([`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th) and `scope` attributes), a [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption) element, etc.
+
+<hr>
+
+**Note**: For more information about accessible tables, read [Accessible data tables](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#accessible_data_tables).
+
+<hr>
+
+### CSS
+
+CSS tends to provide a lot fewer fundamental accessibility features than HTML, but it can still do just as much damage to accessibility if used incorrectly. We have already mentioned a couple of accessibility tips involving CSS:
+
+* Use the correct semantic elements to mark up different content in HTML. If you want to create a different visual effect, use CSS. Don't abuse an HTML element to get the look you want. For example, if you want bigger text, use [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size), not an [`<h1>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) element.
+* Make sure your source order makes sense without CSS. You can always use CSS to style the page any way you want afterward.
+* You should make sure interactive elements like buttons and links have appropriate focus/hover/active states set, to give the user visual clues as to their function. If you remove the defaults for stylistic reasons, make sure you include some replacement styles.
+
+There are a few other considerations you should take into account.
