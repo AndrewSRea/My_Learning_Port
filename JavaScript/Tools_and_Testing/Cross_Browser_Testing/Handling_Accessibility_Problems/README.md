@@ -112,3 +112,63 @@ Note that different browsers may have different keyboard control options availab
 :warning: **Warning**: You should perform this kind of text/review on any new page you write -- make sure that functionality can be accessed by the keyboard, and that the tab order provides a sensible navigation path thorugh the document.
 
 <hr>
+
+This example highlights the importance of using the correct semantic element for the correct job. It is possible to style *any* element to look like a link or button with CSS, and to behave like a link or button with JavaScript, but they won't actually be links or buttons, and you'll lose a lot of the accessibility these elements give you for free. So don't do it if you can avoid it.
+
+Another tip -- as shown in our example, you can control how your focusable elements look when focused, using the [:focus](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus) pseudo-class. It is a good idea to double up focus and hover styles, so your users get that visual clue that a control will do something when activated, whether they are using mouse or keyboard:
+```
+a:hover, input:hover, button:hover, slect:hover,
+a:focus, input:focus, button:focus, select:focus {
+    font-weight: bold;
+}
+```
+
+<hr>
+
+**Note**: If you do decide to remove the default focus styling using CSS, make sure you replace it with something else that fits in with your design better -- it is a very valuable accessibility tool, and should not be removed.
+
+<hr>
+
+#### Building in keyboard accessibility
+
+Sometimes it is not possible to avoid losing keyboard accessibility. You might have inherited a site where the semantics are not very good (perhaps you've ended up with a horrible CMS that generates buttons made with `<div>`s), or you are using a complex control that does not have keyboard accessibility built in, like the HTML5 [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element. (Amazingly, Opera is the only browser that allows you to tab through the `<video>` element's default browser controls.) You have a few options here:
+
+1. Create custom controls using `<button>` elements (which we can tab to by default) and JavaScript to wire up their functionality. See [Creating a cross-browser video player](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/cross_browser_video_player) for some good examples of this.
+2. Create keyboard shortcuts via JavaScript, so functionality is activated when you press certain keys on the keyboard. See [Desktop mouse and keyboard controls](https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard) for some game-related examples that can be adapted for any purpose.
+3. Use some interesting tactics to fake button behavior. Take, for example, our [fake-div-buttons.html](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/accessibility/fake-div-buttons.html) example (see the [source code](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/accessibility/fake-div-buttons.html)). Here we've given our fake `<div>` buttons the ability to be focused (including via tab) by giving each one the attribute `tabindex="0"` (see WebAIM's [tabindex article](https://webaim.org/techniques/keyboard/tabindex) for more rellay useful details). This allows us to tab to the buttons, but not to activate them via the Enter/Return key. To do that, we had to add the following bit of JavaScript trickery:
+```
+document.onkeydown = function(e) {
+    if(e.keyCode === 13) {   // The Enter/Return key
+        document.activeElement.onclick(e);
+    }
+};
+```
+Here we add a listener to the `document` object to detect when a button has been pressed on the keyboard. We check what button was pressed via the event object's [`keyCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode) property. If it is the keycode that matches Enter/Return, we run the function stored in the button's `onclick` handler using `document.activeElement.onclick()`. [`activeElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/activeElement) gives us the element that is currently focused on the page.
+
+<hr>
+
+**Note**: This technique will only work if you set your original event handlers via event handler properties (e.g. `onclick`). `addEventListener` won't work. This is a lot of extra hassle to build the functionality back in. And there's bound to be other problems with it. Better to just use the right element for the right job in the first place.
+
+<hr>
+
+#### Text alternatives
+
+Text alternatives are very important for accessibility -- if a person has a visual or hearing impairment that stops them being able to see or hear some content, then this is a problem. The simplest text alternative available is the humber `alt` attribute, which we should include on all images that contain relevant content. This should contain a description of the image that successfully conveys its meaning and content on the page, to be picked up by a screenreader and read out to the user.
+
+<hr>
+
+**Note**: For more information, read [Text alternatives](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#text_alternatives).
+
+<hr>
+
+Missing alt text can be tested in a number of ways -- for example, using accessibility [Auditing tools](). <!-- below -->
+
+Alt text is slightly more complex for video and audio content. There is a way to define text tracks (e.g. subtitles) and display them when video is being played, in the form of the [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track) element, and the [WebVTT](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API) format. (See [Adding captions and subtitles to HTML5 video](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video) for a detailed tutorial.) [Browser compatibility](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video#browser_compatibility) for these features is fairly good, but if you want to provide text alternatives for audio or support older browsers, a simple text transcript presented somewhere on the page or on a separate page might be a good idea.
+
+#### Element relationships and context
+
+There are certain features and best practices in HTML designed to provide context and relationships between elements where none otherwise exists. The three most common examples are links, form labels, and data tables.
+
+The key to accessible link text is that people using screen readers will often use a common feature whereby they pull up a list of all the links on the page. In this case, the link text needs to make sense out of context. For example, a list of links labeled "click here", "click me", etc., is really bad for accessibility. It is better for link text to make sense in context and out of context.
+
+Next on our list, the form [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) element is one of the central features that allows us to make forms accessible. The trouble with forms is that you need labels to say what data should be entered into each form input. Each label needs to be included inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) to link it unambiguously to its partner form input (each `<label>` `for` attribute value needs to match the form element `id` value), and it will make sense even if the source order is not completely logical.
