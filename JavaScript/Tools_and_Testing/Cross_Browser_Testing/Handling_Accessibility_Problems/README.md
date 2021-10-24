@@ -224,3 +224,22 @@ On the other hand, you shouldn't use [`visibility`](https://developer.mozilla.or
 **Note**: [Invisible Content Just for Screen Reader Users](https://webaim.org/techniques/css/invisiblecontent/) has a lot more useful detail surrounding this topic.
 
 <hr>
+
+### JavaScript
+
+JavaScript has the same kind of problems as CSS with respect to accessibility -- it can be disastrous for accessibility if used badly, or overused. We've already hinted at some accessibility problems related to JavaScript, mainly in the area of semantic HTML -- you should always use appropriate semantic HTML to implement functionality wherever it is available -- for example, use links and buttons as appropriate. Don't use `<div>` elements with JavaScript code to fake functionality if at all possible -- it is error prone, and more work than using the free functionality HTML gives you.
+
+#### Simple functionality
+
+Generally simple functionality should work with just the HTML in place -- JavaScript should only be used to enhance functionality, not build it in entirely. Good uses of JavaScript include:
+
+* Providing client-side form validation, which alerts users to problems with their form entries quickly, without having to wait for the server to check the data. If it isn't available, the form will still work, but validation might be slower.
+* Providing custom controls for HTML5 `<video>`s that are accessible to keyboard-only users. (As we said earlier, the default browser controls aren't keyboard-accessible in most browsers.)
+
+<hr>
+
+**Note**: WebAIM's [Accessible JavaScript](https://webaim.org/techniques/javascript/) provides some useful further details about considerations for accessible JavaScript.
+
+<hr>
+
+More complex JavaScript implementations can create issues with accessibility -- you need to do what you can. For example, it would be unreasonable to expect you to make a complex 3D game written using [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) 100% accessible to a blind person, but you could implement [keyboard controls](https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard) so it is usable by non-mouse users, and make the color scheme contrasting enough to be usable by those with color deficiencies.
