@@ -161,7 +161,7 @@ Text alternatives are very important for accessibility -- if a person has a visu
 
 <hr>
 
-Missing alt text can be tested in a number of ways -- for example, using accessibility [Auditing tools](). <!-- below -->
+Missing alt text can be tested in a number of ways -- for example, using accessibility [Auditing tools](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#auditing-tools).
 
 Alt text is slightly more complex for video and audio content. There is a way to define text tracks (e.g. subtitles) and display them when video is being played, in the form of the [`<track>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track) element, and the [WebVTT](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API) format. (See [Adding captions and subtitles to HTML5 video](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video) for a detailed tutorial.) [Browser compatibility](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video#browser_compatibility) for these features is fairly good, but if you want to provide text alternatives for audio or support older browsers, a simple text transcript presented somewhere on the page or on a separate page might be a good idea.
 
@@ -328,3 +328,45 @@ Let's go through some tests with a couple of different screenreaders to give you
 **Note**: WebAIM's [Designing for Screen Reader Compatibility](https://webaim.org/techniques/screenreader/) provides some useful information about screenreader usage and what works best for screenreaders. Also, see [Screen Reader User Survey #6 Results](https://webaim.org/projects/screenreadersurvey6/#used) for some interesting screenreader usage statistics.
 
 <hr>
+
+#### VoiceOver
+
+VoiceOver (VO) comes free with your Mac/iPhone/iPad, so it's useful for testing on desktop/mobile if you use Apple products. We'll be testing it on Mac OS X on a MacBook Pro.
+
+To turn it on, press Cmd + F5. If you've not used VO before, you will be given a welcome screen where you can choose to start VO or not, and run through a rather useful tutorial to learn how to use it. To turn it off again, press Cmd + F5 again.
+
+<hr>
+
+**Note**: You should go through the tutorial at least once. It is a really useful way to learn VO.
+
+<hr>
+
+When VO is on, the display will look mostly the same, but you'll see a black box at the bottom left of the screen that contains information on what VO currently has selected. The current selection will also be highlighted, with a black border. This highlight is known as the **VO cursor**.
+
+To use VO, you will make a lot of use of the "VO modifier". This is a key or key combination that you need to press in addition to the actual VO keyboard shortcuts to get them to work. Using a modifier like this is common with screenreaders, to enable them to keep their comments from clashing with other commands. In the case of VO, the modifier can either be Caps Lock, or Ctrl + Option.
+
+VO has many keyboard commands, and we won't list them all here. The basic ones you'll need for web page testiong are in the following table. In the keyboard shortcuts, "VO" means "the VoiceOver modifier".
+
+#### Most common VoiceOver keyboard shortcuts
+
+| Keyboard shortcut | Description |
+| --- | --- |
+| VO + Cursor keys | Move the VO cursor up, right, down, left. |
+| VO + Spacebar | Select/activate items highlighted by the VO cursor. This includes items selected in the Rotor (see below). |
+| VO + Shift + down cursor | | Move into a group of items (such as an HTML table, or a form, etc.) Once inside a group, you can move around and select items inside that group using the above commands as normal. |
+| VO + Shift + up cursor | Move out of a group. |
+| VO + C | (When inside a table), read the header of the current column. |
+| VO + R | (Wehn inside a table), read the header of the current row. |
+| VO + C + C (two Cs in succession) | (When inside a table), read the entire current column, including header. |
+| VO + R + R (two Rs in succession) | (When inside a table), read the entire current row, including the headers that correspond to each cell. |
+| VO + left cursor, VO + right cursor | (When inside some horizontal options, such as a date or time picker), move between options. |
+| VO + up cursor, VO + down cursor | (When inside some horizontal options, such as a date or time picker), change the current option. |
+| VO + U | Use the Rotor, which displays lists of headings, link, form controls, etc., for easy navigation. |
+| VO + left cursor, VO + right cursor | (When inside Rotor), move between different lists available in the Rotor. |
+| VO + up cursor, VO + down cursor | (When inside Rotor), move between different items in the current Rotor list. |
+| Esc | (When inside Rotor), exit Rotor. |
+| Ctrl | (When VO is speaking), pause/resume speech. |
+| VO + Z | Restart the last bit of speech. |
+| VO + D | Go into the Mac's Dock, so you can select apps to run inside it. |
+
+This seems like a lot of commands, but it isn't so bad when you get used to it, and VO regularly gives you reminders of what commands to use in certain places. Have a play with VO now. You can then go on to play with some of our examples in the [Screenreader testing]() section. <!-- below -->
