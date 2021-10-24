@@ -273,3 +273,58 @@ Here's an example:
 You can see an example in action at Freedom Scientific's [ARIA (Accessible Rich Internet Applications) Live Regions](https://www.freedomscientific.com/SurfsUp/AriaLiveRegions.htm) example. The highlighted paragraph should update its content every 10 seconds, and a screenreader should read this out to the user. [ARIA Live Regions - Atomic](https://www.freedomscientific.com/SurfsUp/AriaLiveRegionsAtomic.htm) provides another useful example.
 
 We don't have space to cover WAI-ARIA in detail here. You can learn a lot more about it at [WAI-ARIA basics](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics).
+
+## Accessibility tools
+
+Now we've covered accessibility considerations for different web technologies, including a few testing techniques (like keyboard navigation and color contrast checkers), let's have a look at other tools you can make use of when doing accessibility testing.
+
+### Auditing tools
+
+There are a number of auditing tools available that you can feed your web pages into. They will look over them and return a list of accessiblity issues present on the page. Examples include:
+
+* [Wave](https://wave.webaim.org/): A rather nice online accessibility testing tool that accepts a web address and returns a useful annotated view of that page with accessibility problems highlighted.
+* [Tenon](https://tenon.io/): Another nice online tool that goes through the code at a provided URL and returns results on accessibility errors including metrics, specific errors along with the WCAG criteria they affect, and suggested fixes. It requires a free trial signup to view the results.
+* [tota11y](https://khan.github.io/tota11y/): An accessibility tool from the Khan Academy that takes the form of a JavaScript library that you attach to your page to provide a number of accessibility tools.
+
+Let's look at an example, using Wave.
+
+1. Go to the [Wave hompage](https://wave.webaim.org/).
+2. Enter the URL of our [bad-semantics.html](https://mdn.github.io/learning-area/accessibility/html/bad-semantics.html) example into the text input box near the top of the page. Then press enter or click/tap the arrow at the far right edge of the input box.
+3. The site should respond with a description of the accessibility problems. Click the icons displayed to see more information about each of the issues identified by Wave's evaluation.
+
+<hr>
+
+**Note**: Such tools aren't good enough to solve all your accessibility problems on their own. You'll need a combination of these, knowledge and experience, user testing, etc., to get a full picture.
+
+<hr>
+
+### Automation tools
+
+[Deque's aXe tool](https://www.deque.com/axe/) goes a bit further than the auditing tools we mentioned above. Like the others, it checks pages and returns accessiblity errors. Its most immediately useful form is probably the browser extensions:
+
+* [aXe for Chrome](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd)
+* [aXe for Firefox](https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/)
+
+These add an accessibility tab to the browser developer tools. For example, we installed the Firefox version, then used it to audit our [bad-table.html](https://mdn.github.io/learning-area/accessibility/html/bad-table.html) example. We got the following results:
+
+![Image of Firefox devtools using the aXe tool](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility/axe-screenshot.png)
+
+aXe is also installable using `npm`, and can be integrated with task runners like [Grunt](https://gruntjs.com/) and [Gulp](https://gulpjs.com/), automation frameworks like [Selenium](https://www.selenium.dev/) and [Cucumber](https://cucumber.io/), unit testing frameworks like [Jasmine](https://jasmine.github.io/), and more besides. (Again, see the [main aXe page](https://www.deque.com/axe/) for details.)
+
+### Screenreaders
+
+It is definitely worth testing with a screenreader to get used to how severely visually imparied people use the Web. There are a number of screenreaders available:
+
+* Some are paid-for commercial products, like [JAWS](https://www.freedomscientific.com/Products/software/JAWS/) (Windows) and Window Eyes (Windows). (Window Eyes is now a deprecated product, as of this writing, Oct. 24, 2021.)
+* Some are free products, like [NVDA](https://www.nvaccess.org/) (Windows), [ChromeVox](https://support.google.com/chromebook/answer/7031755) (Chrome, Windows, and Mac OS X), and [Orca](https://wiki.gnome.org/Projects/Orca) (Linux).
+* Some are built into the operating system, like [VoiceOver](https://www.apple.com/accessibility/vision/) (Mac OS X and iOS), [ChromeVox](https://support.google.com/chromebook/answer/7031755) (on Chromebooks), and [TalkBack](https://play.google.com/store/apps/details?id=com.google.android.marvin.talkback) (Android).
+
+Generally, screen readers are separate apps that run on the host operating system and can read not only web pages, but text in other apps as well. This is not always the case (ChromeVox is a browser extension), but usually. Screenreaders tend to act in slightly different ways and have different controls, so you'll have to consult the documentation for your chosen screen reader to get all of the details. Saying that, they all work in basically the same sort of way.
+
+Let's go through some tests with a couple of different screenreaders to give you a general idea of how they work and how to test with them.
+
+<hr>
+
+**Note**: WebAIM's [Designing for Screen Reader Compatibility](https://webaim.org/techniques/screenreader/) provides some useful information about screenreader usage and what works best for screenreaders. Also, see [Screen Reader User Survey #6 Results](https://webaim.org/projects/screenreadersurvey6/#used) for some interesting screenreader usage statistics.
+
+<hr>
