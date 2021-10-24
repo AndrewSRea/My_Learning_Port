@@ -370,3 +370,48 @@ VO has many keyboard commands, and we won't list them all here. The basic ones y
 | VO + D | Go into the Mac's Dock, so you can select apps to run inside it. |
 
 This seems like a lot of commands, but it isn't so bad when you get used to it, and VO regularly gives you reminders of what commands to use in certain places. Have a play with VO now. You can then go on to play with some of our examples in the [Screenreader testing]() section. <!-- below -->
+
+#### NVDA
+
+NVDA is Windows-only, and you'll need to install it.
+
+1. Download it from [nvaccess.org](). You can choose whether to make a donation or download it for free. You'll also need to give them your email address before you can download it.
+2. Once downloaded, install it. You double-click the installer, accept the license and follow the prompts.
+3. To start NVDA, double-click on the program file/shortcut, or use the keyboard shortcut Ctrl + Alt + N. You'll see the NVDA welcome dialog when you start it. Here you can choose from a couple of options, then press the *OK* button to get going.
+
+NVDA will now be active on your computer.
+
+To use NVDA, you will make a lot of use of the "NVDA modifier". This is a key that you need to press in addition to the actual NVDA keyboard shortcuts to get them to work. Using a modifier like this is common with screenreaders, to enable them to keep their commands from clashing with other commands. In the case of NVDA, the modifier can either be Insert (the default), or Caps Lock (which can be chosen by checking the first checkbox in the NVDA welcome dialog before pressing *OK*).
+
+<hr>
+
+**Note**: NVDA is more subtle than VoiceOver in terms of how it highlights where it is and what it is doing. When you are scrolling through headings, lists, etc., items you are selected on will generally be highlighted with a subtle outline, but this is not always the case for all things. If you get completely lost, you can press Ctrl + F5 to refresh the current page and begin from the top again.
+
+<hr>
+
+NVDA has many keyboard commands, and we won't list them all here. The basic ones you'll need for web page testing are in the following table. In the keyboard shortcuts, "NVDA" means "the NVDA modifier".
+
+#### Most common NVDA keyboard shortcuts
+
+| Keyboard shortcut | Description |
+| --- | --- |
+| NVDA + Q | Turn NVDA off again after you've started it. |
+| NVDA + up cursor | Read the current line. |
+| NVDA + down cursor | Start reading at the current position. |
+| Up cursor and down cursor, or Shift + Tab and Tab | Move to previous/next item on page and read it. |
+| Left cursor and right cursor | Move to previous/next character in current item and read it. |
+| Shift + H and H | Move to previous/next heading and read it. |
+| Shift + K and K | Move to previous/next link and read it. |
+| Shift + D and D | Move to previous/next document landmark ( e.g. `<nav>`) and read it. |
+| Shift + 1-6 and 1-6 | Move to previous/next heading (level 1-6) and read it. |
+| Shift + F and F | Move to previous/next form input and focus on it. |
+| Shift + T and T | Move to previous/next data table and focus on it. |
+| Shift + B and B | Move to previous/next button and read its label. |
+| Shift + L and L | Move to previous/next list and read its first list item. |
+| Shift + I and I | Move to previous/next list item and read it. |
+| Enter/Return | (When link/button or other activatable item is selected), activate item. |
+| NVDA + Space | (When form is selected), enter form so individual items can be selected, or leave form if you are already in it. |
+| Shift Tab and Tab | (When inside form), move between form inputs. |
+| Up cursor and down cursor | (When inside form), change form input values (in the case of things like select boxes). |
+| Spacebar | (When inside form), select chosen value. |
+| Ctrl + Alt + cursor keys | (When a table is selected), move between table cells. |
