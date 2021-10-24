@@ -243,3 +243,33 @@ Generally simple functionality should work with just the HTML in place -- JavaSc
 <hr>
 
 More complex JavaScript implementations can create issues with accessibility -- you need to do what you can. For example, it would be unreasonable to expect you to make a complex 3D game written using [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) 100% accessible to a blind person, but you could implement [keyboard controls](https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard) so it is usable by non-mouse users, and make the color scheme contrasting enough to be usable by those with color deficiencies.
+
+#### Complex functionality
+
+One of the main areas problematic for accessibility is complex apps that involve complicated form controls (such as date pickers) and dynamic content that is updated often and incrementally.
+
+Non-native complicated form controls are problematic because the tend to involve a lot of nested `<div>`s, and the browser does not know what to do with them by default. If you are inventing them yourself, you need to make sure that they are keyboard accessible. If you are using some kind of third-party framework, carefully review the options available to see how accessible they are before diving in. [Bootstrap](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap#bootstrap) looks to be fairly good for accessibility -- although [Making Bootstrap a Little More Accessible](https://www.sitepoint.com/making-bootstrap-accessible/) by Rhiana Heath explores some of its issues (mainly related to color contrast), and looks at some solutions.
+
+Regularly updated dynamic content can be a problem because screenreader users might miss it, especially if it updates unexpectedly. If you have a single-page app with a main content panel that is regularly updated using [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), a screenreader user might miss those updates.
+
+#### WAI-ARIA
+
+Do you need to use such complex functionality, or will plain old semantic HTML do instead? If you do need complexity, you should consider using [WAI-ARIA](https://www.w3.org/TR/wai-aria-1.1/) (Accessible Rich Internet Applications), a specification that provides semantics (in the form of new HTML attributes) for items such as complex form controls and updating panels that can be understood by most browsers and screen readers.
+
+To deal with complex form widgets, you need to use ARIA attributes like `roles` to state what role different elements have in a widget (for example, are they a tab, or a tab panel?), `aria-disabled` to say whether a control is disabled or not, etc.
+
+To deal with regularly updating regions of content, you can use the `aria-live` attribute, which identifies an updating region. Its value indicates how urgently the screen reader should read it out:
+
+* `off`: The default. Updates should not be announced.
+* `polite`: Updates should be announced only if the user is idle.
+* `assertive`: Updates should be announced to the user as soon as possible.
+* `rude`: Updates should be announced straight away, even if this interrupts the user.
+
+
+Here's an example:
+```
+<p><span if="LiveRegion1" aria-live="polite" aria-atomic="false"></span></p>
+```
+You can see an example in action at Freedom Scientific's [ARIA (Accessible Rich Internet Applications) Live Regions](https://www.freedomscientific.com/SurfsUp/AriaLiveRegions.htm) example. The highlighted paragraph should update its content every 10 seconds, and a screenreader should read this out to the user. [ARIA Live Regions - Atomic](https://www.freedomscientific.com/SurfsUp/AriaLiveRegionsAtomic.htm) provides another useful example.
+
+We don't have space to cover WAI-ARIA in detail here. You can learn a lot more about it at [WAI-ARIA basics](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/WAI-ARIA_basics).
