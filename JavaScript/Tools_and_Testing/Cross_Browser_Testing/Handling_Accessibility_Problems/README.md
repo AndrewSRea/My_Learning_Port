@@ -353,7 +353,7 @@ VO has many keyboard commands, and we won't list them all here. The basic ones y
 | --- | --- |
 | VO + Cursor keys | Move the VO cursor up, right, down, left. |
 | VO + Spacebar | Select/activate items highlighted by the VO cursor. This includes items selected in the Rotor (see below). |
-| VO + Shift + down cursor | | Move into a group of items (such as an HTML table, or a form, etc.) Once inside a group, you can move around and select items inside that group using the above commands as normal. |
+| VO + Shift + down cursor | Move into a group of items (such as an HTML table, or a form, etc.) Once inside a group, you can move around and select items inside that group using the above commands as normal. |
 | VO + Shift + up cursor | Move out of a group. |
 | VO + C | (When inside a table), read the header of the current column. |
 | VO + R | (Wehn inside a table), read the header of the current row. |
