@@ -198,3 +198,29 @@ CSS tends to provide a lot fewer fundamental accessibility features than HTML, b
 * You should make sure interactive elements like buttons and links have appropriate focus/hover/active states set, to give the user visual clues as to their function. If you remove the defaults for stylistic reasons, make sure you include some replacement styles.
 
 There are a few other considerations you should take into account.
+
+#### Color and color contrast
+
+When choosing a color scheme for your website, you should make sure that the text (foreground) color contrasts well with the background color. Your design might look cool, but it is no good if people with visual impairments like color blindness can't read your content. Use a tool like WebAIM's [Color Contrast Checker](https://webaim.org/resources/contrastchecker/) to check whether your scheme is contrasting enough.
+
+Another tip is to not rely on color alone for signposts/information, as this won't be good for those who can't see the color. Instead of marking required form fields in red, for example, mark them with an asterisk and in red.
+
+<hr>
+
+**Note**: A high contrast ratio will also allow anyone using a smartphone or tablet with a glossy screen to better read pages when in a bright environment, such as sunlight.
+
+<hr>
+
+#### Hiding content
+
+There are many instances where a visual design will require that not all content is shown at once. For example, in our [Tabbed info box example](https://mdn.github.io/learning-area/css/css-layout/practical-positioning-examples/info-box.html) (see the [source code](https://github.com/mdn/learning-area/blob/master/css/css-layout/practical-positioning-examples/info-box.html)), we have three panels of information, but we are [positioning](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning) them on top of one another and providing tabs that can be clicked to show each one. (It is also keyboard accessible -- you can alternatively use <kbd>Tab</kbd> and <kbd>Enter</kbd>/<kbd>Return</kbd> to select them.)
+
+Screen reader users don't care about any of this -- they are happy with the content as long as the source order makes sense, and they can get to it all. Absolute positioning (as used in this example) is generally seen as one of the best mechanisms of hiding content for visual effect, because it doesn't stop screen readers from getting to it.
+
+On the other hand, you shouldn't use [`visibility`](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility)`:hidden` or [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display)`:none` because they do hide content from screenreaders. Unless, of course, there is a good reason why you want this content to be hidden from screenreaders.
+
+<hr>
+
+**Note**: [Invisible Content Just for Screen Reader Users](https://webaim.org/techniques/css/invisiblecontent/) has a lot more useful detail surrounding this topic.
+
+<hr>
