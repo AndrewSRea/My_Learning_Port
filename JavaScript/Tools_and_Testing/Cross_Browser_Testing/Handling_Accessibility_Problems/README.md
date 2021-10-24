@@ -375,7 +375,7 @@ This seems like a lot of commands, but it isn't so bad when you get used to it, 
 
 NVDA is Windows-only, and you'll need to install it.
 
-1. Download it from [nvaccess.org](). You can choose whether to make a donation or download it for free. You'll also need to give them your email address before you can download it.
+1. Download it from [nvaccess.org](https://www.nvaccess.org/). You can choose whether to make a donation or download it for free. You'll also need to give them your email address before you can download it.
 2. Once downloaded, install it. You double-click the installer, accept the license and follow the prompts.
 3. To start NVDA, double-click on the program file/shortcut, or use the keyboard shortcut Ctrl + Alt + N. You'll see the NVDA welcome dialog when you start it. Here you can choose from a couple of options, then press the *OK* button to get going.
 
