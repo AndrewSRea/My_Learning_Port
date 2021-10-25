@@ -33,7 +33,43 @@ A classic example might be to test for [Flexbox](https://developer.mozilla.org/e
 Let's implement something that demonstrates this, although we'll keep it simple for now.
 
 1. Start by making local copies of our [css-feature-detect.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/css-feature-detect.html), [flex-layout.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/flex-layout.css), [float-layout.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/float-layout.css), and [basic-styling.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/basic-styling.css) files. Save them in a new directory.
+
 2. We will add the HTML5 Shiv to our example, too, so that the HTML5 semantic elements will style properly in older versions of IE. Download the latest version (see [Manual installation](https://github.com/aFarkas/html5shiv#manual-installation)), unzip the ZIP file, copy the `html5shiv-printshiv.min.js` and `html5shiv.min.js` files into your example directory, and link to one of the files by putting the following under your [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) element:
 ```
 <script src="html5shiv.min.js"></script>
 ```
+
+3. Have a look at your example CSS files. You'll see that `basic-styling.css` handles all the styling that we want to give to every browser, whereas the other two CSS files contain the CSS we want to selectively apply to a browser depending on their support levels. You can look at the different effects these two files have by manually changing the CSS file referred to by the sceond [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) element, but let's instead implement some JavaScript to automatically swap them as needed.
+
+4. First, remove the contents of the second `<link>` element's `href` attribute. We will fill this in dynamically later on.
+
+5. Next, add a `<script></script>` element at the bottom of your body (just before the closing `</body>` tag).
+
+6. Give it the following contents:
+```
+const conditional = document.querySelector('.conditional');
+const testElem = document.createElement('div');
+if (testElem.style.flex !== undefined && testElem.style.flexFlow !== undefined) {
+    conditional.setAttribute('href', 'flex-layout.css');
+} else {
+    conditional.setAttribute('href', 'float-layout.css');
+}
+```
+
+Here we are grabbing a reference to the second `<link>` element, and creating a `<div>` element as part of our test. In our conditional statement, we test that the [`flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) and [`flex-flow`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-flow) properties exist in the browser. Note how the JavaScript representations of those properties that are stored inside the [`HTMLElement.style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) object use lower camel case, not hyphens, to separate the words.
+
+<hr>
+
+**Note**: If you have trouble getting this to work, you can compare it to our [css-feature-detect-finished.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/css-feature-detect-finished.html) code. (Also, see the [live version](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/feature-detection/css-feature-detect-finished.html).)
+
+<hr>
+
+When you save everything and try out your example, you should see the flexbox layout applied to the page if the browser supports modern flexbox, and the float layout if not.
+
+<hr>
+
+**Note**: Often such an approach is overkill for a minor feature detection problem. You can often get away with using multiple vendor prefixes and fallback properties, as described in [CSS fallback behavior](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#css-fallback-behavior) and [Handling CSS prefixes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#handling-css-prefixes).
+
+<hr>
+
+<hr>
