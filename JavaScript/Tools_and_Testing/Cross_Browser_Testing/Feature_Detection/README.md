@@ -72,4 +72,37 @@ When you save everything and try out your example, you should see the flexbox la
 
 <hr>
 
-<hr>
+#### @supports
+
+In recent times, CSS has had its own native feature detection mechanism introduced -- the [`@supports`](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports) at-rule. This works in a similar manner to [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries) (see also [Responsive design problems](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#responsive-design-problems)), except that instead of selectively applying CSS depending on a media feature like a resolution, screen width, or aspect ratio, it selectively applies CSS depending on whether a CSS feature is supported.
+
+For example, we could rewrite our previous example to use `@supports` -- see [supports-feature-detect.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/supports-feature-detect.html) and [supports-styling.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/supports-styling.css). If you look at the latter, you'll see a couple of `@supports` blocks. For example:
+```
+@supports (flex-flow: row) and (flex: 1) {
+
+    main {
+        display: flex;
+    }
+
+    main div {
+        padding-right: 4%;
+        flex: 1;
+    }
+
+    main div:last-child {
+        padding-right: 0;
+    }
+
+}
+```
+This at-rule block applies the CSS rule within only if the current browser supports both the `flex-flow: row` and `flex: 1` declarations. For each condition to work, you need to include a complete declaration (not just a property name) and NOT include the semi-colon on the end.
+
+`@supports` also has `OR` and `NOT` logic available. The other block applies the float layout if the flexbox properties are not available:
+```
+@supports not (flex-flow: row) and (flex: 1) {
+
+    /* rules in here */
+
+}
+```
+This may look a lot more convenient than the previous example. We can do all of our feature detection in CSS, no JavaScript required, and we can handle all the logic in a single CSS file, cutting down on HTTP requests. The problem here is browser support. `@supports` is not supported at all in IE, and only supported in very recent versions of Safari/iOS WebKit (9+/9.2+), whereas the JavaScript version should work in much older browsers (probably back to IE8 or 9, although older versions of IE will have additional problems, such as not supporting [`Document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector), and having a messed up box model).
