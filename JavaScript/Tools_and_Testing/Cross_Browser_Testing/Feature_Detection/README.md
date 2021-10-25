@@ -17,3 +17,23 @@ if ("geolocation" in navigator) {
 }
 ```
 It is probably better to use an established feature detection library, however, rather than writing your own all the time. Modernizr is the industry standard for feature detection tests, and we'll look at that later on.
+
+Before we move on, we'd like to say one thing upfront: Don't confuse feature detection with **browser sniffing** (detecting what specific browser is accessing the site). This is a terrible practice that should be discouraged at all costs. See [Using bad browser sniffing code](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_JavaScript_Problems#using-bad-browser-sniffing-code) for more details.
+
+## Writing your own feature detection tests
+
+In this section, we'll look at implementing your own feature detection tests, in both CSS and JavaScript.
+
+### CSS
+
+You can write tests for CSS features by testing for the existence of *[element.style.property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)* (e.g. `paragraph.style.transform`) in JavaScript.
+
+A classic example might be to test for [Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) support in a browser. For browsers that support the newest Flexbox spec, we could use a flexible and robust flex layout. For browsers that don't, we could use a floated layout that works OK, although it is slightly more brittle and hacky, and not as cool-looking.
+
+Let's implement something that demonstrates this, although we'll keep it simple for now.
+
+1. Start by making local copies of our [css-feature-detect.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/css-feature-detect.html), [flex-layout.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/flex-layout.css), [float-layout.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/float-layout.css), and [basic-styling.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/basic-styling.css) files. Save them in a new directory.
+2. We will add the HTML5 Shiv to our example, too, so that the HTML5 semantic elements will style properly in older versions of IE. Download the latest version (see [Manual installation](https://github.com/aFarkas/html5shiv#manual-installation)), unzip the ZIP file, copy the `html5shiv-printshiv.min.js` and `html5shiv.min.js` files into your example directory, and link to one of the files by putting the following under your [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) element:
+```
+<script src="html5shiv.min.js"></script>
+```
