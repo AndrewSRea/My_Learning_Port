@@ -288,7 +288,7 @@ There are a number of auditing tools available that you can feed your web pages 
 
 Let's look at an example, using Wave.
 
-1. Go to the [Wave hompage](https://wave.webaim.org/).
+1. Go to the [Wave homepage](https://wave.webaim.org/).
 2. Enter the URL of our [bad-semantics.html](https://mdn.github.io/learning-area/accessibility/html/bad-semantics.html) example into the text input box near the top of the page. Then press enter or click/tap the arrow at the far right edge of the input box.
 3. The site should respond with a description of the accessibility problems. Click the icons displayed to see more information about each of the issues identified by Wave's evaluation.
 
@@ -415,3 +415,47 @@ NVDA has many keyboard commands, and we won't list them all here. The basic ones
 | Up cursor and down cursor | (When inside form), change form input values (in the case of things like select boxes). |
 | Spacebar | (When inside form), select chosen value. |
 | Ctrl + Alt + cursor keys | (When a table is selected), move between table cells. |
+
+#### Screenreader testing
+
+Now you've gotten used to using a screenreader, we'd like you to use it to do some qwuick accessibility tests, to get an idea of how screenreaders deal with good and bad webpage features:
+
+* Look at [good-semantics.html](https://mdn.github.io/learning-area/accessibility/html/good-semantics.html), and note how the headers are found by the screenreader and available to use for navigation. Now look at [bad-semantics.html](https://mdn.github.io/learning-area/accessibility/html/bad-semantics.html), and note how the screenreader gets none of this information. Imagine how annoying this would be when trying to navigate a really long page of text.
+* Look at [good-links.html](https://mdn.github.io/learning-area/accessibility/html/good-links.html), and note how they make sense when viewed out of context. This is not the case with [bad-links.html](https://mdn.github.io/learning-area/accessibility/html/bad-links.html) -- they are all just "click here".
+* Look at [good-form.html](https://mdn.github.io/learning-area/accessibility/html/good-form.html), and note how the form inputs are described using their labels because we've used `<label>` elements properly. In [bad-form.html](https://mdn.github.io/learning-area/accessibility/html/bad-form.html), they get an unhelpful label along the lines of "blank".
+* Look at our [punk-bands-complete.html](https://mdn.github.io/learning-area/css/styling-boxes/styling-tables/punk-bands-complete.html) example, and see how the screenreader is able to associate columns and rows of content and read them out all together because we've defined headers properly. In [bad-table.html](https://mdn.github.io/learning-area/accessibility/html/bad-table.html), none of the cells can be associated at all. Note that NVDA seems to behave slightly strangely when you've only got a single table on a page. You could try [WebAIM's table test page](https://webaim.org/articles/nvda/tables.htm) instead.
+* Have a look at the [WAI-ARIA live regions example](https://www.freedomscientific.com/SurfsUp/AriaLiveRegions.htm) we saw earlier, and note how the screen reader will keep reading out the constantly updating section as it updates.
+
+### User testing
+
+As mentioned above, you can't rely on automated tools alone for determining accessibility problems on your site. It is recommended that when you draw up your testing plan, you should include some accessibility user groups if at all possible. (See our [User Testing](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Strategies_for_Testing#user-testing) section earlier on in the course for some more context.) Try to get some screenreader users involved, some keyboard-only users, some non-hearing users, and perhaps other groups, too, as suits your requirements.
+
+## Accessibility testing checklist
+
+The following list provides a checklist for you to follow to make sure you've carried out the recommended accessibility testing for your project:
+
+1. Make sure your HTML is as semantically correct as possible. [Validating it](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#validation) is a good start, as is using an [auditing tool](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#auditing-tools).
+2. Check that your content makes sense when the CSS is turned off.
+3. Make sure your functionality is [keyboard accessible](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#building-in-keyboard-accessibility). Test using Tab, Return/Enter, etc.
+4. Make sure your non-text content has [text alternatives](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#text-alternatives). An [auditing tool](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#auditing-tools) is good for catching such problems.
+5. Make sure your site's [color contrast](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#color-and-color-contrast) is acceptable, using a suitable checking tool.
+6. Make sure [hidden content](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#hiding-content) is visible by screenreaders.
+7. Make sure that functionality is usable without JavaScript wherever possible.
+8. Use ARIA to improve accessibility where appropriate.
+9. Run your site through an [auditing tool](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#auditing-tools).
+10. Test it with a screenreader.
+11. Include an accessibility policy/statement somewhere on your site to say what you did.
+
+## Finding help
+
+There are many other issues you'll encounter with accessibility. The most important thing to really know is how to find answers online. Consult the HTML and CSS article's [Finding help section](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_HTML_CSS_Problems#finding-help) for some good pointers.
+
+## Summary
+
+Hopefully this article has given you a good grounding in the main accessibility problems you might encounter, and how to test and overcome them.
+
+In the next article, we'll look at feature detection in more detail.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_JavaScript_Problems#handling-common-javascript-problems) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#handling-common-accessibility-problems) - [[Next page]]()
