@@ -106,3 +106,24 @@ This at-rule block applies the CSS rule within only if the current browser suppo
 }
 ```
 This may look a lot more convenient than the previous example. We can do all of our feature detection in CSS, no JavaScript required, and we can handle all the logic in a single CSS file, cutting down on HTTP requests. The problem here is browser support. `@supports` is not supported at all in IE, and only supported in very recent versions of Safari/iOS WebKit (9+/9.2+), whereas the JavaScript version should work in much older browsers (probably back to IE8 or 9, although older versions of IE will have additional problems, such as not supporting [`Document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector), and having a messed up box model).
+
+### JavaScript
+
+We already saw an example of a JavaScript feature detection test earlier. Generally, such tests are done via one of the following common patterns:
+
+#### Summary of JavaScript feature detection techniques
+
+| Feature detection type | Explanation | Example |
+| --- | --- | --- |
+| *If member in object* | Check whether a certain method or property (typically an entry point into using the API or other feature you are detecting for) exists in its parent Object. | `if("geolocation" in navigator) { ... } |
+| *Property on element* | Create an element in memory using [`Document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and then check if a property exists on it. The example shown is a way of detecting [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) support. | `function supports_canvas() { return !!document.createElement('canvas').getContext; } <br> if(supports_canvas()) { ... } |
+| *Method on element return value* | Create an element in memory using [`Document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and then check if a method exists on it. If it does, check what value it returns. | See [Dive into HTML5 Video Formats detection](https://diveinto.html5doctor.com/detect.html#video-formats) test. |
+| *Property on element retains value* | Create an element in memory using [`Document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement), set a property to a certain value, then check to see if the value is retained. | See [Dive into HTML5 `<input>` types detection](https://diveinto.html5doctor.com/detect.html#input-types) test. |
+
+<hr>
+
+**Note**: The double `NOT` in the above example (`!!`) is a way to force a return value to become a "proper" Boolean value, rather than a [Truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)/[Falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value that may skew the results.
+
+<hr>
+
+The [Dive into HTML5 Detecting HTML5 Features](https://diveinto.html5doctor.com/detect.html) page has a lot more useful feature detection tests besides the ones listed above, and you can generally find a feature detection test for most things by searching for "detect support for YOUR-FEATURE-HERE" in your favorite search engine. Bear in mind, though, that some features are known to be undetectable -- see Modernizr's list of [Undetectables](https://github.com/Modernizr/Modernizr/wiki/Undetectables).
