@@ -272,3 +272,44 @@ Modernizr.fetch
 The console will return `true`/`false` values to indicate whether your browser supports those features or not.
 
 Let's look at an example to show how you'd use those properties.
+
+1. First of all, make a local copy of the [modernizr-js.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/modernizr-js.html) example file.
+
+2. Attach the Modernizr library to the HTML using a `<script>` element, as we have done in previous demos. Put it above the existing `<script>` element, which is attaching the Google Maps API to the page.
+
+3. Next, fill in the `YOUR-API-KEY` placeholder text in the second `<script>` element (as it is now) with a valid Google Maps API key. To get a key, sign in to a Google account, go to the [Get a Key/Authentication](https://developers.google.com/maps/documentation/javascript/get-api-key) page, then click the blue *Get a Key* button and follow the instructions.
+
+4. Finally, add another `<script>` element at the bottom of the HTML body (just before the `</body>` tag), and put the following script inside the tags:
+```
+if (Modernizr.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+
+        let latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        let myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            disableDefaultUI: true
+        }
+        let map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    });
+
+} else {
+    const para = document.createElement('p');
+    para.textContent = 'Argh, no geolocation!';
+    document.body.appendChild(para);
+}
+```
+
+Try your example out! Here we use the `Modernizr.geolocation` test to check whether geolocation is supported by the current browser. If it is, we run some code that gets your device's current location, and plots it on a Google Map.
+
+## Summary
+
+This article covered feature detection in a reasonable amount of detail, going through the main concepts and showing you how to both implement your own feature detection tests and use the Modernizr library to implement tests more easily.
+
+Next up, we'll start looking at automated testing.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Handling_Accessibility_Problems#handling-common-accessibility-problems) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Feature_Detection#implementing-feature-detection) - [[Next page]]()
