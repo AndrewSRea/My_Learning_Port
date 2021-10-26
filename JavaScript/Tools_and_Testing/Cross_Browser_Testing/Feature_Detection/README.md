@@ -165,14 +165,14 @@ When you are using Modernizr in production, you can go to the [Download page](ht
 
 Let's have a look at how Modernizr works in terms of selectively applying CSS.
 
-1. First, make a copy of [supports-feature-detect.html]() and [supports-styling.css](). Save then as **modernizr-css.html** and **modernizr-css.css**.
+1. First, make a copy of [supports-feature-detect.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/supports-feature-detect.html) and [supports-styling.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/supports-styling.css). Save then as **modernizr-css.html** and **modernizr-css.css**.
 
-2. Update you [`<link>`]() element in your HTML so it points to the correct CSS file. (You should also update your [`<title>`]() element to something more suitable.)
+2. Update you [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) element in your HTML so it points to the correct CSS file. (You should also update your [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) element to something more suitable.)
 ```
 <link href="modernizr-css.css" rel="stylesheet">
 ```
 
-3. Above this `<link>` element, add a [`<script>`]() element to apply the Modernizr library to the page, as shown below. This needs to be applied to the page before any CSS (or JavaScript) that might make use of it.
+3. Above this `<link>` element, add a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element to apply the Modernizr library to the page, as shown below. This needs to be applied to the page before any CSS (or JavaScript) that might make use of it.
 ```
 <script src="modernizr-custom.js"></script>
 ```
@@ -184,7 +184,7 @@ Let's have a look at how Modernizr works in terms of selectively applying CSS.
 
 <hr>
 
-:warning: **Warning!** You will run into problems when you download the [supports-styling.css]() file into a local directory. Your terminal will display some warnings like `{ expected` and `at-rule or selector expected`. The `@supports` code blocks have been written incorrectly. Basically, the `AND` logic on the `@supports` lines need another set of parentheses `()` around them. The code needs to be changed as follows:
+:warning: **Warning!** You will run into problems when you download the [supports-styling.css](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/supports-styling.css) file into a local directory. Your terminal will display some warnings like `{ expected` and `at-rule or selector expected`. The `@supports` code blocks have been written incorrectly. Basically, the `AND` logic on the `@supports` lines needs another set of parentheses `()` around it. The code needs to be changed as follows:
 ```
 @supports ((flex-flow: row) and (flex: 1)) {
 
@@ -216,3 +216,59 @@ It now contains a large number of classes that indicate the support status of di
 **Note**: You can find a list of what all the class names mean -- see [Features detected by Modernizr](https://modernizr.com/docs#features).
 
 <hr>
+
+Moving on, let's update our CSS to use Modernizr rather than `@supports`. Go into **modernizr-css.css**, and replace the two `@supports` blocks with the following:
+```
+/* Properties for browsers with modern flexbox */
+
+.flexbox main {
+    display: flex;
+}
+
+.flexbox main div {
+    padding-right: 4%;
+    flex: 1;
+}
+
+.flexbox main div:last-child {
+    padding-right: 0;
+}
+
+/* Fallbacks for browsers that don't support modern flexbox */
+
+.no-flexbox main div {
+    width: 22%;
+    float: left;
+    padding-right: 4%;
+}
+
+.no-flexbox main div:last-child {
+    padding: right;
+}
+
+.no-flexbox footer {
+    clear: left;
+}
+```
+So how does this work? Because all those class names have been put on the `<html>` element, you can target browsers that do or don't support a feature using specific descendant selectors. So here we're applying the top set of rules only to browsers that do support flexbox, and the bottom set of rules only to browsers that don't (`no-flexbox`).
+
+<hr>
+
+**Note**: Bear in mind that all of Modernizr's HTML and JavaScript feature tests are also reported in these class names, so you can quite happily apply CSS selectively based on whether the browser supports HTML or JavaScript features, if needed.
+
+<hr>
+
+### JavaScript
+
+Modernizr is also equally well-prepared for implementing JavaScript feature detects, too. It does this by making the global `Modernizr` object available to the page it is applied to, which contains results of the feature detects as `true`/`false` properties.
+
+For example, load up our [modernizr-css.html](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/feature-detection/modernizr-css.html) example in your browser, then try going to your JavaScript console and typing `Modernizr`, followed by some of those class names. (They are here, too.) For example:
+```
+Modernizr.flexbox
+Modernizr.websqldatabase
+Modernizr.xhr2
+Modernizr.fetch
+```
+The console will return `true`/`false` values to indicate whether your browser supports those features or not.
+
+Let's look at an example to show how you'd use those properties.
