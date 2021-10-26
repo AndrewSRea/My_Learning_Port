@@ -127,3 +127,92 @@ We already saw an example of a JavaScript feature detection test earlier. Genera
 <hr>
 
 The [Dive into HTML5 Detecting HTML5 Features](https://diveinto.html5doctor.com/detect.html) page has a lot more useful feature detection tests besides the ones listed above, and you can generally find a feature detection test for most things by searching for "detect support for YOUR-FEATURE-HERE" in your favorite search engine. Bear in mind, though, that some features are known to be undetectable -- see Modernizr's list of [Undetectables](https://github.com/Modernizr/Modernizr/wiki/Undetectables).
+
+#### matchMedia
+
+We also wanted to mention the [`Window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) JavaScript feature at this point, too. This is a property that allows you to run media query tests inside JavaScript. It looks like this:
+```
+if (window.matchMedia("(max-width: 480px)").matches) {
+    // run JavaScript in here
+}
+```
+As an example, our [Snapshot](https://github.com/chrisdavidmills/snapshot) demo makes use of it to selectively apply the Brick JavaScript library and use it to handle the UI layout, but only for the small screen layout (480px wide or less). We first use the `media` attribute to only apply the Brick CSS to the page if the page width is 480px or less:
+```
+<link href="dist/brick.css" type="text/css" rel="stylesheet" media="all and (max-width: 480px)">
+```
+We then use `matchMedia()` in the JavaScript several times, to only run Brick navigation functions if we are on the small screen layout. (In wider screen layouts, everything can be seen at once, so we don't need to navigate between different views.)
+```
+if (window.matchMedia("(max-width: 480px)").matches) {
+    deck.shuffleTo(1);
+}
+```
+
+## Using Modernizr to implement feature detection
+
+It is possible to implement your own feature detection tests using techniques like the ones detailed above. You might as well use a dedicated library, however, as it makes things much easier. The mother of all feature detection libraries is [Modernizr](https://modernizr.com/), and it can detect just about everything you'll ever need. Let's look at how to use it now.
+
+When you are experimenting with Modernizr, you might as well use the development build, which includes every possible feature detection test. Download this now by:
+
+1. Clicking on the [Development](https://modernizr.com/download?MessageChannel-adownload-ambientlight-animation-apng-appearance-applicationcache-arrow-atobbtoa-audio-audioloop-audiopreload-backdropfilter-backgroundblendmode-backgroundcliptext-backgroundsize-batteryapi-bdi-beacon-bgpositionshorthand-bgpositionxy-bgrepeatspace_bgrepeatround-bgsizecover-blobconstructor-bloburls-blobworkers-borderimage-borderradius-boxshadow-boxsizing-canvas-canvasblending-canvastext-canvaswinding-capture-checked-classlist-contains-contenteditable-contextmenu-cookies-cors-createelementattrs_createelement_attrs-cryptography-cssall-cssanimations-csscalc-csschunit-csscolumns-cssescape-cssexunit-cssfilters-cssgradients-cssgrid_cssgridlegacy-csshyphens_softhyphens_softhyphensfind-cssinvalid-cssmask-csspointerevents-csspositionsticky-csspseudoanimations-csspseudotransitions-cssreflections-cssremunit-cssresize-cssscrollbar-csstransforms-csstransforms3d-csstransformslevel2-csstransitions-cssvalid-cssvhunit-cssvmaxunit-cssvminunit-cssvwunit-cubicbezierrange-customelements-customevent-customprotocolhandler-dart-datachannel-datalistelem-dataset-datauri-dataview-dataworkers-details-devicemotion_deviceorientation-directory-display_runin-displaytable-documentfragment-ellipsis-emoji-es5-es5array-es5date-es5function-es5object-es5string-es5syntax-es5undefined-es6array-es6collections-es6math-es6number-es6object-es6string-eventlistener-eventsource-exiforientation-fetch-fileinput-filereader-filesystem-flash-flexbox-flexboxlegacy-flexboxtweener-flexwrap-focuswithin-fontface-forcetouch-formattribute-formvalidation-framed-fullscreen-gamepads-generatedcontent-generators-geolocation-getrandomvalues-getusermedia-hairline-hashchange-hidden-hiddenscroll-history-hovermq-hsla-htmlimports-ie8compat-imgcrossorigin-indexeddb-indexeddbblob-inlinesvg-input-inputformaction-inputformenctype-inputformmethod-inputformtarget-inputtypes-intl-jpeg2000-jpegxr-json-lastchild-ligatures-localizednumber-localstorage-lowbandwidth-lowbattery-matchmedia-mathml-mediaqueries-microdata-multiplebgs-mutationobserver-notification-nthchild-objectfit-olreversed-oninput-opacity-outputelem-overflowscrolling-pagevisibility-passiveeventlisteners-peerconnection-performance-picture-placeholder-pointerevents-pointerlock-pointermq-postmessage-preserve3d-progressbar_meter-promises-proximity-queryselector-quotamanagement-regions-requestanimationframe-requestautocomplete-rgba-ruby-sandbox-scriptasync-scriptdefer-scrollsnappoints-seamless-search-serviceworker-sessionstorage-shapes-sharedworkers-siblinggeneral-sizes-smil-speechrecognition-speechsynthesis-srcdoc-srcset-strictmode-stylescoped-subpixelfont-supports-svg-svgasimg-svgclippaths-svgfilters-svgforeignobject-target-template-templatestrings-textalignlast-textareamaxlength-textshadow-texttrackapi_track-time-todataurljpeg_todataurlpng_todataurlwebp-touchevents-transferables-typedarrays-unicode-unicoderange-unknownelements-urlparser-urlsearchparams-userdata-userselect-variablefonts-vibrate-video-videoautoplay-videocrossorigin-videoloop-videopreload-vml-webaudio-webgl-webglextensions-webintents-webp-webpalpha-webpanimation-webplossless_webp_lossless-websockets-websocketsbinary-websqldatabase-webworkers-willchange-wrapflow-xdomainrequest-xhr2-xhrresponsetype-xhrresponsetypearraybuffer-xhrresponsetypeblob-xhrresponsetypedocument-xhrresponsetypejson-xhrresponsetypetext-addtest-atrule-domprefixes-hasevent-mq-prefixed-prefixedcss-prefixedcssvalue-prefixes-setclasses-shiv-testallprops-testprop-teststyles) link.
+2. Clicking the big pink *Build* button on the page that comes up.
+3. Clicking the top *Download* link in the dialog box that appears.
+
+Save it somewhere sensible, like the directory you've been creating your other examples for in this article.
+
+When you are using Modernizr in production, you can go to the [Download page](https://modernizr.com/download?setclasses) you've already visited and click the plus buttons for only the features you need feature detects for. Then when you click the *Build* button, you'll download a custom build containing only those feature detects, making for a much smaller file size.
+
+### CSS
+
+Let's have a look at how Modernizr works in terms of selectively applying CSS.
+
+1. First, make a copy of [supports-feature-detect.html]() and [supports-styling.css](). Save then as **modernizr-css.html** and **modernizr-css.css**.
+
+2. Update you [`<link>`]() element in your HTML so it points to the correct CSS file. (You should also update your [`<title>`]() element to something more suitable.)
+```
+<link href="modernizr-css.css" rel="stylesheet">
+```
+
+3. Above this `<link>` element, add a [`<script>`]() element to apply the Modernizr library to the page, as shown below. This needs to be applied to the page before any CSS (or JavaScript) that might make use of it.
+```
+<script src="modernizr-custom.js"></script>
+```
+
+4. Now edit your opening `<html>` tag so that it looks like this:
+```
+<html class="no-js">
+```
+
+<hr>
+
+:warning: **Warning!** You will run into problems when you download the [supports-styling.css]() file into a local directory. Your terminal will display some warnings like `{ expected` and `at-rule or selector expected`. The `@supports` code blocks have been written incorrectly. Basically, the `AND` logic on the `@supports` lines need another set of parentheses `()` around them. The code needs to be changed as follows:
+```
+@supports ((flex-flow: row) and (flex: 1)) {
+
+    ...
+
+}
+
+@supports not ((flex-flow: row) and (flex: 1)) {
+
+    ...
+
+}
+```
+
+<hr>
+
+At this point, try loading your page, and you'll get an idea of how Modernizr works for CSS features. If you look at the DOM inspector  of your browser's developer tools, you'll see that Modernizr has updated your `<html>` `class` value like so:
+```
+<html class="js no-htmlimports sizes flash transferables applicationcache blobconstructor blob-constructor cookies cors ...AND LOADS MORE VALUES!>
+```
+It now contains a large number of classes that indicate the support status of different technology features. As an example, if the browser didn't support flexbox at all, `<html>` would be given a class name of `no-flexbox`. If it did support modern flexbox, it would get a class name of `flexbox`. If you search through the class list, you'll also see others relating to flexbox, like:
+
+* `flexboxlegacy` for the old flexbox spec (2009).
+* `flexboxtweener` for 2011 in-between stntax supported by IE10.
+* `flexwrap` for the [`flex-wrap`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap) property, which isn't present in some implementations.
+
+<hr>
+
+**Note**: You can find a list of what all the class names mean -- see [Features detected by Modernizr](https://modernizr.com/docs#features).
+
+<hr>
