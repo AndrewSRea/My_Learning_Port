@@ -39,37 +39,33 @@ footer p {
     line-height: 50px;
 }
 
-@supports ((flex-flow: row) and (flex: 1)) {
+/* Properties for browsers with modern flexbox */
 
-    main {
-        display: flex;
-    }
-
-    main div {
-        padding-right: 4%;
-        flex: 1;
-    }
-
-    main div:last-child {
-        padding-right: 0;
-    }
-
+.flexbox main {
+    display: flex;
 }
 
-@supports not ((flex-flow: row) and (flex: 1)) {
+.flexbox main div {
+    padding-right: 4%;
+    flex: 1;
+}
 
-    main div {
-        width: 22%;
-        float: left;
-        padding-right: 4%;
-    }
+.flexbox main div:last-child {
+    padding-right: 0;
+}
 
-    main div:last-child {
-        padding-right: 0;
-    }
+/* Fallbacks for browsers that don't support modern flexbox */
 
-    footer {
-        clear: left;
-    }
+.no-flexbox main div {
+    width: 22%;
+    float: left;
+    padding-right: 4%;
+}
 
+.no-flexbox main div:last-child {
+    padding-right: 0;
+}
+
+.no-flexbox footer {
+    clear: left;
 }
