@@ -296,7 +296,69 @@ Now try entering the `gulp watch` command into your terminal. Gulp will now watc
 
 There's a lot more you can do with Gulp. The [Gulp plugin directory](https://gulpjs.com/plugins/) has literally thousands of plugins to search through.
 
+### Other task runners
 
+There are many other task runners available. We certainly aren't trying to say that Gulp is the best solution out there, but it works for us and it is fairly accessible to beginners. You could also try using other solutions:
+
+* Grunt works in a very similar way to Gulp, except that it relies on tasks specified in a config file, rather than using written JavaScript. See Grunt's [Getting started](https://gruntjs.com/getting-started) Documentation page for more details.
+* You can also run tasks directly using npm scripts located inside your `package.json` file, without needing to install any kind of extra task runner system. This works on the promise that things like Gulp plugins are basically wrappers around command line tools. So, if you can work out how to run the tools using the command line, you can then run them using npm scripts. It is a bit trickier to work with, but can be rewarding for those who are strong with their command line skills. [Why npm scripts?](https://css-tricks.com/why-npm-scripts/) provides a good introduction with a good deal of further information.
+
+## Using commercial testing services to speed up browser testing
+
+Now let's look at commercial third-party browser testing services and what they can do for us.
+
+The basic premise with such applications is that the company that runs each one has a huge server farm that can run many different tests. When you use this service, you provide a URL of the page you want to test along with information, such as what browsers you want it tested in. The app then configures a new VM with the OS and browser you specified, and returns the test results in the form of screenshots, videos, logfiles, text, etc.
+
+You can then step up a gear, using an API to access functionality programmatically, which means that such apps can be combined with task runners, such as your own local Selenium environments and others, to create automated tests.
+
+<hr>
+
+**Note**: There are other commercial browser testing systems available but in this article, we'll focus on LambdaTest, Sauce Labs, and BrowserStack. We're not saying that these are necessarily the best tools available, but they are good ones that are simple for beginners to get up and running with.
+
+<hr>
+
+### LambdaTest
+
+#### Getting started with LambdaTest
+
+1. Let's get started by [signing up on LambdaTest](https://accounts.lambdatest.com/register) for free.
+2. Sign in. This should happen automatically after you verify your email address.
+
+<hr>
+
+**Note**: Unlike other cloud-based cross browser testing service providers, LambdaTest offers a freemium account where you get lifetime access to their platform. The only difference between their premium and the freemium plan is on the amount of consumption. For automation testing thorugh their Selenium Grid, LambdaTest offers 60 minutes per month of free testing.
+
+<hr>
+
+#### The basic: Manual tests
+
+Once you sign in to LambdaTest, you will be routed to the LambdaTest Dashboard. The dashboard will provide you details related to how many minutes you have consumed, how many concurrent sessions are running, your total number of tests to date, and more.
+
+1. To start off with manual testing, you need to select the **"Real Time Testing"** tab from the left navigation menu.
+
+![Image of the LambdaTest Dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/lambdatest-dashboard.png)
+
+2. As you click on the **Real Time Testing**, you will be directed to a screen where you can choose the browser configuration, browser version, oS, and screen resolution with which you want to test your website.
+
+![Image of the LambdaTest "Real Time Testing" navigation menu](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/mark-as-bug-1.png)
+
+3. As you click on the Start button, a loading screen will appear, providing you with a VM (Virtual Machine) based on your configurations. Once loaded, you can perform live, interactive cross-browser testing with a website.
+
+![Image of a LambdaTest Virtual Machine environment](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/mark-as-bug-2.png)
+
+    If you notice an issue with the UI, then you can share it with your colleagues by capturing a screenshot of your VM with the screenshot button. You can also record a video of your test session by hitting the recorder button in your test session.
+
+4. With the in-buil image editor, highlight your screenshot before you push it to your colleagues.
+
+![Image of a highlighted webpage feature in a LambdaTest screenshot](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/mark-as-bug-3.png)
+
+5. Using the Mark as Bug button, you can push bugs to numerous third-party tools such as Jira, Asana, Trello, and more. That way you can log a bug directly from your test session on LambdaTest to your project management instance. Check out all the [third-party LambdaTest integrations](https://www.lambdatest.com/integrations).
+
+<hr>
+
+**Note**: All the video and images captured inside a test session are captured inside the gallery, test logs, and issue tracker at LambdaTest.
+
+<hr>
 
 
 
