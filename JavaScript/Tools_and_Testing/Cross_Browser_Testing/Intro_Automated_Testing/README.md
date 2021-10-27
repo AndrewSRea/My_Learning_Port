@@ -223,7 +223,79 @@ exports.css = css;
 exports.default = series(html, css);
 ```
 
-Here we grab our `style.css` file, run csslint on it (which outputs a list of any errors in your CSS to the terminal), then runs it through autoprefixer to add any prefixes needed to make nascent CSS features run in older browsers. At the end of the pipe chain, we output our modified prefixed CSS to the `build` directory. Note that this only works if csslint doesn't find any errors. Try removing a curly brace from your CSS file and re-running gulp to see what output you get!
+Here we grab our `style.css` file, run csslint on it (which outputs a list of any errors in your CSS to the terminal), then runs it through autoprefixer to add any prefixes needed to make nascent CSS features run in older browsers. At the end of the pipe chain, we output our modified prefixed CSS to the `build` directory. Note that this only works if csslint doesn't find any errors. Try removing a curly brace from your CSS file and rerunning gulp to see what output you get!
+
+#### js-hint and babel
+
+1. Install using the following lines:
+```
+npm install --save-dev gulp-babel @babel/preset-env
+npm install --save-dev @babel/core
+npm install jshint gulp-jshint --save-dev
+```
+
+2. Add the following dependencies to `gulpfile.js`:
+```
+const babel = require('gulp-babel');
+const jshint = require('gulp-jshint');
+```
+
+3. Add the following test to the bottom of `gulpfire.js`:
+```
+function js(cb) {
+    return gulp.src('src/main.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(gulp.dest('build'));
+    cb();
+}
+```
+
+4. Export the JS task using:
+```
+exports.js = js;
+```
+
+5. Change the default task to:
+```
+exports.default = series(html, css, js);
+```
+
+Here we grab our `main.js` file, run `jshint` on it, and output the results to the terminal using `jshint.reporter`. We then pass the file to babel, which converts it to old style syntax and outputs the result into the `build` directory. Our original code included a [fat arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), which babel has modified into an old style function.
+
+#### Further ideas
+
+Once this is all set up, you can run the `gulp` command inside your project directory, and you should get an output like this:
+
+![Image of a CLI terminal running the "gulp" command](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/gulp-output.png)
+
+You can then try out the files output by your automated tasks by looking at them inside the `build` directory, and loading `build/index.html` in your web browser.
+
+If you get errors, check that you've added all the dependencies and the tests as shown above. Also, try commenting out the HTML/CSS/JavaScript code sections and then rerunning gulp to see if you can isolate what the problem is.
+
+Gulp comes with a `watch()` function that you can use to watch your files and run tests whenever you save a file. For example, try adding the following to the bottom of your `gulpfile.js`:
+```
+function watch() {
+    gulp.watch('src/*.html', html)
+    gulp.watch('src/*.css', css)
+    gulp.watch('src/*.js', js)
+}
+
+exports.watch = watch;
+```
+Now try entering the `gulp watch` command into your terminal. Gulp will now watch your directory, and run the appropriate tasks whenever you save a change to an HTML, CSS, or JavaScript file.
+
+<hr>
+
+**Note**: The `*` character is a wildcard character. Here we're saying "run these tasks when any files of these types are saved. You could also use wildcards in your main tasks. For example, `gulp.src('src/*.css')` would grab all your CSS files and then run piped tasks on them.
+
+<hr>
+
+There's a lot more you can do with Gulp. The [Gulp plugin directory](https://gulpjs.com/plugins/) has literally thousands of plugins to search through.
+
 
 
 
