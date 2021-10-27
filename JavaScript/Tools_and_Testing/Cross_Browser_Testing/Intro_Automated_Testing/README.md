@@ -346,7 +346,7 @@ Once you sign in to LambdaTest, you will be routed to the LambdaTest Dashboard. 
 
 ![Image of a LambdaTest Virtual Machine environment](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/mark-as-bug-2.png)
 
-    If you notice an issue with the UI, then you can share it with your colleagues by capturing a screenshot of your VM with the screenshot button. You can also record a video of your test session by hitting the recorder button in your test session.
+If you notice an issue with the UI, then you can share it with your colleagues by capturing a screenshot of your VM with the screenshot button. You can also record a video of your test session by hitting the recorder button in your test session.
 
 4. With the in-buil image editor, highlight your screenshot before you push it to your colleagues.
 
