@@ -175,8 +175,55 @@ Within the `<body>` of the `index.html` file, you may have noticed that we put a
 
 #### Autoprefixer and css-lint
 
+1. Install using the following lines:
+```
+npm install --save-dev gulp-autoprefixer
+npm install --save-dev gulp-csslint
+```
 
+2. Add the following dependencies to `gulpfile.js`:
+```
+const autoprefixer = require('gulp-autoprefixer');
+const csslint - require('gulp-csslint');
+```
 
+3. Add the following test to the bottom of `gulpfile.js`:
+```
+function css(cb) {
+    return gulp.src('src/style.css')
+        .pipe(csslint())
+        .pipe(csslint.formatter('compact'))
+        .pipe(autoprefixer({
+            cascade: false
+        }))
+        .pipe(gulp.dest('build'));
+    cb();
+}
+```
+
+4. Add the following property to `package.json`:
+```
+"browserslist": [
+    "last 5 versions"
+]
+```
+
+5. Add this line after the const definitions:
+```
+const { series } = require('gulp');
+```
+
+6. Export the css task using:
+```
+exports.css = css;
+```
+
+7. Change the default task to:
+```
+exports.default = series(html, css);
+```
+
+Here we grab our `style.css` file, run csslint on it (which outputs a list of any errors in your CSS to the terminal), then runs it through autoprefixer to add any prefixes needed to make nascent CSS features run in older browsers. At the end of the pipe chain, we output our modified prefixed CSS to the `build` directory. Note that this only works if csslint doesn't find any errors. Try removing a curly brace from your CSS file and re-running gulp to see what output you get!
 
 
 
