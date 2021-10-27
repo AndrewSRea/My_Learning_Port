@@ -129,6 +129,56 @@ See the links above for full instructions on the different gulp packages we are 
 
 To use each plugin, you need to first install it via npm, then require any dependencies at the top of the `gulpfile.js` file, then add your test(s) to the bottom of it, and finally export the name of your task to be available via gulp's command.
 
+#### html-tidy
+
+1. In your root directory, install using the following line:
+```
+npm install --save-dev gulp-htmltidy
+```
+
+<hr>
+
+**Note**: `--save-dev` adds the package as a dependency to your project. If you look in your project's `package.json` file, you'll see an entry for it in the `devDependencies` property.
+
+<hr>
+
+2. Add the following dependency to `gulpfile.js`:
+```
+const htmltidy = require('gulp-htmltidy');
+```
+
+3. Add the following test to the bottom of `gulpfile.js`:
+```
+function html(cb) {
+    return gulp.src('src/index.html')
+          .pipe(htmltidy())
+          .pipe(gulp.dest('build'));
+        cb();
+}
+```
+
+4. Export the html task using:
+```
+exports.html = html;
+```
+
+5. Change the default export to:
+```
+exports.default = html;
+```
+
+Here we are grabbing our development `index.html` file with `gulp.src()`, which allows us to grab a source file to do something with.
+
+We next use the `pipe()` function to pass that source to another command to do something else with. We can chain as many of these together as we want. We first run `htmltidy()` on the source, which goes through and fixes errors in our file. The second `pipe()` function writes the output HTML file to the `build` directory.
+
+Within the `<body>` of the `index.html` file, you may have noticed that we put an empty [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) element. htmltidy has removed this by the time the output file has been created.
+
+#### Autoprefixer and css-lint
+
+
+
+
+
 
 
 
