@@ -82,3 +82,61 @@ This file is basically a config file for the project. You can customize it later
 }
 ```
 With this, you are ready to move on.
+
+### Setting up Gulp automation
+
+Let's look at setting up Gulp and using it to automate some testing tools.
+
+1. To begin with, create a test npm project using the procedure detailed at the bottom of the previous section.
+
+2. Next, you'll need some sample HTML, CSS, and JavaScript content to test your system on. Make copies of our sample [index.html](), [main.js](), and [style.css]() files in a subfolder with the name `src` inside your project folder. You can try your own test content if you like, but bear in mind that such tools won't work on internal JS/CSS -- you need external files.
+
+3. First, install Gulp globally (meaning, it will be available across all projects) using the following command:
+```
+npm install --global gulp-cli
+```
+
+4. Next, run the following command inside your npm project directory root to set up gulp as a dependency of your project:
+```
+npm install --save-dev gulp
+```
+
+5. Now create a new file inside your project directory called `gulpfile.js`. This is the file that will run all our tasks. Inside this file, put the following:
+```
+const gulp = require('gulp');
+
+exports.default = function(cb) {
+    console.log('Gulp running');
+    cb();
+};
+```
+This requires the `gulp` module we installed earlier, and then exports a default task that does nothing except for printing a message to the terminal. This is useful for letting us know that Gulp is working. Each gulp task is exported in the same basic format -- `exports.taskName = taskFunction`. Each function takes one parameter -- a callback to run when the task is completed.
+
+6. You can run your gulp's default task with the following command -- try this now:
+```
+gulp
+```
+
+### Adding some real tasks to Gulp
+
+To add some real tasks to Gulp, we need to think about what we want to do. A reasonable set of basic functionalities to run on our project is as follows:
+
+* html-tidy, css-lint, and js-hint to lint and report/fix common HTML/CSS/JS errors. (See [gulp-htmltidy](https://www.npmjs.com/package/gulp-htmltidy), [gulp-csslint](https://www.npmjs.com/package/gulp-csslint), and [gulp-jshint](https://www.npmjs.com/package/gulp-jshint).)
+* Autoprefixer to scan our CSS and add vendor prefixes only where needed. (See [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer).)
+* babel to transpile any new JavaScript syntax features to traditional syntax that works in older browsers. (See [gulp-babel](https://www.npmjs.com/package/gulp-babel).)
+
+See the links above for full instructions on the different gulp packages we are using.
+
+To use each plugin, you need to first install it via npm, then require any dependencies at the top of the `gulpfile.js` file, then add your test(s) to the bottom of it, and finally export the name of your task to be available via gulp's command.
+
+
+
+
+
+
+
+
+
+
+
+cd JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing
