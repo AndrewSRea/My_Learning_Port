@@ -364,7 +364,7 @@ If you notice an issue with the UI, then you can share it with your colleagues b
 
 #### Getting started with Sauce Labs
 
-Let's get started with a Sauce Labs Trial.
+Let's get started with a Sauce Labs trial.
 
 1. Create a [Sauce Labs trial account](https://saucelabs.com/sign-up).
 2. Sign in. This should happen automatically after you verify your email address.
@@ -463,7 +463,7 @@ We'll cover actually running automated Sauce Labs tests in the next article.
 
 #### Getting started with BrowserStack
 
-Let's get started with a BrowserStack Trial.
+Let's get started with a BrowserStack trial.
 
 1. Create a [BrowserStack trial account](https://www.browserstack.com/users/sign_up).
 2. Sign in. This should happen automatically after you verify your email address.
@@ -565,7 +565,120 @@ node call_bstack
 
 Below we've also provided some other ready-made functions you might find useful when working with the BrowserStack restful API.
 ```
+function getBuilds() {
+    request({uri: baseUrl + "builds.json"}, function(err, res, body) {
+        console.log(JSON.parse(body));
+    });
+    /* Response:
+    [
+        {
+            automation_build: {
+                name: <string>,
+                duration: <int>,
+                status: <string>,
+                hashed_id: <string>
+            }
+        },
+        {
+            automation_build: {
+                name: <string>,
+                duration: <int>,
+                status: <string>,
+                hashed_id: <string>
+            }
+        },
+        ...
+    ]
+    */
+};
 
+function getSessionsInBuild(build) {
+    let buildId = build.automation_build.hashed_id;
+    request({uri: baseUrl + "builds/" + buildId + "/sessions.json}, function(err, res, body) {
+        console.log(JSON.parse(body));
+    });
+    /* Response:
+    [
+        {
+            automation_session: {
+                name: <string>,
+                duration: <int>,
+                os: <string>,
+                os_version: <string>,
+                browser_version: <string>,
+                browser: <string>,
+                device: <string>,
+                status: <string>,
+                hashed_id: <string>,
+                reason: <string>,
+                build_name: <string>,
+                project_name: <string>,
+                logs: <string>,
+                browser_url: <string>,
+                public_url: <string>,
+                video_url: <string>,
+                browser_console_logs_url: <string>,
+                har_logs_url: <string>
+            }
+        },
+        {
+            automation_session: {
+                name: <string>,
+                duration: <int>,
+                os: <string>,
+                os_version: <string>,
+                browser_version: <string>,
+                browser: <string>,
+                device: <string>,
+                status: <string>,
+                hashed_id: <string>,
+                reason: <string>,
+                build_name: <string>,
+                project_name: <string>,
+                logs: <string>,
+                browser_url: <string>,
+                public_url: <string>,
+                video_url: <string>,
+                browser_console_logs_url: <string>,
+                har_logs_url: <string>
+            }
+        },
+        ...
+    ]
+    */
+}
+
+function getSessionDetails(session) {
+    let sessionId = session.automation_session.hashed_id;
+    request({uri: baseUrl + "sessions/" + sessionId + ".json"}, function(err, res, body) {
+        console.log(JSON.parse(body));
+    });
+    /* Response:
+    {
+        automation_session: {
+            name: <string>,
+            duration: <int>,
+            os: <string>,
+            os_version: <string>,
+            browser_version: <string>,
+            browser: <string>,
+            device: <string>,
+            status: <string>,
+            hashed_id: <string>,
+            reason: <string>,
+            build_name: <string>,
+            project_name: <string>,
+            logs: <string>,
+            browser_url: <string>,
+            public_url: <string>,
+            video_url: <string>,
+            browser_console_logs_url: <string>,
+            har_logs_url: <string>
+        }
+    }
+    */
+}
+```
 
 
 
