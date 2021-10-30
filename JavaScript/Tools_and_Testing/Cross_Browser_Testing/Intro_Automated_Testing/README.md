@@ -401,6 +401,91 @@ Once you stop the session, you'll return to the Manual Tests tab, where you'll s
 
 <hr>
 
+#### Advanced: The Sauce Labs API
+
+Sauce Labs has a [restful API](https://docs.saucelabs.com/dev/api/) that allows you to programmatically retrieve details of your account and existing tests, and annotate tests with further details such as their pass/fail state, which isn't recordable by manual testing alone. For example, you might want to run one of your own Selenium tests remotely using Sauce Labs to test a certain browser/OS combination, and then pass the test results back to Sauce Labs.
+
+It has several clients available to allow you to make calls to the API using your favorite environment, be it PHP, Java, Node.js, etc.
+
+Let's have a brief look at how we'd access the API using Node.js and [node-saucelabs](https://github.com/saucelabs/node-saucelabs).
+
+1. First, set up a new npm project to test this out, as detailed in [Setting up Node and npm](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#setting-up-node-and-npm). Use a different directory name than before, like `sauce-test` for example.
+
+2. Install the Node Sauce Labs wrapper using the following command:
+```
+npm install saucelabs
+```
+
+3. Create a new file inside your project root called `call_sauce.js` and give it the following contents:
+```
+const SauceLabs = require('saucelabs');
+
+let myAccount = new SauceLabs({
+    username: "your-sauce-username",
+    password: "your-sauce-api-key"
+});
+
+myAccount.getAccountDetails(function(err, res) {
+    console.log(res);
+    myAccount.getServiceStatus(function(err, res) {
+        // Status of the Sauce Labs services
+        console.log(res);
+        myAccount.getJobs(function(err, res) {
+            // Get a list of all your jobs
+            for (let k in jobs) {
+                if ( jobs.hasOwnProperty( k )) {
+                    myAccount.showJob(jobs[k].id, function(err, res) {
+                        let str = res.id + ": Status: " + res.status;
+                        if (res.error) {
+                            str += "\033[31m Error: " + res.error + " \033[0m";
+                        }
+                        console.log(str);
+                    });
+                }
+            }
+        });
+    });
+});
+```
+
+4. You'll need to fill in your Sauce Labs username and API key in the indicated places. These can be retrieved from your [User Settings](https://app.saucelabs.com/user-settings) page. Fill these in now.
+
+5. Make sure everything is saved, and run your file like so:
+```
+node call_sauce
+```
+
+#### Advanced: Automated tests
+
+We'll cover actually running automated Sauce Labs tests in the next article.
+
+### BrowserStack
+
+#### Getting started with BrowserStack
+
+Let's get started with a BrowserStack Trial.
+
+1. Create a [BrowserStack trial account](https://www.browserstack.com/users/sign_up).
+2. Sign in. This should happen automatically after you verify your email address.
+3. When you first sign in, you should be on the Live testing page. If not, click the *Live* link in the top nav menu.
+4. If you are on Firefox or Chrome, you'll be prompted to install a browser extension in a dialog titled "Enable Local Testing". Click the *Install* button to proceed. On other browsers, you'll still be able to use some of the features (generally via Flash), but you might not get the full experience.
+
+#### The basics: Manual tests
+
+The BrowserStack Live dashboard allows you to choose what device and browser you want to test on -- Platforms in the left column, devices on the right. When you mouse over or click on each device, you get a choice of browsers available on that device.
+
+![Image of a BrowserStack Live dashboard with lists of browsers/devices](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/browserstack-test-choices-sized.png)
+
+Clicking on one of those browser icons will load up your choice of platform/device/browser. Choose one now, and give it a try.
+
+![BrowserStack automated test showing an iPhone platform](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/browserstack-test-device-sized.png)
+
+<hr>
+
+**Note**: The blue device icon next to some of the mobile device choices signals that you will be testing on a real device. Choices without that icon will be run on an emulator.
+
+<hr>
+
 
 
 
