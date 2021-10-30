@@ -680,6 +680,93 @@ function getSessionDetails(session) {
 }
 ```
 
+#### Advanced: Automated tests
+
+We'll cover actually running automated BrowserStack tests in the next article.
+
+### TestingBot
+
+#### Getting started with TestingBot
+
+Let's get started with a TestingBot trial.
+
+1. Create a [TestingBot trial account](https://testingbot.com/users/sign_up).
+2. Sign in. This should happen automatically after you verify your email account.
+
+#### The basics: Manual tests
+
+The [TestingBot dashboard](https://testingbot.com/members) lists the various options you can choose from. For now, make sure you are on the *Live Web Testing* tab.
+
+1. Enter the URL of the page you want to test.
+
+2. Choose the browser/OS combination you want to test by selecting the combination in the grid.
+
+![Image of the browser/OS choices page in a TestingBot dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/screen_shot_2019-04-19_at_14.55.33.png)
+
+3. When you click *Start Browser*, a loading screen will then appear, which spins up a virtual machine running the combination you chose.
+
+4. When loading has finished, you can then start to remotely test the website running in the chosen browser.
+
+5. From here, you can see the layout as it would look in the browser you are testing, move the mouse around and try clicking buttons, etc. The side menu allows you to:
+
+    * Stop the session.
+    * Change the screen resolution.
+    * Copy text/notes to a remote clipboard.
+    * Take, edit, and download screenshots.
+    * Test in full screen mode.
+
+Once you stop the session, you'll return to the *Live Web Testing* page, where you'll see an entry for each of the previous manual sessions you started. Clicking on one of these entries shows more data for the session. Here you can download any screenshots you took, watch a video of the test, and view logs for the session.
+
+#### Advanced: The TestingBot API
+
+TestingBot has a [restful API](https://testingbot.com/support/api) that allows you to programmatically retrieve details of your account and existing tests, and annotate tests with further details such as their pass/fail state, which isn't recordable by manual testing alone.
+
+TestingBot has several API clients you can use to interact with the API, including clients for NodeJS, Python, Ruby, Java, and PHP.
+
+Below is an example on how to interact with the TestingBot API with the NodeJS client [testingbot-api](https://www.npmjs.com/package/testingbot-api).
+
+1. First, set up a new npm project to test this out, as detailed in [Setting up Node and npm](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#setting-up-node-and-npm). Use a different directory name than before, like `tb-test` for example.
+
+2. Install the Node testingBot wrapper using the following command:
+```
+npm install testingbot-api
+```
+
+3. Create a new file inside your project root called `tb.js` and give it the following contents:
+```
+const TestingBot = require('testingbot-api');
+
+let tb = new TestingBot({
+    api-key: "your-tb-key",
+    api-secret: "your-tb-secret"
+});
+
+tb.getTests(function(err, tests) {
+    console.log(tests);
+});
+```
+
+4. You'll need to fill in your TestingBot Key and Secret in the indicated places. You can find these in the [TestingBot dashboard](https://testingbot.com/members/user/edit).
+
+5. Make sure everything is saved, and run the file:
+```
+node tb.js
+```
+
+#### Advanced: Automated tests
+
+We'll cover actually running automated TestingBot tests in the next article.
+
+## Summary
+
+This was quite a ride, but I'm sure you can start to see the benefits of using automation tools to do some of the heavy lifting in terms of testing.
+
+In the next article, we'll look at setting up our own local automation system using Selenium, and how to combine that with services such as Sauce Labs, BrowserStack, and TestingBot.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Feature_Detection#implementing-feature-detection) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#introduction-to-automated-testing) - [[Next page]]()
+
 
 
 
