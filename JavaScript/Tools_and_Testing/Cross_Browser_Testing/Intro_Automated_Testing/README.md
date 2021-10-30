@@ -356,9 +356,52 @@ If you notice an issue with the UI, then you can share it with your colleagues b
 
 <hr>
 
-**Note**: All the video and images captured inside a test session are captured inside the gallery, test logs, and issue tracker at LambdaTest.
+**Note**: All the videos and images captured inside a test session are captured inside the gallery, test logs, and issue tracker at LambdaTest.
 
 <hr>
+
+### Sauce Labs
+
+#### Getting started with Sauce Labs
+
+Let's get started with a Sauce Labs Trial.
+
+1. Create a [Sauce Labs trial account](https://saucelabs.com/sign-up).
+2. Sign in. This should happen automatically after you verify your email address.
+
+#### The basics: Manual tests
+
+The [Sauce Labs dashboard](https://saucelabs.com/beta/dashboard/manual) has a lot of options available on it. For now, make sure you are on the *Manual Tests* tab.
+
+1. Click *Start a new manual session*.
+
+2. In the next screen, type in the URL of a page you want to test (use [https://mdn.github.io/learning-area/javascript/building-blocks/events/show-video-box-fixed.html](https://mdn.github.io/learning-area/javascript/building-blocks/events/show-video-box-fixed.html), for an example), then choose a browser/OS combination you want to test by using the different buttons and lists. There is a lot of choice, as you'll see!
+
+![Image of a New Testing Session Dashboard in Sauce Labs](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/sauce-manual-session.png)
+
+3. When you click *Start Session*, a loading screen will then appear, which spins up a virtual machine running the combination you chose.
+
+4. When loading has finished, you can then start to remotely test the website running in the chosen browser.
+
+![Image of a facsimile test browser running in Sauce Labs](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/sauce-test-running.png)
+
+5. From here, you can see the layout as it would look in the browser you are testing. Move the mouse around and try clicking buttons, etc. The top menu allow you to:
+
+    * Stop the session
+    * Give someone else a URL so they can observe the test remotely.
+    * Copy text/notes to a remote clipboard.
+    * Take a screenshot.
+    * Test in full screen mode.
+
+Once you stop the session, you'll return to the Manual Tests tab, where you'll see an entry for each of the previous manual sessions you started. Clicking on one of these entries shows more data for the session. In here, you can download any screenshots you took, watch a video of the session, view data logs, and more.
+
+<hr>
+
+**Note**: This is already very useful, and way more convenient than having to set up all these emulators and virtual machines by yourself.
+
+<hr>
+
+
 
 
 
