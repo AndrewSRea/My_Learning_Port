@@ -486,6 +486,41 @@ Clicking on one of those browser icons will load up your choice of platform/devi
 
 <hr>
 
+You'll find that you can enter URLs into the address bar, and use the other controls like you'd expect on a real device. You can even do things like copy and paste from the device to your clipboard, scroll up and down by dragging with the mouse, or use appropriate gestures (e.g. pinch/zoom, two fingers to scroll) on the touchpads of supporting devices (e.g. MacBook). Note that not all features are available on all devices.
+
+You'll also see a menu that allows you to control the session.
+
+![Image of control panel for mobile device test environments](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing/browserstack-test-menu-sized.png)
+
+The features here are as follows:
+
+* *Switch* -- Change to another platform/device/browser combination.
+* Orientation (looks like a Reload icon) -- Switch orientation between portrait and landscape.
+* Fit to screen (looks like a full screen icon) -- Fill the testing areas as much as possible with the device.
+* Capture a bug (looks like a camera) -- Takes a screenshot, then allows you to annotate and save it.
+* Issue tracker (looks like a deck of cards) -- View previously captured bugs/screenshots.
+* Settings (cog icon) -- Allows you to alter general settings for the session.
+* Help (question mark) -- Accesses help/support functions.
+* *Devtools* -- Allows you to use your browser's devtools to directly debug or manipulate the page being shown in the test browser. This currently only works when testing the Safari browser on iOS devices.
+* *Device info* -- Displays information about the testing device.
+* *Features* -- Shows you what features the current configuration supports, e.g. copy to clipboard, gesture support, etc.
+* *Stop* -- Ends the session.
+
+<hr>
+
+**Note**: This is already very useful, and way more convenient than having to set up all these emulators and virtual machines by yourself.
+
+<hr>
+
+#### Other basic features
+
+If you go back to the main BrowserStack page, you'll find a couple of other useful basic features under the *More* menu option:
+
+* *Responsive*: Enter a URL and press *Generate*, and BrowserStack will load that URL on multiple devices with different viewport sizes. Within each device, you can further adjust settings like monitor size, to get a good idea of how your site's layout works across different form factors.
+* *Screenshots*: Enter a URL, choose the browsers/devices/platforms you are interested in, then press *Generate screenshots*. BrowserStack will take screenshots of your site in all those different browsers, then make them available to you to view and download.
+
+
+
 
 
 
