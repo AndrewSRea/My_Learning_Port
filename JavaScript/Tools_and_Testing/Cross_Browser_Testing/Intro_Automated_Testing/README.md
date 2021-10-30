@@ -519,6 +519,53 @@ If you go back to the main BrowserStack page, you'll find a couple of other usef
 * *Responsive*: Enter a URL and press *Generate*, and BrowserStack will load that URL on multiple devices with different viewport sizes. Within each device, you can further adjust settings like monitor size, to get a good idea of how your site's layout works across different form factors.
 * *Screenshots*: Enter a URL, choose the browsers/devices/platforms you are interested in, then press *Generate screenshots*. BrowserStack will take screenshots of your site in all those different browsers, then make them available to you to view and download.
 
+#### Advanced: The BrowserStack API
+
+BrowserStack also has a [restful API]() that allows you to programmatically retrieve details of your account plan, sessions, builds, etc.
+
+It has several clients available to allow you to make calls to the API using your favorite environment, be it PHP, Java, Node.js, etc.
+
+Let's have a brief look at how we'd access the API using Node.js.
+
+1. First, set up a new npm project to test this out, as detailed in [Setting up Node and npm](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#setting-up-node-and-npm). Use a different directory name than before, like `bstack-test` for example.
+
+2. Create a new file inside your project root called `call_bstack.js` and give it the following contents:
+```
+const request = require("request");
+
+let bsUser = "BROWSERSTACK_USERNAME";
+let bsKey = "BROWSERSTACK_ACCESS_KEY";
+let baseUrl = "https://" + bsUser + ":" + bsKey + "@www.browserstack.com/automate/";
+
+function getPlanDetails() {
+    request({uri: baseUrl + "plan.json"}, function(err, res, body) {
+        console.log(JSON.parse(body));
+    });
+    /* Response:
+    {
+        automate_plan: <string>,
+        parallel_sessions_running: <int>,
+        team_parallel_sessions_max_allowed: <int>,
+        parallel_sessions_max_allowed: <int>,
+        queued_sessions: <int>,
+        queued_sessions_max_allowed: <int>
+    }
+    */
+}
+
+getPlanDetails();
+```
+
+3. You'll need to fill in your BrowserStack username and API key in the indicated places. These can be retrieved from your [BrowserStack automation dashboard](https://www.browserstack.com/automate). Fill these in now.
+
+4. Make sure everything is saved, and run your file like so:
+```
+node call_bstack
+```
+
+Below we've also provided some other ready-made functions you might find useful when working with the BrowserStack restful API.
+```
+
 
 
 
