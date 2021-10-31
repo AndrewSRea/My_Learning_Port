@@ -765,19 +765,4 @@ In the next article, we'll look at setting up our own local automation system us
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Feature_Detection#implementing-feature-detection) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#introduction-to-automated-testing) - [[Next page]]()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-cd JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Feature_Detection#implementing-feature-detection) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#introduction-to-automated-testing) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation#setting-up-your-own-test-automation-environment)
