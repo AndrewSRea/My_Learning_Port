@@ -18,6 +18,10 @@ We will cover writing and running Selenium tests using Node.js, as it is quick a
 
 <hr>
 
+:warning: **Warning**: Instead of following the instructions below, I would suggest following the instructions laid out in Selenium's own website, in the [Setting Up a Selenium-WebDriver Project](https://www.selenium.dev/documentation/#setting-up-a-selenium-webdriver-project) documentation.
+
+<hr>
+
 ### Setting up Selenium in Node
 
 1. To start with, set up a new npm project, as discussed in [Setting up Node and npm](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#setting-up-node-and-npm) in the last chapter. Call it something different, like `selenium-test`.
