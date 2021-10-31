@@ -53,3 +53,64 @@ exec bash
 ```
 
 2. Open your `.bash_profile` (or `.bashrc`) file. (If you can't see hidden files, you'll need to display them. See [Show/Hide hidden files in Mac OS X](https://ianlunn.co.uk/articles/quickly-showhide-hidden-files-mac-os-x-mavericks) or [Show hidden folders in Ubuntu](https://askubuntu.com/questions/470837/how-to-show-hidden-folders-in-file-manager-nautilus-on-ubuntu).)
+
+3. Paste the following into the bottom of your file (updating the path as it actually is on your machine):
+```
+#Add WebDriver browser drivers to PATH
+
+export PATH=$PATH:/Users/bob
+```
+
+4. Save and close this file, then restart your Terminal/command prompt to reapply your Bash configuration.
+
+5. Check that your new paths are in the `PATH` variable by entering the following into your terminal:
+```
+echo $PATH
+```
+
+6. You should see it printed out in the terminal.
+
+To set your `PATH` variable on Windows, follow the instructions at [How can I add a new folder to my system path?](https://www.itprotoday.com/)
+
+OK, let's try a quick test to make sure evertyhing is working.
+
+1. Create a new file inside your project directory called `google_test.js`.
+
+2. Give it the following contents, and then save it:
+```
+const webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until;
+
+const driver = new webdriver.Builder()
+    .forBrowser('firefox')
+    .build();
+
+driver.get('http://www.google.com');
+
+driver.findElement(By.name('q')).sendKeys('webdriver');
+
+driver.sleep(1000).then(function() {
+    driver.findElement(By.name('q')).sendKeys(webdriver.Key.TAB);
+});
+
+driver.findElement(By.name('btnK')).click();
+
+driver.sleep(2000).then(function() {
+    driver.getTitle().then(function(title) {
+        if(title === 'webdriver - Google Search') {
+            console.log('Test passed');
+        } else {
+            console.log('Test failed');
+        }
+        driver.quit();
+    });
+});
+```
+
+3. In terminal, make sure you are inside your project folder, then enter the following command:
+```
+node google_test
+```
+
+You should see an instance of Firefox automatically open up! Google should automatically be loaded in a tab, "webdriver" should be entered in the search box, and the search button will be clicked. WebDriver will then wait for 2 seconds. The document title is then accessed, and if it is "webdriver - Google Search", we will return a message to claim the test is passed. WebDriver will then close down the Firefox instance and stop.
