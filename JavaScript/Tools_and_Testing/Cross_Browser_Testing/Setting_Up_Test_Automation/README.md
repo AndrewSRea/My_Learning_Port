@@ -216,6 +216,46 @@ var driver = new webdriver.Builder()
     .build();
 ```
 
+### Getting the document you want to test
+
+To load the page you actually want to test, you use the `get()` method of the driver instance you created earlier. For example:
+```
+driver.get('http://www.google.com');
+```
+
+<hr>
+
+**Note**: See the [WebDriver class reference](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_WebDriver.html) for details of the features in this section and the ones below it.
+
+<hr>
+
+You can use any URL to point to your resource, including a `file://` URL to test a local document:
+```
+driver.get('file://Users/chrismills/git/learning-area/tools-testing/cross-browser-testing/accessibility/fake-dive-buttons.html');
+```
+or
+```
+driver.get('http://localhost:8888/fake-div-buttons.html');
+```
+But it is better to use a remote server location so the code is more flexible. When you start using a remote server to run your tests (see later on), your code will break if you try to use local paths.
+
+Add this line to the bottom of `quick_test.js` now:
+```
+driver.get('https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/accessibility/native-keyboard-accessibility.html');
+```
+
+### Interacting with the document
+
+Now we've got a document to test, we need to interact with it in some way, which usually involves first selecting a specific element to test seomthing about. You can [select UI elements in many ways]() in WebDriver, including by ID, class, element name, etc. The actual selection is done by the `findElement()` method, which accepts as a parameter a selection method. For example, to select an element by ID:
+```
+const element = driver.findElement(By.id('myElementId'));
+```
+One of the most useful ways to find an element by CSS: the `By.css()` method allows you to select an element using a CSS selector.
+
+Enter the following at the bottom of your `quick_test.js` code now:
+```
+const button = driver.findElement(By.css('button:nth-of-type(1)'));
+```
 
 
 
@@ -225,6 +265,9 @@ var driver = new webdriver.Builder()
 
 
 
+
+
+cd JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation
 
 This? https://artoftesting.com/selenium-tutorial
 
