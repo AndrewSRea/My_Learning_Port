@@ -176,3 +176,56 @@ node google_test_multiple
 So here we've done the test as before, except that this time we've wrapped it inside a function, `searchTest()`. We've created new browser instances for multiple browsers, then passed each one to the function so the test is performed on all three browsers!
 
 Fun, huh? Let's move on, look at the basics of WebDriver syntax in a bit more detail.
+
+## WebDriver syntax crash course
+
+Let's have a look at a few key features of the webdriver syntax. For more complete details, you should consult the [selenium-webdriver JavaScript API reference](https://www.selenium.dev/selenium/docs/api/javascript/index.html) for a detailed reference, and the Selenium main documentation's [Selenium WebDriver](https://www.selenium.dev/documentation/) and [WebDriver: Advanced Usage](https://www.selenium.dev/documentation/webdriver/) pages, which contain multiple examples to learn from written in different languages.
+
+### Starting a new test
+
+To start up a new test, you need to include the `selenium-webdriver` module like this:
+```
+const webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until;
+```
+Next, you need to create a new instance of a driver, using the `new webdriver.Builder()` constructor. This needs to have the `forBrowser()` method chained onto it to specify what browser you want to test with this builder, and the `build()` method to actually build it. (See the [Builder class reference](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_Builder.html) for detailed information on these features.)
+```
+let driver = new webdriver.Builder()
+    .forBrowser('firefox')
+    .build();
+```
+Note that it is possible to set specific configuration options for browsers to be tested. For example, you can set a specific version and OS to test in the `forBrowser()` method:
+```
+let driver = new webdriver.Builder()
+    .forBrowser('firefox', '46', 'MAC')
+    .build();
+```
+You could also set these options using an environment variable. For example:
+```
+SELENIUM_BROWSER=firefox:46:MAC
+```
+Let's create a new test to allow us to explore this code as we talk about it. Inside your selenium test project directory, create a new file called `quick_test.js`, and add the following code to it:
+```
+var webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until;
+
+var driver = new webdriver.Builder()
+    .forBrowser('firefox')
+    .build();
+```
+
+
+
+
+
+
+
+
+
+
+
+This? https://artoftesting.com/selenium-tutorial
+
+Or search "selenium-webdriver advanced usage". (Or "selenium-webdriver" tutorial?)
