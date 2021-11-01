@@ -118,3 +118,61 @@ node google_test
 ```
 
 You should see an instance of Firefox automatically open up! Google should automatically be loaded in a tab, "webdriver" should be entered in the search box, and the search button will be clicked. WebDriver will then wait for 2 seconds. The document title is then accessed, and if it is "webdriver - Google Search", we will return a message to claim the test is passed. WebDriver will then close down the Firefox instance and stop.
+
+## Tesing in multiple browsers at once
+
+There is also nothing to stop you running the test on multiple browsers simultaneously. Let's try this!
+
+1. Create another new file inside your project directory called `google_test_multiple.js`. You can feel free to change the references to some of the other browsers we added, remove them, etc., depending on what browsers you have available to test on your operating system. You'll need to make sure you have the right browser drivers set up on your system. In terms of what string to use inside the `.forBrowser()` method for other browsers, see the [Browser enum](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_Browser.html) reference page.
+
+2. Give it the following contents, then save it:
+```
+const webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until;
+
+let driver_fx = new webdriver.Builder()
+    .forBrowser('firefox')
+    .build();
+
+let driver_chr = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+searchTest(driver_fx);
+searchTest(driver_chr);
+
+function searchTest(driver) {
+    driver.get('http://ww.google.com');
+    driver.findElement(By.name('q')).sendKeys('webdriver');
+
+    driver.sleep(1000).then(function() {
+        driver.findElement(By.name('q')).sendKeys(webdriver.Key.TAB);
+    });
+
+    driver.findElement(By.name('btnK')).click();
+
+    driver.sleep(2000).then(function() {
+        driver.getTitle().then(function(title) {
+            if(title === 'webdriver - Google Search') {
+                console.log('Test passed');
+            } else {
+                console.log('Test failed');
+            }
+            driver.quit();
+        });
+    });
+
+}
+```
+
+3. In terminal, make sure you are inside your project folder, then enter the following command:
+```
+node google_test_multiple
+```
+
+4. If you are using a Mac and do decide to test Safari, you might get an error message along the lines of "Could not create a session: You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver." If you get this, follow the given instruction and try again.
+
+So here we've done the test as before, except that this time we've wrapped it inside a function, `searchTest()`. We've created new browser instances for multiple browsers, then passed each one to the function so the test is performed on all three browsers!
+
+Fun, huh? Let's move on, look at the basics of WebDriver syntax in a bit more detail.
