@@ -348,6 +348,36 @@ driver.quit();
 ```
 When you run it, you should now see the test execute and the browser instance shut down again after the test is complete. This is useful for not cluttering up your computer with loads of browser instances, especially if you have so many that it is causing the computer to slow down.
 
+## Test best practices
+
+There has been a lot written about best practices for writing tests. You can find some good background information at [Test Design Considerations](https://www.selenium.dev/documentation/guidelines/). In general, you should make sure that your tests are:
+
+1. Using good locator strategies: When you are [Interacting with the document](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation#interacting-with-the-document), make sure that you use locators and page objects that are unlikely to change. If you have a testable element that you want to perform a test on, make sure that it has a stable ID, or position on the page that can be selected using a CSS selector, which isn't going to just change with the next site iteration. You want to make your tests as non-brittle as possible, i.e. they won't just break when something changes.
+2. Write atomic tests: Each test should test one thing only, making it easy to keep track of what test file is testing which criterion. As an example, the `google_test.js` test we looked at above is pretty good, as it just tests a single thing: whether the title of a search results page is set correctly. We could work on giving it a better name so it is easier to work out what it does if we add more google tests. Perhaps `results_page_title_set_correctly.js` would be slightly better?
+3. Write autonomous tests: Each test should work on its own, and not depend on other tests to work.
+
+In addition, we should mention test results/reporting. We've been reporting results in our above examples using simple `console.log()` statements, but this is all done in JavaScript, so you can use whatever test running and reporting system you want, be it [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/), or some other tool.
+
+1. For example, try making a local copy of our [`mocha_test.js`](https://github.com/mdn/learning-area/blob/master/tools-testing/cross-browser-testing/selenium/mocha_test.js) example inside your project directory. Put it inside a subfolder called `test`. This example uses a long chain of promises to run all the steps required in our test. The promise-based methods WebDriver uses need to resolve for it to work properly.
+
+2. Install the mocha test harness by running the following command inside your project directory:
+```
+npm install --save-dev mocha
+```
+
+3. You can now run the test (and any others you put inside your `test` directory) using the following command:
+```
+npx mocha --no-timeouts
+```
+
+4. You should include the `--no-timeouts` flag to make sure your tests don't end up failing because of Mocha's arbitrary timeout (which is 3 seconds).
+
+<hr>
+
+**Note**: [saucelabs-sample-test-frameworks](https://github.com/saucelabs-sample-test-frameworks) contains several useful examples showing how to set up different combinations of test/assertion tools.
+
+<hr>
+
 
 
 
