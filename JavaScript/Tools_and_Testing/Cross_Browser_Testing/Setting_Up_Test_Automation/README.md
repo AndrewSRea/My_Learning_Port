@@ -246,7 +246,7 @@ driver.get('https://mdn.github.io/learning-area/tools-testing/cross-browser-test
 
 ### Interacting with the document
 
-Now we've got a document to test, we need to interact with it in some way, which usually involves first selecting a specific element to test seomthing about. You can [select UI elements in many ways]() in WebDriver, including by ID, class, element name, etc. The actual selection is done by the `findElement()` method, which accepts as a parameter a selection method. For example, to select an element by ID:
+Now we've got a document to test, we need to interact with it in some way, which usually involves first selecting a specific element to test seomthing about. You can [select UI elements in many ways](https://www.selenium.dev/documentation/webdriver/locating_elements/) in WebDriver, including by ID, class, element name, etc. The actual selection is done by the `findElement()` method, which accepts as a parameter a selection method. For example, to select an element by ID:
 ```
 const element = driver.findElement(By.id('myElementId'));
 ```
@@ -256,6 +256,53 @@ Enter the following at the bottom of your `quick_test.js` code now:
 ```
 const button = driver.findElement(By.css('button:nth-of-type(1)'));
 ```
+
+### Testing your element
+
+There are many ways to interact with your web documents and elements on them. You can see useful common examples starting at [Getting text values](https://www.selenium.dev/documentation/webdriver/locating_elements/#tips-on-using-selectors) on the WebDriver docs.
+
+If we wanted to get the text inside our button, we could do this:
+```
+button.getText().then(function(text) {
+    console.log('Buttontext is \'' + text + '\'');
+});
+```
+Add the above code snippet to `quick_test.js` now.
+
+Making sure you are inside your project directory, try running the test:
+```
+node quick_test.js
+```
+You should see the button's text label reported inside the console.
+
+Let's do something a bit more useful. Delete the previous code entry, then add this line at the bottom instead:
+```
+button.click();
+```
+Try running your test again. The button will be clicked, and the `alert()` popup should appear. At least, we know the button is working!
+
+You can interact with the popup, too. Add the following to the bottom of the code, and try testing it again:
+```
+let alert = driver.switchTo().alert();
+
+alert.getText().then(function(text) {
+    console.log('Alert text is \'' + text + '\'');
+});
+
+alert.accept();
+```
+Next, let's try entering some text into one of the form elements. Add the following code and try running your test again:
+```
+const input = driver.findElement(By.id('name'));
+input.sendKeys('Filling in my form');
+```
+You can submit key presses that can't be represented by normal characters using properties of the `webdriver.Key` object. For example, above we used this construct to tab out of the form input before submitting it:
+```
+driver.sleep(1000).then(function() {
+    driver.findElement(By.name('q')).sendKeys(webdriver.Key.TAB);
+});
+```
+
 
 
 
