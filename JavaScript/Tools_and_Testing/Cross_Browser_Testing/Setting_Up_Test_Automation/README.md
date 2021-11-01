@@ -303,6 +303,56 @@ driver.sleep(1000).then(function() {
 });
 ```
 
+### Waiting for something to complete
+
+There are times where you'll want to make WebDriver wait for something to complete before carrying on. For example, if you load a new page, you'll want to wait for the page's DOM to finish loading before you try to interact with any of its elements, otherwise the test will likely fail.
+
+In our `google_test.js` test, for example, we included this block:
+```
+driver.sleep(2000).then(function() {
+    driver.getTitle().then(function(title) {
+        if(title === 'webdriver - Google Search') {
+            console.log('Test passed');
+        } else {
+            console.log('Test failed');
+        }
+    });
+});
+```
+The `sleep()` method accepts a value that specifies the time to wait in milliseconds. The method returns a promise that resolves at the end of that time, at which point the code inside the `then()` executes. In this case, we get the title of the current page with the `getTitle()` method, then return a pass or fail message depending on what its value is.
+
+We could add a `sleep()` method to our `quick_test.js` test, too. Try wrapping your last line of code in a block like this:
+```
+driver.sleep(2000).then(function() {
+    input.sendKeys('Filling in my form');
+    input.getAttribute("value").then(function(value) {
+        if(value !== '') {
+            console.log('Form input editable');
+        }
+    });
+});
+```
+WebDriver will now wait for 2 seconds before filling in the form field. We then test whether its value got filled in (i.e. is not empty) by using `getAttribute()` to retrieve its `value` attribute value, and print a message to the console if it is not empty.
+
+<hr>
+
+**Note**: There is also a method called [`wait()`](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_WebDriver.html#wait), which repeatedly tests a condition for a certain length of time, and then carries on executing the code. This also makes use of the [`until` library](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/until.html), which defines common conditions to use along with `wait()`.
+
+<hr>
+
+### Shutting down drivers after use
+
+After you've finished running a test, you should shut down any driver instances you've opened, to make sure that you don't end up with loads of rogue browser instances open on your machine! This is done using the `quit()` method. Call this on your driver instance when you are finished with it. Add this line to the bottom of your `quick_test.js` test now:
+```
+driver.quit();
+```
+When you run it, you should now see the test execute and the browser instance shut down again after the test is complete. This is useful for not cluttering up your computer with loads of browser instances, especially if you have so many that it is causing the computer to slow down.
+
+
+
+
+
+
 
 
 
