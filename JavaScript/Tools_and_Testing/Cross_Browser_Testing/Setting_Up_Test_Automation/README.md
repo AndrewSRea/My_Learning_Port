@@ -378,6 +378,97 @@ npx mocha --no-timeouts
 
 <hr>
 
+## Running remote tests
+
+It turns out that running tests on remote servers isn't that much more difficult than running them locally. You just need to create your driver instance, but with a few more features specified, including the capabilities of the browser you want to test on, the address of the server, and the user credentials you need (if any) to access it.
+
+### LambdaTest
+
+Getting Selenium tests to run remotely on LambdaTest is very simple. The code you need should follow the pattern seen below.
+
+Let's write an example:
+
+1. Inside your project directory, create a new file called `lambdatest_google_test.js`.
+
+2. Give it the following contents:
+```
+const webdriver = require('selenium-webdriver');
+    By = webdriver.By,
+    until = webdriver.until;
+
+// username: Username can be found at automation dashboard
+const USERNAME = '{username}';
+
+// AccessKey: AccessKey can be generated from automation dashboard or profile section
+const KEY = '{accesskey}';
+
+// gridUrl: gridUrl can be found at automation dashboard
+const GRID_HOST = 'hub.lambdatest.com/wd/hub';
+
+function searchTextOnGoogle() {
+    // Setup Input capabilities
+    const capabilities = {
+        platform: 'windows 10',
+        browserName: 'chrome',
+        version: '67.0',
+        resolution: '1280x800',
+        network: true,
+        visual: true,
+        console: true,
+        video: true,
+        name: 'Test 1',  // name of the test
+        build: 'NodeJS build'  // name of the build
+    };
+
+    // URL: https://{username}:{accessToken}@hub.lambdatest.com/wd/hub
+
+    const gridUrl = 'https://' + USERNAME + ':' + KEY + '@' + GRID_HOST;
+
+    // setup and build selenium driver object
+    const driver = new webdriver.Builder()
+        .usingServer(gridUrl)
+        .withCapabilities(capabilities)
+        .build();
+
+    // navigate to a url, search for a text and get title of page
+    driver.get('https://www.google.com/ncr').then(function() {
+        driver.findElement(webdriver.By.name('q')).sendKeys('LambdaTest\n').then(function() {
+            driver.getTitle().then(function() {
+                setTimeout(function() {
+                    console.log(title);
+                    driver.quit();
+                }, 5000);
+            });
+        });
+    });
+}
+
+searchTextOnGoogle();
+```
+
+3. Visit your [LambdaTest Automation Dashboard](https://www.lambdatest.com/selenium-automation) to fetch your LambdaTest's username and access key by clicking on the **key** icon on the top-right. (See *Username* and *Access Keys*.) Replace the `{username}` and `{accessKey}` placeholders in the code with your actual username and access key values (and make sure to keep them secure).
+
+4. Run the below command in your terminal to execute your test:
+```
+node lambdatest_google_test
+```
+The test will be sent to LambdaTest, and the output of your test will be reflected on your LambdaTest console. If you wish to extract these results for reporting purposes from the LambdaTest platform, then you can do so by using [LambdaTest restful API](https://www.lambdatest.com/blog/lambdatest-launches-api-for-selenium-automation/).
+
+5. Now, if you go to your [LambdaTest Automation Dashboard](https://www.lambdatest.com/selenium-automation), you'll see your test listed. From here you'll be able to see videos, screenshots, and other such data.
+
+![Image of a website test in the LambdaTest automation dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/automation-logs-1.jpg)
+
+You can retrieve network, command, exception, and Selenium logs for every test within your test build. You will also find a video recording of your Selenium script execution.
+
+<hr>
+
+**Note**: The *HELP* button on LambdaTest Automation Dashboard will provide you with an ample amount of information to help you get started with LambdaTest automation. You can also follow LambdaTest's documentation about [running first Selenium script in NodeJS](https://www.lambdatest.com/support/docs/quick-guide-to-run-node-js-tests-on-lambdatest-selenium-grid/).
+
+<hr>
+
+**Note**: If you don't want to write out the capabilities objects for your tests by hand, you can generate them using the [Selenium Desired Capabilities Generator](https://www.lambdatest.com/capabilities-generator/).
+
+<hr>
 
 
 
