@@ -446,7 +446,7 @@ function searchTextOnGoogle() {
 searchTextOnGoogle();
 ```
 
-3. Visit your [LambdaTest Automation Dashboard](https://www.lambdatest.com/selenium-automation) to fetch your LambdaTest's username and access key by clicking on the **key** icon on the top-right. (See *Username* and *Access Keys*.) Replace the `{username}` and `{accessKey}` placeholders in the code with your actual username and access key values (and make sure to keep them secure).
+3. Visit your [LambdaTest Automation Dashboard](https://www.lambdatest.com/selenium-automation) to fetch your LambdaTest's username and access key by clicking on the **key** icon on the top-right. (See *Username and Access Keys*.) Replace the `{username}` and `{accessKey}` placeholders in the code with your actual username and access key values (and make sure to keep them secure).
 
 4. Run the below command in your terminal to execute your test:
 ```
@@ -469,6 +469,86 @@ You can retrieve network, command, exception, and Selenium logs for every test w
 **Note**: If you don't want to write out the capabilities objects for your tests by hand, you can generate them using the [Selenium Desired Capabilities Generator](https://www.lambdatest.com/capabilities-generator/).
 
 <hr>
+
+#### Filling in test details on LambdaTest programmatically
+
+When executing numerous automation tests, marking their status as passed or failed makes the task a lot easier.
+
+1. Use the below command for marking a status as **passed** on LambdaTest:
+```
+driver.executeScript("lambda-status=passed");
+```
+
+2. Use the below command for marking a status as **failed** on LambdaTest:
+```
+driver.executeScript("lambda-status=failed");
+```
+
+### BrowserStack
+
+Getting Selenium tests to run remotely on BrowserStack is easy. The code you need should follow the pattern seen below. 
+
+Let's write an example:
+
+1. Inside your project directory, create a new file called `bstack_google_test.js`.
+
+2. Give it the following contents:
+```
+const webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until;
+
+// Input capabilities
+let capabilities = {
+    'browserName' : 'Firefox',
+    'browser_version' : '56.0 beta',
+    'os' : 'OS X',
+    'os_version' : 'Sierra',
+    'resolution' : '1280x1024',
+    'browserstack.user' : 'YOUR-USER-NAME',
+    'browserstack.key' : 'YOUR-ACCESS-KEY',
+    'browserstack.debug' : 'true',
+    'build' : 'First build'
+};
+
+let driver = new webdriver.Builder()
+    .usingServer('http://hub-cloud.browserstack.com/wd/hub')
+    .withCapabilities(capabilities)
+    .build();
+
+driver.get('http://ww.google.com');
+driver.findElement(By.name('q')).sendKeys('webdriver');
+
+driver.sleep(1000).then(function() {
+    driver.findElement(By.name('q')).sendKeys(webdriver.Key.TAB);
+});
+
+driver.findElement(By.name('btnK')).click();
+
+driver.sleep(2000).then(function() {
+    driver.getTitle().then(function(title) {
+        if(title === 'webdriver - Google Search') {
+            console.log('Test passed');
+        } else {
+            console.log('Test failed');
+        }
+    });
+});
+
+driver.quit();
+```
+
+3. From your [BrowserStack automation dashboard](https://www.browserstack.com/automate), get your username and access key. (See *Username and Access Keys*.) Replace the `YOUR-USER-NAME` and `YOUR-ACCESS-KEY` placeholders in the code with your actual username and access key values (and make sure you keep them secure).
+
+4. Run your test with the following command:
+```
+node bstack_google_test
+```
+The test will be sent to BrowserStack, and the test result will be returned to your console. This shows the importance of including some kind of result reporting mechanism!
+
+5. Now if you go back to the [BrowserStack automation dashboard](https://www.browserstack.com/automate) page, you'll see your test listed:
+
+![Image of a BrowserStack automation dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/bstack_automated_results.png)
 
 
 
