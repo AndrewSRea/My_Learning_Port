@@ -608,6 +608,78 @@ If you go back to your [BrowserStack automation dashboard](https://www.browserst
 
 ![Image of the code applied above in action in a BrowserStack automation dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/bstack_custom_results.png)
 
+### Sauce Labs
+
+Getting Selenium tests to run remotely on Sauce Labs is also very simple, and very similar to BrowserStack albeit with a few syntactic differences. The code you need should follow the pattern seen below.
+
+Let's write an example:
+
+1. Inside your project directory, create a new file called `sauce_google_test.js`.
+
+2. Give it the following contents:
+```
+const webdriver = require('selenium-webdriver'),
+    By = webdriver.By,
+    until = webdriver.until,
+    username = "YOUR-USER-NAME",
+    accessKey = "YOUR-ACCESS-KEY";
+
+let driver = new webdriver.Builder()
+    .withCapabilities({
+        'browserName' : 'chrome',
+        'platform' : 'Windows XP',
+        'version' : '43.0',
+        'username' : username,
+        'accessKey' : accessKey
+    })
+    .usingServer("https://" + username + ":" + accessKey + "@ondemand.saucelabs.com:443/wd/hub")
+    .build();
+
+driver.get('http://www.google.com');
+
+driver.findElement(By.name('q')).sendKeys('webdriver');
+
+driver.sleep(1000).then(function() {
+    driver.findElement(By.name('q')).sendKeys(webdriver.Key.TAB);
+});
+
+driver.findElement(By.name('btnK')).click();
+
+driver.sleep(2000).then(function() {
+    driver.getTitle().then(function() {
+        if(title === 'webdriver - Google Search') {
+            console.log('Test passed');
+        } else {
+            console.log('Test failed');
+        }
+    });
+});
+
+driver.quit();
+```
+
+3. From your [Sauce Labs user settings](https://saucelabs.com/beta/user-settings), get your username and access key. Replace the `YOUR-USER-NAME` and `YOUR-ACCESS-KEY` placeholders in the code with your actual username and access key values (and make sure you keep them secure).
+
+4. Run your test with the following command:
+```
+node sauce_google_test
+```
+The test will be sent to Sauce Labs, and the test result will be returned to your console. This shows the importance of including some kind of result reporting mechanism!
+
+5. Now if you go to your [Sauce Labs Automated Test dashboard](https://app.saucelabs.com/dashboard/tests/vdc) page, you'll see your test listed. From here, you'll be able to see videos, screenshots, and other such data.
+
+![Image of a Sauce Labs Automated Test dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/sauce_labs_automated_test.png)
+
+<hr>
+
+**Note**: Sauce Labs' [Platform Configurator](https://saucelabs.com/platform/platform-configurator#/) is a useful tool for generating capability objects to feed to your driver instances, based on what browser/OS you want to test on.
+
+<hr>
+
+**Note**: For more useful details on testing with Sauce Labs and Selenium, check out [Getting Started with Selenium for Automated Website Testing](https://docs.saucelabs.com/web-apps/automated-testing/selenium/), and [Instant Selenium Node.js Tests](https://docs.saucelabs.com/web-apps/automated-testing/selenium/sample-scripts/#nodejs).
+
+<hr>
+
 
 
 
