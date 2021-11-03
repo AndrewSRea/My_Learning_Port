@@ -646,7 +646,7 @@ driver.sleep(1000).then(function() {
 driver.findElement(By.name('btnK')).click();
 
 driver.sleep(2000).then(function() {
-    driver.getTitle().then(function() {
+    driver.getTitle().then(function(title) {
         if(title === 'webdriver - Google Search') {
             console.log('Test passed');
         } else {
@@ -680,6 +680,63 @@ The test will be sent to Sauce Labs, and the test result will be returned to you
 
 <hr>
 
+#### Filling in Sauce Labs test details programmatically
+
+You can use the Sauce Labs API to annotate your test with more details, such as whether it passed, the name of the test, etc. Sauce Labs doesn't know these details by default!
+
+To do this, you need to:
+
+1. Install the Node Sauce Labs wrapper using the following command (if you've not already done it for this project):
+```
+npm install saucelabs --save-dev
+```
+
+2. Require saucelabs -- put this at the top of your `sauce_google_test.js` file, just below the previous variable declarations:
+```
+const SauceLabs = require('saucelabs');
+```
+
+3. Create a new instance of SauceLabs, by adding the following just below that:
+```
+let saucelabs = new SauceLabs({
+    username : "YOUR-USER-NAME",
+    password : "YOUR-ACCESS-KEY"
+});
+```
+
+Again, replace the `YOUR-USER-NAME` and `YOUR-ACCESS-KEY` placeholders in the code with your actual username and acces key vaklues. (Note that the saucelabs npm package rather confusingly uses `password`, not `accessKey`.) Since you are using these twice now, you may want to create a couple of helper variables to store them in.
+
+4. Below the block where you define the `driver` variable (just below the `build()` line), add the following block -- this gets the correct driver `sessionID` that we need to write data to the job (you can see it in action in the next code block):
+```
+driver.getSession().then(function(sessionid) {
+    driver.sessionID = sessionid.id_;
+});
+```
+
+5. Finally, replace the `driver.sleep(2000)` block near the bottom of the code with the following:
+```
+driver.sleep(2000).then(function() {
+    driver.getTitle().then(function(title) {
+        if(title === 'webdriver - Google Search') {
+            console.log('Test passed');
+            let testPassed = true;
+        } else {
+            console.log('Test failed');
+            let testPassed = false;
+        }
+
+        saucelabs.updateJob(driver.sessionID, {
+            name: 'Google search results page title test',
+            passed: testPassed
+        });
+    });
+});
+```
+Here we've set a `testPassed` variable to `true` or `false` depending on whether the test passed or fails, then we've used the `saucelabs.updateJob()` method to update the details.
+
+If you go back to your [SauceLabs Automated Test dashboard](https://saucelabs.com/beta/dashboard/tests) page, you should see your new job now has the updated data attached to it:
+
+![Image of a SauceLabs Automated Test dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/sauce_labs_updated_job_info.png)
 
 
 
