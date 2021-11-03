@@ -738,28 +738,65 @@ If you go back to your [SauceLabs Automated Test dashboard](https://saucelabs.co
 
 ![Image of a SauceLabs Automated Test dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/sauce_labs_updated_job_info.png)
 
+### You own remote server
 
+If you don't want to use a service like SauceLabs or BrowserStack, you can always set up your own remote testing server. Let's look at how to do this.
 
+1. The Selenium remote server requires Java to run. Download the latest JDK for your platform from the [Java SE downloads page](https://www.oracle.com/java/technologies/downloads/). Install it when it is downloaded.
 
+2. Next, download the latest [Selenium standalone server](https://selenium-release.storage.googleapis.com/index.html). This acts as a proxy between your script and the browser drivers. Choose the latest stable version number (i.e. not a beta) and from the list, choose a file starting with "selenium-server-standalone". When this has downloaded, put it in a sensible place, like in your home directory. If you've not already added the location to your `PATH`, do so now. (See the [Setting up Selenium in Node](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation#setting-up-selenium-in-node) section.)
 
+3. Run the standalone server by entering the following into a terminal on your server computer. (Update the `.jar` filename so it matches exactly what file you have):
+```
+java -jar selenium-server-standalone-3.0.0.jar
+```
 
+4. The server will run on `http://localhost:4444/wd/hub`. Try going there now to see what you get.
 
+Now we've got the server running, let's create a demo test that will run on the remote selenium server.
 
+1. Create a copy of your `google_test.js` file, and call it `google_test_remote.js`. Put it in your project directory.
 
+2. Update the second code block (which starts with `let driver = ...`) like so:
+```
+let driver = new webdriver.Builder()
+    .forBrowser('firefox')
+    .usingServer('http://localhost:4444/wd/hub')
+    .build();
+```
 
+3. Run your test, and you should see it run as expected. This time, however, you will be running it on the standalone server:
+```
+node google_test_remote.js
+```
 
+So this is pretty cool. We have tested this locally, but you could set this up on just about any server along with the relevant browser drivers, and then connect your scripts to it using the URL you choose to expose it at.
 
+## Integrating Selenium with CI tools
 
+As another point, it is also possible to integrate Selenium and related tools like LambdaTest, and SauceLabs, with continuous integration tools. This is useful, as it means you can run your tests via a CI tool, and only commit new changes to your code repository if the tests pass.
 
+It is out of scope to look at this area in detail in this article, but we'd suggest getting started with Travis CI. This is probably the easiest CI tool to get started with and has good integration with web tools like GitHub and Node.
 
+To get started, see for example:
 
+* [Travis CI for complete beginners](https://docs.travis-ci.com/user/for-beginners)
+* [Building a Node.js project](https://docs.travis-ci.com/user/languages/javascript-with-nodejs/) (with Travis)
+* [Using LambdaTest with Travis CI](https://www.lambdatest.com/support/docs/travis-ci-with-lambdatest/)
+* [Using LambdaTest with CircleCI](https://www.lambdatest.com/support/docs/circleci-integration-with-lambdatest/)
+* [Using LambdaTest with Jenkins](https://www.lambdatest.com/support/docs/jenkins-with-lambdatest/)
+* [Using SauceLabs with Travis CI](https://docs.travis-ci.com/user/sauce-connect/)
 
+<hr>
 
+**Note**: If you wish to perform continuous testing with **codeless automation**, then you can use [Endtest](https://endtest.io/) or [TestingBot](https://testingbot.com/).
 
-cd JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation
+<hr>
 
-This? https://artoftesting.com/selenium-tutorial
+## Summary
 
-Or search "selenium-webdriver advanced usage". (Or "selenium-webdriver" tutorial?)
+This module should have proven fun, and should have given you enough of an insight into writing and running automated tests for you to get going with writing your own automated tests.
 
-https://www.geeksforgeeks.org/how-to-install-selenium-webdriver-on-macos/
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Intro_Automated_Testing#introduction-to-automated-testing) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation#setting-up-your-own-test-automation-environment) - [[Next module: Server-side website programming]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming#server-side-website-programming)
