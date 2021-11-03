@@ -550,6 +550,68 @@ The test will be sent to BrowserStack, and the test result will be returned to y
 
 ![Image of a BrowserStack automation dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/bstack_automated_results.png)
 
+If you click on the link for your test, you'll get to a new screen where you will be able to see a video recording of the test, and multiple detailed logs of information pertaining to it.
+
+<hr>
+
+**Note**: The *Resources* menu option on the BrowserStack automation dashboard contains a wealth of useful information on using it to run automated tests. See [Node JS Documentation for writing automate test scripts in Node JS](https://www.browserstack.com/docs/automate/selenium/getting-started/nodejs) for the node-specific information. Explore the docs to find out all the useful things BrowserStack can do.
+
+<hr>
+
+**Note**: If you don't want to write out the capabilities objects for your tests by hand, you can generate them using the generators embedded in the docs. See [Run tests on mobile browsers](https://www.browserstack.com/docs/automate/selenium/select-browsers-and-devices#browserstack-specific-capabilities-mobile) and [Run tests on desktop browsers](https://www.browserstack.com/docs/automate/selenium/select-browsers-and-devices#browserstack-specific-capabilities-desktop).
+
+<hr>
+
+#### Filling in BrowserStack test details programmatically
+
+You can use the BrowserStack REST API and some other capabilities to annotate your test with more details, such as whether it passed, why it passed, what project the test is part of, etc. BrowserStack doesn't know these details by default!
+
+Let's update our `bstack_google_test.js` demo, to show how these features work:
+
+1. First, we'll need to import the node request module, so we can use it to send requests to the REST API. Add the following line at the very top of your code:
+```
+const request = require("request");
+```
+
+2. Now we'll update our `capabilities` object to include a project name. Add the following line before the closing curly brace, remembering to add a comma at the end of the previous line. (You can vary the build and project names to organize the tests in different windows in the BrowserStack automation dashboard):
+```
+'project' : 'Google test 2'
+```
+
+3. Next, we need to access the `sessionId` of the current session, so we know where to send the request. (The ID is included in the request URL, as you'll see later.) Include the following lines just below the block that creates the `driver` object (`let driver ...`):
+```
+let sessionId;
+
+driver.session_.then(function(sessionData) {
+    sessionId = sessionData.id_;
+});
+```
+
+4. Finally, update the `driver.sleep(2000)` block near the bottom of the code to add REST API calls. (Again, replace the `YOUR-USER-NAME` and `YOUR-ACCESS-KEY` placeholders in the code with your actual username and access key values):
+```
+driver.sleep(2000).then(function() {
+    driver.getTitle().then(function(title) {
+        if(title === 'webdriver - Google Search') {
+            console.log('Test passed');
+            request({uri: "https://YOUR-USER-NAME:YOUR-ACCESS-KEY@www.browserstack.com/automate/sessions/" + sessionId + ".json", method:"PUT", form:{"status":"passed","reason":"Google results showed correct title"}});
+        } else {
+            console.log('Test failed');
+            request({uri: "https://YOUR-USER-NAME:YOUR-ACCESS-KEY@www.browserstack.com/automate/sessions/" + sessionId + ".json", method:"PUT", form:{"status":"failed","reason":"Google results showed wrong title"}});
+        }
+    });
+});
+```
+
+These are fairly intuitive. Once the test completes, we send an API call to BrowserStack to update the test with a passed or failed status, and a reason for the result.
+
+If you go back to your [BrowserStack automation dashboard](https://www.browserstack.com/automate) page, you should see your test session available as before, but with the updated data attached to it:
+
+![Image of the code applied above in action in a BrowserStack automation dashboard](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Your_own_automation_environment/bstack_custom_results.png)
+
+
+
+
+
 
 
 
@@ -570,3 +632,5 @@ cd JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation
 This? https://artoftesting.com/selenium-tutorial
 
 Or search "selenium-webdriver advanced usage". (Or "selenium-webdriver" tutorial?)
+
+https://www.geeksforgeeks.org/how-to-install-selenium-webdriver-on-macos/
