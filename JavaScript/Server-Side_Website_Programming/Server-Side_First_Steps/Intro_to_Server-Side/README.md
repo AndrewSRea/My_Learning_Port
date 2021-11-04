@@ -27,3 +27,29 @@ The diagram below shows a basic web server architecture for a *static site* (a s
 The server retrieves the requested document from its file system and returns an HTTP response containing the document and a [success status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses) (usually 200 OK). If the file cannot be retrieved for some reason, an error status is returned. (See [client error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses) and [server error responses](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses).)
 
 ![Image of a diagram showing basic web server architecture](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction/basic_static_app_server.png)
+
+### Dynamic sites
+
+A dynamic website is one where some of the response content is generated *dynamically*, only when needed. On a dynamic website, HTML pages are normally created by inserting data from a database into placeholders in HTML templates. (This is a much more efficient way of storing large amounts of content than using static websites.)
+
+A dynamic site can return different data for a URL based on information provided by the user or stored preferences and can perform other operations as part of returning a response (e.g. sending notifications).
+
+Most of the code to support a dynamic website must run on the server. Creating this code is known as "**server-side programming**" (or sometimes as "**back-end scripting**").
+
+The diagram below shows a simple architecture for a *dynamic website*. As in the previous diagram, browsers send HTTP requests to the server, then the server processes the requests and returns appropriate HTTP responses.
+
+Requests for *static* resources are handled in the same way as for static sites. (Static resources are any files that don't change -- typically CSS, JavaScript, images, pre-created PDF files, etc.)
+
+![Image of a diagram showing simple architecture of a dynamic website](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction/web_application_with_html_and_steps.png)
+
+Requests for dynamic resources are instead forwarded (2) to server-side code (shown in the diagram as a *Web Application*). For "dynamic requests", the server interprets the request, reads the required information from the database (3), combines the retrieved data with HTML templates (4), and sends back a response containing the generated HTML (5,6).
+
+## Are server-side and client-side programming the same?
+
+Let's now turn our attention to the code involved in server-side and client-side programming. In each case, the code is significantly different:
+
+* They have different purposes and concerns.
+* They generally don't use the same programming languages. (The exception being JavaScript, which can be used on the server- and client-side.)
+* They run inside different operating system environments.
+
+Code running in the browser is known as **client-side code** and is primarily concerned with improving the appearance and behavior of a rendered webpage. This includes selecting and styling UI components, creating layouts, navigation, form validation, etc. By contrast, server-side website programming mostly involves choosing *which content* is returned to the browser in response to requests. The server-side code handles tasks like validating submitted data and requests, using databases to store and retrieve data and sending the correct data to the client as required.
