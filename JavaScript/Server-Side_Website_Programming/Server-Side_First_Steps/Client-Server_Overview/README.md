@@ -168,3 +168,21 @@ Content-Length: 0
 <hr>
 
 ## Static sites
+
+A *static site* is one that returns the same hard coded content from the server whenever a particular resource is requested. So, for example, if you have a page about a product at `/static/myproduct1.html`, this same page will be returned to every user. If you add another similar product to your site, you will need to add another page (e.g. `myproduct2.html`) and so on. This can start to get really inefficient. What happens when you get to thousands of product pages? You would repeat a lot of code across each page (the basic page template, structure, etc.), and if you wanted to change anything about the page structure -- like add a new "related products" section, for example -- then you'd have to change every page individually. 
+
+<hr>
+
+**Note**: Static sites are excellent when you have a small number of pages and you want to send the same content to every user. However, they can have a significant cost to maintain as the number of pages becomes larger.
+
+<hr>
+
+Let's recap on how this works, by looking again at the static site architecture diagram we looked at in the last article.
+
+![Image of a diagram showing static site architecture](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview/basic_static_app_server.png)
+
+When a user wants to navigate to a page, the browser sends an HTTP `GET` request specifying the URL of its HTML page. The server retrieves the requested document from its file system and returns an HTTP response containing the document and an [HTTP Response status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) of `"200 OK"` (indicating success). The server might return a different status code -- for example, `"404 Not Found"` if the file is not present on the server, or `"301 Moved Permanently"` if the file exists but has been redirected to a different location.
+
+The server for a static site will only ever need to process `GET` requests, because the server doesn't store any modifiable data. It also doesn't change its responses based on HTTP Request data (e.g. URL parameters or cookies).
+
+Understanding how static sites work is nevertheless useful when learning server-side programming, because dynamic sites handle requests for static files (CSS, JavaScript, static images, etc.) in exactly the same way.
