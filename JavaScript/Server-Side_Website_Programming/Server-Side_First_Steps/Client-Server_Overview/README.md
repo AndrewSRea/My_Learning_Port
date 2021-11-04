@@ -108,7 +108,7 @@ Content-Length: 41823
   <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
   ...
 ```
-The remainder of the response header includes information about the response (e.g. when it was generated), the server, and how it expects the browser to handle the page (e.g. the `X-Frame-Options: DENY` line tells the browser not to allow this page to be embedded in an [`<iframe>`])(https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) in another site).
+The remainder of the response header includes information about the response (e.g. when it was generated), the server, and how it expects the browser to handle the page (e.g. the `X-Frame-Options: DENY` line tells the browser not to allow this page to be embedded in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) in another site).
 
 ### POST request/response example
 
