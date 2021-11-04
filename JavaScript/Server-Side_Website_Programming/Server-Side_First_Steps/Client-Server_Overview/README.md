@@ -64,3 +64,48 @@ The first and second lines contain most of the information we talked about above
 * The URL parameters (`q=client+server+overview&topic=apps&topic=html&topic=css&topic=js&topic=api&topic=webdev`).
 * The target/host website (developer.mozilla.org).
 * The end of the first line also include a short string identifying the specific protocol version (`HTTP/1.1`).
+
+The final line contains information about the client-side cookies. You can see, in this case, the cookie includes an id for managing sessions: (`Cookie: sessionid=6ynxs23n521lu21b1t136rhbv7ezngie; ...`).
+
+The remaining lines contain information about the browser used and the sort of responses it can handle. For example, you can see here that:
+
+* The article creator's browser (`User-Agent`) is Mozilla Firefox (`Mozilla/5.0`).
+* It can accept gzip compressed information (`Accept-Encoding: gzip`).
+* It can accept the specified set of characters (`Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7`) and languages (`Accept-Language: en-US,en;q=0.8,es;q=0.6`).
+* The `Referer` line indicates the address of the web page that contained the link to this resource (i.e. the origin of the request, `https://developer.mozilla.org/en-US/`).
+
+HTTP requests can also have a body, but it is empty in this case.
+
+#### The response
+
+The first part of the reponse for this request is shown below. The header contains information like the following:
+
+* The first line includes the response code `200 OK`, which tells us that the request succeeded.
+* We can see that the response is `text/html` formatted (`Content-Type`).
+* We can also see that it uses the UTF-8 character set (`Content-Type: text/html; charset=utf-8`).
+* The head also tells us how big it is (`Content-Length: 41823`).
+
+At the end of the message, we see the **body** content, which contains the actual HTML returned by the request:
+```
+HTTP/1.1 200 OK
+Server: Apache
+X-Backend-Server: developer1.webapp.scl3.mozilla.com
+Vary: Accept,Cookie, Accept-Encoding
+Content-Type: text/html; charset=utf-8
+Date: Wed, 07 Sep 2016 00:11:31 GMT
+Keep-Alive: timeout=5, max=999
+Connection: Keep-Alive
+X-Frame-Options: DENY
+Allow: GET
+X-Cache-Info: caching
+Content-Length: 41823
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" class="redesign no-js"  data-ffo-opensanslight=false data-ffo-opensans=false >
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+  ...
+```
+The remainder of the response header includes information about the response (e.g. when it was generated), the server, and how it expects the browser to handle the page (e.g. the `X-Frame-Options: DENY` line tells the browser not to allow this page to be embedded in an [`<iframe>`])(https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) in another site).
