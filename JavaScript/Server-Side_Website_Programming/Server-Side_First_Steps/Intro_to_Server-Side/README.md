@@ -71,3 +71,33 @@ Again, while both client- and server-side code use frameworks, the domains are v
 In contrast, you would almost never consider writing the server-side component of a web app without a framework. Implementing a vital feature like an HTTP server is really hard to do from scratch in, say, Python, but Python web frameworks like Django provide one out of the box, along with other very useful tools.
 
 <hr>
+
+## What can you do on the server-side?
+
+Server-side programming is very useful because it allows us to *efficiently* deliver information tailored for individual users and thereby create a much better user experience.
+
+Companies like Amazon use server-side programming to construct search results for products, make targeted product suggestions based on client preferences and previous buying habits, simplify purchases, etc.
+
+Banks use server-side programming to store account information and allow only authorized users to view and make transactions. Other services like Facebook, Twitter, Instagram, and Wikipedia use server-side programming to highlight, share, and control access to interesting content.
+
+Some of the common uses and benefits of server-side programming are listed below. You'll note that there is some overlap!
+
+### Efficient storage and delivery of information
+
+Imagine how many products are available on Amazon, and imagine how many posts have been written on Facebook? Creating a separate static page for each product or post would be completely impractical.
+
+Server-side programming allows us to instead store the information in a database and dynamically construct and return HTML and other types of files (e.g. PDFs, images, etc.) It is also possible to return data ([JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON), [XML](https://developer.mozilla.org/en-US/docs/Glossary/XML), etc.) for rendering by appropriate client-side web frameworks. (This reduces the processing burden on the server and the amount of data that needs to be sent.)
+
+The server is not limited to sending information from databases, and might alternatively return the result of software tools, or data from communicating services. The content can even be targeted for the type of client device that is receiving it.
+
+Because the information is in a database, it can also more easily be shared and updated with other business systems. (For example, when products are sold either online or in a shop, the shop might update its database of inventory.)
+
+<hr>
+
+**Note**: Your imagination doesn't have to work hard to see the benefit of server-side code for efficient storage and delivery of information:
+
+1. Go to [Amazon](https://www.amazon.com/) or some other e-commerce site.
+2. Search for a number of keywords and note how the page structure doesn't change, even though the results do.
+3. Open two or three different products. Note again how they have a common structure and layout, but the content for different products has been pulled from the database.
+
+For a common search term ("fish", say), you can see literally millions of returned values. Using a database allows these to be stored and shared efficiently, and it allows the presentation of the information to be controlled in just one place.
