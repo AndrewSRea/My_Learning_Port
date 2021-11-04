@@ -53,3 +53,21 @@ Let's now turn our attention to the code involved in server-side and client-side
 * They run inside different operating system environments.
 
 Code running in the browser is known as **client-side code** and is primarily concerned with improving the appearance and behavior of a rendered webpage. This includes selecting and styling UI components, creating layouts, navigation, form validation, etc. By contrast, server-side website programming mostly involves choosing *which content* is returned to the browser in response to requests. The server-side code handles tasks like validating submitted data and requests, using databases to store and retrieve data and sending the correct data to the client as required.
+
+Client-side code is written using [HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS), and [JavaScript](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript#javascript). It is run inside a web browser and has little or no access to the underlying operating system (including limited access to the file system).
+
+Web developers can't control what browser every user might be using to view a website. Browsers provide inconsistent levels of compatibility with client-side code features, and part of the challenge of client-side programming is handling differences in browser support gracefully.
+
+Server-side code can be written in any number of programming languages. Examples of popular server-side web languages include PHP, Python, Ruby, C#, and JavaScript (NodeJS). The server-side code has full access to the server operating system and the developer can choose what programming language (and specific version) they wish to use.
+
+Developers typically write their code using **web frameworks**. Web frameworks are collections of functions, objects, rules, and other code constructs designed to solve common problems, speed up development, and simplify the different types of tasks faced in a particular domain.
+
+Again, while both client- and server-side code use frameworks, the domains are very different, and hence so are the frameworks. Client-side web frameworks simplify layout and presentation tasks while server-side web frameworks provide a lot of "common" web server functionality that you might otherwise have to implement yourself (e.g. support for sessions, support for users and authentication, easy database access, templating libraries, etc.)
+
+<hr>
+
+**Note**: Client-side frameworks are often used to help speed up development of client-side code, but you can also choose to write all the code by hand. In fact, writing your code by hand can be quicker and more efficient if you only need a small, simple website UI.
+
+In contrast, you would almost never consider writing the server-side component of a web app without a framework. Implementing a vital feature like an HTTP server is really hard to do from scratch in, say, Python, but Python web frameworks like Django provide one out of the box, along with other very useful tools.
+
+<hr>
