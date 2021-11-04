@@ -186,3 +186,30 @@ When a user wants to navigate to a page, the browser sends an HTTP `GET` request
 The server for a static site will only ever need to process `GET` requests, because the server doesn't store any modifiable data. It also doesn't change its responses based on HTTP Request data (e.g. URL parameters or cookies).
 
 Understanding how static sites work is nevertheless useful when learning server-side programming, because dynamic sites handle requests for static files (CSS, JavaScript, static images, etc.) in exactly the same way.
+
+## Dynamic sites
+
+A *dynamic site* is one that can generate and return content based on the specific request URL and data (rather than always returning the same hard-coded file for a particular URL). Using the example of a product site, the server would store product "data" in a database rather than individual HTML files. When receiving an HTTP `GET` Request for a product, the server determines the product ID, fetches the data from the database, and then constructs the HTML page for the response by inserting the data into an HTML template. This has major advantages over a static site:
+
+* Using a database allows the product information to be stored efficiently in an easily extensible, modifiable, and searchable way.
+* Using HTML templates makes it very easy to change the HTML structure, because this only needs to be done in one place, in a single template, and not across potentially thousands of static pages.
+
+### Anatomy of a dynamic request
+
+This section provides a step-by-step overview of the "dynamic" HTTP request and response cycle, building on what we looked at in the last article with much more detail. In order to "keep things real", we'll use the context of a sports-team manager website where a coach can select their team name and team size in an HTML form and get back a suggested "best lineup" for their next game.
+
+The diagram below shows the main elements of the "team coach" website, along with numbered labels for the sequence of operations when the coach accesses their "best team" list. The parts of the site that make it dynamic are the *Web Application* (this is how we will refer to the server-side code that processes HTTP requests and returns HTTP responses), the *Database*, which contains information about players, teams, coaches and their relationships, and the *HTML Templates*.
+
+![Image of a step-by-step dynamic HTTP request and response cycle](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview/web_application_with_html_and_steps.png)
+
+After the coach submits the form with the team name and number of players, the sequence of operations is:
+
+1. The web browser creates an HTTP `GET` request to the server using the base URL for the resource (`/best`) and encoding the team and player number either as URL parameters (e.g. `/best?team-my_team_name&show=11`) or as part of the URL pattern (e.g. `/best/my_team_name/11/`). A `GET` request is used because the request is only fetching data (not modifying data).
+2. The *Web Server* detects that the request is "dynamic" and forwards it to the *Web Application* for processing. (The web server determines how to handle different URLs based on pattern matching rules defined in its configuration.)
+3. The *Web Application* identifies that the *intention* of the request is to get the "best team list" based on the URL (`/best/`) and finds out the required team name and number of players from the URL. The *Web Application* then gets the required information from the database (using additional "internal" parameters to define which players are "best", and possibly also getting the identity of the logged in coach from a client-side cookie).
+4. The *Web Application* dynamically creates an HTML page by putting the data (from the *Database*) into placeholders inside an HTML template.
+5. The *Web Application* returns the generated HTML to the web browser (via the *Web Server*), along with an HTTP status code of 200 ("success"). If anything prevents the HTML from being returned, then the *Web Application* will return another code -- for example, "404" to indicate that the team does not exist.
+6. The web browser will then start to process the returned HTML, sending separate requests to get any other CSS or JavaScript files that it references (see step 7).
+7. The *Web Server* loads static files from the file system and returns them to the browser directly. (Again, correct file handling is based on configuration rules and URL pattern matching.)
+
+An operation to update a record in the database would be handled similarly, except that like any database update, the HTTP request from the browser should be encoded as a `POST` request.
