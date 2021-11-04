@@ -137,3 +137,60 @@ Real world examples include:
 
 <hr>
 
+### Store session/state information
+
+Server-side programming allows developers to make use of **sessions**. Basically, a mechanism that allows a server to store information on the current user of a site and send different responses based on that information.
+
+This allows, for example, a site to know that a user has previously logged in and display links to their emails or order history, or perhaps save the state of a simple game so that the user can go to a site again and carry on where they left it.
+
+<hr>
+
+**Note**: Visit a newspaper site that has a subscription model and open a bunch of tabs (e.g. [The Age](https://www.theage.com.au/)). Continue to visit the site over a few hours/days. Eventually, you will start to be redirected to pages explaining how to subscribe, and you will be unable to access articles. This information is an example of session information stored in cookies.
+
+<hr>
+
+### Notifications and communication
+
+Servers can send general or user-specific notifications through the website itself or via email, SMS, instant messaging, video conversations, or other communications services.
+
+A few examples include:
+
+* Facebook and Twitter send emails and SMS messages to notify you of new communications.
+* Amazon regularly sends product emails that suggest products similar to those already bought or viewed that you might be interested in.
+* A web server might send warning messages to site administrators alerting them to low memory on the server, or suspicious user activity.
+
+<hr>
+
+**Note**: The most common type of notification is a "confirmation of registration". Pick almost any large site that you are interested in (Google, Amazon, Instagram, etc.) and create a new account using your email address. You will shortly receive an email confirming your registration, or requiring acknowledgement to activate your account.
+
+<hr>
+
+### Data analysis
+
+A website may collect a lot of data about users: what they search for, what they buy, what they recommend, how long they stay on each page. Server-side programming can be used to refine responses based on analysis of this data.
+
+For example, Amazon and Google both advertise products based on previous searches (and purchases).
+
+<hr>
+
+**Note**: If you're a Facebook user, go to your main feed and look at the stream of posts. Note how some of the posts are out of numerical order -- in particular, posts with more "likes" are often higher on the list than more recent posts.
+
+Also, look at what kind of ads you are being shown -- you might see ads for things you looked at on other sites. Facebook's algorithm for highlighting content and advertising can be a bit of a mystery, but it is clear that it does depend on your likes and viewing habits!
+
+<hr>
+
+## Summary
+
+Congratulations! You've reached the end of the first article about server-side programming.
+
+You've now learned that server-side code is run on a web server and that its main role is to control *what* information is sent to the user (while client-side code mainly handles the structure and presentation of that data to the user).
+
+You should also understand that it is useful because it allows us to create websites that *efficiently* deliver information tailored for individual users and have a good idea of some of the things you might be able to do when you're a server-side programmer.
+
+Lastly, you should understand that server-side code can be written in a number of programming languages and that you should use a web framework to make the whole process easier.
+
+In a future article, we'll help you choose the best web framework for your first site. Here we'll take you through the main client-server interactions in just a little more detail.
+
+<hr>
+
+[[Back to the Server Side First Steps Guide links]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps#server-side-website-programming-first-steps) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side) - [[Next page]]()
