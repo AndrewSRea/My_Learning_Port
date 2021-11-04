@@ -63,7 +63,7 @@ The first and second lines contain most of the information we talked about above
 * The target resource URL (`/en-US/search`).
 * The URL parameters (`q=client+server+overview&topic=apps&topic=html&topic=css&topic=js&topic=api&topic=webdev`).
 * The target/host website (developer.mozilla.org).
-* The end of the first line also include a short string identifying the specific protocol version (`HTTP/1.1`).
+* The end of the first line also includes a short string identifying the specific protocol version (`HTTP/1.1`).
 
 The final line contains information about the client-side cookies. You can see, in this case, the cookie includes an id for managing sessions: (`Cookie: sessionid=6ynxs23n521lu21b1t136rhbv7ezngie; ...`).
 
@@ -109,3 +109,62 @@ Content-Length: 41823
   ...
 ```
 The remainder of the response header includes information about the response (e.g. when it was generated), the server, and how it expects the browser to handle the page (e.g. the `X-Frame-Options: DENY` line tells the browser not to allow this page to be embedded in an [`<iframe>`])(https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) in another site).
+
+### POST request/response example
+
+An HTTP `POST` is made when you submit a form containing information to be saved on the server.
+
+#### The request
+
+The text below shows the HTTP request made when a user submits new profile details on this site. The format of the request is almost the same as the `GET` request example shown previously, though the first line identifies this request as a `POST`.
+```
+POST /en-US/profiles/hamishwillee/edit HTTP/1.1
+Host: developer.mozilla.org
+Connection: keep-alive
+Content-Length: 432
+Pragma: no-cache
+Cache-Control: no-cache
+Origin: https://developer.mozilla.org
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: https://developer.mozilla.org/en-US/profiles/hamishwillee/edit
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.8,es;q=0.6
+Cookie: sessionid=6ynxs23n521lu21b1t136rhbv7ezngie; _gat=1; csrftoken=zIPUJsAZv6pcgCBJSCj1zU6pQZbfMUAT; dwf_section_edit=False; dwf_sg_task_completion=False; _ga=GA1.2.1688886003.1471911953; ffo=true
+
+csrfmiddlewaretoken=zIPUJsAZv6pcgCBJSCj1zU6pQZbfMUAT&user-username=hamishwillee&user-fullname=Hamish+Willee&user-title=&user-organization=&user-location=Australia&user-locale=en-US&user-timezone=Australia%2FMelbourne&user-irc_nickname=&user-interests=&user-expertise=&user-twitter_url=&user-stackoverflow_url=&user-linkedin_url=&user-mozillians_url=&user-facebook_url=
+```
+The main difference is that the URL doesn't have any parameters. As you can see, the information from the form is encoded in the body of the request. (For example, the new user fullname is set using: `&user-fullname=Hamish+Willee`.)
+
+#### The response
+
+The response from the request is shown below. The status code of `"302 Found"` tells the browser that the post succeeded, and that it must issue a second HTTP request to load the page specified in the `Location` field. The information is otherwise similar to that for the response to a `GET` request.
+```
+HTTP/1.1 302 FOUND
+Server: Apache
+X-Backend-Server: developer3.webapp.scl3.mozilla.com
+Vary: Cookie
+Vary: Accept-Encoding
+Content-Type: text/html; charset=utf-8
+Date: Wed, 07 Sep 2016 00:38:13 GMT
+Location: https://developer.mozilla.org/en-US/profiles/hamishwillee
+Keep-Alive: timeout=5, max=1000
+Connection: Keep-Alive
+X-Frame-Options: DENY
+X-Cache-Info: not cacheable; request wasn't a GET or HEAD
+Content-Length: 0
+```
+
+<hr>
+
+**Note**: The HTTP responses and requests shown in these examples were captured using the [Fiddler](https://www.telerik.com/download/fiddler) application, but you can get similar information using web sniffers (e.g. [Websniffer](https://websniffer.cc)) or packet analyzers like [Wireshark](https://www.wireshark.org/). You can try this yourself. Use any of the linked tools, and then navigate through a site and edit profile information to see the different requests and responses. Most modern browsers also have tools that monitor network requests (for example, the [Network Monitor](https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor) tool in Firefox).
+
+<hr>
+
+**Note**: Just for reference, Chrome has its own [Network Inspector](https://developer.chrome.com/docs/devtools/network/) within its DevTools.
+
+<hr>
+
+## Static sites
