@@ -101,3 +101,39 @@ Because the information is in a database, it can also more easily be shared and 
 3. Open two or three different products. Note again how they have a common structure and layout, but the content for different products has been pulled from the database.
 
 For a common search term ("fish", say), you can see literally millions of returned values. Using a database allows these to be stored and shared efficiently, and it allows the presentation of the information to be controlled in just one place.
+
+### Customized user experience
+
+Servers can store and use information about clients to provide a convenient and tailored user experience. For example, many sites store credit cards so that details don't have to be entered again. Sites like Google Maps can use saved or current locations for providing routing information, and search or travel history to highlight local businesses in search results.
+
+A deeper analysis of user habits can be used to anticipate their interests and further customize responses and notifications. For example, providing a list of previously visitied or popular locations you may want to look at on a map.
+
+<hr>
+
+**Note**: [Google Maps](https://www.google.com/maps) saves your search and visit history. Frequently visited or frequently searched locations are highlighted more than others.
+
+Google search results are optimized based on previous searchs.
+
+1. Go to [Google search](https://www.google.com/).
+2. Search for "football".
+3. Now try typing "favorite" in the search box and observe the autocomplete search predictions.
+
+Coincidence? Nada!
+
+<hr>
+
+### Controlled access to content
+
+Server-side programming allows sites to restrict access to authorized users and serve only the information that a user is permitted to see.
+
+Real world examples include:
+
+* Social networks like Facebook allow users to fully control their own data but only allow their friends to view or comment on it. The user determines who can see their data, and by extension, whose data appears in their feed. Authorization is a central part of the user experience!
+* The Mozilla Developer Network controls access to content. Articles are visible to everyone, but only users who have logged in can edit them. To try this, go to the [MDN "Introduction to the server side"](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction) page, scroll down to the "**Found a problem with this page?**" header at the bottom of the page, and click on the **Edit on GitHub** link. If you are logged in, you will be shown the edit view. If you are not logged in, you will be taken to the sign-up page.
+
+<hr>
+
+**Note**: Consider other real examples where access to content is controlled. For example, what can you see if you go to the online site for your bank? Log in to your account -- what additional information can you see and modify? What information can you see that only the bank can change?
+
+<hr>
+
