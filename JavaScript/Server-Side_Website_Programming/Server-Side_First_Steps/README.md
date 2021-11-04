@@ -4,7 +4,7 @@ In this module, we answer a few fundamental questions about server-side programm
 
 ## Guides
 
-**[Introduction to the server-side]()**
+**[Introduction to the server-side](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side)**
 
 Welcome to the MDN beginner's server-side programming course! The first article exam ines server-side programming from a high-level, answering questions such as "What is it?", "How does it differ from client-side programming", and "Why is it so useful?". After reading this, you will understand the additional capabilities available to websites through server-side coding.
 
@@ -32,4 +32,4 @@ This "first steps" module doesn't have any assessment because we haven't yet sho
 
 <hr>
 
-[[First module: Introduction to the server-side]]() - [[Back to the Server-Side website programming opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming#server-side-website-programming)
+[[First module: Introduction to the server-side]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side) - [[Back to the Server-Side website programming opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming#server-side-website-programming)
