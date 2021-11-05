@@ -67,3 +67,74 @@ Using an ORM has two benefits:
 * Basic validation of data can be implemented within the framework. This makes it easier and safer to check that data is stored in the correct type of database field, has the correct format (e.g. an email address), and isn't malicious in any way. (Crackers can use certain patterns of code to do bad things, such as deleting database records.)
 
 For example, the Django web framework provides an ORM, and refers to the object used to define the structure of a record as the *model*. The model specifies the field *types* to be stored, which may provide field-level validation on what information can be stored (e.g. an email field would only allow valid email addresses). The field definitions may also specify their maxiumum size, default values, selection list options, help text for documentation, label text for forms, etc. The model doesn't state any information about the underlying database as that is a configuration setting that may be changed separately of our code.
+
+The first code snippet below shows a very simple Django model for a `Team` object. This stores the team name and team level as character fields and specifies a maximum number of characters to be stored for each record. The `team_level` is a choice field, so we also provide a mapping between choices to be displayed and data to be stored, along with a default value.
+```
+#best/models.py
+
+from django.db import models
+
+class Team(models.Model):
+    team_name = models.CharField(max_length=40)
+
+    TEAM_LEVELS = (
+        ('U09', 'Under 09s'),
+        ('U10', 'Under 10s'),
+        ('U11', 'Under 11s'),
+        ... #list our other teams
+    )
+    team_level = models.CharField(max_length=3,choices=TEAM_LEVELS,default='U11')
+```
+The Django model provides a simple query API for searching the database. This can match against a number of fields at a time using different criteria (e.g. exact, case-insensitive, greater than, etc.), and can support complex statements. (For example, you can specify a search on U11 teams that have a team name that starts with "Fr" or ends with "al".)
+
+The second code snippet shows a view function (resource handler) for displaying all of our U09 teams. In this case, we specify that we want to filter for all records where the `team_level` field has exactly the text 'U09'. (Note below how this criteria is passed to the `filter()` function as an argument with field name and match type separated by double underscores: **team_level__exact**).
+```
+#best/views.py
+
+from django.shortcuts import render
+from .models import Team
+
+def youngest(request):
+    list_teams = Team.objects.filter(team_level__exact="U09")
+    context = {'youngest_teams': list_teams}
+    return render(request, 'best/index.html', context)
+```
+
+### Rendering data
+
+Web frameworks often provide templating systems. These allow you to specify the structure of an output document, using placeholders for data that will be added when a page is generated. Templates are often used to create HTML, but can also create other types of document.
+
+Web frameworks often provide a mechanism to make it easy to generate other formats from stored data, including [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) and [XML](https://developer.mozilla.org/en-US/docs/Glossary/XML).
+
+For example, the Django template system allows you to specify variables using a "double-handlebars" syntax (e.g. `{{ variable_name }}`), which will be replaced by values passed in from the view function when a page is rendered. The template system also provides support for expressions (with syntax: `{% expression %}`), which allow templates to perform simple operations like iterating list values passed into the template.
+
+<hr>
+
+**Note** Many other templating systems use a similar syntax, e.g. [Jinja2](https://jinja2docs.readthedocs.io/en/stable/) (Python), [Handlebars](https://handlebarsjs.com/) (JavaScript), [Moustache](https://mustache.github.io/) (JavaScript), etc.
+
+<hr>
+
+The code snippet below shows how this works. Continuing the "youngest team" example from the previous section, the HTML template is passed a list variable called `youngest_teams` by the view. Inside the HTML skeleton, we have an expression that first checks if the `youngest_teams` variable exists, and then iterates it in a `for` loop. On each iteration, the template displays the team's `team_name` value in a list item.
+```
+#best/templates/best/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    {% if youngest_teams %}
+        <ul>
+        {% for team in youngest_teams %}
+            <li>{{ team.team_name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No teams are available.</p>
+    {% endif %}
+
+</body>
+</html>
+```
+
+## How to select a web framework
+
