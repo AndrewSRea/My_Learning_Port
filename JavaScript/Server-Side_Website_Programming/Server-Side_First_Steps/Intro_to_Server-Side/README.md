@@ -193,4 +193,4 @@ In a future article, we'll help you choose the best web framework for your first
 
 <hr>
 
-[[Back to the Server Side First Steps Guide links]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps#server-side-website-programming-first-steps) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side) - [[Next page]]()
+[[Back to the Server Side First Steps Guide links]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps#server-side-website-programming-first-steps) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Client-Server_Overview#client-server-overview)
