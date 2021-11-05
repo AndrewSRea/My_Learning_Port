@@ -274,6 +274,12 @@ After the `junior()` function gets the list of junior teams, it calls the `rende
 
 Obviously web frameworks can help you with a lot of other tasks. We discuss a lot more benefits and some popular web framework choices in the next article.
 
+## Summary
+
+At this point, you should have a good overview of the operations that server-side code has to perform, and know some of the ways in which a server-side web framework can make this easier.
+
+In a following module, we'll help you choose the best Web Framework for your first site.
+
 <hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Client-Server_Overview#client-server-overview) - [[Next page]]()
