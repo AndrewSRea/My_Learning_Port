@@ -254,3 +254,26 @@ urlpatterns = [
 **Note**: The first parameters in the `url()` functions may look a bit odd (e.g. `r'^junior/$'`) because they use a pattern matching technique called "regular expressions" (RegEx, or RE). You don't need to know how regular expressions work at this point, other than that they allow us to match patterns in the URL (rather than the hard coded values above) and use them as parameters in our view functions. As an example, a really simple RegEx might say "match a single uppercase letter, followed by between 4 and 7 lowercase letters."
 
 <hr>
+
+The web framework also makes it easy for a view function to fetch information from the database. The structure of our data is defined in models, which are Python classes that define the fields to be stored in the underlying database. If we have a model named *Team* with a field of "*team_type*", then we can use a simple query syntax to get back all teams that have a particular type.
+
+The example below gets a list of all teams that have the exact (case sensitive) `team_type` of "junior". Note the format: field name (`team_type`) followed by double underscore, and then the type of match to use (in this case, `exact`). There are many other types of matches and we can daisy chain them. We can also control the order and the number of results returned.
+```
+#best/views.py
+
+from django.shortcuts import render
+
+from .models import Team
+
+def junior(request):
+    list_teams = Team.objects.filter(team_type__exact="junior")
+    context = {'list': list_teams}
+    return render(request, 'best/index.html', context)
+```
+After the `junior()` function gets the list of junior teams, it calls the `render()` function, passing the original `HttpRequest`, an HTML template, and a "context" object defining the information to be included in the template. The `render()` function is a convenience function that generates HTML using a context and an HTML template, and returns it in an `HttpResponse` object.
+
+Obviously web frameworks can help you with a lot of other tasks. We discuss a lot more benefits and some popular web framework choices in the next article.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Intro_to_Server-Side#introduction-to-the-server-side) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Client-Server_Overview#client-server-overview) - [[Next page]]()
