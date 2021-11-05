@@ -23,7 +23,7 @@ This request includes:
     - `POST` data: `POST` requests add new resources, the data for which is encoded within the request body.
     - Client-side cookies: Cookies contain session data about the client, including keys that the server can use to determine their login status and permissions/accesses to resources.
 
-Web servers wait for client request messages, process them when they arrive, and reply to the web browser with an HTTP Response message. The response contains an [HTTP Response status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) indicating whether or not the request succeeded (e.g. `"200 OK"` for success, `"404 Not Found"` if the resource cannot be found, `"403 Forbidden"` if the user isn't authorized to see the resource, etc.) The body of a successful response to a `GET` request would contain the requested resource.
+Web servers wait for client request messages, process them when they arrive, and reply to the web browser with an HTTP Response message. The response contains an [HTTP Response status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) indicating whether or not the request succeeded (e.g. `"200 OK"` for success, `"404 Not Found"` if the resource cannot be found, `"403 Forbidden"` if the user isn't authorized to see the resource, etc.). The body of a successful response to a `GET` request would contain the requested resource.
 
 When an HTML page is returned, it is rendered by the web browser. As part of processing the browser may discover links to other resources (e.g. an HTML page usually references JavaScript and CSS pages), and will send separate HTTP Requests to download these files.
 
@@ -213,3 +213,44 @@ After the coach submits the form with the team name and number of players, the s
 7. The *Web Server* loads static files from the file system and returns them to the browser directly. (Again, correct file handling is based on configuration rules and URL pattern matching.)
 
 An operation to update a record in the database would be handled similarly, except that like any database update, the HTTP request from the browser should be encoded as a `POST` request.
+
+### Doing other work
+
+A *Web Application's* job is to receive HTTP requests and return HTTP responses. While interacting with a database to get or update information are very common tasks, the code may do other things at the same time, or not interact with a database at all.
+
+A good example of an additional task that a *Web Application* might perform would be sending an email to users to confirm their registration with the site. The site might also perform logging or other operations.
+
+### Returning something other than HTML
+
+Server-side website code does not have to return HTML snippets/files in the response. It can instead dynamically create and return other types of files (text, PDF, CSV, etc.) or even data (JSON, XML, etc.).
+
+The idea of returning data to a web browser so that it can dynamically update its own content ([AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX)) has been around for quite a while. More recently, "single-page apps" have become popular, where the whole website is written with a single HTML file that is dynamically updated when needed. Websites created using this style of application push a lot of computational cost from the server to the web browser, and can result in websites that appear to behave a lot more like native apps (highly responsive, etc.).
+
+## Web frameworks simplify server-side web programming
+
+Server-side web frameworks make writing code to handle the operations described above much easier.
+
+One of the most important operations they perform is providing simple mechanisms to map URLs for different resources/pages to specific handler functions. This makes it easier to keep the code associated with each type of resource separate. It also has benefits in terms of maintenance, because you can change the URL used to deliver a particular feature in one place, without having to change the handler function.
+
+For example, consider the following Django (Python) code that maps two URL patterns to two view functions. The first pattern ensures that an HTTP request with a resource URL of `/best` will be passed to a function named `index()` in the `views` module. A request that has the pattern `"/best/junior" will instead be passed to the `junior()` view function.
+```
+# file: best/urls.py
+#
+
+from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    # example: /best/
+    url(r'^$', views.index),
+    # example: /best/junior/
+    url(r'^junior/$', views.junior),
+]
+```
+
+<hr>
+
+**Note**: The first parameters in the `url()` functions may look a bit odd (e.g. `r'^junior/$'`) because they use a pattern matching technique called "regular expressions" (RegEx, or RE). You don't need to know how regular expressions work at this point, other than that they allow us to match patterns in the URL (rather than the hard coded values above) and use them as parameters in our view functions. As an example, a really simple RegEx might say "match a single uppercase letter, followed by between 4 and 7 lowercase letters."
+
+<hr>
