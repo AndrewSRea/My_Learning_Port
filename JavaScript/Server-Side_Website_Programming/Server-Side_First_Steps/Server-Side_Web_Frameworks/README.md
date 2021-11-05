@@ -34,3 +34,36 @@ def index(request):
 
 ### Route requests to the appropriate handler
 
+Most sites will provide a number of different resources, accessible through distinct URLs. Handling these all in one function would be hard to maintain, so web frameworks provide simple mechanisms to map URL patterns to specific handler functions. This approach also has benefits in terms of maintenance, because you can change the URL used to deliver a particular feature without having to change the underlying code.
+
+Different frameworks use different mechanisms for the mapping. For example, the Flask (Python) web framework adds routes to view functions using a decorator.
+```
+@app.route("/")
+def hello():
+    return "Helllo World!"
+```
+While Django expects developers to define a lits of URL mappings between a URL pattern and a view function.
+```
+urlpatterns = [
+    url(r'^$', views.index),
+    # example: /best/myteamname/5/
+    url(r'^best/(?P<team_name>\w.+?)/(?P<team_number>[0-9]+)/$', views.best),
+]
+```
+
+### Make it easy to access data in the request
+
+Data can be encoded in an HTTP request in a number of ways. An HTTP `GET` request to get files or data from the server may encode what data is required in URL parameters or within the URL structure. An HTTP `POST` request to update a resource on the server will instead include the update information as "POST data" within the body of the request. The HTTP request may also include information about the current sesssion or user in a client-side cookie.
+
+Web frameworks provide programming-language-appropriate mechanisms to access this information. For example, the `HttpRequest` object that Django passes to every view function contains methods and properties for accessing the target URL, the type of request (e.g. an HTTP `GET`), `GET` or `POST` parameters, cookie and session data, etc. Django can also pass information encoded in the structure of the URL by defining "capture patterns" in the URL mapper (see the last code fragment in the section above).
+
+### Abstract and simplify database access
+
+Websites use databases to store information both to be shared with users, and about users. Web frameworks often provide a database layer that abstracts database read, write, query, and delete operations. This abstraction layer is referred to as an Object-Relational Mapper (ORM).
+
+Using an ORM has two benefits:
+
+* You can replace the underlying database without necessarily needing to change the code that uses it. This allows developers to optimize for the characteristics of different databases based on their usage.
+* Basic validation of data can be implemented within the framework. This makes it easier and safer to check that data is stored in the correct type of database field, has the correct format (e.g. an email address), and isn't malicious in any way. (Crackers can use certain patterns of code to do bad things, such as deleting database records.)
+
+For example, the Django web framework provides an ORM, and refers to the object used to define the structure of a record as the *model*. The model specifies the field *types* to be stored, which may provide field-level validation on what information can be stored (e.g. an email field would only allow valid email addresses). The field definitions may also specify their maxiumum size, default values, selection list options, help text for documentation, label text for forms, etc. The model doesn't state any information about the underlying database as that is a configuration setting that may be changed separately of our code.
