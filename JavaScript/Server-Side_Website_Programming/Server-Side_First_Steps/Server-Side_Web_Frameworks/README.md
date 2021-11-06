@@ -183,3 +183,31 @@ The server-side frameworks below represent a *few* of the most popular available
 **Note**: Descriptions come (partially) from the framework websites!
 
 <hr>
+
+### Django (Python)
+
+[Django](https://www.djangoproject.com/) is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel. It's free and open source.
+
+Django follows the "Batteries included" philosophy and provides almost everything most dewvelopers might want to do "out of the box". Because everything is included, it all works together, follows consistent design principles, and has extensive and up-to-date documentation. It is also fast, secure, and very scalable. Being based on Python, Django code is easy to read and to maintain.
+
+Popular sites using Django (from the Django homepage) include: Disqus, Instagram, Knight Foundation, MacArthur Foundation, Mozilla, National Geographic, Open Knowledge Foundation, Pinterest, and Open Stack.
+
+### Flask (Python)
+
+[Flask](https://flask.palletsprojects.com/en/2.0.x/) is a microframework for Python.
+
+While minimalist, Flask can create serious websites out of the box. It contains a development server and debugger, and includes support for [Jinja2](https://github.com/pallets/jinja) templating, secure cookies, [unit testing](https://en.wikipedia.org/wiki/Unit_testing), and [RESTful](https://www.restapitutorial.com/lessons/restfulresourcenaming.html) request dispatching. It has good documentation and an active community.
+
+Flask has become extremely popular, particularly for developers who need to provide web services on small, resource-constrained systems (e.g. running a web server on a [Raspberry Pi](https://www.raspberrypi.org/), [Drone controllers](https://www.techuseful.com/drone-definitions-learning-the-drone-lingo/), etc.).
+
+### Express (Node.js/JavaScript)
+
+[Express](https://expressjs.com/) is a fest, unopinionated, flexible and minimalist web framework for [Node.js](https://nodejs.org/en/). (Node is a browserless environment for running JavaScript.) It provides a robust set of features for web and mobile applications and delivers useful HTTP utility methods and [middleware](https://developer.mozilla.org/en-US/docs/Glossary/Middleware).
+
+Express is extremely popular, partially because it eases the migration of client-side JavaScript web programmers into server-side development, and partially because it is resource-efficient. (The underlying node environment uses lightweight multitasking within a thread rather than spawning separate processes for every new web request.)
+
+Because Express is a minimalist web framework, it does not incorporate every component that you might want to use. (For example, database access and support for users and sessions are provided through independent libraries.) There are many excellent independent components, but sometimes it can be hard to work out which is the best for a particular purpose!
+
+May popular server-side and full stack frameworks (comprising both server- and client-side frameworks) are based on Express, including [Feathers](https://feathersjs.com/), [ItemsAPI](https://itemsapi.com/), [KeystoneJS](https://keystonejs.com/), [Kraken](https://krakenjs.com/), [LoopBack](https://loopback.io/), [MEAN](https://github.com/linnovate/mean), and [Sails](https://sailsjs.com/).
+
+A lot of high profile companies use Express, including: Uber, Accenture, IBM, etc. (A list is provided [here](https://expressjs.com/en/resources/companies-using-express.html).)
