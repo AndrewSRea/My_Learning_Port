@@ -254,3 +254,42 @@ Rails has been used for high profile sites, including: Basecamp, GitHub, Shopify
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
 ### ASP.NET
+
+[ASP.NET](https://dotnet.microsoft.com/apps/aspnet) is an open source web framework developed by Microsoft for building modern web applications and services. With ASP.NET, you can quickly create websites based on HTML, CSS, and JavaScript, scale them for use by millions of users and easily add more complex capabilities like Web APIs, forms over data, or real time communications.
+
+One of the differentiators for ASP.NET is that it is built on the [Common Language Runtime](https://en.wikipedia.org/wiki/Common_Language_Runtime) (CLR), allowing programmers to write ASP.NET code using any supported .NET language (C#, Visual Basic, etc.). Like many Microsoft products, it benefits from excellent tools (often free), an active developer community, and well-written documentation.
+
+ASP.NET is used by Microsoft, Xbox.com, Stack Overflow, and many others.
+
+### Mojolicious (Perl)
+
+[Mojolicious](https://mojolicious.org/) is a next-generation web framework for the Perl programming language.
+
+Back in the early days of the web, many people learned Perl because of a wonderful Perl library called [CGI](https://metacpan.org/pod/CGI). It was simple enough to get started without knowing much about the language and powerful enough to keep you going. Mojolicious implements this idea using bleeding edge technologies.
+
+Some of the features provided by Mojolicious are:
+
+* A real-time web framework, to easily grow single-file prototypes into well-structured MVC web applications.
+* RESTful routes, plugins, commands, Perl-ish templates, content negotiation, session management, form validation, testing framework, static file server, CGI/[PSGI](https://plackperl.org/) detection, and first-class Unicode support.
+* A full-stack HTTP and WebSocket client/server implementation with IPv6, TLS, SNI, IDNA, HTTP/SOCKS5 proxy, UNIX domain socket, Comet (long polling), keep-alive, connection pooling, timeout, cookie, multipart, and gzip compression support.
+* JSON and HTML/XML parsers and generators with CSS selector support.
+* Very clean, portable and object-oriented pure-Perl API with no hidden magic.
+* Fresh code based upon years of experience, free and open-source.
+
+### Spring Boot (Java)
+
+[Spring Boot](https://spring.io/projects/spring-boot) is one of a number of projects provided by [Spring](https://spring.io/). It is a good starting point for doing server-side web development using [Java](https://www.java.com/en/).
+
+Although definitely not the only framework based on Java, it is easy to use to create standalone, production-grade Spring-based applications that you can "just run". It is an opinionated view of the Spring platform and third-party libraries but starts with minimum fuss and configuration.
+
+It can be used for small problems but its strength is building larger scale applications that use a cloud approach. Usually multiple applications run in parallel whilst talking to each other, with some providing user interaction and others doing back end work (e.g. accessing databases or other services). Load balancers help to ensure redundancy and reliability or allow geolocated handling of user requests to ensure responsiveness.
+
+## Summary
+
+This article has shown that web frameworks can make it easier to develop and maintain server-side code. It has also provided a high-level overview of a few popular frameworks, and discussed criteria for choosing a web application framework. You should now have, at least, an idea of how to choose a web framework for your own server-side development. If not, don't worry -- later on in the course, we'll give you detailed tutorials on Django and Express to give you some experience of actually working with a web framework.
+
+For the next article in this module, we'll change direction slightly and consider web security.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Client-Server_Overview#client-server-overview) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Server-Side_Web_Frameworks#server-side-web-frameworks) - [[Next page]]()
