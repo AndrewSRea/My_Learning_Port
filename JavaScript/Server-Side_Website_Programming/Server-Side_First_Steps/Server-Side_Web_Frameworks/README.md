@@ -211,3 +211,46 @@ Because Express is a minimalist web framework, it does not incorporate every com
 May popular server-side and full stack frameworks (comprising both server- and client-side frameworks) are based on Express, including [Feathers](https://feathersjs.com/), [ItemsAPI](https://itemsapi.com/), [KeystoneJS](https://keystonejs.com/), [Kraken](https://krakenjs.com/), [LoopBack](https://loopback.io/), [MEAN](https://github.com/linnovate/mean), and [Sails](https://sailsjs.com/).
 
 A lot of high profile companies use Express, including: Uber, Accenture, IBM, etc. (A list is provided [here](https://expressjs.com/en/resources/companies-using-express.html).)
+
+### Deno (JavaScript)
+
+[Deno](https://deno.land/) is a simple, modern, and secure JavaScript/TypeScript runtime and framework built on top of Chrome V8 and [Rust](https://www.rust-lang.org/).
+
+Deno is powered by [Tokio](https://tokio.rs/) -- a Rust-based asynchronous runtime which lets it serve web pages faster. It also has internal support for [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly), which enables the compilation of binary code for use on the client-side. Deno aims to fill in some of the loopholes in [Node.js](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Node_server_without_framework) by providing a mechanism that naturally maintains better security.
+
+Deno's features include:
+
+* Security by default. [Deno modules restrict permissions](https://lyty.dev/deno/deno-permission.html) to **file**, **network**, or **environment** access unless explicitly allowed.
+* TypeScript support **out-of-the-box**.
+* First-class await mechanism.
+* Built-in testing facility and code formatter (`deno fmt`).
+* (JavaScript) Browser compatibility: Deno programs that are written completely in JavaScript excluding the `Deno` namespace (or feature test for it), should work directly in any modern browser.
+* Script bundling into a single JavaScript file.
+
+Deno provides an easy yet powerful way to use JavaScript for both client- and server-side programming.
+
+### Ruby on Rails (Ruby)
+
+[Rails](https://rubyonrails.org/) (usually referred to as "Ruby on Rails") is a web framework written for the Ruby programming language.
+
+Rails follows a very similar design philosophy to Django. Like Django, it provides standard mechanisms for routing URLs, accessing data from a database, generating HTML from templates and formatting data as [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) or [XML](https://developer.mozilla.org/en-US/docs/Glossary/XML). It similarly encourages the use of design patterns like DRY ("don't repeat yourself" -- write code only once if at all possible). MVC (model-view-controller) and a number of others.
+
+There are, of course, many differences due to specific design decisions and the nature of the languages.
+
+Rails has been used for high profile sites, including: Basecamp, GitHub, Shopify, Airbnb, Twitch, SoundCloud, Hulu, Zendesk, Square, and Highrise.
+
+### Laravel (PHP)
+
+[Laravel](https://laravel.com/) is a web application framework with expressive, elegant syntax. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+
+* [Simple, fast routing engine](https://laravel.com/docs/8.x/routing).
+* [Powerful dependency injection container](https://laravel.com/docs/8.x/container).
+* Multiple back-ends for [session](https://laravel.com/docs/8.x/session) and [cache](https://laravel.com/docs/8.x/cache) storage.
+* Expressive, intuitive [database ORM](https://laravel.com/docs/8.x/eloquent).
+* Database agnostic [schema migrations](https://laravel.com/docs/8.x/migrations).
+* [Robust background job processing](https://laravel.com/docs/8.x/queues).
+* [Real-time event braodcasting](https://laravel.com/docs/8.x/broadcasting).
+
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+
+### ASP.NET
