@@ -42,3 +42,37 @@ While the data from `POST` or `GET` requests is the most common source of XSS vu
 The best defense against XSS vulnerabilities is to remove or disable any markup that can potentially contain instructions to run the code. For HTML, this includes elements, such as `<script>`, `<object>`, `<embed>`, and `<link>`.
 
 The process of modifying user data so that it can't be used to run scripts or otherwise affect the execution of server code is known as input sanitization. Many web frameworks automatically sanitize user input from HTML forms by default.
+
+### SQL injection
+
+SQL injection vulnerabilities enable malicious users to execute arbitrary SQL code on a database, allowing data to be accessed, modified, or deleted irrespective of the user's permissions. A successful injection attack might spoof identities, create new identities with administration rights, access all data on the server, or destroy/modify the data to make it unusable.
+
+SQL injection types include Error-based SQL injection, SQL injection based on Boolean errors, and Time-based SQL injection.
+
+This vulnerability is present if user input that is passed to an underlying SQL statement can change the meaning of the statement. For example, the following code is intended to list all users with a particular name (`userName`) that has been supplied from an HTML form:
+```
+statement = "SELECT * FROM users WHERE name = '" + userName + "';"
+```
+If the user specifies a real name, the statement will work as intended. However, a malicious user could completely change the behavior of this SQL statement to the new statement in the following example, by specifying the text in bold for the `userName`.
+```
+SELECT * FROM users WHERE name = 'a';DROP TABLE users; SELECT * FROM userinfo WHERE 't' = 't';
+```
+The modified statement creates a valid SQL statement that deletes the `users` table and selects all data from the `userinfo` table (which reveals the information of every user). This works because the first part of the injected text (`a';`) completes the original statement.
+
+To avoid this sort of attack, you must ensure that any user data that is passed to an SQL query cannot change the nature of the query. One way to do this is to [escape](https://en.wikipedia.org/wiki/Escape_character) all the characters in the user input that have a special meaning in SQL.
+
+<hr>
+
+**Note**: The SQL statement treats the `'` character as the beginning and end of a string literal. By putting a backslash in front of this character (`\'`), we escape the symbol, and tell SQL to instead treat it as a character (just a part of the string).
+
+<hr>
+
+In the following statement, we escape the `'` character. The SQL will now interpret the name as the whole string in bold (which is a very odd name indeed, but not harmful).
+```
+SELECT * FROM users WHERE name = 'a\';DROP TABLE users; SELECT * FROM userinfo WHERE \'t\' = \'t';
+```
+Web frameworks will often take care of the character escaping for you. Django, for example, ensures that any user-data passed to querysets (model queries) is escaped.
+
+<hr>
+
+**Note**: This section draws heavily on the information in [Wikipedia here](https://en.wikipedia.org/wiki/SQL_injection).
