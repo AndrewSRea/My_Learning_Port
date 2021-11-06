@@ -152,3 +152,34 @@ Some of the factors that may affect your decision are:
 * **Caching support**: As your website becomes more successful, then you may find that it can no longer cope with the number of requests it is receiving as users access it. At this point, you may consider adding support for caching. Caching is an optimization where you store all or part of a web response so that it does not have to be recalculated on subsequent requests. Returning a cached response is much faster than calculating one in the first place. Caching can be implemented in your code or in the server (see [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy)). Web frameworks will have different levels of support for defining what content can be cached.
 * **Scalability**: Once your website is fantastically successful, you will exhaust the benefits of caching and even reach the limits of *vertical scaling* (running your web application on more powerful hardware). At this point, you may need to *scale horizontally* (share the load by distributing your site across a number of web servers and databases) or scale "geographically" because some of your customers are based a long way away from your server. The web framework you choose can make a big difference on how easy it is to scale your site.
 * **Web security**: Some web frameworks provide better support for handling common web attacks. Django, for example, sanitizes all user input from HTML templates so that user-entered JavaScript cannot be run. Other frameworks provide similar protection, but it is not always enabled by default.
+
+There are many other possible factors, including licensing, whether or not the framework is under active development, etc.
+
+If you're an absolute beginner at programming, then you'll probably choose your framework based on "ease of learning". In addition to "ease of use" of the language itself, high quality documentation/tutorials and an active community helping new users are your most valuable resources. We've chosen [Django](https://www.djangoproject.com/) (Python) and [Express](https://expressjs.com/) (Node/JavaScript) to write our examples later on in the course, mainly because they are easy to learn and have good support.
+
+<hr>
+
+**Note**: Let's go to the main websites for [Django](https://www.djangoproject.com/) (Python) and [Express](https://expressjs.com/) (Node/JavaScript) and check out their documentation and community.
+
+1. Navigate to the main sites (linked above).
+    - Click on the Documentation menu links (named things like "Documentation", "Guide", "API Reference", "Getting Started", etc.).
+    - Can you see topics showing how to set up URL routing, templates, and database/models?
+    - Are the documents clear?
+2. Navigate to mailing lists for each site (accessible from Community links).
+    - How many questions have been posted in the last few days?
+    - How many have responses?
+    - Do they have an active community?
+
+<hr>
+
+## A few good web frameworks?
+
+Let's move on, and discuss a few specific server-side web frameworks.
+
+The server-side frameworks below represent a *few* of the most popular available at the time of writing. All of them have everything you need to be productive. They are open source, are under active development, have enthusiastic communities creating documentation and helping users on discussion boards, and are used in large numbers of high-profile websites. There are many other great server-side frameworks that you can discover using a basic internet search.
+
+<hr>
+
+**Note**: Descriptions come (partially) from the framework websites!
+
+<hr>
