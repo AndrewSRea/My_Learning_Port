@@ -8,21 +8,21 @@ In this module, we answer a few fundamental questions about server-side programm
 
 Welcome to the MDN beginner's server-side programming course! The first article exam ines server-side programming from a high-level, answering questions such as "What is it?", "How does it differ from client-side programming", and "Why is it so useful?". After reading this, you will understand the additional capabilities available to websites through server-side coding.
 
-**[Client-Server overview]()**
+**[Client-Server overview](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Client-Server_Overview#client-server-overview)**
 
 Now that you know the purpose and potential benefits of server-side programming, we're going to examine what happens when a server receives a "dynamic request" from a browser. As most websites' server-side code handles requests and responses in a similar way, this will help you understand what you need to do when writing your own code.
 
-**[Server-side web frameworks]()**
+**[Server-side web frameworks](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Server-Side_Web_Frameworks#server-side-web-frameworks)**
 
 The previous article explained what a server-side web application needs to do to respond to web browser requests. This article explains how web frameworks can simplify these tasks, and helps you choose the right framework for your first server-side web application.
 
-**[Website security]()**
+**[Website security](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Website_Security#website-security)**
 
 Website security requires vigilance in all aspects of building and operating a site. This introductory article helps you understand the first important steps you can take to protect your web application against the most common threats.
 
 <hr>
 
-**Note**: This topic deals with server-side frameworks, and how to use them to create websites. If you are looking for information on client-side JavaScript frameworks, see [Understanding client-side JavaScript frameworks]().
+**Note**: This topic deals with server-side frameworks, and how to use them to create websites. If you are looking for information on client-side JavaScript frameworks, see [Understanding client-side JavaScript frameworks](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Client-side_Frameworks#understanding-client-side-javascript-frameworks).
 
 <hr>
 
