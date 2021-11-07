@@ -76,3 +76,37 @@ Web frameworks will often take care of the character escaping for you. Django, f
 <hr>
 
 **Note**: This section draws heavily on the information in [Wikipedia here](https://en.wikipedia.org/wiki/SQL_injection).
+
+<hr>
+
+### Cross-Site Request Forgery (CSRF)
+
+CSRF attacks allow a malicious user to execute actions using the credentials of another user without that user's knowledge or consent.
+
+This type of attack is best explained by example. John is a malicious user who knows that a particular site allows logged-in users to send money to a specified account using an HTTP `POST` request that includes the account name and an amount of money. John constructs a form that includes his bank details and an amount of money as hidden fields, and emails it to other site users (with the *Submit* button disguised as a link to a "get rich quick" site).
+
+If a user clicks the submit button, an HTTP `POST` request will be sent to the server containing the transaction details and any client-side cookies that the browser associated with the site (adding associated site cookies to requests is normal browser behavior). The server will check the cookies, and use them to determine whether or not the user is logged in and has permission to make the transaction.
+
+The result is that any user who clicks the *Submit* button while they are logged in to the trading site will make the transaction. John gets rich.
+
+<hr>
+
+**Note**: The trick here is that John doesn't need to have access to the user's cookies (or access credentials). The browser of the user stores this information and automatically includes it in all requests to the associated server.
+
+<hr>
+
+One way to prevent this type of attack is for the server to require that `POST` requests include a user-specific site-generated secret. The secret would be supplied by the server when sending the web form used to make transfers. This approach prevents John from creating his own form, because he would have to know the secret that the server is providing for the user. Even if he found out the secret and created a form for a particular user, he would no longer be able to use that same form to attack every user.
+
+Web frameworks often include such CSRF prevention mechanisms.
+
+### Other threats
+
+Other common attacks/vulnerabilities include:
+
+* [Clickjacking](https://owasp.org/www-community/attacks/Clickjacking): In this attack, a malicious user hijacks clicks meant for a visible top-level site and routes them to a hidden page beneath. This technique might be used, for example, to display a legitimate bank site but capture the login credentials into an invisible [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) controlled by the attacker. Clickjacking could also be used to get the user to click a button on a visible site but in doing so, actually unwittingly click a completely different button. As a defense, your site can prevent itself from being embedded in an iframe in another site by setting the appropriate HTTP headers.
+* [Denial of Service](https://developer.mozilla.org/en-US/docs/Glossary/Distributed_Denial_of_Service) (DoS): DoS is usually achieved by flooding a target site with fake requests so that access to a site is disrupted for legitimate users. The requests may be numerous, or they may individually consume large amounts of resource (e.g. slow reads or uploading of large files). DoS defenses usually work by identifying and blocking "bad" traffic while allowing legitimate messages through. These defenses are typically located before or in the web server. (They are not part of the web application itself.)
+* [Directory Traversal](https://en.wikipedia.org/wiki/Directory_traversal_attack) (File and disclosure): In this attack, a malicious user attempts to access parts of the web server file system that they should not be able to access. This vulnerability occurs when the user is able to pass filenames that include file system navigation characters (for example, `../../`). The solution is to sanitize input before using it.
+* [File Inclusion](https://en.wikipedia.org/wiki/File_inclusion_vulnerability): In this attack, a user is able to specify an "unintended" file for display or execution in data passed to the server. When loaded, this file might be executed on the web server or the client-side (leading to an XSS attack). The solution is to sanitize input before using it.
+* [Command Injection](): Command injection attacks allow a malicious user to execute arbitrary system commands on the host operating system. The solution is to sanitize user input before it might be used in system calls.
+
+For a comprehensive listing of website security threats, see [Category: Web security exploits](https://en.wikipedia.org/wiki/Category:Web_security_exploits) (Wikipedia) and [Category: Attack](https://owasp.org/www-community/attacks/) (Open Web Application Security Project).
