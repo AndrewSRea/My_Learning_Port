@@ -48,3 +48,18 @@ Now that we've created models for the *LocalLibrary* website, we'll use the Djan
 
 We're now ready to ad the code to display our first full page: a home page for the *LocalLibrary* that shows how many records we have of each model type, and provides sidebar navigation links to our other pages. Along the way, we'll gain practical experience in writing basic URL maps and views, getting records from the database, and using templates.
 
+**[Django Tutorial Part 6: Generic list and detail views]()**
+
+This tutorial extends our *LocalLibrary* website, adding list and detail pages for books and authors. Here we'll learn about generic class-based views, and show how they can reduce the amount of code you have to write for common use cases. We'll also go into UTL handling in greater detail, showing how to perform basic pattern matching.
+
+**[Django Tutorial Part 7: Sessions framework]()**
+
+This tutorial extends our *LocalLibrary* website, adding a session-based visit-counter to the home page. This is a relatively simple example, but it does show how you can use the session framework to provide persistent behavior for anonymous users on your own sites.
+
+**[Django Tutorial Part 8: User authentication and permissions]()**
+
+In this tutorial, we'll show you how to allow users to login to your site with their own accounts, and how to control what they can do and see based on whether or not they are logged in and their *permissions*. As part of this demonstration, we'll extend the *LocalLibrary* website, adding login and logout pages, and user- and staff-specific pages for viewing books that have been borrowed.
+
+**[Django Tutorial Part 9: Working with forms]()**
+
+In this tutorial, we'll show you how to work with [HTML Forms]() in Django, and in particular the easiest way to write forms to create, update and delete model instances. As part of this demonstration, we'll extend the *LocalLibrary* website so that librarians can renew books, and create, update, and delete authors using our own forms (rather than using the admin application).
