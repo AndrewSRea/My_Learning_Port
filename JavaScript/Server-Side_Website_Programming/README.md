@@ -24,11 +24,11 @@ With that basic understanding, you'll be ready to work your way through the modu
 
 This topic contains the following modules. You should start with the first module, then go on to one of the following modules, which show how to work with two very popular server-side languages using appropriate web frameworks.
 
-**[Server-side website programming first steps]()**
+**[Server-side website programming first steps](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps#server-side-website-programming-first-steps)**
 
 This module provides technology-agnostic information about server-side website programming such as "what is it?", "how does it differ from client-side programming?", and "why is it useful?". This module also outlines some of the more popular server-side web frameworks and gives guidance on how to select the best one for your site. Lastly, an introduction to web server security is provided.
 
-**[Django Web Framework (Python)]()**
+**[Django Web Framework (Python)](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework#django-web-framework-python)**
 
 Django is an extremely popular and fully featured server-side web framework, written in Python. The module explains why Django is such a good web server framework, how to set up a development environment and how to perform common tasks with it.
 
