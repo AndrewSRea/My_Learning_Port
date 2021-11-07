@@ -143,4 +143,4 @@ With this article, you've come to the end of this module, covering your first st
 
 [[Back to beginning of module: Server-side website programming first steps]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps#server-side-website-programming-first-steps)
 
-[[Next module: Django web framework]]()
+[[Next module: Django web framework]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework#django-web-framework-python)
