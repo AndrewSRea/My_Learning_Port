@@ -62,4 +62,28 @@ In this tutorial, we'll show you how to allow users to login to your site with t
 
 **[Django Tutorial Part 9: Working with forms]()**
 
-In this tutorial, we'll show you how to work with [HTML Forms]() in Django, and in particular the easiest way to write forms to create, update and delete model instances. As part of this demonstration, we'll extend the *LocalLibrary* website so that librarians can renew books, and create, update, and delete authors using our own forms (rather than using the admin application).
+In this tutorial, we'll show you how to work with [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/Forms) in Django, and in particular the easiest way to write forms to create, update and delete model instances. As part of this demonstration, we'll extend the *LocalLibrary* website so that librarians can renew books, and create, update, and delete authors using our own forms (rather than using the admin application).
+
+**[Django Tutorial Part 10: Testing a Django web application]()**
+
+As website grow, they become harder to test manually. Not only is there more to test but, as the interactions between components become more complex, a small change in one area can require many additional tests to verify its impact on other areas. One way to mitigate these problems is to write automated tests, which can easily and reliably be run every time you make a change. This tutorial shows how to automate *unit testing* of your website using Django's test framework.
+
+**[Django Tutorial Part 11: Deploying Django to production]()**
+
+Now you've created (and tested) an awesome *LocalLibrary* website, you're going to want to install it on a public web server so that it can be accessed by library staff and members over the Internet. This article provides an overview of how you might go about finding a host to deploy your website, and what you need to do in order to get your site ready for production.
+
+**[Django web application security]()**
+
+Protecting user data is an essential part of any website design. We previously explained some of the more common security threats in the article [Web security](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps/Website_Security#website-security) -- this article provides a practical demonstration of how Django's built-in protections handle such threats.
+
+## Assessments
+
+The following assessment will test your understanding of how to create a website using Django, as described in the guides listed above.
+
+**[DIY Django mini blog]()**
+
+In this assessment, you'll use some of the knowledge you've learned from this module to create your own blog.
+
+<hr>
+
+[[Previous module: Server-side first steps]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Server-Side_First_Steps#server-side-website-programming-first-steps) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework#django-web-framework-python) - [[Django introduction]]()
