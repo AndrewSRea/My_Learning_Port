@@ -93,3 +93,47 @@ Django web application typically group the code that handles each of these steps
 
 The sections below will give you an idea of what these main parts of a Django app look like. (We'll go into more detail later on in the course, once we've set up a development environment.)
 
+### Sending the request to the right view (urls.py)
+
+A URL mapper is typically stored in a file named **urls.py**. In the example below, the mapper (`urlpatterns`) defines a list  of mappings between *routes* (specific URL *patterns*) and corresponding view functions. If an HTTP Request is received that has a URL matching a specified pattern, then the associated view function will be called and passed the request.
+```
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('book/<int:id>/', views.book_detail, name='book_detail'),
+    path('catalog/', include('catalog.urls')),
+    re_path(r'^([0-9]+)/$', views.best),
+]
+```
+The `urlpatterns` object is a list of `path()` and/or `re_path()` functions. (Python lists are defined using square brackets, where ietms are separated by commas and may have an [optional trailing comma](https://docs.python.org/3/faq/design.html#id30). For example: `[item1, item2, item3,]`.)
+
+The first argument to both methods is a route (pattern) that will be matched. The `path()` method uses angle brackets to define parts of a URL that will be captured and passed through to the view function as named arguments. The `re_path()` function uses a flexible pattern matching approach known as a regular expression. We'll talk about these in a later article!
+
+The second argument is another function that will be called when the pattern is matched. The notation `views.book_detail` indicates that the function is called `book_detail()` and can be found in a module called `views` (i.e. inside a file named `views.py`).
+
+### Handling the request (views.py)
+
+Views are the heart of the web application, receiving HTTP requests from web clients and returning HTTP responses. In between, they marshal the other resources of the framework to access databases, render templates, etc.
+
+The example below shows a minimal view function `index()`, which could have been called by our URL mapper in the previous section. Like all view functions, it receives an `HttpRequest` object as a parameter (`request`) and returns an `HttpRequest` object. In this case, we don't do anything with the request, and our response returns a hard-coded string. We'll show you a request that does something more interesting in a later section.
+```
+# filename: views.py (Django view functions)
+
+from django.http import HttpResponse
+
+def index(request):
+    # Get an HttpRequest - the request parameter
+    # perform operations using information from the request.
+    # Return HttpResponse
+    return HttpResponse('Hello from Django!')
+```
+
+<hr>
+
+**Note**: A little bit about Python:
+
+* [Python modules](https://docs.python.org/3/tutorial/modules.html) are "libraries" of functions, stored in separate files, that we might want to use in our code. Here we import just the `HttpResponse` object from the `django.http` module so we can use it in our view: `from django.http import HttpResponse`. There are other ways of importing some or all objects from a module.
+* Functions are declared using the `def` keyword as shown above, with named parameters listed in brackets after the name of the function. The whole line ends in a colon. Note how the next lines are all **indented**. The indentation is important, as it specifies that the lines of code are inside that particular block. (Mandatory indentation is a key feature of Python, and is one reason that Python code is so easy to read.)
+
+<hr>
+
+Views are usually stored in a file called **views.py**.
