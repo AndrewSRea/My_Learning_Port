@@ -72,3 +72,24 @@ Unopinionated frameworks, by contrast, have far fewer restrictions on the best w
 
 Django is "somewhat opinionated", and hence delivers the "best of both worlds". It provides a set of components to handle most web development tasks and one (or two) preferred ways to use them. However, Django's decoupled architecture means that you can usually pick and choose from a number of different options, or add support for completely new ones if desired.
 
+## What does Django code look like?
+
+In a traditional data-driven website, a web application waits for HTTP requests from the web browser (or other client). When a request is received, the application works out what is needed based on the URL and possibly information in `POST` data and `GET` data. Depending on what is required, it may then read or write information from a database or perform other tasks required to satify the request. The application will then return a response to the web browser, often dynamically creating an HTML page for the browser to display by inserting the retrieved data into placeholders in an HTML template.
+
+Django web application typically group the code that handles each of these steps into separate files:
+
+![Image of a diagram showing how Django groups code from HTTP requests](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction/basic-django.png)
+
+* **URLs**: While it is possible to proces requests from every single URL via a single function, it is much more maintainable to write a separate view function to handle each resource. A URL mapper is used to redirect HTTP requests to the appropriate view based on the request URL. The URL mapper can also match particular patterns of strings or digits that appear in a URL and pass these to view function as data.
+* **View**: A view is a request handler function, which receives HTTP requests and returns HTTP responses. Views access the data needed to satify requests via *models*, and delegate the formatting of the response to *templates*.
+* **Models**: Models are Python objects that define the structure of an application's data, and provide mechanisms to manage (ad, modify, delete) and query records in the database.
+* **Templates**: A template is a text file defining the structure or layout of a file (such as an HTML page), with placeholders used to represent actual content. A *view* can dynamically create an HTML page using an HTML template, populating it with data from a *model*. A template can be used to define the structure of any type of file; it doesn't have to be HTML!
+
+<hr>
+
+**Note**: Django refers to this organization as the "Model View Template (MVT)" architecture. It has many similarities to the more familiar [Model View Controller](https://developer.mozilla.org/en-US/docs/Glossary/MVC) architecture.
+
+<hr>
+
+The sections below will give you an idea of what these main parts of a Django app look like. (We'll go into more detail later on in the course, once we've set up a development environment.)
+
