@@ -191,3 +191,45 @@ This function uses the `render()` function to create the `HttpResponse` that is 
 Template systems allow you to specify the structure of an output document, using placeholders for data that will be filled in when a page is generated. Templates are often used to create HTML, but can also create other types of document. Django supports both its native templating system and another popular Python library called Jinja2 out of the box. (It can also be made to support other systems if needed.)
 
 The code snippet shows what the HTML template called by the `render()` function in the previous section might look like. This template has been written under the assumption that it will have access to a list variable called `youngest_teams` when it is rendered. (This is contained in the `context` variable inside the `render()` function above.) Inside the HTML skeleton, we have an expression that first checks if the `youngest_teams` variable exists, and then iterates it in a `for` loop. On each iteration, the template displays each team's `team_name` value in an [`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) element.
+```
+## filename: best/templates/best/index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home page</title>
+</head>
+<body>
+    {% if youngest_teams %}
+        <ul>
+            {% for team in youngest_teams %}
+                <li>{{ team.team_name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No teams are avaiable.</p>
+    {% endif %}
+</body>
+</html>
+```
+
+## What else can you do?
+
+The preceding sections show the main features that you'll use in almost every web application: URL mapping, views, models, and templates. Just a few of the other things provided by Django include:
+
+* **Forms**: HTML Forms are used to collect user data for processing on the server. Django simplifies form creation, validation, and processing.
+* **User authentication and permissions**: Django includes a robust user authentication and permission system that has been built with security in mind.
+* **Caching**: Creating content dynamically is much more computationally intensive (and slow) than serving static content. Django provides flexible caching so that you can store all or part of a rendered page so that it doesn't get re-rendered except when necessary.
+* **Administration site**: The Django administration site is included by default when you create an app using the basic skeleton. It makes it trivially easy to provide an admin page for site administrators to create, edit, and view any data models in your site.
+* **Serializing data**: Django makes it easy to serialize and serve your data as XML or JSON. This can be useful when creating a web service ( a website that purely serves data to be consumed by other applications or sites, and doesn't display anything itself), or when creating a website in which the client-side code handles all the rendering of data.
+
+## Summary
+
+Congratulations, you've completed the first step in your Django journey! You should now understand Django's main benefits, a little about its history, and roughly what each of the main parts of a Django app might look like. You should have also learned a few things about the Python programming language, including the syntax for lists, functions, and classes.
+
+You've already seen some real Django code above, but unlike with client-side code, you need to set up a development environment to run it. That's our next step.
+
+<hr>
+
+[[Back to the Django Web Framework Guide links]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework#django-web-framework-python) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Introduction#django-introduction) - [[Next page]]()
