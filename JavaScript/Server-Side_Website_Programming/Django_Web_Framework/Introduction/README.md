@@ -137,3 +137,57 @@ def index(request):
 <hr>
 
 Views are usually stored in a file called **views.py**.
+
+### Defining data models (models.py)
+
+Django web applications manage and query data through Python objects referred to as models. Models define the structure of stored data, including the field *types* and possibly also their maximum size, default values, selection list options, help text for documentation, label text for forms, etc. The definition of the model is independent of the underlying database. You can choose one of several as part of your project settings. Once you've chosen what database you want to use, you don't need to talk to it directly at all. You just write your model structure and other code, and Django handles all the "dirty work" of communicating with the database for you.
+
+The code snippet below shows a very simple Django model for a `Team` object. The `Team` class is derived from the Django class `models.Model`. It defines the team name and team level as character fields and specifies a maximum number of characters to be stored for each record. The `team_level` can be one of several values, so we define it as a choice field and provide a mapping between choices to be displayed and data to be stored, along with a default value.
+```
+# filename: models.py
+
+from django.db import models
+
+class Team(models.Model):
+    team_name = models.CharField(max_length=40)
+
+    TEAM_LEVELS = (
+        ('U09', 'Under 09s'),
+        ('U10', 'Under 10s'),
+        ('U11', 'Under 11s'),
+        ...  #list other team levels
+    )
+    team_level = models.CharField(max_length=3, choices=TEAM_LEVELS, default='U11')
+```
+
+<hr>
+
+**Note**: A little bit of Python:
+
+* Python supports "[object-oriented programming](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Intro_JS_Objects#introducing-javascript-objects)", a style of programming where we organize our code into objects, which include related data and functions for operating on that data. Objects can also inherit/extend/derive from other objects, allowing common behavior between related objects to be shared. In Python, we use the keyword `class` to define the "blueprint" for an object. We can create multiple specific *instances* of the type of object based on the model in the class. So, for example, here we have a `Team` class, which derives from the `Model` class. This means it is a model, and will contain all the methods of a model, but we can also give it specialized features of its own, too. In our model, we define the fields our database will need to store our data, giving them specific names. Django uses these definitions, including the field names, to create the underlying databases.
+
+<hr>
+
+### Querying data (views.py)
+
+The Django model provides a simple query API for searching the associated database. This can match against a number of fields at a time using different criteria (e.g. exact, case-insensitive, greater than, etc.), and can support complex statements. (For example, you can specify a search on U11 teams that have a team name that starts with "Fr" or ends with "al".)
+
+The code snippet shows a view function (resource handler) for displaying all of our U09 teams. The `list_teams = Team.objects.filter(team_level__exact="U09")` line shows how we can use the model query API to filter for all records where the `team_level` field has exactly the text `'U09'`. (Note how this criteria is passed to the `filter()` function as an argument, with the field name and match type separated by a double underscore: **`team_level__exact`**.)
+```
+## filename: views.py
+
+from django.shortcuts import render
+from .models import Team
+
+def index(request):
+    list_teams = Team.objects.filter(team_level__exact="U09")
+    context = {'youngest_teams': list_teams}
+    return render(request, '/best/index.html', context)
+```
+This function uses the `render()` function to create the `HttpResponse` that is sent back to the browser. This function is a *shortcut*. It creates an HTML file by combining a specified HTML template and some data to insert in the template (provided in the variable named "`context`"). In the next section, we show how the template has the data inserted in it to create the HTML.
+
+### Rendering data (HTML templates)
+
+Template systems allow you to specify the structure of an output document, using placeholders for data that will be filled in when a page is generated. Templates are often used to create HTML, but can also create other types of document. Django supports both its native templating system and another popular Python library called Jinja2 out of the box. (It can also be made to support other systems if needed.)
+
+The code snippet shows what the HTML template called by the `render()` function in the previous section might look like. This template has been written under the assumption that it will have access to a list variable called `youngest_teams` when it is rendered. (This is contained in the `context` variable inside the `render()` function above.) Inside the HTML skeleton, we have an expression that first checks if the `youngest_teams` variable exists, and then iterates it in a `for` loop. On each iteration, the template displays each team's `team_name` value in an [`<li>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) element.
