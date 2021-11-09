@@ -71,6 +71,71 @@ For this article (and most of this module), we will be using the *SQLite* databa
 
 <hr>
 
+#### Installing system-wide or in a Python virtual environment?
+
+When you install Python3, you get a single global environment that is shared by all Python3 code. While you can install whatever Python packages you like in the environment, you can only install one particular version of each package at a time.
+
+<hr>
+
+**Note**: Python applications installed into the global environment can potentially conflict with each other (i.e. if they depend on different versions of the same package).
+
+<hr>
+
+If you install Django into the default/global environment, then you will only be able to target one version of Django on the computer. This can be a problem if you want to create new websites (using the latest version of Django) while still maintaining websites that rely on older versions.
+
+As a result, experienced Python/Django developers typically run Python apps within independent *Python virtual environments*. This enables multiple different Django environments on a single computer. The Django developer team itself recommends that you use Python virtual environments!
+
+This module assumes that you've installed Django into a virtual environment, and we'll show you how below.
+
+## Installing Python 3
+
+In order to use Django, you will have to install Python on your operating system. If you're using *Python 3*, then you will also need the [Python Package Index]() tool -- *pip3* -- which is used to manage (install, update, and remove) Python packages/libraries used by Django and your other Python apps.
+
+This section briefly explains how you can check what versions of Python are present, and install new versions as needed, for Ubuntu Linux 20.04, macOS, and Windows 10.
+
+<hr>
+
+**Note**: Depending on your platform, you may also be able to install Python/pip from the operating system's own package manager or via other mechanisms. For most platforms, you can download the required installation files from [https://www.python.org/downloads/]() and install them using the appropriate platform-specific method.
+
+<hr>
+
+### Ubuntu 20.04
+
+Ubuntu Linux 20.04 LTS includes Python 3.8.5 by default. You can confirm this by running the following command in the bash terminal:
+```
+python3 -V
+ Python 3.8.5
+```
+However, the Python Package Index tool (*pip3*) you'll need to install packages for Python 3 (including Django) is **not** available by default. You can install *pip3* in the bash terminal using:
+```
+sudo apt install python3-pip
+```
+
+### macOS
+
+macOS "El Capitan" and other more recent versions do not include Python 3. You can confirm this by running the following commands in the zsh or bash terminal:
+```
+$ python3 -V
+  python3: command not found
+```
+You can easily install Python 3 (along with the *pip3* tool) from [python.org]():
+
+1. Download the required installer:
+    1. Go to [https://www.python.org/downloads/]()
+    2. Select the **Download Python 3.8.6** button (the exact version number may differ).
+       [**Note**: The version offered may be different. Ensure that the version you download is supported by Django (if needed, links for getting older versions can be found on the same page).] 
+2. Locate the file using *Finder*, and double-click the package file. Following the installation prompts.
+
+You can now confirm successful installation by checking for the *Python 3* version as shown below:
+```
+python3 -V
+ Python 3.9.0
+```
+You can similarly check that *pip3* is installed by listing the available packages:
+```
+pip3 list
+```
+
 
 
 
