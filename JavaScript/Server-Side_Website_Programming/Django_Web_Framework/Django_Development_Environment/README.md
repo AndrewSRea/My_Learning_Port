@@ -27,7 +27,47 @@ Each of these options requires a slightly different configuration and setup. The
 
 <hr>
 
-**Note**: Other possible installation options are covered in the official Django documentation. We link to the [appropriate documents below]().
+**Note**: Other possible installation options are covered in the official Django documentation. We link to the [appropriate documents below](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Development_Environment#see-also).
+
+<hr>
+
+#### What operating systems are supported?
+
+Django web applications can be run on almost any machine that can run the Python 3 programming language: Windows, macOS, Linux/Unix, Solaris, to name just a few. Almost any computer should have the necessary performance to run Django during development.
+
+In this article, we'll provide instructions for Windows, macOS, and Linux/Unix.
+
+#### What version of Python should be used?
+
+You can use any Python version supported by your target Django release. For Django 3.1.2, the allowed versions are Python 3.6. to 3.8 (see [FAQ: Installation](https://docs.djangoproject.com/en/3.1/faq/install/#what-python-version-can-i-use-with-django)).
+
+The Django project *recommends* (and "officially supports") using the newest available supported Python release. 
+
+<hr>
+
+**Note**: Python 2.7 cannot be used with the current releases of Django. (The Django 1.11.x series is the last to support Python 2.7.)
+
+<hr>
+
+#### Where can we download Django?
+
+There are three places to download Django:
+
+* The Python Package Repository (PyPi), using the *pip* tool. This is the best way ti get the latest stable version of Django.
+* Use a version from your computer's package manager. Distributions of Django that are bundled with operating systems offer a familiar installation mecahnism. Note, however, that the packaged version may be quite old, and can only be installed into the system's Python environment (which may not be what you want).
+* Install from source. You can get and install the latest bleeding-edge version of Django from the source. This is not recommended for beginners but is needed when you're ready to start contributing back to Django itself.
+
+This article shows how to install Django from PyPi, in order to get the latest stable version.
+
+#### Which database?
+
+Django officially supports the PostgreSQL, MariaDB, MySQL, Oracle, and SQLite databases, and there are community libraries that provide varying levels of support for other popular SQL and NoSQL databases. We recommend that you select the same database for both production and development. (Although Django abstracts many of the database differences using its Object-Relational Mapper (ORM), there are still [potential issues](https://docs.djangoproject.com/en/3.1/ref/databases/) that are better to avoid.)
+
+For this article (and most of this module), we will be using the *SQLite* database, which stores its data in a file. SQLite is intended for use as a lightweight database and can't support a high level of concurrency. It is, however, an excellent choice for applications that are primarily read-only.
+
+<hr>
+
+**Note**: Django is configured to use SQLite by default when you start your website project using the standard tools (*django-admin*). It's a great choice when you're getting started because it requires no additional configuration or setup.
 
 <hr>
 
