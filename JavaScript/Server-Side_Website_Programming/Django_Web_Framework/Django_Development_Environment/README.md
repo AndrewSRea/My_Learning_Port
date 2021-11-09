@@ -89,13 +89,13 @@ This module assumes that you've installed Django into a virtual environment, and
 
 ## Installing Python 3
 
-In order to use Django, you will have to install Python on your operating system. If you're using *Python 3*, then you will also need the [Python Package Index]() tool -- *pip3* -- which is used to manage (install, update, and remove) Python packages/libraries used by Django and your other Python apps.
+In order to use Django, you will have to install Python on your operating system. If you're using *Python 3*, then you will also need the [Python Package Index](https://pypi.org/) tool -- *pip3* -- which is used to manage (install, update, and remove) Python packages/libraries used by Django and your other Python apps.
 
 This section briefly explains how you can check what versions of Python are present, and install new versions as needed, for Ubuntu Linux 20.04, macOS, and Windows 10.
 
 <hr>
 
-**Note**: Depending on your platform, you may also be able to install Python/pip from the operating system's own package manager or via other mechanisms. For most platforms, you can download the required installation files from [https://www.python.org/downloads/]() and install them using the appropriate platform-specific method.
+**Note**: Depending on your platform, you may also be able to install Python/pip from the operating system's own package manager or via other mechanisms. For most platforms, you can download the required installation files from [https://www.python.org/downloads/](https://www.python.org/downloads/) and install them using the appropriate platform-specific method.
 
 <hr>
 
@@ -118,10 +118,10 @@ macOS "El Capitan" and other more recent versions do not include Python 3. You c
 $ python3 -V
   python3: command not found
 ```
-You can easily install Python 3 (along with the *pip3* tool) from [python.org]():
+You can easily install Python 3 (along with the *pip3* tool) from [python.org](https://www.python.org/):
 
 1. Download the required installer:
-    1. Go to [https://www.python.org/downloads/]()
+    1. Go to [https://www.python.org/downloads/](https://www.python.org/downloads/)
     2. Select the **Download Python 3.8.6** button (the exact version number may differ).
        [**Note**: The version offered may be different. Ensure that the version you download is supported by Django (if needed, links for getting older versions can be found on the same page).] 
 2. Locate the file using *Finder*, and double-click the package file. Following the installation prompts.
@@ -135,6 +135,139 @@ You can similarly check that *pip3* is installed by listing the available packag
 ```
 pip3 list
 ```
+
+### Windows 10
+
+Windows doesn't include Python by default, but you can easily install it (along with the *pip3* tool) from [python.org](https://www.python.org/):
+
+1. Download the required installer:
+    1. Go to [https://www.python.org/downloads/](https://www.python.org/downloads/)
+    2. Select the **Download Python 3.8.6** button (the exact version number may differ).
+    [**Note**: The version offered may be different. Ensure that the version you download [is supported by Django](https://docs.djangoproject.com/en/3.1/faq/install/#what-python-version-can-i-use-with-django). (If needed, links for getting older versions can be found on the same page.)]
+2. Install Python by double-clicking on the downloaded file and following the installation prompts.
+3. Be sure to check the box labeled "Add Python to PATH".
+
+You can then verify that Python 3 was installed by entering the following text into the command prompt:
+```
+py -3 -V
+ Python 3.8.6
+```
+The Windows installer incorporates *pip3* (the Python package manager) by default. You can list installed packages as shown:
+```
+pip3 list
+```
+
+<hr>
+
+**Note**: The installer should set up everything you need for the above command to work. If, however, you get a message that Python cannot be found, you may have forgotten to add it to your system path. You can do this by running the installer again, selecting "Modify", and checking the box labeled "Add Python to environment variables" on the second page.
+
+<hr>
+
+## Using Django inside a Python virtual environment
+
+The libraries we'll use for creating our virtual environments are [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html) (Linux and macOS) and [virtualenvwrapper-win](https://pypi.org/project/virtualenvwrapper-win/) (Windows), which in turn both use the [virtualenv]() tool. The wrapper tools create a consistent interface for managing interfaces on all platforms.
+
+### Installing the virtual environment software
+
+#### Ubuntu virtual environment setup
+
+After installing Python and pip, you can install *virtualenvwrapper* (which includes *virtualenv*). The official installation guide can be found [here](https://virtualenvwrapper.readthedocs.io/en/latest/install.html), or follow the instructions below.
+
+Install the tool using *pip3*:
+```
+sudo pip3 install virtualenvwrapper
+```
+Then add the following lines to the end of your shell startup file. (This is a hidden file name **.bashrc** in your home directory.) These set the location where the virtual environments should live, the location of your development project directories, and the location of the script installed with this package:
+```
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/bin/python3 '
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+```
+
+<hr>
+
+**Note**: The `VIRTUALENVWRAPPER_PYTHON` and `VIRTUALENVWRAPPER_VIRTUALENV_ARGS` variables point to the normal installation location for Python3, and `source /usr/local/bin/virtualenvwrapper.sh` points to the normal location of the `virtualenvwrapper.sh` script. If the *virtualenv* doesn't work when you test it, one thing to check is that Python and the script are in the expected location (and then change the startup file appropriately).
+
+You can find the correct locations for your system using the commands `which virtualenvwrapper.sh` and `which python3`.
+
+<hr>
+
+Then reload the startup file by running the following command in the terminal:
+```
+source ~/.bashrc
+```
+At this point, you should see a bunch of scripts being run as shown below:
+```
+virtualenvwrapper.user_scripts creating /home/ubuntu/.virtualenvs/premkproject
+virtualenvwrapper.user_scripts creating /home/ubuntu/.virtualenvs/postmkproject
+...
+virtualenvwrapper.user_scripts creating /home/ubuntu/.virtualenvs/preactivate
+virtualenvwrapper.user_scripts creating /home/ubuntu/.virtualenvs/postactivate
+virtualenvwrapper.user_scripts creating /home/ubuntu/.virtualenvs/get_env_details
+```
+Now you can create a new virtual environment with the `mkvirtualenv` command.
+
+#### macOS virtual environment setup
+
+Setting up *virtualenvwrapper* on macOS is almost exactly the same as on Ubuntu. (Again, you can follow the instructions from either the [official installation guide](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) or below.)
+
+Install *virtualenvwrapper* (and bundling *virtualenv*) using *pip* as shown:
+```
+sudo pip3 install virtualenvwrapper
+```
+Then add the following lines to the end of your shell startup file. (These are the same lines as for Ubuntu.) If you're using the *zsh shell*, then the startup file will be a hidden file named **.zshrc** in your home directory. If you're using the *bash shell*, then it will be a hidden file named **.bash_profile**. You may need to create the file if it does not yet exist.
+```
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+```
+
+<hr>
+
+**Note**: The `VIRTUALENVWRAPPER_PYTHON` variable points to the normal installation location for Python3, and `source /usr/local/bin/virtualenvwrapper.sh` points to the normal location of the `virtualenvwrapper.sh` script. If the *virtualenv* doesn't work when you test it, one thing to check is that Python and the script are in the expected location (and then change the startup file appropriately).
+
+For example, one installation test on macOS ended up with the following lines being necessary in the startup file:
+```
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+export PROJECT_HOME=$HOME/Devel
+source /Library/Frameworks/Python.framework/Versions/3.7/bin/virtualenvwrapper.sh
+```
+You can find the correct location for your system using the commands `which virtualenvwrapper.sh` and `which python3`.
+
+<hr>
+
+Then reload the startup file by making the following call in the terminal:
+```
+source ~/.bash_profile
+```
+At this point, you may see a bunch of script being run (the same scripts as for the Ubuntu installation). You should now be able to create a new virtual environment with the `mkvirtualenv` command.
+
+<hr>
+
+**Note**: If you can't find the startup file to edit in the finder, you can also open this in the terminal using nano.
+
+Assuming you're using bash, the commands look something like this:
+```
+cd ~  # Navigate to my home directory
+ls -la  # List the content of the directory. You should see .bash_profile
+nano .bash_profile  # Open the file in the nano text editor, within the terminal
+# Scroll to the end of the file, and copy in the lines above
+# Use Ctrl+X to exit nano, choose Y to save the file.
+```
+
+<hr>
+
+#### Windows 10 virtual environment setup
+
+Installing [virtualenvwrapper-win]() is even simpler than setting up *virtualenvwrapper* because you don't need to configure where the tool stores virtual environment information (there is a default value). All you need to do is run the following command in the command prompt:
+```
+pip3 install virtualenvwrapper-win
+```
+Now you can create a new virtual environment with the `mkvirtualenv` command.
 
 
 
