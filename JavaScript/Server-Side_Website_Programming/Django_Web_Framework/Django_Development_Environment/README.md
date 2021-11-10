@@ -330,13 +330,54 @@ In Windows, *Python 3* scripts are launched by prefixing the command with `py -3
 
 <hr>
 
+## Testing your installation
 
+The above test works, but it isn't very much fun. A more interesting test is to create a skeleton project and see it working. To do this, first navigate in your command prompt/terminal to where you want to store your Django apps. Create a folder for your test site and navigate into it.
+```
+mkdir django_test
+cd django_test
+```
+You can then create a new skeleton site called "*mytestsite*" using the **django-admin** tool as shown. After creating the site, you can navigate into the folder where you will find the main script for managing projects, called **manage.py**.
+```
+django-admin startproject mytestsite
+cd mytestsite
+```
+We can run the *development web server* from within this folder using **manage.py** and the `runserver` command, as shown.
+```
+$ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
 
+System check identified no issues (0 silenced).
 
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+October 27, 2020 - 03:00:01
+Django version 3.2.1, using settings 'mytestsite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
 
+<hr>
 
+**Note**: The above command shows the Linux/macOS command. You can ignore the warnings about "18 unapplied migration(s)" at this point!
 
+<hr>
 
+Once the server is running, you can view the site by navigating to the following URL on your local web browser: `http://127.0.0.1:8000/`. You should see a site that looks like this:
 
+![Image of a Django skeleton site open in a browser](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment/django_skeleton_app_homepage_-_django_3.1.png)
+
+## Summary
+
+You now have a Django development environment up and running on your computer. In the testing section, you also briefly saw how we can create a new Django website using `django-admin startproject`, and run it in your browser using the development web server (`python3 manage.py runserver`). In the next article, we expand on this process, building a simple but complete web application.
 
 ## See also 
+
+* [Quick Install Guide](https://docs.djangoproject.com/en/3.1/intro/install/) (Django docs)
+* [How to install Django -- Complete guide](https://docs.djangoproject.com/en/3.1/topics/install/) (Django docs) - includes information on how to remove Django
+* [How to install Django on Windows](https://docs.djangoproject.com/en/3.1/howto/windows/) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Introduction#django-introduction) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Development_Environment#setting-up-a-django-development-environment) - [[Previous page]]()
