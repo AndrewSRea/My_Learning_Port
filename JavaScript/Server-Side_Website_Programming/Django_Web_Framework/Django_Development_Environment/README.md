@@ -263,12 +263,72 @@ nano .bash_profile  # Open the file in the nano text editor, within the terminal
 
 #### Windows 10 virtual environment setup
 
-Installing [virtualenvwrapper-win]() is even simpler than setting up *virtualenvwrapper* because you don't need to configure where the tool stores virtual environment information (there is a default value). All you need to do is run the following command in the command prompt:
+Installing [virtualenvwrapper-win](https://pypi.org/project/virtualenvwrapper-win/) is even simpler than setting up *virtualenvwrapper* because you don't need to configure where the tool stores virtual environment information (there is a default value). All you need to do is run the following command in the command prompt:
 ```
 pip3 install virtualenvwrapper-win
 ```
 Now you can create a new virtual environment with the `mkvirtualenv` command.
 
+### Creating a virtual environment
+
+Once you've installed *virtualenvwrapper* or *virtualenvwrapper-win*, then working with virtual environments is very similar on all platforms.
+
+Now you can create a new virtual environment with the `mkvirtualenv` command. As this command runs, you'll see the environment being set up (what you see is slightly platform-specific). When the command completes, the new virtual environment will be active -- you can see this because the start of the prompt will be the name of the environment in brackets. (Below we show this for Ubuntu, but the final line is similar for Windows/macOS.)
+```
+$ mkvirtualenv my_django_environment
+
+Running virtualenv with interpreter /usr/bin/python3
+...
+virtualenvwrapper.user_scripts creating /home/ubuntu/.virtualenvs/t_env7/bin/get_env_details
+(my_django_environment) ubuntu@ubuntu:~$
+```
+Now you're inside the virtual environment, you can install Django and start developing.
+
+<hr>
+
+**Note**: From now on in this article (and indeed, the module), please assume that any commands are run within a Python virtual environment like the one we set up above.
+
+<hr>
+
+### Using a virtual environment
+
+There are just a few other useful commands that you should know. (There are more in the tool documentation, but these are the ones you'll use regularly.)
+
+* `deactivate` -- Exit out of the current Python virtual environment.
+* `workon` -- List available virtual environments.
+* `workon name_of_environment` -- Activate the specified Python virtual environment.
+* `rmvirtualenv name_of_environment` -- Remove the specified environment.
+
+## Installing Django
+
+Once you've created a virtual environment, and called `workon` to enter it, you can use *pip3* to install Django.
+```
+pip3 install django~=3.1
+```
+You can test that Django is installed by running the following command. (This just tests that Python can find the Django module.)
+```
+# Linux/macOS
+python3 -m django --version
+ 3.1.2
+
+# Windows
+py -3 -m django --version
+ 3.1.2
+```
+
+<hr>
+
+**Note**: If the above Windows command does not show a django module present, try:
+```
+py -m django --version
+```
+In Windows, *Python 3* scripts are launched by prefixing the command with `py -3`, although this can vary depending on your specific installation. Try omitting the `-3` modifier if you encounter any problems with commands. In Linux/macOS, the command is `python3`.
+
+<hr>
+
+:warning: **Warning**: The rest of this **module** uses the *Linux* command for invoking Python 3 (`python3`). If you're working on *Windows*, replace this prefix with: `py -3`.
+
+<hr>
 
 
 
