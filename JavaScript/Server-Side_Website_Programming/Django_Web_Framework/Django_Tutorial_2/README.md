@@ -101,8 +101,48 @@ locallibrary/
 In addition, we now have:
 
 * A *migrations* folder, used to store "migrations" -- files that allow you to automatically update your database as you modify your models.
-* **__init__.py** -- an empty file created here so that Django/Python will recognize the folder as a [Python Package]() and allow you to use its objects within other parts of the project.
+* **__init__.py** -- an empty file created here so that Django/Python will recognize the folder as a [Python Package](https://docs.python.org/3/tutorial/modules.html#packages) and allow you to use its objects within other parts of the project.
 
 <hr>
 
 **Note**: Have you noticed what is missing from the files list above? While there is a place for your views and models, there is nowhere for you to put your url mappings, templates, and static files. We'll show you how to create them further along. (These aren't needed in every website but they are needed in this example.)
+
+<hr>
+
+## Registering the catalog application
+
+Now that the application has been created, we have to register it with the project so that it will be included when any tools are run (like adding models to the database, for example). Applications are registered by adding them to the `INSTALLED_APPS` list in the project settings.
+
+Open the project settings file, **django_projects/locallibrary/settings.py**, and find the definition for the `INSTALLED_APPS` list. Then add a new line at the end of the list, as shown below:
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # Add our new application
+    'catalog.apps.CatalogConfig', #This object was created for us in /catalog/apps.py
+]
+```
+The new line specifies the application configuration object (`CatalogConfig`) that was generated for you in **/locallibrary/catalog/apps.py** when you created the application.
+
+<hr>
+
+**Note**: You'll notice that there are already a lot of other `INSTALLED_APPS` (and `MIDDLEWARE`, further down in the settings file). These enable support for the [Django administration site](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#django-tutorial-part-4-django-admin-site) and the functionality it uses (including sessions, authentication, etc.).
+
+<hr>
+
+## Specifying the database
+
+This is also the point where you would normally specify the database to be used for the project. It makes sense to use the same database for development and production where possible, in order to avoid minor differences in behavior. You can find out about the different options in [Databases](https://docs.djangoproject.com/en/3.1/ref/settings/#databases) (Django docs). We'll use the SQLite database for this example, because we don't expect to require a lot of concurrent access on a demonstration database, and it requires no additional work to set up! You can see how this database is configured in **settings.py**:
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+Because we are using SQLite, we don't need to do any further setup here. Let's move on!
