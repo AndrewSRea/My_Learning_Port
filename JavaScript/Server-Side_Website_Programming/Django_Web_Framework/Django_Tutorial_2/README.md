@@ -210,6 +210,81 @@ urlpatterns += [
 
 <hr>
 
+Now let's redirect the root URL of our site (i.e. `127.0.0.1:8000`) to the URL `127.0.0.1:8000/catalog/`. This is the only app we'll be using in this project. To do this, we'll use a special view function, `RedirectView`, which takes the new relative URL to redirect to (`/catalog/`) as its first argumnent when the URL pattern specified in the `path()` function is matched (the root URL, in this case).
+
+Add the following lines to the bottom of the file:
+```
+#Add URL maps to redirect the base URL to our application
+from django,views.generic import RedirectView
+urlpatterns += [
+    path('', RedirectView.as_view(url='catalog/', permanent=True)),
+]
+```
+Leave the first parameter of the path function empty to imply '/'. If you write the first parameter as '/', Django will give you the following warning when you start the development server:
+```
+System check identified some issues:
+
+WARNINGS:
+?: (urls.W002) Your URL pattern '/' has a route beginning with a '/'.
+Remove this slash as it is unnecessary.
+If this pattern is targeted in an include(), ensure the include() pattern has a trailing '/'.
+```
+Django does not serve static files like CSS, JavaScript, and images by default, but it can be useful for the development web server to do so while you're creating your site. As a final addition to this URL mapper, you can enable the serving of static files during development by appending the following lines.
+
+Add the following final block to the bottom of the file now:
+```
+# Use static() to add url mapping to serve static files during development (only)
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+```
+
+<hr>
+
+**Note**: There are a number of ways to extend the `urlpatterns` list. (Previously, we just appended a new list item using the += operator to clearly separate the old and new code.) We could have instead just included this new pattern-map in the original list definition:
+```
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('catalog/', include('catalog.urls')),
+    path('', RedirectView.as_view(url='catalog/')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+```
+
+<hr>
+
+As a final step, create a file inside your catalog folder called **urls.py**, and add the following text to define the (empty) imported `urlpatterns`. This is where we'll add our patterns as we build the application.
+```
+from django.urls import path
+from . import views
+
+urlspatterns = [
+
+]
+```
+
+## Testing the website framework
+
+At this point, we have a complete skeleton project. The website doesn't actually *do* anything yet, but it's worth running it to make sure that none of our changes have broken anything. 
+
+Before we do that, we should first run a *database migration*. This updates our database (to include any models in our installed applications) and removes some build warnings.
+
+### Running database migrations
+
+Django uses an Object-Relational-Mapper (ORM) to map model definitions in the Django code to the data structure used by the underlying database. As we change our model definitions, Django tracks the changes and can create database migration scripts (in **/localibrary/catalog/migrations/**) to automatically migrate the underlying data structure in the database to match the model.
+
+When we created the website, Django automatically added a number of models for use by the admin section of the site (which we'll look at later). Run the following commands to define tables for those models in the database (make sure you are in the directory that contains **manage.py**):
+```
+python manage.py makemigrations
+python3 manage.py migrate
+```
+
+<hr>
+
+:warning: **Warning**: You'll need to run these commands every time your models change in a way that will affect the structure of the data that needs to be stored (including both addition and removal of whole models and individual fields).
+
+<hr>
+
 
 
 
