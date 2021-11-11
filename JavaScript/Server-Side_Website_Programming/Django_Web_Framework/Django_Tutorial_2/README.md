@@ -146,3 +146,79 @@ DATABASES = {
 }
 ```
 Because we are using SQLite, we don't need to do any further setup here. Let's move on!
+
+## Other project settings
+
+The **settings.py** file is also used for configuring a number of other settings but at this point, you probably only want to change the [TIME ZONE](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-TIME_ZONE). This should be made equal to a string from the standard [List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (the TZ column in the table contains the values you want). Change your `TIME_ZONE` value to one of these strings appropriate for your time zone. For example:
+```
+TIME_ZONE = 'Europe/London'
+```
+There are two other settings you won't change now, but that you should be aware of:
+
+* `SECRET_KEY` - this is a secret key that is used as part of Django's website security strategy. If you're not protecting this code in development, you'll need to use a different code (perhaps read from an environment variable or file) when putting it into production.
+* `DEBUG` - this enables debugging logs to be displayed on error, rather than HTTP status code responses. This should be set to `False` in production as debug information is useful for attackers, but for now we can keep it set to `True`.
+
+## Hooking up the URL mapper
+
+The website is created with a URL mapper file (**urls.py**) in the project folder. While you can use this file to manage all your URL mappings, it is more useful to defer mappings to the associated application.
+
+Open **locallibrary/locallibrary/urls.py** and note the instructional text which explains some of the ways to use the URL mapper.
+```
+"""locallibrary URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import: from my_app import views
+    2. Add a URL to urlpatterns: path('', views.home, name='home')
+Class-based views
+    1. Add an import: from other_app.views import Home
+    2. Add a URL to urlpatterns: path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns: path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+```
+The URL mappings are managed through the `urlpatterns` variable, which is a Python *list* of `path()` functions. Each `path()` function either associates a URL pattern to a *specific view*, which will be displayed when the pattern is matched, or with another list of URL pattern testing code. (In this second case, the pattern becomes the "base URL" for patterns defined in the target module.) The `urlpatterns` list initially defines a single function that maps all URLs with the pattern *admin/* to the module `admin.site.urls`, which contains the Administration application's own URL mapping definitions.
+
+<hr>
+
+**Note**: The route in `path()` is a string defining a URL pattern to match. This string might include a named variable (in angle brackets), e.g. `'catalog/<id>/'`. This pattern will match a URL like **/catalog/\*any_chars\*/** and pass *any_chars* to the view as a string with parameter name `id`. We discuss path methods and route patterns further in later topics.
+
+<hr>
+
+To add a new list item to the `urlpatterns` list, add the following lines to the bottom of the file. This new item includes a `path()` that forwards requests with the pattern `catalog/` to the module `catalog.urls` (the file with the relative URL **catalog/urls.py**).
+```
+# Use include() to add paths from the catalog application
+from django.urls import include
+
+urlpatterns += [
+    path('catalog/', include('catalog.urls')),
+]
+```
+
+<hr>
+
+**Note**: Note that we included the import line (`from django.urls import include`) with the code that uses it (so it is easy to see what we've added), but it is common to include all your import lines at the top of a Python file.
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+cd JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2
