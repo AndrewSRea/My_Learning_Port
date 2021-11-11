@@ -210,6 +210,10 @@ urlpatterns += [
 
 <hr>
 
+**Note**: The code block addition above and the following code block additions below will lead to errors showing in your Terminal window (if you have your code editor console window open). This is OK, as you will see [below]().
+
+<hr>
+
 Now let's redirect the root URL of our site (i.e. `127.0.0.1:8000`) to the URL `127.0.0.1:8000/catalog/`. This is the only app we'll be using in this project. To do this, we'll use a special view function, `RedirectView`, which takes the new relative URL to redirect to (`/catalog/`) as its first argumnent when the URL pattern specified in the `path()` function is matched (the root URL, in this case).
 
 Add the following lines to the bottom of the file:
@@ -285,6 +289,17 @@ python3 manage.py migrate
 
 <hr>
 
+The `makemigrations` command *creates* (but does not apply) the migrations for all applications installed in your project. You can specify the application name as well to just run a migration for a single project. This gives you a chance to check out the code for these migrations before they are applied. If you're a Django expert, you maqy choose to tweak them slightly!
+
+The `migrate` command is what applies the migrations to your database. Django tracks which ones have been added to the current database.
+
+<hr>
+
+**Note**: See [Migrations](https://docs.djangoproject.com/en/3.1/topics/migrations/) (Django docs) for additional information about the lesser-used migration commands.
+
+<hr>
+
+### Running the website
 
 
 
