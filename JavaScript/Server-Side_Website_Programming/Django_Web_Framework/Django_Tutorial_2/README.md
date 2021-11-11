@@ -210,7 +210,7 @@ urlpatterns += [
 
 <hr>
 
-**Note**: The code block addition above and the following code block additions below will lead to errors showing in your Terminal window (if you have your code editor console window open). This is OK, as you will see [below]().
+**Note**: The code block addition above and the following code block additions below will lead to errors showing in your Terminal window (if you have your code editor Terminal window open). This is OK, as you will see [below](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#running-the-website).
 
 <hr>
 
@@ -301,6 +301,66 @@ The `migrate` command is what applies the migrations to your database. Django tr
 
 ### Running the website
 
+During development, you can serve the website first using the *development web server*, and then view it on your local web browser.
+
+<hr>
+
+**Note**: The development web server is not robust or performant enough for production use, but it is a very easy way to get your Django website up and running during development to give it a convenient quick test. By default, it will serve the site to your local computer (`http://127.0.0.1:8000/`), but you can also specify other computers on your network to serve to. For more information, see [django-admin and manage.py: runserver](https://docs.djangoproject.com/en/3.1/ref/django-admin/#runserver) (Django docs).
+
+<hr>
+
+Run the *development web server* by calling the `runserver` command (in the same directory as **manage.py**):
+```
+python3 manage.py runserver
+
+ Performing system checks...
+
+ System check identified no issues (0 silenced).
+ August 15, 2018 - 16:11:26
+ Django version 2.1, using settings 'locallibrary.settings'
+ Starting development server at http://127.0.0.1:8000/
+ Quit the server with CTRL-BREAK.
+```
+Once the server is running, you can view the site by navigating to `http://127.0.0.1:8000/` in your local web browser. You should see a site error page that looks like this:
+
+![Image of an error page from running the Django development web server](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/skeleton_website/django_404_debug_page.png)
+
+Don't worry! This error page is expected because we don't have any pages/urls defined in the `catalog.urls` module (which we're redirected to when we get a URL to the root of the site).
+
+<hr>
+
+**Note**: The example page demonstrates a great Django feature -- automated debug logging. Whenever a page cannot be found, Django displays an error screen with useful information or any error raised by the code. In this case, we can see that the URL we've supplied doesn't match any of our URL patterns (as listed). Logging is turned off in production (which is when we put the site live on the Web), in which case a less informative but more user-friendly page will be served.
+
+<hr>
+
+At this point, we know that Django is working!
+
+<hr>
+
+**Note**: You should rerun migrations and retest the site whenever you make significant changes. It doesn't take very long!
+
+<hr>
+
+## Challenge yourself
+
+The **catalog/** directory contains files for the views, models, and other parts of the application. Open these files and inspect the boilerplate.
+
+As you saw previously, a URL-mapping for the Admin site has already been added in the project's **urls.py**. Navigate to the admin area in your browser and see what happens. (You can infer the correct URL from the mapping.)
+
+## Summary
+
+You have now created a complete skeleton website project, which you can go on to populate with urls, models, views, and templates.
+
+Now that the skeleton for the [Local Library website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_Local_Library#django-tutorial-the-local-library-website) is complete and running, it's time to start writing the code that makes this website do what it is supposed to do.
+
+## See also
+
+* [Writing your first Django app - part 1](https://docs.djangoproject.com/en/3.1/intro/tutorial01/) (Django docs)
+* [Applications](https://docs.djangoproject.com/en/3.1/ref/applications/#configuring-applications) (Django docs). Contains information on configuring applications.
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_Local_Library#django-tutorial-the-local-library-website) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website) - [[Next page]]()
 
 
 
