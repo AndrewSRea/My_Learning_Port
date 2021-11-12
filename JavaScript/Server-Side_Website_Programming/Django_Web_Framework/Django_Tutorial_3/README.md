@@ -77,7 +77,23 @@ Our above example has a single field called `my_field_name`, of type `models.Cha
 * `max_length=20` -- states that the minimum length of a value in this field is 20 characters.
 * `help_text='Enter field documentation'` -- provides a text label to display to help users know what value to provide when this value is to be entered by a user via an HTML form.
 
+The field name is used to refer to it in queries and templates. Fields also have a label specified as an argument (`verbose_name`), the default value of which is `None`, meaning replacing any underscores in the field name with a space (for example, `my_field_name` would have a default label of *my field name*). Note that when the label is used as a form label through Django frame, the first letter of the label is capitalized (for example, `my_field_name` would be *My field name*).
 
+The order that fields are declared will affect their default order if a model is rendered in a form (e.g. in the Admin site), though this may be overridden.
+
+##### Common field arguments
+
+The following common arguments can be used when declaring many/most of the different field types:
+
+* [help_text](https://docs.djangoproject.com/en/3.1/ref/models/fields/#help-text): Provides a text label for HTML forms (e.g. in the admin site), as described above.
+* [verbose_name](https://docs.djangoproject.com/en/3.1/ref/models/fields/#verbose-name): A human-readable name for the field used in field labels. If not specified, Django will infer the default verbose name from the field name.
+* [default](https://docs.djangoproject.com/en/3.1/ref/models/fields/#default): The default value for the field. This can be a value or a callable object, in which case the object will be called every time a new record is created.
+* [null](https://docs.djangoproject.com/en/3.1/ref/models/fields/#null): If `True`, Django will store blank values as `NULL` in the database for fields where this is appropriate (a `CharField` will instead store an empty string). The default is `False`.
+* [blank](https://docs.djangoproject.com/en/3.1/ref/models/fields/#blank): If `True`, the field is allowed to be blank in your forms. The default is `False`, which means that Django's form validation will force you to enter a value. This is often used with `null=True`, because if you're going to allow blank values, you also want the database to be able to represent them appropriately.
+* [choices](https://docs.djangoproject.com/en/3.1/ref/models/fields/#choices): A group of choices for this field. If this is provided, the default corresponding form widget will be a select box with these choices instead of the standard text field.
+* [primary_key](https://docs.djangoproject.com/en/3.1/ref/models/fields/#primary-key): If `True`, sets the current field as the primary key for the model. (A primary key is a special database column designated to uniquely identify all the different table records.) If no field is specified as the primary key, then Django will automatically add a field for this purpose.
+
+There are many other options -- you can view the [full list of field options here](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-options).
 
 
 
