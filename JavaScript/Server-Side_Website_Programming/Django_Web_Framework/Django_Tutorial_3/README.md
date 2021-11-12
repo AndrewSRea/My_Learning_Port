@@ -351,14 +351,65 @@ The method `__str__()` represents the `BookInstance` object using a combination 
 
 ### Author model
 
+Copy the `Author` model (shown below) underneath the existing code in **models.py**.
+```
+class Author(models.Model):
+    """Model representing an author."""
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_death = models.DateField('Died', null=True, blank=True)
 
+    class Meta:
+        ordering = ['last_name', 'first_name']
 
+    def get_absolute_url(self):
+        """Returns the url to access a particular author instance."""
+        return reverse('author-detail', args=[str(self.id)])
 
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.last_name}, {self.first_name}'
+```
+All of the fields/methods should now be familiar. The model defines an author as having a first name, last name, and dates of birth and death (both optional). It specifies that, by default, the `__str__()` returns the name in *last name, first name* order. The `get_absolute_url()` method reverses the `author-detail` URL mapping to get the URL for displaying an individual author.
 
+## Rerun the database migrations
 
+All your models have now been created. No rerun your database migrations to add them to your database.
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
 
+## Language model -- challenge
 
+Imagine a local benefactor donates a number of new books written in another language (say, Farsi). The challenge is to work out how these would be best represented in our library website, and then to add them to the models.
 
+Some things to consider:
 
+* Should "language" be associated with a `Book`, `BookInstance`, or some other object?
+* Should the different languages be represented using model, a free text field, or a hard-coded selection list?
 
-cd JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_3
+After you've decided, add the field. You can see what we decided on GitHub [here](https://github.com/mdn/django-locallibrary-tutorial/blob/master/catalog/models.py).
+
+Don't forget that after a change to your model, you should again rerun your database migrations to add the changes.
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+## Summary
+
+In this article, we've learned how models are defined, and then used this information to design and implement appropriate models for the *LocalLibrary* website.
+
+At this point, we'll divert briefly from creating the site, and check out the *Django Administration* site. This site will allow us to add some data to the library, which we can then display using our (yet to be created) views and templates.
+
+## See also
+
+* [Writing your first Django app, part 2](https://docs.djangoproject.com/en/3.1/intro/tutorial02/) (Django docs)
+* [Making queries](https://docs.djangoproject.com/en/3.1/topics/db/queries/) (Django docs)
+* [QuerySet API Reference](https://docs.djangoproject.com/en/3.1/ref/models/querysets/) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_3#django-tutorial-part-3-using-models) - [[Next page]]()
