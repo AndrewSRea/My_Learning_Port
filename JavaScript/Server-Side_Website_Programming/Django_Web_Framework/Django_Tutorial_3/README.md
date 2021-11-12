@@ -242,7 +242,57 @@ from django.db import models
 
 Copy the `Genre` model code shown below and paste it into the bottom of your `models.py` file. This model is used to store information about the book category -- for example, whether it is fiction or non-fiction, romance or military history, etc. As mentioned above, we've created the Genre as a model rather than as free text or a selection list so that the possible values can be managed through the database rather than being hard coded.
 ```
+class Genre(models.Model):
+    """Model representing a book genre."""
+    name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
 
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.name
+```
+The model has a single `CharField` field (`name`), which  is used to describe the genre. (This is limited to 200 characters and has some `help_text`.) At the end of the model, we declare a `__str__()` method, which returns the name of the genre defined by a particular record. No verbose name has been defined, so the field will be called `Name` in forms.
+
+### Book model
+
+Copy the `Book` model below and again paste it into the bottom of your `models.py` file. The `Book` model represents all information about an available book in a general sense, but not a particular physical "instance" or "copy" available for loan. The model uses a `CharField` to represent the book's `title` and `isbn`. For `isbn`, note how the first unnamed parameter explicitly sets the label as "ISBN" (otherwise it would default to "Isbn"). We also set parameter `unique` as `true` in order to ensure all books have a unique ISBN. (The `unique` parameter makes the field value globally unique in a table.) The model uses `TextField` for the `summary` because this text may need to be quite long.
+```
+from django.urls import reverse # Used to generate URLs by reversing the URL patterns
+
+class Book(models.Model):
+    """Model representing a book (but not a specific copy of a book)."""
+    title = models.CharField(max_length=200)
+
+    # ForeignKey used because book can only have one author, but authors can have multiple books
+    # Author as a string rather than object because it hasn't been declared yet in the file
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
+
+    summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
+    isbn = models.CharField('ISBN', max_length=13, unique=True,
+                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
+
+    # ManyToManyField used because genre can contain many books. Books can cover many genres.
+    # Genre class has already been defined so we can specify the object above.
+    genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.title 
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('book-detail', args=[str(self.id)])
+```
+The genre is a `ManyToManyField`, so that a book can have multiple genres and a genre can have many books. The author is declared as `ForeignKey`, so each book will only have one author, but an author may have many books. (In practice, a book might have multiple authors, but not in this implementation!)
+
+In both field types, the related model class is declared as the first unnamed parameter using either the model class or a string containing the name of the related model. You must use the name of the model as a string if the associated class has not yet been defined in this file before it is referenced! The other parameters of interest in the `author` field are `null=True`, which allows the database to store a `Null` value if no author is selected, and `on_delete=models.SET_NULL`, which will set the value of the book's author field to `Null` if the associated author record is deleted.
+
+<hr>
+
+:warning: **Warning**: By default, `on_delete` is set to equal `models.CASCADE` (`on_delete=models.CASCADE`), which means that if the author was deleted, this book would be deleted, too! We use `SET_NULL` here, but we could also use `PROTECT` or `RESTRICT` to prevent the author being deleted while any book uses it.
+
+<hr>
+
+The model also defines `__str__()`, using the book's `title` field to represent a `Book` record. The final method, `get_absolute_url()` returns a URL that can be used to access a detail record for this model. (For this to work, we will have to define a URL mapping that has the name `book-detail`, and define an assocaited view and template.)
 
 
 
