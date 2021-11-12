@@ -294,6 +294,62 @@ In both field types, the related model class is declared as the first unnamed pa
 
 The model also defines `__str__()`, using the book's `title` field to represent a `Book` record. The final method, `get_absolute_url()` returns a URL that can be used to access a detail record for this model. (For this to work, we will have to define a URL mapping that has the name `book-detail`, and define an assocaited view and template.)
 
+### BookInstance model
+
+Next, copy the `BookInstance` model (shown below) under the other models. The `BookInstance` represents a specific copy of a book that someone might borrow, and includes information about whether the copy is avaiable or on what date it is expected back, "imprint" or version details, and a unique id for the book in the library.
+
+Some of the fields and methods will now be familiar. The model uses:
+
+* `ForeignKey` to identify the associated `Book`. (Each book can have many copies, but a copy can only have one `Book`.) The key specifies `on_delete=models.RESTRICT` to ensure that the `Book` cannot be deleted while referenced by a `BookInstance`.
+* `CharField` to represent the imprint (specific release) of the book.
+```
+import uuid # Required for unique book instances
+
+class BookInstance(models.Model):
+    """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
+    book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
+    imprint = models.CharField(max_length=200)
+    due_back = models.DateField(null=True, blank=True)
+
+    LOAN_STATUS = (
+        ('m', 'Maintainance'),
+        ('o', 'On loan'),
+        ('a', 'Available'),
+        ('r', 'Reserved'),
+    )
+
+    status = models.CharField(
+        max_length=1,
+        choices=LOAN_STATUS,
+        blank=True,
+        default='m',
+        help_text='Book availability',
+    )
+
+    class Meta:
+        ordering = ['due_back']
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.id} ({self.book.title})'
+```
+We additionally declare a few new types of field:
+
+* `UUIDField` is used for the `id` field to set it as the `primary_key` for this model. This type of field allocates a globally unique value for each instance (one for every book you can find in the library).
+* `DateField` is used for the `due_back` date (at which the book is expected to become available after being borrowed or in maintenance). This value can be `blank` or `null` (needed for when the book is available). The model metadata (`Class Meta`) uses the field to order records when they are returned in a query.
+* `status` is a `CharField` that defines a choice/selection list. As you can see, we define a tuple containing tuples of key-value pairs and pass it to the choices argument. The value in a key/value pair is a display value that a user can select, while the keys are the values that are actually saved if the option is selected. We've also set a default value of 'm' (maintenance) as books will initially be created unavailable before they are stocked on the shelves.
+
+The method `__str__()` represents the `BookInstance` object using a combination of its unique id and the associated `Book`'s title.
+
+<hr>
+
+**Note**: A little Python:
+
+* Starting with Python 3.6, you can use the string interpolation syntax (also known as f-strings): `f'{self.id} ({self.book.title})'`.
+* In older versions of this tutorial, we were using a [formatted string](https://www.python.org/dev/peps/pep-3101/) syntax, which is also a valid way of formatting strings in Python (e.g. `'{0} ({1})'.format(self.id,self.book.title)`).
+
+### Author model
 
 
 
