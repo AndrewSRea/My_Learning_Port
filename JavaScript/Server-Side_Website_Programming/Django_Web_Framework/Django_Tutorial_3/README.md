@@ -111,6 +111,90 @@ The following list describes some of the more commonly used types of fields.
 
 There are many other types of fields, including fields for different types of numbers (big integers, small integers, floats), Booleans, URLs, slugs, unique ids, and other "time-related" information (duration, time, etc.). You can view the [full list here](https://docs.djangoproject.com/en/3.1/ref/models/fields/#field-types).
 
+#### Metadata
+
+You can decalre model-level metadata for your Model by declaring `class Meta`, as shown:
+```
+class Meta:
+    ordering = ['-my_field_name']
+```
+One of the most useful features of this metadata is to control the *default ordering* of records returned when you query the model type. You do this by specifying the match order in a list of field names to the `ordering` attribute, as shown above. The ordering will depend on the type of field (character fields are sorted alphabetically, while date field are sorted in chronological order). As shown above, you can prefix the field name with a minus symbol (`-`) to reverse the sorting order.
+
+So, as an example, if we chose to sort books like this by default:
+```
+ordering = ['title', '-pubdate']
+```
+...the books would be sorted alphabetically by title, from A-Z, and then by publication date inside each title, from newest to oldest.
+
+Another common attribute is `verbose_name`, a verbose name for the class in singular and plural form:
+```
+verbose_name = 'BetterName'
+```
+Other useful attributes allow you to create and apply new "access permissions" for the model (default permissions are applied automatically), allow ordering based on another field, or to declare that the class is "abstract" (a base class that you cannot create records for, and will instead be derived from to create other models).
+
+Many of the other metadata options control what database must be used for the model and how the data is stored. (These are really only useful if you need to map a model to an existing database.)
+
+The full list of metadata options are available here: [Model metadata options](https://docs.djangoproject.com/en/3.1/ref/models/options/) (Django docs).
+
+#### Methods
+
+A model can also have methods.
+
+**Minimally, in every model you should define the standard Python class method `__str__()` to return a human-readable string for each object.** This string is used to represent individual records in the administration site (and anywhere else you need to refer to a model instance). Often this will return a title or name field from the model.
+```
+def __str__(self):
+    return self.field_name
+```
+Another common method to include in Django models is `get_absolute_url()`, which returns a URL for displaying individual model records on the website. (If you define this method, then Django will automatically add a "View on Site" button to the model's record editing screens in the Admin site.) A typical pattern for `get_absolute_url()` is shown below:
+```
+def get_absolute_url(self):
+    """Returns the url to access a particular instance of the model."""
+    return reverse('model-detail-view', args=[str(self.id)])
+```
+
+<hr>
+
+**Note**: Assuming you will use URLs like `/myapplication/mymodelname/2` to display individual records for your model (where "2" is the `id` for a particular record), you will need to create a URL mapper to pass the response and id to a "model detail view" (which will do the work required to display the record). The `reverse()` function above is able to "reverse" your url mapper (in the above case, named '*model-detail-view*') in order to create a URL of the right format.
+
+Of course, to make this work, you still have to write the URL mapping, view, and template!
+
+<hr>
+
+You can also define any other methods you like, and call them from your code or templates (provided that they don't take any parameters).
+
+### Model management
+
+Once you've defined your model classes, you can use them to create, update, or delete records, and to run queries to get all records or particular subsets of records. We'll show you how to do that in the tutorial when we define our views, but here is a brief summary.
+
+#### Creating and modifying records
+
+To create a record, you can define an instance of the model and then call `save()`.
+```
+# Create a new record using the model's constructor
+record = MyModelName(my_field_name="Instance #1")
+
+# Save the object into the database.
+record.save()
+```
+
+<hr>
+
+**Note**: If you haven't declared any field as a `primary_key`, the new record will be given one automatically, with the field name `id`. You could query this field after saving the above record, and it would have a value of 1.
+
+<hr>
+
+You can access the fields in this new record using the dot syntax, and change the values. You have to call `save()` to store modified values to the database.
+```
+# Access model field values using Python attributes.
+print(record.id) # should return 1 for the first record.
+print(record.my_field_name) # should print 'Instance #1'
+
+# Change record by modifying the fields, then calling save().
+record.my_field_name = "New Instance Name"
+record.save()
+```
+
+
 
 
 
