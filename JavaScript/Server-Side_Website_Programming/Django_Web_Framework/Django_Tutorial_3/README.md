@@ -194,6 +194,56 @@ record.my_field_name = "New Instance Name"
 record.save()
 ```
 
+#### Searching for records
+
+You can search for records that match certain criteria using the model's `objects` attribute (provided by the base class).
+
+<hr>
+
+**Note**: Explaining how to search for records using "abstract" model and field names can be a little confusing. In the discussion below, we'll refer to a `Book` model with `title` and `genre` fields, where `genre` is also a model with a single field `name`.
+
+<hr>
+
+We can get all records for a model as a `QuerySet`, using `objects.all()`. The `QuerySet` is an iterable object, meaning that it contains a number of objects that we can iterate/loop through.
+```
+all_books = Book.objects.all()
+```
+Django's `filter()` method allows us to filter the returned `QuerySet` to matchg a specified **text** or **numeric** field against particular criteria. For example, to filter for books that contain "wild" in the title and then count them, we could do the following:
+```
+wild_books = Book.objects.filter(title__contains='wild')
+number_wild_books = wild_books.count()
+```
+The fields to match and the type of match are defined in the filter parameter name, using the format: `field_name__match_type`. (Note the *double underscore* between `title` and `contains` above.) Above, we're filtering `title` with a case-sensitive match. There are many other types of matches you can do: `icontains` (case insensitive), `iexact` (case-insensitive exact match), `exact` (case-sensitive exact match), and `in`, `gt` (greater than), `startswith`, etc. The [full list is here](https://docs.djangoproject.com/en/3.1/ref/models/querysets/#field-lookups).
+
+In some cases, you'll need to filter on a field that defines a one-to-many relationship to another model (e.g. a `ForeignKey`). In this case, you can "index" to fields within the related model with additional double underscores. So, for example, to filter for books with a specific genre pattern, you will have to index to the `name` through the `genre` field, as shown below:
+```
+# Will match on: Fiction, Science fiction, non-fiction, etc.
+books_containing_genre = Book.objects.filter(genre__name__icontains='fiction')
+```
+
+<hr>
+
+**Note**: You can use underscores (`__`) to navigate as many levels of relationships (`ForeignKey/ManyToManyField`) as you like. For example, a `Book` that had different types, defined using a further "cover" relationship, might have a parameter name: `type__cover__name__exact='hard'`.
+
+<hr>
+
+There is a lot more you can do with queries, including backwards searches from related models, chaining filters, returning a smaller set of values, etc. For more information, see [Making queries](https://docs.djangoproject.com/en/3.1/topics/db/queries/) (Django docs).
+
+## Defining the LocalLibrary Models
+
+In this section, we will start defining the models for the library. Open *models.py* (in */locallibrary/catalog/*). The boilerplate at the top of the page imports the *models* module, which contains the model base class `models.Model` that our models will inherit from.
+```
+from django.db import models
+
+# Create your models here.
+```
+
+### Genre model
+
+Copy the `Genre` model code shown below and paste it into the bottom of your `models.py` file. This model is used to store information about the book category -- for example, whether it is fiction or non-fiction, romance or military history, etc. As mentioned above, we've created the Genre as a model rather than as free text or a selection list so that the possible values can be managed through the database rather than being hard coded.
+```
+
+
 
 
 
