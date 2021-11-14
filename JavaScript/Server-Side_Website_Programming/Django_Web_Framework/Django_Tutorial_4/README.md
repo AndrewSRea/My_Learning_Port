@@ -152,6 +152,52 @@ class BookInstanceAdmin(admin.ModelAdmin):
 ```
 Currently all of our admin classes are empty (see `pass`) so the admin behavior will be unchanged! We can now extend these to define our model-specific admin behavior.
 
+### Configure list views
+
+The *LocalLibrary* currently lists all authors using the object name generated from the model `__str__()` method. This is fine when you only have a few authors but once you have many, you may end up having duplicates. To differentiate them, or just because you want to show more interesting information about each author, you can use [`list_display`](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display) to add additional fields to the view.
+
+Replace your `AuthorAdmin` class with the code below. The field names to be displayed in the lsit are declared in a *tuple* in the required order, as shown. (These are the same names as specified in your original model.)
+```
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
+```
+Now navigate to the author list in your website. The fields above should now be displayed, like so:
+
+![Image of an "Author" list in a Django Admin application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_author_list.png)
+
+For our `Book` model, we'll additionally display the `author` and `genre`. The `author` is a `ForeignKey` field (one-to-many) relationship, and so will be represented by the `__str__()` value for the associated record. Replace the `BookAdmin` class with the version below.
+```
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'display_genre')
+```
+Unfortunately, we can't directly specify the `genre` field in `list_display` because it is a `ManyToManyField`. (Django prevents this because there would be a large database access "cost" in doing so.) Instead we'll define a `display_genre` function to get the information as a string. (This is the function we've called above. We'll define it below.)
+
+<hr>
+
+**Note**: Getting the `genre` may not be a good idea here, because of the "cost" of the database operation. We're showing you how because calling functions in your models can be very useful for other reasons. For example, to add a *Delete* link next to every item in the list.
+
+<hr>
+
+Add the following code into your `Book` model (**models.py**). This creates a string from the first three values of the `genre` field (if they exist) and creates a `short_description` that can be used in the admin site for this method.
+```
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+```
+After saving the model and updated admin, open your website and go to the *Books* list page. You should see a book list like the one below:
+
+![Image of a "Book" list in a Django Admin application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_book_list.png)
+
+The `Genre` model (and the `Language` model, if you defined one) both have a single field, so there is no point creating an additional model for them to display additional fields.
+
+<hr>
+
+**Note**: It is worth updating the `BookInstance` model list to show, at least, the status and the expected return date. We've added that as a challenge at the end of this article!
+
+<hr>
+
 
 
 
