@@ -39,3 +39,52 @@ By contrast, the final two URLs will display detailed information about a specif
 <hr>
 
 As mentioned in the overview, the rest of this article describes how to construct the index page.
+
+## Creating the index page
+
+The first page we'll create is the index page (`catalog/`). The index page will include some static HTML, along with generated "counts" of different records in the database. To make this work, we'll create a URL mapping, a view, and a template.
+
+<hr>
+
+**Note**: It's worth paying a little extra attention in this section. Most of the information also applies to the other pages we'll create.
+
+<hr>
+
+### URL mapping
+
+When we created the [skeleton website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website), we updated the **locallibrary/urls.py** file to ensure that whenever a URL that starts with `catalog/` is received, the *URLConf* module `catalog.urls` will process the remaining substring.
+
+The following snippet from **locallibrary/urls.py** includes the `catalog.urls` module:
+```
+urlpatterns += [
+    path('catalog/', include('catalog.urls')),
+]
+```
+
+<hr>
+
+**Note**: Whenever Django encounters the import function [`django.urls.include()`](https://docs.djangoproject.com/en/3.1/ref/urls/#django.urls.include), it splits the URL string at the designated end character and sends the remaining substring to the included *URLconf* module for further processing.
+
+<hr>
+
+We also created a placeholder file for the *URLConf* module, named **/catalog/urls.py**. Add the following lines to that file:
+```
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+```
+The `path()` function defines the following:
+
+* A URL pattern, which is an empty string: `''`. We'll discuss URL patterns in detail when working on the other views.
+* A view function that will be called if the URL pattern is detected: `views.index`, which is the function named `index()` in the **views.py** file.
+
+The `path()` function also specifies a `name` parameter, which is a unique identifier for *this* particular URL mapping. You can use the name to "reverse" the mapper, i.e. to dynamically create a URL that points to the resource that the mapper is designed to handle. For example, we can use the `name` parameter to link to our home page from any other page by adding the following link in a template:
+```
+<a href="{% url 'index' %}">Home</a>
+```
+
+<hr>
+
+**Note**: We can hard code the link as in `<a href="/catalog/">Home</a>`, but if we change the pattern for our home page -- for example, to `/catalog/index` -- the templates will no longer link correctly. Using a reversed URL mapping is more robust.
+
+<hr>
