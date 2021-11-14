@@ -95,6 +95,65 @@ Create a number of these records for each of your books. Set the status as *Avai
 
 That's it! You've now learned how to set up and use the administration site. You've also created records for `Book`, `BookInstance`, `Genre`, and `Author` that we'll be able to use once we create our own views and templates.
 
+## Advanced configuration
+
+Django does a pretty good job of creating a basic admin site using the information from the registered models:
+
+* Each model has a list of individual records, identified by the string created with the model's `__str__()` method, and linked  to detail views/forms for editing. By default, this view has an action menu at the top that you can use to perform bulk delete operations on records.
+* The model detail record forms for editing and adding records contain all the fields in the model, laid out vertically in their declaration order.
+
+You can further customize the interface to make it even easier to use. Some of the things you can do are:
+
+* List views:
+    - Add additional fields/information displayed for each record.
+    - Add filters to select which records are listed, based on date or some other selection value (e.g. Book loan status).
+    - Add additional options to the actions menu in list views and choose where this menu is displayed on the form.
+* Detail views:
+    - Choose which fields to display (or exclude), along with their order, grouping, whether they are editable, the widget used, orientation, etc.
+    - Add related fields to a record to allow inline editing (e.g. add the ability to add and edit book records while you're creating their author record).
+
+In this section, we're going to look at a few changes that will improve the interface for our *LocalLibrary*, including adding more information to `Book` and `Author` model lists, and improving the layout of their edit views. We won't change the `Language` and `Genre` model presentation because they only have one field each, so there is no real benefit ihn doing so!
+
+You can find a complete reference of all the admin site customization choices in [The Django Admin site](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/) (Django docs).
+
+### Register a ModelAdmin class
+
+To change how a model is displayed in the admin interface, you define a [ModelAdmin]() class (which describes the layout) and register it with the model.
+
+Let's start with the `Author` model. Open **admin.py** in the catalog application (**/locallibrary/catalog/admin.py**). Comment out your original registration (prefix it with a #) for the `Author` model:
+```
+# admin.site.register(Author)
+```
+Now add a new `AuthorAdmin` and registration as shown below:
+```
+# Define the admin class
+class AuthorAdmin(admin.ModelAdmin):
+    pass
+
+# Register the admin class with the associated model
+admin.site.register(Author, AuthorAdmin)
+```
+Now we'll add `ModelAdmin` classes for `Book`, and `BookInstance`. We again need to comment out the original registrations:
+```
+# admin.site.register(Book)
+# admin.site.register(BookInstance)
+```
+Now to create and register the new models. For the purpose of this demonstration, we'll instead use the `@register` decorator to register the models. (This does exactly the same thing as the `admin.site.register()` syntax):
+```
+# Register the Admin classes for Book using the decorator
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    pass
+
+# Register the Admin classes for BookInstance using the decorator
+@admin.register(BookInstance)
+class BookInstanceAdmin(admin.ModelAdmin):
+    pass
+```
+Currently all of our admin classes are empty (see `pass`) so the admin behavior will be unchanged! We can now extend these to define our model-specific admin behavior.
+
+
+
 
 
 
