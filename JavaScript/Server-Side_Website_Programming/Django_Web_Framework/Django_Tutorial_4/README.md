@@ -265,6 +265,53 @@ Now navigate to a book instance view in your website. The form should appear as 
 
 ![Image of "Change book instance" fields in a Django application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_bookinstance_detail_sections.png)
 
+### Inline editing of associated records
+
+Sometimes it can make sense to be able to add associated records at the same time. For example, it may make sense to have both the book information and information about the specific copies you've got on the same detail page.
+
+You can do this by declaring [inlines](), of type [TabularInline]() (horizontal layout) or [StackedInline]() (vertical layout, just like the default model layout). You can add the `BookInstance` information inline to our `Book` detail by specifying `inlines` in your `BookAdmin`:
+```
+class BookInstanceInline(admin.TabularInline):
+    model = BookInstance
+
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'display_genre')
+
+    inlines = [BookInstanceInline]
+```
+Now navigate to a view for a `Book` in your website. At the bottom, you should now see the book instances relating to this book (immediately below the book's genre fields):
+
+![Image of a "Book" list with "Book Instances" fields below it](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_book_detail_inlines.png)
+
+In this case, all we've done is declare our tabular inline class, which just adds all fields from the *inlined* model. Yuo can specify all sorts of additional information for the layout, including the fields to display, their order, whether they are read only or not, etc. (See [TabularInline](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#django.contrib.admin.TabularInline) for more information.)
+
+<hr>
+
+**Note**: There are some painful limits in this functionality! In the screnshot above, we have three existing book instances, followed by three placeholders for new book instances (which look very similar!) It would be better to have NO spare book instances by default and just add them with the **Add another Book instance** link, or to be able to just list the `BookInstance`s as non-readable links from here. The first option can be done by setting the `extra` attribute to `0` in `BooksInstanceInline` model. Try it by yourself!
+
+<hr>
+
+## Challenge yourself
+
+We've learned a lot in this section, so now it is time for you to try a few things.
+
+1. For the `BookInstance` list view, add code to display the book, status, due back date, and id (rather than the default `__str__()` text).
+2. Add an inline listing of `Book` items to the `Author` detail view using the same approach as we did for `Book`/`BookInstance`.
+
+## Summary
+
+That's it! You've now learned how to set up the administration site in both its simplest and improved form, how to create a superuser, and how to navigate the admin site and view, delete, and update records. Along the way, you've created a bunch of Books, BookInstances, Genres, and Authors that we'll be able to list and display once we create our own view and templates.
+
+## See also
+
+* [Writing your first Django app, part 2: Introducing the Django Admin](https://docs.djangoproject.com/en/3.1/intro/tutorial02/#introducing-the-django-admin) (Django docs)
+* [The Django Admin site](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_3#django-tutorial-part-3-using-models) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#django-tutorial-part-4-django-admin-site) - [[Next page]]()
+
 
 
 
