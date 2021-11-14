@@ -311,19 +311,3 @@ That's it! You've now learned how to set up the administration site in both its 
 <hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_3#django-tutorial-part-3-using-models) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#django-tutorial-part-4-django-admin-site) - [[Next page]]()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-cd JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4
