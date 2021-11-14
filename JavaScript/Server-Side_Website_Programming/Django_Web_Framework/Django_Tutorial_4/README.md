@@ -198,6 +198,73 @@ The `Genre` model (and the `Language` model, if you defined one) both have a sin
 
 <hr>
 
+### Add list filters
+
+Once you've got a lot of items in a list, it can be useful to be able to filter which items are displayed. This is done by listing fields in the `list_filter` attribute. Replace your current `BookInstanceAdmin` class with the code fragment below.
+```
+class BookInstanceAdmin(admin.ModelAdmin):
+    list_filter = ('status', 'due_back')
+```
+The list view will now include a filter box to the right. Note how you can choose dates and status to filter the values:
+
+![Image of a "filter box" on a "BookInstance" list in a Django application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_bookinstance_list_filters.png)
+
+### Organize detail view layout
+
+By default, the detail views lay out all fields vertically, in their order of declaration in the model. You can change the order of declaration, which fields are displayed horizontally or vertically, and even what edit widgets are used in the admin forms.
+
+<hr>
+
+**Note**: The *localLibrary* models are relatively simple so there isn't a huge need for us to change the layout. We'll make some changes anyway, however, just to show you how.
+
+<hr>
+
+#### Controlling which fields are displayed and laid out
+
+Update your `AuthorAdmin` class to add the `fields` line, as shown below:
+```
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
+
+    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+```
+The `fields` attribute lists just those fields that are to be displayed on the form, in order. Fields are displayed vertically by default, but will display horizontally if you further group them in a tuple (as shown in the "date" fields above).
+
+In your website, go to the author detail view -- it should now appear as shown below:
+
+![Image of "Change author" fields in a Django application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_author_detail.png)
+
+<hr>
+
+**Note**: You can also use the `exclude` attribute to declare a list of attributes to be excluded from the form. (All other attributes in the model will be displayed.)
+
+<hr>
+
+#### Sectioning the detail view
+
+You can add "sections" to group related model information within the detail form, using the [fieldsets](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets) attribute.
+
+In the `BookInstance` model, we have information related to what the book is (i.e. `name`, `imprint`, and `id`) and when it will be available (`status`, `due_back`). We can add these to our `BookInstanceAdmin` classs as shown below, using the `fieldsets` property.
+```
+@admin.register(BookInstance)
+class BookInstanceAdmin(admin.ModelAdmin):
+    list_filter = ('status', 'due_back')
+
+    fieldsets = (
+        (None, {
+            'fields': ('book', 'imprint', 'id')
+        }),
+        ('Availability', {
+            'fields': ('status', 'due_back')
+        }),
+    )
+```
+Each section has its own title (or `None`, if you don't want a title) and an associated tuple of fields in a dictionary -- the format is complicated to describe, but fairly easy to understand if you look at the code fragment immediately above.
+
+Now navigate to a book instance view in your website. The form should appear as shown below:
+
+![Image of "Change book instance" fields in a Django application](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Admin_site/admin_improved_bookinstance_detail_sections.png)
+
 
 
 
