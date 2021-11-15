@@ -88,3 +88,82 @@ The `path()` function also specifies a `name` parameter, which is a unique ident
 **Note**: We can hard code the link as in `<a href="/catalog/">Home</a>`, but if we change the pattern for our home page -- for example, to `/catalog/index` -- the templates will no longer link correctly. Using a reversed URL mapping is more robust.
 
 <hr>
+
+### View (function-based)
+
+A view is a function that processes an HTTP request, fetches the required data from the database, renders the data in an HTML page using an HTML template, and then returns the generated HTML in an HTTP response to display the page to the user. The index view follows this model -- it fetches information about the number of `Book`, `BookInstance`, available `BookInstance`, and `Author` records that we have in the database, and passes that information to a template for display.
+
+Open **catalog/views.py** and note that the file already imports the [render()]() shortcut function to generate an HTML file using a template and data:
+```
+from django.shortcuts import render
+
+# Create your views here.
+```
+Paste the following lines at the bottom of the file:
+```
+from .models import Book, Author, BookInstance, Genre
+
+def index(request):
+    """View function for home page of site."""
+
+    # Generate counts of some of the main objects
+    num_books = Book.objects.all().count()
+    num_instances = BookInstance.objects.all().count()
+
+    # Available books (status = 'a')
+    num_instances_available = BookInstance.objects.filter(status__exact='a').count()
+
+    # The 'all()' is implied by default.
+    num_authors = Author.objects.count()
+
+    context = {
+        'num_books': num_books,
+        'num_instances': num_instances,
+        'num_instances_available': num_instances_available,
+        'num_authors': num_authors,
+    }
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, 'index.html', context=context)
+```
+The first line imports the model classes that we'll use to access data in all our views.
+
+The first part of the view function fetches the number of records using the `objects.all()` attribute on the model classes. It also gets a list of `BookInstance` objects that have a value of `'a'` (Available) in the status field. You can find more information about how to access model data in our previous tutorial, [Django Tutorial Part 3: Using models > Searching for records](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_3#searching-for-records).
+
+At the end of the view function, we call the `render()` function to create an HTML page and return the page as a response. This shortcut function wraps a number of other functions to simplify a very common use case. The `render()` function accepts the following parameters:
+
+* The original `request` object, which is an `HttpRequest`.
+* An HTML template with placeholders for the data.
+* A `context` variable, which is a Python dictionary, containing the data to insert into the placeholders.
+
+We'll talk more about templates and the `context` variable in the next section. Let's get to creating our template so we can actually display something to the user!
+
+### Template
+
+A template is a text file that defines the structure or layout of a file (such as an HTML page), it uses placeholders to represent actual content.
+
+A Django application created using **startapp** (like the skeleton of this example) will look for templates in a subdirectory named '**templates**' of your application. For example, in the index view that we just added, the `render()` function will expect to find the file ***index.html*** in **/locallibrary/catalog/templates/** and will raise an error if the file is not present.
+
+You can check this by saving the previous changes and accessing `127.0.0.1:8000` in your browser. It will display a fairly intuitive error message: `"TemplateDoesNotExist at /catalog/"`, and other details.
+
+<hr>
+
+**Note**: based on your project's settings file, Django will look for templates in a number of places, searching in your installed applications by default. You can find out more about how Django finds templates and what template formats it supports in [the Templates section of the Django documentation](https://docs.djangoproject.com/en/3.1/topics/templates/).
+
+<hr>
+
+#### Extending templates
+
+The index template will need standard HTML markup for the head and body, along with navigation sections to link to the other pages of the site (which we haven't created yet), and to sections that display introductory text and book data.
+
+
+
+
+
+
+
+
+
+
+
+cd JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5
