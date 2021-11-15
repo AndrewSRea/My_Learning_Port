@@ -156,6 +156,92 @@ You can check this by saving the previous changes and accessing `127.0.0.1:8000`
 
 The index template will need standard HTML markup for the head and body, along with navigation sections to link to the other pages of the site (which we haven't created yet), and to sections that display introductory text and book data.
 
+Much of the HTML and navigation structure will be the same in every page of our site. Instead of duplicating boilerplate code on every page, you can use the Django templating language to declare a base template, and then extend it to replace just the bits that are different for each specific page.
+
+The following code snippet is a sample base template from a **base_generic.html** file. We'll be creating the template for LocalLibrary shortly. The sample below includes common HTML with sections for a title, a sidebar, and main controls marked with the named `block` and `endblock` template tags. You can leave the blocks empty, or include default content to use when rendering pages derived from the template.
+
+<hr>
+
+**Note**: Template *tags* are functions that you can use in a template to loop through lists, perform conditional operations based on the value of a variable, and so on. In addition to template tags, the template syntax allows you to reference variables that are passed into the template from the view, and use *template filters* to format variables -- for example, to convert a string to lower case.
+
+<hr>
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>Local Library</title>{% endblock %}
+</head>
+<body>
+    {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+    {% block content %}<!-- default content text (typically empty) -->{% endblock %}
+</body>
+</html>
+```
+When defining a template for a particular view, we first specify the base template using the `extends` template tag -- see the code sample below. Then we declare what sections from the template we want to replace (if any), using `block`/`endblock` sections as in the base template.
+
+For example, the code snippet below shows how to use the `extends` template tag and override the `content` block. The generated HTML will include the code and structure defined in the base template, including the default content you defined in the `title` block, but the new `content` block in place of the default one.
+```
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Local Library Home</h1>
+    <p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em></p>
+{% endblock %}
+```
+
+#### The LocalLibrary base template
+
+We will use the following code snippet as the base template for the *LocalLibrary* website. As you can see, it contains some HTML code and defines blocks for `title`, `sidebar`, and `content`. We have a default title and a default sidebar with links to lists of all books and authors, both enclosed in blocks to be easily changed in the future.
+
+<hr>
+
+**Note**: We also introduce two additional template tasgs: `url` and `load static`. These tags will be explained in following sections.
+
+<hr>
+
+Create a new file *base_generic.html* in **/locallibrary/catalog/templates/** and paste the following code to the file:
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>LocalLibrary</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+            {% block sidebar %}   
+                <ul class="sidebar-nav">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="">All books</a></li>
+                    <li><a href="">All authors</a></li>
+                </ul>
+            {% endblock %}  
+            </div>
+            <div class="col-sm-10">{% block content %}{% endblock %}</div>
+        </div>
+    </div>
+</body>
+</html>
+```
+The template includes CSS from [Bootstrap](https://github.com/AndrewSRea/My_Learning_Port/tree/main/Bootstrap#bootstrap) to immprove the layout and presentation of the HTML page. Using Bootstrap (or another client-side web framework) is a quick way to create an attractive page that displays well on different screen sizes.
+
+The base template also references a local CSS file (**styles.css**) that provides additional styling. Create a **styles.css** file in **/locallibrary/catalog/static/css/** and paste the following code in the file:
+```
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+```
+
 
 
 
