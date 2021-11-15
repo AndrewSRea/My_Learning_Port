@@ -242,6 +242,107 @@ The base template also references a local CSS file (**styles.css**) that provide
 }
 ```
 
+#### The index template
+
+Create a new HTML file, *index.html*, in **/locallibrary/catalog/templates/** and paste the following code in the file. This code extends our base template on the first line, and then replaces the default `content` block for the template.
+```
+{% extends "base_generic.html" %} 
+
+{% block content %} 
+    <h1>Local Library Home</h1>
+    <p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
+    <h2>Dynamic content</h2>
+    <p>The library has the following record counts:</p>
+    <ul>
+        <li><strong>Books:</strong> {{ num_books }}</li>
+        <li><strong>Copies:</strong> {{ num_instance }}</li>
+        <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+        <li><strong>Authors:</strong> {{ num_authors }}</li>
+    </ul>
+{% endblock %}
+```
+In the *Dynamic content* section, we declare placeholders (*template variables*) for the information from the view that we want to include. The variables are enclosed with double brace (handlebars).
+
+<hr>
+
+**Note**: You can easily recognize template variables and template tags (functions). Variables are enclosed in double braces (`{{ num_books }}`), and tags are enclosed in single braces with percentage signs (`{% extends "base_generic.html" %}`).
+
+<hr>
+
+The important thing to note here is that variables are named with the *keys* that we pass into the `context` dictionary in the `render()` function of our view (see sample below). Variables will be replaced with their associated *values* when the template is rendered.
+```
+context = {
+    'num_books': num_books,
+    'num_instances': num_instances,
+    'num_instances_available': num_instances_available,
+    'num_authors': num_authors,
+}
+
+return render(request, 'index.html', context=context)
+```
+
+#### Referencing static files in templates
+
+Your project is likely to use static resources, including JavaScript, CSS, and images. Because the location of these files might not be known (or might change), Django allows you to specify the location in your template relative to the `STATIC_URL` global setting. The default skeleton website sets the value of `STATIC_URL` to `'/static/'`, but you might choose to host these on a content delivery network or elsewhere.
+
+Within the template, you first call the `load` template tag specifying "static" to add the template library, as shown in the code sample below. You can then use the `static` template tag and specify the relative URL to the required file.
+```
+<!-- Add additional CSS in static file -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+```
+You can add an image into the page in a similar way. For example:
+```
+{% load static %}
+<img src="{% static 'catalog/images/local_library_model_uml.png' %}" alt="UML diagram" style="width:555px;height:540px;">
+```
+
+<hr>
+
+**Note**: The samples above specify where the files are located, but Django does not serve them by default. We configured the development web server to serve files by modifying the global URL mapper (**/locallibrary/locallibrary/urls.py**) when we [created the website skeleton](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website), but still need to enable file serving in production. We'll look at this later.
+
+<hr>
+
+For more information on working with static files, see [Managing static files](https://docs.djangoproject.com/en/3.1/howto/static-files/) in the Django documentation.
+
+#### Linking to URLs
+
+The base template above introduced the `url` template tag.
+```
+<li><a href="{% url 'index' %}">Home</a></li>
+```
+This tag accepts the name of a `path()` function called in your **urls.py** and the values for any arguments that the associated view will receive from that function, and returns a URL that you can use to link to the resource.
+
+#### Configuring where to find the templates
+
+The location where Django searches for templates is specified in the `TEMPLATES` object in the **settings.py** file. The default **settings.py** (as created for this tutorial) looks something like this:
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+The setting of `'APP_DIRS': True,` is the most important, as it tells Django to search for templates in a subdirectory of each application in the project, named "templates". (This makes it easier to group templates with their associated application for easy reuse.)
+
+We can also specify specific locations for Django to search for directories using `'DIRS': []` (but that isn't needed yet).
+
+<hr>
+
+**Note**: You can find out more about how Django finds templates and what template formats it supports in [the Templates section of the Django documentation](https://docs.djangoproject.com/en/3.1/topics/templates/).
+
+
+
 
 
 
