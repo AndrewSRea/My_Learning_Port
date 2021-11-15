@@ -381,17 +381,3 @@ In the next article, we'll build upon this knowledge to create the remaining fou
 <hr>
 
 [[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#django-tutorial-part-4-django-admin-site) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#django-tutorial-part-5-creating-our-home-page) - [[Next page]]()
-
-
-
-
-
-
-
-
-
-
-
-
-
-cd JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5
