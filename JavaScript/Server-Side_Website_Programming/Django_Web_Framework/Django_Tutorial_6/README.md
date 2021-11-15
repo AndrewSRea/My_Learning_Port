@@ -118,7 +118,7 @@ Templates for generic views are just like any other templates (although, of cour
 ```
 The view passes the context (list of books) by default as `object_list` and `book_list` aliases; either will work.
 
-### Conditional execution
+#### Conditional execution
 
 We use the [`if`](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#if), `else`, and `endif` template tags to check whether the `book_list` has been defined and is not empty. If `book_list` is empty, the the `else` clause displays text explaining that there are no books to list. If `book_list` is not empty, then we iterate through the list of books.
 ```
@@ -129,3 +129,70 @@ We use the [`if`](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#
 {% endif %}
 ```
 The condition above only checks for one case, but you can test on additional conditions using the `elif` template tag (e.g. `{% elif var2 %}`). For more information about conditional operators, see: [if](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#if), [ifequal/ifnotequal](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#ifequal-and-ifnotequal), and [ifchanged](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#ifchanged) in [Built-in template tags and filters](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/) (Django docs).
+
+#### For loops
+
+The template uses the [for](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#for) and `endfor` template tags to loop through the book list, as shown below. Each iteration populates the `book` template variable with information for the current list item.
+```
+{% for book in book_list %}
+    <li> <!-- code here to get information from each book item -->
+{% endfor %}
+```
+While not used here, within the loop Django will also create other variables that you can use to track the iteration. For example, you can test the `forloop.last` variable to perform conditional processing the last time that the loop is run.
+
+#### Accessing variables
+
+The code inside the loop creates a list item for each book that shows both the title (as a link to the yet-to-be-created detail view) and the author.
+```
+<a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+```
+We access the *fields* of the associated book record using the "dot notation" (e.g. `book.title` and `book.author`), where the text following the `book` item is the field name (as defined in the model).
+
+We can also call *functions* in the model from within our template. In this case, we call `Book.get_absolute_url()` to get a URL you could use to display the associated detail record. This works provided the function does not have any arguments. (There is no way to pass arguments!)
+
+<hr>
+
+**Note**: We have to be a little careful of "side effects" when calling functions in templates. Here we just get a URL to display, but a function can do pretty much anything -- we wouldn't want to delete our database (for example) just by rendering our template!
+
+<hr>
+
+#### Update the base template
+
+Open the base template (**/locallibrary/catalog/templates/*base_generic.html***) and insert **{% url 'books' %}** into the URL link for **All books**, as shown below. This will enable the link in all pages. (We can successfully put this in place now that we've created the "books" URL mapper.)
+```
+<li><a href="{% url 'index' %}">Home</a></li>
+<li><a href="{% url 'books' %}">All books</a></li>
+<li><a href="">All authors</a></li>
+```
+
+### What does it look like?
+
+You won't be able to build the book list yet, because we're still missing a dependency -- the URL map for the book detail pages, which is needed to create hyperlinks to individual books. We'll show both list and detail views after the next section.
+
+## Book detail page
+
+The book detail page will display information about a specific book, accessed using the URL `catalog/book/<id>` (where `<id>` is the primary key for the book). In addition to fields in the `Book` model (author, summary, ISBN, language, and genre), we'll also list the details of the available copies (`BookInstances`) including the status, expected return date, imprint, and id. This will allow our readers to not only learn about the book, but also to confirm whether/when it is available.
+
+### URL mapping
+
+Open **/catalog/urls.py** and add the path named **'book-detail'** shown below. This `path()` function defines a pattern, associated generic class-based detail view, and a name.
+```
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('books/', views.BookListView.as_view(), name='book-detail'),
+    path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
+]
+```
+For the *book-detail* path, the URL pattern uses a special syntax to capture the specific id of the book that we want to see. The syntax is very simple: angle brackets define the part of the URL to be captured, enclosing the name of the variable that the view can use to access the captured data. For example, **<something>**, will capture the marked pattern and pass the value to the view as a variable "something". You can optionally precede the variable name with a [converter specification](https://docs.djangoproject.com/en/3.1/topics/http/urls/#path-converters) that defines the type of data (int, str, slug, uuid, path).
+
+In this case, we use `'<int:pk>'` to capture the book id, which must be a specially formatted string and pass it to the view as a parameter named `pk` (short for primary key). This is the id that is being used to store the book uniquely in the database, as defined in the Book Model.
+
+<hr>
+
+**Note**: As discussed previously, our matched URL is actually `catalog/book/<digits>` (because we are in the **catalog** application, `/catalog/` is assumed).
+
+<hr>
+
+:warning: **Warning**: The generic class-based detail view *expects* to be passed a parameter named **pk**. If you're writing your own function view, you can use whatever parameter name you like, or indeed pass the information in an unnamed argument.
+
+<hr>
