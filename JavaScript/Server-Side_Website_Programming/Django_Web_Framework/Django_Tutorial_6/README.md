@@ -92,3 +92,40 @@ When doing this, it is important to follow the pattern used above:
 **Note**: Check out [Built-in class-based generic views](https://docs.djangoproject.com/en/3.1/topics/class-based-views/generic-display/) (Django docs) for many more examples of what you can do.
 
 <hr>
+
+### Creating the ListView template
+
+Create the HTML file **/locallibrary/catalog/template/catalog/book_list.html** and copy in the text below. As discussed above, this is the default template file expected by the generic class-based list view (for a model named `Book` in an application named `catalog`).
+
+Templates for generic views are just like any other templates (although, of course, the context/information passed to the template may differ). As with our *index* template, we extend our base template in the first line and then replace the block named `content`.
+```
+{% extends "base_generic.html" %} 
+
+{% block content %} 
+    <h1>Book List</h1>
+    {% if book_list %} 
+    <ul>
+        {% for book in book_list %} 
+            <li>
+                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+            </li>
+        {% endfor %} 
+    </ul>
+    {% else %}  
+        <p>There are no books in the library.</p>
+    {% endif %} 
+{% endblock %}
+```
+The view passes the context (list of books) by default as `object_list` and `book_list` aliases; either will work.
+
+### Conditional execution
+
+We use the [`if`](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#if), `else`, and `endif` template tags to check whether the `book_list` has been defined and is not empty. If `book_list` is empty, the the `else` clause displays text explaining that there are no books to list. If `book_list` is not empty, then we iterate through the list of books.
+```
+{% if book_list %}
+    <!-- code here to list the books --
+{% else %}
+    <p>There are no books in the library.</p>
+{% endif %}
+```
+The condition above only checks for one case, but you can test on additional conditions using the `elif` template tag (e.g. `{% elif var2 %}`). For more information about conditional operators, see: [if](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#if), [ifequal/ifnotequal](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#ifequal-and-ifnotequal), and [ifchanged](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#ifchanged) in [Built-in template tags and filters](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/) (Django docs).
