@@ -341,6 +341,47 @@ We can also specify specific locations for Django to search for directories usin
 
 **Note**: You can find out more about how Django finds templates and what template formats it supports in [the Templates section of the Django documentation](https://docs.djangoproject.com/en/3.1/topics/templates/).
 
+<hr>
+
+## What does it look like?
+
+At this point, we have created all required resources to display the index page. Run the server (`python3 manage.py runserver`) and open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser. If everything is configured correctly, your site should look like the following screenshot:
+
+![Image of the "index.html" page open in a Django application browser](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Home_page/index_page_ok.png)
+
+<hr>
+
+**Note**: The **All books** and **All authors** links will not work yet because the paths, views, and templates for those pages are not yet defined. We just inserted placeholders for those links in the `base_generic.html` template.
+
+<hr>
+
+## Challenge yourself
+
+Here are a couple of tasks to test your familiarity with model queries, views, and tempaltes.
+
+1. The LocalLibrary [base template](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#the-locallibrary-base-template) includes a `title` block. Override this block in the [index template](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#the-index-template) and create a new title for the page. [**Note**: The section [Extending templates](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#extending-templates) explains how to create blocks and extend a block in another template.]
+
+2. Modify the [view](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#view-function-based) to generate counts for *genres* and *books* that contain a particular word (case insensitive), and pass the results to the `context`. You accomplish this in a similar way to creating and using `num_books` and `num_instances_available`. Then update the [index template](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#the-index-template) to include these variables.
+
+## Summary
+
+We just created the home page for our site -- an HTML page that displays a number of records from the database and links to other yet-to-be-created pages. Along the way, we learned fundamental information about URL mappers, views, querying the database with models, passing information to a template from a view, and creating and extending templates.
+
+In the next article, we'll build upon this knowledge to create the remaining four pages of our website.
+
+## See also
+
+* [Writing your first Django app, part 3: Views and Templates](https://docs.djangoproject.com/en/3.1/intro/tutorial03/) (Django docs)
+* [URL dispatcher](https://docs.djangoproject.com/en/3.1/topics/http/urls/) (Django docs)
+* [View functions](https://docs.djangoproject.com/en/3.1/topics/http/views/) {Django docs}
+* [Templates](https://docs.djangoproject.com/en/3.1/topics/templates/) (Django docs)
+* [Managing static files](https://docs.djangoproject.com/en/3.1/howto/static-files/) (Django docs)
+* [Django shortcut functions](https://docs.djangoproject.com/en/3.1/topics/http/shortcuts/#module-django.shortcuts) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#django-tutorial-part-4-django-admin-site) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#django-tutorial-part-5-creating-our-home-page) - [[Next page]]()
+
 
 
 
