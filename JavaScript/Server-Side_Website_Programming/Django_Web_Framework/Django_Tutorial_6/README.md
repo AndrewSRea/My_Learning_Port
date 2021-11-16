@@ -405,6 +405,92 @@ Last but not least, you should sort an attribute/column that actually has an ind
 
 <hr>
 
+The second interesting (and non-obvious) thing in the template is where we set a class (`text-success`, `text-danger`, `text-warning`) to color-code the human readable status text for each book instance ("available', "maintenance", etc.). Astute readers will note that the method `BookInstance.get_status_display()` that we use to get the status text does not appear elsewhere in the code.
+```
+<p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+    {{ copy.get_status_display }}
+</p>
+```
+This function is automatically created because `BookInstance.status` is a [choices field](https://docs.djangoproject.com/en/3.1/ref/models/fields/#choices). Django automatically creates a method `get_FOO_display()` for every choices field `"Foo"` in a model, which can be used to get the current value of the field.
+
+## What does it look like?
+
+At this point, we should have created everything needed to display both the book list and book detail pages. Run the server (`python3 manage.py runserver`) and open your browser to [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+<hr>
+
+:warning: **Warning**: Don't click any author or author detail links yet -- you'll create those in the challenge!
+
+<hr>
+
+Click the **All books** link to display the list of books.
+
+![Image of the "Book List" in the "LocalLibrary" Django app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views/book_list_page_no_pagination.png)
+
+Then click a link to one of your books. If everything is set up correctly, you should see something like the following screenshot.
+
+![Image of a "BookInstance" from the "Book List" in the "LocalLibrary" Django app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views/book_detail_page_no_pagination.png)
+
+## Pagination
+
+If you've just got a few records, our book list page will look fine. However, as you get into the tens or hundreds of records, the page will take progressively longer to load (and have far too much content to browse sensibly). The solution to this problem is to add pagination to your list views, reducing the number of items displayed on each page.
+
+Django has excellent in-built support for pagination. Even better, this is built into the generic class-based list views so you don't have to do very much to enable it!
+
+### Views
+
+Open **catalog/views.py**, and add the `paginate_by` line shown below.
+```
+class BookListView(generic.ListView):
+    model = Book
+    paginate_by = 10
+```
+With this addition, as soon as you have more than 10 records, the view will start paginating the data it sends to the template. The different pages are accessed using GET parameters -- to access page 2, you would use the URL `/catalog/books/?page=2`.
+
+### Templates
+
+Now that the data is paginated, we need to add support to the template to scroll through the results set. Because we might want to paginate the all list views, we'll add this to the base template.
+
+Open **/locallibrary/catalog/templates/*base_generic.html*** and find the "content block" (as shown below).
+```
+{$ block content %}{% endblock %}
+```
+Copy in the following pagination block immediately following `{% endblock %}`. The code first checks if pagination is enabled on the current page. If so, it adds *next* and *previous* links as appropriate (and the current page number).
+```
+{% block pagination %} 
+    {% if is_paginated %} 
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %} 
+                    <a href="{{ request.path }}?page={{ page.obj.previous_page_number }}">previous</a>
+                {% endif %} 
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %} 
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %} 
+            </span>
+        </div>
+    {% endif %} 
+{% endblock %}
+```
+The `page_obj` is a [Paginator](https://docs.djangoproject.com/en/3.1/topics/pagination/#paginator-objects) object that will exist if pagination is being used on the current page. It allows you to get all the information about the current page, previous pages, how many pages there are, etc.
+
+We use `{{ request.path }}` to get the current page URL for creating the pagination links. This is useful because it is independent of the object that we're paginating.
+
+That's it!
+
+### What does it look like?
+
+The screenshot below shows what the pagination looks like. If you haven't entered more that 10 titles into your database, then you can test it more easily by lowering the number specified in the `paginate_by` line in your **catalog/views.py** file. To get the below result, we changed it to `paginate_by = 2`.
+
+The pagination links are displayed on the bottom, with next/previous links being displayed depending on which page you're on.
+
+![Image of pagination in action in the "Book List" of the Django app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views/book_list_paginated.png)
+
+
+
 
 
 
