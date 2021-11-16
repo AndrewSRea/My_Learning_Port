@@ -489,18 +489,50 @@ The pagination links are displayed on the bottom, with next/previous links being
 
 ![Image of pagination in action in the "Book List" of the Django app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views/book_list_paginated.png)
 
+## Challenge yourself
 
+The challenge in this article is to create the author detail and list views required to complete the project. These should be made available at the following URLs:
 
+* `catalog/authors/` -- The list of all authors.
+* `catalog/author/<id>` -- The detail view for the specific author with a primary key field named *`<id>`*.
 
+The code required for the URL mappers and the views should be virtually identical to the `Book` list and detail views we created above. The templates will be different but will share similar behavior.
 
+<hr>
 
+**Note**: 
 
+* Once you've created the URL mapper for the author list page, you will also need to update the **All authors** link in the base template. Follow the [same process](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_6#update-the-base-template) as we did when we updated the **All books** link.
+* Once you've created the URL mapper for the author detail page, you should also update the [book detail view template](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_6#creating-the-detail-view-template) (**/locallibrary/catalog/templates/catalog/book_detail.html**) so that the author link points to your new author detail page (rather than being an empty URL). The recommended way to do this is to call `get_absolute_url()` on the author model as shown below.
+```
+<p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+```
 
+<hr>
 
+When you are finished, your pages should look something like the screenshots below.
 
+![Image of the "Author List" in the "LocalLibrary" Django app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views/author_list_page_no_pagination.png)
 
+![Image of an "Author" from the "Author List" in the Django app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views/author_detail_page_no_pagination.png)
 
+## Summary
 
+Congratulations, our basic library functionality is now complete!
 
+In this article, we've learned how to use the generic class-based list and detail views, and used them to create pages to view our books and authors. Along the way, we've learned about pattern matching with regular expressions, and how you can pass data from URLs to your views. We've also learned a few more tricks for using templates. Last of all, we've shown how to paginate list views so that our lists are manageable even when we have many records.
 
-cd JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_6
+In our next articles, we'll extend this library to support user accounts, and thereby demonstrate user authentication, permissions, sessions, and forms.
+
+## See also
+
+* [Built-in class-based generic views](https://docs.djangoproject.com/en/3.1/topics/class-based-views/generic-display/) (Django docs)
+* [Generic display views](https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/) (Django docs)
+* [Introduction to class-based views](https://docs.djangoproject.com/en/3.1/topics/class-based-views/intro/) (Django docs)
+* [Built-in template tags and filters](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/) (Django docs)
+* [Pagination](https://docs.djangoproject.com/en/3.1/topics/pagination/) (Django docs)
+* [Making queries > Related objects](https://docs.djangoproject.com/en/3.1/topics/db/queries/#related-objects) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#django-tutorial-part-5-creating-our-home-page) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_6#django-tutorial-part-6-generic-list-and-detail-views) - [[Next page]]()
