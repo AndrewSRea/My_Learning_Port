@@ -247,6 +247,90 @@ You can capture multiple patterns in the one match, and hence encode lots of dif
 
 <hr>
 
+#### Passing additional options in your URL maps
+
+One feature that we haven't used here, but which you may find valuable, is that you can pass a [dictionary containing additional options](https://docs.djangoproject.com/en/3.1/topics/http/urls/#views-extra-options) to the view (using the third unnamed argument to the `path()` function). This approach can be useful if you want to use the same view for multiple resources, and pass data to confirgure its behavior in each case.
+
+For example, given the path shown below, for a request to `/myurl/halibut/`, Django will call `views.my_view(request, fish=halibut, my_template_name='some_path')`.
+```
+path('myurl/<int:fish>', views.my_view, {'my_template_name': 'some_path'}, name='aurl'),
+```
+
+<hr>
+
+**Note**: Both named captured patterns and dictionary options are passed to the view as *named* arguments. If you use the **same name** for both a capture pattern and a dictionary key, then the dictionary option will be used.
+
+<hr>
+
+### View (class-based)
+
+Open **catalog/views.py**, and copy the following code into the bottom of the file:
+```
+class BookDetailView(generic.DetailView):
+    model = Book
+```
+That's it! All you need to do now is create a template called **/locallibrary/catalog/template/catalog/book_detail.html**, and the view will pass it the database information for the specific `Book` record extracted by the URL mapper. Within the template, you can access the book's details with the template variable named `object` OR `book` (i.e. generically `"the_model_name"`).
+
+If you need to, you can change the template used and the name of the context object used to reference the book in the template. You can also override methods to, for example, add additional information to the context.
+
+#### What happens if the record doesn't exist?
+
+If a requested record does not exist, then the generic class-based detail view will raise an`Http404` exception for you automatically -- in production, this will automatically display an appropriate "resource not found" page, which you can customize if desired.
+
+Just to give you some idea of how this works, the code fragment below demonstrates how you would implement the class-based view as a function if you were **not** using the generic class-based detail view.
+```
+def book_detail_view(request, primary_key):
+    try:
+        book = Book.objects.get(pk=primary_key)
+    except Book.DoesNotExist:
+        raise Http404('Book does not exist')
+
+    return render(request, 'catalog/book_detail.html', context={'book': book})
+```
+The view first tries to get the specific book record from the model. If this fails, the view should raise an `Http404` exception to indicate that the book is "not found". The final step is then, as usual, to call `render()` with the tempalte name and the book data in the `context` parameter (as a dictionary).
+
+Alternatively, we can use the `get_object_or_404()` function as a shortcut to raise an `Http404` exception if the record is not found.
+```
+from django.shortcuts import get_object_or_404
+
+def book_detail_view(request, primary_key):
+    book = get_object_or_404(Book, pk=primary_key)
+    return render(request, 'catalog/book_detail.html', context={'book': book})
+```
+
+### Creating the Detail View template
+
+Create the HTML file **/locallibrary/catalog/template/catalog/book_detail.html** and give it the below content. As discussed above, this is the default template file name expected by the generic class-based *detail* view (for a model named `Book` in an application named `catalog`).
+```
+{% extends "base_generic.html" %}  
+
+{% block content %}  
+    <h1>Title: {{ book.title }}</h1>
+
+    <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+    <p><strong>Summary:</strong> {{ book.summary }}</p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p><strong>Language:</strong> {{ book.language }}</p>
+    <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
+
+    <div style="margin-left:20px;margin-top:20px;">
+        <h4>Copies</h4>
+
+        {% for copy in book.bookinstance_set.all %} 
+            <hr>
+            <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+                {{ copy.get_status_display }}
+            </p>
+            {% if copy.status != 'a' %} 
+                <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
+            {% endif %}
+            <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+            <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+        {% endfor %}  
+    </div>
+{% endblock %}
+```
+
 
 
 
