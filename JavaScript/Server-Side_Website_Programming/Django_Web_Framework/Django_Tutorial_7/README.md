@@ -87,3 +87,67 @@ request.session.modified = True
 
 <hr>
 
+## Simple example -- getting visit counts
+
+As a simple real-world example, we'll update our library to tell the current user how many times they have visited the *LocalLibrary* home page.
+
+Open **/locallibrary/catalog/views.py**, and add the lines that contain `num_visits` into `index()` (as shown below):
+```
+def index(request):
+    ...
+
+    num_authors = Author.objects.count()   # The 'all()' is implied by default.
+
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
+    context = {
+        'num_books': num_books,
+        'num_instances': num_instances,
+        'num_instances_available': num_instances_available,
+        'num_authors': num_authors,
+        'num_visits': num_visits,
+    }
+
+    # Render the HTML template index.html with the data in the context variable.
+    return render(request, 'index.html', context=context)
+```
+Here we get the value of the `'num_visits'` session key, setting the value to 0 if it has not previously been set. Each time a request is received, we then increment the value and store it back in the session (for the next time the user visits the page). The `num_visits` variable is then passed to the template in our context variable.
+
+<hr>
+
+**Note**: We might also test whether cookies are even supported in the browser here (see [How to use sessions](https://docs.djangoproject.com/en/3.1/topics/http/sessions/) for examples) or design our UI so that it doesn't matter whether or not cookies are supported.
+
+<hr>
+
+Add the line shown at the bottom of the following block to your main HTML template (**/locallibrary/catalog/templates/index.html**) at the bottom of the "Dynamic content" section to display the `num_visits` context variable.
+```
+<h2>Dynamic content</h2>
+<p>The library has the following record counts:</p>
+<ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instance }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+</ul>
+
+<p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+```
+Note that we use the Django built-in template tag [pluralize](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/#pluralize) to add an "s" when the page has been visited multiple time**s**.
+
+Save your changes and restart the test server. Every time you refresh the page, the number should update.
+
+## Summary
+
+You now know how easy it is to use sessions to improve your interaction with *anonymous* users.
+
+In our next articles, we'll explain the authentication and authorization (permission) framework, and show you how to support user accounts.
+
+## See also 
+
+* [How to use sessions](https://docs.djangoproject.com/en/3.1/topics/http/sessions/) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_6#django-tutorial-part-6-generic-list-and-detail-views) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_7#django-tutorial-part-7-sessions-framework) - [[Next page]]()
