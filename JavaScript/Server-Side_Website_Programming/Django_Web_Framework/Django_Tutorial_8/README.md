@@ -161,3 +161,101 @@ Exception Value:    registration/login.html
 The next step is to create a registration directory on the search path and then add the **login.html** file.
 
 ### Template directory
+
+The URLs (and implicitly, views) that we just aded expect to find their associated templates in a directory **/registration/** somewhere in the templates search path.
+
+For this site, we'll put our HTML pages in the **templates/registration/** directory. This directory should be in your project root directory, i.e. the same directory as the **catalog** and **locallibrary** folders. Please create these folders now.
+
+<hr>
+
+**Note**: Your folder structure should now look like the below: 
+
+locallibrary (Django project folder) 
+|__catalog 
+|__locallibrary 
+|__templates **(new)**
+   |__registration
+
+<hr>
+
+To make the **templates** directory visible to the template loader, we need to add it in the template search path. Open the project settings (**/locallibrary/locallibrary/settings.py**).
+
+Then import the `os` module (add the following line near the top of the file).
+```
+import os  # needed by code below
+```
+Update the `TEMPLATES` section's `'DIRS'` line as shown:
+```
+    ...
+    TEMPLATES = [
+        {
+            ...
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            ...
+
+```
+
+### Login template
+
+<hr>
+
+:warning: **Warning**: The authentication templates provided in this article are a very basic/slightly modified version of the Django demonstration login templates. You may need to customize them for your own use!
+
+<hr>
+
+Create a new HTML file called **/locallibrary/templates/registration/login.html** and give it the following contents:
+```
+{% extends "base_generic.html" %}  
+
+{% block content %}  
+
+    {% if form.errors %}  
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %} 
+
+    {% if next %}  
+        {% if user.is_authenticated %}  
+            <p>
+                Your account doesn't have access to this page. To proceed, please login with an account 
+                that has access.
+            </p>
+        {% else %} 
+            <p>Please login to see this page.</p>
+        {% endif %}  
+    {% endif %}  
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}  
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    {# Assumes you setup the password_reset view in your URLconf #} 
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+{% endblock %}
+```
+This template shares some similarities with the ones we've seen before -- it extends our base template and overrides the `content` block. The rest of the code is fairly standard form handling code, which we will discuss in a later tutorial. All you need to know for now is that this will display a form in which you can enter your username and password, and that if you enter invalid values, you will be prompted to enter correct values when the page refreshes.
+
+Navigate back to the login page ([http://127.0.0.1:8000/accounts/login/](http://127.0.0.1:8000/accounts/login/)) once you've saved your template, and you should see something like this:
+
+![Image of login <input>s for Username and Password](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication/library_login.png)
+
+If you log in using valid credentials, you'll be redirected to another page (by default, this will be [http://127.0.0.1:8000/accounts/profile](http://127.0.0.1:8000/accounts/profile)). The problem is that, by default, Django expects that upon logging in, you will want to be taken to a profile page, which may or may not be the case. As you haven't defined this page yet, you'll get another error!
+
+Open the project settings (**/locallibrary/locallibrary/settings.py**) and add the text below to the bottom. Now when you log in, you should be redirected to the site homepage by default.
+```
+# Redirect to home URL after login (Default redirects to /accounts/profile)
+LOGIN_REDIRECT_URL = '/'
+```
