@@ -1,0 +1,3 @@
+# Django Tutorial Part 8: User authentication and permissions
+
+In this tutorial, we'll show you how to allow users to log in to your site with their own accounts, and how to control what they can do and see based on whether or not they are logged in and their *permissions*. As part of this demonstration, we'll extend the [LocalLibrary](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_Local_Library#django-tutorial-the-local-library-website) website, adding login and logout pages, and user- and staff-specific pages for viewing books that have been borrowed.
