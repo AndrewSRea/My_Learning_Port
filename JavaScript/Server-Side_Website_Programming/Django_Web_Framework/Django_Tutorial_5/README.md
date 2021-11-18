@@ -93,7 +93,7 @@ The `path()` function also specifies a `name` parameter, which is a unique ident
 
 A view is a function that processes an HTTP request, fetches the required data from the database, renders the data in an HTML page using an HTML template, and then returns the generated HTML in an HTTP response to display the page to the user. The index view follows this model -- it fetches information about the number of `Book`, `BookInstance`, available `BookInstance`, and `Author` records that we have in the database, and passes that information to a template for display.
 
-Open **catalog/views.py** and note that the file already imports the [render()]() shortcut function to generate an HTML file using a template and data:
+Open **catalog/views.py** and note that the file already imports the [render()](https://docs.djangoproject.com/en/3.1/topics/http/shortcuts/#django.shortcuts.render) shortcut function to generate an HTML file using a template and data:
 ```
 from django.shortcuts import render
 
