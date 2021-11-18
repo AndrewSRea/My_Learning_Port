@@ -259,3 +259,113 @@ Open the project settings (**/locallibrary/locallibrary/settings.py**) and add t
 # Redirect to home URL after login (Default redirects to /accounts/profile)
 LOGIN_REDIRECT_URL = '/'
 ```
+
+### Logout template
+
+If you navigate to the logout URL ([http://127.0.0.1:8000/accounts/logout/](http://127.0.0.1:8000/accounts/logout/)), then you'll see some odd behavior: your user will be logged out, sure enough, but you'll be taken to the **Admin** logout page. That's not what you want, if only because the login link on that page takes you to the Admin login screen (and that is only available to users who have the `is_staff` permission).
+
+Create and open **/locallibrary/templates/registration/logged_out.html**. Copy in the text below:
+```
+{% extends "base_generic.html" %}  
+
+{% block content %} 
+    <p>Logged out!</p>
+    <a href="{% url 'login'%}">Click here to login again.</a>
+{% endblock %} 
+```
+This template is very simple. It just displays a message informing you that you have been logged out, and provides a link that you can press to go back to the login screen. If you go to the logout URL again, you should see this page:
+
+![Image of the "logout" page for the "LocalLibrary" app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication/library_logout.png)
+
+### Password reset templates
+
+The default password reset system uses email to send the user a reset link. You need to create forms to get the user's email address, send the email, allow them to enter a new password, and to note when the whole process is complete.
+
+The following templates can be used as a starting point.
+
+#### Password reset form
+
+This is the form used to get the user's email address (for sending the password reset email). Create **/locallibrary/templates/registration/password_reset_form.html**, and give it the following contents:
+```
+{% extends "base_generic.html" %}  
+
+{% block content %}  
+    <form action="" method="post">
+    {% csrf_token %}  
+    {% if form.email.errors %} 
+        {{ form.email.errors }}  
+    {% endif %}  
+            <p>{{ form.email }}</p>
+        <input type="submit" class="btn btn-default btn-lg" value="Reset password">
+    </form>
+{% endblock %}
+```
+
+#### Password reset done
+
+This form is displayed after your email address has been collected. Create **/locallibrary/templates/registration/password_reset_done.html**, and give it the following contents:
+```
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <p>We've emailed you instructions for setting your password. If they haven't arrived in a few minutes, check your spam folder.</p>
+{% endblock %}
+```
+
+#### Password reset email
+
+This template provides the text of the HTML email containing the reset link that we will send to users. Create **/locallibrary/templates/registration/password_reset_email.html**, and give it the following contents:
+```
+Someone asked for password reset for email {{ email }}. Follow the link below:
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+```
+
+#### Password reset confirm
+
+This page is where you enter your new password after clicking the link in the password reset email. Create **/locallibrary/templates/registration/password_reset_confirm.html**, and give it the following contents:
+```
+{% extends "base_generic.html" %} 
+
+{% block content %} 
+    {% if validlink %} 
+        <p>Please enter (and confirm) your new pasword.</p>
+        <form action="" method="post">
+        {% csrf_token %} 
+            <table>
+                <tr>
+                    <td>{{ form.new_password1.errors }}
+                        <label for="id_new_password1">New password:</label></td>
+                    <td>{{ form.new_password1 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.new_password2.errors }}
+                        <label for="id_new_password2">Confirm password:</label></td>
+                    <td>{{ form.new_password2 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Change my password" /></td>
+                </tr>
+            </table>
+        </form>
+    {% else %} 
+        <h1>Password reset failed</h1>
+        <p>
+            The password reset link was invalid, possibly because it has already been used.
+            Please request a new password reset.
+        </p>
+    {% endif %}  
+{% endblock %}
+```
+
+#### Password reset complete
+
+This is the last password-reset template, which is displayed to notify you when the password reset has succeeded. Create **/locallibrary/templates/registration/password_reset_complete.html**, and give it the following contents:
+```
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>The password has been changed!</h1>
+    <p><a href="{% url 'login' %}">Log in again?</a></p>
+{% endblock %}
+```
