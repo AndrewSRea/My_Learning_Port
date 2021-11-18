@@ -108,3 +108,56 @@ That's it! Now you have a "normal library member" account that you will be able 
 **Note**: You should try creating another library member user. Also, create a group for Librarians, and add a user to that, too!
 
 <hr>
+
+## Setting up your authentication views
+
+Django provides almost everything you need to create authentication pages to handle login, log out, and password management "out of the box". This includes a URL mapper, views, and forms, but it does not include the templates -- we have to create our own!
+
+In this section, we show how to integrate the default system into the *LocalLibrary* website and create the templates. We'll put them in the main project URLs.
+
+<hr>
+
+**Note**: You don't have to use any of this code, but it is likely that you'll want to because it makes things a lot easier. You'll almost certainly need to change the form handling code if you change your user model (an advanced topic!) but even so, you would still be able to use the stock view functions.
+
+<hr>
+
+**Note**: In this case, we could reasonably put the authentication pages, including the URLs and templates, inside our catalog application. However, if we had multiple applications, it would be better to separate out this shared login behavior and have it available across the whole site, so that is what we've shown here!
+
+<hr>
+
+### Project URLs
+
+Add the following to the bottom of the project *urls.py* file (**locallibrary/locallibrary/urls.py**) file:
+```
+# Add Django site authentication urls (for login, logout, password management)
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+```
+Navigate to the [http://127.0.0.1:8000/accounts/](http://127.0.0.1:8000/accounts/) URL (note the trailing forward slash!) and Django will show an error that it could not find this URL, and listing all the URLs it tried. From this, you can see the URLs that will work:
+
+<hr>
+
+**Note**: Using the above method adds the following URLs with names in square brackets, which can be used to reverse the URL mappings. You don't have to implement anything else -- the above URL mapping automatically maps the below mentioned URLs.
+```
+accounts/ login/ [name='login']
+accounts/ logout/ [name='logout']
+accounts/ password_change/ [name='password_change']
+accounts/ password_change/done/ [name='password_change_done']
+accounts/ password_reset/ [name='password_reset']
+accounts/ password_reset/done/ [name='password_reset_done']
+accounts/ reset/<uidb64>/<token>/ [name='password_reset_confirm']
+accounts/ reset/done/ [name='password_reset_complete']
+```
+
+<hr>
+
+Now try to navigate to the login URL ([http://127.0.0.1:8000/accounts/login/](http://127.0.0.1:8000/accounts/login/)). This will fail again, but with an error that tells you that we're missing the required template (**registration/login.html**) on the template search path. You'll see the following lines listed in the yellow section at the top:
+```
+Exception Type:    TemplateDoesNotExist
+Exception Value:    registration/login.html
+```
+The next step is to create a registration directory on the search path and then add the **login.html** file.
+
+### Template directory
