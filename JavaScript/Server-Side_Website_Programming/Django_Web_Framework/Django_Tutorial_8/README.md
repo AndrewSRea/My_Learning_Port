@@ -369,3 +369,90 @@ This is the last password-reset template, which is displayed to notify you when 
     <p><a href="{% url 'login' %}">Log in again?</a></p>
 {% endblock %}
 ```
+
+### Testing the new authentication pages
+
+Now that you've added the URL configuration and created all these templates, the authentication pages should now work!
+
+You can test the new authentication pages by attempting to log in to and then log out of your superuser account using these URLs:
+
+* [http://127.0.0.1:8000/accounts/login/](http://127.0.0.1:8000/accounts/login/)
+* [http://127.0.0.1:8000/accounts/logout/](http://127.0.0.1:8000/accounts/logout/)
+
+You'll be able to test the password reset functionality from the link in the login page. **Be aware that Django will only send reset emails to addresses (users) that are already stored in its database!**
+
+<hr>
+
+**Note**: The password reset system requires that your website supports email, which is beyond the scope of this article, so this part **won't work yet**. To allow testing, put the following line at the end of your *settings.py* file. This logs any emails sent to the console (so you can copy the password reset link from the console).
+```
+EMAIL_BACKEND = 'django.core.email.backends.console.EmailBackend'
+```
+For more information, see [Sending email](https://docs.djangoproject.com/en/3.1/topics/email/) (Django docs).
+
+<hr>
+
+## Testing against authenticated users
+
+This section looks at what we can do to selectively control content the user sees based on whether they are logged in or not.
+
+### Testing in templates
+
+You can get information about the currently logged in user in templates with the `{{ user }}` template variable. (This is aded to the templates context by default when you set up the project as we did in our skeleton.)
+
+Typically, you will first test against the `{{ user.is_authenticated }}` template variable to determine whether the user is eligible to see specific content. To demonstrate this, next we'll update our sidebar to display a "Login" link if the user is logged out, and a "Logout" link if they are logged in.
+
+Open the base template (**/locallibrary/catalog/templates/base_generic.html**) and copy the following text into the `sidebar` block, immediately before the `endblock` template tag.
+```
+<ul class="sidebar-nav">
+
+    ...
+
+{% if user.is_authenticated %} 
+    <li>User: {{ user.get_username }}</li>
+    <li><a href="{% url 'logout'%}?next={{request.path}}"></a></li>
+{% else %} 
+    <li><a href="{% url 'login'%}?next={{request.path}}"></a></li>
+{% endif %}
+</ul>
+```
+As you can see, we use `if-else-endif` template tags to conditionally display text based on whether `{{ user.is_authenticated }}` is true. If the user is authenticated, then we know that we have a valid user, so we call `{{ user.get_username }}` to display their name.
+
+We create the login and logout link URLs using the `url` template tag and the names of the respective URL configurations. Note also how we have appended `?next={{request.path}}` to the end of the URLs. What this does is add a URL parameter `next` containing the address (URL) of the *current* page, to the end of the linked URL. After the user has successfully logged in/out, the views will use this `"next"` value to redirect the user back to the page where they first clicked the login/logout link.
+
+<hr>
+
+**Note**: Try it out! If you're on the home page and you click Login/Logout in the sidebar, then after the operation completes, you should end up back on the same page.
+
+<hr>
+
+### Testing in views
+
+If you're using function-based views, the easiest way to restrict access to your functions is to apply the `login_required` decorator to your view function, as shown below. If the user is logged in, then your view code will execute as normal. If the user is not logged in, this will redirect to the login URL defined in the project settings (`settings.LOGIN_URL`), passing the current absolute path as the `next` URL parameter. If the user succeeds in logging in, then they will be returned back to this page, but this time authenticated.
+```
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def my_view(request):
+    ...
+```
+
+<hr>
+
+**Note**: You can do the same sort of thing manually by testing on `request.user.is_authenticated`, but the decorator is much more convenient!
+
+<hr>
+
+Similarly, the easiest way to restrict access to logged-in users in your class-based views is to derive from `LoginRequiredMixin`. You need to declare this mixin first in the superclass list, before the main view class.
+```
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class MyView(LoginRequiredMixin, View):
+    ...
+```
+This has exactly the same redirect behavior as the `login_required` decorator. You can specify an alternative location to redirect the user to if they are not authenticated (`login_url`), and a URL parameter name instead of `"next"` to insert the current absolute path (`redirect_field_name`).
+```
+class MyView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+```
+For additional detail, check out the [Django docs here](https://docs.djangoproject.com/en/3.1/topics/auth/default/#limiting-access-to-logged-in-users).
