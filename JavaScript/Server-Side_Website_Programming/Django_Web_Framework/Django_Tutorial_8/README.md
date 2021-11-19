@@ -456,3 +456,96 @@ class MyView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 ```
 For additional detail, check out the [Django docs here](https://docs.djangoproject.com/en/3.1/topics/auth/default/#limiting-access-to-logged-in-users).
+
+## Example -- listing the current user's books
+
+Now that we know how to restrict a page to a particular user, let's create a view of the books tha the current user has borrowed.
+
+Unfortunately, we don't yet have any way for users to borrow books! So before we can create the book list, we'll first extend the `BookInstance` model to support the concept of borrowing and use the Django Admin application to loan a number of books to our test user.
+
+### Models
+
+First, we're going to have to make it possible for users to have a `BookInstance` on loan. We already have a `status` and a `due_bak` date, but we don't yet have any association between this model and a User. We'll create one using a `ForeignKey` (one-to-many) field. We also need an easy mechanism to test whether a loaned book is overdue.
+
+Open **catalog/models.py**, and import the `User` model from `django.contrib.auth.models`. (Add this just below the previous import line at the top of the file, so `User` is available to subsequent code that makes use of it):
+```
+from django.contrib.auth.models import User
+```
+Next, add the `borrower` field to the `BookInstance` model:
+```
+borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+```
+While we're here, let's add a property that we can call from our templates to tell if a particular book instance is overdue. While we could calculate this in the template itself, using a [property]() as shown below will be much more efficient.
+
+Add this somewhere near the top of the file:
+```
+from datetime import date
+```
+Now add the following property definition to the `BookInstance` class:
+```
+@property
+def is_overdue(self):
+    if self.due_back and date.today() > self.due_back:
+        return True
+    return False
+```
+
+<hr>
+
+**Note**: We first verify whether `due_back` is empty before making a comparison. An empty `due_back` field would cause Django to throw an error instead of showing the page: empty values are not comparable. This is not something we would want our users to experience!
+
+<hr>
+
+Now that we've updated our models, we'll need to make fresh migrations on the project and then apply those migrations:
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+### Admin
+
+Now open **catalog/admin.py**, and add the `borrower` field to the `BookInstanceAdmin` class in both the `list_display` and the `fieldsets` as shown below. This will make the field visible in the Admin section, allowing us to assign a `User` to a `BookInstance` when needed.
+```
+@admin.register(BookInstance)
+class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
+    list_filter = ('status', 'due_back')
+
+    fieldsets = (
+        (None, {
+            'fields': ('book', 'imprint', 'id')
+        }),
+        ('Availability', {
+            'fields': ('status', 'due_back', 'borrower')
+        }),
+    )
+```
+
+### Loan a few books
+
+Now that it's possible to loan books to a specific user, go and loan out a number of `BookInstance` records. Set their `borrowed` field to your test user, make the `status` "On loan", and set due dates both in the future and the past.
+
+<hr>
+
+**Note**: We won't spell the process out, as you already know how to use the Admin site!
+
+<hr>
+
+### On loan view
+
+Now we'll add a view for getting the list of all books that have been loaned to the current user. We'll use the same generic class-based list view we're familiar with, but this time we'll also import and derive from `LoginRequiredMixin`, so that only a logged in user can call this view. We will also choose to declare a `template_name` rather than using the default, because we may end up having a few different lists of `BookInstance` records, with different views and templates.
+
+Add the following to **catalog/views.py**:
+```
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing books on loan to current user."""
+    model = BookInstance
+    template_name = 'catalog/bookinstance_list_borrowed_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
+```
+In order to restrict our query to just the `BookInstance` objects for the current user, we reimplement `get_queryset()` as shown above. Note that `'o'` is the stored code for "on loan" and we order by the `due_back` date so that the oldest items are displayed first.
