@@ -586,3 +586,102 @@ Now all we need to do for this page is add a template. First, create the tempalt
 This template is very similar to those we've created previously for the `Book` and `Author` objects. The only thing "new" here is that we check the method we added in the model (`bookinst.is_overdue`) and use it to change the color of overdue items.
 
 When the development server is running, you should now be able to view the list for a logged in user in your browser at [http://127.0.0.1:8000/catalog/mybooks/](http://127.0.0.1:8000/catalog/mybooks/). Try this out with your user logged in and logged out. (In the second case, you should be redirected to the login page.)
+
+### Add the list to the sidebar
+
+The very last step is to add a link for this new page into the sidebar. We'll put this in the same section where we display other information for the logged in user.
+
+Open the base template (**/locallibrary/catalog/templates/base_generic.html**) and add the "My Borrowed" line to the sidebar in the position shown below:
+```
+<ul class="sidebar-nav">
+    {% if user.is_authenticated %}
+    <li>User: {{ user.get_username }}</li>
+
+    <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+
+    <li><a href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+    {% endif %}
+</ul>
+```
+
+### What does it look like?
+
+When any user is logged in, they'll see the *My Borrowed* link in the sidebar, and the list of books displayed as below. (The first book has no due date, which is a bug we hope to fix in a later tutorial!)
+
+![Image of a "User"s "Borrowed books" list in the "LocalLibrary" app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication/library_borrowed_by_user.png)
+
+## Permissions
+
+Permissions are associated with models and define the operations that can be performed on a model instance by a user who has the permission. By default, Django automatically gives *add*, *change*, and *delete* permissions to all models, which allow users with the permission to perform the associated actions via the admin site. You can define your own permissions to models and grant them to specific users. You can also change the permissions associated with different instances of the same model.
+
+Testing on permissions in views and templates is then very similar for testing on the authentication status (and in fact, testing for a permission also tests for authentication).
+
+### Models
+
+Defining permissions is done on the model "`class Meta`" section, using the `permissions` field. You can specify as many permissions as you need in a tuple, each permission itself being defined in a nested tuple containing the permission name and permission display value. For example, we might define a permission to allow a user to mark that a book has been returned as shown:
+```
+class BookInstance(models.Model):
+    ...
+    class Meta:
+        ...
+        permissions = (("can_mark_returned", "Set book as returned"),)
+```
+We could then assign the permission to a "Librarian" group in the Admin site.
+
+Open the **catalog/models.py**, and add the permission as shown above. You will need to rerun your migrations (call `python3 manage.py makemigrations` and `python3 manage.py migrate`) to update the database appropriately.
+
+### Templates
+
+The current user's permissions are stored in a template variable called `{{ perms }}`. You can check whether the current user has a particular permission using the specific variable name within the associated Django "app" -- e.g. `{{ perms.catalog.can_mark_returned }}` will be `True` if the user has this permission, and `False` otherwise. We typically test for the permission using the template `{% if %}` tag as shown:
+```
+{% if perms.catalog.can_mark_returned %}
+    <!-- We can mark a BookInstance as returned. -->
+    <!-- Perhaps add code to link to a "book return" view here. -->
+{% endif %}
+```
+
+### Views
+
+Permissions can be tested in function view using the `permission_required` decorator or in a class-based view using the `PermissionRequiredMixin`. The patterns are the same for login authentication, though, of course, you might reasonably have to add multiple permissions.
+
+Function view decorator:
+```
+from django.contrib.auth.decorators import permission_required
+
+@permission_required('catalog.can_mark_returned')
+@permission_required('catalog.can_edit')
+def my_view(request):
+    ...
+```
+A permission-required mixin for class-based views:
+```
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+class MyView(PermissionRequiredMixin, View):
+    permission_required = 'catalog.can_mark_returned'
+    # Or multiple permissions
+    permission_required = ('catalog.can_mark_returned', 'catalog.can_edit')
+    # Note that 'catalog.can_edit' is just an example
+    # the catalog application doesn't have such permission!
+```
+
+<hr>
+
+**Note**: There is a small default difference in the behavior above. By **default** for a logged-in user with a permission violation:
+
+* `@permission_required` redirects to login screen (HTTP Status 302).
+* `PermissionRequiredMixin` returns 403 (HTTP Status Forbidden.
+
+Normally you will want the `PermissionRequiredMixin` behavior: return 403 if a user is logged in but does not have the correct permission. To do this for a function view, use `@login_required` and `@permission_required` with `raise_exception=True` as shown:
+```
+from django.contrib.auth.decorators import login_required, permission_required
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
+def my_view(request):
+    ...
+```
+
+<hr>
