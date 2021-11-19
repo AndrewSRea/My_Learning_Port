@@ -549,3 +549,40 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
         return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
 ```
 In order to restrict our query to just the `BookInstance` objects for the current user, we reimplement `get_queryset()` as shown above. Note that `'o'` is the stored code for "on loan" and we order by the `due_back` date so that the oldest items are displayed first.
+
+### URL conf for on loan books
+
+Now open **/catalog/urls.py** and add a `path()` pointing to the above view. (You can just copy the text below to the end of the file):
+```
+urlpatterns += [
+    path('mybooks/', views.LoanedBooksByUserListView,as_view(), name='my_borrowed'),
+]
+```
+
+### Template for on loan books
+
+Now all we need to do for this page is add a template. First, create the tempalte file **/catalog/templates/catalog/bookinstance_list_borrowed_user.html** and give it the following contents:
+```
+{% extends "base_generic.html" %}  
+
+{% block content %}  
+    <h1>Borrowed books</h1>
+
+    {% if bookinstance_list %} 
+    <ul>
+
+        {% for bookinst in bookinstance_list %}  
+        <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+            <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
+        </li>
+        {% endfor %}  
+    </ul>
+
+    {% else %}  
+        <p>There are no books borrowed.</p>
+    {% endif %} 
+{% endblock %}
+```
+This template is very similar to those we've created previously for the `Book` and `Author` objects. The only thing "new" here is that we check the method we added in the model (`bookinst.is_overdue`) and use it to change the color of overdue items.
+
+When the development server is running, you should now be able to view the list for a logged in user in your browser at [http://127.0.0.1:8000/catalog/mybooks/](http://127.0.0.1:8000/catalog/mybooks/). Try this out with your user logged in and logged out. (In the second case, you should be redirected to the login page.)
