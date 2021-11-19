@@ -685,3 +685,39 @@ def my_view(request):
 ```
 
 <hr>
+
+### Example
+
+We won't update the *LocalLibrary* here; perhaps in the next tutorial!
+
+## Challenge yourself
+
+Earlier in this article, we showed you how to create a page for the current user, listing the books that they have borrowed. The challenge now is to create a similar page that is only visible for librarians, that displays *all* books that have been borrowed, and which includes the name of each borrower.
+
+You should be able to follow the same pattern as for the other view. The main difference is that you'll need to restrict the view to librarians only. You could do this based on whether the user is a staff member (function decorator: `staff_member_required`, template variable: `user.is_staff`) but we recommend that you instead use the `can_mark_returned` permission and `PermissionRequiredMixin`, as described in the previous section.
+
+<hr>
+
+:warning: **Warning**: Remember not to use your superuser for permissions based testing (permission checks always return true for superusers, even if a permission has not yet been defined). Instead, create a librarian user, and add the required capability.
+
+<hr>
+
+When you are finished, your page should look something like the screenshot below:
+
+![Image of an "All Borrowed Books" list for a "Librarian" in the "LocalLibrary" app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication/library_borrowed_all.png)
+
+## Summary
+
+Excellent work! You've now created a website that library members can log into and view their own content and that librarians (with the correct permission) can use to view all loaned books and their borrowers. At the moment, we're still just viewing content, but the same principles and techniques are used when you want to start modifying and adding data.
+
+In our next article, we'll look at how you can use Django forms to collect user input, and then start modifying some of our stored data.
+
+## See also
+
+* [User authentication in Django](https://docs.djangoproject.com/en/3.1/topics/auth/) (Django docs)
+* [Using the (default) Django authentication system](https://docs.djangoproject.com/en/3.1/topics/auth/default/) (Django docs)
+* [Introduction to class-based views > Decorating class-based views](https://docs.djangoproject.com/en/3.1/topics/class-based-views/intro/#decorating-class-based-views) (Django docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_7#django-tutorial-part-7-sessions-framework) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_8#django-tutorial-part-8-user-authentication-and-permissions) - [[Next page]]()
