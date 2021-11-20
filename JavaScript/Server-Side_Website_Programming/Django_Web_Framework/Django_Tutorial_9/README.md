@@ -166,6 +166,6 @@ The URL configuration will redirect URLs with the format **/catalog/book/*<booki
 
 <hr>
 
-**Note**: We can name our captured URL data "`pk`" anything we like, because we have complete control over the view function. (We're not using a generic detail valie class that expects parameters with a certain name.) However, `pk` short for "primary key" is a reasonable convention to use.
+**Note**: We can name our captured URL data "`pk`" anything we like, because we have complete control over the view function. (We're not using a generic detail valid class that expects parameters with a certain name.) However, `pk` short for "primary key" is a reasonable convention to use.
 
 <hr>
