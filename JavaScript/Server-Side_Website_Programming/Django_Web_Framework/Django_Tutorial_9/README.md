@@ -103,7 +103,7 @@ The arguments that are common to most fields are listed below (these have sensib
 
 * [`required`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#required): If `True`, the field may not be left blank or given a `None` value. Fields are required by default, so you would set `required=False` to allow blank values in the form.
 * [`label`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#label): The label to use when rendering the field in HTML. If a `label` is not specified, Django will create one from the field name by capitalizing the first letter and replacing underscores with spaces (e.g. *Renewal date*).
-* [`label_suffix`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#label-suffix): By default, a colon is displayed after the label (e.g. Renewal date\***:**\*). This argument allows you to specify a different suffix containing other character(s).
+* [`label_suffix`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#label-suffix): By default, a colon is displayed after the label (e.g. Renewal date\*\*:\*\*). This argument allows you to specify a different suffix containing other character(s).
 * [`initial`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#initial): The initial value for the field when the form is displayed.
 * [`widget`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#widget): The display widget to use.
 * [`help_text`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#help-text) (as seen in the example above): Additional text that can be displayed in forms to explain how to use the field.
@@ -113,3 +113,59 @@ The arguments that are common to most fields are listed below (these have sensib
 * [`disabled`](https://docs.djangoproject.com/en/3.1/ref/forms/fields/#disabled): The field is displayed but its value cannot be edited if this is `True`. The default is `False`.
 
 #### Validation
+
+Django provides numerous places where you can validate your data. The easiest way to validate a single field is to override the method `clean_<fieldname>()` for the field you want to check. So, for eaxmple, we can validate that entered `renewal_date` values are between now and 4 weeks by implementing `clean_renewal_date()` as shown below.
+
+Update your *forms.py* file so it looks like this:
+```
+import datetime 
+
+from django import forms
+
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
+class RenewBookForm(forms.Form):
+    renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).") 
+
+    def clean_renewal_date(self):
+        data = self.cleaned_data['renewal_date']
+
+        # Check if a date is not in the past.
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - renewal in past'))
+
+        # Check if a date is in the allowed range (+4 weeks from today).
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+
+        # Remember to always return the cleaned data.
+        return data
+```
+There are two important things to note. The first is that we get our data using `self.cleaned_data['renewal_date']` and that we return this data whether or not we change it at the end of the function. This step gets us the data "cleaned" and sanitized of potentially unsafe input using the default validators, and converted into the correct standard type for the data (in this case, a Python `datetime.datetime` object).
+
+The second point is that if a value falls outside our range, we raise a `ValidationError`, specifying the error text that we want to display in the form if an invalid value is entered. The example above also wraps this text in one of [Django's translation functions](https://docs.djangoproject.com/en/3.1/topics/i18n/translation/): `ugettext_lazy()` (imported as `_()`), which is good practice if you want to translate your site later.
+
+<hr>
+
+**Note**: There are numerous other methods and examples for validating forms in [Form and field validation](https://docs.djangoproject.com/en/3.1/ref/forms/validation/) (Django docs). For example, in cases where you have multiple fields that depend on each other, you can override the [`Form.clean()`](https://docs.djangoproject.com/en/3.1/ref/forms/api/#django.forms.Form.clean) function and again raise a `ValidationError`.
+
+<hr>
+
+That's all we need for the form in this example!
+
+### URL configuration
+
+Before we create our view, let's add a URL configuration for the *renew-books* page. Copy the following configuration to the bottom of **locallibrary/catalog/urls.py**.
+```
+urlpatterns += [
+    path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew-book-librarian'),
+]
+```
+The URL configuration will redirect URLs with the format **/catalog/book/*<bookinstance_id>*/renew/** to the function named `renew_book_librarian()` in **views.py**, and send the `BookInstance` id as the parameter named `pk`. The pattern only matches if `pk` is a correctly formatted `uuid`.
+
+<hr>
+
+**Note**: We can name our captured URL data "`pk`" anything we like, because we have complete control over the view function. (We're not using a generic detail valie class that expects parameters with a certain name.) However, `pk` short for "primary key" is a reasonable convention to use.
+
+<hr>
