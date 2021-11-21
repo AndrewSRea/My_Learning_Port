@@ -367,3 +367,63 @@ All that's left is the `{{ form }}` template variable, which we passed to the te
     </td>
 </tr>
 ```
+
+<hr>
+
+**Note** It is perhaps not obvious because we only have one field, but, by default, every field is defined in its own table row. This same rendering is provided if you reference the template variable `{{ form.as_table }}`.
+
+<hr>
+
+If you were to enter an invalid date, you'd additionally get a list of errors rendered on the page (see `errorlist` below):
+```
+<tr>
+    <th><label for="id_renewal_date">Renewal date:</label></th>
+    <td>
+        <ul class="errorlist">
+            <li>Invalid date - renewal in past</li>
+        </ul>
+        <input id="id_renewal_date" name="renewal_date" type="text" value="2016-11-08" required>
+        <br>
+        <span class="helptext">Enter date between now and 4 weeks (default 3 weeks).</span>
+    </td>
+</tr>
+```
+
+#### Other ways of using form template variable
+
+Using `{{ form.as_table }}` as shown above, each field is rendered as a table row. You can also render each field as a list item (using `{{ form.as_ul }}`) or as a paragraph (using `{{ form.as_p }}`).
+
+It is also possible to have complete control over the rendering of each part of the form, by indexing its properties using dot notation. So, for example, we can access a number of separate items for our `renewal_date` field:
+
+* `{{ form.renewal_date }}`: The whole field.
+* `{{ form.renewal_date.errors }}`: The list of errors.
+* `{{ form.renewal_date.id_for_label }}`: The id of the label.
+* `{{ form.renewal_date.help_text }}`: The field help text.
+
+For more examples of how to manually render forms in templates and dynamically loop over template fields, see [Working with forms> Rendering fields manually](https://docs.djangoproject.com/en/3.1/topics/forms/#rendering-fields-manually) (Django docs).
+
+### Testing the page
+
+If you accepted the "challenge" in [Django Tutorial Part 8: User authentication and permissions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_8#challenge-yourself), you'll have a list of all books on loan in the library, which is only visible to library staff. We can add a link to our renew page next to each item using the template code below.
+```
+{% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a> {% endif %}
+```
+
+<hr>
+
+**Note**: Remember that your test login will need to have the permission "`catalog.can_mark_returned`" in order to access the renew book page.
+
+<hr>
+
+:exclamation: **Attention**: The MDN pages for the Django Tutorial doesn't mention this but you need to go into your Django Administration application ([http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)) to give your "librarians" the permissions for "`catalog.can_mark_returned`". (If you haven't created any "librarians", [you should do so now](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_8#creating-users-and-groups).)
+
+To add permissions to your "librarians", follow these steps:
+
+1. After opening your Django Administration application, you will see a list of "**Groups**" and "**Users**". Click on the "**Groups**" link.
+2. This will open the next page, "**Select group to change**". If you have created a "**Librarians**" group, then click on that link.
+3. This will then open the next page, "**Change Group**". You will see a panel labeled "Permissions", with a list of "Available permissions". You will have to search in the "Filter" field with the word "return" to find the permission "catalog | book instance | Set book as returned". As we did with our "Users", click "catalog | book instance | Set book as returned", then click the right-facing arrow in adjacent gutter space to move the permission over to the "Chosen permission" panel.
+4. Now click the "Save" button in the bottom right of the "**Change group**" window, and all of your "**Librarians**" will now have the permission to "Set book as returned".
+
+<hr>
+
+You can alternatively manually construct a test URL like this -- `http://127.0.0.1:8000/catalog/book/<bookinstance_id>/renew/`. (A valid `bookinstance_id` can be obtained by navigating to a book detail page in your library, and copying the `id` field.)
