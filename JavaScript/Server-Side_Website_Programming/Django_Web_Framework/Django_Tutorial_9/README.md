@@ -190,7 +190,7 @@ def renew_book_librarian(request, pk):
     book_instance = get_object_or_404(BookInstance, pk=pk)
 
     # If this is a POST request, then process the Form data
-    if request.method === 'POST':
+    if request.method == 'POST':
 
         # Create a form instance and populate it with data from the request (binding):
         from = RenewBookForm(request.POST)
@@ -242,3 +242,128 @@ return render(request, 'catalog/book_renew_librarian.html', context)
 After creating the form, we call `render()` to create the HTML page, specifying the template and a context that contains our form. In this case, the context also contains our `BookInstance`, which we'll use in the template to provide information about the book we're renewing.
 
 However, if this is a `POST` request, then we create our `form` object and populate it with data from the request. This process is called "binding" and allows us to validate the form. We then check if the form is valid, which runs all the validation code on all of the fields -- including both the generic code to check that our date field is actually a valid date and our specific form's `clean_renewal_date()` function to check the date is in the right range.
+```
+book_instance = get_object_or_404(BookInstance, pk=pk)
+
+# If this is a POST request, then process the Form data
+if request.method == 'POST':
+
+    # Create a form instance and populate it with data from the request (binding):
+    from = RenewBookForm(request.POST)
+
+    # Check if the form is valid:
+    if form.is_valid():
+        # Process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+        book_instance.due_back = form.cleaned_data['renewal_date']
+        book_instance.save()
+
+        # Redirect to a new URL:
+        return HttpResponseRedirect(reverse('all-borrowed') )
+
+context = {
+    'form': form,
+    'book_instance': book_instance,
+}
+
+return render(request, 'catalog/book_renew_librarian.html', context)
+```
+If the form is not valid, we call `render()` again, but this time the form value passed in the context will include error messages.
+
+If the form is valid, then we can start to use the data, accessing it through the `form.cleaned_data` attribute (e.g. `data = form.cleaned_data['renewal_date']`). Here we just save the data into the `due_back` value of the associated `BookInstance` object.
+
+<hr>
+
+:warning: **Warning**: While you can also access the form data directly through the request (for example, `request.POST['renewal_date']` or `request.GET['renewal_date']` if using a `GET` request), this is NOT recommended. The cleaned data is sanitized, validated, and converted into Python-friendly types.
+
+<hr>
+
+The final step in the form-handling part of the view is to redirect to another page, usually a "success" page. In this case, we use `HttpResponseRedirect` and `reverse()` to redirect to the view named `'all-borrowed'`. (This was created as the "challenge" in [Django Tutorial Part 8: User authentication and permissions](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_8#challenge-yourself)). If you didn't create that page, consider redirecting to the home page at URL `'/'`.
+
+That's everything needed for the form handling itself, but we still need to restrict access to the view to just logged-in librarians who have permission to renew books. We use `@login_required` to require that the user is logged in, and the `@permission_required` function decorator with our existing `can_mark_returned` permission to allow access (decorators are processed in order). Note that we probably should have created a new permission setting in `BookInstance` ("`can_renew`"), but we will reuse the existing one to keep the example simple.
+
+The final view is, therefore, as shown below. Please copy this into the bottom of **locallibrary/catalog/views.py**.
+```
+import datetime
+
+from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+from catalog.forms import RenewBookForm
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
+def renew_book_librarian(request, pk):
+    """View function for renewing a specific BookInstance by librarian."""
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    # If this is a POST request, then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding):
+        form = RenewBookForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+            book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.save()
+
+            # Redirect to a new URL:
+            return HttpResponseRedirect(reverse('all-borrowed') )
+
+    # If this is a GET (or any other method), create the default form.
+    else:
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+```
+
+### The template
+
+Create the template referenced in the view (**/catalog/templates/catalog/book_renew_librarian.html**) and copy the code below into it:
+```
+{% extends "base_generic.html" %} 
+
+{% block content %} 
+    <h1>Renew: {{ book_instance.book.title }}</h1>
+    <p>Borrower: {{ book_instance.borrower }}</p>
+    <p{% if book_instance.is_overdue %} class="text-danger"{% endif %}>Due date: {{ book_instance.due_back }}</p>
+
+    <form action="" method="post">
+        {% csrf_token %}  
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+```
+Most of this will be completely familiar from previous tutorials. We extend the base template and then redefine the content block. We are able to reference `{{ book_instance }}` (and its variables) because it was passed into the context object in the `render()` function, and we use these to list the book title, borrower, and the original due date.
+
+The form code is relatively simple. First, we declare the `form` tags, specifying where the form is to be submitted (`action`) and the `method` for submitting the data (in this case, an "HTTP POST"). If you recall the [HTML Forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_9#html-forms) overview at the top of the page, an empty `action` as shown, means that the form data will be posted back to the current URL of the page (which is what we want!). Inside the tags, we define the `submit` input, which a user can press to submit the data. The `{% csrf_token %}` added just inside the form tags is part of Django's cross-site forgery protection.
+
+<hr>
+
+**Note**: Add the `{% csrf_token %}` to every Django template you create that uses `POST` to submit data. This will reduce the chance of forms being hijacked by malicious users.
+
+<hr>
+
+All that's left is the `{{ form }}` template variable, which we passed to the template in the context dictionary. Perhaps unsurprisingly, when used as shown, this provides the default rendering of all the form fields, including their labels, widgets, and help text -- the rendering is as shown below:
+```
+<tr>
+    <th><label for="id_renewal_date">Renewal date:</label></th>
+    <td>
+        <input id="id_renewal_date" name="renewal_date" type="text" value="2016-11-08" required>
+        <br>
+        <span class="helptext">Enter date between now and 4 weeks (default 3 weeks).</span>
+    </td>
+</tr>
+```
