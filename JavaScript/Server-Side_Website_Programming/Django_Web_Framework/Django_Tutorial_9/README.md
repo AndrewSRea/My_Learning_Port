@@ -166,6 +166,79 @@ The URL configuration will redirect URLs with the format **/catalog/book/*<booki
 
 <hr>
 
-**Note**: We can name our captured URL data "`pk`" anything we like, because we have complete control over the view function. (We're not using a generic detail valid class that expects parameters with a certain name.) However, `pk` short for "primary key" is a reasonable convention to use.
+**Note**: We can name our captured URL data "`pk`" anything we like, because we have complete control over the view function. (We're not using a generic detail valid class that expects parameters with a certain name.) However, `pk`, short for "primary key", is a reasonable convention to use.
 
 <hr>
+
+### View
+
+As discussed in the [Django form handling process](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_9#django-form-handling-process) above, the view has to render the default form when it is first called and then either re-render it with error messages if the data is invalid, or process the data and redirect to a new page if the data is valid. In order to perform these different actions, the view has to be able to know whether it is being called for the first time to render the default form, or a subsequent time to validate data.
+
+For forms that use a `POST` request to submit information to the server, the most common pattern is for the view to test against the `POST` request type (`if request.method == 'POST':`) to identify form validation requests and `GET` (using an `else` condition) to identify the initial form creation request. If you want to submit your data using a `GET` request, then a typical approach for identifying whether this is the first or subsequent view invocation is to read the form data (e.g. to read a hidden value in the form).
+
+The book renewal process will be writing to our database, so, by convention, we use the `POST` request approach. The code fragment below shows the (very standard) pattern for this sort of function view.
+```
+import datetime
+
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+from catalog.forms import RenewBookForm
+
+def renew_book_librarian(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    # If this is a POST request, then process the Form data
+    if request.method === 'POST':
+
+        # Create a form instance and populate it with data from the request (binding):
+        from = RenewBookForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+            book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.save()
+
+            # Redirect to a new URL:
+            return HttpResponseRedirect(reverse('all-borrowed') )
+
+    # If this is a GET (or any other method) create the default form.
+    else:
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        from = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+```
+First, we import our form (`RenewBookForm`) and a number of other useful objects/methods used in the body of the view function:
+
+* [`get_object_or_404`](https://docs.djangoproject.com/en/3.1/topics/http/shortcuts/#get-object-or-404): Returns a specified object from a model based on its primary key value, and raises an `Http404` exception (not found) if the record does not exist.
+* [`HttpResponseRedirect`](https://docs.djangoproject.com/en/3.1/ref/request-response/#django.http.HttpResponseRedirect): This creates a redirect to a specified URL (HTTP statius code 302).
+* [`reverse()`](https://docs.djangoproject.com/en/3.1/ref/urlresolvers/#django.urls.reverse): This generates a URL from a URL configuration name and a set of arguments. It is the Python equivalent of the `url` tag that we've been using in our templates.
+* [`datetime`](https://docs.python.org/3/library/datetime.html): A Python library for manipulating dates and times.
+
+In the view, we first use the `pk` argument in `get_object_or_404()` to get the current `BookInstance`. (IF this does not exist, the view will immediately exit and the page will display a "not found" error.) If this is *not* a `POST` request (handled by the `else` clause), then we create the default form passing in an `initial` value for the `renewal_date` field, 3 weeks from the current date.
+```
+book_instance = get_object_or_404(BookInstance, pk=pk)
+
+# If this is a GET (or any other method), create the default form
+else:
+    proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+    form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+context = {
+    'form': form,
+    'book_instance': book_instance,
+}
+
+return render(request, 'catalog/book_renew_librarian.html', context)
+```
+After creating the form, we call `render()` to create the HTML page, specifying the template and a context that contains our form. In this case, the context also contains our `BookInstance`, which we'll use in the template to provide information about the book we're renewing.
+
+However, if this is a `POST` request, then we create our `form` object and populate it with data from the request. This process is called "binding" and allows us to validate the form. We then check if the form is valid, which runs all the validation code on all of the fields -- including both the generic code to check that our date field is actually a valid date and our specific form's `clean_renewal_date()` function to check the date is in the right range.
