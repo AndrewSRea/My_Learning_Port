@@ -415,7 +415,7 @@ If you accepted the "challenge" in [Django Tutorial Part 8: User authentication 
 
 <hr>
 
-:exclamation: **Attention**: The MDN pages for the Django Tutorial doesn't mention this but you need to go into your Django Administration application ([http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)) to give your "librarians" the permissions for "`catalog.can_mark_returned`". (If you haven't created any "librarians", [you should do so now](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_8#creating-users-and-groups).)
+:exclamation: **Attention**: The MDN pages for the Django Tutorial don't mention this but you need to go into your Django Administration application ([http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)) to give your "librarians" the permissions for "`catalog.can_mark_returned`". (If you haven't created any "librarians", [you should do so now](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_8#creating-users-and-groups).)
 
 To add permissions to your "librarians", follow these steps:
 
@@ -427,3 +427,84 @@ To add permissions to your "librarians", follow these steps:
 <hr>
 
 You can alternatively manually construct a test URL like this -- `http://127.0.0.1:8000/catalog/book/<bookinstance_id>/renew/`. (A valid `bookinstance_id` can be obtained by navigating to a book detail page in your library, and copying the `id` field.)
+
+### What does it look like?
+
+If you are successful, the default form will look like this:
+
+![Image of the renewal form in the "LocalLibrary" app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms/forms_example_renew_default.png)
+
+The form with an invalid value entered will look like this:
+
+![Image of an invalid value entered in the "LocalLibrary" renewal form](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms/forms_example_renew_invalid.png)
+
+The list of all books with renew links will look like this:
+
+![Image of a list of all Borrowed Books with "Renew" links](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms/forms_example_renew_allbooks.png)
+
+## ModelForms
+
+Creating a `Form class using the approach described above is very flexible, allowing you to create whatever sort of form page you like and associate it with any model or models.
+
+However, if you just need a form to map the fields of a *single* model, then your model will already define most of the information that you need in your form: fields, labels, help text, and so on. Rather than recreating the model definitions in your form, it is easier to use the [ModelForm](https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/) helper class to create the form from your model. This `ModelForm` can then be used within your views in exactly the same way as an ordinary `Form`.
+
+A basic `ModelForm` containing the same field as our original `RenewBookForm` is shown below. All you need to do to create the form is add `class Meta` with the associated `model` (`BookInstance`) and a list of the model `fields` to include in the form.
+```
+from django.forms import ModelForm
+
+from catalog.models import BookInstance
+
+class RenewBookModelForm(ModelForm):
+    class Meta:
+        model = BookInstance
+        fields = ['due_back']
+```
+
+<hr>
+
+**Note**: You can also include all fields in the form using `fields = '__all__'`, or you can use `exclude` (instead of `fields`) to specify the fields *not* to include from the model).
+
+Neither approach is recommended because new fields added to the model are then automatically included in the form (without the developer necessarily considering possible security implications).
+
+<hr>
+
+**Note**: This might not look all that much simpler than just using a `Form` (and it isn't in this case, because we just have one field). However, if you have a lot of fields, it can reduce the amount of code quite significantly!
+
+<hr>
+
+The rest of the information comes from the model field definitions (e.g. labels, widgets, help text, error messages). If these aren't quite right, then we can override them in our `class Meta`, specifying a dictionary containing the field to change and its new value. For example, in this form, we might want a label for our field of "*Renewal date*" (rather than the default based on the field name: *Due Back*), and we also want our help text to be specific to this use case. The `Meta` below shows you how to override these fields, and you can similarly set `widgets` and `error_messages` if the default aren't sufficient.
+```
+class Meta:
+    model = BookInstance
+    fields = ['due_back']
+    labels = {'due_back': _('New renewal date')}
+    help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')}
+```
+To add validation, you can use the same approach as for a normal `Form` -- you define a function named `clean_field_name()` and raise `ValidationError` exceptions for invalid values. The only difference with respect to our original form is that the model field is named `due_back` and not "`renewal_date`". This change is necessary since the corresponding field in `BookInstance` is called `due_back`.
+```
+from django.forms import ModelForm
+
+from catalog.models import BookInstance
+
+class RenewBookModelForm(ModelForm):
+    def clean_due_back(self):
+        data = self.cleaned_data['due_back']
+
+        # Check if a date is not in the past.
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - renewal in past'))
+
+        # Check is a date is in the allowed range (+4 weeks from today).
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+
+        # Remember to always return the cleaned data.
+        return data
+
+    class Meta:
+        model = BookInstance
+        fields = ['due_back']
+        labels = {'due_back': _('Renewal date')}
+        help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')}
+```
+The class `RenewBookModelForm` above is now functionally equivalent to our original `RenewBookForm`. You could import and use it wherever you currently use `RenewBookForm` as long as you also update the corresponding form variable name from `renewal_date` to `due_back` as in the second form declaration: `RenewBookModelForm(initial={'due_back': proposed_renewal_date}...`.
