@@ -508,3 +508,81 @@ class RenewBookModelForm(ModelForm):
         help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')}
 ```
 The class `RenewBookModelForm` above is now functionally equivalent to our original `RenewBookForm`. You could import and use it wherever you currently use `RenewBookForm` as long as you also update the corresponding form variable name from `renewal_date` to `due_back` as in the second form declaration: `RenewBookModelForm(initial={'due_back': proposed_renewal_date}...`.
+
+## Generic editing views
+
+The form handling algorithm we used in our function view example above represents an extremely common pattern in form editing views. Django abstracts much of this "boilerplate" for you, by creating [generic editing views](https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-editing/) for creating, editing, and deleting views based on models. Not only do these handle the "view" behavior, but they automatically create the form class (a `ModelForm`) for you from the model.
+
+<hr>
+
+**Note**: In addition to the editing views described here, there is a [`FormView`](https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-editing/#formview) class, which lies somewhere between our function view and the other generic views in terms of "flexibility" vs. "coding effort". Using `FormView`, you still need to create your `Form`, but you don't have to implement all of the standard form-handling patterns. Instead, you just have to provide an implementation of the function that will be called once the submission is known to be valid.
+
+<hr>
+
+In this section, we're going to use generic editing views to create pages to add functionality to create, edit, and delete `Author` records from our library -- effectively providing a basic reimplementation of parts of the Admin site. (This could be useful if you need to offer Admin functionality in a more flexible way than can be provided by the Admin site.)
+
+### Views
+
+Open the views file (**locallibrary/catalog/views.py**) and append the following code block to the bottom of it:
+```
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from catalog.models import Author
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death'] 
+    initial = {'date_of_death': '11/06/2020'}
+
+class AuthorUpdate(UpdateView):
+    model = Author 
+    field = '__all__'   # Not recommended (potential security issue if more fields added)
+
+class AuthorDelete(DeleteView):
+    model = Author 
+    success_url = reverse_lazy('authors')
+```
+As you can see, to create, update, or delete the views, you need to derive from `CreateView`, `UpdateView`, and `DeleteView` (respectively) and then define the associated model.
+
+For the "create" and "update" cases, you also need to specify the fields to display in the form (using the same syntax as for `ModelForm`). In this case, we show how to list them individually and the syntax to list "all" fields. You can also specify initial values for each of the fields using a dictionary of *field_name/value* pairs. (Here we arbitrarily set the date of death for demonstration purposes -- you might want to remove that!) By default, these views will redirect on success to a page displaying the newly created/edited model item, which, in our case, will be the author detail view we created in a previous tutorial. You can specify an alternative redirect location by explicitly declaring parameter `success_url` (as done for the `AuthorDelete` class).
+
+The `AuthorDelete` class doesn't need to display any of the fields, so these don't need to be specified. You do, however, need to specify the `success_url`, because there is no obvious default value for Django to use. In this case, we use the [`reverse_lazy()`](https://docs.djangoproject.com/en/3.1/ref/urlresolvers/#reverse-lazy) function to redirect to our author list after an author has been deleted -- `reverse_lazy()` is a lazily executed version of `reverse()`, used here because we're providing a URL to a class-based view attribute.
+
+### Templates
+
+The "create" and "update" views use the same template by default, which will be named after your model: *model_name***_form.html**. (You can change the suffix to something other than **_form** using the `template_name_suffix` field in your view -- for example, `template_name_suffix = '_other_suffix'`.)
+
+Create the template file **locallibrary/catalog/templates/catalog/author_form.html** and copy in the text below:
+```
+{% extends "base_generic.html" %}  
+
+{% block content %}  
+    <form action="" method="post">
+        {% csrf_token %} 
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+```
+This is similar to our previous forms and renders the fields using a table. Note also how again we declare the `{% csrf_token %}` to ensure that our forms are resistant to CSRF attacks.
+
+The "delete" view expects to find a template named with the format *model_name***_confirm_delete.html**. (Again, you can change the suffix using `template_name_suffix` in your view.) Create the template file **locallibrary/catalog/templates/catalog/author_confirm_delete.html** and copy in the text below:
+```
+{% extends "base_generic.html" %}  
+
+{% block content %}  
+
+<h1>Delete Author</h1>
+
+<p>Are you sure you want to delete the author: {{ author }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}  
+    <input type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}
+```
