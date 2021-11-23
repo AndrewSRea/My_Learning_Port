@@ -586,3 +586,66 @@ The "delete" view expects to find a template named with the format *model_name**
 
 {% endblock %}
 ```
+
+### URL configurations
+
+Open your URL configuration file (**locallibrary/catalog/urls.py**) and add the following configuration to the bottom of the file:
+```
+urlpatterns += [
+    path('author/create/', views.AuthorCreate.as_view(), name='author-create'),
+    path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author-update'),
+    path('author/<int:pk>/delete/', views.AuthorDelete.as_view(), name='author-delete'),
+]
+```
+There is nothing particularly new here! You can see that the views are classes, and must hence be called via `.as_view()`, and you should be able to recognize the URL patterns in each case. We must use `pk` as the name for our captured primary key value, as this is the parameter name expected by the view classes.
+
+The author create, update, and delete pages are now ready to test. (We won't bother hooking them into the site sidebar in this case, although you can do so if you wish.)
+
+<hr>
+
+**Note**: Observant users will have noticed that we didn't do anything to prevent unauthorized users from accessing the pages! We leave that as an exercise for you. (Hint: You could use the `PermissionRequiredMixin` and either create a new permission or reuse our `can_mark_returned` permission.)
+
+<hr>
+
+### Testing the page
+
+First, log in to the site with an account that has whatever permissions you decided are needed to access the author editing pages.
+
+Then, navigate to the author create page: [http://127.0.0.1:8000/catalog/author/create/](http://127.0.0.1:8000/catalog/author/create/), which should look like the screenshot below:
+
+![Image of an "AuthorCreate" form page in the "LocalLibrary" app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms/forms_example_create_author.png)
+
+Enter values for the fields and then press **Submit** to save the author record. You should now be taken to a detail view for your new author, with a URL of something like *http://127.0.0.1:8000/catalog/author/10*.
+
+You can test editing records by appending */update/* to the end of the detail view URL (e.g. *http://127.0.0.1:8000/catalog/author/10/update/*). We don't show a screenshot because it looks just like the "create" page!
+
+Finally, we can delete the page by appending delete to the end of the author detail-view URL (e.g. *http://127.0.0.1:8000/catalog/author/10/delete/*). Django should display the delete page shown below. Press "**Yes, delete.**" to remove the record and be taken to the list of all authors.
+
+![Image of the "Delete Author" page in the "LocalLibrary" app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms/forms_example_delete_author.png)
+
+## Challenge yourself
+
+Create some forms to create, edit, and delete `Book` records. You can use exactly the same structure as for `Authors`. If your **book_form.html** template is just a copy-renamed version of the **author_form.html** template, then the new "create book" page will look like the screenshot below:
+
+![Image of a "book_form.html" template example](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms/forms_example_create_book.png)
+
+## Summary
+
+Creating and handling forms can be a complicated process! Django makes it much easier by providing programmatic mechanisms to declare, render, and validate forms. Furhtermore, Django provides generic form editing views that can do *almost all* the work to define pages that can create, edit, and delete records associated with a single model instance.
+
+There is a lot more that can be done with forms (check out the [See also]() list below), but you should now understand how to add basic forms and form-handling code to your own websites.
+
+## See also
+
+* [Working with forms](https://docs.djangoproject.com/en/3.1/topics/forms/) (Django docs)
+* [Writing your first Django app, part 4 > Writing a simple form](https://docs.djangoproject.com/en/3.1/intro/tutorial04/#write-a-simple-form) (Django docs)
+* [The Forms API](https://docs.djangoproject.com/en/3.1/ref/forms/api/) (Django docs)
+* [Form fields](https://docs.djangoproject.com/en/3.1/ref/forms/fields/) (Django docs)
+* [Form and field validation](https://docs.djangoproject.com/en/3.1/ref/forms/validation/) (Django docs)
+* [Form handling with class-based views](https://docs.djangoproject.com/en/3.1/topics/class-based-views/generic-editing/) (Django docs)
+* [Creating forms from models](https://docs.djangoproject.com/en/3.1/topics/forms/modelforms/) (Django docs)
+* [Generic editing views](https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-editing/) (Django docs)
+
+<hr>
+
+[[Previous page]]() - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_9#django-tutorial-part-9-working-with-forms) - [[Next page]]()
