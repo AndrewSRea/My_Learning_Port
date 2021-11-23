@@ -55,5 +55,65 @@ class YourTestClass(TestCase):
         self.assertFalse(False)
 
     def test_something_that_will_fail(self):
-        sel.assertTrue(False)
+        self.assertTrue(False)
 ```
+The best base class for most tests is [`django.test.TestCase`](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#testcase). This test class creates a clean database before its tests are run, and runs every test function in its own transaction. The class also owns a test [Client](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.Client) that you can use to simulate a user interacting with the code at the view level. In the following sections, we're going to concentrate on unit tests, created using this [TestCase](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#testcase) base class.
+
+<hr>
+
+**Note**: The [`django.test.TestCase`](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#testcase) class is very convenient, but may result in some tests being slower than they need to be (not every test will need to set up its own database or simulate the view interaction). Once you're familiar with what you can do with this class, you may want to replace some of your tests with the available simpler test classes.
+
+<hr>
+
+### What should you test?
+
+You should test all aspects of your own code, but not any libraries or functionality provided as part of Python or Django.
+
+So, for example, consider the `Author` model defined below. You don't need to explicitly test that `first_name` and `last_name` have been stored properly as `CharField` in the database because that is something defined by Django. (Though, of course, in practice you will inevitably test this functionality during development.) Nor do you need to test that the `date_of_birth` has been validated to be a date field, because that is again something implemented in Django.
+
+However, you should check the text used for the labels (*First name*, *Last name*, *Date of birth*, *Died*), and the size of the field allocated for the text (*100 chars*), because these are part of your design and something that could be broken/changed in the future.
+```
+class Author(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_death = models.DateField('Died', null=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self.id)])
+
+    def __str__(self):
+        return '%s, %s' % (self.last_name, self.first_name)
+```
+Similarly, you should check that the custom methods `get_absolute_url()` and `__str__()` behave as required because they are your code/business logic. In the case of `get_absolute_url()`, you can trust that the Django `reverse()` method has been implemented properly, so what you're testing is that the associated view has actually been defined.
+
+<hr>
+
+**Note**: Astute readers may note that we would also want to constrain the date of birth and death to sensible values, and check that death comes after birth. In Django, this constraint would be added to your form classes. (Although you can define validators for model fields and model validators, these are only used at the form level if they are called by the model's `clean()` method. This requires a ModelForm or the model's `clean()` method needs to be specifically called.)
+
+<hr>
+
+With that in mind, let's start looking at how to define and run tests.
+
+## Test structure overview
+
+Before we go into the detail of "what to test", let's first briefly look at *where* and *how* tests are defined.
+
+Django uses the *unittest* module's [built-in test discovery](https://docs.python.org/3/library/unittest.html#unittest-test-discovery), which will discover tests under the current working directory in any file named with the pattern **test\*.py**. Provided you name the files appropriately, you can use any structure you like. We recommend that you create a module for your test code, and have separate files for models, views, forms, and any other types of code you need to test. For example:
+```
+catalog/
+    /tests/
+        __init__.py
+        test_models.py
+        test_forms.py
+        test_views.py
+```
+Create a file structure as shown above in your *LocalLibrary* project. The **__init__.py** should be an empty file. (This tells Python that the directory is a package.) You can create the three test files by copying and renaming the skeleton test file **/catalog/tests.py**.
+
+<hr>
+
+**Note**: The skeleton test file **/catalog/tests.py** was created automatically when we [built the Django skeleton website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website). It is perfectly "legal" to put all your tests inside it, but if you test properly, you'll quickly end up with a very large and unmanageable test file.
+
+Delete the skeleton file as we won't need it.
+
+<hr>
