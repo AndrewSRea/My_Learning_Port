@@ -117,3 +117,112 @@ Create a file structure as shown above in your *LocalLibrary* project. The **__i
 Delete the skeleton file as we won't need it.
 
 <hr>
+
+Open **/catalog/tests/test_models.py**. The file should import `django.test.TestCase`, as shown:
+```
+from django.test import TestCase
+
+# Create your tests here.
+```
+Often you will add a test class for each model/view/form you want to test, with individual methods for testing specific functionality. In other cases, you may wish to have a separate class for testing a specific use case, with individual test functions that test aspects of that use-case. (For example, a class to test that a model field is properly validated, with functions to test each of the possible failure cases.) Again, the structure is very much up to you, but it is best if you are consistent.
+
+Add the test class below to the bottom of the file. The class demonstrates how to construct a test case class by deriving from `TestCase`.
+```
+class YourTestClass(TestCase):
+    @classmethod 
+    def setUpTestData(cls):
+        print("setUpTestData: Run once to set up non-modified data for all class methods.")
+        pass 
+
+    def setUp(self):
+        print("setUp: Run once for every test method to setup clean data.")
+        pass 
+
+    def test_false_is_false(self):
+        print("Method: test_false_is_false.")
+        self.assertFalse(False)
+
+    def test_false_is_true(self):
+        print("Method: test_false_is_true.")
+        self.assertTrue(False)
+
+    def test_one_plus_one_equals_two(self):
+        print("Method: test_one_plus_one_equals_two.")
+        self.assertEqual(1 + 1, 2)
+```
+The new class defines two methods that you can use for pre-test configuration. (For example, to create any models or objects you will need for the test):
+
+* `setUpTestData()` is called once at the beginning of the test run for class-level setup. You'd use this to create objects that aren't going to be modified or changed in any of the test methods.
+* `setUp()` is called before every test function to set up any objects that may be modified by the test (every test function will get a "fresh" version of these objects).
+
+<hr>
+
+**Note**: The test classes also have a `tearDown()` method which we haven't used. This method isn't particularly useful for database tests, since the `TestCase` base class takes care of database teardown for you.
+
+<hr>
+
+Below those we have a number of test methods, which use `Assert` functions to test whether conditions are true, false, or equal (`AssertTrue`, `AssertFalse`, `AssertEqual`). If the condition does not evaluate as expected, then the test will fail and report the error to your console.
+
+The `AssertTrue`, `AssertFalse`, `AssertEqual` are standard assertions provided by **unittest**. There are other standard assertions in the framework, and also [Django-specific assertions](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#assertions) to test if a view redirects (`assertRedirects`), to test if a particular template has been used (`assertTemplateUsed`), etc.
+
+<hr>
+
+**Note**: You should **not** normally include **`print()`** functions in your tests as shown above. We do that here only so that you can see the order that the setup functions are called in the console (in the following section).
+
+<hr>
+
+## How to run the tests
+
+The easiest way to run all the tests is to use the command:
+```
+python3 manage.py test
+```
+This will discover all files named with pattern **test\*.py** under the current directory and run all tests defined using appropriate base classes. (Here we have a number of test files, but only **/catalog/tests/test_models.py** currently contains any tests.) By default, the tests will individually report only on test failures, followed by a test summary.
+
+<hr>
+
+**Note**: If you get errors similar to: `ValueError: Missing staticfiles manifest entry ...`, this may be because testing does not run *collectstatic* by default and your app is using a storage class that requires it (see [`manifest_static`](https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#django.contrib.staticfiles.storage.ManifestStaticFilesStorage.manifest_strict) for more information). There are a number of ways you can overcome this problem - the easiest is to run *collecstatic* before running the tests:
+```
+python3 manage.py collectstatic
+```
+
+<hr>
+
+Run the tests in the root directory of *LocalLibrary*. You should see an output like the one below:
+```
+> python3 manage.py test
+
+Creating test database for alias 'default'...
+setUpTestData: Run once to set up non-modified data for all class methods.
+setUp: Run once for every test method to setup clean data.
+Method: test_false_is_false.
+setUp: Run once for every test method to setup clean data.
+Method: test_false_is_true.
+setUp: Run once for every test method to setup clean data.
+Method: test_one_plus_one_equals_two.
+.
+======================================================================
+FAIL: test_false_is_true (catalog.tests.test_models.YourTestClass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Github\django_tmp\library_w_t_2\locallibrary\catalog\tests\test_models.py", line 22, in test_false_is_true
+    self.assertTrue(False)
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.075s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...
+```
+Here we see that we had one test failure, and we can see exactly what function failed and why. (This failure is expected, because `False` is not `True`!)
+
+<hr>
+
+**Note**: The most important thing to learn from the test output above is that it is much more valuable if you use descriptive/informative names for your objects and methods.
+
+<hr>
+
+The text shown in **bold** above would not normally appear in the test output. (This is generated by the `print()` functions in our tests.) This shows how the `setUpTestData()` method is called once for the class and `setUp()` is called before each method.
+
+The next sections show how you can run specific tests, and how to control how much inforamtion the tests display.
