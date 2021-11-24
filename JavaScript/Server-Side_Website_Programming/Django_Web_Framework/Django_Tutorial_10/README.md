@@ -330,3 +330,47 @@ field_label = author._meta.get_field('first_name').verbose_name
 # Compare the value to the expected result
 self.assertEqual(field_label, 'first_name')
 ```
+The interesting things to note are:
+
+* We can't get the `verbose_name` directly using `author.first_name.verbose_name`, because `author.first_name` is a *string* (not a handle to the `first_name` object that we can use to access its properties). Instead we need to use the author's `_meta` attribute to get an instance of the field and use that to query for the additional information.
+* We chose to use `assertEqual(field_label, 'first_name')` rather than `assertTrue(field_label == 'first_name')`. The reason for this is that if the test fails, the output for the former tells you what the label actually was, which makes debugging the problem just a little easier.
+
+<hr>
+
+**Note**: Tests for the `last_name` and `date_of_birth` labels, and also the test for the length of the `last_name` field have been omitted. Add your own versions now, following the naming conventions and approaches shown above.
+
+<hr>
+
+We also need to test our custom methods. These essentially just check that the object name was constructed as we expected using "LastName", "FirstName" format, and that the URL we get for an `Author` item is as we would expect.
+```
+def test_object_name_is_last_name_comma_first_name(self):
+    author = Author.objects.get(id=1)
+    expected_object_name = f'{author.last_name}, {author.first_name}'
+    self.assertEqual(str(author), expected_object_name)
+
+def test_get_absolute_url(self):
+    author = Author.objects.get(id=1)
+    # This will also fail if the urlconf is not defined.
+    self.assertEqual(author.get_absolute_url(), '/catalog/author/1')
+```
+Run the tests now. If you created the `Author` model as we described in the models tutorial, it is quite likely that you will get an error for the `date_of_death` label as shown below. The test is failing because it was written expecting the label definition to follow Django's convention of not capitalizing the first letter of the label. (Django does this for you.)
+```
+======================================================================
+FAIL: test_date_of_death_label (catalog.tests.test_models.AuthorModelTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\...\locallibrary\catalog\tests\test_models.py", line 32, in test_date_of_death_label
+    self.assertEqual(field_label,'died')
+AssertionError: 'Died' != 'died'
+- Died
+? ^
++ died
+? ^
+```
+This is a very minor bug, but it does highlight how writing tests can more thoroughly check any assumptions you may have made.
+
+<hr>
+
+**Note**: Change the label for the `data_of_death` field (**/catalog/models.py**) to "died" and rerun the tests.
+
+<hr>
