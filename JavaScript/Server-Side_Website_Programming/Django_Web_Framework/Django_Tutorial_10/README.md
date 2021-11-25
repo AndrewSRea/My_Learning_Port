@@ -465,3 +465,85 @@ class AuthorListView(generic.ListView):
     model = Author
     paginate_by = 10
 ```
+As this is a generic list view, almost everything is done for us by Django. Arguably, if you trust Django, then the only thing you need to test is that the view is accessible at the correct URL and can be accessed using its name. However, if you're using a test-driven development process, you'll start by writing tests that confirm that the view displays all Authors, paginating them in lots of 10.
+
+Open the **/catalog/tests/test_views.py** file and replace any existing text with the following test code for `AuthorListView`. As before, we import our model and some useful classes. In the `setUpTestData()` method, we set up a number of `Author` objects so that we can test our pagination.
+```
+from django.test import TestCase 
+from django.urls import reverse 
+
+from catalog.models import Author 
+
+class AuthorListViewTest(TestCase):
+    @classmethod 
+    def setUpTestData(cls):
+        # Create 13 authors for pagination tests
+        number_of_authors = 13
+
+        for author_id in range(number_of_authors):
+            Author.objects.create(
+                first_name=f'Christian {author_id}',
+                last_name=f'Surname {author_id}',
+            )
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/catalog/authors/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('authors'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('authors'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalog/author_list.html')
+
+    def test_pagination_is_ten(self):
+        response = self.client.get(reverse('authors'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertEqual(len(response.context['author_list']), 10)
+
+    def test_lists_all_authors(self):
+        # Get second page and confirm it has (exactly) remaining 3 items
+        response = self.client.get(reverse('authors')+'?page=2')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(reponse.context['is_paginated'] == True)
+        self.assertEqual(len(reponse.context['author_list']), 3)
+```
+All the tests use the client (belonging to our `TestCase`'s derived class) to simulate a `GET` request and get a response. The first version checks a specific URL (note, just the specific path without the domain) while the second generates the URL from its name in the URL configuration.
+```
+response = self.client.get('/catalog/authors/')
+response = self.client.get(reverse('authors'))
+```
+Once we have the response, we query it for its status code, the template used, whether or not the response is paginated, the number of items returned, and the total number of items.
+
+<hr>
+
+**Note**: If you set the `paginate_by` variable in your **/catalog/views.py** file to a number other than 10, make sure to update the lines that test that the correct number of items are displayed in paginated templates above and in following sections. For example, if you set the variable for the author list page to 5, update the line above to:
+```
+self.assertTrue(len(response.context['author_list']) == 5)
+```
+
+<hr>
+
+The most interesting variable we demonstrate above is `response.context`, which is the context variable passed to the template by the view. This is incredibly useful for testing, because it allows us to confirm that our template is getting all the data it needs. In other words, we can check that we're using the intended tempalte and what data the template is getting, which goes a long way to verifying that any rendering issues are solely due to template.
+
+#### Views that are restricted to logged in users
+
+In some cases, you'll want to test a view that is restricted to just logged in users. For example, our `LoanedBooksByUserListView` is very similar to our previous view but is only available to logged in users, and only displays `BookInstance` records that are borrowed by the current user, have the 'on loan' status, and are ordered "oldest first".
+```
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing books on loan to current user."""
+    model = BookInstance
+    template_name = 'catalog/bookinstance_list_borrowed_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
+```
