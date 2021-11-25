@@ -552,6 +552,9 @@ Add the following test code to **/catalog/tests/test_views.py**. Here we first u
 <hr>
 
 **Note**: The `setUp()` code below creates a book with a specified `Language`, but *your* code may not include the `Language` model as this was created as a *challenge*. If this is the case, comment out the parts of the code that create or import `Language` objects. You should also do this in the `RenewBookInstanceViewTest` section that follows.
+
+<hr>
+
 ```
 import datetime 
 
@@ -682,3 +685,104 @@ The rest of the tests verify that our view only returns books that are on loan t
                 last_date = book.due_back
 ```
 You could also add pagination tests, should you so wish!
+
+#### Testing views with forms
+
+Testing views with forms is a little more complicated than in the cases above, because you need to test more code paths: initial display, display after data validation has failed, and display after validation has succeeded. The good news is that we use the client for testing in almost exactly the same way as we did for display-only views.
+
+To demonstrate, let's write some tests for the view used to renew books (`renew_book_librarian()`):
+```
+from catalog.forms import RenewBookForm
+
+@permission_required('catalog.can_mark_returned')
+def renew_book_librarian(request, pk):
+    """View function for renewing a specific BookInstance by librarian."""
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    # If this is a POST request, then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding):
+        book_renewal_form = RenewBookForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+            book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.save()
+
+            # Redirect to a new URL:
+            return HttpResponseRedirect(reverse('all-borrowed'))
+
+    # If this is a GET (or any other method), create the default form
+    else:
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        book_renewal_form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'book_renewal_form': book_renewal_form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+```
+We'll need to test that the view is only available to users who have the `can_mark_returned` permission, and that users are redirected to an HTTO 404 error page if they attempt to renew a `BookInstance` that does not exist. We should check that the initial value of the form is seeded with a date three weeks in the future, and that if validation succeeds, we're redirected to the "all-borrowed books" view. As part of chekcing the validation-fail tests, we'll also check that our form is sendin the appropriate error messages.
+
+Add the first part of the test class (shown below) to the bottom of **/catalog/tests/test_views.py**. This creates two users and two book instances, but only gives one user the permission required to access the view.
+```
+import uuid 
+
+from django.contrib.auth.models import Permission  # Required to grant the permission needed to set a book as returned.
+
+class RenewBookInstancesViewTest(TestCase):
+    def setUp(self):
+        # Create a user
+        test_user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
+        test_user2 = User.objects.create_user(username='testuser2', password='2HJ1vRV0Z&3id')
+
+        test_user1.save()
+        test_user2.save()
+
+        # Give test_user2 permission to renew books.
+        permission = Permission.objects.get(name='Set book as returned')
+        test_user2.user_permissions.add(permission)
+        test_user2.save()
+
+        # Create a book
+        # Create a book
+        test_author = Author.objects.create(first_name='John', last_name='Smith')
+        test_genre = Genre.objects.create(name='Fantasy')
+        test_language = Language.objects.create(name='English')
+        test_book = Book.objects.create(
+            title='Book Title',
+            summary='My book summary',
+            isbn='ABCDEFG',
+            author=test_author,
+            language=test_language, 
+        )
+
+        # Create genre as a post-step
+        genre_objects_for_book = Genre.objects.all()
+        test_book.genre.set(genre_objects_for_book)  # Direct assignment of many-to-many types not allowed.
+        test_book.save()
+
+        # Create a BookInstance object for test_user1
+        return_date = datetime.date.today() + datetime.timedelta(days=5)
+        self.test_bookinstance1 = BookInstance.objects.create(
+            book=test_book,
+            imprint='Unlikely Imprint, 2016',
+            due_back=return_date,
+            borrower=test_user1,
+            status='o',
+        )
+
+        # Create a BookInstance object for test_user2
+        return_date = datetime.date.today() + datetime.timedelta(days=5)
+        self.test_bookinstance2 = BookInstance.objects.create(
+            book=test_book,
+            imprint='Unlikely Imprint, 2016',
+            due_back=return_date,
+            borrower=test_user2,
+            status='o',
+        )
+```
