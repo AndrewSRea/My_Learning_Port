@@ -371,6 +371,73 @@ This is a very minor bug, but it does highlight how writing tests can more thoro
 
 <hr>
 
-**Note**: Change the label for the `data_of_death` field (**/catalog/models.py**) to "died" and rerun the tests.
+**Note**: Change the label for the `date_of_death` field (**/catalog/models.py**) to "died" and rerun the tests.
 
 <hr>
+
+The patterns for testing the other models are similar so we won't continue to discuss these further. Feel free to create your own tests for our other models.
+
+### Forms 
+
+The philosophy for testing your forms is the same as for testing your models. You need to test anything that you've coded or your design specifies, but not the behavior of the underlying framework and other third party libraries.
+
+Generally, this means that you should test that the forms have the fields that you want, and that these are displayed with appropriate labels and help text. You don't need to verify that Django validates the field type correctly (unless you created your own custom field and validation) -- i.e. you don't need to test that an email field only accepts emails. However, you would need to test any additional validation that you expect to be performed on the fields and any messages that your code will generate for errors.
+
+Consider our form for renewing books. This has just one field for the renewal date, which will have a label and help text that we will need to verify.
+```
+class RenewBookForm(forms.Form):
+    """Form for a librarian to renew books."""
+    renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).")
+
+    def clean_renewal_date(self):
+        data = self.cleaned_data['renewal_date']
+
+        # Check if a date is not in the past.
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - renewal in past'))
+
+        # Check if date is in the allowed range (+4 weeks from today).
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+
+        # Remember to always return the cleaned data.
+        return data
+```
+Open our **/catalog/tests/test_forms.py** file and replace any existing code with the following test code for the `RenewBookForm` form. We start by importing our form and some Python and Django libraries to help test time-related functionality. We then declare our form test class in the same way as we did for models, using a descriptive name for our `TestCase`-derived test class.
+```
+import datetime
+
+from django.test import TestCase
+from django.utils import timezone
+
+from catalog.forms import RenewBookForm
+
+class RenewBookFormTest(TestCase):
+    def test_renew_form_date_field_label(self):
+        form = RenewBookForm()
+        self.assertTrue(form.fields['renewal_date'].label is None or form.fields['renewal_date'].label == 'renewal date')
+
+    def test_renew_form_date_in_past(self):
+        form = RenewBookForm()
+        self.assertEqual(form.fields['renewal_date'].help_text, 'Enter a date between now and 4 weeks (default 3).')
+
+    def test_renew_form_date_in_past(self):
+        date = datetime.date.today() - datetime.timedelta(days=1)
+        form = RenewBookForm(data={'renewal_date': date})
+        self.assertFalse(form.is_valid())
+
+    def test_renew_form_date_too_far_in_future(self):
+        date = datetime.date.today() + datetime.timedelta(weeks=4) + datetime.timedelta(days=1)
+        form = RenewBookForm(data={'renewal_date': date})
+        self.assertFalse(form.is_valid())
+
+    def test_renew_form_date_today(self):
+        date = datetime.date.today()
+        form = RenewBookForm(data={'renewal_date': date})
+        self.assertTrue(form.is_valid())
+
+    def test_renew_form_date_max(self):
+        date = timezone.localtime() + datetime.timedelta(weeks=4)
+        form = RenewBookForm(date={'renewal_date': date})
+        self.assertTrue(form.is_valid())
+```
