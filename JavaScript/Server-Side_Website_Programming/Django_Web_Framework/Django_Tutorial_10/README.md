@@ -297,7 +297,7 @@ class AuthorModelTest(TestCase):
     def test_first_name_label(self):
         author = Author.objects.get(id=1)
         field_label = author._meta.get_field('first_name').verbose_name
-        self.assertEqual(field_label, 'first_name')
+        self.assertEqual(field_label, 'first name')
 
     def test_date_of_death_label(self):
         author = Author.objects.get(id=1)
@@ -438,6 +438,30 @@ class RenewBookFormTest(TestCase):
 
     def test_renew_form_date_max(self):
         date = timezone.localtime() + datetime.timedelta(weeks=4)
-        form = RenewBookForm(date={'renewal_date': date})
+        form = RenewBookForm(data={'renewal_date': date})
         self.assertTrue(form.is_valid())
+```
+The first two functions test that the field's `label` and `help_text` are as expected. We have to access the fields using the fields dictionary (e.g. `form.field['renewal_date']`). Note here that we also have to test whether the label value if `None`, because even though Django will render the correct label, it returns `None` if the value is not *explicitly* set.
+
+The rest of the functions test that the form is valid for renewal dates just inside the acceptable range and invalid for values outside the range. Note how we construct test date values around our current date (`datetime.date.today()`) using `datetime.timedelta()` (in this case, specifying a number of days or weeks). We then just create the form, passing in our data, and test if it is valid.
+
+<hr>
+
+**Note**: Here we don't actually use the database or test client. Consider modifying these tests to use [SimpleTestCase](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.SimpleTestCase).
+
+We also need to validate that the correct errors are raised if the form is invalid, however this is usually done as part of view processing, so we'll take care of that in the next section.
+
+<hr>
+
+That's all for forms. We do have some others, but they are automatically created by our generic class-based editing views, and should be tested there! Run the tests and confirm that our code still passes!
+
+### Views
+
+To validate our view behavior, we use the Django test [Client](https://docs.djangoproject.com/en/3.1/topics/testing/tools/#django.test.Client). This class acts like a dummy web browser that we can use to simulate `GET` and `POST` requests on a URL and observe the response. We can see almost everything about the response, from low-level HTTP (result headers and status codes) through to the template we're using to render the HTML and the context data we're passing to it. We can also see the chain of redirects (if any) and check the URL and status code at each step. This allows us to verify that each view is doing what is expected.
+
+Let's start with one of our simplest views, which provides a list of all Authors. This is displayed at URL **/catalog/authors/** (a URL named 'authors' in the URL configuration).
+```
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 10
 ```
