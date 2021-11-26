@@ -852,4 +852,69 @@ The next test (add this to the class, too) checks that the view redirects to a l
 :warning: **Warning**: The *all-borrowed* view was added as a *challenge*, and your code may instead redirect to the home page '`/`'. If so, modify the last two lines of the test code to be like the code below. The `follow=True` in the request ensures that the request returns the final destination URL (hence checking `/catalog/` rather than `/`).
 ```
 response = self.client.post(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk,}),{'renewal_date':valid_date_in_future}, follow=True)
+self.assertRedirects(response, '/catalog/')
 ```
+Copy the last two functions into the class, as seen below. These again test `POST` requests, but in this case with invalid renewal dates. We use `assertFormError()` to verify that the error messages are as expected.
+```
+    def test_form_invalid_renewal_date_past(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        date_in_past = datetime.date.today() - datetime.timedelta(weeks=1)
+        response = self.client.post(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk}), {'renewal_date':date_in_past})
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response. 'form', 'renewal_date', 'Invalid date - renewal in past')
+
+    def test_form_invalid_renewal_date_future(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        invalid_date_in_future = datetime.date.today() + datetime.timedelta(weeks=5)
+        response = self.client.post(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk}), {'renewal_date':invalid_date_in_future})
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response. 'form', 'renewal_date', 'Invalid date - renewal more than 4 weeks ahead')
+```
+The same sorts of techniques can be used to test the other view.
+
+### Templates
+
+Django provides test APIs to check that the correct template is being called by your views, and to allow you to verify that the correct information is being sent. There is, however, no specific API support for testing in Django that your HTML output is rendered as expected.
+
+## Other recommended test tools
+
+Django's test framework can help you write effective unit and integration tests -- we've only scratched the surface of what the underlying **unittest** framework can do, let alone Django's additions. (For example, check out how you can use [`unittest.mock`](https://docs.python.org/3.5/library/unittest.mock-examples.html) to patch third party libraries so you can more thoroughly test your own code.)
+
+While there are numerous other test tools that you can use, we'll just highlight two:
+
+* [Coverage](https://coverage.readthedocs.io/en/latest/): This Python tool reports on how much of your code is actually executed by your tests. It is particularly useful when you're getting started, and you are trying to work out exactly what you should test.
+* [Selenium](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Tools_and_Testing/Cross_Browser_Testing/Setting_Up_Test_Automation#setting-up-your-own-test-automation-environment) is a framework to automate testing in a real browser. It allows you to simulate a real user interacting with the site, and provides a great framework for system testing your site (the next step up from integration testing).
+
+## Challenge yourself
+
+There are a lot more models and views we can test. As a simple task, try to create a test case for the `AuthorCreate` view.
+```
+class AuthorCreate(PermissionRequiredMixin, CreateView):
+    model = Author
+    fields = '__all__'
+    initial = {'date_of_death':'12/10/2016'}
+    permission_required = 'catalog.can_mark_returned'
+```
+Remember that you need to check anything that you specify or that is part of the design. This will include who has access, the initial date, the template used, and where the view redirects on success.
+
+## Summary
+
+Writing test code is neither fun nor glamorous, and is consequently often left to last (or not at all) when creating a website. It is, however, an essential part of making sure that your code is safe to release after making changes, and cost-effective to maintain.
+
+In this tutorial, we've shown you how to write and run tests for your models, forms, and views. Most importantly, we've provided a brief summary of what you should test, which is often the hardest thing to work out when you're getting started. There is a lot more to know but even with what you've learned already, you should be able to create effective unit tests for your websites.
+
+The next and final tutorial shows how you can deploy your wonderful (and fully tested!) Django website.
+
+## See also
+
+* [Writing and running tests](https://docs.djangoproject.com/en/3.1/topics/testing/overview/) (Django docs)
+* [Writing your first Django app, part 5 > Introducing automated testing](https://docs.djangoproject.com/en/3.1/intro/tutorial05/) (Django docs)
+* [Testing tools reference](https://docs.djangoproject.com/en/3.1/topics/testing/tools/) (Django docs)
+* [Advanced testing topics](https://docs.djangoproject.com/en/3.1/topics/testing/advanced/) (Django docs)
+* [A Guide to Testing in Django](https://toastdriven.com/blog/2011/apr/10/guide-to-testing-in-django/) (Toast Driven Blog, 2011)
+* [Workshop: Test-Driven Web Development with Django](https://test-driven-django-development.readthedocs.io/en/latest/index.html) (San Diego Python, 2014)
+* [Testing in Django (Part 1) - Best Practices and Examples](https://realpython.com/testing-in-django-part-1-best-practices-and-examples/) (RealPython, 2013)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_9#django-tutorial-part-9-working-with-forms) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_10#django-tutorial-part-10-testing-a-django-web-application) - [[Next page]]()
