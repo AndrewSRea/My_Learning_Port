@@ -726,7 +726,7 @@ def renew_book_librarian(request, pk):
 
     return render(request, 'catalog/book_renew_librarian.html', context)
 ```
-We'll need to test that the view is only available to users who have the `can_mark_returned` permission, and that users are redirected to an HTTO 404 error page if they attempt to renew a `BookInstance` that does not exist. We should check that the initial value of the form is seeded with a date three weeks in the future, and that if validation succeeds, we're redirected to the "all-borrowed books" view. As part of chekcing the validation-fail tests, we'll also check that our form is sendin the appropriate error messages.
+We'll need to test that the view is only available to users who have the `can_mark_returned` permission, and that users are redirected to an HTTP 404 error page if they attempt to renew a `BookInstance` that does not exist. We should check that the initial value of the form is seeded with a date three weeks in the future, and that if validation succeeds, we're redirected to the "all-borrowed books" view. As part of chekcing the validation-fail tests, we'll also check that our form is sendin the appropriate error messages.
 
 Add the first part of the test class (shown below) to the bottom of **/catalog/tests/test_views.py**. This creates two users and two book instances, but only gives one user the permission required to access the view.
 ```
@@ -785,4 +785,71 @@ class RenewBookInstancesViewTest(TestCase):
             borrower=test_user2,
             status='o',
         )
+```
+Add the following tests to the bottom of the test class. These check that only users with the correct permissions (*testuser2*) can access the view. We check all the cases: when the user is not logged in, when a user is logged in but does not have the correct permissions, when the user has permissions but is not the borrower (should succeed), and what happens when they try to access a `BookInstance` that doesn't exist. We also check that the correct template is used.
+```
+    def test_redirect_if_not_logged_in(self):
+        response = self.client.get(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}))
+        # Manually check redirect (Can't use assertRedirect, because the redirect URL is unpredictable)
+        self.assertEqual(reponse.status_code, 302)
+        self.assertTrue(response.url.startswith('/accounts/login/'))
+
+    def test_forbidden_if_logged_in_but_not_correct_permission(self):
+        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}))
+        self.assertEqual(response.status_code, 403)
+
+    def test_logged_in_with_permission_borrowed_book(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.get(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance2.pk}))
+
+        # Check that it lets us login. We're a librarian, so we can view any users book
+        self.assertEqual(response.status_code, 200)
+
+    def test_HTTP404_for_invalid_book_if_logged_in(self):
+        # unlikely UID to match our bookinstance!
+        test uid = uuid.uuid4()
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.get(reverse('renew-book-librarian', kwargs={'pk':test_uid}))
+        self.assertEqual(response.status_code, 404)
+
+    def test_uses_correct_template(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.get(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}))
+        self.assertEqual(response.status_code, 200)
+
+        # Check we used correct template
+        self.assertTemplateUsed(reponse, 'catalog/book_renew_librarian.html')
+```
+Add the next test method, as shown below. This checks that the initial date for the form is three weeks in the future. Note how we are able to access the value of the initial value of the form field `(response.context['form'].initial['renewal_date'])`.
+```
+    def test_form_renewal_date_initially_has_date_three_weeks_in_future(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        response = self.client.get(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}))
+        self.assertEqual(reponse.status_code, 200)
+
+        date_3_weeks_in_future = datetime.date.today() + datetime.timedelta(weeks=3)
+        self.assertEqual(response.context['form'].initial['renewal_date'], date_3_weeks_in_future)
+```
+
+<hr>
+
+:warning: **Warning**: If you use the form class `RenewBookModelForm(forms.ModelForm)` instead of class `RenewBookForm(forms.Form)`, then the form field name is **'due_back'** instead of **'renewal_date'**.
+
+<hr>
+
+The next test (add this to the class, too) checks that the view redirects to a list of all borrowed books if renewal succeeds. What differs here is that for the first time we show how you can `POST` data using the client. The post *data* is the second argument to the post function, and is specified as a dictionary of key/values.
+```
+    def test_redirects_to_all_borrowed_book_list_on_success(self):
+        login = self.client.login(username='testuser2', password='2HJ1vRV0Z&3iD')
+        valid_date_in_future = datetime.date.today() + datetime.timedelta(weeks=2)
+        response = self.client.post(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk,}), {'renewal_date':valid_date_in_future})
+        self.assertRedirects(response, reverse('all-borrowed'))
+```
+
+<hr>
+
+:warning: **Warning**: The *all-borrowed* view was added as a *challenge*, and your code may instead redirect to the home page '`/`'. If so, modify the last two lines of the test code to be like the code below. The `follow=True` in the request ensures that the request returns the final destination URL (hence checking `/catalog/` rather than `/`).
+```
+response = self.client.post(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk,}),{'renewal_date':valid_date_in_future}, follow=True)
 ```
