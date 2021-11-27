@@ -67,3 +67,65 @@ Some of the things to consider when choosing a host:
 * Known limitations. Some hosts will deliberately block certain services (e.g. email). Others offer only a certain number of hours of "live time" in some price tiers, or only offer a small amount of storage.
 * Additional benefits. Some providers will offer free domain names and support for SSL certificates that you would otherwise have to pay for.
 * Whether the "free" tier you're relying on expires over time, and whether the cost of migrating to a more expensive tier means you would have been better off using some other service in the first place!
+
+The good news when you're starting out is that there are quite a few sites that provide "evaluation", "developer", or "hobbyist" computing environments for "free". These are always fairly resource constrained/limited environments, and you do need to be aware that they may expire after some introductory period. They are, however, great for testing low traffic sites in a real environment, and can provide an easy migration to paying for more resources when your site gets busier. Popular choices in this category include [Heroku](https://www.heroku.com/), [Python Anywhere](https://www.pythonanywhere.com/), [Amazon Web Services](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html), [Microsoft Azure](https://azure.microsoft.com/en-us/pricing/details/app-service/windows/), etc.
+
+Many providers also have a "basic" tier that provides more useful levels of computing power and fewer limitations. [Digital Ocean](https://www.digitalocean.com/) and [Python Anywhere](https://www.pythonanywhere.com/) are examples of popular hosting providers that offer a relatively inexpensive basic computing tier (in the $5 to $10 USD per month range).
+
+<hr>
+
+**Note**: Remember that price is not the only selection criterion. If your website is successful, it may turn out that scalability is the most important consideration.
+
+<hr>
+
+## Getting your website ready to publish
+
+The [Django skeleton website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website) created using the *django-admin* and *manage.py* tools are configured to make development easier. Many of the Django project settings (specified in **settings.py**) should be different for production, either for security or performance reasons.
+
+<hr>
+
+**Note**: It is common to have a separate **settings.py** file for production, and to import sensitive settings from a separate file or an environment variable. This file should then be protected, even if the rest of the source code is available on a public repository.
+
+<hr>
+
+The critical settings that you must check are:
+
+* `DEBUG`: This should be set as `False` in production (`DEBUG = False`). This stops the sensitive/confidential debug trace and variable information from being displayed.
+* `SECRET_KEY`: This is a large random value used for CSRF protection, etc. It is important that the key used in production is not in source control or accessible outside the production server. The Django documents suggest that this might best be loaded from an environment variable or read from a server-only file.
+```
+# Read SECRET_KEY from an environment variable
+import os
+SECRET_KEY = os.environ['SECRET_KEY']
+
+# OR
+
+# Read secret key from a file
+with open('/etc/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
+```
+Let's change the *LocalLibrary* application so that we read our `SECRET_KEY` and `DEBUG` variables from environment variables if they are defined, but otherwise use the default values in the configuration file.
+
+Open **/locallibrary/settings.py**, disable the original `SECRET_KEY` configuration and add the new lines as shown below. During development, no environment variable will be specified for the key, so the default value will be used. (It shouldn't matter what key you use here, or if the key "leaks", because you won't use it in production.)
+```
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = "cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag"
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
+```
+Then comment out the existing `DEBUG` setting and add the new line shown below:
+```
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+```
+The value of the `DEBUG` will be `True` by default, but will only be `False` if the value of the `DJANGO_DEBUG` environment variable is set to `False`. Please note that environment variables are strings and not Python types. We therefore need to compare strings. The only way to set the `DEBUG` variable to `False` is to actually set it to the string `False`.
+
+You can set the environment variable to `False` by issuing the following command:
+```
+export DJANGO_DEBUG=False
+```
+A full checklist of settings you might want to change is provided in [Deployment checklist](https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/) (Django docs). You can also list a number of these using the terminal command below:
+```
+python3 manage.py check --deploy
+```
+
