@@ -162,3 +162,104 @@ In order to execute your application, Heroku needs to be able to set up the appr
 * **requirements.txt**: The Python component dependencies, including Django.
 * **Procfile**: A list of processes to be executed to start the web application. For Django, this will usually be the Gunicorn web application server (with a `.wsgi` script).
 * **wsgi.py**: [WSGI](https://wsgi.readthedocs.io/en/latest/what.html) configuration to call our Django application in the Heroku environment.
+
+Developers interact with Heroku using a special client app/terminal, which is much like a Unix Bash shell. This allows you to upload code that is stored in a git repository, inspect the running processes, see logs, set configuration variables and much more!
+
+In order to get our application to work on Heroku, we'll need to put our Django web application into a git repository, add the files above, integrate with a database add-on, and make changes to properly handle static files.
+
+Once we've done all that, we can set up a Heroku account, get the Heroku client, and use it to install our website.
+
+<hr>
+
+**Note**: The instructions below reflect how to work with Heroku at time of writing (last modified Oct. 8, 2021). If Heroku significantly change their processes, you may wish to instead check their setup documents: [Getting Started on Heroku with Django](https://devcenter.heroku.com/articles/getting-started-with-python).
+
+<hr>
+
+That's all the overview you need in order to get started (see [How Heroku works](https://devcenter.heroku.com/articles/how-heroku-works) for a more comprehensive guide).
+
+### Creating an application repository in GitHub
+
+Heroku is closely integrated with the **git** source code version control system, using it to upload/synchronize any changes you make to the live system. It does this by adding a new Heroku "remote" repository named *heroku* pointing to a repository for your source on the Heroku cloud. During development, you use git to store changes on your own repository. When you want to deploy your site, you sync your changes to the Heroku repository.
+
+<hr>
+
+**Note**: If you're used to following good software development practices, you are probably already using git or some other SCM system. If you already have a git repository, then you can skip this step.
+
+<hr>
+
+There are a lot of ways to work with git, but one of the easiest is to first set up an account on [GitHub](), create the repository there, and then sync to it locally:
+
+1. Visit [https://github.com/](https://github.com/) and create an account.
+2. Once you are logged in, click the **+** link in the top toolbar and select **New repository**.
+3. Fill in all the fields on this form. While these are not compulsory, they are strongly recommended.
+    - Enter a new repository name (e.g. *django_local_library*), and description (e.g. "Local Library website written in Django").
+    - Choose **Python** in the *Add .gitignore* selection list.
+    - Choose your preferred license in the *Add license* selection list.
+    - Check **Initialize this repository with a README**.
+4. Press **Create repository**.
+5. Click the green "**Clone or download** button on your new repo page.
+6. Copy the URL value from the text field inside the dialog box that appears. (It should be something like: **https://bithub.com/<your_git_user_id>/django_local_library.git**).
+
+Now that the repository ("repo") is created, we are going to want to clone it on our local computer:
+
+1. Install *git* for your local computer. (You can find versions for different platforms [here]().)
+
+2. Open a command prompt/terminal and clone your repository using the URL you copied above:
+```
+git clone https://github.com/<your_git_user_id>/django_local_library.git
+```
+
+3. Navigate into the new repo.
+```
+cd django_local_library
+```
+
+The final steps are to copy your application into this local project directory and then add (or "push", in git lingo) the local repository to your remote GitHub repository:
+
+1. Copy your Django application into this folder (all the files at the same level as **manage.py** and below, **not** their containing locallibrary folder).
+
+2. Open the **.gitignore** file, copy the following lines into the bottom of it, and then save. (This file is used to identify files that should not be uploaded to git by default).
+```
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3
+```
+
+3. Open a command prompt/terminal and use the `add` command to add all files to git. This adds the files which aren't ignored by the **.gitignore** file to the "staging area".
+```
+git add -A
+```
+
+4. Use the `status` command to check that all files you are about to `commit` are correct. (You want to include source files, not binaries, temporary files, etc.) It should look a bit like the listing below:
+```
+> git status
+On branch main
+Your branch is up-to-date with 'origin/main'.
+Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+        modified:    .gitignore
+        new file:    catalog/__init__.py
+        ...
+        new file:    catalog/migrations/0001_initial.py
+        ...
+        new file:    templates/registration/password_reset_form.html
+```
+
+5. When you're satisfied, `commit` the files to your local repository. This is essentially equivalent to signing off on the changes and making them an official part of the local repository.
+```
+git commit -m "First version of application moved into github"
+```
+
+6. At this point, the remote repository has not been changed. Synchronize (`push`) your local repository to the remote GitHub repository using the following command:
+```
+git push origin main
+```
+
+<hr>
+
+:warning: **Warning**: In 2020, GitHub changed the default repo branch name to "main" (from "master"). If using an older/exiasting repository, you might call `git push origin master` instead.
+
+<hr>
