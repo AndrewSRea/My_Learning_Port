@@ -292,7 +292,7 @@ The "`web:`" tells Heroku that this is a web dyno and can be sent HTTP traffic. 
 
 [Gunicorn](https://gunicorn.org/) is the recommended HTTP server for use with Django on Heroku (as referenced in the Procfile above). It is a pure-Python HTTP server for WSGI applications that can run multiple Python concurrent processes within a single dyno (see [Deploying Python applications with Gunicorn](https://devcenter.heroku.com/articles/python-gunicorn) for more information).
 
-While we won't need *Gunicorn* to serve our LocalLibrary application during development, we'll install it so that it becomes part of our [requirements]() <!-- see below --> for Heroku to set up on the remote server.
+While we won't need *Gunicorn* to serve our LocalLibrary application during development, we'll install it so that it becomes part of our [requirements](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#requirements) for Heroku to set up on the remote server.
 
 Install *Gunicorn* locally on the command line using *pip* (which we installed when [setting up the development environment](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Development_Environment#setting-up-a-django-development-environment)):
 
