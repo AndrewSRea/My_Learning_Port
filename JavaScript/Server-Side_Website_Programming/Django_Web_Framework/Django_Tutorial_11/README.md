@@ -129,3 +129,36 @@ A full checklist of settings you might want to change is provided in [Deployment
 python3 manage.py check --deploy
 ```
 
+## Example: Installing LocalLibrary on Heroku
+
+This section provides a practical demonstration of how to install *LocalLibrary* on the [Heroku PaaS cloud](https://www.heroku.com/).
+
+### Why Heroku?
+
+Heroku is one of the longest running and popular cloud-based PaaS services. It originally supported only Ruby apps, but now can be used to host apps from many programming environments, including Django!
+
+We are choosing to use Heroku for several reasons:
+
+* Heroku has a [free tier](https://www.heroku.com/pricing) that is *really* free (albeit with some limitations).
+* As a PaaS, Heroku takes care of a lot of the web infrastructure for us. This makes it much easier to get started, because you don't worry about servers, load balancers, reverse proxies, or any of the other web infrastructure that Heroku provides for us under the hood.
+* While it does have some limitations, these will not affect this particular application. For example:
+    - Heroku provides only short-lived storage so user-uploaded files cannot safely be stored on Heroku itself.
+    - The free tier will sleep an inactive web app if there are no requests within a half hour period. The site may then take several seconds to respond when it is woken up.
+    - The free tier limits the time that your site is running to a certain amount of hours every month (not including the time that the site is "asleep"). This is fine for a low use/demonstration site, but will not be suitable if 100% uptime is required.
+    - Other limitations are listed in [Limits](https://devcenter.heroku.com/articles/limits) (Heroku docs).
+* Mostly it just works, and if you end up loving it, scaling your app is very easy.
+
+While Heroku is perfect for hosting this demonstration, it may not be perfect for your real website. Heroku makes things easy to set up and scale, at the cost of being less flexible, and potentially a lot more expensive once you get out of the free tier.
+
+### How does Heroku work?
+
+Heroku runs Django websites within one or more "[Dynos](https://devcenter.heroku.com/articles/dynos)", which are isolated, virtualized Unix containers that provide the environment required to run an application. The dynos are completely isolated and have an *ephemeral* file system (a short-lived file system that is cleaned/emptied every time the dyno restarts). The only thing that dynos share by default are application [configuration variables](https://devcenter.heroku.com/articles/config-vars). Heroku internally uses a load balancer to distribute web traffic to all "web" dynos. Since nothing is shared between them, Heroku can scale an app horizontally by adding more dynos (though, of course, you may also need to scale your database to accept additional connections).
+
+Because the file system is ephemeral, you can't install services required by your application directly (e.g. databases, queues, caching systems, storage, email services, etc). Instead, Heroku web applications use backing services provided as independent "add-ons" by Heroku or third parties. Once attached to your web application, the dynos access the services using information contained in application configuration variables.
+
+In order to execute your application, Heroku needs to be able to set up the appropriate environment and dependencies, and also understand how it is launched. For Django apps, we provide this information in a number of text files:
+
+* **runtime.txt**: The programming language and version to use.
+* **requirements.txt**: The Python component dependencies, including Django.
+* **Procfile**: A list of processes to be executed to start the web application. For Django, this will usually be the Gunicorn web application server (with a `.wsgi` script).
+* **wsgi.py**: [WSGI](https://wsgi.readthedocs.io/en/latest/what.html) configuration to call our Django application in the Heroku environment.
