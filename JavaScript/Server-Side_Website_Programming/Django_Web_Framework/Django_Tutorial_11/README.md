@@ -270,4 +270,52 @@ When this operation completes, you should be able to go back to the page on GitH
 
 **Note**: This is a good point to make a backup of your "vanilla" project -- while some of the changes we're going to be making in the following sections might be useful for deployment on any platform (or development), others might not.
 
+The *best* way to do this is to use *git* to manage your revisions. With *git* you can not only go back to a particular old version, but you can maintain this in a separate "branch" from your production changes and cherry-pick any changes to move between production and development branches. [Learning Git](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) is well worth the effort, but is beyond the scope of this topic.
+
+The *easiest* way to do this is to just copy your files into another location. Use whichever appraoch best matches your knowledge of git!
+
 <hr>
+
+### Update the app for Heroku
+
+This section explains the changes you'll need to make to our *LocalLibrary* application to get it to work on Heroku. While Heroku's [Getting Started on Heroku with Django](https://devcenter.heroku.com/articles/getting-started-with-python) instructions assume you will use the Heroku client to also run your local development environment, our changes are compatible with the existing Django development server and the workflows we've already learned.
+
+#### Procfile
+
+Create the file `Procfile` (no extension) in the root of your GitHub repository to declare the application's process types and entry points. Copy the following text into it:
+```
+web: gunicorn locallibrary.wsgi --log-file -
+```
+The "`web:`" tells Heroku that this is a web dyno and can be sent HTTP traffic. The process to start in this dyno is *gunicorn*, which is a popular web application server that Heroku recommends. We start Gunicorn using the configuration information in the module `locallibrary.wsgi` (created with our application skeleton: **/locallibrary/wsgi.py**).
+
+#### Gunicorn
+
+[Gunicorn](https://gunicorn.org/) is the recommended HTTP server for use with Django on Heroku (as referenced in the Procfile above). It is a pure-Python HTTP server for WSGI applications that can run multiple Python concurrent processes within a single dyno (see [Deploying Python applications with Gunicorn](https://devcenter.heroku.com/articles/python-gunicorn) for more information).
+
+While we won't need *Gunicorn* to serve our LocalLibrary application during development, we'll install it so that it becomes part of our [requirements]() <!-- see below --> for Heroku to set up on the remote server.
+
+Install *Gunicorn* locally on the command line using *pip* (which we installed when [setting up the development environment](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Development_Environment#setting-up-a-django-development-environment)):
+
+<hr>
+
+**Note**: Make sure that you're in your Python virtual environment (use the `workon [name-of-virtual-environment]` command) before you install *Gunicorn* and further modules with *pip*, or you might experience problems with importing these modules in your **/locallibrary/settings.py** file in the later sections.
+
+<hr>
+
+```
+pip3 install gunicorn
+```
+
+#### Database configuration
+
+We can't use the default SQLite database on Heroku because it is file-based, and it would be deleted from the *ephemeral* file system every time the application restarts. (Typically once a day, and every time the application or its configuration variables are changed.)
+
+The Heroku mechanism for handling this situation is to use a [database add-on](https://elements.heroku.com/addons#data-stores) and configure the web application using information from an environment [configuration variable](https://devcenter.heroku.com/articles/config-vars), set by the add-on. There are quite a lot of database options, but we'll use the [hobby tier](https://devcenter.heroku.com/articles/heroku-postgres-plans#plan-tiers) of the *Heroku postgres* database, as this is free, supported by Django, and automatically added to our new Heroku apps when using the free hobby dyno plan tier.
+
+The database connection information is supplied to the web dyno using a configuration variable named `DATABASE_URL`. Rather than hard-coding this information into Django, Heroku recommends that developers use the [dj-database-url](https://pypi.org/project/dj-database-url/) package to parse the `DATABASE_URL` environment variable and automatically convert it to Django's desired configuration format. In addition to installing the *dj-database-url* package, we'll also need to install [psycopg2](), as Django needs this to interact with Postgres databases.
+
+
+
+
+
+#### Requirements
