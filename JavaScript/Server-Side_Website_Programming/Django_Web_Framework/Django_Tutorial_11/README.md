@@ -204,7 +204,7 @@ Now that the repository ("repo") is created, we are going to want to clone it on
 
 1. Install *git* for your local computer. (You can find versions for different platforms [here]().)
 
-2. Open a command prompt/terminal and clone your repository using the URL you copied above:
+2. Open a command prompt/terminal and clone your repository using the URL you copied above. (**Make sure to navigate out of your *django-projects* folder into a folder where you are willing to put this new cloned *django_local_library* folder**):
 ```
 git clone https://github.com/<your_git_user_id>/django_local_library.git
 ```
@@ -261,5 +261,13 @@ git push origin main
 <hr>
 
 :warning: **Warning**: In 2020, GitHub changed the default repo branch name to "main" (from "master"). If using an older/exiasting repository, you might call `git push origin master` instead.
+
+<hr>
+
+When this operation completes, you should be able to go back to the page on GitHub where you created your repo, refresh the page, and see that your whole application has now been uploaded. You can continue to update your repository as files change using this add/commit/push cycle.
+
+<hr>
+
+**Note**: This is a good point to make a backup of your "vanilla" project -- while some of the changes we're going to be making in the following sections might be useful for deployment on any platform (or development), others might not.
 
 <hr>
