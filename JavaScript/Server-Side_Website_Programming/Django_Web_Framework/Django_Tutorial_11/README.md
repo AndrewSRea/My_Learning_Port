@@ -312,7 +312,59 @@ We can't use the default SQLite database on Heroku because it is file-based, and
 
 The Heroku mechanism for handling this situation is to use a [database add-on](https://elements.heroku.com/addons#data-stores) and configure the web application using information from an environment [configuration variable](https://devcenter.heroku.com/articles/config-vars), set by the add-on. There are quite a lot of database options, but we'll use the [hobby tier](https://devcenter.heroku.com/articles/heroku-postgres-plans#plan-tiers) of the *Heroku postgres* database, as this is free, supported by Django, and automatically added to our new Heroku apps when using the free hobby dyno plan tier.
 
-The database connection information is supplied to the web dyno using a configuration variable named `DATABASE_URL`. Rather than hard-coding this information into Django, Heroku recommends that developers use the [dj-database-url](https://pypi.org/project/dj-database-url/) package to parse the `DATABASE_URL` environment variable and automatically convert it to Django's desired configuration format. In addition to installing the *dj-database-url* package, we'll also need to install [psycopg2](), as Django needs this to interact with Postgres databases.
+The database connection information is supplied to the web dyno using a configuration variable named `DATABASE_URL`. Rather than hard-coding this information into Django, Heroku recommends that developers use the [dj-database-url](https://pypi.org/project/dj-database-url/) package to parse the `DATABASE_URL` environment variable and automatically convert it to Django's desired configuration format. In addition to installing the *dj-database-url* package, we'll also need to install [psycopg2](https://www.psycopg.org/), as Django needs this to interact with Postgres databases.
+
+##### dj-database-url (Django database configuration from environment variable)
+
+Install *dj-database-url* locally so that it becomes part of our [requirements](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#requirements) for Heroku to set up on the remote server:
+```
+$ pip3 install dj-database-url
+```
+
+##### settings.py
+
+Open **/locallibrary/settings.py** and copy the following configuration into the bottom of the file:
+```
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+```
+
+<hr>
+
+**Note**: 
+
+* We'll still be using SQLite during development because the `DATABASE_URL` environment variable will not be set on our development computer.
+* The value `conn_max_age=500` makes the connection persistent, which is far more efficient than recreating the connection on every request cycle. However, this is optional can can be removed if needed.
+
+<hr>
+
+##### psycopg2 (python Postgres database support)
+
+Django needs *psycopg2* to work with Postgres databases and you will need to add this to the [requirements.txt](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#requirements) for Heroku to set this up on the remote server (as discussed in the requirements section below).
+
+Django will use our SQLite database locally by default, because the `DATABASE_URL` environment variable isn't set in our local environment. If you want to switch to Postgres completely and use our Heroku free tier database for both development and production, then you can. For example, to install psycopg2 and its dependencies locally on a Debian-flavored Linux system, you would use the following Bash/terminal commands:
+```
+sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib
+pip3 install psycop2-binary
+```
+Installation instructions for the other platforms can be found on the [psycopg2 website here](https://www.psycopg.org/docs/install.html).
+
+However, you don't need to do this -- you don't need PostgreSQL active on the local computer, as long as you give it to Heroku as a requirement, in `requirements.txt` (see below).
+
+#### Serving static files in production
+
+During development we used Django and the Django development web server to serve our static files (CSS, JavaScript, etc.). In a production environment, we instead typically serve static files from a content delivery network (CDN) or the web server.
+
+<hr>
+
+**Note**: Serving static files via Django/web application is inefficient because the requests have to pass through unnecessary additional code (Django) rather than being handled directly by the web server or a completely separate CDN. While this doesn't matter for local use during development, it would have a significant performance impact if we were to use the same approach in production.
+
+<hr>
+
+
+
 
 
 
