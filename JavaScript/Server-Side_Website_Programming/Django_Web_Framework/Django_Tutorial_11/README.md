@@ -363,11 +363,70 @@ During development we used Django and the Django development web server to serve
 
 <hr>
 
+To make it easy to host static files separately from the Django web application, Django provides the *collectstatic* tool to collect these files for deployment. (There is a settings variable that defines where the files should be collected when *collectstatic* is run.) Django templates refer to the hosting location of the static files relative to a settings variable (`STATIC_URL`), so that this can be changed if the static files are moved to another host/server.
 
+The relevant setting variables are:
 
+* `STATIC_URL`: This is the base URL location from which static files will be served -- for example, on a CDN. This is used for the static template variable that is accessed in our base template (see [Django Tutorial Part 5: Creating our home page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_5#django-tutorial-part-5-creating-our-home-page)).
+* `STATIC_ROOT`: This is the absolute path to a directory where Django's *collectstatic* tool will gather any static files referenced in our templates. Once collected, these can then be updated as a group to wherever the files are to be hosted.
+* `STATICFILES_DIRS`: This lists additional directories that Django's *collectstatic* tool should search for static files.
 
+##### settings.py
 
+Open **/locallibrary/settings.py** and copy the following configuration into the bottom of the file. The `BASE_DIR` should already have been defined in your file. (The `STATIC_URL` may already have been defined within the file when it was created. While it will cause no harm, you might as well delete the duplicate previous reference.)
+```
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# The URL to use when referring to static files (where they will be served from)
+STATIC_URL = '/static/'
+```
+We'll actually do the file serving using a library called [WhiteNoise](https://pypi.org/project/whitenoise/), which we install and configure in the next section.
+
+For more information, see [Django and Static Assets](https://devcenter.heroku.com/articles/django-assets) (Heroku docs).
+
+#### Whitenoise
+
+There are many ways to serve static files in production. (We saw the relevant Django settings in the previous sections.) Heroku recommends using the [WhiteNoise](https://pypi.org/project/whitenoise/) project for serving of static assets directly from Gunicorn in production.
+
+<hr>
+
+**Note**: Heroku automatically calls *collectstatic* and prepares your static files for use by WhiteNoise after it uploads your application. Check out [WhiteNoise](https://pypi.org/project/whitenoise/) documentation for an explanation of how it works and why the implementation is a relatively efficient method for serving these files.
+
+<hr>
+
+The steps to set up *WhiteNoise* to use with the project are [given here]() (and reproduced below):
+
+##### WhiteNoise
+
+Install WhiteNoise locally using the following command:
+```
+$ pip3 install whitenoise
+```
+
+##### settings.py
+
+To install *WhiteNoise* into your Django application, open **/locallibrary/settings.py**, find the `MIDDLEWARE` setting and add the `WhiteNoiseMiddleware` near the top of the list, just below the `SecurityMiddleware`:
+```
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CrsfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+```
+Optionally, you can reduce the size of the static files when they are served (this is more efficient). Just add the following to the bottom of **/locallibrary/settings.py**:
+```
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+```
 
 #### Requirements
