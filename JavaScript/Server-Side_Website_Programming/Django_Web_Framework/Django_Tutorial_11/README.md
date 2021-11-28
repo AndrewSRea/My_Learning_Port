@@ -430,3 +430,50 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ```
 
 #### Requirements
+
+The Python requirements of your web application must be stored in a file **requirements.txt** in the root of your repository. Heroku will then install these automatically when it rebuilds your environment. You can create this file using *pip* on the command line. (Run the following in the repo root):
+```
+pip3 freeze > requirements.txt
+```
+After installing all the different dependencies above, your **requirements.txt** file should have *at least* these items listed (though the version numbers may be different). Please delete any other dependencies not list below, unless you've explicitly added them for this application.
+```
+dj-database-url==0.5.0
+Django==3.1.2
+gunicorn==20.0.4
+psycopg-binary==2.8.6
+whitenoise==5.2.0
+```
+
+<hr>
+
+**Note**: Make sure that a **psycopg2** line like the one above is present! Even if you didn't install this locally, then you should still add it to **requirements.txt**.
+
+<hr>
+
+#### Runtime
+
+The **runtime.txt** file, if defined, tells Heroku which programming language to use. Create the file in the root of the repo and add the following text:
+```
+python-3.8.6
+```
+
+<hr>
+
+**Note**: Heroku only supports a small number of [Python runtimes]() (at time of writing, this includes the one above). Heroku will use a supported runtime irrespective of the value specified in this file.
+
+<hr>
+
+#### Re-test and save changes to GitHub
+
+Before we proceed, let's test the site again locally and make sure it wasn't broken by any of our changes above. Run the development web server as usual and then check the site still works as you expect on your browser.
+```
+python3 manage.py runserver
+```
+Next, let's `push` out changes to GitHub. In the terminal (after having navigated to our local repository), enter the following commands:
+```
+git add -A
+git commit -m "Added files and changes required for deployment to heroku"
+git push origin main
+```
+We should now be ready to start deploying LocalLibrary on Heroku.
+
