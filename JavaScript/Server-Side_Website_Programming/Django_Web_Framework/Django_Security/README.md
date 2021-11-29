@@ -85,3 +85,48 @@ Django generates a user/browser specific key and will reject forms that do not c
 To use this type of attack, the hacker now has to discover and include the CSRF key for the specific target user. They also can't use the "scattergun" approach of sending a malicious file to all librarians and hoping that one of them will open it, since the CSRF key is browser specific.
 
 Django's CSRF protection is turned on by default. You should always use the `{% csrf_token %}` template tag in your forms and use `POST` for requests that might change or add data to the database.
+
+### Other protections
+
+Django also provides other forms of protection (most of which would be hard or not particularly useful to demonstrate):
+
+**SQL injection protection**
+
+SQL injection vulnerabilities enable malicious users to execute arbitrary SQL code on a database, allowing data to be accessed, modified, or deleted irrespective of the uer's permissions. In almost every case, you'll be accessing the database using Django's querysets/models, so the resulting SQL will be properly escaped by the underlying database driver. If you do need to write raw queries or custom SQL, then you'll need to explicitly think about preventing SQL injection.
+
+**Clickjacking protection**
+
+In this attack, a malicious user hijacks clicks meant for a visible top level site and routes them to a hidden page beneath. This technique might be used, for example, to display a legitimate bank site but capture the login credentials in an invisible [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) controlled by the attacker. Django contains [clickjacking protection](https://docs.djangoproject.com/en/3.1/ref/clickjacking/#clickjacking-prevention) in the form of the [`X-Frame-Options middleware`](https://docs.djangoproject.com/en/3.1/ref/middleware/#django.middleware.clickjacking.XFrameOptionsMiddleware) which, in a supporting browser, can prevent a site from being rendered inside a frame.
+
+**Enforcing SSL/HTTPS**
+
+SSL/HTTPS can be enabled on the web server in order to encrypt all traffic between the site and browser, including authentication credentials that would otherwise be sent in plain text (enabling HTTPS is highly recommended). If HTTPS is enabled, then Django provides a number of other protections you can use:
+
+* [`SECURE_PROXY_SSL_HEADER`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_PROXY_SSL_HEADER) can be used to check whether content is secure, even if it is incoming form a non-HTTP proxy.
+* [`SECURE_SSL_REDIRECT`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_SSL_REDIRECT) is used to redirect all HTTP requests to HTTPS.
+* Use [HTTP Strict Transport Security](https://docs.djangoproject.com/en/3.1/ref/middleware/#http-strict-transport-security) (HSTS). This is an HTTP header that informs a browser that all future connections to a particular site should always use HTTPS. Combined with redirecting HTTP requests to HTTPS, this setting ensures that HTTPS is always used after a successful connection has occurred. HSTS may either be configured with [`SECURE_HSTS_SECONDS`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_HSTS_SECONDS) and [`SECURE_HSTS_INCLUDE_SUBDOMAINS`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECURE_HSTS_INCLUDE_SUBDOMAINS) or on the Web server.
+* Use 'secure' cookies by setting [`SESSION_COOKIE_SECURE`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SESSION_COOKIE_SECURE) and [`CSRF_COOKIE_SECURE`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-CSRF_COOKIE_SECURE) to `True`. This will ensure that cookies are only ever sent over HTTPS.
+
+**Host header validation**
+
+Use [`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-ALLOWED_HOSTS) to only accept requests from trusted hosts.
+
+There are many other protections, and caveats to the usage of the above mechanisms. While we hope that this has given you an overview of what Django offers, you should still read the Django security documentation.
+
+## Summary
+
+Django has effective protections against a number of common threats, including XSS and CSRF attacks. In this article, we've demonstrated how those particular threats are handled by Django in our *LocalLibrary* website. We've also provided a brief overview of some of the other protections.
+
+This has been a very brief foray into web security. We strongly recommend that you read [Security in Django](https://docs.djangoproject.com/en/3.1/topics/security/) to gain a deeper understanding.
+
+The next and final step in this module about Django is to complete the [assessment task]().
+
+## See also
+
+* [Security in Django](https://docs.djangoproject.com/en/3.1/topics/security/) (Django docs)
+* [Server side website security](https://developer.mozilla.org/en-US/docs/Web/Security) (MDN)
+* [Securing your site](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site) (MDN)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#django-tutorial-part-11-deploying-django-to-production) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Security#django-web-application-security) - [[Next page]]()
