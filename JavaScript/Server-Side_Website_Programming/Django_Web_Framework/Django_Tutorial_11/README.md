@@ -477,3 +477,69 @@ git push origin main
 ```
 We should now be ready to start deploying LocalLibrary on Heroku.
 
+### Get a Heroku account
+
+To start using Heroku, you will first need to create an account:
+
+* Go to [www.heroku.com](https://www.heroku.com) and click the **SIGN UP FOR FREE** button.
+* Enter your details and then press **CREATE FREE ACCOUNT**. You'll be asked to check your account for a sign-up email.
+* Click the account activation link in the signup email. You'll be taken back to your account on the web browser.
+* Enter your password and click **SET PASSWORD AND LOGIN**.
+* You'll then be logged in and taken to the Heroku dashboard: [https://dashboard.heroku.com/apps](https://dashboard.heroku.com/apps).
+
+### Install the client
+
+Download and install the Heroku client by following the [instructions on Heroku here](https://devcenter.heroku.com/articles/getting-started-with-python#set-up).
+
+After the client is installed, you will be able to run commands. For example, to get help on the client:
+```
+heroku help
+```
+
+### Create and upload the website
+
+To create the app, we run the "create" command in the root directory of our repository. This creates a git remote ("pointer to a remote repository") named *heroku* in our local git environment.
+```
+heroku create
+```
+
+<hr>
+
+**Note**: You can name the remote if you like by specifying a value after "create". If you don't, then you'll get a random name. The name is used in the default URL.
+
+<hr>
+
+We can then push our app to the Heroku repository as shown below. This will upload the app, package it in a dyno, run *collectstatic*, and start the site.
+```
+git push heroku main
+```
+If we're lucky, the app is now "running" on the site, but it won't be working properly because we haven't set up the database tables for use by our application. To do this, we need to use the `heroku run` command and start a "[one off dyno]()" to perform a migrate operation. Enter the following command in your terminal:
+```
+heroku run python manage.py migrate
+```
+We're also going to need to be able to add books and authors, so let's also create our administration superuser, again using a one-off dyno:
+```
+heroku run python manage.py createsuperuser
+```
+Once this is complete, we can look at the site. It should work, although it won't have any books in it yet. To open your browser to the new website, use the command:
+```
+heroku open
+```
+Create some books in the admin site, and check out whether the site is behaving as you expect.
+
+### Managing add-ons
+
+You can check out the add-ons to your app using the `heroku addons` command. This will list all addons, and their price tier and state.
+```
+> heroku addons
+
+Add-on                                     Plan       Price  State
+─────────────────────────────────────────  ─────────  ─────  ───────
+heroku-postgresql (postgresql-flat-26536)  hobby-dev  free   created
+ └─ as DATABASE
+```
+Here we see that we have just one add-on, the postgres SQL database. This is free, and was created automatically when we created the app. You can open a web page to examine the database add-on (or any other add-on) in more detail using the following command:
+```
+heroku addons:open heroku-postgresql
+```
+Other commands allow you to create, destroy, upgrade and downgrade addons (using a similar syntax to opening). For more information, see [Managing Add-ons](https://devcenter.heroku.com/articles/managing-add-ons) (Heroku docs).
