@@ -575,7 +575,7 @@ We similarly set `DJANGO_DEBUG`:
 Setting DJANGO_DEBUG and restarting locallibrary... done, v8
 DJANGO_DEBUG: False
 ```
-If you visit the site now, you'll get a "Bad request" error, because the [`ALLOWED_HOSTS`]() setting is *required* if you have `DEBUG=False` (as a security measure). Open **/locallibrary/settings.py** and change the `ALLOWED_HOSTS` setting to include your base app URL (e.g. 'locallibrary1234.herokuapp.com') and the URL you normally use on your local development server.
+If you visit the site now, you'll get a "Bad request" error, because the [`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts) setting is *required* if you have `DEBUG=False` (as a security measure). Open **/locallibrary/settings.py** and change the `ALLOWED_HOSTS` setting to include your base app URL (e.g. 'locallibrary1234.herokuapp.com') and the URL you normally use on your local development server.
 ```
 ALLOWED_HOSTS = ['<your app URL without the https:// prefix>.herokuapp.com', '127.0.0.1']
 # For example:
@@ -611,38 +611,38 @@ heroku config:set DEBUG_COLLECTSTATIC=1
 # Display dyno status
 heroku ps
 ```
-If you need more information than these can provide, you will need to start looking into [Django Logging]().
+If you need more information than these can provide, you will need to start looking into [Django Logging](https://docs.djangoproject.com/en/3.1/topics/logging/).
 
 ## Summary
 
-That's the end of this tutorial on setting up Django apps in production, and also the series of tutorials on working with Django. We hope you've found them useful. You can check out a fully worked-through version of the [source code on GitHub here]().
+That's the end of this tutorial on setting up Django apps in production, and also the series of tutorials on working with Django. We hope you've found them useful. You can check out a fully worked-through version of the [source code on GitHub here](https://github.com/mdn/django-locallibrary-tutorial).
 
 The next step is to read our last few articles, and then complete the assessment task.
 
 ## See also
 
-* [Deploying Django]() (Django docs)
-    - [Deployment checklist]() (Django docs)
-    - [Deploying static files]() (Django docs)
-    - [How to deploy with WSGI]() (Django docs)
-    - [How to use Django with Apache and mod_wsgi]() (Django docs)
-    - [How to use Django with Gunicorn]() (Django docs)
+* [Deploying Django](https://docs.djangoproject.com/en/3.1/howto/deployment/) (Django docs)
+    - [Deployment checklist](https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/) (Django docs)
+    - [Deploying static files](https://docs.djangoproject.com/en/3.1/howto/static-files/deployment/) (Django docs)
+    - [How to deploy with WSGI](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/) (Django docs)
+    - [How to use Django with Apache and `mod_wsgi`](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/modwsgi/) (Django docs)
+    - [How to use Django with Gunicorn](https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/gunicorn/) (Django docs)
 * Heroku
-    - [Configuring Django apps for Heroku]() (Heroku docs)
-    - [Getting Started on Heroku with Django]() (Heroku docs)
-    - [Django and Static Assets]() (Heroku docs)
-    - [Concurrency and Database Connections in Django]() (Heroku docs)
-    - [How Heroku works]() (Heroku docs)
-    - [Dynos and the Dyno Manager]() (Heroku docs)
-    - [Configuration and Config Vars]() (Heroku docs)
-    - [Limits]() (Heroku docs)
-    - [Deploying Python applications with Gunicorn]() (Heroku docs)
-    - [Deploying Python and Django apps on Heroku]() (Heroku docs)
-    - [Other Heroku Django docs]()
+    - [Configuring Django apps for Heroku](https://devcenter.heroku.com/articles/django-app-configuration) (Heroku docs)
+    - [Getting Started on Heroku with Django](https://devcenter.heroku.com/articles/getting-started-with-python) (Heroku docs)
+    - [Django and Static Assets](https://devcenter.heroku.com/articles/django-assets) (Heroku docs)
+    - [Concurrency and Database Connections in Django](https://devcenter.heroku.com/articles/python-concurrency-and-database-connections) (Heroku docs)
+    - [How Heroku works](https://devcenter.heroku.com/articles/how-heroku-works) (Heroku docs)
+    - [Dynos and the Dyno Manager](https://devcenter.heroku.com/articles/dynos) (Heroku docs)
+    - [Configuration and Config Vars](https://devcenter.heroku.com/articles/config-vars) (Heroku docs)
+    - [Limits](https://devcenter.heroku.com/articles/limits) (Heroku docs)
+    - [Deploying Python applications with Gunicorn](https://devcenter.heroku.com/articles/python-gunicorn) (Heroku docs)
+    - [Deploying Python and Django apps on Heroku](https://devcenter.heroku.com/articles/deploying-python) (Heroku docs)
+    - [Other Heroku Django docs](https://devcenter.heroku.com/search?q=django)
 * Digital Ocean
-    - [How to Serve Django Applications with uWSGI and Nginx on Ubuntu 16.04]()
-    - [Other Digital Ocean Django community docs]()
+    - [How to Serve Django Applications with uWSGI and Nginx on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-uwsgi-and-nginx-on-ubuntu-16-04)
+    - [Other Digital Ocean Django community docs](https://www.digitalocean.com/community/tutorials?q=django)
 
 <hr>
 
-[[Previous page]]() - [[Top]]() - [[Next page]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_10#django-tutorial-part-10-testing-a-django-web-application) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#django-tutorial-part-11-deploying-django-to-production) - [[Next page]]()
