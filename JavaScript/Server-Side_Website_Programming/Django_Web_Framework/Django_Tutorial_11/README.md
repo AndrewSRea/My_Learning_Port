@@ -543,3 +543,106 @@ Here we see that we have just one add-on, the postgres SQL database. This is fre
 heroku addons:open heroku-postgresql
 ```
 Other commands allow you to create, destroy, upgrade and downgrade addons (using a similar syntax to opening). For more information, see [Managing Add-ons](https://devcenter.heroku.com/articles/managing-add-ons) (Heroku docs).
+
+### Setting configuration variables
+
+You can check out the configuration variables for the site using the `heroku config` command. Below you can see that we have just one variable, the `DATABASE_URL` used to configure our database.
+```
+> heroku config
+
+=== locallibrary Config Vars
+DATABASE_URL: postgres://uzfnbcyxidzgrl:j2jkUFDF6OGGqxkgg7Hk3ilbZI@ec2-54-243-201-144.compute-1.amazonaws.com:5432/dbftm4qgh3kda3
+```
+If you recall from the section on [getting the website ready to publish](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#getting-your-website-ready-to-publish), we have to set environment variables for `DJANGO_SECRET_KEY` and `DJANGO_DEBUG`. Let's do this now.
+
+<hr>
+
+**Note**: The secret key needs to be really secret! One way to generate a new key is to use the [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/).
+
+<hr>
+
+We set `DJANGO_SECRET_KEY` using the `config:set` command (as shown below). Remember to use your own secret key!
+```
+> heroku config:set DJANGO_SECRET_KEY="eu09(ilk6@4sfdofb=b_2ht@vad*$ehh9-)3u_83+y%(+phh&="
+
+Setting DJANGO_SECRET_KEY and restarting locallibrary... done, v7
+DJANGO_SECRET_KEY: eu09(ilk6@4sfdofb=b_2ht@vad*$ehh9-)3u_83+y%(+phh
+```
+We similarly set `DJANGO_DEBUG`:
+```
+> heroku config:set DJANGO_DEBUG=False
+
+Setting DJANGO_DEBUG and restarting locallibrary... done, v8
+DJANGO_DEBUG: False
+```
+If you visit the site now, you'll get a "Bad request" error, because the [`ALLOWED_HOSTS`]() setting is *required* if you have `DEBUG=False` (as a security measure). Open **/locallibrary/settings.py** and change the `ALLOWED_HOSTS` setting to include your base app URL (e.g. 'locallibrary1234.herokuapp.com') and the URL you normally use on your local development server.
+```
+ALLOWED_HOSTS = ['<your app URL without the https:// prefix>.herokuapp.com', '127.0.0.1']
+# For example:
+# ALLOWED_HOSTS = ['fathomless-scrubland-30645.herokuapp.com', '127.0.0.1']
+```
+Then save your settings and commit them to your GitHub repo and to Heroku:
+```
+git add -A
+git commit -m 'Update ALLOWED_HOSTS with site and development server URL'
+git push origin main
+git push heroku main
+```
+
+<hr>
+
+**Note**: After the site update to Heroku completes, enter a URL that does not exist (e.g. **/catalog/doesnotexist/**). Previously this would have displayed a detailed debug page, but now you should just see a simple "Not Found" page.
+
+<hr>
+
+### Debugging
+
+The Heroku client provides a few tools for debugging:
+```
+# Show current logs
+heroku logs
+
+# Show current logs and keep updating with any new results
+heroku logs --tail
+
+# Add additional logging for collectstatic (this tool is run automatically during a build)
+heroku config:set DEBUG_COLLECTSTATIC=1
+
+# Display dyno status
+heroku ps
+```
+If you need more information than these can provide, you will need to start looking into [Django Logging]().
+
+## Summary
+
+That's the end of this tutorial on setting up Django apps in production, and also the series of tutorials on working with Django. We hope you've found them useful. You can check out a fully worked-through version of the [source code on GitHub here]().
+
+The next step is to read our last few articles, and then complete the assessment task.
+
+## See also
+
+* [Deploying Django]() (Django docs)
+    - [Deployment checklist]() (Django docs)
+    - [Deploying static files]() (Django docs)
+    - [How to deploy with WSGI]() (Django docs)
+    - [How to use Django with Apache and mod_wsgi]() (Django docs)
+    - [How to use Django with Gunicorn]() (Django docs)
+* Heroku
+    - [Configuring Django apps for Heroku]() (Heroku docs)
+    - [Getting Started on Heroku with Django]() (Heroku docs)
+    - [Django and Static Assets]() (Heroku docs)
+    - [Concurrency and Database Connections in Django]() (Heroku docs)
+    - [How Heroku works]() (Heroku docs)
+    - [Dynos and the Dyno Manager]() (Heroku docs)
+    - [Configuration and Config Vars]() (Heroku docs)
+    - [Limits]() (Heroku docs)
+    - [Deploying Python applications with Gunicorn]() (Heroku docs)
+    - [Deploying Python and Django apps on Heroku]() (Heroku docs)
+    - [Other Heroku Django docs]()
+* Digital Ocean
+    - [How to Serve Django Applications with uWSGI and Nginx on Ubuntu 16.04]()
+    - [Other Digital Ocean Django community docs]()
+
+<hr>
+
+[[Previous page]]() - [[Top]]() - [[Next page]]()
