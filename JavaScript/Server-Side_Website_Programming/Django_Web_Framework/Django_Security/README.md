@@ -42,3 +42,46 @@ If you view the page HTML source code, you can see that the dangerous characters
 ```
 <h1>Author: Boon&lt;script&gt;alert(&#39;Test alert&#39;);&lt;/script&gt;, David (Boonie) </h1>
 ```
+Using Django templates protects you against the majority of XSS attacks. However it is possible to turn off this protection, and the protection isn't automatically applied to all tags that wouldn;t normally be populated by user input. (For example, the `help_text` in a form field is usually not user-supplied, so Django doesn't escape those values.)
+
+It is also possible for XSS attacks to originate from other untrusted sources of data, such as cookies, Web services, or uploaded files (whenever the data is not sufficiently sanitized before being included in a page). If you're displaying data from these sources, then you may need to add your own sanitization code.
+
+### Cross site request forgery (CSRF) protection
+
+CSRF attacks allow a malicious user to execute actions using the credentials of another user without that user's knowledge or consent. For example, consider the case where we have a hacker who wants to create additional authors for our LocalLibrary.
+
+<hr>
+
+**Note**: Obviously our hacker isn't in this for the money! A more ambitious hacker could use the same approach on other sites to perform much more harmful tasks (e.g. transfer money to their own accounts, etc.).
+
+<hr>
+
+In order to do this, they might create an HTML file like the one below, which contains an author-creation form (like the one we used in the previous section) that is submitted as soon as the file is loaded. They would then send the file to all the Librarians and suggest that they open the file (it contains some harmless information, honest!). If the file is opened by any logged in librarian, then the form would be submitted with their credentials and a new author would be created.
+```
+<html>
+<body onload='document.EvilForm.submit()'>
+
+<form action="http://127.0.0.1:8000/catalog/author/create/" method="post" name='EvilForm'>
+    <table>
+        <tr><th><label for="id_first_name">First name:</label></th><td><input id="id_first_name" maxlength="100" name="first_name" type="text" value="Mad" required /></td></tr>
+        <tr><th><label for="id_last_name">Last name:</label></th><td><input id="id_last_name" maxlength="100" name="last_name" type="text" value="Man" required /></td></tr>
+        <tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input id="id_date_of_birth" name="date_of_birth" type="text" /></td></tr>
+        <tr><th><label for="id_date_of_death">Died:</label></th><td><input id="id_date_of_death" name="date_of_death" type="text" value="12/10/2016" /></td></tr>
+    </table>
+    <input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>
+```
+Run the development web server, and log in with your superuser account. Copy the text above into a file and then open it in the browser. You should get a CSRF error, because Django has protection against this kind of thing!
+
+The way the protection is enabled is that you include the `{% csrf_token %}` template tag in your form definition. This token is then rendered in your HTML as shown below, with a value that is specific to the user on the current browser.
+```
+<input type='hidden' name='csrfmiddlewaretoken' value='0QRWHnYVg776y2l66mcvZqp8alrv4lb8S8lZ4ZJUWGZFA5VHrVfL2mpH29YZ39PW' />
+```
+Django generates a user/browser specific key and will reject forms that do not contain the field, or that contain an incorrect field value for the user/browser.
+
+To use this type of attack, the hacker now has to discover and include the CSRF key for the specific target user. They also can't use the "scattergun" approach of sending a malicious file to all librarians and hoping that one of them will open it, since the CSRF key is browser specific.
+
+Django's CSRF protection is turned on by default. You should always use the `{% csrf_token %}` template tag in your forms and use `POST` for requests that might change or add data to the database.
