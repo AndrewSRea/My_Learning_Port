@@ -34,3 +34,62 @@ In addition, you should write some basic tests to verify:
 <hr>
 
 The following section shows screenshots of a site that implements the requirements above.
+
+## Screenshots
+
+The following screenshots provide an example of what the finished program should output.
+
+### List of all blog posts
+
+This displays the lsit of all blog posts (accessible from the "All blogs" link in the sidebar). Things to note:
+
+* The sidebar also lists the logged in user.
+* Individual blog posts and bloggers are accessible as links in the page.
+* Pagination is enabled (in groups of 5).
+* Ordering is newest to oldest.
+
+![Image of "All blogs" page of Django Blog app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/django_assessment_blog/diyblog_allblogs.png)
+
+### List of all bloggers
+
+This provides links to all bloggers, as linked from the "All bloggers" link in the sidebar. In this case, we can see from the side bar that no user is logged in.
+
+![Image of "All bloggers" page of Django Blog app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/django_assessment_blog/diyblog_blog_allbloggers.png)
+
+### Blog detail page
+
+This shows the detail page for a particular blog.
+
+![Image of a specific blog page in the Django Blog app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/django_assessment_blog/diyblog_blog_detail_add_comment.png)
+
+Note that the comments have a date *and* time, and are ordered from oldest to newest (opposite of blog ordering). At the end, we have a link for accessing the form to add a new comment. If a user is not logged in, we'd instead see a suggestion to log in.
+
+![Image of a comment on a blog page and a login link to add a new comment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/django_assessment_blog/diyblog_blog_detail_not_logged_in.png)
+
+### Add comment form
+
+This is the form to add comments. Note that we're logged in. When this succeeds, we should be taken back to the associated blog post page.
+
+![Image of a comment form to add a comment to a blog](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/django_assessment_blog/diyblog_comment_form.png)
+
+### Author bio
+
+This displays bio information for a blogger along with their blog posts list.
+
+![Image of a blog author's information in the Django Blog app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/django_assessment_blog/diyblog_blogger_detail.png)
+
+## Steps to complete
+
+The following sections describe what you need to do.
+
+1. Create a skeleton project and web application for the site (as described in [Django Tutorial Part 2: Creating a skeleton website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website)). You might use 'diyblog' for the project name and 'blog' for the application name.
+2. Create models for the Blog posts, Comments, and any other objects needed. When thinking about your design, remember:
+    - Each comment will have only one blog, but a blog may have many comments.
+    - Blog posts and comments must be sorted by post date.
+    - Not every user will necessarily be a blog author, though any user may be a commenter.
+    - Blog authors must also include bio information.
+3. Run migrations for your new models and create a superuser.
+4. Use the admin site to create some example blog posts and blog comments.
+5. Create views, templates, and URL configurations for blog post and blogger list pages.
+6. Create views, templates, and URL configurations for blog post and blogger detail pages.
+7. Create a page with a form for adding new comments (remember to make this only available to logged in users!)
