@@ -46,7 +46,7 @@ WE're now ready to add the pages that display the *LocalLibrary* website books a
 
 **[Express Tutorial Part 6: Working with forms]()**
 
-In this tutorial, we'll show you how to work with [HTML Forms]() in Express, using Pug, and in particular, how to write forms to create, update, and delete documents from the database.
+In this tutorial, we'll show you how to work with [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/Forms) in Express, using Pug, and in particular, how to write forms to create, update, and delete documents from the database.
 
 **[Express Tutorial Part 7: Deploying to production]()**
 
