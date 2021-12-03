@@ -95,3 +95,53 @@ The popularity of a web framework is important because it is an indicator of whe
 There isn't any readily-available and definitive measure of the popularity of server-side frameworks (although you can estimate popularity using mechanisms like counting the number of GitHub projects and StackOverflow questions for each platform). A better question is whether Node and Express are "popular enough" to avoid the problems of unpopular platforms. Are they continuing to evolve? Can you get help if you need it? Is there an opportunity for you to get paid work if you learn Express?
 
 Based on the number of [high profile companies](https://expressjs.com/en/resources/companies-using-express.html) that use Express, the number of people contributing to the codebase, and the number of people providing both free and paid for support, then yes, *Express* is a popular framework!
+
+## Is Express opinionated?
+
+Web frameworks often refer to themselves as "opinionated" or "unopinionated".
+
+Opinionated frameworks are those with opinions about the "right way" to handle any particular task. They often support rapid development *in a particular domain* (solving problems of a particular type) because the right way to do anything is usually well-understood and well-documented. However, they can be less flexible at solving problems outside their main domain, and tend to offer fewer choices for what components and approaches they can use.
+
+Unopinionated frameworks, by contrast, have far fewer restrictions on the best way to glue components together to achieve a goal, or even what components should be used. They make it easier for developers to use the most suitable tools to complete a particular task, albeit at the cost that you need to find those components yourself.
+
+Express is unopinionated. You can insert almost any compatible middleware you like into the request handling chain, in almost any order you like. You can structure the app in one file or multiple files, and using any directory structure. You may sometimes feel that you have too many choices!
+
+## What does Express code look like?
+
+In a traditional data-driven website, a web application waits for HTTP requests from the web browser (or other client). When a request is received, the application works out what action is needed bsed on the URL pattern and possibly associated information contained in `POST` data or `GET` data. Depending on what is required, it may then read or write information from a database or perform other tasks required to satisfy the request. The application will then return a response to the web browser, often dynamically creating an HTML page for the browser to display by inserting the retrieved data into placeholders in an HTML template.
+
+Express provides methods to specify what function is called for a particular HTTP verb (`GET`, `POST`, `SET`, etc.) and URL pattern ("route"), and methods to specify what template ("view") engine is used, where template files are located, and what template to use to render a response. You can use Express middleware to add support for cookies, sessions, and users, getting `POST`/`GET` parameters, etc. You can use any database mechanism supported by Node. (Express does not define any database-related behavior.)
+
+The following sections explain some of the common things you'll see when working with *Express* and *Node* code.
+
+### Helloworld Express
+
+First, let's consider the standard Express [Hello World](https://expressjs.com/en/starter/hello-world.html) example. (We discuss each part of this below, and in the following sections.)
+
+<hr>
+
+**Note**: If you have Node and Express already installed (or if you install them as shown in the [next article](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Node_Development_Environment#setting-up-a-node-development-environment)), you can save this code in a text file called **app.js** and run it in a bach command prompt by calling:
+```
+node ./app.js
+```
+
+<hr>
+
+```
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', function(req, res) {
+    res.send('Hello World!');
+});
+
+app.listen(port, function() {
+    console.log(`Example app listening on port ${port}!`);
+});
+```
+The first two lines `require()` (import) the express module and create an [Express application](https://expressjs.com/en/4x/api.html#app). This object, which is traditionally named `app`, has methods for routing HTTP requests, configuring middleware, rendering HTML views, registering a template engine, and modifiying [application settings](https://expressjs.com/en/4x/api.html#app.settings.table) that control how the application behaves (e.g. the environment mode, whether route definitions are case sensitive, etc.)
+
+The middle part of the code (the three lines starting with `app.get`) shows a *route definition*. The `app.get()` method specifies a callback function that will be invoked whenever there is an HTTP `GET` request with a path (`'/'`) relative to the site root. The callback function takes a request and a response object as arguments, and calls [`send()`](https://expressjs.com/en/4x/api.html#res.send) on the response to return the string "Hello World!"
+
+The final block starts up the server on a specified port ('3000') and prints a log comment to the console. With the server running, you could go to `localhost:3000` in your browser to see the example response returned.
