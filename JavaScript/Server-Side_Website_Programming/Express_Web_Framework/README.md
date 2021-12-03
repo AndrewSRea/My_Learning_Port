@@ -13,3 +13,29 @@ Before starting this module, you will need to understand what server-side web pr
 This guide will provide some information about working with Node.js and Express, and there are numerous other excellent resources on the Internet and in books -- some of these linked from [How do I get started with Node.js](https://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js/5511507#5511507) (StackOverflow) and [What are the best resources for learning Node.js?](https://www.quora.com/What-is-the-greatest-resource-for-learning-Node-js-for-a-newbie) (Quora).
 
 <hr>
+
+## Guides
+
+**[Express/Node introduction](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#expressnode-introduction)**
+
+In this first Express article, we answer the questions "What is Node?" and "What is Express?" and give you an overview of what makes the Express web framework special. We'll outline the main features and show you some of the main building blocks of an Express application (although at this point, you won't yet have a development environment in which to test it).
+
+**[Setting up a Node (Express) development environment]()**
+
+Now that you know what Express is for, we'll show you how to set up and test a Node/Express development environment on Windows, Linux (Ubuntu), and Mac OS X. Whatever common operating system you are using, this article should give you what you need to be able to start developing Express apps.
+
+**[Express Tutorial: The Local Library website]()**
+
+The first article in our practical tutorial series explains what you'll learn and provides an overview of the "local library" example website we'll be working through and evolving in subsequent articles.
+
+**[Express Tutorial Part 2: Creating a skeleton website]()**
+
+This article shows how you can create a "skeleton" website project, which you can then go on to populate with site-specific routes, templates/views, and databases.
+
+**[Express Tutorial Part 3: Using a Database (with Mongoose)]()**
+
+This article briefly introduces databases for Node/Express. It then goes on to show how we can use [Mongoose](https://mongoosejs.com/) to provide database access for the *LocalLibrary* website. It explains how object schema and models are declared, the main field types, and basic validation. It also briefly shows a few of the main ways you can access model data.
+
+**[Express Tutorial Part 4: Routes and controllers]()**
+
+In this tutorial, we'll set up routes (URL handling code) with "dummy" handler functions for all the resource endpoints that we'll eventually need in the *LocalLibrary* website. On completion, we'll have a modular structure for our route handling code, that we can extend with real handler functions in the following articles. We'll also have a really good understanding of how to create modular routes using Express.
