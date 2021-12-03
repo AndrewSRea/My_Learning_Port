@@ -16,3 +16,47 @@ From a web server development perspective, Node has a number of benefits:
 * It has a very active third-party ecosystem and developer community, with lots of people who are willing to help.
 
 You can use Node.js to create a simple web server using the Node HTTP package.
+
+### Hello Node.js
+
+The following example creates a web server that listens for any kind of HTTP request on the URL `http://127.0.0.1:8000/` -- when a request is received, the script will respond with the string: "Hello World". If you have already installed Node, you can follow these steps to try out the example:
+
+1. Open Terminal (on Windows, open the command line utility).
+
+2. Create the folder where you wnt to save the program -- for example, `test-node` -- and then enter it by entering the following command into your terminal:
+```
+cd test-node
+```
+
+3. Using your favorite text editor, create a file called `hello.js` and paste the following code into it:
+```
+// Load HTTP module
+const http = require("http");
+
+const hostname = "127.0.0.1";
+const port = 8000;
+
+// Create HTTP server
+const server = http.createServer(function(req, res) {
+
+    // Set the response HTTP header with HTTP status and Content type
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+
+    // Send the reponse body "Hello World"
+    res.end('Hello World\n');
+});
+
+// Prints a log once the server starts listening
+server.listen(port, hostname, function() {
+    console.log(`Server running at http://${hostname}:${port}/`);
+})
+```
+
+4. Save the file in the folder you created above.
+
+5. Go back to the terminal and type the following command:
+```
+node hello.js
+```
+
+Finally, navigate to `http://localhost:8000` in your web browser. You should see the text "**Hello World**" in the upper left of an otherwise empty web page.
