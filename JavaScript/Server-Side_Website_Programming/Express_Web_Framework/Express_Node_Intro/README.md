@@ -198,3 +198,60 @@ module.exports = {
 <hr>
 
 For a lot more information about modules, see [Modules](https://nodejs.org/api/modules.html#modules_modules) (Node API docs).
+
+### Using asynchronous APIs
+
+JavaScript code frequently uses asynchronous rather than synchronous APIs for operations that may take some time to complete.. A synchronous API is one in which each operation must complete before the next operation can start. For example, the following log functions are synchronous, and will print the text to the console in order (First, Second):
+```
+console.log('First');
+console.log('Second');
+```
+By contrast, an asynchronous API is one in which the API will start an operation and immediately return (before the operation is complete). Once the operation finishes, the API will use some mechanism to perform additional operations. For example, the code below will print out "Second, First" because even though the `setTimeout()` method is called first, and returns immediately, the operation doesn't complete for several seconds.
+```
+setTimeout(function() {
+    console.log('First');
+}, 3000);
+console.log('Second');
+```
+Using non-blocking asynchronous APIs is even more important on Node than in the browser because *Node* is a single-threaded event-driven execution environment. "Single-threaded" means that all requests to the server are run on the same thread (rather than being spawned off into separate processes). This model is extremely efficient in terms of speed and server resources, but it does mean that if any of your functions call synchronous methods that take a long time to complete, they will block not just the current request, but every other request being handled by your web application.
+
+There are a number of ways for an asynchronous API to notify your application that it has completed. The most common way is to register a callback function when you invoke the asynchronous API, that will be called back when the operation completes. This is the approach used above.
+
+<hr>
+
+**Note**: Using callbacks can be quite "messy" if you have a sequence of dependent asynchronous operations that must be performed in order because this results in multiple levels of nested callbacks. This problem is commonly known as "callback hell". This problem can be reduced by good coding practices (see [http://callbackhell.com](http://callbackhell.com/)), using a module like [async](https://www.npmjs.com/package/async), or even moving to ES6 features like [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+<hr>
+
+**Note**: A common convention for Node and Express is to use error-first callbacks. In this convention, the first value in your *callback functions* is an error value, while subsequent arguments contain success data. There is a good explanation of why this approach is useful in this blog: [The Node.js Way - Understanding Error-First Callbacks](https://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/) (fredkschott.com).
+
+<hr>
+
+### Creating route handlers
+
+In our *Hello World* Express example (see above), we defined a (callback) route handler function for HTTP `GET` requests to the site root (`'/'`).
+```
+app.get('/', function(req, res) {
+    res.send('Hello World!');
+});
+```
+The callback function takes a request and a response object as arguments. In this case, the method calls [`send()`](https://expressjs.com/en/4x/api.html#res.send) on the response to return the string "Hello World!" There are a [number of other response methods](https://expressjs.com/en/guide/routing.html#response-methods) for ending the request/response cycle -- for example, you could call [`res.json()`](https://expressjs.com/en/4x/api.html#res.json) to send a JSON response or [`res.sendFile()`](https://expressjs.com/en/4x/api.html#res.sendFile) to send a file.
+
+<hr>
+
+**Note**: You can use any argument names you like in the callback functions. When the callback is invoked, the first argument will always be the request and the second will always be the response. It makes sense to name them such that you can identify the object you're working with in the body of the callback.
+
+<hr>
+
+The *Express application* object also provides methods to define route handlers for all the other HTTP verbs, which are mostly used in exactly the same way:
+
+`checkout()`, `copy()`, **`delete()`**, **`get()`**, `head()`, `lock()`, `merge()`, `mkactivity()`, `mkcol()`, `move()`, `m-search()`, `notify()`, `options()`, `patch()`, **`post()`**, `purge()`, **`put()`**, `report()`, `search()`, `subscribe()`, `trace()`, `unlock()`, `unsubscribe()`
+
+There is a special routing method, `app.all()`, which will be called in response to any HTTP method. This is used for loading middleware functions at a particular path for all request methods. The following example (from the Express documentation) shows a handler that will be executed for requests to `/secret` irrespective of the HTTP verb used (provided it is supported by the [http module](https://nodejs.org/api/http.html#http_http_methods)).
+```
+app.all('/secret', function (req, res, next) {
+    console.log('Accessing the secret section ...');
+    next();   // pass control to the next handler
+});
+```
+Routes allow you to match particular patterns of characters in a URL, and extract some values from the URL and pass them as parameters to the route handler (as attributes of the request object passed as a parameter).
