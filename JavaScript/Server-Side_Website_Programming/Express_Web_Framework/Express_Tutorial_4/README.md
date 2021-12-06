@@ -1,0 +1,3 @@
+# Express Tutorial Part 4: Routes and controllers
+
+In this tutorial, we'll set up routes (URL handling code) with "dummy" handler functions for all the resource endpoints that we'll eventually need in the [LocalLibrary]() website. On completion, we'll have a modular structure for our route handling code, which we can extend with real handler functions in the following articles. We'll also have a really good understanding of how to create modular routes using Express!
