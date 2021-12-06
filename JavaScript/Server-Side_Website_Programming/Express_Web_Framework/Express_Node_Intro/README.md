@@ -255,3 +255,104 @@ app.all('/secret', function (req, res, next) {
 });
 ```
 Routes allow you to match particular patterns of characters in a URL, and extract some values from the URL and pass them as parameters to the route handler (as attributes of the request object passed as a parameter).
+
+Often it is useful to group route handlers for a particular part of a site together and access them using a common route-prefix (e.g. a site with a Wiki might have all wiki-related routes in one file and have them accessed with a route prefix of `/wiki/`). In *Express*, this is achieved by using the [`express.Router`](https://expressjs.com/en/guide/routing.html#express-router) object. For example, we can create our wiki route in a module named **wiki.js**, and then export the `Router` object, as shown below:
+```
+// wiki.js - Wiki route module
+
+const express = require('express');
+const router = express.Router();
+
+// Home page route
+router.get('/', function(req, res) {
+    res.send('Wiki home page');
+});
+
+// About page route
+router.get('/about', function(req, res) {
+    res.send('About this wiki');
+});
+
+module.exports = router;
+```
+
+<hr>
+
+**Note**: Adding routes to the `Router` object is just like adding routes to the `app` object (as shown previously).
+
+<hr>
+
+To use the router in our main app file, we would then `require()` the route module (**wiki.js**), then call `use()` on the *Express application* to add the Router to the middleware handling path. The two routes will then be accessible from `/wiki/` and `/wiki/about/`.
+```
+const wiki = require('./wiki.js');
+// ...
+app.use('/wiki', wiki);
+```
+We'll show you a lot more about working with routes, and in particular, about using the `Router` later on in the linked section [Routes and controllers](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_4#express-tutorial-part-4-routes-and-controllers).
+
+### Using middleware
+
+Middleware is used extensively in Express apps, for tasks from serving static files to error handling, to compressing HTTP responses. Whereas route functions end the HTTP request-response cycle by returning some response to the HTTP client, middleware functions *typically* perform some operation on the request or response and then call the next function in the "stack", which might be more middleware or a route handler. The order in which middleware is called is up to the app developer.
+
+<hr>
+
+**Note**: The middlewae can perform any operation, execute any code, make changes to the request and response object, and it can *also end the request-response cycle*. If it does not end the cycle, then it must call `next()` to pass control to the next middleware function (or the request will be left hanging).
+
+<hr>
+
+Most apps will use *third-party* middleware in order to simplify common web development tasks like working with cookies, sessions, user authentication, accessing request `POST` and JSON data, logging, etc. You can find a [list of middleware packages maintained by the Express team](https://expressjs.com/en/resources/middleware.html) (which also includes other popular third-party packages). Other Express packages are available on the NPM package manager.
+
+To use third-party middleware, you first need to install it into your app using NPM. For example, to install the [morgan](https://expressjs.com/en/resources/middleware/morgan.html) HTTP request logger middleware, you'd do this:
+```
+$ npm install morgan
+```
+You could then call `use()` on the *Express application object* to add the middleware to the stack:
+```
+const express = require('express');
+const logger = require('morgan');
+const app = express();
+app.use(logger('dev'));
+...
+```
+
+<hr>
+
+**Note**: Middleware and routing functions are called in the order that they are declared. For some middleware, the order is important. (For example, if session middleware depends on cookie middleware, then the cookie handler must be added first.) It is almost always the case that middleware is called before setting routes, or your route handlers will not have access to functionality added by your middleware.
+
+<hr>
+
+You can write your own middleware functions, and you are likely to have to do so (if only to create error handling code). The **only** difference between a middleware function and a route handler callback is that middleware functions have a third argument `next`, which middleware functions are expected to call if they are not that which completes the request cycle. (When the middleware function is called, this contains the *next* function that must be called.)
+
+You can add a middleware function to the processing chain for *all responses* with `app.use()`, or for a specific HTTP verb using the associated method: `app.get()`, `app.post()`, etc. Routes are specified in the same way for both cases, though the route is optional when calling `app.use()`.
+
+The example below shows how you can add the middleware function using both approaches, and with/without a route.
+```
+const express = require('express');
+const app = express();
+
+// An example middleware function
+let a_middleware_function = function(req, res, next) {
+    // ... perform some operations
+    next();   // Call next() so Express will call the next middleware function in the chain.
+}
+
+// Function added with use() for all routes and verbs
+app.use(a_middleware_function);
+
+// Function added with use() for a specific route
+app.use('/someroute', a_middleware_function);
+
+// A middleware function added for a specific HTTP verb and route
+app.get('/', a_middleware_function);
+
+app.listen(3000);
+```
+
+<hr>
+
+**Note**: Above we declare the middleware function separately and then set it as the callback. In our previous route handler function, we declared the callback function when it was used. In JavaScript, either approach is valid.
+
+<hr>
+
+The Express documentation has a lot more excellent documentation about [using](https://expressjs.com/en/guide/using-middleware.html) and [writing](https://expressjs.com/en/guide/writing-middleware.html) Express middleware.
+
