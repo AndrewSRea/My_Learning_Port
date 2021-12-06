@@ -356,3 +356,62 @@ app.listen(3000);
 
 The Express documentation has a lot more excellent documentation about [using](https://expressjs.com/en/guide/using-middleware.html) and [writing](https://expressjs.com/en/guide/writing-middleware.html) Express middleware.
 
+### Serving static files
+
+You can use the [`express.static()`](https://expressjs.com/en/4x/api.html#express.static) middleware to serve static files, including your images, CSS, and JavaScript. (`static()` is the only middleware function that is actually **part** of *Express*.) For example, you would use the line below to serve images, CSS files, and JavaScript files from a directory named **'public'** at the same level as where you call node:
+```
+app.use(express.static('public'));
+```
+Any files in the public directory are served by adding their filename (*relative* to the base "publoic" directory) to the base URL. So, for example:
+```
+http://localhost:3000/images/dog.jpg
+http://localhost:3000/css/style.css
+http://localhost:3000/js/app.js
+http://localhost:3000/about.html
+```
+You can call `static()` multiple times to serve multiple directories. If a file cannot be found by one middleware function, then it will be passed on to the subsequent middleware (the order that middleware is called is based on your declaration order).
+```
+app.use(express.static('public'));
+app.use(express.static('media'));
+```
+You can also create a virtual prefix for your static URLs, rather than having the files added to the base URL. For example, here we [specify a mount path](https://expressjs.com/en/4x/api.html#app.use) so that the files are loaded with the prefix "/media":
+```
+app.use('/media', express.static('public'));
+```
+Now you can load the files that are in the `public` directory from the `/media` path prefix.
+```
+http://localhost:3000/media/images/dog.jpg
+http://localhost:3000/media/video/cat.mp4
+http://localhost:3000/media/cry.mp3
+```
+
+<hr>
+
+**Note**: See also [Serving static files in Express](https://expressjs.com/en/starter/static-files.html).
+
+<hr>
+
+### Handling errors
+
+Errors are handled by one or more special middleware functions that have four arguments, instead of the usual three: `(err, req, res, next)`. For example:
+```
+app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+```
+These can return any content required, but must be called after all other `app.use()` and route calls so that they are the last middleware in the request handling process!
+
+Express comes with a built-in error handler, which takes care of any remaining errors that might be encountered in the app. This default error-handling middleware function is added at the end of the middleware function stack. If you pass an error to `next()` and you do not handle it in an error handler, it will be handled by the built-in error handler. The error will be written to the client with the stack trace.
+
+<hr>
+
+**Note**: The stack trace is not included in the production environment. To run it in production mode, you need to set the enivonrment variable `NODE_ENV` to `'production'`.
+
+<hr>
+
+**Note**: HTTP404 and other "error" status codes are not treated as errors. If you want to handle these, you can add a middleware function to do so. For more information, see the [FAQ](https://expressjs.com/en/starter/faq.html#how-do-i-handle-404-responses).
+
+<hr>
+
+For more information, see [Error handling](https://expressjs.com/en/guide/error-handling.html) (Express docs).
