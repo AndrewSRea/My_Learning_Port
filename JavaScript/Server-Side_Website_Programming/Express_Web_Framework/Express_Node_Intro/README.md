@@ -483,3 +483,29 @@ For more information, see [Using template engines with Express](https://expressj
 ### File structure
 
 Express makes no assumptions in terms of structure or what components you use. Routes, views, static files, and other application-static logic can live in any number of files with any directory structure. While it is perfectly possible to have the whole *Express* application in one file, typically it makes sense to split your application into files based on function (e.g. account management, blogs, discussion boards) and architectural problem domain (e.g. model, view, or controller, if you happen to be using an [MVC architecture](https://developer.mozilla.org/en-US/docs/Glossary/MVC)).
+
+In a later topic, we'll use the *Express Application Generator*, which creates a modular app skeleton that we can easily extend for creating web applications.
+
+## Summary
+
+Congratulations, you've completed the first step in your Express/Node journey! You should now understand Express and Node's main benefits, and roughly what the main parts of an Express app might look like (routes, middleware, error handling, and template code). You should also understand that with Express being an unopinionated framework, the way you pull these parts together and the libraries that you use are largely up to you!
+
+Of course, Express is deliberately a very lightweight web application framework, so much of its benefit and potential comes from third-party libraries and features. We'll look at those in more detail in the following articles. In our next article, we're going to look at setting up a Node development environment, so that you can start seeing some Express code in action.
+
+## See also
+
+* [Venkat.R - Manage Multiple Node Versions](https://medium.com/@ramsunvtech/manage-multiple-node-versions-e3245d5ede44)
+* [Modules](https://nodejs.org/api/modules.html#modules_modules) (Node API docs)
+* [Express](https://expressjs.com/) (home page)
+* [Basic routing](https://expressjs.com/en/starter/basic-routing.html) (Express docs)
+* [Routing guide](https://expressjs.com/en/guide/routing.html) (Express docs)
+* [Using template engines with Express](https://expressjs.com/en/guide/using-template-engines.html) (Express docs)
+* [Using middleware](https://expressjs.com/en/guide/using-middleware.html) (Express docs)
+* [Writing middleware for use in Express apps](https://expressjs.com/en/guide/writing-middleware.html) (Express docs)
+* [Database integration](https://expressjs.com/en/guide/database-integration.html) (Express docs)
+* [Serving static files in Express](https://expressjs.com/en/starter/static-files.html) (Express docs)
+* [Error handling](https://expressjs.com/en/guide/error-handling.html) (Express docs)
+
+<hr>
+
+[[Back to the Express Web Framework Guide links]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework#express-web-framework-nodejsjavascript) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#expressnode-introduction) - [[Next page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Node_Development_Environment#setting-up-a-node-development-environment)
