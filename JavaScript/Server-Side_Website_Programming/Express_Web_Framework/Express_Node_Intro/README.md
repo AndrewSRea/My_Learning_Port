@@ -415,3 +415,71 @@ Express comes with a built-in error handler, which takes care of any remaining e
 <hr>
 
 For more information, see [Error handling](https://expressjs.com/en/guide/error-handling.html) (Express docs).
+
+### Using databases
+
+*Express* apps can use any database mechanism supported by *Node*. (*Express* itself doesn't define any specific additional behavior/requirements for database management.) There are many options, including PostgreSQL, MySQL, Redis, SQLite, MongoDB, etc.
+
+In order to use these, you have to first install the database driver using NPM. For example, to install the driver for the popular NoSQL MongoDB, you would use the command:
+```
+$ npm install mongodb
+```
+The database itself can be installed locally or on a cloud server. In your Express code, you require the driver, connect to the database, and then perform create, read, update, and delete (CRUD) operations. The example below (from the Express documentation) shows how you can find "mammal" records using MongoDB.
+```
+// This works with older versions of mongodb version ~ 2.2.33
+const MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb://localhost:27017/animals', function(err, db) {
+    if (err) throw err;
+
+    db.collection('mammals').find().toArray(function(err, result) {
+        if (err) throw err;
+
+        console.log(result);
+    });
+});
+
+// For mongodb version 3.0 and up
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb://localhost:27017/animals', function(err, client) {
+    if (err) throw err;
+
+    let db = client.db('animals');
+    db.collection('mammals').find().toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        client.close();
+    });
+});
+```
+Another popular approach is to access your database indirectly, via an Object Relational Mapper ("ORM"). In this approach, you define your data as "objects" or "models" and the ORM maps these through to the underlying database format. This approach has the benefit that, as a developer, you can continue to think in terms of JavaScript objects rather than database semantics, and that there is an obvious place to perform validation and checking of incoming data. We'll talk more about databases in a later article.
+
+For more information, see [Database integration](https://expressjs.com/en/guide/database-integration.html) (Express docs).
+
+### Rendering data (views)
+
+Template engines (referred to as "view engines" by *Express*) allow you to specify the *structure* of an output document in a template, using placeholders for data that will be filled in when a page is generated. Templates are often used to create HTML, but can also create other types of documents. Express has support for [a number of template engines](https://github.com/expressjs/express/wiki#template-engines), and there is a useful comparison of the more popular engines here: [Comparing JavaScript Templating Engines: Jade, Mustache, Dust, and More](https://medium.com/@jack.yin/comparing-javascript-templating-engines-jade-mustache-dust-and-more-6a4469ac716a).
+
+In your application settings code, you set the template engine to use and the location where Express should look for templates using the 'views' and 'view engines' settings, as shown below. (You will also have to install the package containing your template library, too!)
+```
+const express = require('express');
+const path = require('path');
+const app = express();
+
+// Set directory to contain the templates ('views')
+app.set('views', path.join(__dirname, 'views'));
+
+// Set view engine to use, in this case 'some_template_engine_name'
+app.set('view engine', 'some_template_engine_name');
+```
+The appearance of the template will depend on what engine you use. Assuming that you have a template file named "`index.<template_extension>`" that contains placeholders for data variables named "title" and "message", you would call [`Response.render()`](https://expressjs.com/en/4x/api.html#res.render) in a route handler function to create and send the HTML response:
+```
+app.get('/', function(req, res) {
+    res.render('index', { title: 'About dogs', message: 'Dogs rock!' });
+});
+```
+For more information, see [Using template engines with Express](https://expressjs.com/en/guide/using-template-engines.html) (Express docs).
+
+### File structure
+
+Express makes no assumptions in terms of structure or what components you use. Routes, views, static files, and other application-static logic can live in any number of files with any directory structure. While it is perfectly possible to have the whole *Express* application in one file, typically it makes sense to split your application into files based on function (e.g. account management, blogs, discussion boards) and architectural problem domain (e.g. model, view, or controller, if you happen to be using an [MVC architecture](https://developer.mozilla.org/en-US/docs/Glossary/MVC)).
