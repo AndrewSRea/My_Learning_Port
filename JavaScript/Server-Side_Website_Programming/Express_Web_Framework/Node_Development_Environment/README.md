@@ -212,7 +212,7 @@ This code shows a minimal "Hello World" Express web application. This imports th
 
 <hr>
 
-**Note**: The backticks in the ``Example app listening on port ${port}!`` let us interpolate the value of `$port` into the string.
+**Note**: The backticks in the <code>`Example app listening on port ${port}!`</code> let us interpolate the value of `$port` into the string.
 
 <hr>
 
