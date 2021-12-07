@@ -73,3 +73,76 @@ sudo apt-get install -y nodejs
 :warning: **Warning**: Don't install directly from the normal Ubuntu repositories because they contain very old versions of node.
 
 <hr>
+
+### Testing your Nodejs and NPM installation
+
+The easiest way to test that Node is installed is to run the "version" command in your terminal/coomand prompt and check that a version string is returned:
+```
+> node -v
+v12.18.4
+```
+The *Nodejs* package manager *NPM* should also have been installed, and can be tested in the same way:
+```
+> npm -v
+6.14.6
+```
+As a slightly more exciting test, let's create a very basic "pure node" server that prints out "Hello World" in the browser when you visit the correct URL in your browser:
+
+1. Copy the following text into a file named **hellonode.js**. This uses pure *Node* features (nothing from Express) and some ES6 syntax:
+```
+// Load HTTP module
+const http = require("http");
+const hostname = '127.0.0.1';
+const port = 3000;
+
+// Create HTTP server and listen on port 3000 for requests
+const server = http.createServer((req, res) => {
+
+    // Set the reponse HTTP header with HTTP status and Content type
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World\n');
+});
+
+// Listen for request on port 3000, and as a callback function, have the port listen once logged
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+```
+The code imports the "http" module and uses it to create a server (`createServer()`) that listens for HTTP requests on port 3000. The script then prints a message to the console about what browser URL you can use to test the server. The `createServer()` function takes as an argument a callback function that will be invoked when an HTTP request is received -- this returns a response with an HTTP status code of 200 ("OK") and the plain text "Hello World".
+
+<hr>
+
+**Note**: Don't worry if you don't understand exactly what this code is doing yet! We'll explain our code in greater detail once we start using Express!
+
+<hr>
+
+2. Start the server by navigating into the same directory as your `hellonode.js` file in your command prompt, and calling `node` along with the script name, like so:
+```
+> node hellonode.js
+Server running at http://127.0.0.1:3000/
+```
+
+3. Navigate to the URL [http://127.0.0.1:3000](http://127.0.0.1:3000). If everything is working, the browser should display the string "Hello World".
+
+## Using NPM
+
+Next to *Node* itself, [NPM](https://docs.npmjs.com/) is the most important tool for working with *Node* applications. NPM is used to fetch any packages (JavaScript libraries) that an application needs for development, testing, and/or production, and may also be used to run tests and tools used in the development process.
+
+<hr>
+
+**Note**: From Node's perspective, *Express* is just another package that you need to install using NPM and then require in your own code.
+
+<hr>
+
+You can manually use NPM to separately fetch each needed package. Typically we instead manage dependencies using a plain-text definition file named [package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json). This file lists all the dependencies for a specific JavaScript "package", including the package's name, version, description, initial file to execute, production dependencies, development dependencies, versions of *Node* it can work with, etc. The **package.json** file should contain everything NPM needs to fetch and run your application. (If you were writing a reusable library, you could use this definition to upload your package to the npm repository and make it available for other users.)
+
+### Adding dependencies
+
+The following steps show how you can use NPM to download a package, save it into the project dependencies, and then require it in a Node application.
+
+<hr>
+
+**Note**: Here we show the instructions to fetch and install the *Express* package. Later on, we'll show how this package, and others, are already specified for us using the *Express Application Generator*. This section is provided because it is useful to understand how NPM works and what is being created by the application generator.
+
+<hr>
