@@ -1,0 +1,3 @@
+# Express Tutorial Part 2: Creating a skeleton website
+
+This second article in our [Express Tutorial](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_Local_Library#express-tutorial-the-local-library-website) shows how you can create a "skeleton" website project which you can then go on to populate with site-specific routes, templates/views, and database calls.
