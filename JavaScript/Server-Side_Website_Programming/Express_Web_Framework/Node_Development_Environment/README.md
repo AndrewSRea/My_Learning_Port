@@ -2,7 +2,7 @@
 
 Now that you know what [Express](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#introducing-express) is for, we'll show you how to set up and test a Node/Express development environment on Windows, or Linux (Ubuntu), or macOS. For any of those operating systems, this article provides what you need to start developing Express apps.
 
-## Express developmemnt environment overview
+## Express development environment overview
 
 
 *Node* and *Express* make it very easy to set up your computer in order to start developing web applications. This section provides an overview of what tools are needed, explains some of the simplest methods for installing Node (and Express) on Ubuntu, macOS, and Windows, and shows how you can test your installation.
@@ -223,3 +223,163 @@ Example app listening on port 8000
 ```
 
 7. Navigate to the URL ([http://127.0.0.1:8000](http://127.0.0.1:8000)). If everything is working, the browser should display the string "Hello World!".
+
+<hr>
+
+**Personal note**: I've found that "port 8000" isn't a viable port. When I start the server with the terminal command `node index.js`, an error appears on my browser reading "Cannot GET /catalog/". After searching the internet for an answer, I found this page helpful: [How to Handle Errors in an Express and Node.js App](https://levelup.gitconnected.com/how-to-handle-errors-in-an-express-and-node-js-app-cb4fe2907ed9) from gitconnected.com. And I found using "port 3000" instead of "port 8000" works best. I don't know the reasoning behind this but if you're having trouble using "port 8000", I suggest using "port 3000". (Don't forget to change your `port` variable in `index.js` to 3000 instead of 8000.)
+
+<hr>
+
+### Development dependencies
+
+If a dependency is only used during development, you should instead save it as a "development dependency" (so that your package users don't have to install it in production). For example, to use the popular JavaScript Linting tool [eslint](https://eslint.org/), you would call NPM as shown:
+```
+npm install eslint --save-dev
+```
+The following entry would then be added to your application's **package.json**:
+```
+    "devDependencies": {
+        "eslint": "^7.10.0"
+    }
+```
+
+<hr>
+
+**Note**: "[Linters](https://en.wikipedia.org/wiki/Lint_(software))" are tools that perform static analysis on software in order to recognize and report adherence/non-adherence to some set of coding best practice.
+
+<hr>
+
+### Running tasks 
+
+In addition to defining and fetching dependencies, you can define *named* scripts in your **package.json** files and call NPM to execute them with the [run-script](https://docs.npmjs.com/cli/v8/commands/npm-run-script) command. This approach is commonly used to automate running tests and parts of the development or build toolchain (e.g. running tools to minify JavaScript, shrink images, LINT/analyze your code, etc.)
+
+<hr>
+
+**Note**: Task runners like [Gulp](https://gulpjs.com/) and [Grunt](https://gruntjs.com/) can also be used to run tests and other external tools.
+
+<hr>
+
+For example, to define a script to run the *eslint* development dependency that we specified in the previous section, we might add the following script block to our **package.json** file (assuming that our application source is in a folder `/src/js`):
+```
+"scripts": {
+    ...
+    "lint": "eslint src/js",
+    ...
+}
+```
+To explain a little further, `eslint src/js` is a command that we could enter in our terminal/command line to run `eslint` on JavaScript files contained in the `src/js` directory inside our app directory. Including the above inside our app's **package.json** file provides a shortcut for this command -- `lint`.
+
+We would then be able to run *eslint* using NPM by calling:
+```
+npm run-script lint
+# OR (using the alias)
+npm run lint
+```
+This example may not look any shorter than the original command, but you can include much bigger commands inside your npm scripts, including chains of multiple commands. You could identify a single npm script that runs all your tests at once.
+
+## Installing the Express Application Generator
+
+The [Express Application Generator](https://expressjs.com/en/starter/generator.html) tool generates an Express application "skeleton". Install the generator using NPM as shown:
+```
+npm install express-generator -g
+```
+
+<hr>
+
+**Note**: You may need to prefix this line with `sudo` on Ubuntu or macOS. The `-g` flag installs the tool globally so that you can call it from anywhere. 
+
+<hr>
+
+To create an *Express* app named "helloworld" with the default settings, navigate to where you want to create it and run the app as shown:
+```
+express helloworld
+```
+
+<hr>
+
+**Note**: You can specify the template library to use and a number of other settings. Use the `help` command to see all the options:
+```
+express --help
+```
+
+<hr>
+
+**Note**: If you're using NodeJS **version > 8.2.0 or latest**, you can skip the installation and run express-generator with npx:
+```
+npx express-generator helloworld
+```
+This has the same effect as installing and then running `express` but does not install the package on your system. However, this means you cannot call `express` from anywhere.
+
+<hr>
+
+NPM will create the new Express app in a subfolder of your current location, displaying build progress on the console. On completion, the tool will display the commands you need to enter to install the Node dependencies and start the app.
+
+<hr>
+
+**Note**: The new app will have a **package.json** file in its root directory. You can open this to see what dependencies are installed, including Express and the template library Jade:
+```
+{
+    "name": "helloworld",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.9",
+        "express": "~4.16.0",
+        "http-errors": "~1.6.2",
+        "jade": "~1.11.0",
+        "morgan": "~1.9.0"
+    }
+}
+```
+Install all the dependencies for the helloworld app using NPM as shown:
+```
+cd helloworld
+npm install
+```
+Then run the app (the commands are slightly different for Windows and Linux/macOS), as shown below:
+```
+# Run helloworld on Windows with Command Prompt
+SET DEBUG=helloworld:* & npm start
+
+# Run helloworld on Windows with PowerShell
+SET DEBUG=helloworld:* | npm start
+
+# Run helloworld on Linux/macOS
+DEBUG=helloworld:* npm start
+```
+The DEBUG command creates useful logging, resulting in an output like that shown below.
+```
+> SET DEBUG=helloworld:* & npm start
+
+> helloworld@0.0.0 start D:\Github\expresstests\helloworld
+> node ./bin/www
+
+  helloworld:server Listening on port 3000 +0ms
+```
+Open a browser and navigate to [http://127.0.0.1:3000/](http://127.0.0.1:3000/) to see the default Express welcome page.
+
+![Image of an Express welcome page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment/express_default_screen.png)
+
+We'll talk more about the generated app when we get to the article on generating a skeleton application.
+
+## Summary
+
+You now have a Node development environment up and running on your computer that can be used for creating Express web applications. You've also seen how NPM can be used to import Express into an application, and also how you can create applications using the Express Application Generator tool and then run them.
+
+In the next article, we start working through a tutorial to build a complete web application using this environment and associated tools.
+
+## See also
+
+* [Downloads](https://nodejs.org/en/download/) page (nodejs.org)
+* [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/) (nodejs.org)
+* [Installing Express](https://expressjs.com/en/starter/installing.html) (expressjs.com)
+* [Express Application Generator](https://expressjs.com/en/starter/generator.html) (expressjs.com)
+* [Using Node.js with Windows subsystem for Linux](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/) (docs.microsoft.com)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Node_Intro#expressnode-introduction) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Node_Development_Environment#setting-up-a-node-development-environment) - [[Next page]]()
