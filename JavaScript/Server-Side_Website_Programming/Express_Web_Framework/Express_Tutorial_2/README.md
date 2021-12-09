@@ -238,3 +238,84 @@ SET DEBUG=express-locallibrary-tutorial:* & npm run devstart
 
 We can now start the server in almost exactly the same way as previously, but using the `devstart` command.
 
+<hr>
+
+**Note**: Now if you edit any file in the project, the server will restart (or you can restart it by typing `rs` on the command prompt at any time). You will still need to reload the browser to refresh the page.
+
+We now have to call "`npm run <scriptname>`" rather than just `npm start`, because "start" is actually an NPM command that is mapped to the named script. We could have replaced the command in the *start* script but we only want to use *nodemon* during development, so it makes sense to create a new script command.
+
+The `serverstart` command added to the scripts in the **package.json** above is a very good example. Using this approach means you no longer have to type a long command to start the server. Note that the particular command added to the script works for macOS or Linux only.
+
+<hr>
+
+## The generated project
+
+Let's now take a look at the project we just created.
+
+### Directory structure
+
+The generated project, now that you have installed dependencies, has the following file structure (files are the items **not** prefixed with "/"). The **package.json** file defines the application dependencies and other information. It also defines a startup script that will call the application entry point, the JavaScript file **/bin/www**. This sets up some of the application error handling and then loads **app.js** to do the rest of the work. The app routes are stored in separate modules under the **routes/** directory. The templates are stored under the **/views** directory.
+```
+express-locallibrary-tutorial
+    app.js
+    /bin
+        www
+    package.json
+    package-lock.json
+    /node-modules
+        [about 6700 subdirectories and files]
+    /public
+        /images
+        /javascripts
+        /stylesheets
+            style.css
+    /routes
+        index.js
+        users.js
+    /views
+        error.pug
+        index.pug
+        layout.pug
+```
+The following sections describe the files in a little more detail.
+
+### package.json
+
+The **package.json** file defines the application dependencies and other information:
+```
+{
+    "name": "express-locallibrary-tutorial",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "morgan": "~1.9.1",
+        "pug": "2.0.0-beta11"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
+```
+The dependencies include the *express* package and the package for our selected view engine (*pug*). In addition, we have the following packages that are useful in many web applications:
+
+* [cookie-parser](https://www.npmjs.com/package/cookie-parser): Used to parse the cookie header and populate `req.cookies` (essentially provides a convenient method for accessing cookie information).
+* [debug](https://www.npmjs.com/package/debug): A tiny node debugging utility nodeled after node core's debugging technique.
+* [morgan](https://www.npmjs.com/package/morgan): An HTTP request logger middleware for node.
+* [http-errors](https://www.npmjs.com/package/http-errors): Create HTTP errors where needed (for express error handling).
+
+The scripts section first defines a "*start*" script, which is what we are invoking when we call `npm start` to start the server (this script was added by the *Express Application Generator*). From the script definition, you can see that this actually starts the JavaScript file **./bin/www** with *node*.
+```
+"scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart"
+},
+```
+The *devstart* and *serverstart* scripts can be used to start the same **./bin/www** with *nodemon* rather than *node*. (This example is for Linux and macOS, as dicussed above in [Enable server restart on file changes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_2#enable-server-restart-on-file-changes).)
