@@ -423,3 +423,65 @@ The Express application object (`app`) is now fully configured. The last step is
 ```
 module.exports = app;
 ```
+
+### Routes
+
+The route file **/routes/users.js** is shown below (route files share a similar structure, so we don't need to also show **index.js**). First, it loads the *express* module and uses it to get an `express.Router` object. Then it specifies a route on that object and lastly exports the router from the module. (This is what allows the file to be imported into **app.js**.)
+```
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing */
+router.get('/', function(req, res, next) {
+    res.send('respond with a resource');
+});
+
+module.exports = router;
+```
+The route defines a callback that will be invoked whenever an HTTP `GET` request with the correct pattern is detected. The matching pattern is the route specified when the module is imported ("`/users`") plus whatever is defined in this file ("`/`"). In other words, this route will be used when a URL of `/users/` is received. 
+
+<hr>
+
+**Note**: Try this out by running the server with node and visiting the URL in your browser: [http://localhost:3000/users/](http://localhost:3000/users/). You should see a message: 'respond with a resource'.
+
+<hr>
+
+One thing of interest above is that the callback function has the third argument "`next`", and is hence a middleware function rather than a simple route callback. While the code doesn't currently use the `next` argument, it may be useful in the future if you want to add multiple route handlers to the `'/'` route path.
+
+### Views (templates)
+
+The views (templates) are stored in the **/views** directory (as specified in **app.js**) and are given the file extension **.pug**. The method [`Response.render()`](https://expressjs.com/en/4x/api.html#res.render) is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. In the code below from **/routes/index.js**, you can see how that route renders a response using the template "index" passing the template variable "title".
+```
+/* GET home page */
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Express' });
+});
+```
+The corresponding template for the above route is given below (**index.pug**). We'll talk more about the syntax later. All you need to know for now is that the `title` variable (with value `Express`) is inserted where specified in the template.
+```
+extends layout
+
+
+block content 
+    h1= title
+    p Welcome to #{title}
+```
+
+## Challenge yourself
+
+Create a new route in **/routes/users.js** that will display the text "*You're so cool*" at URL `/users/cool/`. Test it by running the server and visiting [http://localhost:3000/users/cool/](http://localhost:3000/users/cool/) in your browser.
+
+## Summary
+
+You have created a skeleton website project for the [LocalLibrary](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_Local_Library#express-tutorial-the-local-library-website) and verified that it runs using *node*. Most importantly, you also understand how the project is structured, so you have a good idea where we need to make changes to add routes and views for our local library.
+
+Next, we'll start modifying the skeleton so that it works as a library website.
+
+## See also
+
+* [Express Application Generator](https://expressjs.com/en/starter/generator.html) (Express docs)
+* [Using templates engines with Express](https://expressjs.com/en/guide/using-template-engines.html) (Express docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_Local_Library#express-tutorial-the-local-library-website) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_2#express-tutorial-part-2-creating-a-skeleton-website) - [[Next page]]()
