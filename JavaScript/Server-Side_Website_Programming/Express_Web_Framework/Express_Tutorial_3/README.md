@@ -81,7 +81,7 @@ The diagram also shows the relationships between the models, including their *mu
 
 <hr>
 
-**Note**: As discussed in our [Mongoose primer]() below, it is often better to have the field that defines the relationship between the documents/models in just *one* model. (You can still find the reverse relationship by searching for the associated `_id` in the other model.) Below we have chosen to define the relationship between `Book`/`Genre` and `Book`/`Author` in the Book schema, and the relationship between the `Book`/`BookInstance` schema. This choice was somewhat arbitrary -- we could have equally well had the field in the other schema.
+**Note**: As discussed in our [Mongoose primer](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#mongoose-primer) below, it is often better to have the field that defines the relationship between the documents/models in just *one* model. (You can still find the reverse relationship by searching for the associated `_id` in the other model.) Below we have chosen to define the relationship between `Book`/`Genre` and `Book`/`Author` in the Book schema, and the relationship between the `Book`/`BookInstance` schema. This choice was somewhat arbitrary -- we could have equally well had the field in the other schema.
 
 <hr>
 
@@ -94,3 +94,72 @@ The diagram also shows the relationships between the models, including their *mu
 <hr>
 
 ## Mongoose primer
+
+This section provides an overview of how to connect Mongoose to a MongoDB database, how to define a schema and a model, and how to make basic queries.
+
+<hr>
+
+**Note**: This primer is heavily influenced by the [Mongoose quick start](https://www.npmjs.com/package/mongoose) on *npm* and the [official documentation](https://mongoosejs.com/docs/guide.html).
+
+<hr>
+
+### Installing Mongoose and MongoDB
+
+Mongoose is installed in your project (**package.json**) like any other dependency -- using NPM. To install it, use the following command inside your project folder:
+```
+npm install mongoose
+```
+Installing *Mongoose* adds all its dependencies, including the MongoDB database driver, but it does not install MongoDB itself. If you want to install a MongoDB server, then you can [download installers from here](https://www.mongodb.com/try) for various operating systems and install it locally. You can also use cloud-based MongoDB instances.
+
+<hr>
+
+**Note**: For this tutorial, we'll be using the [MongoDB Atlas](https://www.mongodb.com/atlas) cloud-based *database as a service* free tier to provide the database. This is suitable for development and makes sense for the tutorial because it "installs" an independent operating system.
+
+<hr>
+
+:warning: **Warning**: The following sections will show some code examples for connecting to MongoDB, defining and creating and using models, and more. These are just *examples* and should not be input into your *LocalLibrary* tutorial code just yet. We won't be inputting code into our *LocalLibrary* tutorial code until we reach the **[Connect to MongoDB]()** section far below.
+
+<hr>
+
+### Connecting to MongoDB
+
+*Mongoose* requires a connection to a MongoDB database. You can `require()` and connect to a locally hosted database with `mongoose.connect()`, as shown below.
+```
+// Import the mongoose module
+var mongoose = require('mongoose');
+
+// Set up default mongoose connection
+var mongoDB = 'mongodb://127.0.0.1/my_database';
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+
+// Get the default connection 
+var db = mongoose.connection;
+
+// Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+```
+You can get the default `Connection` object with `mongoose.connection`. Once connected, the open event is fired on the `Connection` instance.
+
+<hr>
+
+**Note**: If you need to create additional connections, you can use `mongoose.createConnection()`. This takes the same form of database URI (with host, database, port, options, etc.) as `connect()` and returns a `Connection` object.
+
+<hr>
+
+### Defining and creating models
+
+Models are *defined* using the `Schema` interface. The Schema allows you to define the fields stored in each document along with their validation requirements and default values. In addition, you can define static and instance helper methods to mamke it easier to work with your data types, and also virtual properties that you can use like any other field, but which aren't actually stored in the database. (We'll discuss this a bit further below.)
+
+Schemas are them "compiled" into models using the `mongoose.model()` method. Once you have a model, you can use it to find, create, update, and delete objects of the given type.
+
+<hr>
+
+**Note**: Each model maps to a *collection* of *documents* in the MongoDB database. The documents will contain the fields/schema types defined in the model `Schema`.
+
+<hr>
+
+
+
+
+
+## Connect to MongoDB
