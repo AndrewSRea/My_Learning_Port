@@ -320,6 +320,119 @@ awesome_instance.save(function(err) {
 });
 ```
 
+#### Searching for records
+
+You can search for records using query methods, specifying the query conditions as a JSON document. The code fragment below shows how you might find all athletes in a database that play tennis, returning just the fields for athlete *name* and *age*. Here we just specify one matching field (sport) but you can add more criteria, specify regular expression criteria, or remove the conditions altogether to return all athletes.
+```
+var Athlete = mongoose.model('Athlete', yourSchema);
+
+// Find all athletes who play tennis, selecting the 'name' and 'age' fields
+Athlete.find({ 'sport': 'Tennis' }, 'name age', function(err, athletes) {
+    if (err) return handleError(err);
+    // 'athletes' contains the list of athletes that match the criteria.
+});
+```
+If you specify a callback, as shown above, the query will execute immediately. The callback will be invoked when the search completes.
+
+<hr>
+
+**Note**: All callbacks in Mongoose use the pattern `callback(error, result)`. If an error occurs executing the query, the `error` parameter will contain an error document and `result` will be populated with the results of the query.
+
+<hr>
+
+**Note**: It is important to remember that not finding any results is **not an error** for a search -- but it may be a fail-case in the context of your application. If your application expects a search to find a value, you can either check the result in the callback (`results==null`) or daisy chain the [`orFail()`](https://mongoosejs.com/docs/api.html#query_Query-orFail) method on the query.
+
+<hr>
+
+If you don't specify a callback, then the API will return a variable of type [`Query`](https://mongoosejs.com/docs/api.html#query_Query). You can use this query object to build up your query and then execute it (with a callback) later using the `exec()` method.
+```
+// Find all athletes that play tennis
+var query = Athlete.find({ 'sport': 'Tennis' });
+
+// Selecting the 'name' and 'age' fields
+query.select('name age');
+
+// Limit our results to 5 items
+query.limit(5);
+
+// Sort by age
+query.sort({ age: -1 });
+
+// Execute the query at a later time
+query.exec(function(err, athletes) {
+    if (err) return handleError(err);
+    // athletes contains an ordered list of 5 athletes who play Tennis
+});
+```
+Above we've defined the query conditions in the `find()` method. We can also do this using a `where()` function, and we can chain all the parts of our query together using the dot operator (`.`) rather than adding them separately. The code fragment below is the same as our query above, with an additional condition for the age.
+```
+Athlete.
+    find().
+    where('sport').equals('Tennis').
+    where('age').gt(17).lt(50).   // Additional where query
+    limit(5).
+    sort({ age: -1 }).
+    select('name age').
+    exec(callback);   // where callback is the name of our callback function
+```
+The [`find()`](https://mongoosejs.com/docs/api.html#query_Query-find) method gets all matching records, but often you just want to get one match. The following methods query for a single record:
+
+* [`findById()`](https://mongoosejs.com/docs/api.html#model_Model.findById): Finds the document with the specified `id` (every document has a unique `id`).
+* [`findOne()`](https://mongoosejs.com/docs/api.html#query_Query-findOne): Finds a single document that matches the specified criteria.
+* [`findByIdAndRemove()`](https://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove), [`findByIdAndUpdate()`](https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate), [`findOneAndRemove()`](https://mongoosejs.com/docs/api.html#query_Query-findOneAndRemove), [`findOneAndUpdate()`](https://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate): Finds a single document by `id` or criteria and either updates or removes it. These are useful convenience functions for updating and removing records.
+
+<hr>
+
+**Note**: There is also a [`count()`](https://mongoosejs.com/docs/api.html#model_Model.count) method that you can use to get the number of items that match conditions. This is useful if you want to perform a count without actually fetching the records.
+
+<hr>
+
+There is a lot more you can do with queries. For more information, see [Queries](https://mongoosejs.com/docs/queries.html) (Mongoose docs).
+
+#### Working with related documents -- population
+
+You can create references from one document/model instance to another using the `ObjectId` schema field, or from one document to many using an array of `ObjectIds`. The field stores the id of the related model. If you need the actual content of the associated document, you can use the [`populate()`](https://mongoosejs.com/docs/api.html#query_Query-populate) method in a query to replace the id with the actual data.
+
+For example, the following schema defines authors and stories. Each author can have multiple stories, which we represent as an array of `ObjectId`. Each story can have a single author. The `ref` property tells the schema which model can be assigned to this field.
+```
+var mongoose = require('mongoose')
+    , Schema = mongoose.Schema
+
+var authorSchema = Schema({
+    name    : String,
+    stories : [{ type: Schema.Types.ObjectId, ref: 'Story' }]
+});
+
+var storySchema = Schema({
+    author : { type: Schema.Types.ObjectId, ref: 'Author' },
+    title  : String
+});
+
+var Story = mongoose.model('Story', storySchema);
+var Author = mongoose.model('Author', authorSchema);
+```
+We can save our references to the related document by assigning the `_id` value. Below we create an author, then a story, and assign the author id to our story's author field.
+```
+var bob = new Author({ name: 'Bob Smith' });
+
+bob.save(function(err) {
+    if (err) return handleError(err);
+
+    // Bob now exists, so let's create a story
+    var story = new Story({
+        title: "Bob goes sledding",
+        author: bob._id   // assign the _id from our author Bob. This ID is created by default!
+    });
+
+    story.save(function(err) {
+        if (err) return handleError(err);
+        // Bob now has his story
+    });
+});
+```
+
+
+
 
 
 
