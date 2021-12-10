@@ -117,7 +117,7 @@ Installing *Mongoose* adds all its dependencies, including the MongoDB database 
 
 <hr>
 
-:warning: **Warning**: The following sections will show some code examples for connecting to MongoDB, defining and creating and using models, and more. These are just *examples* and should not be input into your *LocalLibrary* tutorial code just yet. We won't be inputting code into our *LocalLibrary* tutorial code until we reach the **[Connect to MongoDB]()** section far below.
+:warning: **Warning**: The following sections will show some code examples for connecting to MongoDB, defining and creating and using models, and more. These are just *examples* and should not be input into your *LocalLibrary* tutorial code just yet. We won't be inputting code into our *LocalLibrary* tutorial project until we reach the **[Connect to MongoDB](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#connect-to-mongodb)** section far below.
 
 <hr>
 
@@ -158,8 +158,84 @@ Schemas are them "compiled" into models using the `mongoose.model()` method. Onc
 
 <hr>
 
+#### Defining schemas
+
+The code fragment below shows how you might define a simple schema. First, you `require()` mongoose, then use the Schema constructor to create a new schema instance, defining the various fields inside it in the constructor's object parameter.
+```
+// Require Mongoose
+var mongoose = require('mongoose');
+
+// Define a schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+    a_string: String,
+    a_date: Date
+});
+```
+In the case above, we just have two fields, a string and a date. In the next sections, we will show some of the other field types, validation, and other methods.
+
+#### Creating a model
+
+Models are created from schemas using the `mongoose.model()` method:
+```
+// Define schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+    a_string: String,
+    a_date: Date
+});
+
+// Compile model from schema
+var SomeModel - mongoose.model('SomeModel', SomeModelSchema);
+```
+The first argument is the singular name of the collection that will be created for your model (Mongoose will create the database collection for the above model *SomeModel*), and the second argument is the schema you want to use in creating the model.
+
+<hr>
+
+**Note**: Once you've defined your model classes, you can use them to create, update, or delete records, and run queries to get all records or particular subsets of records. We'll show you how to do this in the [Using models]() section, and when we create our views.
+
+<hr>
+
+#### Schema types (fields)
+
+A schema can have an arbitrary number of fields -- each one represents a field in the documents stored in *MongoDB*. An example schema showing many of the common field types and how they are declared is shown below.
+```
+var schema = new Schema({
+    name: String,
+    binary: Buffer,
+    living: Boolean,
+    updated: { type: Date, default: Date.now() },
+    age: { type: Number, min: 18, max: 65, required: true },
+    mixed: Schema.Types.Mixed,
+    _someId: Schema.Types.ObjectId,
+    array: [],
+    ofString: [String],   // You can also have an array of each of the other types, too.
+    nested: { stuff: { type: String, lowercase: true, trim: true } }
+})
+```
+Most of the [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (the descriptions after "`type:`" or after field names) are self-explanatory. The exceptions are:
+
+* `ObjectId`: Represents specific instances of a model in the database. For example, a book might use this to represent its author object. This will actually contain the unique ID (`_id`) for the specified object. We can use the `populate()` method to pull in the associated information when needed.
+* [`Mixed`](https://mongoosejs.com/docs/schematypes.html#mixed): An arbitrary schema type.
+* `[]`: An array of items. You can perform JavaScript array operations on these models (push, pop, unshift, etc.). The examples above show an array of objects without a specified type and an array of `String` objects, but you can have an array of any type of object.
+
+The code also shows both ways of declaring a field:
+
+* Field *name* and *type* as a key-value pair (i.e. as done with fields `name`, `binary`, and `living`).
+* Field *name* followed by an object defining the `type`, and any other *options* for the field. Options include things like:
+    - Default values.
+    - Built-in validators (e.g. min/max values) and custom validation functions.
+    - Whether the field is required.
+    - Whether `String` fields should automatically be set to lowercase, uppercase, or trimmed (e.g. `{ type: String, lowercase: true, trim: true })`.
+
+For more information about options, see [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (Mongoose docs).
 
 
 
+
+
+### Using models
 
 ## Connect to MongoDB
