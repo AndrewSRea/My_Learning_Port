@@ -194,7 +194,7 @@ The first argument is the singular name of the collection that will be created f
 
 <hr>
 
-**Note**: Once you've defined your model classes, you can use them to create, update, or delete records, and run queries to get all records or particular subsets of records. We'll show you how to do this in the [Using models]() section, and when we create our views.
+**Note**: Once you've defined your model classes, you can use them to create, update, or delete records, and run queries to get all records or particular subsets of records. We'll show you how to do this in the [Using models](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#using-models) section, and when we create our views.
 
 <hr>
 
@@ -228,14 +228,103 @@ The code also shows both ways of declaring a field:
     - Default values.
     - Built-in validators (e.g. min/max values) and custom validation functions.
     - Whether the field is required.
-    - Whether `String` fields should automatically be set to lowercase, uppercase, or trimmed (e.g. `{ type: String, lowercase: true, trim: true })`.
+    - Whether `String` fields should automatically be set to lowercase, uppercase, or trimmed (e.g. `{ type: String, lowercase: true, trim: true }`).
 
 For more information about options, see [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (Mongoose docs).
 
+#### Validation
 
+Mongoose provides built-in and custom validators, and synchronous and asynchronous validators. It allows you to specify both the acceptable range of values and the error message for validation failure in all cases.
 
+The built-in validators include:
 
+* All [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) have the built-in [`required()`](https://mongoosejs.com/docs/api.html#schematype_SchemaType-required) validator. This is used to specify whether the field must be supplied in order to save a document.
+* [Numbers](https://mongoosejs.com/docs/api.html#mongoose_Mongoose-Number) have [min](https://mongoosejs.com/docs/schematypes.html#numbers) and [max](https://mongoosejs.com/docs/schematypes.html#numbers) validators.
+* [Strings](https://mongoosejs.com/docs/schematypes.html#usage-notes) have:
+    - [enum](https://mongoosejs.com/docs/schematypes.html#usage-notes): Specifies the set of allowed values for the field.
+    - [match](https://mongoosejs.com/docs/schematypes.html#usage-notes): Specifies a regular expression that the string must match.
+    - [maxLength](https://mongoosejs.com/docs/schematypes.html#usage-notes) and [minLength](https://mongoosejs.com/docs/schematypes.html#usage-notes) for the string.
+
+The example below (slightly modified from the Mongoose documents) shows how you can specify some of the validator types and error messages:
+```
+var breakfastSchema = new Schema({
+    eggs: {
+        type: Number,
+        min: [6, 'Too few eggs'],
+        max: 12,
+        required: [true, 'Why no eggs?']
+    },
+    drink: {
+        type: String,
+        enum: ['Coffee', 'Tea', 'Water',]
+    }
+});
+```
+For complete information on field validation, see [Validation](https://mongoosejs.com/docs/validation.html) (Mongoose docs).
+
+#### Virtual properties
+
+Virtual properties are document properties that you can get and set but that do not get persisted to MongoDB. The getters are useful for formatting or combining fields, while setters are useful for decomposing a single value into multiple values for storage. The example in the documentation constructs (and deconstructs) a full name virtual property from a first and last name field, which is easier and cleaner than constructing a full name every time one is used in a template.
+
+<hr>
+
+**Note**: We will use a virtual property in the library to define a unique URL for each model record using a path and the record's `_id` value. 
+
+<hr>
+
+For more information, see [Virtuals](https://mongoosejs.com/docs/guide.html#virtuals) (Mongoose docs).
+
+#### Methods and query helpers
+
+A schema can also have [instance methods](https://mongoosejs.com/docs/guide.html#methods), [static methods](https://mongoosejs.com/docs/guide.html#statics), and [query helpers](https://mongoosejs.com/docs/guide.html#query-helpers). The instance and static methods are similar, but with the obvious difference that an instance method is associated with a particular record and has access to the current object. Query helpers allow you to extend mongoose's [chainable query builder API](https://mongoosejs.com/docs/queries.html). (For example, allowing you to add a query "`byName`" in addition to the `find()`, `findOne()`, and `findById()` methods.)
 
 ### Using models
+
+Once you've created a schema, you can use it to create models. The model represents a collection of documents in the database that you can search, while the model's instances represent individual documents that you can save and retrieve.
+
+We provide a brief overview below. For more information, see [Models](https://mongoosejs.com/docs/models.html) (Mongoose docs).
+
+#### Creating and modifying documents
+
+To create a record, you can define an instance of the model and then call `save()`. The examples below assume `SomeModel` is a model (with a single field "`name`") that we have created from our schema.
+```
+// Create an instance of model SomeModel
+var awesome_instance = new SomeModel({ name: 'awesome' });
+
+// Save the new model instance, passing a callback
+awesome_instance.save(function(err) {
+    if (err) return handleError(err);
+    // saved!
+});
+```
+Creation of records (along with updates, deletes, and queries) are asynchronous operations -- you supply a callback that is called when the operation completes. The API uses the error-first argument convention, so the first argument for the callback will always be an error value (or null). If the API returns some result, this will be provided as the second argument.
+
+You can also use `create()` to define the model instance at the same time as you save it. The callback will return an error for the first argument and the newly-created model instance for the second argument.
+```
+SomeModel.create({ name: 'also awesome' }, function(err, awesome_instance) {
+    if (err) return handleError(err);
+    // saved!
+});
+```
+Every model has an associated connection. (This will be the default connection when you use `mongoose.model()`.) You create a new connection and call `.model()` on it to create the documents on a different database.
+
+You can access the fields in this new record using the dot syntax, and change the values. You have to call `save()` or `update()` to store modified values back to the database.
+```
+// Access model field values using dot notation
+console.log(awesome_instance.name);   // should log 'also_awesome'
+
+// Change record by modifying the fields, then calling save().
+awesome_instance.name="New cool name";
+awesome_instance.save(function(err) {
+    if (err) return handleError(err);   // saved!
+});
+```
+
+
+
+
+
+
+
 
 ## Connect to MongoDB
