@@ -48,3 +48,49 @@ A few solutions that were popular at the time of writing are:
 * [GraphQL](https://graphql.org/): Primarily a query language for restful APIs, GraphQL is very popular, and has features available for reading data from databases.
 
 As a general rule, you should consider both the features provided and the "community activity" (downloads, contributions, bug reports, quality of documentation, etc.) when selecting a solution. At the time of writing, Mongoose is by far the most popular ODM, and is a reasonable choice if you're using MongoDB for your database.
+
+### Using Mongoose and MongoDB for the LocalLibrary
+
+For the *LocalLibrary* example (and the rest of this topic), we're going to use the [Mongoose ODM](https://www.npmjs.com/package/mongoose) to acess our library data. Mongoose acts as a front end to [MongoDB](https://www.mongodb.com/what-is-mongodb), an open source [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database that uses a document-oriented data model. A "collection" of "documents" in a MongoDB database [is analogous to](https://docs.mongodb.com/manual/core/databases-and-collections/#collections) a "table of rows" in a relational database.
+
+This ODM and database combination is extremely popular in the Node community, partially because the document storage and query system looks very much like JSON, and is hence familiar to JavaScript developers.
+
+<hr>
+
+**Note**: You don't need to know MongoDB in order to use Mongoose, although parts of the [Mongoose documentation](https://mongoosejs.com/docs/guide.html) *are* easier to use and understand if you are already familiar with MongoDB.
+
+<hr>
+
+The rest of this tutorial shows how to define and access the Mongoose schema and models for the [LocalLibrary website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_Local_Library#express-tutorial-the-local-library-website).
+
+## Designing the LocalLibrary models
+
+Before you jump in and start coding the models, it's worth taking a few minutes to think about what data we need to store and the relationships between the different objects.
+
+We know that we need to store information about books (title, summary, author, genre, ISBN) and that we might have multiple copies available (with globally unique ids, availability statuses, etc.). We might need to store more information about the author than just their name, and there might be multiple authors with the same or similar names. We want to be able to sort information based on the book title, author, genre, and category.
+
+When designing your models, it makes sense to have separate models for every "object" (a group of related information). In this case, some obvious candidates for these models are books, book instances, and authors.
+
+You might also want to use models to represent selection-list options (e.g. like a drop-down list of choices), rather than hard-coding the choices into the website itself -- this is recommended when all the options aren't known upfront or may change. A good example is a genre (e.g. fantasy, science fiction, etc.).
+
+Once we've decided on our models and fields, we need to think about the relationships between them.
+
+With that in mind, the UML association diagram below shows the models we'll define in this case (as boxes). As discussed above, we've created models for the book (the generic details of the book), book instance (status of specific physical copies of the book available in the system), and author. We have also decided to have a model for the genre so that values can be created dynamically. We've decided not to have a model for the `BookInstance:status` -- we will hard code the acceptable values because we don't expect these to change. Within each of the boxes, you can see the model name, the field names and types, and also the methods and their return types.
+
+The diagram also shows the relationships between the models, including their *multiplicities*. The multiplicities are the numbers on the diagram showing the numbers (maximum and minimum) of each model that may be present in the relationship. For example, the connecting line between the boxes shows that `Book` and a `Genre` are related. The numbers close to the `Book` model show that a `Genre` must have zero or more `Book`s (as many as you like), while the numbers on the other end of the line next to the `Genre` show that a book can have zero or more associated `Genre`s.
+
+<hr>
+
+**Note**: As discussed in our [Mongoose primer]() below, it is often better to have the field that defines the relationship between the documents/models in just *one* model. (You can still find the reverse relationship by searching for the associated `_id` in the other model.) Below we have chosen to define the relationship between `Book`/`Genre` and `Book`/`Author` in the Book schema, and the relationship between the `Book`/`BookInstance` schema. This choice was somewhat arbitrary -- we could have equally well had the field in the other schema.
+
+<hr>
+
+![Image of a UML association diagram showing the relationship between the LocalLibrary schema models](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/library_website_-_mongoose_express.png)
+
+<hr>
+
+**Note**: The next section provides a basic primer explaining how models are defined and used. As you read it, consider how we will construct each of the models in the diagram above.
+
+<hr>
+
+## Mongoose primer
