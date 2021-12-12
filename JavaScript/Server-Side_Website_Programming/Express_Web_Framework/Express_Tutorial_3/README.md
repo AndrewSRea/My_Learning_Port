@@ -587,6 +587,104 @@ After logging in, you'll be taken to the [home](https://cloud.mongodb.com/v2) sc
 
 You have now created the database, and have a URL (with username and password) that can be used to access it. This will look something like: `mongodb+srv://your_user_name:your_password@cluster0.a9azn.mongodb.net/local_library?retryWrites=true`
 
+## Install Mongoose
+
+Open a command prompt and navigate to the directory where you created your [skeleton Local Library website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_2#express-tutorial-part-2-creating-a-skeleton-website). Enter the following command to install Mongoose (and its dependencies) and add it to your **package.json** file, unless you have already done so when reading the [Mongoose Primer](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#installing-mongoose-and-mongodb) above.
+```
+npm install mongoose
+```
+
+## Connect to MongoDB
+
+Open **/app.js** (in the root of your project) and copy the following text below where you declare the *Express application object* (after the line `var app = express();`). Replace the database URL string ('*insert_your_database_url_here*') with the location URL representing your own database (i.e. using the information from *MongoDB Atlas*).
+```
+// Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'insert_your_database_url_here';
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+```
+As discuseed [in the Mongoose primer above](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#connecting-to-mongodb), this code creates the default connection to the database and binds to the error event (so that errors will be printed to the console).
+
+## Defining the LocalLibrary Schema
+
+We will define a separate module for each model, as [discussed above](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#one-schemamodel-per-file). Start by creating a folder for our models in the project root (**/models**) and then create separate files for each of the models:
+```
+/express-locallibrary-tutorial   // the project root
+    /models
+        author.js
+        book.js
+        bookinstance.js
+        genre.js
+```
+
+### Author model
+
+Copy the `Author` schema code shown below and paste it into your **./models/author.js** file. The schema defines an author as having `String` SchemaTypes for the first and family names (required, with a maximum of 100 characters), and `Date` fields for the dates of birth and death.
+```
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+
+var AuthorSchema = new Schema(
+    {
+        first_name: {type: String, required: true, maxLength: 100},
+        family_name: {type: String, required: true, maxLength: 100},
+        date_of_birth: {type: Date},
+        date_of_death: {type: Date},
+    }
+);
+
+// Virtual for author's full name
+AuthorSchema
+.virtual('name')
+.get(function() {
+    // To avoid errors in cases where an author does not have either a family name or first name
+    // We want to make sure we handle the exception by returning an empty string for that case 
+    var fullname = '';
+    if (this.first_name && this.family_name) {
+        fullname = this.family_name + ', ' + this.first_name;
+    }
+    if (!this.first_name || !this.family_name) {
+        fullname = '';
+    }
+    return fullname;
+});
+
+// Virtual for author's lifespan
+AuthorSchema.virtual('lifespan').get(function() {
+    var lifetime_string = '';
+    if (this.date_of_birth) {
+        lifetime_string = this.date_of_birth.getYear().toString();
+    }
+    lifetime_string += ' - ';
+    if (this.date_of_death) {
+        lifetime_string += this.date_of_death.getYear();
+    }
+    return lifetime_string;
+});
+
+// Virtual for author's URL
+AuthorSchema
+.virtual('url')
+.get(function() {
+    return '/catalog/author/' + this._id;
+});
+
+// Export model
+module.exports = mongoose.model('Author', AuthorSchema);
+```
+We've also declared a [virtual](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#virtual-properties) for the AuthorSchema named "url" that returns the absolute URL required to get a particular instance of the model -- we'll use the property in our templates whenever we need to get a link to a particular author.
+
+<hr>
+
+**Note**: Declaring our URLs as a virtual in the schema is a good idea because then the URL for an item only ever needs to be changed in one place. At this point, a link using this URL wouldn't work, because we haven't got any routes handling code for individual model instances. We'll set those up in a later article!
+
+<hr>
+
+At the end of the module, we export the model.
+
 
 
 
