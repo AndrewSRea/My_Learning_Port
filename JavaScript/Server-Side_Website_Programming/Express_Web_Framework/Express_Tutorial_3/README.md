@@ -501,7 +501,91 @@ For this tutorial, we're going to use the [MongoDB Atlas](https://www.mongodb.co
 
 <hr>
 
+You will first need to [create an account](https://www.mongodb.com/cloud/atlas/register) with MongoDB Atlas. (This is free, and just requires that you enter basic contact details and acknowledge their terms of service.)
 
+After logging in, you'll be taken to the [home](https://cloud.mongodb.com/v2) screen:
+
+1. Click the **Build a Cluster** button in the Clusters Overview section.
+
+![Image of the "Build a Cluster" button in the MongoDB "Clusters" overview browser page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_createcluster.jpg)
+
+2. This will open the *Create New Cluster* screen.
+
+![Image of the MongoDB "Cloud Provider & Region" browser page to "Create a free tier cluster"](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_chooseproviderregion.jpg)
+
+- Select any provider from the *Cloud Provider & Region* section. Different providers offer different regions.
+- Select any region marked "FREE TIER AVAILABLE".
+- Click the **Create Cluster** button (creation of the cluster will take some minutes).
+
+3. You will return to the *Cluster Overview* screen.
+
+![Image of the MongoDB "Clusters" overview browser page with a new "Sandbox" cluster created](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_createcollection.jpg)
+
+- Click the **Collections** button.
+
+4. This will open the *Collections* section.
+
+![Image of the "Collections" tab opened on the "Clusters" overview browser page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_createdatabase2.png)
+
+- Click the **Add My Own Data** button.
+
+5. This will open the *Create Database* screen.
+
+![Image of the MongoDB "Create Database" browser page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_databasedetails.jpg)
+
+- Enter the name for the new database as `local_library`.
+- Enter the name of the collection as `Collection0`.
+- Click the **Create** button to create the database.
+
+6. You will return to the *Collection* screen with your database created.
+
+![Image of the "Collections" tab opened on the newly-created "local_library.Collection()" database](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_databasecreated.jpg)
+
+- Click the *Overview* tab to return to the Clusters Overview.
+
+7. From the "Cluster0" Overview screen, click the **Connect** button.
+
+![Image of the "Cluster0" "Overview" browser page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_connectbutton.jpg)
+
+8. This will open the **Connect to Cluster0** screen.
+
+![Image of the "Connect to Cluster0" screen](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/connect_to_cluster_allowanywhere.png)
+
+- Click the **Allow Access from Anywhere** button. This will open a form with `0.0.0.0/0` pre-seeded for the IP Address. Click the **Add IP Address** button.
+
+<hr>
+
+**Note**: It is a best practice to limit the IP addresses that can connect to your database and other resources. Here we allow a connection from anywhere because we don't know where the request will come from after deployment.
+
+<hr>
+
+- Enter a username and password and click **Create MongoDB User** button.
+
+<hr>
+
+**Note**: Avoid using special characters in your MongoDB user password as mongoose may not parse the connection string properly.
+
+<hr>
+
+- If you have completed the 2 previous steps, the button **Choose a connection method** will turn green.
+- Click the **Choose a connection method** button.
+
+9. You should now be able to access the *Choose a connection* method tab.
+
+![Image of the "Choose a connection method" instructions in the "Connection to Cluster0" browser page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_chooseaconnectionmethod.jpg)
+
+- Click the **Connect Your Application** option.
+
+10. This will open the *Connect* screen.
+
+![Image of the "Connect Your Application" instructions in the "Connection to Cluster0" browser page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose/mongodb_atlas_-_connectforshortsrv_2020-03.png)
+
+- Click the **Copy** button to copy the connection string.
+- Save this string somewhere safe.
+- Update the password with your user's password.
+- Replace test with `local_library`.
+
+You have now created the database, and have a URL (with username and password) that can be used to access it. This will look something like: `mongodb+srv://your_user_name:your_password@cluster0.a9azn.mongodb.net/local_library?retryWrites=true`
 
 
 
