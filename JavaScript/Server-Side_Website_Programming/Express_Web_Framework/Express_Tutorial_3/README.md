@@ -430,6 +430,77 @@ bob.save(function(err) {
     });
 });
 ```
+Our story document now has an author referenced by the author document's ID. In order to get the author information in the story results, we use `populate()`, as shown below.
+```
+Story
+.findOne({ title: 'Bob goes sledding' })
+.populate('author')   // This populates the author id with actual author information!
+.exec(function(err, story) {
+    if (err) return handleError(err);
+    console.log('The author is %s', story.author.name);
+    // Prints "The author is Bob Smith"
+});
+```
+
+<hr>
+
+**Note**: Astute readers will have noted that we aded an author to our story, but we didn't do anything to add our story to our author's `stories` array. How then can we get all stories by a particular author? One way would be to add our story to the `stories` array, but this would result in us having two places where the information relating authors and stories need to be maintained.
+
+A better way is to get the `_id` of our *author*, then use `find()` to search for this in the author field across all stories.
+```
+Story
+.find({ author: bob._id })
+.exec(function(err, stories) {
+    if (err) return handleError(err);
+    // Returns all stories that have Bob's id as their author.
+});
+```
+
+<hr>
+
+This is almost everything you need to know about working with related items *for this tutorial*. For more detailed information, see [Population]() (Mongoose docs).
+
+### One schema/model per file
+
+While you can create schemas and models using any file structure you like, we highly recommend defining each model schema in its own module (file), then exporting the method to create the model. This is shown below:
+```
+// File: /models/somemodel.js
+
+// Require Mongoose
+var mongoose = require('mongoose');
+
+// Define a schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+    a_string: String,
+    a_date: Date,
+});
+
+// Export function to create "SomeModel" model class
+module.exports = mongoose.model('SomeModel', SomeModelSchema);
+```
+You can then require and use the model immediately in other files. Below we show how you might use it to get all instances of the model.
+```
+// Create a SomeModel model just by requiring the module
+var SomeModel = require('../models/somemodel')
+
+// Use the SomeModel object (model) to find all SomeModel records
+SomeModel.find(callback_function);
+```
+
+## Setting up the MongoDB database
+
+Now that we understand something of what Mongoose can do and how we want to design our models, it's time to start work on the *LocalLibrary* website. The very first thing we want to do is set up a MongoDB database that we can use to store our library data.
+
+For this tutorial, we're going to use the [MongoDB Atlas](https://www.mongodb.com/atlas/database) free cloud-hosted [sandbox](https://www.mongodb.com/pricing) database. This database tier is not considered suitable for production websites because it has no redundancy, but it is great for development and prototyping. We're using it here because it is free and easy to set up, and because MongoDB Atlas is a popular *database as a service* vendor that you might reasonably choose for your production database. (Other popular choices at the time of writing include [Compose](https://www.compose.com/), [ScaleGrid](https://scalegrid.io/pricing.html?db=MYSQL&cloud=cloud_digital_ocean&replica=deployment_standalone&instance=Nano#section_pricing_dedicated), and [ObjectRocket](https://www.objectrocket.com/).)
+
+<hr>
+
+**Note**: If you prefer, you can set up a MongoDB database locally by downloading and installing the [appropriate binaries for your system](https://www.mongodb.com/try/download/community). The rest of the instructions in this article would be similar, except for the database URL you would specify when connecting. Note, however, that the [Express Tutorial Part 7: Deploying to Production](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_7#express-tutorial-part-7-deploying-to-production) tutorial requires some form of remote database, since the free tier of the [Heroku](https://www.heroku.com) service does not provide persistent storage. It is, therefore, highly recommended to use [MongoDB Atlas](https://www.mongodb.com/atlas/database).
+
+<hr>
+
 
 
 
