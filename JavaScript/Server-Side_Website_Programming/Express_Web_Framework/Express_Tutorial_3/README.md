@@ -797,7 +797,7 @@ node populatedb <your mongodb url>
 
 <hr>
 
-**Note** Go to your database on MongoDB Atlas (in the *Collections* tab). You should now be able to drill down into individual collections of Books, Authors, Genres, and BookInstances, and check out individual documents.
+**Note**: Go to your database on MongoDB Atlas (in the *Collections* tab). You should now be able to drill down into individual collections of Books, Authors, Genres, and BookInstances, and check out individual documents.
 
 <hr>
 
