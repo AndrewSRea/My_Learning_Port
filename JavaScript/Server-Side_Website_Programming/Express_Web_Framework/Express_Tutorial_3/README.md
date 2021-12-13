@@ -685,12 +685,139 @@ We've also declared a [virtual](https://github.com/AndrewSRea/My_Learning_Port/t
 
 At the end of the module, we export the model.
 
+### Book model
 
+Copy the `Book` schema code shown below and paste it into your **./models/book.js** file. Most of this is similar to the author model -- we've declared a schema with a number of string fields and a virtual for getting the URL of specific book records, and we've exported the model.
+```
+var mongoose = require('mongoose');
 
+var Schema = mongoose.Schema;
 
+var BookSchema = new Schema(
+    {
+        title: {type: String, required: true},
+        author: {type: Schema.Types.ObjectId, ref: 'Author', required: true},
+        summary: {type: String, required: true},
+        isbn: {type: String, required: true},
+        genre: [{type: Schema.Types.ObjectId, ref: 'Genre'}]
+    }
+);
 
+// Virtual for book's URL
+BookSchema 
+.virtual('url') 
+.get(function() {
+    return '/catalog/book/' + this._id;
+});
 
+// Export model
+module.exports = mongoose.model('Book', BookSchema);
+```
+The main difference here is that we've created two references to other models:
 
+* `author` is a reference to a single `Author` model object, and is required.
+* `genre` is a reference to an array of `Genre` model objects. We haven't declared this object yet!
 
+### BookInstance model
 
-## Connect to MongoDB
+Finally, copy the `BookInstance` schema code shown below and paste it into your **./models/bookinstance.js** file. The `BookInstance` represents a specific copy of a book that someone might borrow and includes information about whether the copy is available, on what date it is expected back, and "imprint" (or version) details.
+```
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+
+var BookInstanceSchema = new Schema(
+    {
+        book: { type: Schema.Types.ObjectId, ref: 'Book', required: true },   // reference to the associated book 
+        imprint: {type: String, required: true},
+        status: {type: String, required: true, enum: ['Available', 'Maintenance', 'Loaned', 'Reserved'], default: 'Maintenance'},
+        due_back: {type: Date, default: Date.now}
+    }
+);
+
+// Virtual for bookinstance's URL
+BookInstanceSchema 
+.virtual('url')
+.get(function () {
+    return '/catalog/bookinstance/' + this._id;
+});
+
+// Export model
+module.exports = mongoose.model('BookInstance', BookInstanceSchema);
+```
+The new things we show here are the field options:
+
+* `enum`: This allows us to set the allowed values of a string. In this case, we use it to specify the availability status of our books (using an enum means that we can prevent misspellings and arbitrary values for our status).
+* `default`: We use `default` to set the default status for newly created bookinstances to maintenance and the default `due_back` date to `now`. (Note how you can call the `Date` function when setting the date!)
+
+Everything else should be familiar from our previous schema.
+
+### Genre model - challenge!
+
+Open your **./models/genre.js** file and create a schema for storing genres (the category of book, e.g. whether it is fiction or nonfiction, romance, or military history, etc.).
+
+The definition will be very similar to the other models:
+
+* The model should have a `String` SchemaType called `name` to describe the genre.
+* This name should be required and have between 3 and 100 characters.
+* Declare a [virtual](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#virtual-properties) for the genre's URL, named `url`.
+* Export the model.
+
+## Testing -- create some items
+
+That's it. We now have all models for the site set up!
+
+In order to test the models (and to create some example books and other items that we can use in our next articles), we'll now run an *independent* script to create items of each type:
+
+1. Download (or otherwise create) the file [populatedb.js](https://raw.githubusercontent.com/hamishwillee/express-locallibrary-tutorial/master/populatedb.js) inside your *express-locallibrary-tutorial* directory (in the same level as `package.json`).
+
+<hr>
+
+**Note**: You don't need to know how [populatedb.js](https://raw.githubusercontent.com/hamishwillee/express-locallibrary-tutorial/master/populatedb.js) works. It just adds sample data into the database.
+
+<hr>
+
+2. Enter the following commands in the project root to install the *async* module that is required by the script. (We'll discuss this in later tutorials.)
+```
+npm install async
+```
+
+3. Run the script using node in your command prompt, passing in the URL of your *MongoDB* database. (The same one you replaced the *insert_your_database_url_here* placeholder with, inside `app.js` earlier):
+```
+node populatedb <your mongodb url>
+```
+
+<hr>
+
+**Note**: On some operating systems/terminals, you may need to wrap the database URL inside double (") or single (') quotation marks.
+
+<hr>
+
+4. The script should run through to completion, displaying items as it creates them in the terminal.
+
+<hr>
+
+**Note** Go to your database on MongoDB Atlas (in the *Collections* tab). You should now be able to drill down into individual collections of Books, Authors, Genres, and BookInstances, and check out individual documents.
+
+<hr>
+
+## Summary
+
+In this article, we've learned a bit about databases and ORMs on Node/Express, and a lot about how Mongoose schema and models are defined. We then used this information to design and implement `Book`, `BookInstance`, `Author`, and `Genre` models for the *LocalLibrary* website.
+
+Last of all, we tested our models by creating a number of instances (using a standalone script). In the next article, we'll look at creating some pages to display these objects.
+
+## See also
+
+* [Database integration](https://expressjs.com/en/guide/database-integration.html) (Express docs)
+* [Mongoose website](https://mongoosejs.com/) (Mongoose docs)
+* [Mongoose Guide](https://mongoosejs.com/docs/guide.html) (Mongoose docs)
+* [Validation](https://mongoosejs.com/docs/validation.html) (Mongoose docs)
+* [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (Mongoose docs)
+* [Models](https://mongoosejs.com/docs/models.html) (Mongoose docs)
+* [Queries](https://mongoosejs.com/docs/queries.html) (Mongoose docs)
+* [Population](https://mongoosejs.com/docs/populate.html) (Mongoose docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_2#express-tutorial-part-2-creating-a-skeleton-website) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#express-tutorial-part-3-using-a-database-with-mongoose) - [[Next page]]()
