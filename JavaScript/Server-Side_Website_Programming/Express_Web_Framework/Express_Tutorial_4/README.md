@@ -104,3 +104,51 @@ router.post('/about', function(req, res) {
     res.send('About this wiki');
 });
 ```
+
+### Route paths
+
+The route paths define the endpoints at which requests can be made. The examples we've seen so far have just been strings, and are used exactly as written: '/', '/about', '/book', 'any-random-path'.
+
+Route paths can also be string patterns. String patterns use a form of regular expression syntax to define *patterns* of endpoints that will be matched. The syntax is listed below (note that the hyphen (`-`) and the dot (`.`) are interpreted literally by string-based paths):
+
+* `?`: The endpoint must have 0 or 1 of the preceding character (or group), e.g. a route path of `'/ab?cd'` will match endpoints `acd` or `abcd`.
+* `+`: The endpoint must have 1 or more of the preceding character (or group), e.g. a route path of `'/ab+cd'` will match endpoints `abcd`, `abbcd`, `abbbcd`, and so on.
+* `*`: The endpoint may have an arbitrary string where the `*` character is placed, e.g. a route path of `'/ab*cd'` will match endpoints `abcd`, `abXcd`, `abSOMErandomTEXTcd`, and so on.
+* `()`: Grouping match on a set of characters to perform another operation on, e.g. `'/ab(cd)?e'` will perform a `?`-match on the group `(cd)` -- it will match `abe` and `abcde`.
+
+The route paths can also be JavaScript [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions). For example, the route path below will match `catfish` and `dogfish`, but not `catflap`, `catfished`, and so on. Note that the path for a regular expression uses regular expression syntax (it is not a quoted string as in the previous cases).
+```
+app.get(/.*fish$/, function(req, res) {
+    ...
+});
+```
+
+<hr>
+
+**Note**: Most of our routes for the LocalLibrary will use strings and not regular expressions. We'll also use route parameters as discussed in the next section.
+
+<hr>
+
+### Route parameters
+
+Route parameters are *named URL segments* used to capture values at specific positions in the URL. The named segments are prefixed with a colon and then the name (e.g. `/:your_parameter_name/`). The captured values are stored in the `req.params` object using the parameter names as keys (e.g. `req.params.your_parameter_name`).
+
+So, for example, consider a URL encoded to contain information about users and books: `http://localhost:3000/users/34/books/8989`.
+We can extract this information as shown below, with the `userId` and `bookId` path parameters:
+```
+app.get('/users/:userId/books/:bookId', function(req, res) {
+    // Access userId via: req.params.userId
+    // Access bookId via: req.params.bookId
+    res.send(req.params);
+});
+```
+The names of route parameters must be made up of "word characters" (A-Z, a-z, 0-9, and _).
+
+<hr>
+
+**Note**: The URL */book/create* will be matched by a route like `/book/:bookId` (which will extract a "bookId" value of `'create'`). The first route that matches an incoming URL will be used, so if you want to process `/book/create` URLs separately, their route handler must be defined before your `/book/:bookId` route.
+
+<hr>
+
+That's all you need to get started with routes -- if needed, you can find more information in the Express docs: [Basic routing](https://expressjs.com/en/starter/basic-routing.html) and [Routing guide](https://expressjs.com/en/guide/routing.html). The following sections show how we'll set up our routes and controllers for the LocalLibrary.
+
