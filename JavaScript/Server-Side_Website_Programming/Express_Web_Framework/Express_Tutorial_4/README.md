@@ -152,3 +152,89 @@ The names of route parameters must be made up of "word characters" (A-Z, a-z, 0-
 
 That's all you need to get started with routes -- if needed, you can find more information in the Express docs: [Basic routing](https://expressjs.com/en/starter/basic-routing.html) and [Routing guide](https://expressjs.com/en/guide/routing.html). The following sections show how we'll set up our routes and controllers for the LocalLibrary.
 
+## Routes needed for the LocaLibrary
+
+The URLs that we're ultimately going to need for our pages are listed below, where *object* is replaced by the name of each of our models (book, bookinstance, genre, author), *objects* is the plural of object, and *id* is the unique instance field (`_id`) that is given to each Mongoose model instance by default.
+
+* `catalog/` -- The home/index page.
+* `catalog/<objects>/` -- The list of all books, bookinstances, genres, or authors (e.g. `/catalog/books/`, `/catalog/genres/`, etc.)
+* `catalog/<object>/<id>` -- The detail page for a specific book, bookinstance, genre, or author with the given `_id` field value (e.g. `/catalog/book/5884493c1f4887f06c0e67d37`).
+* `catalog/<object>/create` -- The form to create a new book, bookinstance, genre, or author (e.g. `/catalog/book/create`).
+* `catalog/<object>/<id>/update` -- The form to update a specific book, bookinstance, genre, or author with the given `_id` field value (e.g. `/catalog/book/5884493c1f4887f06c0e67d37/update`).
+* `catalog/<object>/<id>/delete` -- The form to delete a specific book, bookinstance, genre, or author with the given `_id` field value (e.g. `/catalog/book/5884493c1f4887f06c0e67d37/delete`).
+
+The first home page and list pages don't encode any additional information. While the results returned will depend on the model type and the content in the database, the queries run to get the information will always be the same (similarly the code run for object creation will always be similar).
+
+By contrast, the other URLs are used to act on a specific document/model instance -- these encode the identity of the item in the URL (shown as `<id>` above). We'll use path parameters to extract the encoded information and pass it to the route handler (and in a later article, we'll use this to dynamically determine what information to get from the database). By encoding the information in our URL, we only need one route for every resource of a particular type (e.g. one route to handle the display of every single book item).
+
+<hr>
+
+**Note**: Express allows you to construct your URLs any way you like -- you can encode information in the body of the URL as shown above, or use URL `GET` parameters (e.g. `/book/?id=6`). Whichever approach you use, the URLs should be kept clean, logical and readable. ([Check out the W3C advice here](https://www.w3.org/Provider/Style/URI).)
+
+<hr>
+
+Next, we create our route handler callback functions and route code for all the above URLs.
+
+## Create the route-handler callback functions
+
+Before we define our routes, we'll first create all the dummy/skeleton callback functions that they will invoke. The callbacks will be stored in separate "controller" modules for Books, BookInstances, Genres, and Authors. (You can use any file/module structure, but this seems an appropriate granularity for this project.)
+
+Start by creating a folder for our controllers in the project root (**/controllers**) and then create separate controller files/modules for handling each of the models:
+```
+/express-locallibrary-tutorial   // the project root
+    /controllers
+        authorController.js
+        bookController.js
+        bookinstanceController.js
+        genreController.js
+```
+
+### Author controller
+
+Open the **/controllers/authorController.js** file and type in the following code:
+```
+var Author = require('../models/author');
+
+// Display list of all Authors
+exports.author_list = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author list');
+};
+
+// Display detail page for a specific Author
+exports.author_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author detail: ' + req.params.id);
+};
+
+// Display Author create form on GET
+exports.author_create_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author create GET');
+};
+
+// Handle Author create on POST
+exports.author_create_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author create POST');
+};
+
+// Display Author delete form on GET
+exports.author_delete_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author delete GET'); 
+};
+
+// Handle Author delete on POST
+exports.author_delete_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author delete POST');
+};
+
+// Display Author update form on GET
+exports.author_update_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author update GET');
+};
+
+// Handle Author update on POST
+exports.author_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Author update POST');
+};
+```
+The module first requires the model that we'll later be using to access and update our data. It then exports functions for each of the URLs we wish to handle (the create, update, and delete operations use forms, and hence also have additional methods for handling form post requests -- we'll discuss those methods in the "forms" article later on).
+
+All the functions have the standard form of an *Express middleware function*, with arguments for the request and response. We could also include the `next` function to be called if the method does not complete the request cycle but in all these cases, it does, so we've omitted it. The methods return a string indicating that the associated page has not yet been created. If a controller function is expected to receive path parameters, these are output in the message string (see `req.params.is` above).
