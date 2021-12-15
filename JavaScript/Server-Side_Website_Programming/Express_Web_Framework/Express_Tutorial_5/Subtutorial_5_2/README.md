@@ -46,7 +46,7 @@ html(lang="en")
         h1= title
 
         p This is a line with #[em some emphasis] and #[strong strong text] markup.
-        p This line has un-escaped data: !{'<em> is emphasis</em>'} and escaped data: #{'<em> is not emphasized</em>'}.
+        p This line has un-escaped data: !{'<em> is emphasized</em>'} and escaped data: #{'<em> is not emphasized</em>'}.
             | This line follows on.
         p= 'Evaluated and <em>escaped expression</em>:' + title
 
@@ -86,3 +86,63 @@ h1= title
 p= 'Evaluated and <em>escaped expression</em>:' + title
 ```
 If there is no equals symbol after the tag, then the content is treated as plain text. Within the plain text, you can insert escaped and unescaped data using the `#{}` and `!{}` syntax respectively, as shown below. You can also add raw HTML within the plain text.
+```
+p This is a line with #[em some emphasized] and #[strong strong text] markup.
+p This line has an un-escaped string: !{'<em> is emphasis</em>'}, an escaped string: #{'<em> is not emphasized</em>'}, and escaped variables: #{title}.
+```
+
+<hr>
+
+**Note** You will almost always want to escape data from users (via the `#{}` syntax). Data that can be trusted (e.g. generated counts of records, etc.) may be displayed without escaping the values.
+
+<hr>
+
+You can use the pipe ('`|`') character at the beginning of a line to indicate "[plain text](https://pugjs.org/language/plain-text.html)". For example, the additional text shown below will be displayed on the same line as the preceding anchor, but will not be linked.
+```
+a(href='http://someurl/') Link text
+| Plain text
+```
+Pug allows you to perform conditional operations using `if`, `else`, `else if`, and `unless`. For example:
+```
+if title
+    p A variable named "title" exists
+else
+    p A variable named "title" does not exist
+```
+You can also perform loop/iteration operations using `each-in` or `while` syntax. In the code fragment below, we've looped through an array to display a list of variables. (Note the use of the '`li=`' to evaulate the "`val`" as a variable below.) The value you iterate across can also be passed into the template as a variable!
+```
+ul
+    each val in [1, 2, 3, 4, 5]
+        li= val
+```
+The syntax also supports comments (that can be rendered in the output -- or not -- as you choose), mixins to create reusable blocks of code, case statements, and many other features. For more detailed information, see [The Pug docs](https://pugjs.org/api/getting-started.html).
+
+## Extending templates
+
+Across a site, it is usual for all pages to have a common structure, including standard HTML markup for the head, footer, navigation, etc. Rather than forcing developers to duplicate this "boilerplate" in every page, *Pug* allows you to declare a base template and then extend it, replacing just the bits that are different for each specific page.
+
+For example, the base template **layout.pug** created in our [skeleton project](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_2#express-tutorial-part-2-creating-a-skeleton-website) looks like this:
+```
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        block content
+```
+The `block` tag is used to mark up sections of content that may be rejected in a derived template. (If the block is not redefined, then its implementation in the base class is used.)
+
+The default **index.pug** (created for our skeleton project) shows how we override the base template. The `extends` tag identifies the base template to use, and then we use `block section_name` to indicate the new content of the section that we will override.
+```
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+```
+
+## Next steps
+
+* Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data)
+* Proceed to the next subarticle of part 5: [The LocalLibrary base template]()
