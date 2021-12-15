@@ -152,7 +152,7 @@ The names of route parameters must be made up of "word characters" (A-Z, a-z, 0-
 
 That's all you need to get started with routes -- if needed, you can find more information in the Express docs: [Basic routing](https://expressjs.com/en/starter/basic-routing.html) and [Routing guide](https://expressjs.com/en/guide/routing.html). The following sections show how we'll set up our routes and controllers for the LocalLibrary.
 
-## Routes needed for the LocaLibrary
+## Routes needed for the LocalLibrary
 
 The URLs that we're ultimately going to need for our pages are listed below, where *object* is replaced by the name of each of our models (book, bookinstance, genre, author), *objects* is the plural of object, and *id* is the unique instance field (`_id`) that is given to each Mongoose model instance by default.
 
@@ -238,3 +238,163 @@ exports.author_update_post = function(req, res) {
 The module first requires the model that we'll later be using to access and update our data. It then exports functions for each of the URLs we wish to handle (the create, update, and delete operations use forms, and hence also have additional methods for handling form post requests -- we'll discuss those methods in the "forms" article later on).
 
 All the functions have the standard form of an *Express middleware function*, with arguments for the request and response. We could also include the `next` function to be called if the method does not complete the request cycle but in all these cases, it does, so we've omitted it. The methods return a string indicating that the associated page has not yet been created. If a controller function is expected to receive path parameters, these are output in the message string (see `req.params.is` above).
+
+### BookInstance controller
+
+Open the **/controllers/bookinstanceController.js** file and copy in the following code. (This follows an identical pattern to the `Author` controller module):
+```
+var BookInstance = require('../models/bookinstance');
+
+// Display list of all BookInstances
+exports.bookinstance_list = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance list');
+};
+
+// Display detail page for a specific BookInstance
+exports.bookinstance_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance detail: ' + req.params.id);
+};
+
+// Display BookInstance create form on GET
+exports.bookinstance_create_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance create GET');
+};
+
+// Handle BookInstance create on POST
+exports.bookinstance_create_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance create POST');
+};
+
+// Display BookInstance delete form on GET
+exports.bookinstance_delete_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance delete GET');
+};
+
+// Handle BookInstance delete on POST
+exports.bookinstance_delete_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance delete POST');
+};
+
+// Display BookInstance update from on GET
+exports.bookinstance_update_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance update GET');
+};
+
+// Handle BookInstance update on POST
+exports.bookinstance_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance update POST');
+};
+```
+
+### Genre controller
+
+Open the **/controllers/genreController.js** file and copy in the following text. (This follows an identical pattern to the `Author` and `BookInstance` files):
+```
+var Genre = require('../models/genre');
+
+// Display list of all Genres
+exports.genre_list = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre list');
+};
+
+// Display detail page for a specific Genre
+exports.genre_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre detail: ' + req.params.id);
+};
+
+// Display Genre create form on GET
+exports.genre_create_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre create GET');
+};
+
+// Handle Genre create on POST
+exports.genre_create_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre create POST');
+};
+
+// Display Genre delete form on GET
+exports.genre_delete_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre delete GET');
+};
+
+// Handle Genre delete on POST
+exports.genre_delete_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre delete POST');
+};
+
+// Display Genre update form on GET
+exports.genre_update_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre update GET');
+};
+
+// Handle Genre update on POST
+exports.genre_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Genre update POST');
+};
+```
+
+### Book controller
+
+Open the **/controllers/bookController.js** file and copy in the following code. This follows the same pattern as the other controller modules, but additionally has an `index()` function for displaying the site welcome page:
+```
+var Book = require('../models/book');
+
+exports.index = function(req, res) {
+    res.send('NOT IMPLEMENTED: Site Home Page');
+};
+
+// Display list of all books
+exports.book_list = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book list');
+};
+
+// Display detail page for a specific book
+exports.book_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
+};
+
+// Display book create form on GET
+exports.book_create_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book create GET');
+};
+
+// Handle book create on POST
+exports.book_create_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book create POST');
+};
+
+// Display book delete form on GET
+exports.book_delete_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book delete GET');
+};
+
+// Handle book delete on POST
+exports.book_delete_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book delete POST');
+};
+
+// Display book update form on GET
+exports.book_update_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book update GET');
+};
+
+// Handle book update on POST
+exports.book_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: Book update POST');
+};
+```
+
+## Create the catalog route module
+
+Next, we create *routes* for all the URLs [needed by the LocalLibrary website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_4#routes-needed-for-the-localibrary), which will call the controller functions we defined in the previous section.
+
+The skeleton already has a **./routes** folder containing routes for the *index* and *users*. Create another route file -- **catalog.js** -- inside this folder, as shown.
+```
+/express-locallibrary-tutorial   // the project root
+    /routes
+        index.js
+        users.js
+        catalog.js
+```
+Open **/routes/catalog.js** and copy in the code below:
+```
