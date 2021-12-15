@@ -33,3 +33,68 @@ exports.som_model_count = function(req, res, next) {
 What if you need to make **multiple** asynchronous queries, and you can't render the page until all the operations have completed? A naive implementation could "daisy chain" the requests, kicking off subsequent requests in the callback of a previous request, and rendering the response in the final callback. The problem with this approach is that our requests would have to be run in series, even though it might be more efficient to run them in parallel. This could also result in complicated nested code, commonly referred to as [callback hell](http://callbackhell.com/).
 
 A much better solution would be to execute all the requests in parallel and then have a single callback that executes when all of the queries have completed. This is the sort of flow operation that the *Async* module makes easy!
+
+## Asynchronous operations in parallel
+
+The method [`async.parallel()`](https://caolan.github.io/async/v3/docs.html#parallel) is used to run multiple asynchronous operations in parallel.
+
+The first argument to `async.parallel()` is a collection of the asynchronous functions to run (an array, object, or other iterable). Each function is passed a `callback(err, result)` which it must call on completion with an error `err` (which can be `null`) and an optional `results` values.
+
+The optional second argument to `async.parallel()` is a callback that will be run when all the functions in the first argument have completed. The callback is invoked with an error argument and a result collection that contains the results of the individual asynchronous operations. The result collection is of the same type as the first argument (i.e. if you pass an array of asynchronous functions, the final callback will be invoked with an array of results). If any of the paralell functions reports an error, the callback is invoked early (with the error value).
+
+The example below shows how this works when we pass an object as the first argument. As you can see, the results are *returned* in an object with the same property names as the original functions that were passed in.
+```
+async.parallel({
+    one: function(callback) { ... },
+    two: function(callback) { ... },
+    ...
+    something_else: function(callback) { ... }
+    },
+    // optional callback
+    function(err, results) {
+        // 'results' is now equal to: {one: 1, two: 2, ..., something_else: some_value}
+    }
+);
+```
+If you instead pass an array of functions as the first argument, the results will be an array (the array order results will match the original order in which the functions were declared -- not the order in which they completed).
+
+## Asynchronous operations in series
+
+The method [`async.series()`]() is used to run multiple asynchronous operations in sequence, when subsequent functions do not depend on the output of earlier functions. It is essentially declared and behaves in the same way as `async.parallel()`.
+```
+async.series({
+    one: function(callback) { ... },
+    two: function(callback) { ... },
+    ...
+    something_else: function(callback) { ... }
+    },
+    // optional callback after the last asynchronous function completes
+    function(err, results) {
+        // 'results' is now equal to: {one: 1, two: 2, ..., something_else: some_value}
+    }
+);
+```
+
+<hr>
+
+**Note**: The ECMAScript (JavaScript) language specification states that the order of enumeration of an object is undefined, so it is possible that the functions will not be called in the same order as your specify them on all platforms. If the order really is important, then you should pass an array instead of an object, as shown below.
+
+<hr>
+
+```
+async.series([
+        function(callback) {
+            // do some stuff ...
+            callback(null, 'one');
+        },
+        function(callback) {
+            // do some more stuff ...
+            callback(null, 'two');
+        },
+    ],
+    // optional callback
+    function(err, results) {
+        // 'results' is now equal to ['one', 'two']
+    }
+);
+```
