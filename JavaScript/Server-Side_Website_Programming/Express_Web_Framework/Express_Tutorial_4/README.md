@@ -521,3 +521,94 @@ The module requires Express and then uses it to create a `Router` object. The ro
 The routes are defined either using `.get()` or `.post()` methods on the router object. All the paths are defined using strings (we don't use string patterns or regular expresssions). Routes that act on some specific resource (e.g. book) use path parameters to get the object id from the URL.
 
 The handler functions are all imported from the controller modules we created in the previous section.
+
+### Update the index route module
+
+We've set up all our new routes, but we still have a route to the original page. Let's instead redirect this to the new index page that we've created at the path `'/catalog'`.
+
+Open **/routes/index.js** and replace the existing route with the function below.
+```
+// GET home page
+router.get('/', function(req, res) {
+    res.redirect('/catalog');
+});
+```
+
+<hr>
+
+**Note**: This is our first use of the [`redirect()`](https://expressjs.com/en/4x/api.html#res.redirect) response method. This redirects to the specified page, by default sending HTTP status code "302 Found". You can change the status code returned if needed, and supply either absolute or relative paths.
+
+<hr>
+
+### Update app.js
+
+The last step is to add the routes to the middleware chain. We do this in `app.js`.
+
+Open **app.js** and require the catalog route below the other routes. (Add the third line shown below, underneath the other two):
+```
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var catalogRouter = require('./routes/catalog');   // Import routes for "catalog" area of site
+```
+Next, add the catalog route to the middleware stack below the other routes. (Add the third line shown below, underneath the other two):
+```
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter);   // Add catalog routes to middleware chain
+```
+
+<hr>
+
+**Note**: We have added our catalog module at a path `'/catalog'`. This is prepended to all of the paths defined in the catalog module. So, for example, to access a list of books, the URL will be: `/catalog/books/`.
+
+<hr>
+
+That's it! We should now have routes and skeleton functions enabled for all the URLs that we will eventually support on the LocalLibrary website.
+
+### Testing the routes
+
+To test the routes, first start the website using your usual approach:
+
+* The default method:
+```
+// Windows
+SET DEBUG=express-locallibrary-tutorial:* & npm start
+
+// macOS or Linux
+DEBUG=express-locallibrary-tutorial:* npm start
+```
+
+* If you previously set up [nodemon](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_2#enable-server-restart-on-file-changes), you can instead use:
+```
+// Windows
+SET DEBUG=express-locallibrary-tutorial:* & npm run devstart
+
+// macOS or Linux
+DEBUG=express-locallibrary-tutorial:* npm run devstart
+```
+
+Then navigate to a number of LocalLibrary URLs, and verify that you don't get an error page (HTTP 404). A small set of URLs are listed below for your convenience:
+
+* [http://localhost:3000/](http://localhost:3000/)
+* [http://localhost:3000/catalog](http://localhost:3000/catalog)
+* [http://localhost:3000/catalog/books](http://localhost:3000/catalog/books)
+* [http://localhost:3000/catalog/bookinstances](http://localhost:3000/catalog/bookinstances)
+* [http://localhost:3000/catalog/authors](http://localhost:3000/catalog/authors)
+* [http://localhost:3000/catalog/genres](http://localhost:3000/catalog/genres)
+* [http://localhost:3000/catalog/book/5846437593935e2f8c2aa226](http://localhost:3000/catalog/book/5846437593935e2f8c2aa226)
+* [http://localhost:3000/catalog/book/create](http://localhost:3000/catalog/book/create)
+
+## Summary
+
+We've created all the routes for our site, along with dummy controller functions that we can populate with a full implementation in later articles. Along the way, we've learned a lot of fundamental information about Express routes, and some approaches for structuring our routes and controllers.
+
+In our next article, we'll create a proper welcome page for the site, using views (templates) and information stored in our models.
+
+## See also
+
+* [Basic routing](https://expressjs.com/en/starter/basic-routing.html) (Express docs)
+* [Routing guide](https://expressjs.com/en/guide/routing.html) (Express docs)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_3#express-tutorial-part-3-using-a-database-with-mongoose) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_4#express-tutorial-part-4-routes-and-controllers) - [[Next page]]()
