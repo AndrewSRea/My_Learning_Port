@@ -1,0 +1,3 @@
+# Express Tutorial Part 5: Displaying library data
+
+We're now ready to add the pages that display the [LocalLibrary](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_Local_Library#express-tutorial-the-local-library-website) website books and other data. The pages will include a home page that shows how many records we have of each model type, and list and detail pages for all of our models. Along the way, we'll gain practical experience in getting records from the database, and using templates.
