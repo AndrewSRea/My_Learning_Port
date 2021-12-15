@@ -98,3 +98,39 @@ async.series([
     }
 );
 ```
+
+## Dependent asynchronous operations in series
+
+The method [`async.waterfall()`]() is used to run multiple asynchronous operations in sequence when each operation is dependent on the result of the previous operation.
+
+The callback invoked by each asynchronous function contains `null` for the first argument and results in subsequent arguments. Each function in the series takes the results arguments of the previous callback as the first parameters, and then a callback function. When all operations are complete, a final callback is invoked with the result of the last operation. The way this works is more clear when you consider the code fragment below. (This example is from the *async* documentation):
+```
+async.waterfall([
+    function(callback) {
+        callback(null, 'one', 'two');
+    },
+    function(arg1, arg2, callback) {
+        // arg1 now equals 'one' and arg2 now equals 'two'
+        callback(null, 'three');
+    },
+    function(arg1, callback) {
+        // arg1 now equals 'three'
+        callback(null, 'done');
+    }
+], function(err, result) {
+    // result now equals 'done'
+}
+);
+```
+
+## Installing async
+
+Install the async module using the NPM package manager so that we can use it in our code. You do this the ususal way, by opening a prompt in the root of the *LocalLibrary* project and entering the following command:
+```
+npm install async
+```
+
+## Next steps
+
+* Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data).
+* Proceed to the next subarticle of Part 5: [Template primer]().
