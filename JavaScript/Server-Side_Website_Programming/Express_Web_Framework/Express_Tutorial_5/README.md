@@ -16,8 +16,8 @@ At the end of this article, you should have a good end-to-end understanding of h
 
 The following subarticles go through the process of adding the different features required for us to display the required website pages. You need to read and work through each one of these in turn, before moving on to the next one.
 
-1. [Aysnchrounous flow control using async]()
-2. [Template primer]()
+1. [Asynchrounous flow control using async](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_1#asynchronous-flow-control-using-async)
+2. [Template primer](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_2#template-primer)
 3. [The LocalLibrary base template]()
 4. [Home page]()
 5. [Book list page]()
@@ -44,4 +44,4 @@ In our next article, we'll build on our knowledge, creating HTML forms and form 
 
 <hr>
 
-[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_4#express-tutorial-part-4-routes-and-controllers) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data) - [[First library data tutorial subarticle]]() - [[Express Tutorial Part 6 (Next page)]]()
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_4#express-tutorial-part-4-routes-and-controllers) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data) - [[First library data tutorial subarticle]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_1#asynchronous-flow-control-using-async) - [[Express Tutorial Part 6 (Next page)]]()
