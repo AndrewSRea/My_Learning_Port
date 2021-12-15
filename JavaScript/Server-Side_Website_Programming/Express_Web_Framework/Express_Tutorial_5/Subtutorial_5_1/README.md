@@ -133,4 +133,4 @@ npm install async
 ## Next steps
 
 * Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data).
-* Proceed to the next subarticle of Part 5: [Template primer]().
+* Proceed to the next subarticle of Part 5: [Template primer](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_2#template-primer).
