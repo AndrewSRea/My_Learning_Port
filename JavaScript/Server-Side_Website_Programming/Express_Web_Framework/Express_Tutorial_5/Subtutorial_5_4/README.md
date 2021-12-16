@@ -84,3 +84,52 @@ On success, the callback function calls [`res.render()`](https://expressjs.com/e
 **Note**: The callback function from `async.parallel()` above is a little unusual in that we render the page whether or not there was an error. (Normally, you might use a separate execution path for handling the display of errors.)
 
 <hr>
+
+## View
+
+Open **/views/index.pug** and replace its content with the text below.
+```
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em LocalLibrary], a very basic Express website developed as a tutorial example on the Mozilla Developer Network.
+
+  h1 Dynamic content 
+
+  if error 
+    p Error getting dynamic content.
+  else 
+    p The library has the following record counts: 
+
+    ul 
+      li #[strong Books:] !{data.book_count}
+      li #[strong Copies:] !{data.book_instance_count}
+      li #[strong Copies available:] !{data.book_instance_available_count}
+      li #[strong Authors:] !{data.author_count}
+      li #[strong Genres:] !{data.genre_count}
+```
+The view is straightforward. We extend the **layout.pug** base template, overriding the `block` named **'content'**. The first `h1` heading will be the escaped text for the `title` variable that was passed into the `render()` function -- note the use of the '`h1=`' so that the following text is treated as a JavaScript expression. We then include a paragraph introducing the LocalLibrary.
+
+Under the *Dynamic content* heading, we check whether the error variable passed in from the `render()` function has been defined. If so, we note the error. If not, we get and list the number of copies of each model from the `data` variable.
+
+<hr>
+
+**Note**: We didn't escape the count values (i.e. we used the `!{}` syntax) because the count values are calculated. If the information was supplied by end-users, then we'd escape the variable for display.
+
+<hr>
+
+## What does it look like?
+
+At this point, we should have created everything needed to display the index page. Run the application and open your browser to [http://localhost:3000/](http://localhost:3000/). If everything is set up correctly, your site should look something like the following screenshot.
+
+![Image of the Home Page of the LocalLibrary Express app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Home_page/locallibary_express_home.png)
+
+<hr>
+
+**Note**: You won't be able to *use* the sidebar links yet because the URLs, views, and templates for those pages haven't been defined. If you try, you'll get errors like "NOT IMPLEMENTED: Book list", for example, depending on the link you click on. These string literals (which will be replaced with proper data) were specified in the different controllers that live inside your "controllers" file.
+
+## Next steps
+
+* Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data)
+* Proceed to the next subarticle of part 5: [Book list page]()
