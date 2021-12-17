@@ -55,3 +55,23 @@ return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toLocaleStri
 ```
 
 <hr>
+
+## Genre list page -- challenge!
+
+In this section, you should implement your own genre list page. The page should display a list of all genres in the database, with each genre linked to its associated detail page. A screenshot of the expected result is shown below.
+
+![Image of the "Genre List" browser page of the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Author_list_page/locallibary_express_genre_list.png)
+
+The genre list controller function needs to get a list of all `Genre` instances, and then press these to the template for rendering.
+
+1. You will need to edit `genre_list()` in **/controllers/genreController.js**.
+2. The implementation is almost exactly the same as the `author_list()` controller.
+  - Sort the results by name, in ascending order.
+3. The template to be rendered should be named **genre_list.pug**.
+4. The template to be rendered should be passed the variables `title` ('Genre List') and `genre_list` (the list of genres returned from your `Genre.find()` callback).
+5. The view should match the screenshot/requirements above. (This should have a very similar structure/format to the Author list view, except for the fact that genres do not have dates.)
+
+## Next steps
+
+* Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data).
+* Proceed to the next subarticle of part 5: [Genre detail page]().
