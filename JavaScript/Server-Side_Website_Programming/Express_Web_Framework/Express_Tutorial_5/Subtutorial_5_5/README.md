@@ -65,4 +65,4 @@ Run the application (see [Testing the routes](https://github.com/AndrewSRea/My_L
 ## Next steps
 
 * Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data).
-* Proceed to the next subarticle of part 5: [BookInstance list page]().
+* Proceed to the next subarticle of part 5: [BookInstance list page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_6#bookinstance-list-page).
