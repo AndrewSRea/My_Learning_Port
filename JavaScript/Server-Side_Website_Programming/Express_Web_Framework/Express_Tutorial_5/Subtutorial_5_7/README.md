@@ -58,4 +58,4 @@ That's it! If you go to *All book-instances* in the sidebar, you should now see 
 ## Next steps
 
 * Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data).
-* Proceed to the next subarticle of part 5: [Author list page and Genre list page challenge]().
+* Proceed to the next subarticle of part 5: [Author list page and Genre list page challenge](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_8#author-list-page-and-genre-list-page-challenge).
