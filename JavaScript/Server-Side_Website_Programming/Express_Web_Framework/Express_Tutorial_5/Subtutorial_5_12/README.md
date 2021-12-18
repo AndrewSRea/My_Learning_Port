@@ -60,3 +60,23 @@ Everything in this template has been demonstrated in previous sections.
 Run the application and open your browser to [http://localhost:3000/](http://localhost:3000/). Select the *all book-instances* link, then select one of the items. If everything is set up correctly, your site should look something like the following screenshot.
 
 ![Image of the "Book Instances List" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/BookInstance_detail_page_and_challenge/locallibary_express_bookinstance_detail.png)
+
+## Challenge
+
+Currently most *dates* displayed on the site use the default JavaScript format (e.g. *Tue Oct 06 2020 15:49:58 GMT+1100 (AUS Eastern Daylight Time)*). The challenge for this article is to improve the appearance of the dat display for `Author` lifespan information (date of birth/death) and for *BookInstance detail* pages to use the format: Oct 6th, 2016.
+
+<hr>
+
+**Note**: You can use the [same approach](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_12#bookinstance-detail-page-and-challenge) as we used for the *Book Instance List* (adding the virtual property for the lifespan to the `Author` model and use [luxon](https://www.npmjs.com/package/luxon) to format the date strings).
+
+<hr>
+
+To complete this challenge, you must:
+
+1. Replace the variable `due_back` with `due_back_formatted` in the *BookInstance detail* page.
+2. Update the `Author` model to add a lifespan virtual property. The lifespan should look like: *date_of_birth - date_of_death*, where both values have the same data format as `BookInstance.due_back_formatted`.
+3. Use `Author.lifespan` in all views where you currently explicitly use `date_of_birth` and `date_of_death`.
+
+## Next steps
+
+* Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data)
