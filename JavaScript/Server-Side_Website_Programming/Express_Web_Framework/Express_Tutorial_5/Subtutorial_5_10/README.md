@@ -107,4 +107,4 @@ Run the application and open your browser to [http://localhost:3000/](http://loc
 ## Next steps
 
 * Return to [Express Tutorial Part 5: Displaying library data](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5#express-tutorial-part-5-displaying-library-data).
-* Proceed to the next subarticle of part 5: [Author detail page]().
+* Proceed to the next subarticle of part 5: [Author detail page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_5/Subtutorial_5_11#author-detail-page).
