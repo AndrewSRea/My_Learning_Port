@@ -38,3 +38,41 @@ The `submit` input will be displayed as a button (by default). This can be press
 * `method`: The HTTP method used to send the data: `POST` or `GET`.
     - The `POST` method should always be used if the data is going to result in a change to the server's database, because this can be made more resisitant to cross-site forgery request attacks.
     - The `GET` method should only be used for forms that don't change user data (e.g. a search form). It is recommended for when you want to be able to bookmark or share the URL.
+
+### Form handling process
+
+Form handling uses all of the same techniques that we learned for displaying information about our models: the route sends our request to a controller function which performs any database actions required, including reading data from the models, then generates and returns an HTML page. What makes things more complicated is that the server also needs to be able to process the data provided by the user, and redisplay the form with error information if there are any problems.
+
+A process flowchart for processing form requests is shown below, starting with a request for a page containing a form (shown in green):
+
+![Image of a flowchart showing the process for form requests](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/web_server_form_handling.png)
+
+As shown in the diagram above, the main things that form handling code needs to do are:
+
+1. Display the default form the first time it is requested by the user.
+    - The form may contain blank fields (e.g. if you're creating a new record), or it may be pre-populated with initial values (e.g. if you are changing a record, or have useful default initial values).
+2. Receive data submitted by the user, usually in an HTTP `POST` request.
+3. Validate and sanitize.
+4. If any data is invalid, redisplay the form -- this time with any user populated values and error messages for the problem fields.
+5. If all data is valid, perform required actions (e.g. save the data in the database, send a notification email, return the result of a search, upload a file, etc.).
+6. Once all actions are complete, redirect the user to another page.
+
+Often form handling code is implemented using a `GET` route for the initial display of the form and a `POST` route to the same path for handling validation and processing of form data. This is the approach that will be used in this tutorial.
+
+Express itself doesn't provide any specific support for form handling operations, but it can use middleware to process `POST` and `GET` parameters from the form, and to validate/sanitize their values.
+
+### Validation and sanitization
+
+Before the data from a form is stored, it must be validated and sanitized:
+
+* Validation checks that entered values are appropriate for each field (are in the right range, format, etc.), and that values have been supplied for all required fields.
+* Sanitization removes/replaces characters in the data that might potentially be used to send malicious content to the server.
+
+For this tutorial, we'll be using the popular [express-validator](https://www.npmjs.com/package/express-validator) module to perform both validation and sanitization of our form data.
+
+#### Installation
+
+Install the module by running the following command in the root of the project.
+```
+npm install express-validator
+```
