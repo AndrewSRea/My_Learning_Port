@@ -150,3 +150,57 @@ res.render('genre_form', { title: 'Create Genre' });
 res.render('genre_form', { title: 'Create Genre', genre: genre, errors: errors.array() });
 ```
 Create **/views/genre_form.pug** and copy in the text below.
+```
+extends layout 
+
+block content 
+  h1 #{title} 
+
+  form(method='POST' action='')
+    div.form-group 
+      label(for='name') Genre: 
+      input#name.form-control(type='text', placeholder='Fantasy, Poetry, etc.' name='name' value=(undefined===genre ? '' : genre.name))
+    button.btn.btn-primary(type='submit') Submit 
+
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
+```
+Much of this template will be familiar from our previous tutorials. First, we extend the **layout.pug** base template and override the `block` named **'content'**. We then have a heading with the `title` we passed in from the controller (via the `render()` method).
+
+Next, we have the pug code for our HTML form that uses the `POST` method to send the data to the server, and because the `action` is an empty string, will send the data to the same URL as the page.
+
+The form defines a single required field of type "text" called "name". The default *value* of the field depends on whether the `genre` variable is defined. If called from the `GET` route, it will be empty as this is a new form. If called from a `POST` route, it will contain the (invalid) value originally entered by the user.
+
+The last part of the page is the error code. This prints a list of errors, if the error variable has been defined. (In other words, this section will not appear when the template is rendered on the `GET` route.)
+
+<hr>
+
+**Note**: This is just one way to render the errors. You can also get the names of the affected fields from the error variable, and use these to control where the error messages are rendered, whether to apply custom CSS, etc.
+
+<hr>
+
+## What does it look like?
+
+Run the application, open your browser to [http://localhost:3000/](http://localhost:3000/), then select the *Create new genre* link. If everything is set up correctly, your site should look something like the following screenshot. After you enter a value, it should be saved and you'll be taken to the genre detail page.
+
+![Image of the "Create Genre" form page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Create_genre_form/locallibary_express_genre_create_empty.png)
+
+The only error we validate against server-side is that the genre field must not be empty. The screenshot below shows what the error list would look like if you didn't supply a genre (highlighted in red).
+
+![Image of an error list on the "Create Genre" form page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Create_genre_form/locallibary_express_genre_create_error.png)
+
+<hr>
+
+**Note**: Our validation uses `trim()` to ensure that whitespace is not accepted as a genre name. We can also validate that the field is not empty on the client side by adding the value `required='true'` to the field definition in the form:
+```
+input#name.form-control(type='text', placeholder='Fantasy, Poetry, etc.' name='name' value=(undefined===genre ? '' : genre.name), required='true' )
+```
+
+<hr>
+
+## Next steps
+
+* Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
+* Proceed to the next subarticle of part 6: [Create Author form]().
