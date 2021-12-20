@@ -90,3 +90,56 @@ body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).is
 ```
 
 * Parameters are received from the request as strings. We can use `toDate()` (or `toBoolean()`) to cast these to the proper JavaScript types (as shown at the end of the validator chain above).
+
+## View
+
+Create **/views/author_form.pug** and copy in the text below.
+```
+extends layout 
+
+block content 
+  h1=title 
+
+  form(method='POST' action='')
+    div.form-group 
+      label(for='first_name') First Name: 
+      input#first_name.form-control(type='text' placeholder='First name (Christian) last' name='first_name' required='true' value=(undefined===author ? '' : author.first_name) )
+      label(for='family_name') Family Name: 
+      input#family_name.form-control(type='text' placeholder='Family name (surname)' name='family_name' required='true' value=(undefined===author ? '' : author.family_name) )
+    div.form-group 
+      label(for='date_of_birth') Date of birth: 
+      input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===author ? '' : author.date_of_birth) )
+    button.btn.btn-primary(type='submit') Submit 
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
+```
+The structure and behavior for this view is exactly the same as for the **genre_form.pug** template, so we won't describe it again.
+
+<hr>
+
+**Note**: Some browsers don't support the input `type="date"`, so you won't get the datepicker widget or the default *`dd/mm/yyyy`* placeholder, but will instead get an empty plain text field. One workaround is to explicitly add the attribute `placeholder='dd/mm/yyy'` so that on less capable browsers you will still get information about the desired text format.
+
+<hr>
+
+### Challenge: Adding the date of death 
+
+The template above is missing a field for entering the `date_of_death`. Create the field following the same pattern as the date of birth form group!
+
+## What does it look like?
+
+Run the application, open your browser to [http://localhost:3000/](http://localhost:3000/), then select the *Create new author* link. If everything is set up correctly, your site should look something like the following screenshot. After you enter a value, it should be saved and you'll be taken to the author detail page.
+
+![Image of the "Create Author" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Create_author_form/locallibary_express_author_create_empty.png)
+
+<hr>
+
+**Note**: If you experiment with various input formats for the dates, you may find that the format `yyy-mm-dd` misbehaves. This is because JavaScript treats date strings as including the time of 0 hours, but additionally treats date strings in that format (the ISO 8601 standard) as including the time 0 hours UTC, rather than the local time. If you time zone is west of UTC, the date display, being local, will be one day before the date you entered. This is one of several comlexities (such as multi-word family names and multi-author books) that we are not addressing here.
+
+<hr>
+
+## Next steps
+
+* Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
+* Proceed to the next subarticle of part 6: [Create Book form]().
