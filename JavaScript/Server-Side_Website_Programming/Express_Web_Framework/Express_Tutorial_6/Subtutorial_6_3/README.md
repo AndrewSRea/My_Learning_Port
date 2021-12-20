@@ -174,10 +174,10 @@ block content
             label(for=genre._id) #{genre.name} 
     button.btn.btn-primary(type='submit') Submit 
 
-if errors 
-  ul 
-    for error in errors 
-    li!= error.msg
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
 ```
 The view structure and behavior is almost the same as for the **genre_form.pug** template.
 
