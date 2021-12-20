@@ -179,3 +179,27 @@ if errors
     for error in errors 
     li!= error.msg
 ```
+The view structure and behavior is almost the same as for the **genre_form.pug** template.
+
+The main differences are in how we implement the selection-type fields: `Author` and `Genre`.
+
+* The set of genres are displayed as checkboxes, using the `checked` value we set in the controller to determine whether or not the box should be selected.
+
+* The set of authors are displayed as a single-selection alphabetically ordered dropdown list. If the user has previously selected a book author (i.e. when fixing invalid field values after initial form submission, or when updating book details), the author will be reselected when the form is displayed. Here we determine what author to select by comparing the id of the current author option with the value previously entered by the user (passed in via the `book` variable). This is highlighted above!
+
+<hr>
+
+**Note**: If there is an error in the submitted form, then when the form is to be re-rendered, the new book author's id and the existing books authors' ids are of type `Schema.Types.ObjectId`. So to compare them, we must convert them to strings first.
+
+<hr>
+
+## What does it look like?
+
+Run the application, open your browser to [http://localhost:3000/](http://localhost:3000/), then select the *Create new book* link. If everything is set up correctly, your site should look something like the following screenshot. After you submit a valid book, it should be saved and you'll be taken to the book detail page.
+
+![Image of the "Create Book" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Create_book_form/locallibary_express_book_create_empty.png)
+
+## Next steps
+
+* Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
+* Proceed to the next subarticle of part 6: [Create BookInstance form]().
