@@ -203,4 +203,4 @@ input#name.form-control(type='text', placeholder='Fantasy, Poetry, etc.' name='n
 ## Next steps
 
 * Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
-* Proceed to the next subarticle of part 6: [Create Author form]().
+* Proceed to the next subarticle of part 6: [Create Author form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_2#create-author-form).
