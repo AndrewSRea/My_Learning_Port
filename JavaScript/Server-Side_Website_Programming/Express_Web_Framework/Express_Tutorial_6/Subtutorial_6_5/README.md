@@ -122,3 +122,50 @@ block content
 
       button.btn.btn-primary(type='submit') Delete
 ```
+The view extends the layout template, overriding the block named `content`. At the top, it displays the author details. It then includes a conditional statement based on the number of `author_books` (the `if` and `else` clauses).
+
+* If there *are* books associated with the author, then the page lists the books and states that these must be deleted before this `Author` may be deleted.
+* If there *are no books*, then the page displays a confirmation prompt. If the **Delete** button is clicked, then the author id is sent to the server in a `POST` request and that author's record will be deleted.
+
+## Add a delete control
+
+Next, we will add a **Delete** control to the *Author detail view*. (The detail page is a good place from which to delete a record.)
+
+<hr>
+
+**Note**: In a full implementation, the control would be made visible only to authorized users. However, at this point we haven't got an authorization system in place!
+
+<hr>
+
+Open the **/views/author_detail.pug** view and add the following lines at the bottom.
+```
+hr
+p
+  a(href=author.url+'/delete') Delete author 
+```
+The control should now appear as a link, as shown below on the *Author detail* page.
+
+![Image of the "Author detail" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Delete_author_form/locallibary_express_author_detail_delete.png)
+
+## What does it look like?
+
+Run the application, and open your browser to [http://localhost:3000/](http://localhost:3000/). Then select the *All authors* link, and then select a particular author. Finally, select the *Delete author* link.
+
+If the author has no books, you'll be presented with a page like the one below. After pressing **Delete**, the server will delete the author and redirect to the author list.
+
+![Image of the "Delete Author" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Delete_author_form/locallibary_express_author_delete_nobooks.png)
+
+If the author does have books, then you'll be presented with a view like the following. You can then delete the books from their detail pages (once that code is implemented!)
+
+![Image of the "Delete Author Books" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Delete_author_form/locallibary_express_author_delete_withbooks.png)
+
+<hr>
+
+**Note**: The other pages for deleting objects can be implemented in much the same way. We've left that as a challenge.
+
+<hr>
+
+## Next steps
+
+* Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
+* Proceed to the final subarticle of part 6: [Update Book form]().
