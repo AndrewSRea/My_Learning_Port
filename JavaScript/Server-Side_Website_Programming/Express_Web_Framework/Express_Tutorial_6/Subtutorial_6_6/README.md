@@ -134,3 +134,60 @@ exports.book_update_post = [
 ```
 This is very similar to the post route used when creating a Book. First, we validate and sanitize the book data from the form and use it to create a new `Book` object (setting its `_id` value to the id of the object to update). If there are errors when we validate the data, then we re-render the form, additionally displaying the data entered by the user, the errors, and lists of genres and authors. If there are no errors, then we call `Book.findByIdAndUpdate()` to update the `Book` document, and then redirect to its detail page.
 
+## View
+
+Open **/views/book_form.pug**, and update the section where the author form control is set to have is set to have the conditional code shown below.
+```
+div.form-group 
+  label(for='author') Author: 
+  select#author.form-control(type='select', placeholder='Select author' name='author' required='true')
+  - authors.sort(function(a, b) {let textA = a.family_name.toUpperCase(); let textB = b.family_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+for author in authors 
+  if book 
+    //- Handle GET form, where book.author is an object, and POST form, where it is a string
+    option(
+      value=author._id 
+      selected=(
+        author._id.toString()===book.author._id
+        || author._id.toString()==book.author 
+      ) ? 'selected' : false 
+    ) #{author.name} 
+  else 
+    option(value=author._id) #{author.name} 
+```
+
+<hr>
+
+**Note**: This code change is required so that the *book_form* can be used for both creating and updating book objects. (Without this, there is an error on the `GET` route when creating a form.)
+
+<hr>
+
+## Add an update button
+
+Open the **book_detail.pug** view and make sure there are links for both deleting and updating books at the bottom of the page, as shown below.
+```
+hr 
+p 
+  a(href=book.url+'/delete') Delete Book 
+p 
+  a(href=book.url+'/update') Update Book 
+```
+You should now be able to update books from the *Book detail* page.
+
+## What does it look like?
+
+Run the application, open your browser to [http://localhost:3000/](http://localhost:3000/), select the *All books* link, then select a particular book. Finally, select the *Update Book* link.
+
+The form should look just like the *Create book* page, only with a title of "Update Book", and prepopulated with record values.
+
+![Image of the "Update Book" browser page in the LocalLibrary app](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms/Update_Book_form/locallibary_express_book_update_noerrors.png)
+
+<hr>
+
+**Note**: The other pages for updating objects can be implemented in much the same way. We've left that as a challenge.
+
+<hr>
+
+## Next steps
+
+* Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
