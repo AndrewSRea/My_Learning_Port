@@ -168,4 +168,4 @@ If the author does have books, then you'll be presented with a view like the fol
 ## Next steps
 
 * Return to [Express Tutorial Part 6: Working with forms](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms).
-* Proceed to the final subarticle of part 6: [Update Book form]().
+* Proceed to the final subarticle of part 6: [Update Book form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_6#update-book-form).
