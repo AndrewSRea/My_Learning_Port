@@ -56,3 +56,81 @@ When the operations complete, it checks for any errors in the find operation, an
 
 We then mark the currently selected genres as checked and then render the **book_form.pug** view, passing variables for `title`, `book`, all `authors`, and all `genres`.
 
+## Controller -- post route
+
+Find the exported `book_update_post()` controller method, and replace it with the following code.
+```
+// Handle book update on POST
+exports.book_update_post = [
+
+    // Convert the genre to an array
+    (req, res, next) => {
+        if(!(req.body.genre instanceof Array)) {
+            if(typeof req.body.genre==='undefined')
+            req.body.genre=[];
+            else 
+            req.body.genre=new Array(req.body.genre);
+        }
+        next();
+    },
+
+    // Validate and sanitize fields
+    body('title', 'Title must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('author', 'Author must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('summary', 'Summary must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('isbn', 'ISBN must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('genre.*').escape(),
+
+    // Process request after validation and sanitization
+    (req, res, next) => {
+
+        // Extract the validation errors from a request
+        const errors = validationResult(req);
+
+        // Create a Book object with escaped/trimmed data and old id
+        var book = new Book(
+            { title: req.body.title,
+              author: req.body.author,
+              summary: req.body.summary,
+              isbn: req.body.isbn,
+              genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre,
+              _id:req.params.id // This is required, or a new ID will be assigned!
+            });
+
+        if (!errors.isEmpty()) {
+            // There are errors. Render form again with sanitized values/error messages
+
+            // Get all authors and genres for form
+            async.parallel({
+                authors: function(callback) {
+                    Author.find(callback);
+                },
+                genres: function(callback) {
+                    Genre.find(callback);
+                },
+            }, function(err, results) {
+                if (err) { return next(err); }
+
+                // Mark our selected genres as checked
+                for (let i = 0; i < results.genres.length; i++) {
+                    if (book.genre.indexOf(results.genres[i]._id) > -1) {
+                        results.genres[i].checked='true';
+                    }
+                }
+                res.render('book_form', { title: 'Update Book', authors: results.authors, genres: results.genres, book: book, errors: errors.array() });
+            });
+            return;
+        }
+        else {
+            // Data from form is valid. Update the record
+            Book.findByIdAndUpdate(req.params.id, book, {}, function(err, thebook) {
+                if (err) { return next(err); }
+                // Successful - redirect to book detail page
+                res.redirect(thebook.url);
+            });
+        }
+    }
+];
+```
+This is very similar to the post route used when creating a Book. First, we validate and sanitize the book data from the form and use it to create a new `Book` object (setting its `_id` value to the id of the object to update). If there are errors when we validate the data, then we re-render the form, additionally displaying the data entered by the user, the errors, and lists of genres and authors. If there are no errors, then we call `Book.findByIdAndUpdate()` to update the `Book` document, and then redirect to its detail page.
+
