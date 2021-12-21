@@ -158,12 +158,12 @@ router.post('/genre/create', genre_controller.genre_create_post);
 
 The following subarticles will take us through the process of adding the required forms to our example application. You need to read and work through each one in turn, before moving on to the next one.
 
-1. [Create Genre form]() -- Defining a page to create `Genre` objects.
-2. [Create Author form]() -- Defining a page to create `Author` objects.
-3. [Create Book form]() -- Defining a page/form to create `Book` objects.
-4. [Create BookInstance form]() -- Defining a page/form to create `BookInstance` objects.
-5. [Delete Author form]() -- Defining a page to delete `Author` objects.
-6. [Update Book form]() -- Defining a page to update `Book` objects.
+1. [Create Genre form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_1#create-genre-form) -- Defining a page to create `Genre` objects.
+2. [Create Author form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_2#create-author-form) -- Defining a page to create `Author` objects.
+3. [Create Book form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_3#create-book-form) -- Defining a page/form to create `Book` objects.
+4. [Create BookInstance form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_4#create-bookinstance-form) -- Defining a page/form to create `BookInstance` objects.
+5. [Delete Author form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_5#delete-author-form) -- Defining a page to delete `Author` objects.
+6. [Update Book form](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6/Subtutorial_6_6#update-book-form) -- Defining a page to update `Book` objects.
 
 ## Challenge yourself
 
