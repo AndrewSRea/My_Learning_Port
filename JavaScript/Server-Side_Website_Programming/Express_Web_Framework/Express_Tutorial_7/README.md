@@ -68,11 +68,138 @@ Some of the things to consider when choosing a host:
 
 The good news when you're starting out is that there are quite a few sites that provide computing environments for "free", albeit with some conditions. For example, [Heroku](https://www.heroku.com) provides a free but resource-limited *PaaS* environment "forever", while [Amazon Web Services](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html), [Google Cloud](https://cloud.google.com/free/docs/gcp-free-tier), and [Microsoft Azure](https://azure.microsoft.com/en-us/pricing/details/app-service/windows/) provide free credit when you first join.
 
-Many providers also have a "basic" tier that provides more useful levels of computing power and fewer limitations. [Digital Ocean]() is an example of a popular hosting provider that offers a relatively inexpensive basic computing tier (in the $5 per month lower range at time of writing).
+Many providers also have a "basic" tier that provides more useful levels of computing power and fewer limitations. [Digital Ocean](https://www.digitalocean.com/) is an example of a popular hosting provider that offers a relatively inexpensive basic computing tier (in the $5 per month lower range at time of writing).
 
 <hr>
 
 **Note**: Remember that price is not the only selection criterion. If your website is successful, it may turn out that scalability is the most important consideration.
 
 <hr>
+
+## Getting your website ready to publish
+
+The main things to think about when publishing your website are web security and performance. At the bare minimum, you will want to remove the stack traces that are included on error pages during development, tidy up your logging, and set the appropriate headers to avoid many common security threats.
+
+In the following subsections, we outline the most important changes that you should make to your app.
+
+<hr>
+
+**Note**: There are other useful tips in the Express docs -- see [Production best practices: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html) and [Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html).
+
+<hr>
+
+### Set NODE_ENV to 'production'
+
+We can remove stack traces in error pages by setting the `NODE_ENV` environment variable to *production* (it is set to '*development*' by default). In addition to generating less-verbose error messages, setting the variable to *production* caches view templates and CSS files generated from CSS extensions. Tests indicate that setting `NODE_ENV` to *production* can improve app performance by a factor of three!
+
+This change can be made either by using `export`, an environment file, or the OS initialization system.
+
+<hr>
+
+**Note**: This is actually a change you make in your environment setup rather than your app, but important enough to note here! We'll show how this is set for our hosting example below.
+
+<hr>
+
+### Log appropriately
+
+Logging calls can have an impact on a high-traffic website. In a production environment, you may need to log website activity (e.g. tracking traffic or logging API calls) but you should attempt to minimize the amount of logging added for debugging purposes.
+
+One way to minimize "debug" logging in production is to use a module like [debug](https://www.npmjs.com/package/debug) that allows you to control what logging is performed by setting an environment variable. For example, the code fragment below shows how you might set up 'author' logging. The debug variable is declared with the name 'author', and the prefix "author" will be automatically displayed for all logs from this object.
+```
+var debug = require('debug')('author');
+
+// Display Author update form on GET
+exports.author_update_get = function(req, res, next) {
+
+    req.sanitize('id').escape().trim();
+    Author.findById(req.params.id, function(err, author) {
+        if (err) {
+            debug('update error:' + err);
+            return next(err);
+        }
+        // On success
+        res.render('author_form', { title: 'Update Author', author: author });
+    });
+
+};
+```
+You can then enable a particular set of logs by specifying them as a comma-separated list in the `DEBUG` environment variable. You can set the variables for displaying author and book logs as shown (wildcards are also supported).
+```
+# Windows
+set DEBUG=author,book
+
+# Linux
+export DEBUG="author,book"
+```
+
+<hr>
+
+**Note**: Calls to `debug` can replace logging you might previously have done using `console.log()` or `console.error()`. Replace any `console.log()` calls in your code with logging via the [debug](https://www.npmjs.com/package/debug) module. Turn the logging on and off in your development environment by setting the `DEBUG` variable and observe the impact this has on logging.
+
+<hr>
+
+If you need to log website activity, you can use a logging library like [Winston](https://www.npmjs.com/package/winston) or [Bunyan](https://www.npmjs.com/package/bunyan). For more information on this topic, see [Production best practices: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html).
+
+### Use gzip/deflate compression for responses
+
+Web servers can often compress the HTTP response sent back to a client, significantly reducing the time required for the client to get and load the page. The compression method used will depend on the decompression methods the client says it supports in the request. (The response will be sent uncompressed if no compression methods are supported.)
+
+Add this to your site using [compression](https://www.npmjs.com/package/compression) middleware. Install this at the root of your project by running the following command:
+```
+npm install compression
+```
+Open **./app.js** and require the compression library as shown. Add the compression library to the middleware chain with the `use()` method. (This should appear before any routes you want compressed -- in this case, all of them!)
+```
+var catalogRouter = require('./routes/catalog');   // Import routes for "catalog" area of site
+var compression = require('compression');
+
+// Create the Express application object
+var app = express();
+
+...
+
+app.use(compression());   // Compress all routes
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter);   // Add catalog routes to middleware chain.
+
+...
+```
+
+<hr>
+
+**Note**: For a high-traffic website in production, you wouldn't use this middleware. Instead, you would use a reverse proxy like [Nginx](https://nginx.org/).
+
+<hr>
+
+### Use Helmet to protect against well-known vulnerabilities
+
+[Helmet](https://www.npmjs.com/package/helmet) is a middleware package. It can set appropriate HTTP headers that help protect your app from well-known  web vulnerabilities. (See the [docs](https://helmetjs.github.io/) for more information on what headers it sets and vulnerabilities it protects against.)
+
+Install this at the root of your project by running the following command:
+```
+npm install helmet
+```
+Open **./app.js** and require the *helmet* library as shown. Then add the module to the middleware chain with the `use()` method.
+```
+var compression = require('compression');
+var helmet = require('helmet');
+
+// Create the Express application object
+var app = express();
+
+app.use(helmet());
+...
+```
+
+<hr>
+
+**Note**: The command above adds a *subset* of the available headers. (These make sense for most sites.) You can add/disable specific headers as needed by following the [instructions for using helmet here](https://www.npmjs.com/package/helmet).
+
+<hr>
+
+## Example: Installing LocalLibrary on Heroku
 
