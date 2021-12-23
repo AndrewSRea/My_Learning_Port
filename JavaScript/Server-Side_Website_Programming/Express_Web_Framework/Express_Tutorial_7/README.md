@@ -321,3 +321,84 @@ The *best* way to do this is to use *git* to manage your revisions. With *git*, 
 The *easiest* way to do this is to just copy your files into another location. Use whichever approach best matches your knowledge of git!
 
 <hr>
+
+### Update the app for Heroku
+
+This section explains the changes you'll need to make to our *LocalLibrary* application to get it to work on Heroku.
+
+#### Set node version
+
+The **package.json** contains everything needed to work out your application dependencies and what file should be launched to start your site. Heroku detects the presence of this file, and will use it to provision your app environment.
+
+The only useful information missing in our current **package.json** is the version of node. We can find the version of node we're using for development by entering the command:
+```
+> node --version
+v12.18.4
+```
+Open **package.json**, and add this information as an **engines > node** section as shown (using the version number for your system).
+```
+{
+    "name": "express-locallibrary-tutorial",
+    "version": "0.0.0",
+    "engines": {
+        "node": "12.18.4"
+    },
+    "private": true,
+    ...
+```
+
+#### Database configuration
+
+So far in this tutorial, we've used a single database that is hard-coded into **app.js**. Normally we'd like to be able to have a different database for production and development, so next we'll modify the LocalLibrary website to get the database URI from the OS environment (if it has been defined), and otherwise use our development database.
+
+Open **app.js** and find the line that sets the MongoDB connection variable. It will look something like this:
+```
+var mongoDB = 'mongodb+srv://your_user:your_password@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true';
+```
+Replace the line with the following code that uses `process.env.MONGODB_URI` to get the connection string from an environment variable  named `MONGODB_URI` if has been set. (Use your own database URL instead of the placeholder below.)
+```
+// Set up mongoose connection
+var dev_db_url = 'mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true'
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+```
+
+#### Get dependencies and re-test
+
+Before we proceed, let's test the site again and make sure it wasn't affected by any of our changes.
+
+First, we will need to fetch our dependencies. (You will recall we didn't copy the **node_modules** folder into our git tree.) You can do this by running the following command in your terminal at the root of the project:
+```
+npm install
+```
+Now run the site (see [Testing the routes](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_4#testing-the-routes) for the relevant commands) and check that the site still behaves as you expect.
+
+#### Save changes to GitHub
+
+Next, let's save all our changes to GitHub. In the terminal (while inside our repository), enter the following commands:
+```
+git add -A
+git commit -m "Added files and changes required for deployment to heroku"
+git push origin main
+```
+We should now be ready to start deploying *LocalLibrary* on Heroku.
+
+### Get a Heroku account
+
+To start using Heroku, you will first need to create an account. (Skip ahead to [Create and upload the website]() if you've already got an account and installed the Heroku client):
+
+* Go to [www.heroku.com](https://www.heroku.com) and click the **SIGN UP FOR FREE** button.
+* Enter your details and then  press **CREATE FREE ACCOUNT**. You'll be asked to check your account for a sign-up email.
+* Click the account activation link in the signup email. You'll be taken back to your account on the web browser.
+* Enter your password and click **SET PASSWORD AND LOGIN**.
+* You'll then be logged in and taken to the Heroku dashboard: [https://dashboard.heroku.com/apps](https://dashboard.heroku.com/apps).
+
+### Install the client
+
+Download and install the Heroku client by following the [instructions on Heroku here](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up).
+
+After the client is installed, you will be able to run commands. For example, to get help on the client:
+```
+heroku help
+```
+
+### Create and upload the website
