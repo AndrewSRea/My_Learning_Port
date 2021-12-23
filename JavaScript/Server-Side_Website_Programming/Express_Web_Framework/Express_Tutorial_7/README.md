@@ -34,3 +34,45 @@ This sort of remotely accessible computing/networking hardware is referred to as
 
 <hr>
 
+Other hosting provides support Express as part of a *Platform as a Service (PaaS)* offering. When using this sort of hosting, you don't need to worry about most of your production environment (servers, load balancers, etc.) as the host platform takes care of those for you. That makes deployment quite easy because you just need to concentrate on your web application and not any other server infrastructure.
+
+Some developers will choose the increased flexibility provided by IaaS over PaaS, while others will appreciate the reduced maintenance overhead and easier scaling of PaaS. When you're getting started, setting up your website on a PaaS system is much easier, so that is what we'll do in this tutorial.
+
+<hr>
+
+**Note**: If you choose a Node/Express-friendly hosting provider, they should provide instructions on how to set up an Express website using different configurations of web server, application server, reverse proxy, etc. For example, there are many step-by-step guides for various configurations in the [Digital Ocean Node community docs](https://www.digitalocean.com/community/tutorials?q=node).
+
+<hr>
+
+## Choosing a hosting provider
+
+There are numerous hosting providers that are known to either actively support or work well with *Node* (and *Express*). These vendors provide different types of environments (IaaS, PaaS), and different levels of computing and network resources at different prices.
+
+<hr>
+
+**Note**: There are a lot of hosting solutions, and their services and pricing can change over time. While we introduce a few options below, it is worth checking both these and other options before selecting a hosting provider.
+
+<hr>
+
+Some of the things to consider when choosing a host:
+
+* How busy your site is likely to be and the cost of data and computing resources required to meet that demand.
+* Level of support for scaling horizontally (adding more machines) and vertically (upgrading to more powerful machines) and the costs of doing so.
+* Where the supplier has data centers, and hence where access is likely to be the fastest.
+* The host's historical uptime and downtime perfomance.
+* Tools provided for managing the site -- are they easy to use and are they secure (e.g. SFTP vs. FTP).
+* Inbuilt frameworks for monitoring your server.
+* Known limitations. Some hosts will deliberately block certain services (e.g. email). Others offer only a certain number of hours of "live time" in some price tiers, or only offer a small amount of storage.
+* Additional benefits. Some providers will offer free domain names and support for SSL certificates that you would otherwise have to pay for.
+* Whether the "free" tier you're relying on expires over time, and whether the cost of migrating to a more expensive tier means you would have been better off using some other service in the first place!
+
+The good news when you're starting out is that there are quite a few sites that provide computing environments for "free", albeit with some conditions. For example, [Heroku](https://www.heroku.com) provides a free but resource-limited *PaaS* environment "forever", while [Amazon Web Services](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html), [Google Cloud](https://cloud.google.com/free/docs/gcp-free-tier), and [Microsoft Azure](https://azure.microsoft.com/en-us/pricing/details/app-service/windows/) provide free credit when you first join.
+
+Many providers also have a "basic" tier that provides more useful levels of computing power and fewer limitations. [Digital Ocean]() is an example of a popular hosting provider that offers a relatively inexpensive basic computing tier (in the $5 per month lower range at time of writing).
+
+<hr>
+
+**Note**: Remember that price is not the only selection criterion. If your website is successful, it may turn out that scalability is the most important consideration.
+
+<hr>
+
