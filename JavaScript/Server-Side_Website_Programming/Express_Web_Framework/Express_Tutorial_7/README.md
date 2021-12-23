@@ -203,3 +203,35 @@ app.use(helmet());
 
 ## Example: Installing LocalLibrary on Heroku
 
+This section provides a practical demonstration of how to install *LocalLibrary* on the [Heroku PaaS cloud](https://heroku.com).
+
+### Why Heroku?
+
+Heroku is one of the longest-running and popular cloud-based PaaS services. It originally supported only Ruby apps, but now can be used to host apps from many programming environments, including Node (and hence Express!)
+
+We are choosing to use Heroku for several reasons:
+
+* Heroku has a [free tier](https://www.heroku.com/pricing) that is *really* free (albeit with some limitations).
+* As a PaaS, Heroku takes care of a lot of the web infrastructure for us. This makes it much easier to get started because you don't worry about servers, load balancers, reverse proxies, restarting your website on a crash, or any of the other web infrastructure that Heroku provides.
+* While it does have limitations, they will not affect this particular application. For example:
+    - Heroku's free-tier only provides short-lived storage. User-uploaded files are not safely stored on Heroku itself.
+    - The free tier will sleep an inactive web app if there are no requests within a helf-hour period. The site may take several seconds to respond if the dyno is asleep.
+    - The free tier limits your site to a certain amount of hours runtime each month (time "asleep" is not used in the calculation). This is fine for a low use or demonstration site. It's not suitable if 100% uptime is required.
+    - Other limitations are listed in [Limits](https://devcenter.heroku.com/articles/limits) (Heroku docs).
+* If it works and you end up loving it, you'll want to upgrade. Scaling your app on Heroku is very easy.
+
+While Heroku is perfect for hosting this demonstration, it may not be perfect for your real website. Heroku makes things easy to set up and scale. If you need more speed or uptime or add-on features, expect to pay for them.
+
+### How does Heroku work?
+
+Heroku runs websites within one or more "[Dynos](https://devcenter.heroku.com/articles/dynos)". These are isolated, virtualized Unix containers that provide the environment required to run an application. The dynos are completely isolated and have an *ephemeral* file system (a short-lived file system that is cleaned and emptied each time the dyno restarts). The one thing dynos share by default are the application [configuration variables](https://devcenter.heroku.com/articles/config-vars). Internally, Heroku uses a load balancer to distribute web traffic to all "web" dynos. Since nothing is shared between them, Heroku can scale an app horizontally by adding more dynos. You may also need to scale your database to accept additional connections.
+
+Because the file system is ephemeral, you can't directly install services required by your application. Databases, queues, caching systems, storage, email services, etc., are considered "add-ons". Heroku web applications use backing services provided by Heroku and third parties. Once attached to your web application, the add-on services are accessed in your web application via environment variables. For each additional service, charges may apply.
+
+In order to execute your application, Heroku needs to be configured to set up the appropriate environment for your application's dependencies and be told how to start. For Node apps, all the information it needs is obtained from your **package.json** file.
+
+Developers interact with Heroku using a special client app/terminal, which is much like a Unix bash script. This allows you to upload code stored in a git repository, inspect the running processes, see logs, set configuration variables, and much more.
+
+Let's get our application on Heroku. First, we'll initialize a git repository for our Express web application. Next, we'll make some minor changes to the package.json. Once we've done that, we'll set up a Heroku account, install the Heroku client on our local machine and use it to upload our application.
+
+That's all the overview you need in order to get started. (See [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) for a more comprehensive guide.)
