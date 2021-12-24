@@ -384,7 +384,7 @@ We should now be ready to start deploying *LocalLibrary* on Heroku.
 
 ### Get a Heroku account
 
-To start using Heroku, you will first need to create an account. (Skip ahead to [Create and upload the website]() if you've already got an account and installed the Heroku client):
+To start using Heroku, you will first need to create an account. (Skip ahead to [Create and upload the website](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_7#create-and-upload-the-website) if you've already got an account and installed the Heroku client):
 
 * Go to [www.heroku.com](https://www.heroku.com) and click the **SIGN UP FOR FREE** button.
 * Enter your details and then  press **CREATE FREE ACCOUNT**. You'll be asked to check your account for a sign-up email.
@@ -402,3 +402,101 @@ heroku help
 ```
 
 ### Create and upload the website
+
+To create the app, we run the "create" command in the root directory of our repository. This create a git remote ("pointer to a remote repository") named *heroku* in our local git environment.
+```
+heroku create
+```
+
+<hr>
+
+**Note**: You can name the remote, if you like, by specifying a value after "create". If you don't, then you'll get a random name. The name is used in the default URL.
+
+<hr>
+
+We can then  push our app to the Heroku repository as shown below. This will upload the app, get all its dependencies, package it in a dyno, and start the site.
+```
+git push heroku main
+```
+If we're lucky, the app is now "running" on the site. To open your browser and run the new website, use the command:
+```
+heroku open
+```
+
+<hr>
+
+**Note**: This may result in the Heroku page error page. This will be remedied in the next section.
+
+<hr>
+
+**Note**: The site will be running using our development database. Create some books and other objects, and check out whether the site is behaving as you expect. In the next section, we'll set it to use our new database.
+
+<hr>
+
+### Setting configuration variables
+
+You will recall from a preceding section that we need to [set NODE_ENV to 'production'](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_7#set-node_env-to-production) in order to improve our performance and generate less-verbose error messages. We do this by entering the following command:
+```
+> heroku config:set NODE_ENV='production'
+Setting NODE_ENV and restarting limitless-tor-18923... done, v13
+NODE_ENV: production
+```
+We should also use a separate database for production, setting its URI in the **MONGODB_URI** environment variable. You can set up a new database and database-user exactly [as we did originally](), and get its URI. You can set the URI as shown (obviously using your own URI!)
+```
+> heroku config:set MONGODB_URI=mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true
+Setting MONGODB_URI and restarting limitless-tor-18923... done, v3
+MONGODB_URI: mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true
+```
+
+<hr>
+
+**Note** On some operating systems, you may need to set the URL between single quotation marks (e.g. `heroku config:set MONGODB_URI='mongodb+srv://...'`).
+
+<hr>
+
+You can inspect your configuration variables at any time using the `heroku config` command -- try this now:
+```
+> heroku config
+=== limitless-tor-18923 Config Vars
+MONGODB_URI: mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true
+NODE_ENV:    production
+```
+Heroku will restart your app when it updates the variables. If you check the home page now, it should show zero values for your object counts, as the changes above mean that we're now using a new (empty) database.
+
+### Managing addons
+
+Heroku uses independent add-ons to provide backing services to apps -- for example, email or database services. We don't use any add-ons in this website, but they are an important part of working with Heroku, so you may want to check out the topic [Managing Add-ons](https://devcenter.heroku.com/articles/managing-add-ons) (Heroku docs).
+
+### Debugging
+
+The Heroku client provides a few tools for debugging:
+```
+heroku logs # Show current logs
+heroku logs --tail # Show current logs and keep updating with any new results
+heroku ps   # Display dyno status
+```
+
+## Summary
+
+That's the end of this tutorial on setting up Express apps in production, and also the series of tutorials on working with Express. We hope you've found them useful. You can check out a fully worked-through version of the [source code on GitHub here](https://github.com/mdn/express-locallibrary-tutorial).
+
+## See also
+
+* [Production best practices: performance and reliability](https://github.com/mdn/express-locallibrary-tutorial) (Express docs)
+* [Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html) (Express docs)
+* Heroku 
+    - [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) (Heroku docs)
+    - [Deploying Node.js Applications on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) (Heroku docs)
+    - [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support) (Heroku docs)
+    - [Optimizing Node.js Application Concurrency](https://devcenter.heroku.com/articles/node-concurrency) (Heroku docs)
+    - [How Heroku works](https://devcenter.heroku.com/articles/how-heroku-works) (Heroku docs)
+    - [Dynos and the Dyno Manager](https://devcenter.heroku.com/articles/dynos) (Heroku docs)
+    - [Configuration and Config Vars](https://devcenter.heroku.com/articles/config-vars) (Heroku docs)
+    - [Limits](https://devcenter.heroku.com/articles/limits) (Heroku docs)
+* Digital Ocean
+    - [Express](https://www.digitalocean.com/community/tutorials?q=express) tutorials
+    - [Node.js](https://www.digitalocean.com/community/tutorials?q=node.js) tutorials
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework/Express_Tutorial_6#express-tutorial-part-6-working-with-forms) - [[Back to Express/Node Overview]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Express_Web_Framework#express-web-framework-nodejsjavascript)
