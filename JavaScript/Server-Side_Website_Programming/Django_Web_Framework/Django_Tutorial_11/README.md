@@ -199,7 +199,7 @@ Heroku is closely integrated with the **git** source code version control system
 
 <hr>
 
-There are a lot of ways to work with git, but one of the easiest is to first set up an account on [GitHub](), create the repository there, and then sync to it locally:
+There are a lot of ways to work with git, but one of the easiest is to first set up an account on [GitHub](https://github.com/), create the repository there, and then sync to it locally:
 
 1. Visit [https://github.com/](https://github.com/) and create an account.
 2. Once you are logged in, click the **+** link in the top toolbar and select **New repository**.
@@ -214,7 +214,7 @@ There are a lot of ways to work with git, but one of the easiest is to first set
 
 Now that the repository ("repo") is created, we are going to want to clone it on our local computer:
 
-1. Install *git* for your local computer. (You can find versions for different platforms [here]().)
+1. Install *git* for your local computer. (You can find versions for different platforms [here](https://git-scm.com/downloads).)
 
 2. Open a command prompt/terminal and clone your repository using the URL you copied above. (**Make sure to navigate out of your *django-projects* folder into a folder where you are willing to put this new cloned *django_local_library* folder**):
 ```
@@ -410,7 +410,7 @@ There are many ways to serve static files in production. (We saw the relevant Dj
 
 <hr>
 
-The steps to set up *WhiteNoise* to use with the project are [given here]() (and reproduced below):
+The steps to set up *WhiteNoise* to use with the project are [given here](https://whitenoise.evans.io/en/stable/django.html) (and reproduced below):
 
 ##### WhiteNoise
 
@@ -471,7 +471,7 @@ python-3.8.6
 
 <hr>
 
-**Note**: Heroku only supports a small number of [Python runtimes]() (at time of writing, this includes the one above). Heroku will use a supported runtime irrespective of the value specified in this file.
+**Note**: Heroku only supports a small number of [Python runtimes](https://devcenter.heroku.com/articles/python-support#supported-python-runtimes) (at time of writing, this includes the one above). Heroku will use a supported runtime irrespective of the value specified in this file.
 
 <hr>
 
@@ -525,7 +525,7 @@ We can then push our app to the Heroku repository as shown below. This will uplo
 ```
 git push heroku main
 ```
-If we're lucky, the app is now "running" on the site, but it won't be working properly because we haven't set up the database tables for use by our application. To do this, we need to use the `heroku run` command and start a "[one off dyno]()" to perform a migrate operation. Enter the following command in your terminal:
+If we're lucky, the app is now "running" on the site, but it won't be working properly because we haven't set up the database tables for use by our application. To do this, we need to use the `heroku run` command and start a "[one off dyno](https://devcenter.heroku.com/articles/deploying-python#one-off-dynos)" to perform a migrate operation. Enter the following command in your terminal:
 ```
 heroku run python manage.py migrate
 ```
