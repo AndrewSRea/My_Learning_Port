@@ -1,0 +1,3 @@
+# Alternate instructions for deploying a Django app to Heroku
+
+In case you followed the instructions in the [Django Tutorial Part 11: Deploying Django to production](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#django-tutorial-part-11-deploying-django-to-production) in full, yet you were still unable to deploy your *LocalLibrary* Django application to Heroku, then this article will give you step-by-step instructions for how to set up the *LocalLibrary* Django application locally with all of the necessary components you'll need in order to host your Django app for deployment on the Heroku website.
