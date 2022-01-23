@@ -2,6 +2,18 @@
 
 Now you've created (and tested) an awesome [LocalLibrary](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_Local_Library#django-tutorial-the-local-library-website) website, you're going to want to install it on a public web server so that it can be accessed by library staff and members over the Internet. This article provides an overview of how you might go about finding a host to deploy your website, and what you need to do in order to get your site ready for production.
 
+<hr>
+
+:exclamation: **Attention**: After following all of the previous tutorials, I have a *LocalLibrary* Django app working on my local code editor. However, in following the instructions listed below in this tutorial, I was unable to get my *LocalLibrary* Django app deployed on the Heroku website.
+
+I searched high and low across the Internet for a solution to this, and finally found one in an instructional YouTube video tutorial named [Python Django Tutorial: Deploying Your Application (Option #2) - Deploy using Heroku](https://youtu.be/6DI_7Zja8Zc), part of a series of [instructional YouTube videos](https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p) hosted by [Corey Schafer](https://coreyms.com/), in which he guides viewers in building a Django blog application.
+
+Corey Schafer's YouTube videos were very helpful in building another Django application, and guiding me through the deployment process to host the blog application on Heroku. However, there were some steps within the **Python Django Tutorial: Deploying Your Application (Option #2) - Deploy using Heroku** YouTube video which were perhaps omitted due to the time the videos were posted.
+
+So I am going to include all of these steps for deploying a Django application to Heroku in an accompanying folder: [Alternate instructions for deploying a Django app to Heroku](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Alt_Instructions_Deployment#alternate-instructions-for-deploying-a-django-app-to-heroku). Follow along if you also have trouble deploying your *LocalLibrary* Django app with the instructions provided below.
+
+<hr>
+
 ## Overview
 
 Once your site is finished (or finished "enough" to start public testing), you're going to need to host it somewhere more public and accessible than your personal development computer.
