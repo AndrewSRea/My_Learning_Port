@@ -272,7 +272,7 @@ git push origin main
 
 <hr>
 
-:warning: **Warning**: In 2020, GitHub changed the default repo branch name to "main" (from "master"). If using an older/exiasting repository, you might call `git push origin master` instead.
+:warning: **Warning**: In 2020, GitHub changed the default repo branch name to "main" (from "master"). If using an older/existing repository, you might call `git push origin master` instead.
 
 <hr>
 
