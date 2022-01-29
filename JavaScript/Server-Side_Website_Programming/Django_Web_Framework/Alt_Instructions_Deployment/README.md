@@ -121,10 +121,6 @@ pip freeze > requirements.txt
 ```
 This will create a `requirements.txt` file in your root directory, and "pipe" all of the *pip* installations you have downloaded into your application into the `requirements.txt` file. If you open up your `requirements.txt` file, you should see all of your *pip* installations listed there.
 
-<!-- Review this section for instructions which shouldn't be there. **Change this to opening an account on GitHub if user has not already done so. Put the other part about creating a repo down lower. -->
-
-<!-- This Github section of the text needs to be broken apart, and put down lower. Follow the Corey Schafer instructions and add from MDN if needed. -->
-
 ## Creating an application repository in GitHub
 
 Heroku is closely integrated with the **git** source code version control system, using it to upload/synchronize any changes you make to the live system. It does this by adding a new Heroku "remote" repository named *heroku* pointing to a repository for your source on the Heroku cloud. During development, you use git to store changes on your own repository. When you want to deploy your site, you sync your changes to the Heroku repository.
@@ -141,12 +137,12 @@ There are a lot of ways to work with git, but one of the easiest is to first set
 2. Once you are logged in, click the **+** link in the top toolbar and select **New repository**.
 3. Fill in all the fields on this form. While these are not compulsory, they are strongly recommended.
     - Enter a new repository name (e.g. *django_local_library*), and description (e.g. "Local Library website written in Django").
-    - Choose **Python** in the *Add .gitignore* selection list.
+    - Don't choose to *Add .gitignore* just yet. We will manually add a `.gitignore` file later.
     - Choose your preferred license in the *Add license* selection list.
     - Check **Initialize this repository with a README**.
 4. Press **Create repository**.
 5. Click the green "**Clone or download** button on your new repo page.
-6. Copy the URL value from the text field inside the dialog box that appears. (It should be something like: **https://bithub.com/<your_git_user_id>/django_local_library.git**).
+6. Copy the URL value from the text field inside the dialog box that appears. (It should be something like: **https://github.com/<your_git_user_id>/django_local_library.git**).
 
 Now that the repository ("repo") is created, we are going to want to clone it on our local computer:
 
@@ -157,30 +153,41 @@ Now that the repository ("repo") is created, we are going to want to clone it on
 git clone https://github.com/<your_git_user_id>/django_local_library.git
 ```
 
-3. Navigate into the new repo.
+3. Copy your Django application into this folder (all the files at the same level as **manage.py** and below, **not** their containing locallibrary folder).
+
+4. Follow the instructions below to **Create a `.gitignore` file**.
+
+### Create a `.gitignore` file
+
+There are certain files we do not want tracked within our Git repository nor within our Heroku application, as these files may cause errors when we try to deploy our application to Heroku -- as well as create error messages within our GitHub repository.
+
+Therefore, we need to create a `.gitignore` file (note the period `.` at the start of the `.gitignore` name, which is very important!) Again, in the root directory of your *LocalLibrary* application, create a `.gitignore` file there (exactly as spelled). Then, from his YouTube video tutorial named [Python Django Tutorial: Deploying Your Application (Option #2) - Deploy using Heroku](https://youtu.be/6DI_7Zja8Zc), Corey Schafer has provided a link to a GitHub repo displaying [a typical Python `.gitignore` file](https://github.com/github/gitignore/blob/main/Python.gitignore) for use when deploying a Python (Django) application to Heroku.
+
+Copy all of the text within that file, and paste it within the `.gitignore` file you have just created. As with all additions to your application, make sure you save any and all changes.
+
+<hr>
+
+:exclamation: **Attention**: For MAC users, it is suggested that you add an extra line at the top of your `.gitignore` file:
+```
+.DS_Store
+```
+This is just another file which needs to be ignored in applications created using a MAC when those applications get deployed to Heroku.
+
+<hr>
+
+### Continuing with creating an application repository in GitHub
+
+Now, navigate into the new repo.
 ```
 cd django_local_library
 ```
 
-The final steps are to copy your application into this local project directory and then add (or "push", in git lingo) the local repository to your remote GitHub repository:
-
-1. Copy your Django application into this folder (all the files at the same level as **manage.py** and below, **not** their containing locallibrary folder).
-
-2. Open the **.gitignore** file, copy the following lines into the bottom of it, and then save. (This file is used to identify files that should not be uploaded to git by default).
-```
-# Text backup files
-*.bak
-
-# Database
-*.sqlite3
-```
-
-3. Open a command prompt/terminal and use the `add` command to add all files to git. This adds the files which aren't ignored by the **.gitignore** file to the "staging area".
+1. Open a command prompt/terminal and use the `add` command to add all files to git. This adds the files which aren't ignored by the **.gitignore** file to the "staging area".
 ```
 git add -A
 ```
 
-4. Use the `status` command to check that all files you are about to `commit` are correct. (You want to include source files, not binaries, temporary files, etc.) It should look a bit like the listing below:
+2. Use the `status` command to check that all files you are about to `commit` are correct. (You want to include source files, not binaries, temporary files, etc.) It should look a bit like the listing below:
 ```
 > git status
 On branch main
@@ -196,12 +203,12 @@ Changes to be committed:
         new file:    templates/registration/password_reset_form.html
 ```
 
-5. When you're satisfied, `commit` the files to your local repository. This is essentially equivalent to signing off on the changes and making them an official part of the local repository.
+3. When you're satisfied, `commit` the files to your local repository. This is essentially equivalent to signing off on the changes and making them an official part of the local repository.
 ```
 git commit -m "First version of application moved into github"
 ```
 
-6. At this point, the remote repository has not been changed. Synchronize (`push`) your local repository to the remote GitHub repository using the following command:
+4. At this point, the remote repository has not been changed. Synchronize (`push`) your local repository to the remote GitHub repository using the following command:
 ```
 git push origin main
 ```
@@ -224,20 +231,59 @@ The *easiest* way to do this is to just copy your files into another location. U
 
 <hr>
 
-## Create a `.gitignore` file
+## Create and upload the application to Heroku
 
-There are certain files we do not want tracked within our Git repository nor within our Heroku application, as these files may cause errors when we try to deploy our application to Heroku -- as well as create error messages within our GitHub repository.
-
-Therefore, we need to create a `.gitignore` file (note the period `.` at the start of the `.gitignore` name, which is very important!) Again, in the root directory of your *LocalLibrary* application, create a `.gitignore` file there (exactly as spelled). Then, from his YouTube video tutorial named [Python Django Tutorial: Deploying Your Application (Option #2) - Deploy using Heroku](https://youtu.be/6DI_7Zja8Zc), Corey Schafer has provided a link to a GitHub repo displaying [a typical Python `.gitignore` file](https://github.com/github/gitignore/blob/main/Python.gitignore) for use when deploying a Python (Django) application to Heroku.
-
-Copy all of the text within that file, and paste it within the `.gitignore` file you have just created. As with all additions to your application, make sure you save any and all changes.
+To create the app, we run the "create" command in the root directory of our repository. This creates a git remote ("pointer to a remote repository") named *heroku* in our local git environment.
+```
+heroku create
+```
 
 <hr>
 
-:exclamation: **Attention**: For MAC users, it is suggested that you add an extra line at the top of your `.gitignore` file:
-```
-.DS_Store
-```
-This is just another file which needs to be ignored in applications created using a MAC when those applications get deployed to Heroku.
+**Note**: You can name the remote if you like by specifying a value after "`create`". If you don't, then you'll get a random name generated by Heroku. The name is used in the default URL of your app.
 
 <hr>
+
+You can check to see if your app has been deployed to Heroku by typing the following on your CLI:
+```
+heroku open
+```
+This will open up a browser window to your deployed app on Heroku. 
+
+What you will see in the browser window will not look like what you have seen when you have opened your Django application locally on your own browser. This is because there are still more steps to go through to finish deploying your app on Heroku.
+
+On the default browser for your Heroku app, you should see a message which states, "**Heroku | Welcome to your new app!**", with a line below it saying, "Refer to the **documentation** if you need help deploying." If you see this message, congratulations! You have successfully created a connection between your local app and Heroku.
+
+You can then fully push your app to the Heroku repository with the following command on the CLI: 
+```
+git push heroku main
+```
+You will see the `push` start to work inside your terminal, but after some time the `push` will reject and fail. If you scroll up and search through the text in your terminal, you will see some text which says:
+```
+remote:  !     Error while running '$ python manage.py collectstatic -- noinput'.
+```
+Just above that, there is another error message which reads:
+```
+remote:        django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app without having set the STATIC_ROOT setting to a filesystem path.
+```
+Basically, this error has happened because the static files we have added to our app -- like CSS and JavaScript -- are rejected when they are deployed to Heroku. So some further changes must be made to our app.
+
+## Making changes to the `settings.py` file
+
+Open **/locallibrary/settings.py** and right above this line of code which reads: 
+```
+STATIC_URL = '/static/'
+```
+...write the following code line:
+```
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+```
+Make sure you have `import os` written near the top of your `settings.py` file; otherwise, this line of code will be rejected when you try again to `push` your changes to Heroku.
+
+At this point, we will run all of our `git` commands on the CLI to push our changes into Heroku:
+```
+git add -A
+git commit -m "Updated 'settings.py' file with a 'STATIC_ROOT'"
+git push heroku main
+```
+If you type `heroku open` again to open your Heroku app in a browser
