@@ -285,5 +285,76 @@ At this point, we will run all of our `git` commands on the CLI to push our chan
 git add -A
 git commit -m "Updated 'settings.py' file with a 'STATIC_ROOT'"
 git push heroku main
+git push origin main
 ```
-If you type `heroku open` again to open your Heroku app in a browser
+
+## Debugging using Heroku CLI commands
+
+If you type `heroku open` again after adding your changes to Heroku using `git`, a browser window will open again on your Heroku app, but there will be an error message displayed on the browser once again, which reads:
+
+Application error
+
+An error occurred in the application and your page could not be served. If you are the application owner, check your logs for details.
+
+You can do this from the Heroku CLI with the command
+
+`heroku logs --tail`
+
+If you type `heroku logs --tail` on your CLI, you will receive an overwhelming amount of text. But if you focus in on the bottom of the `logs`, then you will see an error message stating:
+```
+heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" ...
+```
+This is because we have not yet implemented a way to tell Heroku how to run our application in Heroku. And the way to do that is to create what is known as a *Procfile* in the root directory of our application.
+
+## Creating a *Procfile*
+
+A *Procfile* is a list of processes to be executed in order for Heroku to host our application. For Django, this is usually the Gunicorn web application server (with a `.wsgi` script) which we downloaded into our application with *pip* earlier.
+
+Create a Procfile in the root directory of your application (exactly as it is spelled, with a capital "P", and without an extension on the end).
+
+Within the file, type the following:
+```
+web: gunicorn locallibrary.wsgi
+```
+The "`web:`" tells Heroku that this is a web dyno and can be sent HTTP traffic. The process to start in this dyno is *gunicorn*, which is a popular web application server that Heroku recommends. We start Gunicorn using the configuration information in the module `locallibrary.wsgi` (which was created with our application skeleton: **/locallibrary/wsgi.py**).
+
+Back in your terminal, your `heroku logs` will still be running. To exit out of those logs, just type <kbd>Ctrl</kbd> + <kbd>C</kbd> to return to the CLI.
+
+Once again, run through all of your `git` commands to save the additions and changes you've made to your application.
+```
+git add -A
+git commit -m "Added Procfile"
+git push heroku main
+git push origin main
+```
+
+## Adding your Heroku application's `URL` to `ALLOWED_HOSTS`
+
+Once again, if you type `heroku open` on the CLI, when the browser opens on your Heroku app, you will then start to see a familiar-looking error message displayed from Django. (Yes, these error messages are getting tiresome. But as we are working through this Heroku app deployment step-by-step, and not processing the entire application all at once, we will, unfortunately, receive error messages as we go along. Hang in there!)
+
+The error message you receive from Django should relatively read as follows:
+```
+Invalid HTTP_HOST header: '<your-heroku-app-name>.herokuapp.com'. You may need to add '<your-heroku-app-name>.herokuapp.com' to ALLOWED_HOSTS.
+```
+This is because the [`ALLOWED_HOSTS`](https://docs.djangoproject.com/en/4.0/ref/settings/#allowed-hosts) setting is *required* if you have `DEBUG=False` (as a security measure -- which we will change later). Copy the URL of your Heroku app (as seen in the error message above: `'<your-heroku-app-name>.herokuapp.com'`), open **/locallibrary.settings.py** and change the `ALLOWED_HOSTS` setting to include your Heroku app URL:
+```
+ALLOWED_HOSTS = ['<your-heroku-app-name>.herokuapp.com']
+```
+**Don't forget to save your changes in your local code editor.**
+
+## Creating an `.env` file to hide certain components for security reasons
+
+Some of the Django project settings (specified in **settings.py**) which were created when we [initiated the skeleton of our project](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website) should be different when hosting our project on another platform, either for security or performance reasons.
+
+<hr>
+
+**Note**: It is common to have a separate **settings.py** file for production, and to import sensitive settings from a separate file or an environment variable. This file should then be protected, even if the rest of the source code is available on a public repository.
+
+<hr>
+
+The critical settings that you must check are: 
+
+* `DEBUG`: This should be set as `False` in production (`DEBUG = False`). This stops the sensitive/confidential debug trace and variable information from being displayed. (Don't do this yet, though, We'll get to it later.)
+* `SECRET_KEY`: This is a large random value used for CSRF protection, etc. It is important that the key used in production is not in source control or accessible outside the production server. The Django documents suggest that this might best be loaded from an environment variable or read from a server-only file.
+
+We are going to create an environment variable file, or `.env` file, to store our `SECRET_KEY` so that it cannot be accessed by any possible exterior attacks to our application.
