@@ -83,11 +83,47 @@ A message will return which states:
 ```
 heroku: Press any key to open up the browser to login or q to exit:
 ```
-Pressing any key on your keyboard will open up a browser window on Heroku's login page. Press the "Log in" button to log into your Heroku account. Some form fields will appear on the browser, prompting you to "Log in to your account. Enter the email address and password you used to create your Heroku account in the corresponding form fields, and press the "Log In" button.
+Pressing any key on your keyboard will open up a browser window on Heroku's login page. Press the "Log in" button to log into your Heroku account. Some form fields will appear on the browser, prompting you to "Log in to your account". Enter the email address and password you used to create your Heroku account in the corresponding form fields, and press the "Log In" button.
 
 You should then receive a message in the Heroku browser which says, "Logged in," and "You can close this page and return to your CLI. It should now be logged in." Go ahead and close the Heroku browser page, and return to your CLI.
 
+## Install Gunicorn
+
+[Gunicorn](https://gunicorn.org/) is the recommended HTTP server for use with Django on Heroku. It is a pure-Python HTTP server for WSGI applications that can run multiple Python concurrent processes within a single dyno. (See [Deploying Python applications with Gunicorn](https://devcenter.heroku.com/articles/python-gunicorn) for more information.)
+
+While we won't need *Gunicorn* to serve our *LocalLibrary* application during development, we'll install it so that it becomes part of our [requirements]() <!-- below --> for Heroku to set up on the remote server.
+
+Install *Gunicorn* locally on the CLI using *pip* (which you should have installed when [setting up the development environment](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Development_Environment#setting-up-a-django-development-environment)):
+
+<hr>
+
+**Note**: Make sure that you're in your Python virtual environment (use the `workon [name-of-virtual-environment]` command) before you install *Gunicorn* and further modules with *pip*, or you might experience problems with importing these modules in your **/locallibrary/settings.py** file later.
+
+<hr>
+
+```
+pip install gunicorn
+```
+
+## Requirements
+
+The Python requirements of your web application must be stored in a file `requirements.txt` in the root directory of your *LocalLibrary* Django application (on the same level as your `manage.py` file). Heroku will then install these automatically when it rebuilds your environment.
+
+In your terminal, run this command on the CLI:
+```
+pip freeze
+```
+This will display a list of all the *pip* installations you have installed into your project thus far. These *pip* installations need to be put into a `requirements.txt` file so your application will be compatible with Heroku and give it the ability to be deployed.
+
+On a MAC/Linux terminal, all that needs to be done is type this command on the CLI:
+```
+pip freeze > requirements.txt
+```
+This will create a `requirements.txt` file in your root directory, and "pipe" all of the *pip* installations you have downloaded into your application into the `requirements.txt` file. If you open up your `requirements.txt` file, you should see all of your *pip* installations listed there.
+
 <!-- Review this section for instructions which shouldn't be there. **Change this to opening an account on GitHub if user has not already done so. Put the other part about creating a repo down lower. -->
+
+<!-- This Github section of the text needs to be broken apart, and put down lower. Follow the Corey Schafer instructions and add from MDN if needed. -->
 
 ## Creating an application repository in GitHub
 
@@ -184,6 +220,24 @@ When this operation completes, you should be able to go back to the page on GitH
 
 The *best* way to do this is to use *git* to manage your revisions. With *git* you can not only go back to a particular old version, but you can maintain this in a separate "branch" from your production changes and cherry-pick any changes to move between production and development branches. [Learning Git](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) is well worth the effort, but is beyond the scope of this topic.
 
-The *easiest* way to do this is to just copy your files into another location. Use whichever appraoch best matches your knowledge of git!
+The *easiest* way to do this is to just copy your files into another location. Use whichever approach best matches your knowledge of git!
+
+<hr>
+
+## Create a `.gitignore` file
+
+There are certain files we do not want tracked within our Git repository nor within our Heroku application, as these files may cause errors when we try to deploy our application to Heroku -- as well as create error messages within our GitHub repository.
+
+Therefore, we need to create a `.gitignore` file (note the period `.` at the start of the `.gitignore` name, which is very important!) Again, in the root directory of your *LocalLibrary* application, create a `.gitignore` file there (exactly as spelled). Then, from his YouTube video tutorial named [Python Django Tutorial: Deploying Your Application (Option #2) - Deploy using Heroku](https://youtu.be/6DI_7Zja8Zc), Corey Schafer has provided a link to a GitHub repo displaying [a typical Python `.gitignore` file](https://github.com/github/gitignore/blob/main/Python.gitignore) for use when deploying a Python (Django) application to Heroku.
+
+Copy all of the text within that file, and paste it within the `.gitignore` file you have just created. As with all additions to your application, make sure you save any and all changes.
+
+<hr>
+
+:exclamation: **Attention**: For MAC users, it is suggested that you add an extra line at the top of your `.gitignore` file:
+```
+.DS_Store
+```
+This is just another file which needs to be ignored in applications created using a MAC when those applications get deployed to Heroku.
 
 <hr>
