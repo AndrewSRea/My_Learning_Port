@@ -358,3 +358,31 @@ The critical settings that you must check are:
 * `SECRET_KEY`: This is a large random value used for CSRF protection, etc. It is important that the key used in production is not in source control or accessible outside the production server. The Django documents suggest that this might best be loaded from an environment variable or read from a server-only file.
 
 We are going to create an environment variable file, or `.env` file, to store our `SECRET_KEY` so that it cannot be accessed by any possible exterior attacks to our application.
+
+First, let's create a `SECRET_KEY` variable for use in our *LocalLibrary* app. One way to generate a new key is to use the [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/). This link will take you to a website called "Miniwebtool". Scroll down the website until you see a large green button titled "Generate Django Secret Key". Press it and the application will generate a `SECRET_KEY` variable for you. (You may have to scroll down the website again to find the generated `SECRET_KEY`.) Copy the `SECRET_KEY` variable, then open your `settings.py` file, and paste the `SECRET_KEY` within the quotation marks next to `SECRET_KEY`:
+```
+SECRET_KEY = '<your-new-secret-key-goes-here>'
+```
+It's OK to store your new `SECRET_KEY` here for now, but we will be moving it into the aforementioned `.env` file soon.
+
+An `.env` file, or dotenv file, is a simple text configuration file for controlling your application's environment constants. Between local, staging and production environments, the majority of your application will not change. However, in many applications there are instances in which some configuration will need to be altered between environments. Common configuration changes between environments may include, but are not limited to, URL's and API keys.
+
+`.env` files are line delimitated text files, meaning that each new line represents a single variable. By convention, `.env` variable names are uppercase words separated by underscores. Variable names are followed directly by an equals sign (`=`) which, in turn, is followed directly by the value, for example:
+```
+VARIABLE_NAME=value
+```
+
+Now let's create that `.env` file. Make sure you are in the root directory of your project and create the `.env` file on your CLI, exactly as written: `.env`. Now open your `settings.py` file again, and copy your `SECRET_KEY` variable. Then open your new `.env` file, and type the following:
+```
+export SECRET_KEY=
+```
+And paste your `SECRET_KEY` variable right next to the equals sign (`=`), without spaces (no space after the equals sign!) and without quotes. 
+
+The `export` in the code text will export your `SECRET_KEY` variable out to any file which is asking for it -- which will be your `settings.py` file. So we need to go back into the `settings.py` file and change the `SECRET_KEY` settings to:
+```
+SECRET_KEY = os.environ.get('SECRET_KEY')
+```
+`os.environ` is a mapping object that represents a user's environmental variables. It returns a dictionary having a user's environmental variable as a key (`SECRET_KEY`) and their values as the value (your generated alphanumeric `SECRET_KEY`). `get` retrieves your alphanumeric `SECRET_KEY` from the `.env` file you just created.
+
+We will use the `.env` file to store our `DEBUG_VALUE` as well, further down these instructions. But other variables you would want to keep secret from the public would be any usernames, passwords, or email addresses. It's good practice to have a secret stored file for these variables in order to prevent hacking.
+
