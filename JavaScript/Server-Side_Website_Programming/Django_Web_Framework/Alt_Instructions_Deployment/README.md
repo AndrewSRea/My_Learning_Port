@@ -312,7 +312,7 @@ A *Procfile* is a list of processes to be executed in order for Heroku to host o
 
 Create a Procfile in the root directory of your application (exactly as it is spelled, with a capital "P", and without an extension on the end).
 
-Within the file, type the following:
+Within the Procfile, type the following:
 ```
 web: gunicorn locallibrary.wsgi
 ```
@@ -328,7 +328,7 @@ git push heroku main
 git push origin main
 ```
 
-## Adding your Heroku application's `URL` to `ALLOWED_HOSTS`
+## Adding your Heroku application's URL to `ALLOWED_HOSTS`
 
 Once again, if you type `heroku open` on the CLI, when the browser opens on your Heroku app, you will then start to see a familiar-looking error message displayed from Django. (Yes, these error messages are getting tiresome. But as we are working through this Heroku app deployment step-by-step, and not processing the entire application all at once, we will, unfortunately, receive error messages as we go along. Hang in there!)
 
@@ -354,7 +354,7 @@ Some of the Django project settings (specified in **settings.py**) which were cr
 
 The critical settings that you must check are: 
 
-* `DEBUG`: This should be set as `False` in production (`DEBUG = False`). This stops the sensitive/confidential debug trace and variable information from being displayed. (Don't do this yet, though, We'll get to it later.)
+* `DEBUG`: This should be set as `False` in production (`DEBUG = False`). This stops the sensitive/confidential debug trace and variable information from being displayed. (Don't do this yet, though. We'll get to it later.)
 * `SECRET_KEY`: This is a large random value used for CSRF protection, etc. It is important that the key used in production is not in source control or accessible outside the production server. The Django documents suggest that this might best be loaded from an environment variable or read from a server-only file.
 
 We are going to create an environment variable file, or `.env` file, to store our `SECRET_KEY` so that it cannot be accessed by any possible exterior attacks to our application.
@@ -378,11 +378,73 @@ export SECRET_KEY=
 ```
 And paste your `SECRET_KEY` variable right next to the equals sign (`=`), without spaces (no space after the equals sign!) and without quotes. 
 
-The `export` in the code text will export your `SECRET_KEY` variable out to any file which is asking for it -- which will be your `settings.py` file. So we need to go back into the `settings.py` file and change the `SECRET_KEY` settings to:
+The `export` in the code text will export your `SECRET_KEY` variable out to any file which is asking for it -- which will be your `settings.py` file.
+
+We will use the `.env` file to store our `DEBUG_VALUE` as well, so go back to your `.env` file and type the following as well:
+```
+export DEBUG_VALUE="True"
+```
+This will ensure that you are still able to use the debugging services Django provides locally in your application. But we will change this value in our application later, to ensure your application works when it is deployed to Heroku.
+
+### Set the configuration settings for your deployed Heroku app
+
+Now we have to set the `SECRET_KEY` and `DEBUG_VALUE` configuration settings in the *LocalLibrary* app in Heroku.
+
+To do this, on your CLI type:
+```
+heroku config:set SECRET_KEY="<your-secret-key>"
+```
+And press <kbd>Enter</kbd>. You should see a message such as `Setting SECRET_KEY and restarting...` Your terminal will tell you when the process is done.
+
+Then set the `DEBUG_VALUE` for your Heroku app:
+```
+heroku config:set DEBUG_VALUE="True"
+```
+
+Now we need to make some changes to the `SECRET_KEY` variable in our `settings.py` file. Open the `settings.py` file  and change the `SECRET_KEY` settings to:
 ```
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ```
-`os.environ` is a mapping object that represents a user's environmental variables. It returns a dictionary having a user's environmental variable as a key (`SECRET_KEY`) and their values as the value (your generated alphanumeric `SECRET_KEY`). `get` retrieves your alphanumeric `SECRET_KEY` from the `.env` file you just created.
+`os.environ` is a mapping object that represents a user's environmental variables. It returns a dictionary having a user's environmental variable as a key (`SECRET_KEY`) and their values as the value (your generated alphanumeric `SECRET_KEY`). `get` retrieves your alphanumeric `SECRET_KEY` from the `.env` file you created earlier.
 
-We will use the `.env` file to store our `DEBUG_VALUE` as well, further down these instructions. But other variables you would want to keep secret from the public would be any usernames, passwords, or email addresses. It's good practice to have a secret stored file for these variables in order to prevent hacking.
+We'll change the `DEBUG_VALUE` later on in these instructions, as we will still be making changes to the *LocalLibrary* app.
 
+Now that we've made all these changes to our application, let's run through all the `git` commands again to save the additions and changes you've made.
+```
+git add -A
+git commit -m "Added an '.env' file and updated configuration settings"
+git push heroku main
+git push origin main
+```
+
+## Setting up a PostgreSQL database for your Heroku application
+
+Now you can open your application on Heroku again by typing `heroku open` on your CLI.
+
+In the browser, there will be another error listed. (*When will these errors end?*) Another error displayed by your Django app should read:
+```
+OperationError at/
+no such table: ...
+```
+This error is due to the fact that we haven't yet pushed our SQLite database tables into our Heroku app. But we will be substituting the SQLite database (which was automatically installed when we [initiated the skeleton of our project](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_2#django-tutorial-part-2-creating-a-skeleton-website)) with a PostgreSQL database, which is more compatible when deploying Django applications on Heroku.
+
+Follow the instructions for setting up a PostgreSQL database for your Heroku app through the instructions listed below, based on different operating system users.
+
+* [Mac setup](https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac)
+* [Windows setup](https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-windows)
+* [Linux setup](https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-linux)
+
+When you have finished following the instructions for setting up a PostgreSQL database in your Heroku application, you can check to make it was installed properly by tying the following in your CLI:
+```
+heroku addons
+```
+The following should return in your terminal:
+```
+Add-on                                                                          Plan       Price  State
+______________________________________________________________________________  _________  _____  _______
+heroku-postgresql (postgresql-<heroku-name-given-to-your-postgresql-database>)  hobby-dev  free   created
+ |-- as DATABASE
+
+The table above shows add-ons and the attachments to the current app (<your-heroku-app>) or other apps.
+```
+Congratulations! You have now installed a PostgreSQL database for your Heroku app.
