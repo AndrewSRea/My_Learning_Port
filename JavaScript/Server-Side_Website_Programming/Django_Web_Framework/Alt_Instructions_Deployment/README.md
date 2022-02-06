@@ -514,3 +514,95 @@ relation "..." does not exist
 LINE 1: SELECT COUNT(*) AS "__count" FROM "..."
 ```
 This error means your database tables do not yet exist. Your Django app is able to communicate with your database but you need to run some more commands in order to create the database tables. We also need to create a `superuser` for access to the Admin page of the app, just like we did when [we created a `superuser` for access to the local Django app's Admin page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#creating-a-superuser).
+
+Remember back when you were running your *LocalLibrary* app locally, whenever you made changes to the `models.py` file, those changes needed to `migrate` into your database by running `python manage.py migrate` in your virtual environment on the CLI. The same needs to be done here, except for your Heroku app, as your database tables have not yet been pushed into the PostgreSQL database.
+
+So, on the CLI, type the following:
+```
+heroku run python manage.py migrate
+```
+Once you run that command, you should immediately see a message reading, `Running python manage.py on <your-heroku-app's-name> ...`. You should also see a little icon in the text -- a little field of dots rotating around -- showing the migration is happening in your PostgreSQL database.
+
+After a short amount of time, you should then see a message in your terminal like so:
+```
+Operations to perform:
+  Apply all migrations: admin, auth, ...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  ...
+```
+You should see a whole list of migrations with green OKs next to them, which denotes that your migrations to the PostgreSQL database was successful.
+
+<hr>
+
+**Note**: The `makemigrations` command does not need to be run as that is only used when you first create the tables for your database. We have already created our database tables. We just need to run `migrate` to push the database tables we already have into our PostgreSQL database in Heroku.
+
+<hr>
+
+## Creating the `superuser` for Heroku app's Admin page
+
+Now you need to create a `superuser` for yourself so you will be able to access the Admin page of your *LocalLibrary* application in Heroku, similar to what you did in [Django Tutorial Part 4: Django admin site](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#django-tutorial-part-4-django-admin-site). However, the difference here is that we will be using Heroku commands to create this `superuser`. (Remember, Heroku has its own CLI commands [as we saw earlier](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Alt_Instructions_Deployment#install-the-heroku-client).)
+
+So, using Heroku CLI commands, we will create a bash shell in the terminal from which we can create our `superuser`. To do this, type:
+```
+heroku run bash
+```
+...on the CLI, and you should immediately see a message reading,
+```
+Running bash on <your-heroku-app's-name> ...
+```
+...and again you should see that little icon in the text with the little field of dots rotating around, signifying that a bash shell is starting to generate.
+
+When the process is finished, you should then see this text in your terminal:
+```
+~ $
+```
+...with your cursor blinking right beside the text. This means your bash shell is open and connected to your Heroku application, and ready to start taking commands.
+
+You can check to make sure your bash shell is connected to your Heroku application by typing `ls` on the command line. This should list all of the files and folders sitting within the root directory of your Heroku application. And if you notice, the `ls` command is the same as if you typed `ls` in your regular CLI in your terminal.
+
+So just like the commands you would use in your regular CLI, you can type the following in your Heroku bash shell:
+```
+python manage.py createsuperuser
+```
+When you run that command, a prompt will appear asking for your `Username`. Here you can type in any `Username` you wish to use for your `superuser` account, and press <kbd>Enter</kbd>.
+
+Then another prompt will appear for your `Email address`. Enter any email address you wish to use. And then a prompt will appear for your `Password`. Enter a `Password`, and a prompt will appear asking you to input that same `Password (again)`. Remember to keep all of this information on hand for future use.
+
+You should then receive a message which reads `Superuser created successfully.` Once you have received that message, you can then exit the Heroku bash shell by simply typing `exit` and pressing <kbd>Enter</kbd>.
+
+Now that you're on your local terminal, on the CLI type `heroku open` to open your Heroku app in a browser and voilà! You should see the beautiful *LocalLibrary* app you've spent all this time creating, shining there for all to see, hosted by Heroku!
+
+## Test your newly hosted *LocalLibrary* Heroku app
+
+You can now check out the features of your *LocalLibrary* app, to test whether the functionality works.
+
+If you go to the URL address bar of your app and type `/admin` at the end of the URL, you can see if all of the functionality of your Admin page works. Login with your newly created `superuser` username and password. If the functionality is working, you can test the "Logout" and "Login" functionality.
+
+You can test the "Register" functionality by creating a new User. You can try to add Books and Authors. Just test out all of the functionality of your newly hosted *LocalLibrary* app.
+
+There is one more thing we need to change in our *LocalLibrary* application locally to make sure our app continues its debugging process and catches any possible future errors.
+
+## The Django deployment checklist
+
+Django provides [its own deployment checklist](https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/) for you to review every time you deploy a Django application to an exterior hosting website. Because the internet is a dangerous place, you should reveiew this checklist to make sure your application is safe from any possible hackers.
+
+In fact, there is one thing on this checklist we need to do to our *LocalLibrary* app, to ensure it continues its debugging process and catches any possible errors.
+
+Open your `settings.py` file, and near the top of the file, change `DEBUG` to the following:
+```
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+```
+Rememeber we put a `DEBUG_VALUE` environment variable inside an `.env` file, as `export DEBUG_VALUE="True"`. That environment variable will be `export`ed here. The `DEBUG_VALUE` is set to the string of `"True"`, so when we say "if the DEBUG_VALUE is equal to 'True'" (`==`), "then the entire conditional (`(os.environ.get('DEBUG_VALUE'))`) is true, so `DEBUG` can run, or continue the debugging process.
+
+Now run your `git` commands one last and final time to add all of the changes you have made to your application:
+```
+git add -A
+git commit -m "Added a superuser to the Admin page and changed DEBUG_VALUE"
+git push heroku main
+git push origin main
+```
+
+**Congratulations! You hung in there and finally deployed your *LocalLibrary* app to Heroku! Well done!** 
+
+You can now share your *LocalLibrary* app with whomever you please by just copying the URL address of your deployed Heroku app, just as I will do here by example so you can see my *LocalLibrary* app hosted in Heroku: 
