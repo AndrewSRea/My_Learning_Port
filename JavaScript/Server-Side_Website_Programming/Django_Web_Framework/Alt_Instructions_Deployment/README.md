@@ -91,7 +91,7 @@ You should then receive a message in the Heroku browser which says, "Logged in,"
 
 [Gunicorn](https://gunicorn.org/) is the recommended HTTP server for use with Django on Heroku. It is a pure-Python HTTP server for WSGI applications that can run multiple Python concurrent processes within a single dyno. (See [Deploying Python applications with Gunicorn](https://devcenter.heroku.com/articles/python-gunicorn) for more information.)
 
-While we won't need *Gunicorn* to serve our *LocalLibrary* application during development, we'll install it so that it becomes part of our [requirements]() <!-- below --> for Heroku to set up on the remote server.
+While we won't need *Gunicorn* to serve our *LocalLibrary* application during development, we'll install it so that it becomes part of our [requirements](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Alt_Instructions_Deployment#requirements) for Heroku to set up on the remote server.
 
 Install *Gunicorn* locally on the CLI using *pip* (which you should have installed when [setting up the development environment](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Development_Environment#setting-up-a-django-development-environment)):
 
@@ -448,3 +448,69 @@ heroku-postgresql (postgresql-<heroku-name-given-to-your-postgresql-database>)  
 The table above shows add-ons and the attachments to the current app (<your-heroku-app>) or other apps.
 ```
 Congratulations! You have now installed a PostgreSQL database for your Heroku app.
+
+## Creating a line of communication between the *LocalLibrary* app and the PostgreSQL database
+
+Now we need to set up the credentials for the PostgreSQL database in the `settings.py` file so the *LocalLibrary* application can communicate to the database. But instead of adding these credentials to the `settings.py` file manually, we're going to use *pip* on the CLI to download a Python package named `django-on-heroku`.
+
+<hr>
+
+**Note**: This is where my tutorial diverges the [previous tutorial](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_11#django-tutorial-part-11-deploying-django-to-production) (and Corey Schafer's [YouTube tutorial](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=1s)). Those tutorials used the `django-heroku` Python package, which has since been archived and is no longer in use.
+
+<hr>
+
+`django-on-heroku` is a Django library for Heroku applications that ensures a seamless deployment, with a library which provides:
+
+* Settings configuration (for serving static files with a library called Whitenoise).
+* Logging configuration.
+* A test runner (important for [continuous integration in Heroku](https://www.heroku.com/continuous-integration)).
+
+To install the `django-on-heroku` Python package to your *LocalLibrary* application, type the following in your CLI:
+```
+pip install django-on-heroku
+```
+Once the package is install, it will automatically configure your database URL, and connect your static files (your CSS and JavaScript files) to *gunicorn* (which [we installed previously](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Alt_Instructions_Deployment#install-gunicorn)) using a package mentioned before named "Whitenoise", which was just installed when we *pip* installed `django-on-heroku`.
+
+Now, to get `django-on-heroku` connected on our app, open up the `settings.py` file and scroll to the very bottom of the file. There at the bottom of the file, type the following:
+```
+# Configure Django App for Heroku.
+import django_on_heroku
+django_on_heroku.settings(locals())
+```
+**Note that underscores are used for `django_on_heroku` even though we downloaded the package as `django-on-heroku`.** This is important as it is how the `settings.py` file interprets the package. Same with **`django_on_heroku.settings(...)`.**
+
+These two code line additions will automatically configure the PostgreSQL `DATABASE_URL`, `ALLOWED_HOSTS`, Whitenoise (for static assets), Logging, and Heroku CI for your application.
+
+<hr>
+
+:exclamation: **Attention**: I noticed that when I typed in these two lines of code, my code editor didn't seem to recognize them. That is, the two lines of code didn't appear in their usual colorful line of fashion, as my other lines of code. They appeared white and unrecognized.
+
+Making sure that I saved those two lines of code, I exited my code editor, and then I restarted my computer. Once I reopened ny code editor, the two lines of code appeared in their usual colorful fashion, and then I knew the lines of code were being "recognized" and taking effect.
+
+<hr>
+
+Now, since you have downloaded the `django-on-heroku` credentials into your application, we need to add those credentials to the `requirements.txt` file. We can do this simply by typing the following on the CLI:
+```
+pip freeze > requirements.txt
+```
+Remember we did this before when we [installed `gunicorn` into our application](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Alt_Instructions_Deployment#requirements). This command must be run any time you add any new dependencies to your application.
+
+Once you have run this command, run your `git` commands once again to add all of the changes made to your application:
+```
+git add -A
+git commit -m "Added the 'django-on-heroku' package"
+git push heroku main
+git push origin main
+```
+
+## Adding the tables to the PostgreSQL database
+
+In your CLI, type the `heroku open` command again to open your Heroku app in a browser. What?! There's another error! We swear this is the final error you will encounter.
+
+Again, there is an error message from our Django app which reads: <!-- error might be different for *LocalLibrary* so change if true -->
+```
+ProgrammingError at /
+relation "..." does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "..."
+```
+This error means your database tables do not yet exist. Your Django app is able to communicate with your database but you need to run some more commands in order to create the database tables. We also need to create a `superuser` for access to the Admin page of the app, just like we did when [we created a `superuser` for access to the local Django app's Admin page](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Django_Tutorial_4#creating-a-superuser).
