@@ -133,29 +133,41 @@ Heroku is closely integrated with the **git** source code version control system
 
 There are a lot of ways to work with git, but one of the easiest is to first set up an account on [GitHub](https://github.com/), create the repository there, and then sync to it locally:
 
-1. Visit [https://github.com/](https://github.com/) and create an account.
-2. Once you are logged in, click the **+** link in the top toolbar and select **New repository**.
-3. Fill in all the fields on this form. While these are not compulsory, they are strongly recommended.
-    - Enter a new repository name (e.g. *django_local_library*), and description (e.g. "Local Library website written in Django").
-    - Don't choose to *Add .gitignore* just yet. We will manually add a `.gitignore` file later.
-    - Choose your preferred license in the *Add license* selection list.
-    - Check **Initialize this repository with a README**.
-4. Press **Create repository**.
-5. Click the green "**Clone or download** button on your new repo page.
-6. Copy the URL value from the text field inside the dialog box that appears. (It should be something like: **https://github.com/<your_git_user_id>/django_local_library.git**).
-
-Now that the repository ("repo") is created, we are going to want to clone it on our local computer:
-
 1. Install *git* for your local computer. (You can find versions for different platforms [here](https://git-scm.com/downloads).)
+2. Visit [https://github.com/](https://github.com/) and create an account.
+3. Once you are logged in, click the **+** link in the top toolbar and select **New repository**.
+4. Fill in all the fields on the form provided.
+    - Enter a new repository name (e.g. *django_local_library*), and description (e.g. "Local Library website written in Django").
+    - To avoid errors, don't choose to add *README*, license, or *.gitignore* files just yet. You can manually add these files after your project has been pushed to GitHub.
+5. Press **Create repository**.
+6. Click the green "**Clone or download** button on your new repo page.
+7. Copy the URL value from the text field inside the dialog box that appears. (It should be something like: **https://github.com/<your_git_user_id>/django_local_library.git**).
+8. Open a command prompt/terminal. 
+9. Make sure to navigate out of your *django-projects* folder into a folder where you are willing to put this new cloned *django_local_library* folder**.
+10. Initialize the local directory as a Git repository in your terminal.
+    ```
+    git init -b main
+    ```
+11. Add the files in your new local repository. This stages them for the first commit.
+    ```
+    git add -A
+    ```
+12. Commit the files that you've staged in your local repository.
+    ```
+    git commit -m "First commit"
+    ```
+13. Taking the URL value from your GitHub repository (*the URL you acquired from step #7 above*), add it to the following steps:
+    ```
+    git remote add origin <your-github-repo's-url-address-from-step-7>
 
-2. Open a command prompt/terminal and clone your repository using the URL you copied above. (**Make sure to navigate out of your *django-projects* folder into a folder where you are willing to put this new cloned *django_local_library* folder**):
-```
-git clone https://github.com/<your_git_user_id>/django_local_library.git
-```
-
-3. Copy your Django application into this folder (all the files at the same level as **manage.py** and below, **not** their containing locallibrary folder).
-
-4. Follow the instructions below to **Create a `.gitignore` file**.
+    # Then the following step
+    git remote -v
+    ```
+14. Push these changes to your local repository in GitHub.
+    ```
+    git push -u origin main
+    ```
+15. Follow the instructions below to **Create a `.gitignore` file**.
 
 ### Create a `.gitignore` file
 
@@ -205,7 +217,7 @@ Changes to be committed:
 
 3. When you're satisfied, `commit` the files to your local repository. This is essentially equivalent to signing off on the changes and making them an official part of the local repository.
 ```
-git commit -m "First version of application moved into github"
+git commit -m "Adding a gitignore file"
 ```
 
 4. At this point, the remote repository has not been changed. Synchronize (`push`) your local repository to the remote GitHub repository using the following command:
@@ -485,7 +497,7 @@ These two code line additions will automatically configure the PostgreSQL `DATAB
 
 :exclamation: **Attention**: I noticed that when I typed in these two lines of code, my code editor didn't seem to recognize them. That is, the two lines of code didn't appear in their usual colorful line of fashion, as my other lines of code. They appeared white and unrecognized.
 
-Making sure that I saved those two lines of code, I exited my code editor, and then I restarted my computer. Once I reopened ny code editor, the two lines of code appeared in their usual colorful fashion, and then I knew the lines of code were being "recognized" and taking effect.
+Making sure that I saved those two lines of code, I exited my code editor, and then I restarted my computer. Once I reopened my code editor, the two lines of code appeared in their usual colorful fashion, and then I knew the lines of code were being "recognized" and taking effect.
 
 <hr>
 
