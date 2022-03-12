@@ -617,4 +617,11 @@ git push origin main
 
 **Congratulations! You hung in there and finally deployed your *LocalLibrary* app to Heroku! Well done!** 
 
-You can now share your *LocalLibrary* app with whomever you please by just copying the URL address of your deployed Heroku app, just as I will do here by example so you can see my *LocalLibrary* app hosted in Heroku: 
+You can now share your *LocalLibrary* app with whomever you please by just copying the URL address of your deployed Heroku app, just as I will do here by example so you can see my *LocalLibrary* app hosted in Heroku:
+
+* [My LocalLibrary app deployed on Heroku](https://peaceful-ridge-89504.herokuapp.com/catalog/)
+* [The code for my LocalLibrary app](https://github.com/AndrewSRea/local_library)
+
+<hr>
+
+[[Previous page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Assessment#assessment-diy-django-mini-blog) - [[Top]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework/Alt_Instructions_Deployment#alternate-instructions-for-deploying-a-django-app-to-heroku) - [[Back to the Django Web Framework opening page]](https://github.com/AndrewSRea/My_Learning_Port/tree/main/JavaScript/Server-Side_Website_Programming/Django_Web_Framework#django-web-framework-python)
